@@ -1,0 +1,10 @@
+{
+    "hostname" : "localhost",
+    "port" : 80,
+    "secret": "LEFFARC",
+    "favicon": "/public/images/favicon.png",
+    "key" : "/ssl/craffel.de_private_key.key",
+    "cert" : "/ssl/craffel.de_ssl_certificate.cer",
+    "logLevel": "trace",
+    "logOutputPath": "log/default.log"
+}
