@@ -16,6 +16,8 @@ import settings from './settings.json';
 import routes from './routes/index';
 import api from './routes/api';
 
+import { Worker } from './controller/worker';
+
 const app = express();
 
 // session handler
@@ -35,8 +37,8 @@ app.set('trust proxy', 1);
 
 app.use(favicon(path.join(__dirname, settings.favicon)));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); // { limit: '20mb' }
+app.use(bodyParser.urlencoded({ extended: false })); // { limit: '20mb', extended: true }
 app.use(cookieParser());
 
 // create a rotating write stream
@@ -90,6 +92,10 @@ app.use((err: any, req, res, next) => {
 });
 
 app.set('port', settings.port);
+
+// global Database Connection
+const worker = new Worker();
+worker.initialize();
 
 // start server
 if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join(__dirname, settings.cert))) {

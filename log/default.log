@@ -1,28 +1,8 @@
-[2022-03-17T12:57:12.679] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
-[2022-03-17T12:57:12.685] [INFO] default - HTTP Server listening on port 3000
-[2022-03-17T12:58:53.871] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
-[2022-03-17T12:58:53.877] [INFO] default - HTTP Server listening on port 3000
-[2022-03-17T12:59:54.420] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T12:59:54.425] [INFO] default - HTTP Server listening on port 443
-[2022-03-17T13:02:27.877] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:02:27.881] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:04:02.279] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:04:02.283] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:06:19.105] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:06:19.109] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:07:37.235] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:07:37.239] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:08:12.770] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:08:12.774] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:10:09.036] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:10:09.040] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:10:49.090] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:10:49.094] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:14:18.164] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:14:18.169] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:21:05.596] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:21:05.601] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:27:02.772] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:27:02.776] [INFO] default - HTTP Server listening on port 80
-[2022-03-17T13:30:55.871] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-03-17T13:30:55.875] [INFO] default - HTTP Server listening on port 80
+[2022-04-20T08:41:11.782] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-04-20T08:41:11.788] [INFO] default - HTTP Server listening on port 80
+[2022-04-20T09:57:38.277] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-04-20T09:57:38.284] [INFO] default - HTTP Server listening on port 80
+[2022-04-20T09:58:07.492] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-04-20T09:58:07.497] [INFO] default - HTTP Server listening on port 80
+[2022-05-10T14:56:49.991] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-10T14:56:50.087] [INFO] default - HTTP Server listening on port 80

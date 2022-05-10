@@ -41,6 +41,7 @@ const fs = __importStar(require("fs"));
 const settings_json_1 = __importDefault(require("./settings.json"));
 const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
+const worker_1 = require("./controller/worker");
 const app = express();
 // session handler
 app.use(session({
@@ -56,8 +57,8 @@ app.set('view engine', 'pug');
 app.set('trust proxy', 1);
 app.use(favicon(path.join(__dirname, settings_json_1.default.favicon)));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); // { limit: '20mb' }
+app.use(bodyParser.urlencoded({ extended: false })); // { limit: '20mb', extended: true }
 app.use(cookieParser());
 // create a rotating write stream
 const accessLogStream = logFile.createStream('request.log', {
@@ -102,6 +103,9 @@ app.use((err, req, res, next) => {
     });
 });
 app.set('port', settings_json_1.default.port);
+// global Database Connection
+const worker = new worker_1.Worker();
+worker.initialize();
 // start server
 if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.existsSync(path.join(__dirname, settings_json_1.default.cert))) {
     https.createServer({
