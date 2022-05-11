@@ -35,6 +35,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Connection = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const versionItem_1 = require("../model/versionItem");
+const nodeItem_1 = require("../model/nodeItem");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 class Connection {
@@ -48,9 +49,9 @@ class Connection {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.sequelize.authenticate();
-                // VersionItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
-                yield versionItem_1.VersionItem.updateTable(this.sequelize);
+                yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
+                yield nodeItem_1.NodeItem.updateTable({ sequelize: this.sequelize });
                 // await this.updater("migrations");
                 return true;
             }

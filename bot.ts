@@ -11,6 +11,7 @@ import path = require('path');
 import logFile = require('rotating-file-stream')
 import morgan = require('morgan');
 import * as fs from 'fs';
+import log4js = require('log4js');
 
 import settings from './settings.json';
 import routes from './routes/index';
@@ -52,8 +53,6 @@ app.use(morgan('combined', { stream: accessLogStream }))
 app.use(morgan('dev'));
 
 // setup debug
-import log4js = require('log4js');
-
 log4js.configure({
     appenders: { file: { type: "file", filename: settings.logOutputPath }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
@@ -93,9 +92,13 @@ app.use((err: any, req, res, next) => {
 
 app.set('port', settings.port);
 
-// global Database Connection
-const worker = new Worker();
-worker.initialize();
+
+// Global Database
+declare global {
+    var worker: Worker;
+  }
+global.worker = new Worker(app.get('log'));
+global.worker.initialize();
 
 // start server
 if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join(__dirname, settings.cert))) {

@@ -11,9 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Worker = void 0;
 const connection_1 = require("../database/connection");
+const path = require("path");
 class Worker {
-    constructor() {
-        this.globalDatabase = new connection_1.Connection(Buffer.from('global').toString('base64'), "../model", "../database/migrations");
+    constructor(log) {
+        const model = path.join(__dirname, '..', 'model');
+        const migration = path.join(__dirname, '..', 'database', 'migrations');
+        log.trace('Model Path: ' + model);
+        log.trace('Migration Path: ' + migration);
+        this.globalDatabase = new connection_1.Connection(Buffer.from('global').toString('base64'), model, migration);
     }
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {

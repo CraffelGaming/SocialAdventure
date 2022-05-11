@@ -38,6 +38,7 @@ const path = require("path");
 const logFile = require("rotating-file-stream");
 const morgan = require("morgan");
 const fs = __importStar(require("fs"));
+const log4js = require("log4js");
 const settings_json_1 = __importDefault(require("./settings.json"));
 const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
@@ -69,7 +70,6 @@ const accessLogStream = logFile.createStream('request.log', {
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 // setup debug
-const log4js = require("log4js");
 log4js.configure({
     appenders: { file: { type: "file", filename: settings_json_1.default.logOutputPath }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings_json_1.default.logLevel } }
@@ -103,9 +103,8 @@ app.use((err, req, res, next) => {
     });
 });
 app.set('port', settings_json_1.default.port);
-// global Database Connection
-const worker = new worker_1.Worker();
-worker.initialize();
+global.worker = new worker_1.Worker(app.get('log'));
+global.worker.initialize();
 // start server
 if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.existsSync(path.join(__dirname, settings_json_1.default.cert))) {
     https.createServer({

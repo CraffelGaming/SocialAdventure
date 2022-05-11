@@ -36,7 +36,7 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'version';
 router.get('/' + endpoint + '/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.status(200).json({ 'Version': '0.0.1' });
+    res.status(200).json(yield global.worker.globalDatabase.sequelize.models.VersionItem.findOne({ order: [['id', 'DESC']], raw: true }));
 }));
 exports.default = router;
 //# sourceMappingURL=api.version.js.map

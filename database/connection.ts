@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript'
 import { VersionItem } from '../model/versionItem';
+import { NodeItem } from '../model/nodeItem';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -20,11 +21,11 @@ export class Connection {
     async initialize(){
         try{
             await this.sequelize.authenticate();
-
-            // VersionItem.initialize(this.sequelize);
-
             await this.sequelize.sync();
-            await VersionItem.updateTable(this.sequelize);
+
+            await VersionItem.updateTable({ sequelize: this.sequelize });
+            await NodeItem.updateTable({ sequelize: this.sequelize });
+
             // await this.updater("migrations");
 
             return true;

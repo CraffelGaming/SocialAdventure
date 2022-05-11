@@ -1,8 +1,152 @@
-[2022-04-20T08:41:11.782] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
-[2022-04-20T08:41:11.788] [INFO] default - HTTP Server listening on port 80
-[2022-04-20T09:57:38.277] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
-[2022-04-20T09:57:38.284] [INFO] default - HTTP Server listening on port 80
-[2022-04-20T09:58:07.492] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
-[2022-04-20T09:58:07.497] [INFO] default - HTTP Server listening on port 80
-[2022-05-10T14:56:49.991] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
-[2022-05-10T14:56:50.087] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:21:35.229] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:21:35.233] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:21:35.233] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:21:35.346] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:21:51.757] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:21:51.762] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:21:51.762] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:21:51.876] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:22:24.486] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:22:24.491] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:22:24.491] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:22:24.604] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:22:46.611] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:22:46.613] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:22:46.613] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:22:46.708] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:23:34.193] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:23:34.197] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:23:34.197] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:23:34.314] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:23:49.271] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:23:49.275] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:23:49.275] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:23:49.397] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:24:22.884] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:24:22.888] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:24:22.888] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:24:26.508] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:25:17.329] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:25:17.333] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:25:17.334] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:25:17.453] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:26:00.635] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:26:00.637] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:26:00.637] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:26:00.730] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:26:43.213] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:26:43.215] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:26:43.216] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:26:43.317] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:27:58.765] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:27:58.768] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:27:58.768] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:27:58.865] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:28:44.435] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:28:44.440] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:28:44.441] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:28:44.557] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:29:58.429] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:29:58.431] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:29:58.432] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:29:58.526] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:31:07.672] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:31:07.675] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:31:07.675] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:31:07.769] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:35:19.440] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:35:19.442] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:35:19.442] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:35:19.539] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:36:04.530] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:36:04.532] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:36:04.532] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:36:04.627] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:36:48.780] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:36:48.782] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:36:48.782] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:36:48.876] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:37:10.510] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:37:10.514] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:37:10.514] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:37:10.625] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:37:26.449] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T16:37:26.453] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T16:37:26.453] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:37:26.581] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:48:10.624] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:48:10.626] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:48:10.626] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:48:10.724] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:48:31.210] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:48:31.212] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:48:31.213] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:48:31.305] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:50:42.396] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:50:42.398] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:50:42.399] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:50:42.495] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:51:53.987] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:51:53.989] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:51:53.990] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:51:54.084] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:52:21.000] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:52:21.003] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:52:21.003] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:52:21.097] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:55:59.629] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:55:59.632] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:55:59.632] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:55:59.728] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:57:29.212] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:57:29.214] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:57:29.215] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:57:29.308] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:57:53.379] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:57:53.382] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:57:53.382] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:57:53.477] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T16:58:54.251] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T16:58:54.253] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T16:58:54.253] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T16:58:54.346] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:00:43.339] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:00:43.342] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:00:43.342] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:00:43.438] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:01:09.055] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:01:09.058] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:01:09.058] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:01:09.151] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:06:20.360] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:06:20.363] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:06:20.363] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:06:20.481] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:07:36.640] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:07:36.642] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:07:36.642] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:07:36.739] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:09:26.457] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:09:26.459] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:09:26.459] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:09:26.559] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:09:48.517] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:09:48.519] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:09:48.519] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:09:48.619] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:30:22.091] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T17:30:22.095] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T17:30:22.096] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:30:22.212] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:30:40.884] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-11T17:30:40.888] [TRACE] default - Model Path: c:\Projects\SocialAdventure\model
+[2022-05-11T17:30:40.888] [TRACE] default - Migration Path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:30:41.000] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:31:35.558] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:31:35.561] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:31:35.561] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:31:35.655] [INFO] default - HTTP Server listening on port 80
+[2022-05-11T17:32:31.885] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-11T17:32:31.887] [TRACE] default - Model Path: C:\Projects\SocialAdventure\model
+[2022-05-11T17:32:31.887] [TRACE] default - Migration Path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-11T17:32:31.981] [INFO] default - HTTP Server listening on port 80

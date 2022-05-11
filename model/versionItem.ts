@@ -1,21 +1,21 @@
 import { Column, Table, Model, Sequelize } from 'sequelize-typescript';
-import json from './versionItem.json';
-
-@Table
+@Table({
+    tableName: 'version'
+  })
 export class VersionItem extends Model {
     @Column
     version: string;
 
-    constructor(){
+    constructor(version : string){
         super();
-        this.version = "1.0.0";
+        this.version = version;
     }
 
-    static async updateTable(sequelize: Sequelize){
-        const items: VersionItem[] = JSON.parse(JSON.stringify(json));
-        for(const item of items)
-            if(await sequelize.models.version.count({ where: { version: item.version } }) === 0)
-                await item.save();// sequelize.models.version.create(item);
-            else await sequelize.models.version.update({ version: item.version }, { where: { version: item.version }})
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
+        const item = new VersionItem(require('./../package.json').version);
+        if(await sequelize.models.VersionItem.count({ where: { version: item.version } }) === 0)
+            item.save();
     }
 }
+
+module.exports.default = VersionItem;

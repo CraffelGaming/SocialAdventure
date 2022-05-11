@@ -17,33 +17,45 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var VersionItem_1;
+var NodeItem_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VersionItem = void 0;
+exports.NodeItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let VersionItem = VersionItem_1 = class VersionItem extends sequelize_typescript_1.Model {
-    constructor(version) {
+const json = require("./nodeItem.json");
+let NodeItem = NodeItem_1 = class NodeItem extends sequelize_typescript_1.Model {
+    constructor({ id }, { name }) {
         super();
-        this.version = version;
+        this.name = name;
+        this.id = id;
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const item = new VersionItem_1(require('./../package.json').version);
-            if ((yield sequelize.models.VersionItem.count({ where: { version: item.version } })) === 0)
-                item.save();
+            const items = JSON.parse(JSON.stringify(json));
+            for (const item of items) {
+                if ((yield sequelize.models.NodeItem.count({ where: { id: item.id } })) === 0) {
+                    yield new NodeItem_1({ id: item.id }, { name: item.name }).save();
+                }
+                else
+                    sequelize.models.NodeItem.update({ name: item.name }, { where: { id: item.id } });
+            }
         });
     }
 };
 __decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], NodeItem.prototype, "id", void 0);
+__decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], VersionItem.prototype, "version", void 0);
-VersionItem = VersionItem_1 = __decorate([
+], NodeItem.prototype, "name", void 0);
+NodeItem = NodeItem_1 = __decorate([
     (0, sequelize_typescript_1.Table)({
-        tableName: 'version'
+        tableName: 'node'
     }),
-    __metadata("design:paramtypes", [String])
-], VersionItem);
-exports.VersionItem = VersionItem;
-module.exports.default = VersionItem;
-//# sourceMappingURL=versionItem.js.map
+    __metadata("design:paramtypes", [Object, Object])
+], NodeItem);
+exports.NodeItem = NodeItem;
+module.exports.default = NodeItem;
+//# sourceMappingURL=nodeItem.js.map
