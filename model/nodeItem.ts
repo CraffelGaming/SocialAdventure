@@ -33,6 +33,12 @@ export class NodeItem{
             isActive: {
                type: DataTypes.BOOLEAN,
                allowNull: false
+           },
+           endpoint:
+           {
+               type: DataTypes.STRING,
+               allowNull: false,
+               defaultValue: '/'
            }
           }, {freezeTableName: true});
     }

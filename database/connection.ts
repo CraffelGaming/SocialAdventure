@@ -64,7 +64,7 @@ export class Connection {
     async updater(folder){
         try{
 
-            for(const item of Object.values(await this.sequelize.models.migrations.findAll()) as unknown as MigrationItem[]){
+            for(const item of Object.values(await this.sequelize.models.migration.findAll()) as unknown as MigrationItem[]){
                 global.worker.log.trace('add Migration ' + item.name);
 
                 if(!this.isNewDatabase){
@@ -73,7 +73,7 @@ export class Connection {
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }
                 item.isInstalled = true;
-                await this.sequelize.models.migrations.update(item, {where: {name: item.name}});
+                await this.sequelize.models.migration.update(item, {where: {name: item.name}});
             }
         } catch (ex) {
             global.worker.log.error(ex);

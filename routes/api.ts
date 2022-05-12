@@ -5,6 +5,7 @@ import * as specs from '../swagger';
 
 import version from "./api/api.version";
 import node from "./api/api.node";
+import migration from "./api/api.migration";
 
 const router = express.Router();
 
@@ -81,6 +82,41 @@ router.get("/version", version);
  *               descrition: Datum der letzten Änderung
  */
  router.get("/node", node);
+
+/**
+ * @swagger
+ * /migration:
+ *   get:
+ *     tags:
+ *     - Migration
+ *     summary: Migration
+ *     description: Rückgabe alles Migration des Servers.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *               example: "Update_001"
+ *               descrition: Name des Migration-Skripts
+ *             isInstalled:
+ *               type: boolean
+ *               example: true
+ *               descrition: Status des Skripts
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ */
+router.get("/migration", migration);
 
 // documentation endpoint for Swagger
 router.use('/', swaggerUi.serve, swaggerUi.setup(specs.default));

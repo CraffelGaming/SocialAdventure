@@ -37,6 +37,11 @@ class NodeItem {
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false
+            },
+            endpoint: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: false,
+                defaultValue: '/'
             }
         }, { freezeTableName: true });
     }

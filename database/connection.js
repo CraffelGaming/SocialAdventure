@@ -85,7 +85,7 @@ class Connection {
     updater(folder) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                for (const item of Object.values(yield this.sequelize.models.migrations.findAll())) {
+                for (const item of Object.values(yield this.sequelize.models.migration.findAll())) {
                     global.worker.log.trace('add Migration ' + item.name);
                     if (!this.isNewDatabase) {
                         const fileName = path.join(__dirname, folder, item.name + '.js');
@@ -93,7 +93,7 @@ class Connection {
                         yield file.up(this.sequelize.getQueryInterface(), this.sequelize);
                     }
                     item.isInstalled = true;
-                    yield this.sequelize.models.migrations.update(item, { where: { name: item.name } });
+                    yield this.sequelize.models.migration.update(item, { where: { name: item.name } });
                 }
             }
             catch (ex) {

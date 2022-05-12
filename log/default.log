@@ -80,3 +80,111 @@ Require stack:
 [2022-05-12T13:52:06.768] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
 [2022-05-12T13:52:06.770] [INFO] default - HTTP Server listening on port 80
 [2022-05-12T13:52:06.829] [TRACE] default - add Node craffel
+[2022-05-12T14:07:05.740] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:07:05.742] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:07:05.827] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:07:05.830] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:07:05.873] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'findAll')
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:88:89)
+    at Generator.next (<anonymous>)
+    at C:\Projects\SocialAdventure\database\connection.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Projects\SocialAdventure\database\connection.js:27:12)
+    at Connection.updater (C:\Projects\SocialAdventure\database\connection.js:86:16)
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:60:28)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:07:05.877] [TRACE] default - add Node craffel
+[2022-05-12T14:07:05.884] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'findAll')
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:88:89)
+    at Generator.next (<anonymous>)
+    at C:\Projects\SocialAdventure\database\connection.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Projects\SocialAdventure\database\connection.js:27:12)
+    at Connection.updater (C:\Projects\SocialAdventure\database\connection.js:86:16)
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:77:28)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:08:12.480] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:08:12.482] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:08:12.567] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:08:12.569] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:08:12.610] [TRACE] default - add Migration update_001
+[2022-05-12T14:08:12.611] [ERROR] default - TypeError: file.up is not a function
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:93:36)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:08:12.613] [TRACE] default - add Node craffel
+[2022-05-12T14:08:12.625] [TRACE] default - add Migration update_001
+[2022-05-12T14:08:12.626] [ERROR] default - TypeError: file.up is not a function
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:93:36)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:12:13.988] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:12:13.990] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:12:14.073] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:12:14.075] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:12:14.116] [TRACE] default - add Migration update_001
+[2022-05-12T14:12:14.117] [ERROR] default - TypeError: file.up is not a function
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:93:36)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:12:14.119] [TRACE] default - add Node craffel
+[2022-05-12T14:12:14.128] [TRACE] default - add Migration update_001
+[2022-05-12T14:12:14.128] [ERROR] default - TypeError: file.up is not a function
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:93:36)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:19:21.205] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:19:21.207] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:19:21.291] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:19:21.293] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:19:21.402] [TRACE] default - add Migration update_001
+[2022-05-12T14:19:21.402] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'update')
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:96:60)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:19:21.405] [TRACE] default - add Node craffel
+[2022-05-12T14:32:59.579] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:32:59.581] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:32:59.667] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:32:59.670] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:32:59.725] [TRACE] default - add Migration update_001
+[2022-05-12T14:32:59.735] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'update')
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:96:60)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-05-12T14:32:59.737] [TRACE] default - add Node craffel
+[2022-05-12T14:34:23.327] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:34:23.329] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:34:23.413] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:34:23.416] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:34:23.512] [TRACE] default - add Node craffel
+[2022-05-12T14:35:24.429] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:35:24.431] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:35:24.515] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:35:24.517] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:35:24.561] [TRACE] default - add Migration update_001
+[2022-05-12T14:35:24.572] [TRACE] default - add Node craffel
+[2022-05-12T14:40:21.240] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:40:21.243] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:40:21.328] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:40:21.330] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:40:21.424] [TRACE] default - add Node craffel
+[2022-05-12T14:42:03.046] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:42:03.048] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:42:03.135] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:42:03.137] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:42:03.187] [TRACE] default - add Migration update_001
+[2022-05-12T14:42:03.198] [TRACE] default - add Node craffel
+[2022-05-12T14:52:50.867] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:52:50.870] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:52:50.970] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:52:50.972] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:52:51.068] [TRACE] default - add Node craffel
+[2022-05-12T14:53:10.055] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-05-12T14:53:10.058] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-05-12T14:53:10.141] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-05-12T14:53:10.144] [INFO] default - HTTP Server listening on port 80
+[2022-05-12T14:53:10.196] [TRACE] default - add Migration update_001
+[2022-05-12T14:53:10.207] [TRACE] default - add Node craffel
