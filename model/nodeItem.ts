@@ -1,30 +1,53 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
 import json = require('./nodeItem.json');
 
-@Table({
-    tableName: 'node'
-  })
-export class NodeItem extends Model {
+export class NodeItem{
+    name: string;
+    displayName: string;
+    language: string;
+    isActive: boolean;
 
-    @PrimaryKey
-    @Column
-    override id?: number;
-
-    @Column
-    name?: string;
-
-    constructor({ id }: { id: number; }, { name }: { name: string; }){
-        super();
+    constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
         this.name = name;
-        this.id= id;
+        this.displayName = displayName;
+        this.language = language;
+        this.isActive = isActive;
+    }
+
+    static initialize(sequelize){
+        sequelize.define('node', {
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                primaryKey: true
+            },
+            displayName: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            language: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            isActive: {
+               type: DataTypes.BOOLEAN,
+               allowNull: false
+           }
+          }, {freezeTableName: true});
     }
 
     static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        const items = JSON.parse(JSON.stringify(json));
-        for(const item of items){
-            if(await sequelize.models.NodeItem.count({where: {id: item.id}}) === 0){
-                await new NodeItem({id: item.id}, {name: item.name}).save();
-            } else sequelize.models.NodeItem.update({name: item.name},{where: {id: item.id}});
+        try{
+            const items = JSON.parse(JSON.stringify(json)) as NodeItem[];
+
+            for(const item of items){
+                if(await sequelize.models.node.count({where: {name: item.name}}) === 0){
+                    await sequelize.models.node.create(item as any);
+                } else await sequelize.models.node.update(item, {where: {name: item.name}});
+            }
+        } catch(ex){
+            global.worker.log.error(ex);
         }
     }
 }

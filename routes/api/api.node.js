@@ -34,14 +34,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const router = express.Router();
-const endpoint = 'version';
+const endpoint = 'node';
 router.get('/' + endpoint + '/', (reqest, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace('GET ' + endpoint);
-    const item = yield global.worker.globalDatabase.sequelize.models.version.findOne({ order: [['version', 'DESC']], raw: true });
+    const item = yield global.worker.globalDatabase.sequelize.models.node.findAll({ order: [['name', 'ASC']], raw: true });
     if (item)
         response.status(200).json(item);
     else
         response.status(404).json();
 }));
 exports.default = router;
-//# sourceMappingURL=api.version.js.map
+//# sourceMappingURL=api.node.js.map

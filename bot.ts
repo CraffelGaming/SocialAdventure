@@ -58,9 +58,6 @@ log4js.configure({
     categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
 });
 
-app.set('log', log4js.getLogger("default"));
-app.get('log').trace('Execution Path: ' + __dirname);
-
 // set routes
 app.use('/', routes);
 app.use('/api', api);
@@ -97,8 +94,12 @@ app.set('port', settings.port);
 declare global {
     var worker: Worker;
   }
-global.worker = new Worker(app.get('log'));
+
+global.worker = new Worker(log4js.getLogger("default"));
 global.worker.initialize();
+
+// Logging
+global.worker.log.trace('Execution Path: ' + __dirname);
 
 // start server
 if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join(__dirname, settings.cert))) {
@@ -107,11 +108,11 @@ if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join
         cert: fs.readFileSync(path.join(__dirname, settings.cert))
     }, app)
         .listen(app.get('port'), () => {
-                app.get('log').info('HTTPS Server listening on port ' + app.get('port'));
+            global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
             })
 } else {
     http.createServer(app)
         .listen(app.get('port'), () => {
-                app.get('log').info('HTTP Server listening on port ' + app.get('port'));
+                global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
             })
 }

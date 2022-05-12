@@ -74,8 +74,6 @@ log4js.configure({
     appenders: { file: { type: "file", filename: settings_json_1.default.logOutputPath }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings_json_1.default.logLevel } }
 });
-app.set('log', log4js.getLogger("default"));
-app.get('log').trace('Execution Path: ' + __dirname);
 // set routes
 app.use('/', index_1.default);
 app.use('/api', api_1.default);
@@ -103,8 +101,10 @@ app.use((err, req, res, next) => {
     });
 });
 app.set('port', settings_json_1.default.port);
-global.worker = new worker_1.Worker(app.get('log'));
+global.worker = new worker_1.Worker(log4js.getLogger("default"));
 global.worker.initialize();
+// Logging
+global.worker.log.trace('Execution Path: ' + __dirname);
 // start server
 if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.existsSync(path.join(__dirname, settings_json_1.default.cert))) {
     https.createServer({
@@ -112,13 +112,13 @@ if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.exist
         cert: fs.readFileSync(path.join(__dirname, settings_json_1.default.cert))
     }, app)
         .listen(app.get('port'), () => {
-        app.get('log').info('HTTPS Server listening on port ' + app.get('port'));
+        global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
     });
 }
 else {
     http.createServer(app)
         .listen(app.get('port'), () => {
-        app.get('log').info('HTTP Server listening on port ' + app.get('port'));
+        global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
     });
 }
 //# sourceMappingURL=bot.js.map

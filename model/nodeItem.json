@@ -1,6 +1,8 @@
 [
     {
-        "id": 1,
-        "name": "craffel1"
+        "name": "craffel",
+        "displayName": "Craffel",
+        "language": "de-DE",
+        "isActive": true
     }
 ]

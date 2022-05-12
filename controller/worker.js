@@ -12,17 +12,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Worker = void 0;
 const connection_1 = require("../database/connection");
 const path = require("path");
+const channel_1 = require("./channel");
 class Worker {
     constructor(log) {
-        const model = path.join(__dirname, '..', 'model');
-        const migration = path.join(__dirname, '..', 'database', 'migrations');
-        log.trace('Model Path: ' + model);
-        log.trace('Migration Path: ' + migration);
-        this.globalDatabase = new connection_1.Connection(Buffer.from('global').toString('base64'), model, migration);
+        this.log = log;
+        this.pathModel = path.join(__dirname, '..', 'model');
+        this.pathMigration = path.join(__dirname, '..', 'database', 'migrations');
+        this.channels = [];
+        this.log.trace('basic model path: ' + this.pathModel);
+        this.log.trace('basic migration path: ' + this.pathMigration);
+        this.globalDatabase = new connection_1.Connection({ databaseName: Buffer.from('global').toString('base64') });
     }
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.globalDatabase.initialize();
+            yield this.globalDatabase.initializeGlobal();
+            for (const item of Object.values(yield this.globalDatabase.sequelize.models.node.findAll())) {
+                this.log.trace('add Node ' + item.name);
+                const channel = new channel_1.Channel(item);
+                channel.database.initialize();
+                this.channels.push(channel);
+            }
         });
     }
 }

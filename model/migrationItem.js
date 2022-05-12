@@ -9,47 +9,52 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NodeItem = void 0;
+exports.MigrationItem = void 0;
 const sequelize_1 = require("sequelize");
-const json = require("./nodeItem.json");
-class NodeItem {
-    constructor(name, displayName, language, isActive) {
+const jsonMigration = require("./migrationItem.json");
+const jsonMigrationGlobal = require("./migrationGlobalItem.json");
+class MigrationItem {
+    constructor(name, isInstalled) {
         this.name = name;
-        this.displayName = displayName;
-        this.language = language;
-        this.isActive = isActive;
+        this.isInstalled = isInstalled;
     }
     static initialize(sequelize) {
-        sequelize.define('node', {
+        sequelize.define('migration', {
             name: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
-            displayName: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: false
-            },
-            language: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: false
-            },
-            isActive: {
+            isInstalled: {
                 type: sequelize_1.DataTypes.BOOLEAN,
-                allowNull: false
+                allowNull: false,
+                defaultValue: false
             }
         }, { freezeTableName: true });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const items = JSON.parse(JSON.stringify(json));
+                const items = JSON.parse(JSON.stringify(jsonMigration));
                 for (const item of items) {
-                    if ((yield sequelize.models.node.count({ where: { name: item.name } })) === 0) {
-                        yield sequelize.models.node.create(item);
+                    if ((yield sequelize.models.migration.count({ where: { name: item.name } })) === 0) {
+                        yield sequelize.models.migration.create(item);
                     }
-                    else
-                        yield sequelize.models.node.update(item, { where: { name: item.name } });
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+            }
+        });
+    }
+    static updateTableGlobal({ sequelize }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const items = JSON.parse(JSON.stringify(jsonMigrationGlobal));
+                for (const item of items) {
+                    if ((yield sequelize.models.migration.count({ where: { name: item.name } })) === 0) {
+                        yield sequelize.models.migration.create(item);
+                    }
                 }
             }
             catch (ex) {
@@ -58,6 +63,6 @@ class NodeItem {
         });
     }
 }
-exports.NodeItem = NodeItem;
-module.exports.default = NodeItem;
-//# sourceMappingURL=nodeItem.js.map
+exports.MigrationItem = MigrationItem;
+module.exports.default = MigrationItem;
+//# sourceMappingURL=migrationItem.js.map

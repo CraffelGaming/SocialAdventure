@@ -38,25 +38,66 @@ const versionItem_1 = require("../model/versionItem");
 const nodeItem_1 = require("../model/nodeItem");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
+const migrationItem_1 = require("../model/migrationItem");
 class Connection {
-    constructor(databaseName, modelPath, migrationPath) {
+    constructor({ databaseName }) {
         this.databaseName = databaseName;
         this.databasePath = path.join(__dirname, this.databaseName + '.sqlite');
         this.isNewDatabase = !fs.existsSync(this.databasePath);
-        this.sequelize = new sequelize_typescript_1.Sequelize({ dialect: 'sqlite', storage: this.databasePath, models: [modelPath] });
+        this.sequelize = new sequelize_typescript_1.Sequelize({ dialect: 'sqlite', storage: this.databasePath });
+    }
+    initializeGlobal() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.sequelize.authenticate();
+                migrationItem_1.MigrationItem.initialize(this.sequelize);
+                versionItem_1.VersionItem.initialize(this.sequelize);
+                nodeItem_1.NodeItem.initialize(this.sequelize);
+                yield this.sequelize.sync();
+                yield migrationItem_1.MigrationItem.updateTableGlobal({ sequelize: this.sequelize });
+                yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
+                yield nodeItem_1.NodeItem.updateTable({ sequelize: this.sequelize });
+                yield this.updater("migrations/global");
+                return true;
+            }
+            catch (ex) {
+                return false;
+            }
+        });
     }
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.sequelize.authenticate();
+                migrationItem_1.MigrationItem.initialize(this.sequelize);
+                versionItem_1.VersionItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
+                yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
-                yield nodeItem_1.NodeItem.updateTable({ sequelize: this.sequelize });
-                // await this.updater("migrations");
+                yield this.updater("migrations/general");
                 return true;
             }
             catch (ex) {
                 return false;
+            }
+        });
+    }
+    updater(folder) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                for (const item of Object.values(yield this.sequelize.models.migrations.findAll())) {
+                    global.worker.log.trace('add Migration ' + item.name);
+                    if (!this.isNewDatabase) {
+                        const fileName = path.join(__dirname, folder, item.name + '.js');
+                        const file = require(fileName);
+                        yield file.up(this.sequelize.getQueryInterface(), this.sequelize);
+                    }
+                    item.isInstalled = true;
+                    yield this.sequelize.models.migrations.update(item, { where: { name: item.name } });
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
             }
         });
     }
