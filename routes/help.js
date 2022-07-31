@@ -26,9 +26,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const endpoint = 'help';
 const router = express.Router();
-router.get('/' + endpoint, (req, res) => {
-    res.render(endpoint, {
-        title: 'Craffels Abenteuer'
+router.get('/' + endpoint, (request, response) => {
+    response.render(endpoint, {
+        title: 'Social Adventure'
     });
 });
 exports.default = router;

@@ -29,6 +29,9 @@ export class MenuItem{
                 allowNull: false
             }
           }, {freezeTableName: true});
+
+            sequelize.models.menu.hasMany(sequelize.models.menu, {as: 'childs', foreignKey: 'parentEndpoint'} );
+            sequelize.models.menu.belongsTo(sequelize.models.menu, { as: 'parent', foreignKey: 'parentEndpoint'});
     }
 
     static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{

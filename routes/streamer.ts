@@ -1,6 +1,6 @@
 import * as express from 'express';
 
-const endpoint = 'help';
+const endpoint = 'streamer';
 
 const router = express.Router();
 

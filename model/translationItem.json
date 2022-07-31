@@ -1,14 +1,18 @@
 [
-    {
-        "page": "navigation",
-        "handle": "streamer",
-        "language": "de-DE",
-        "translation": "Streamer"
-    },
-    {
-        "page": "navigation",
-        "handle": "twitch",
-        "language": "de-DE",
-        "translation": "Twitch"
-    }
+    { "page": "navigation", "handle": "streamer", "language": "de-DE", "translation": "Streamer" },
+    { "page": "navigation", "handle": "twitch", "language": "de-DE", "translation": "Twitch" },
+    { "page": "navigation", "handle": "login", "language": "de-DE", "translation": "Anmelden" },
+    { "page": "navigation", "handle": "logout", "language": "de-DE", "translation": "Abmelden"},
+    { "page": "navigation", "handle": "api", "language": "de-DE", "translation": "API"},
+    { "page": "navigation", "handle": "help", "language": "de-DE", "translation": "Hilfe"},
+    { "page": "navigation", "handle": "impressum", "language": "de-DE", "translation": "Impressum"},
+    { "page": "navigation", "handle": "title", "language": "de-DE", "translation": "Social Adventure"},
+    { "page": "streamer", "handle": "title", "language": "de-DE", "translation": "Streamer"},
+    { "page": "streamer", "handle": "name", "language": "de-DE", "translation": "Streamer"},
+    { "page": "streamer", "handle": "displayName", "language": "de-DE", "translation": "Streamer"},
+    { "page": "streamer", "handle": "language", "language": "de-DE", "translation": "Sprache"},
+    { "page": "streamer", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "streamer", "handle": "endpoint", "language": "de-DE", "translation": "Webseite"},
+    { "page": "help", "handle": "title", "language": "de-DE", "translation": "Hilfe"},
+    { "page": "index", "handle": "title", "language": "de-DE", "translation": "Startseite"}
 ]

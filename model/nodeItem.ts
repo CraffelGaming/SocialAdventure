@@ -7,6 +7,13 @@ export class NodeItem{
     displayName: string;
     language: string;
     isActive: boolean;
+    endpoint : string;
+    type: string;
+    broadcasterType: string;
+    description: string;
+    profileImageUrl: string;
+    viewCount: number;
+    eMail: string;
 
     constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
         this.name = name;
@@ -33,13 +40,37 @@ export class NodeItem{
             isActive: {
                type: DataTypes.BOOLEAN,
                allowNull: false
-           },
-           endpoint:
-           {
+            },
+            endpoint: {
                type: DataTypes.STRING,
                allowNull: false,
                defaultValue: '/'
-           }
+            },
+            type: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            broadcasterType: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            description: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            profileImageUrl: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            viewCount: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            eMail: {
+                type: DataTypes.STRING,
+                allowNull: true
+            }
           }, {freezeTableName: true});
     }
 

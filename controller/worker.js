@@ -34,6 +34,12 @@ class Worker {
             }
         });
     }
+    connect(client) {
+        for (const channel of this.channels) {
+            this.log.trace('node connected: ' + channel.node.name);
+            client.join(channel.node.name.replace('#', ''));
+        }
+    }
 }
 exports.Worker = Worker;
 //# sourceMappingURL=worker.js.map

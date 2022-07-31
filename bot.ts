@@ -12,6 +12,8 @@ import logFile = require('rotating-file-stream')
 import morgan = require('morgan');
 import * as fs from 'fs';
 import log4js = require('log4js');
+import tmi = require('tmi.js');
+import tmiSettings = require('./bot.json');
 
 import settings from './settings.json';
 import routes from './routes/index';
@@ -67,9 +69,9 @@ app.use('/devExpress', express.static(__dirname + '/node_modules/devextreme/dist
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use((err: any, req, res, next) => {
-        res.status(err.status || 500);
-        res.render('error', {
+    app.use((err: any, request: express.Request, response: express.Response) => {
+        response.status(err.status || 500);
+        response.render('error', {
             message: err.message,
             error: err
         });
@@ -78,9 +80,9 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use((err: any, req, res, next) => {
-    res.status(err.status || 500);
-    res.render('error', {
+app.use((err: any, request: express.Request, response: express.Response) => {
+    response.status(err.status || 500);
+    response.render('error', {
         message: err.message,
         error: {}
     });
@@ -88,10 +90,10 @@ app.use((err: any, req, res, next) => {
 
 app.set('port', settings.port);
 
-
 // Global Database
 declare global {
     var worker: Worker;
+    var client: any;
   }
 
 global.worker = new Worker(log4js.getLogger("default"));
@@ -115,3 +117,50 @@ if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join
                 global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
             })
 }
+
+startup();
+
+// start twitch bot
+async function startup(){
+    // Create a client with our options
+    global.client = new tmi.client(tmiSettings);
+
+    // Register our event handlers (defined below)
+    global.client.on('message', onMessageHandler);
+    global.client.on('connected', onConnectedHandler);
+    global.client.on('disconnected', onDisconnectedHandler);
+
+    // Connect to Twitch:
+    await global.client.connect();
+
+    // Connect Channels
+    global.worker.connect(global.client);
+  }
+
+  // Called every time a message comes in
+  async function onMessageHandler (target, context, message, self) {
+    try{
+        global.worker.log.trace('incomming message');
+        if (self) { return; } // Ignore messages from the bot
+        if(!message.trim().toLowerCase().startsWith('!')) { return; } // Ignore normal chat messages
+
+        global.worker.log.trace('incomming message target: ' + target);
+        global.worker.log.trace('incomming message context: ' + context);
+        global.worker.log.trace('incomming message message: ' + message);
+        global.worker.log.trace('incomming message self: ' + self);
+
+
+    } catch (ex){
+        global.worker.log.error(ex);
+    }
+  }
+
+  // Called every time the bot connects to Twitch chat
+  function onConnectedHandler (addr, port) {
+    global.worker.log.info(`bot connected to ${addr}:${port}`);
+  }
+
+  async function onDisconnectedHandler(){
+    // Connect to Twitch:
+    global.client.connect();
+  }

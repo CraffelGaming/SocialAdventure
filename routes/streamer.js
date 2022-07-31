@@ -22,26 +22,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 const express = __importStar(require("express"));
-const help_1 = __importDefault(require("./help"));
-const streamer_1 = __importDefault(require("./streamer"));
-const endpoint = 'index';
-const type = 'app';
+const endpoint = 'streamer';
 const router = express.Router();
-// Help
-router.get('/help', help_1.default);
-// Streamer
-router.get('/streamer', streamer_1.default);
-// index
-router.get('/', (request, response) => {
+router.get('/' + endpoint, (request, response) => {
     response.render(endpoint, {
         title: 'Social Adventure'
     });
 });
 exports.default = router;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=streamer.js.map

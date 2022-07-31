@@ -2,6 +2,7 @@
     width: 100%;
     background: #35383c !important;
     position: fixed;
+    top: 0px;
 }
 
 #menu-container {

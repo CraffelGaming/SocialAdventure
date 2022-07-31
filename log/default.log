@@ -541,3 +541,1004 @@ notNull Violation: node.isActive cannot be null
 [2022-07-31T12:55:30.290] [TRACE] default - GET menu
 [2022-07-31T13:00:10.869] [TRACE] default - GET translation
 [2022-07-31T13:00:10.875] [TRACE] default - GET menu
+[2022-07-31T17:02:58.845] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:02:58.849] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:02:59.077] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:02:59.080] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:02:59.185] [TRACE] default - add Migration update_001
+[2022-07-31T17:02:59.197] [TRACE] default - add Node craffel
+[2022-07-31T17:03:07.103] [TRACE] default - GET translation
+[2022-07-31T17:03:07.111] [TRACE] default - GET menu
+[2022-07-31T17:03:14.945] [TRACE] default - GET translation
+[2022-07-31T17:03:14.957] [TRACE] default - GET menu
+[2022-07-31T17:03:20.446] [TRACE] default - GET translation
+[2022-07-31T17:03:20.454] [TRACE] default - GET menu
+[2022-07-31T17:04:23.665] [TRACE] default - GET translation
+[2022-07-31T17:04:23.670] [TRACE] default - GET menu
+[2022-07-31T17:05:00.298] [TRACE] default - GET translation
+[2022-07-31T17:05:00.305] [TRACE] default - GET menu
+[2022-07-31T17:05:52.068] [TRACE] default - GET translation
+[2022-07-31T17:05:52.075] [TRACE] default - GET menu
+[2022-07-31T17:07:05.067] [TRACE] default - GET translation
+[2022-07-31T17:07:05.073] [TRACE] default - GET menu
+[2022-07-31T17:07:54.228] [TRACE] default - GET translation
+[2022-07-31T17:07:54.235] [TRACE] default - GET menu
+[2022-07-31T17:08:13.541] [TRACE] default - GET translation
+[2022-07-31T17:08:13.549] [TRACE] default - GET menu
+[2022-07-31T17:08:19.302] [TRACE] default - GET translation
+[2022-07-31T17:08:19.309] [TRACE] default - GET menu
+[2022-07-31T17:15:59.233] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:15:59.235] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:15:59.346] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:15:59.349] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:15:59.468] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T17:15:59.495] [TRACE] default - add Migration update_001
+[2022-07-31T17:15:59.508] [TRACE] default - add Node craffel
+[2022-07-31T17:17:38.029] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:17:38.031] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:17:38.137] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:17:38.139] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:17:38.263] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T17:17:38.291] [TRACE] default - add Migration update_001
+[2022-07-31T17:17:38.304] [TRACE] default - add Node craffel
+[2022-07-31T17:24:31.972] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:24:31.974] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:24:32.088] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:24:32.091] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:25:07.306] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:25:07.308] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:25:07.421] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:25:07.424] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:25:07.550] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T17:25:07.575] [TRACE] default - add Migration update_001
+[2022-07-31T17:25:07.588] [TRACE] default - add Node craffel
+[2022-07-31T17:30:59.431] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:30:59.432] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:30:59.540] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:30:59.543] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:32:50.699] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:32:50.701] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:32:50.813] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:32:50.816] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:32:50.945] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T17:32:50.971] [TRACE] default - add Migration update_001
+[2022-07-31T17:32:50.981] [TRACE] default - add Node craffel
+[2022-07-31T17:34:48.339] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:34:48.341] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:34:48.447] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:34:48.450] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:36:17.545] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:36:17.547] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:36:17.652] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:36:17.654] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:36:17.788] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T17:36:17.819] [TRACE] default - add Migration update_001
+[2022-07-31T17:36:17.831] [TRACE] default - add Node craffel
+[2022-07-31T17:38:13.607] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:38:13.610] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:38:13.717] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:38:13.720] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:42:06.735] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:42:06.737] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:42:06.841] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:42:06.843] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:42:07.025] [TRACE] default - add Migration update_001
+[2022-07-31T17:42:07.038] [TRACE] default - add Node craffel
+[2022-07-31T17:43:50.057] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:43:50.059] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:43:50.165] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:43:50.167] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:43:50.351] [TRACE] default - add Migration update_001
+[2022-07-31T17:43:50.365] [TRACE] default - add Node craffel
+[2022-07-31T17:44:19.428] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:44:19.430] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:44:19.543] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:44:19.546] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:44:19.716] [TRACE] default - add Migration update_001
+[2022-07-31T17:44:19.727] [TRACE] default - add Node craffel
+[2022-07-31T17:45:00.046] [TRACE] default - GET menu
+[2022-07-31T17:50:25.825] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T17:50:25.827] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T17:50:25.945] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T17:50:25.948] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T17:50:26.132] [TRACE] default - add Migration update_001
+[2022-07-31T17:50:26.145] [TRACE] default - add Node craffel
+[2022-07-31T17:51:47.505] [TRACE] default - GET translation
+[2022-07-31T17:51:47.517] [TRACE] default - GET menu
+[2022-07-31T17:51:57.547] [TRACE] default - GET menu
+[2022-07-31T18:00:52.925] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:00:52.928] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:00:53.040] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:00:53.042] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:00:53.156] [TRACE] default - add Migration update_001
+[2022-07-31T18:00:53.167] [TRACE] default - add Node craffel
+[2022-07-31T18:02:14.127] [TRACE] default - GET menu
+[2022-07-31T18:08:31.160] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:08:31.162] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:08:31.291] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:08:31.293] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:08:31.400] [TRACE] default - add Migration update_001
+[2022-07-31T18:08:31.411] [TRACE] default - add Node craffel
+[2022-07-31T18:09:07.356] [TRACE] default - GET menu
+[2022-07-31T18:12:34.982] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:12:34.984] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:12:35.098] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:12:35.101] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:12:35.212] [TRACE] default - add Migration update_001
+[2022-07-31T18:12:35.223] [TRACE] default - add Node craffel
+[2022-07-31T18:13:10.709] [TRACE] default - GET menu
+[2022-07-31T18:15:16.924] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:15:16.926] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:15:17.034] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:15:17.037] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:15:17.219] [TRACE] default - add Migration update_001
+[2022-07-31T18:15:17.230] [TRACE] default - add Node craffel
+[2022-07-31T18:16:49.996] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:16:49.998] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:16:50.101] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:16:50.104] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:16:50.231] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T18:16:50.259] [TRACE] default - add Migration update_001
+[2022-07-31T18:16:50.271] [TRACE] default - add Node craffel
+[2022-07-31T18:18:22.954] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:18:22.956] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:18:23.058] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:18:23.061] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:18:23.250] [TRACE] default - add Migration update_001
+[2022-07-31T18:18:23.266] [TRACE] default - add Node craffel
+[2022-07-31T18:20:30.680] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:20:30.682] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:20:30.787] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:20:30.790] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:21:24.877] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:21:24.879] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:21:24.986] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:21:24.989] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:21:25.162] [TRACE] default - add Migration update_001
+[2022-07-31T18:21:25.174] [TRACE] default - add Node craffel
+[2022-07-31T18:21:52.802] [TRACE] default - GET menu
+[2022-07-31T18:22:19.537] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:22:19.539] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:22:19.648] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:22:19.651] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:22:19.766] [TRACE] default - add Migration update_001
+[2022-07-31T18:22:19.777] [TRACE] default - add Node craffel
+[2022-07-31T18:22:21.552] [TRACE] default - GET menu
+[2022-07-31T18:22:49.653] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:22:49.655] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:22:49.763] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:22:49.765] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:22:49.887] [TRACE] default - add Migration update_001
+[2022-07-31T18:22:49.899] [TRACE] default - add Node craffel
+[2022-07-31T18:22:51.449] [TRACE] default - GET menu
+[2022-07-31T18:27:41.807] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:27:41.809] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:27:41.917] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:27:41.919] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:27:42.097] [TRACE] default - add Migration update_001
+[2022-07-31T18:27:42.109] [TRACE] default - add Node craffel
+[2022-07-31T18:28:16.306] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:28:16.308] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:28:16.410] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:28:16.412] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:28:16.518] [TRACE] default - add Migration update_001
+[2022-07-31T18:28:16.531] [TRACE] default - add Node craffel
+[2022-07-31T18:28:47.443] [TRACE] default - GET menu
+[2022-07-31T18:29:21.372] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:29:21.373] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:29:21.478] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:29:21.481] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:29:21.596] [TRACE] default - add Migration update_001
+[2022-07-31T18:29:21.607] [TRACE] default - add Node craffel
+[2022-07-31T18:29:29.293] [TRACE] default - GET menu
+[2022-07-31T18:30:28.511] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:30:28.513] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:30:28.621] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:30:28.624] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:30:28.788] [TRACE] default - add Migration update_001
+[2022-07-31T18:30:28.799] [TRACE] default - add Node craffel
+[2022-07-31T18:30:39.171] [TRACE] default - GET menu
+[2022-07-31T18:31:04.416] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:31:04.418] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:31:04.529] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:31:04.532] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:31:04.748] [TRACE] default - add Migration update_001
+[2022-07-31T18:31:04.760] [TRACE] default - add Node craffel
+[2022-07-31T18:31:11.495] [TRACE] default - GET menu
+[2022-07-31T18:31:29.843] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:31:29.845] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:31:29.950] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:31:29.953] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:31:30.119] [TRACE] default - add Migration update_001
+[2022-07-31T18:31:30.131] [TRACE] default - add Node craffel
+[2022-07-31T18:31:44.257] [TRACE] default - GET menu
+[2022-07-31T18:32:12.418] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:32:12.422] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:32:12.559] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:32:12.572] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:32:12.681] [TRACE] default - add Migration update_001
+[2022-07-31T18:32:12.692] [TRACE] default - add Node craffel
+[2022-07-31T18:33:35.915] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:33:35.919] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:33:36.046] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:33:36.049] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:35:23.052] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:35:23.054] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:35:23.157] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:35:23.160] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:35:23.177] [TRACE] default - add Node craffel
+[2022-07-31T18:35:34.001] [TRACE] default - GET menu
+[2022-07-31T18:36:39.854] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:36:39.856] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:36:39.960] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:36:39.962] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:36:39.988] [TRACE] default - add Node craffel
+[2022-07-31T18:36:44.530] [TRACE] default - GET menu
+[2022-07-31T18:37:32.556] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:37:32.557] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:37:32.660] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:37:32.662] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:37:32.682] [TRACE] default - add Node craffel
+[2022-07-31T18:37:35.542] [TRACE] default - GET menu
+[2022-07-31T18:37:51.057] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:37:51.061] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:37:51.207] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:37:51.209] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:37:53.922] [TRACE] default - add Node craffel
+[2022-07-31T18:38:00.689] [TRACE] default - GET menu
+[2022-07-31T18:38:13.996] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:38:13.999] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:38:14.131] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:38:14.134] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:38:14.154] [TRACE] default - add Node craffel
+[2022-07-31T18:38:26.559] [TRACE] default - GET menu
+[2022-07-31T18:39:17.366] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:39:17.368] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:39:17.474] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:39:17.476] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:39:17.495] [TRACE] default - add Node craffel
+[2022-07-31T18:39:43.328] [TRACE] default - GET menu
+[2022-07-31T18:41:05.476] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:41:05.480] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:41:05.617] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:41:05.620] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:41:05.641] [TRACE] default - add Node craffel
+[2022-07-31T18:41:43.605] [TRACE] default - GET translation
+[2022-07-31T18:42:03.151] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:42:03.154] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:42:03.300] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:42:03.303] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:42:03.323] [TRACE] default - add Node craffel
+[2022-07-31T18:42:11.602] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:42:11.605] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:42:11.743] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:42:11.745] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:42:11.765] [TRACE] default - add Node craffel
+[2022-07-31T18:42:26.341] [TRACE] default - GET menu
+[2022-07-31T18:44:00.970] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:44:00.972] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:44:01.085] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:44:01.088] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:44:17.760] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:44:17.762] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:44:17.869] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:44:17.872] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:44:39.921] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:44:39.923] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:44:40.031] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:44:40.034] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:45:12.594] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:45:12.597] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:45:12.731] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:45:12.734] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:45:27.713] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:45:27.716] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:45:27.848] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:45:27.850] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:45:48.862] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:45:48.866] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:45:48.997] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:45:48.999] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:46:32.786] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:46:32.788] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:46:32.892] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:46:32.894] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:47:25.607] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:47:25.609] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:47:25.721] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:47:25.724] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:47:50.201] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:47:50.202] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:47:50.310] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:47:50.313] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:48:19.990] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:48:19.994] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:48:20.153] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:48:20.155] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:48:30.966] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-31T18:48:30.970] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:48:31.123] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-31T18:48:31.126] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:49:29.425] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:49:29.427] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:49:29.548] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:49:29.551] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:49:29.871] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  original: [Error: SQLITE_ERROR: no such table: main.undefined] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);'
+  },
+  sql: 'INSERT INTO `menu` (`endpoint`,`name`,`order`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5);',
+  parameters: {}
+}
+[2022-07-31T18:49:29.896] [TRACE] default - add Migration update_001
+[2022-07-31T18:49:29.908] [TRACE] default - add Node craffel
+[2022-07-31T18:50:35.525] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:50:35.527] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:50:35.633] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:50:35.635] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:51:09.220] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:51:09.222] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:51:09.326] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:51:09.329] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:51:09.498] [TRACE] default - add Migration update_001
+[2022-07-31T18:51:09.509] [TRACE] default - add Node craffel
+[2022-07-31T18:51:42.183] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:51:42.186] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:51:42.294] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:51:42.297] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:51:42.486] [TRACE] default - add Migration update_001
+[2022-07-31T18:51:42.499] [TRACE] default - add Node craffel
+[2022-07-31T18:52:24.410] [TRACE] default - GET menu
+[2022-07-31T18:52:56.041] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:52:56.043] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:52:56.152] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:52:56.155] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:52:56.340] [TRACE] default - add Migration update_001
+[2022-07-31T18:52:56.356] [TRACE] default - add Node craffel
+[2022-07-31T18:53:10.496] [TRACE] default - GET menu
+[2022-07-31T18:53:31.533] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:53:31.535] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:53:31.640] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:53:31.643] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:53:31.829] [TRACE] default - add Migration update_001
+[2022-07-31T18:53:31.842] [TRACE] default - add Node craffel
+[2022-07-31T18:53:39.858] [TRACE] default - GET menu
+[2022-07-31T18:56:21.728] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:56:21.731] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:56:21.847] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:56:21.850] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:56:21.987] [TRACE] default - add Migration update_001
+[2022-07-31T18:56:21.999] [TRACE] default - add Node craffel
+[2022-07-31T18:56:24.487] [TRACE] default - GET menu
+[2022-07-31T18:57:53.075] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:57:53.077] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:57:53.192] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:57:53.194] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:57:53.213] [TRACE] default - add Node craffel
+[2022-07-31T18:57:57.594] [TRACE] default - GET menu
+[2022-07-31T18:58:31.849] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:58:31.851] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:58:31.952] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:58:31.954] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:58:31.972] [TRACE] default - add Node craffel
+[2022-07-31T18:58:40.913] [TRACE] default - GET menu
+[2022-07-31T18:58:43.493] [TRACE] default - GET menu
+[2022-07-31T18:58:44.178] [TRACE] default - GET menu
+[2022-07-31T18:59:13.107] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:59:13.109] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:59:13.216] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:59:13.219] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:59:32.494] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T18:59:32.496] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T18:59:32.602] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T18:59:32.605] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T18:59:32.786] [TRACE] default - add Migration update_001
+[2022-07-31T18:59:32.799] [TRACE] default - add Node craffel
+[2022-07-31T19:00:54.928] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:00:54.930] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:00:55.037] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:00:55.040] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:01:24.290] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:01:24.292] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:01:24.401] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:01:24.404] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:01:24.581] [TRACE] default - add Migration update_001
+[2022-07-31T19:01:24.594] [TRACE] default - add Node craffel
+[2022-07-31T19:01:32.037] [TRACE] default - GET menu
+[2022-07-31T19:02:38.656] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:02:38.657] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:02:38.763] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:02:38.766] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:02:38.943] [TRACE] default - add Migration update_001
+[2022-07-31T19:02:38.956] [TRACE] default - add Node craffel
+[2022-07-31T19:02:57.899] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:02:57.901] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:02:58.021] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:02:58.024] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:02:58.244] [TRACE] default - add Migration update_001
+[2022-07-31T19:02:58.257] [TRACE] default - add Node craffel
+[2022-07-31T19:03:54.115] [TRACE] default - GET menu
+[2022-07-31T19:04:26.032] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:04:26.036] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:04:26.155] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:04:26.158] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:04:26.288] [TRACE] default - add Migration update_001
+[2022-07-31T19:04:26.300] [TRACE] default - add Node craffel
+[2022-07-31T19:04:29.865] [TRACE] default - GET menu
+[2022-07-31T19:04:49.622] [TRACE] default - GET translation
+[2022-07-31T19:04:49.628] [TRACE] default - GET menu
+[2022-07-31T19:05:54.581] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:05:54.583] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:05:54.690] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:05:54.692] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:05:54.915] [TRACE] default - add Migration update_001
+[2022-07-31T19:05:54.929] [TRACE] default - add Node craffel
+[2022-07-31T19:06:01.679] [TRACE] default - GET translation
+[2022-07-31T19:06:01.686] [TRACE] default - GET menu
+[2022-07-31T19:13:46.967] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:13:46.970] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:13:47.105] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:13:47.107] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:13:47.241] [TRACE] default - add Migration update_001
+[2022-07-31T19:13:47.254] [TRACE] default - add Node craffel
+[2022-07-31T19:13:49.387] [TRACE] default - GET translation
+[2022-07-31T19:13:49.395] [TRACE] default - GET menu
+[2022-07-31T19:14:19.990] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:14:19.992] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:14:20.095] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:14:20.098] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:14:20.224] [TRACE] default - add Migration update_001
+[2022-07-31T19:14:20.236] [TRACE] default - add Node craffel
+[2022-07-31T19:14:43.017] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:14:43.019] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:14:43.126] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:14:43.129] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:14:43.255] [TRACE] default - add Migration update_001
+[2022-07-31T19:14:43.266] [TRACE] default - add Node craffel
+[2022-07-31T19:14:46.263] [TRACE] default - GET translation
+[2022-07-31T19:14:46.266] [TRACE] default - GET translation
+[2022-07-31T19:14:46.275] [TRACE] default - GET menu
+[2022-07-31T19:14:46.310] [TRACE] default - GET node
+[2022-07-31T19:15:01.527] [TRACE] default - GET translation
+[2022-07-31T19:15:01.535] [TRACE] default - GET menu
+[2022-07-31T19:15:04.659] [TRACE] default - GET translation
+[2022-07-31T19:15:04.661] [TRACE] default - GET translation
+[2022-07-31T19:15:04.667] [TRACE] default - GET menu
+[2022-07-31T19:15:04.694] [TRACE] default - GET node
+[2022-07-31T19:15:59.971] [TRACE] default - GET translation
+[2022-07-31T19:15:59.973] [TRACE] default - GET translation
+[2022-07-31T19:15:59.983] [TRACE] default - GET menu
+[2022-07-31T19:16:04.662] [TRACE] default - GET translation
+[2022-07-31T19:16:04.664] [TRACE] default - GET translation
+[2022-07-31T19:16:04.676] [TRACE] default - GET menu
+[2022-07-31T19:16:05.191] [TRACE] default - GET translation
+[2022-07-31T19:16:05.195] [TRACE] default - GET translation
+[2022-07-31T19:16:05.219] [TRACE] default - GET menu
+[2022-07-31T19:16:26.896] [TRACE] default - GET translation
+[2022-07-31T19:16:26.897] [TRACE] default - GET translation
+[2022-07-31T19:16:26.908] [TRACE] default - GET menu
+[2022-07-31T19:16:26.911] [TRACE] default - GET node
+[2022-07-31T19:16:45.470] [TRACE] default - GET translation
+[2022-07-31T19:16:45.475] [TRACE] default - GET translation
+[2022-07-31T19:16:45.497] [TRACE] default - GET menu
+[2022-07-31T19:16:45.501] [TRACE] default - GET node
+[2022-07-31T19:17:49.138] [TRACE] default - GET translation
+[2022-07-31T19:17:49.140] [TRACE] default - GET translation
+[2022-07-31T19:17:49.147] [TRACE] default - GET menu
+[2022-07-31T19:17:49.150] [TRACE] default - GET node
+[2022-07-31T19:18:32.246] [TRACE] default - GET translation
+[2022-07-31T19:18:32.248] [TRACE] default - GET translation
+[2022-07-31T19:18:32.259] [TRACE] default - GET menu
+[2022-07-31T19:18:32.262] [TRACE] default - GET node
+[2022-07-31T19:19:51.533] [TRACE] default - GET translation
+[2022-07-31T19:19:51.535] [TRACE] default - GET translation
+[2022-07-31T19:19:51.543] [TRACE] default - GET menu
+[2022-07-31T19:19:51.547] [TRACE] default - GET node
+[2022-07-31T19:21:14.705] [TRACE] default - GET translation
+[2022-07-31T19:21:14.707] [TRACE] default - GET translation
+[2022-07-31T19:21:14.714] [TRACE] default - GET menu
+[2022-07-31T19:21:14.719] [TRACE] default - GET node
+[2022-07-31T19:23:33.921] [TRACE] default - GET translation
+[2022-07-31T19:23:33.925] [TRACE] default - GET translation
+[2022-07-31T19:23:33.931] [TRACE] default - GET menu
+[2022-07-31T19:23:33.936] [TRACE] default - GET node
+[2022-07-31T19:23:45.894] [TRACE] default - GET translation
+[2022-07-31T19:23:45.896] [TRACE] default - GET translation
+[2022-07-31T19:23:45.902] [TRACE] default - GET menu
+[2022-07-31T19:23:45.907] [TRACE] default - GET node
+[2022-07-31T19:25:49.468] [TRACE] default - GET translation
+[2022-07-31T19:25:49.471] [TRACE] default - GET translation
+[2022-07-31T19:25:49.479] [TRACE] default - GET menu
+[2022-07-31T19:25:49.482] [TRACE] default - GET node
+[2022-07-31T19:26:00.222] [TRACE] default - GET translation
+[2022-07-31T19:26:00.223] [TRACE] default - GET translation
+[2022-07-31T19:26:00.229] [TRACE] default - GET menu
+[2022-07-31T19:26:00.233] [TRACE] default - GET node
+[2022-07-31T19:26:06.139] [TRACE] default - GET translation
+[2022-07-31T19:26:06.141] [TRACE] default - GET translation
+[2022-07-31T19:26:06.155] [TRACE] default - GET menu
+[2022-07-31T19:26:06.157] [TRACE] default - GET node
+[2022-07-31T19:27:19.581] [TRACE] default - GET translation
+[2022-07-31T19:27:19.583] [TRACE] default - GET translation
+[2022-07-31T19:27:19.591] [TRACE] default - GET menu
+[2022-07-31T19:27:19.594] [TRACE] default - GET node
+[2022-07-31T19:27:29.906] [TRACE] default - GET translation
+[2022-07-31T19:27:29.908] [TRACE] default - GET translation
+[2022-07-31T19:27:29.915] [TRACE] default - GET menu
+[2022-07-31T19:27:29.919] [TRACE] default - GET node
+[2022-07-31T19:33:08.907] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:33:08.909] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:33:09.029] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:33:09.032] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:33:09.233] [TRACE] default - add Migration update_001
+[2022-07-31T19:33:09.245] [TRACE] default - add Node craffel
+[2022-07-31T19:33:18.165] [TRACE] default - GET translation
+[2022-07-31T19:33:18.169] [TRACE] default - GET translation
+[2022-07-31T19:33:18.178] [TRACE] default - GET menu
+[2022-07-31T19:33:18.185] [TRACE] default - GET node
+[2022-07-31T19:33:20.957] [TRACE] default - GET translation
+[2022-07-31T19:33:20.959] [TRACE] default - GET translation
+[2022-07-31T19:33:20.969] [TRACE] default - GET menu
+[2022-07-31T19:33:20.972] [TRACE] default - GET node
+[2022-07-31T19:34:23.257] [TRACE] default - GET translation
+[2022-07-31T19:34:23.258] [TRACE] default - GET translation
+[2022-07-31T19:34:23.264] [TRACE] default - GET menu
+[2022-07-31T19:34:23.269] [TRACE] default - GET node
+[2022-07-31T19:35:50.865] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:35:50.868] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:35:50.977] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:35:50.980] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:35:51.239] [TRACE] default - add Migration update_001
+[2022-07-31T19:35:51.251] [TRACE] default - add Node craffel
+[2022-07-31T19:35:54.578] [TRACE] default - GET translation
+[2022-07-31T19:35:54.580] [TRACE] default - GET translation
+[2022-07-31T19:35:54.589] [TRACE] default - GET menu
+[2022-07-31T19:35:54.595] [TRACE] default - GET node
+[2022-07-31T19:38:50.798] [TRACE] default - GET translation
+[2022-07-31T19:38:50.800] [TRACE] default - GET translation
+[2022-07-31T19:38:50.808] [TRACE] default - GET menu
+[2022-07-31T19:38:50.812] [TRACE] default - GET node
+[2022-07-31T19:39:32.546] [TRACE] default - GET translation
+[2022-07-31T19:39:32.548] [TRACE] default - GET translation
+[2022-07-31T19:39:32.555] [TRACE] default - GET menu
+[2022-07-31T19:39:32.558] [TRACE] default - GET node
+[2022-07-31T19:40:27.019] [TRACE] default - GET translation
+[2022-07-31T19:40:27.021] [TRACE] default - GET translation
+[2022-07-31T19:40:27.027] [TRACE] default - GET menu
+[2022-07-31T19:40:27.031] [TRACE] default - GET node
+[2022-07-31T19:40:36.051] [TRACE] default - GET translation
+[2022-07-31T19:40:36.053] [TRACE] default - GET translation
+[2022-07-31T19:40:36.059] [TRACE] default - GET menu
+[2022-07-31T19:40:36.062] [TRACE] default - GET node
+[2022-07-31T19:40:52.442] [TRACE] default - GET translation
+[2022-07-31T19:40:52.443] [TRACE] default - GET translation
+[2022-07-31T19:40:52.453] [TRACE] default - GET menu
+[2022-07-31T19:40:52.456] [TRACE] default - GET node
+[2022-07-31T19:40:58.225] [TRACE] default - GET translation
+[2022-07-31T19:40:58.227] [TRACE] default - GET translation
+[2022-07-31T19:40:58.241] [TRACE] default - GET menu
+[2022-07-31T19:40:58.244] [TRACE] default - GET node
+[2022-07-31T19:41:14.244] [TRACE] default - GET menu
+[2022-07-31T19:41:14.247] [TRACE] default - GET node
+[2022-07-31T19:41:15.322] [TRACE] default - GET translation
+[2022-07-31T19:41:15.324] [TRACE] default - GET translation
+[2022-07-31T19:41:15.335] [TRACE] default - GET menu
+[2022-07-31T19:41:15.337] [TRACE] default - GET node
+[2022-07-31T19:43:08.989] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:43:08.992] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:43:09.111] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:43:09.114] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:43:09.381] [TRACE] default - add Migration update_001
+[2022-07-31T19:43:09.393] [TRACE] default - add Node craffel
+[2022-07-31T19:43:09.395] [TRACE] default - add Node superlootgeil
+[2022-07-31T19:43:09.396] [TRACE] default - add Node sebbel3105
+[2022-07-31T19:43:09.398] [TRACE] default - add Node tetsohiko
+[2022-07-31T19:43:09.399] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T19:43:09.400] [TRACE] default - add Node shiddlefid
+[2022-07-31T19:43:12.529] [TRACE] default - GET translation
+[2022-07-31T19:43:12.532] [TRACE] default - GET translation
+[2022-07-31T19:43:12.542] [TRACE] default - GET menu
+[2022-07-31T19:43:12.547] [TRACE] default - GET node
+[2022-07-31T19:43:41.189] [TRACE] default - GET translation
+[2022-07-31T19:43:41.191] [TRACE] default - GET translation
+[2022-07-31T19:43:41.199] [TRACE] default - GET menu
+[2022-07-31T19:43:41.202] [TRACE] default - GET node
+[2022-07-31T19:45:38.943] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:45:38.945] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:45:39.060] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:45:39.063] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:45:39.441] [TRACE] default - add Migration update_001
+[2022-07-31T19:45:39.455] [TRACE] default - add Node craffel
+[2022-07-31T19:45:39.457] [TRACE] default - add Node superlootgeil
+[2022-07-31T19:45:39.458] [TRACE] default - add Node sebbel3105
+[2022-07-31T19:45:39.459] [TRACE] default - add Node tetsohiko
+[2022-07-31T19:45:39.459] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T19:45:39.460] [TRACE] default - add Node shiddlefid
+[2022-07-31T19:45:39.461] [TRACE] default - add Node lrdmortymer
+[2022-07-31T19:45:50.479] [TRACE] default - GET translation
+[2022-07-31T19:45:50.488] [TRACE] default - GET menu
+[2022-07-31T19:45:52.215] [TRACE] default - GET translation
+[2022-07-31T19:45:52.221] [TRACE] default - GET translation
+[2022-07-31T19:45:52.224] [TRACE] default - GET menu
+[2022-07-31T19:45:52.233] [TRACE] default - GET node
+[2022-07-31T19:45:56.394] [TRACE] default - GET translation
+[2022-07-31T19:45:56.400] [TRACE] default - GET menu
+[2022-07-31T19:45:58.881] [TRACE] default - GET translation
+[2022-07-31T19:45:58.894] [TRACE] default - GET menu
+[2022-07-31T19:45:59.509] [TRACE] default - GET translation
+[2022-07-31T19:45:59.511] [TRACE] default - GET translation
+[2022-07-31T19:45:59.518] [TRACE] default - GET menu
+[2022-07-31T19:45:59.520] [TRACE] default - GET node
+[2022-07-31T19:48:27.311] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:48:27.313] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:48:27.431] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:48:27.434] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:48:27.775] [TRACE] default - add Migration update_001
+[2022-07-31T19:48:27.788] [TRACE] default - add Node craffel
+[2022-07-31T19:48:27.790] [TRACE] default - add Node superlootgeil
+[2022-07-31T19:48:27.791] [TRACE] default - add Node sebbel3105
+[2022-07-31T19:48:27.792] [TRACE] default - add Node tetsohiko
+[2022-07-31T19:48:27.793] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T19:48:27.794] [TRACE] default - add Node shiddlefid
+[2022-07-31T19:48:27.795] [TRACE] default - add Node lrdmortymer
+[2022-07-31T19:48:32.210] [TRACE] default - GET translation
+[2022-07-31T19:48:32.212] [TRACE] default - GET translation
+[2022-07-31T19:48:32.221] [TRACE] default - GET menu
+[2022-07-31T19:48:32.227] [TRACE] default - GET node
+[2022-07-31T19:48:41.630] [TRACE] default - GET menu
+[2022-07-31T19:48:41.633] [TRACE] default - GET node
+[2022-07-31T19:48:44.125] [TRACE] default - GET menu
+[2022-07-31T19:48:44.128] [TRACE] default - GET node
+[2022-07-31T19:48:46.251] [TRACE] default - GET menu
+[2022-07-31T19:48:46.254] [TRACE] default - GET node
+[2022-07-31T19:48:49.178] [TRACE] default - GET translation
+[2022-07-31T19:48:49.184] [TRACE] default - GET menu
+[2022-07-31T19:48:51.252] [TRACE] default - GET menu
+[2022-07-31T19:48:51.254] [TRACE] default - GET node
+[2022-07-31T19:52:00.701] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:52:00.703] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:52:00.815] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:52:00.818] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:52:01.184] [TRACE] default - add Migration update_001
+[2022-07-31T19:52:01.197] [TRACE] default - add Node craffel
+[2022-07-31T19:52:01.199] [TRACE] default - add Node superlootgeil
+[2022-07-31T19:52:01.200] [TRACE] default - add Node sebbel3105
+[2022-07-31T19:52:01.201] [TRACE] default - add Node tetsohiko
+[2022-07-31T19:52:01.202] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T19:52:01.202] [TRACE] default - add Node shiddlefid
+[2022-07-31T19:52:01.203] [TRACE] default - add Node lrdmortymer
+[2022-07-31T19:52:07.499] [TRACE] default - GET translation
+[2022-07-31T19:52:07.502] [TRACE] default - GET translation
+[2022-07-31T19:52:07.510] [TRACE] default - GET menu
+[2022-07-31T19:52:07.516] [TRACE] default - GET node
+[2022-07-31T19:52:09.579] [TRACE] default - GET translation
+[2022-07-31T19:52:09.581] [TRACE] default - GET translation
+[2022-07-31T19:52:09.588] [TRACE] default - GET menu
+[2022-07-31T19:52:09.592] [TRACE] default - GET node
+[2022-07-31T19:52:11.873] [TRACE] default - GET translation
+[2022-07-31T19:52:11.875] [TRACE] default - GET translation
+[2022-07-31T19:52:11.891] [TRACE] default - GET menu
+[2022-07-31T19:52:11.893] [TRACE] default - GET node
+[2022-07-31T19:52:12.589] [TRACE] default - GET translation
+[2022-07-31T19:52:12.592] [TRACE] default - GET translation
+[2022-07-31T19:52:12.607] [TRACE] default - GET menu
+[2022-07-31T19:52:12.610] [TRACE] default - GET node
+[2022-07-31T19:52:13.190] [TRACE] default - GET translation
+[2022-07-31T19:52:13.192] [TRACE] default - GET translation
+[2022-07-31T19:52:13.200] [TRACE] default - GET menu
+[2022-07-31T19:52:13.203] [TRACE] default - GET node
+[2022-07-31T19:52:16.397] [TRACE] default - GET translation
+[2022-07-31T19:52:16.399] [TRACE] default - GET translation
+[2022-07-31T19:52:16.413] [TRACE] default - GET menu
+[2022-07-31T19:52:16.415] [TRACE] default - GET node
+[2022-07-31T19:52:17.535] [TRACE] default - GET translation
+[2022-07-31T19:52:17.541] [TRACE] default - GET menu
+[2022-07-31T19:52:19.508] [TRACE] default - GET translation
+[2022-07-31T19:52:19.510] [TRACE] default - GET translation
+[2022-07-31T19:52:19.519] [TRACE] default - GET menu
+[2022-07-31T19:52:19.521] [TRACE] default - GET node
+[2022-07-31T19:52:47.165] [TRACE] default - GET translation
+[2022-07-31T19:52:47.171] [TRACE] default - GET menu
+[2022-07-31T19:54:26.063] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:54:26.065] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:54:26.185] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:54:26.189] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:54:26.518] [TRACE] default - add Migration update_001
+[2022-07-31T19:54:26.530] [TRACE] default - add Node craffel
+[2022-07-31T19:54:26.531] [TRACE] default - add Node superlootgeil
+[2022-07-31T19:54:26.532] [TRACE] default - add Node sebbel3105
+[2022-07-31T19:54:26.533] [TRACE] default - add Node tetsohiko
+[2022-07-31T19:54:26.534] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T19:54:26.535] [TRACE] default - add Node shiddlefid
+[2022-07-31T19:54:26.536] [TRACE] default - add Node lrdmortymer
+[2022-07-31T19:54:28.917] [TRACE] default - GET translation
+[2022-07-31T19:54:28.921] [TRACE] default - GET translation
+[2022-07-31T19:54:28.930] [TRACE] default - GET menu
+[2022-07-31T19:54:30.158] [TRACE] default - GET translation
+[2022-07-31T19:54:30.161] [TRACE] default - GET translation
+[2022-07-31T19:54:30.169] [TRACE] default - GET menu
+[2022-07-31T19:54:33.445] [TRACE] default - GET translation
+[2022-07-31T19:54:33.446] [TRACE] default - GET translation
+[2022-07-31T19:54:33.452] [TRACE] default - GET menu
+[2022-07-31T19:54:38.899] [TRACE] default - GET translation
+[2022-07-31T19:54:38.900] [TRACE] default - GET translation
+[2022-07-31T19:54:38.909] [TRACE] default - GET menu
+[2022-07-31T19:54:38.912] [TRACE] default - GET node
+[2022-07-31T19:54:41.595] [TRACE] default - GET menu
+[2022-07-31T19:54:41.598] [TRACE] default - GET node
+[2022-07-31T19:59:11.998] [TRACE] default - GET translation
+[2022-07-31T19:59:12.000] [TRACE] default - GET translation
+[2022-07-31T19:59:12.009] [TRACE] default - GET menu
+[2022-07-31T19:59:12.012] [TRACE] default - GET node
+[2022-07-31T19:59:37.627] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T19:59:37.629] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T19:59:37.750] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T19:59:37.753] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T19:59:38.161] [TRACE] default - add Migration update_001
+[2022-07-31T19:59:38.173] [TRACE] default - add Node craffel
+[2022-07-31T19:59:38.174] [TRACE] default - add Node superlootgeil
+[2022-07-31T19:59:38.175] [TRACE] default - add Node sebbel3105
+[2022-07-31T19:59:38.176] [TRACE] default - add Node tetsohiko
+[2022-07-31T19:59:38.177] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T19:59:38.178] [TRACE] default - add Node shiddlefid
+[2022-07-31T19:59:38.179] [TRACE] default - add Node lrdmortymer
+[2022-07-31T19:59:58.145] [TRACE] default - GET translation
+[2022-07-31T19:59:58.148] [TRACE] default - GET translation
+[2022-07-31T19:59:58.158] [TRACE] default - GET menu
+[2022-07-31T19:59:58.165] [TRACE] default - GET node
+[2022-07-31T20:00:03.077] [TRACE] default - GET translation
+[2022-07-31T20:00:03.081] [TRACE] default - GET translation
+[2022-07-31T20:00:03.088] [TRACE] default - GET menu
+[2022-07-31T20:00:05.927] [TRACE] default - GET menu
+[2022-07-31T20:00:05.931] [TRACE] default - GET node
+[2022-07-31T20:00:40.456] [TRACE] default - GET translation
+[2022-07-31T20:00:40.458] [TRACE] default - GET translation
+[2022-07-31T20:00:40.467] [TRACE] default - GET menu
+[2022-07-31T20:00:42.456] [TRACE] default - GET translation
+[2022-07-31T20:00:42.458] [TRACE] default - GET translation
+[2022-07-31T20:00:42.473] [TRACE] default - GET menu
+[2022-07-31T20:03:03.478] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T20:03:03.481] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T20:03:03.639] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T20:03:03.642] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T20:03:04.073] [TRACE] default - add Migration update_001
+[2022-07-31T20:03:04.089] [TRACE] default - add Node craffel
+[2022-07-31T20:03:04.091] [TRACE] default - add Node superlootgeil
+[2022-07-31T20:03:04.092] [TRACE] default - add Node sebbel3105
+[2022-07-31T20:03:04.094] [TRACE] default - add Node tetsohiko
+[2022-07-31T20:03:04.095] [TRACE] default - add Node sanny_sunshine80
+[2022-07-31T20:03:04.096] [TRACE] default - add Node shiddlefid
+[2022-07-31T20:03:04.097] [TRACE] default - add Node lrdmortymer
+[2022-07-31T20:03:18.594] [TRACE] default - GET translation
+[2022-07-31T20:03:18.597] [TRACE] default - GET translation
+[2022-07-31T20:03:18.606] [TRACE] default - GET menu
+[2022-07-31T20:03:18.613] [TRACE] default - GET node
+[2022-07-31T20:12:00.171] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T20:12:00.174] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T20:12:00.338] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T20:12:00.342] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T20:12:00.787] [TRACE] default - add Migration update_001
+[2022-07-31T20:12:00.803] [TRACE] default - add Node craffel
+[2022-07-31T20:12:04.517] [TRACE] default - GET translation
+[2022-07-31T20:12:04.522] [TRACE] default - GET translation
+[2022-07-31T20:12:04.533] [TRACE] default - GET menu
+[2022-07-31T20:12:04.540] [TRACE] default - GET node
+[2022-07-31T20:12:07.247] [TRACE] default - GET translation
+[2022-07-31T20:12:07.250] [TRACE] default - GET translation
+[2022-07-31T20:12:07.263] [TRACE] default - GET menu
+[2022-07-31T20:12:08.845] [TRACE] default - GET translation
+[2022-07-31T20:12:08.848] [TRACE] default - GET translation
+[2022-07-31T20:12:08.858] [TRACE] default - GET menu
+[2022-07-31T20:12:08.862] [TRACE] default - GET node
+[2022-07-31T20:12:10.316] [TRACE] default - GET translation
+[2022-07-31T20:12:10.320] [TRACE] default - GET translation
+[2022-07-31T20:12:10.327] [TRACE] default - GET menu
+[2022-07-31T20:12:16.731] [TRACE] default - GET translation
+[2022-07-31T20:12:16.733] [TRACE] default - GET translation
+[2022-07-31T20:12:16.742] [TRACE] default - GET menu
+[2022-07-31T20:12:18.444] [TRACE] default - GET translation
+[2022-07-31T20:12:18.447] [TRACE] default - GET translation
+[2022-07-31T20:12:18.455] [TRACE] default - GET menu
+[2022-07-31T20:12:18.457] [TRACE] default - GET node
+[2022-07-31T20:12:26.812] [TRACE] default - GET translation
+[2022-07-31T20:12:26.814] [TRACE] default - GET translation
+[2022-07-31T20:12:26.820] [TRACE] default - GET menu
+[2022-07-31T20:12:38.167] [TRACE] default - GET translation
+[2022-07-31T20:12:38.170] [TRACE] default - GET translation
+[2022-07-31T20:12:38.179] [TRACE] default - GET menu
+[2022-07-31T20:12:38.182] [TRACE] default - GET node
+[2022-07-31T20:14:39.980] [TRACE] default - GET menu
+[2022-07-31T20:14:39.983] [TRACE] default - GET node
+[2022-07-31T20:22:41.827] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T20:22:41.830] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T20:22:41.831] [TRACE] default - -------------------
+[2022-07-31T20:22:41.832] [TRACE] default - undefined
+[2022-07-31T20:22:41.832] [TRACE] default - -------------------
+[2022-07-31T20:22:42.002] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T20:22:42.006] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T20:22:42.362] [TRACE] default - add Migration update_001
+[2022-07-31T20:22:42.378] [TRACE] default - add Node craffel
+[2022-07-31T20:32:43.360] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T20:32:43.363] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T20:32:43.364] [TRACE] default - -------------------
+[2022-07-31T20:32:43.364] [TRACE] default - undefined
+[2022-07-31T20:32:43.365] [TRACE] default - -------------------
+[2022-07-31T20:32:43.511] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T20:32:43.539] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T20:32:43.894] [TRACE] default - add Migration update_001
+[2022-07-31T20:32:43.908] [TRACE] default - add Node craffel
+[2022-07-31T20:32:44.510] [INFO] default - bot connected to irc-ws.chat.twitch.tv:443
+[2022-07-31T20:38:42.708] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T20:38:42.711] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T20:38:42.862] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T20:38:42.887] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T20:38:43.248] [TRACE] default - add Migration update_001
+[2022-07-31T20:38:43.265] [TRACE] default - add Node craffel
+[2022-07-31T20:38:43.842] [INFO] default - bot connected to irc-ws.chat.twitch.tv:443
+[2022-07-31T20:41:43.614] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T20:41:43.617] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T20:41:43.772] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T20:41:43.802] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T20:41:44.156] [TRACE] default - add Migration update_001
+[2022-07-31T20:41:44.170] [TRACE] default - add Node craffel
+[2022-07-31T20:41:44.788] [INFO] default - bot connected to irc-ws.chat.twitch.tv:443
+[2022-07-31T20:41:44.790] [TRACE] default - node connected: craffel
+[2022-07-31T20:41:53.534] [TRACE] default - incomming message
+[2022-07-31T20:41:53.535] [TRACE] default - incomming message target: #craffel
+[2022-07-31T20:41:53.536] [TRACE] default - incomming message context: [object Object]
+[2022-07-31T20:41:53.536] [TRACE] default - incomming message message: !test
+[2022-07-31T20:41:53.537] [TRACE] default - incomming message self: false
+[2022-07-31T20:42:04.502] [TRACE] default - incomming message
+[2022-07-31T20:42:04.503] [TRACE] default - incomming message target: #craffel
+[2022-07-31T20:42:04.504] [TRACE] default - incomming message context: [object Object]
+[2022-07-31T20:42:04.504] [TRACE] default - incomming message message: !lootclear
+[2022-07-31T20:42:04.505] [TRACE] default - incomming message self: false
+[2022-07-31T20:42:05.203] [TRACE] default - incomming message

@@ -40,7 +40,8 @@
     "sqlite3": "^5.0.8",
     "swagger": "^0.7.5",
     "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.3.0"
+    "swagger-ui-express": "^4.3.0",
+    "tmi.js": "^1.8.5"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.36",

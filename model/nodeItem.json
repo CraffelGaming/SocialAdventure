@@ -3,6 +3,7 @@
         "name": "craffel",
         "displayName": "Craffel",
         "language": "de-DE",
-        "isActive": true
+        "isActive": true,
+        "endpoint": "https://www.twitch.tv/craffel"
     }
 ]

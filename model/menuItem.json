@@ -1,12 +1,28 @@
 [
     {
-        "endpoint": "streamer",
-        "name": "streamer",
-        "order": 1200
-    },
-    {
         "endpoint": "twitch",
         "name": "twitch",
         "order": 1000
+    },
+    {
+        "endpoint": "login",
+        "name": "login",
+        "order": 1010,
+        "parentEndpoint": "twitch"
+    },
+    {
+        "endpoint": "streamer",
+        "name": "streamer",
+        "order": 1100
+    },
+    {
+        "endpoint": "help",
+        "name": "help",
+        "order": 1200
+    },
+    {
+        "endpoint": "api",
+        "name": "api",
+        "order": 1300
     }
 ]

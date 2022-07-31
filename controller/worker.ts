@@ -32,4 +32,11 @@ export class Worker {
             this.channels.push(channel);
         }
     }
+
+    connect(client: any){
+        for(const channel of this.channels){
+            this.log.trace('node connected: ' + channel.node.name);
+            client.join(channel.node.name.replace('#', ''));
+        }
+    }
 }

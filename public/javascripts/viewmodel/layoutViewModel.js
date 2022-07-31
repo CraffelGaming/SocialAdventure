@@ -12,13 +12,14 @@ $(async () => {
 
         items.push({
             icon: '/images/favicon.png',
-            href: '/'
+            href: '/',
+            text: translate(language, "title")
         });
 
         var menu = menus.filter(x => !x.parent).sort(function (a, b) {
             return a.order - b.order;
         });
-
+        
         for (let i = 0; i < menu.length; i++) {
             SetMenu(menu[i], items);
         }
@@ -34,13 +35,14 @@ $(async () => {
     }
 
     function SetMenu(item, parent) {
-        var subs = menus.filter(x => x.parent && x.parent.url == item.url).sort(function (a, b) {
+        var subs = menus.filter(x => x.parent && x.parent.endpoint == item.endpoint).sort(function (a, b) {
             return a.order - b.order;
         });
+
         if (subs.length == 0) {
             parent.push({
                 text: translate(language, item.name),
-                href: item.url
+                href: item.endpoint
             });
         } else {
             var elements = [];

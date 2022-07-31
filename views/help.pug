@@ -1,4 +1,10 @@
 extends layout
 
 block content
-    body.d-flex.flex-column
+    script(type="module" src='/javascripts/viewmodel/helpViewModel.js')   
+
+    body.dx-viewport
+        #container.main-container
+            h4#labelTitle
+
+    footer#sticky-footer.footer

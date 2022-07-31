@@ -35,7 +35,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'version';
-router.get('/' + endpoint + '/', (reqest, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace('GET ' + endpoint);
     const item = yield global.worker.globalDatabase.sequelize.models.version.findOne({ order: [['version', 'DESC']], raw: true });
     if (item)
