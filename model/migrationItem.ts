@@ -27,25 +27,9 @@ export class MigrationItem{
           }, {freezeTableName: true});
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
+    static async updateTable({ sequelize, migrations }: { sequelize: Sequelize; migrations: MigrationItem[] }): Promise<void>{
         try{
-            const items = JSON.parse(JSON.stringify(jsonMigration)) as MigrationItem[];
-
-            for(const item of items){
-                if(await sequelize.models.migration.count({where: {name: item.name}}) === 0){
-                    await sequelize.models.migration.create(item as any);
-                }
-            }
-        } catch(ex){
-            global.worker.log.error(ex);
-        }
-    }
-
-    static async updateTableGlobal({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
-            const items = JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[];
-
-            for(const item of items){
+            for(const item of migrations){
                 if(await sequelize.models.migration.count({where: {name: item.name}}) === 0){
                     await sequelize.models.migration.create(item as any);
                 }

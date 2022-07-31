@@ -1,0 +1,14 @@
+[
+    {
+        "page": "navigation",
+        "handle": "streamer",
+        "language": "de-DE",
+        "translation": "Streamer"
+    },
+    {
+        "page": "navigation",
+        "handle": "twitch",
+        "language": "de-DE",
+        "translation": "Twitch"
+    }
+]

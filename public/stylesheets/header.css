@@ -1,0 +1,11 @@
+#sticky-container {
+    width: 100%;
+    background: #35383c !important;
+    position: fixed;
+}
+
+#menu-container {
+    padding-top: 50px;
+    padding-left: 2px;
+    padding-right: 2px;
+}

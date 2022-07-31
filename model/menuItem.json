@@ -1,0 +1,12 @@
+[
+    {
+        "endpoint": "streamer",
+        "name": "streamer",
+        "order": 1200
+    },
+    {
+        "endpoint": "twitch",
+        "name": "twitch",
+        "order": 1000
+    }
+]

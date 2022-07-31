@@ -1,0 +1,21 @@
+html,
+body {
+    height: 100%;
+    grid-template-areas: "header_section" "Site-content_section" "footer_section";
+    grid-template-rows: 100px 100% 35px;
+    margin: 0px;
+}
+
+#sticky-footer {
+    flex-shrink: unset;
+    grid-area: footer_section;
+    background: #35383c !important;
+}
+
+footer {
+    position: fixed;
+    height: 35px;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+}

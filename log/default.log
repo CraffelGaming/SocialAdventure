@@ -188,3 +188,334 @@ Require stack:
 [2022-05-12T14:53:10.144] [INFO] default - HTTP Server listening on port 80
 [2022-05-12T14:53:10.196] [TRACE] default - add Migration update_001
 [2022-05-12T14:53:10.207] [TRACE] default - add Node craffel
+[2022-05-13T16:22:02.792] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-05-13T16:22:02.798] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-05-13T16:22:02.948] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-05-13T16:22:02.951] [INFO] default - HTTP Server listening on port 80
+[2022-05-13T16:22:03.045] [TRACE] default - add Migration update_001
+[2022-05-13T16:22:05.903] [TRACE] default - add Node craffel
+[2022-05-13T16:27:35.320] [TRACE] default - GET version
+[2022-05-13T16:28:18.739] [TRACE] default - GET node
+[2022-05-13T16:28:25.033] [TRACE] default - GET migration
+[2022-07-27T18:39:18.869] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-27T18:39:18.871] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-27T18:39:19.004] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-27T18:39:19.007] [INFO] default - HTTP Server listening on port 80
+[2022-07-27T18:39:19.055] [TRACE] default - add Migration update_001
+[2022-07-27T18:39:19.058] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:313:28
+    at async SQLiteQueryInterface.addColumn (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:173:12)
+    at async Promise.all (index 0) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  original: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';",
+  parameters: {}
+}
+[2022-07-27T18:39:19.062] [TRACE] default - add Node craffel
+[2022-07-27T18:40:56.891] [TRACE] default - GET version
+[2022-07-27T18:41:02.172] [TRACE] default - GET node
+[2022-07-27T18:41:15.531] [TRACE] default - GET migration
+[2022-07-30T12:54:23.219] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T12:54:23.225] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T12:54:23.462] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T12:54:23.465] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T12:54:23.528] [TRACE] default - add Migration update_001
+[2022-07-30T12:54:23.532] [ERROR] default - Error
+    at Database.<anonymous> (c:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at Database.callbackTrampoline (node:internal/async_hooks:130:17)
+    at c:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (c:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at c:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:313:28
+    at async SQLiteQueryInterface.addColumn (c:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:173:12)
+    at async Promise.all (index 0) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  original: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';",
+  parameters: {}
+}
+[2022-07-30T12:54:23.535] [TRACE] default - add Node craffel
+[2022-07-30T13:04:31.241] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:04:31.245] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:04:31.352] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:04:31.355] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:04:31.461] [TRACE] default - add Migration update_001
+[2022-07-30T13:04:31.464] [TRACE] default - add Node craffel
+[2022-07-30T13:09:59.454] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:09:59.458] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:09:59.565] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:09:59.568] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:13:31.358] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:13:31.361] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:13:31.471] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:13:31.474] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:13:33.997] [TRACE] default - add Migration update_001
+[2022-07-30T13:13:34.001] [TRACE] default - add Node craffel
+[2022-07-30T13:14:06.515] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:14:06.519] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:14:06.632] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:14:06.635] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:14:31.716] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:14:31.720] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:14:31.826] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:14:31.828] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:15:55.167] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:15:55.169] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:15:55.254] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:15:55.257] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:15:55.360] [TRACE] default - add Migration update_001
+[2022-07-30T13:15:55.363] [TRACE] default - add Node craffel
+[2022-07-30T13:16:45.501] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:16:45.503] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:16:45.585] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:16:45.588] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:16:45.631] [TRACE] default - add Migration update_001
+[2022-07-30T13:16:45.634] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:313:28
+    at async SQLiteQueryInterface.addColumn (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:173:12)
+    at async Promise.all (index 0) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  original: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';",
+  parameters: {}
+}
+[2022-07-30T13:16:45.639] [TRACE] default - add Node craffel
+[2022-07-30T13:19:38.182] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:19:38.184] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:19:38.271] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:19:38.273] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:19:38.327] [TRACE] default - add Migration update_001
+[2022-07-30T13:19:38.329] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:313:28
+    at async SQLiteQueryInterface.addColumn (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:173:12)
+    at async Promise.all (index 0) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  original: [Error: SQLITE_ERROR: duplicate column name: endpoint] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';"
+  },
+  sql: "ALTER TABLE `node` ADD `endpoint` VARCHAR(255) NOT NULL DEFAULT '/';",
+  parameters: {}
+}
+[2022-07-30T13:19:38.333] [TRACE] default - add Node craffel
+[2022-07-30T13:20:07.257] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:20:07.261] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:20:07.378] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:20:07.381] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:26:31.762] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:26:31.764] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:26:31.849] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:26:31.852] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:26:31.954] [TRACE] default - add Migration update_001
+[2022-07-30T13:26:31.957] [TRACE] default - add Node craffel
+[2022-07-30T13:36:51.942] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:36:51.946] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:36:52.050] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:36:52.053] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:36:55.371] [TRACE] default - add Migration update_001
+[2022-07-30T13:36:55.374] [TRACE] default - add Node craffel
+[2022-07-30T13:37:12.393] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:37:12.395] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:37:12.482] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:37:12.484] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:37:12.541] [TRACE] default - add Migration update_001
+[2022-07-30T13:37:12.543] [TRACE] default - add Node craffel
+[2022-07-30T13:39:11.797] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:39:11.798] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:39:11.888] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:39:11.891] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:39:12.000] [TRACE] default - add Migration update_001
+[2022-07-30T13:39:12.003] [TRACE] default - add Node craffel
+[2022-07-30T13:40:38.142] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-30T13:40:38.144] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:40:38.230] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-30T13:40:38.232] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:40:38.334] [TRACE] default - add Migration update_001
+[2022-07-30T13:40:38.337] [TRACE] default - add Node craffel
+[2022-07-30T13:41:01.683] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:41:01.686] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:41:01.789] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:41:01.792] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:41:20.715] [TRACE] default - add Migration update_001
+[2022-07-30T13:45:09.440] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:45:09.444] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:45:09.556] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:45:09.558] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:45:13.604] [TRACE] default - add Migration update_001
+[2022-07-30T13:45:50.510] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:45:50.513] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:45:50.619] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:45:50.621] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:45:50.725] [TRACE] default - add Migration update_001
+[2022-07-30T13:46:17.992] [TRACE] default - add Node craffel
+[2022-07-30T13:46:31.535] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:46:31.538] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:46:31.642] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:46:31.644] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:46:31.699] [TRACE] default - add Migration update_001
+[2022-07-30T13:46:31.710] [TRACE] default - add Node craffel
+[2022-07-30T13:47:30.450] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-07-30T13:47:30.453] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-07-30T13:47:30.561] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-07-30T13:47:30.564] [INFO] default - HTTP Server listening on port 80
+[2022-07-30T13:47:30.611] [TRACE] default - add Migration update_001
+[2022-07-30T13:47:30.622] [TRACE] default - add Node craffel
+[2022-07-30T13:47:52.811] [TRACE] default - GET version
+[2022-07-30T13:48:00.665] [TRACE] default - GET node
+[2022-07-30T13:48:06.366] [TRACE] default - GET migration
+[2022-07-30T13:48:48.551] [TRACE] default - GET node
+[2022-07-31T11:49:52.778] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T11:49:52.780] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T11:49:52.904] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T11:49:52.908] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T11:49:53.019] [ERROR] default - ValidationError [SequelizeValidationError]: notNull Violation: node.displayName cannot be null,
+notNull Violation: node.language cannot be null,
+notNull Violation: node.isActive cannot be null
+    at InstanceValidator._validate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\instance-validator.js:50:13)
+    at async InstanceValidator._validateAndRunHooks (C:\Projects\SocialAdventure\node_modules\sequelize\lib\instance-validator.js:60:7)
+    at async InstanceValidator.validate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\instance-validator.js:54:12)
+    at async model.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2368:7)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12) {
+  errors: [
+    ValidationErrorItem {
+      message: 'node.displayName cannot be null',
+      type: 'notNull Violation',
+      path: 'displayName',
+      value: null,
+      origin: 'CORE',
+      instance: [node],
+      validatorKey: 'is_null',
+      validatorName: null,
+      validatorArgs: []
+    },
+    ValidationErrorItem {
+      message: 'node.language cannot be null',
+      type: 'notNull Violation',
+      path: 'language',
+      value: null,
+      origin: 'CORE',
+      instance: [node],
+      validatorKey: 'is_null',
+      validatorName: null,
+      validatorArgs: []
+    },
+    ValidationErrorItem {
+      message: 'node.isActive cannot be null',
+      type: 'notNull Violation',
+      path: 'isActive',
+      value: null,
+      origin: 'CORE',
+      instance: [node],
+      validatorKey: 'is_null',
+      validatorName: null,
+      validatorArgs: []
+    }
+  ]
+}
+[2022-07-31T11:49:53.027] [TRACE] default - add Migration update_001
+[2022-07-31T11:49:53.043] [TRACE] default - add Node craffel
+[2022-07-31T11:51:22.496] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T11:51:22.497] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T11:51:22.582] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T11:51:22.586] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T11:51:22.725] [TRACE] default - add Migration update_001
+[2022-07-31T11:51:22.737] [TRACE] default - add Node craffel
+[2022-07-31T12:13:49.649] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T12:13:49.651] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T12:13:49.773] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T12:13:49.775] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T12:13:49.846] [TRACE] default - add Migration update_001
+[2022-07-31T12:13:49.857] [TRACE] default - add Node craffel
+[2022-07-31T12:14:48.715] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T12:14:48.717] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T12:14:48.824] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T12:14:48.827] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T12:14:48.904] [TRACE] default - add Migration update_001
+[2022-07-31T12:14:48.915] [TRACE] default - add Node craffel
+[2022-07-31T12:15:07.010] [TRACE] default - GET menu
+[2022-07-31T12:43:08.904] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T12:43:08.906] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T12:43:09.026] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T12:43:09.029] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T12:43:09.160] [TRACE] default - add Migration update_001
+[2022-07-31T12:43:09.173] [TRACE] default - add Node craffel
+[2022-07-31T12:43:57.163] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T12:43:57.166] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T12:43:57.273] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T12:43:57.276] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T12:43:57.424] [ERROR] default - Error: WHERE parameter "page" has invalid "undefined" value
+    at SQLiteQueryGenerator.whereItemQuery (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-generator.js:1655:13)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-generator.js:1646:25
+    at Array.forEach (<anonymous>)
+    at SQLiteQueryGenerator.whereItemsQuery (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-generator.js:1644:35)
+    at SQLiteQueryGenerator.getWhereConditions (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-generator.js:1987:19)
+    at SQLiteQueryGenerator.selectQuery (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-generator.js:932:28)
+    at SQLiteQueryInterface.rawSelect (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:430:37)
+    at Function.aggregate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1265:45)
+    at Function.count (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1288:31)
+[2022-07-31T12:43:57.429] [TRACE] default - add Migration update_001
+[2022-07-31T12:43:57.441] [TRACE] default - add Node craffel
+[2022-07-31T12:45:28.518] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T12:45:28.520] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T12:45:28.638] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T12:45:28.640] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T12:45:28.815] [TRACE] default - add Migration update_001
+[2022-07-31T12:45:28.830] [TRACE] default - add Node craffel
+[2022-07-31T12:45:55.856] [TRACE] default - GET translation
+[2022-07-31T12:46:05.222] [TRACE] default - GET node
+[2022-07-31T12:47:10.625] [TRACE] default - GET migration
+[2022-07-31T12:47:17.306] [TRACE] default - GET menu
+[2022-07-31T12:47:22.000] [TRACE] default - GET translation
+[2022-07-31T12:49:59.871] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-07-31T12:49:59.874] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-07-31T12:49:59.984] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-07-31T12:49:59.986] [INFO] default - HTTP Server listening on port 80
+[2022-07-31T12:50:00.095] [TRACE] default - add Migration update_001
+[2022-07-31T12:50:00.106] [TRACE] default - add Node craffel
+[2022-07-31T12:50:21.531] [TRACE] default - GET translation
+[2022-07-31T12:50:34.798] [TRACE] default - GET translation

@@ -11,8 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MigrationItem = void 0;
 const sequelize_1 = require("sequelize");
-const jsonMigration = require("./migrationItem.json");
-const jsonMigrationGlobal = require("./migrationGlobalItem.json");
 class MigrationItem {
     constructor(name, isInstalled) {
         this.name = name;
@@ -32,26 +30,10 @@ class MigrationItem {
             }
         }, { freezeTableName: true });
     }
-    static updateTable({ sequelize }) {
+    static updateTable({ sequelize, migrations }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const items = JSON.parse(JSON.stringify(jsonMigration));
-                for (const item of items) {
-                    if ((yield sequelize.models.migration.count({ where: { name: item.name } })) === 0) {
-                        yield sequelize.models.migration.create(item);
-                    }
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
-    }
-    static updateTableGlobal({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(jsonMigrationGlobal));
-                for (const item of items) {
+                for (const item of migrations) {
                     if ((yield sequelize.models.migration.count({ where: { name: item.name } })) === 0) {
                         yield sequelize.models.migration.create(item);
                     }

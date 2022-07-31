@@ -78,8 +78,7 @@ log4js.configure({
 app.use('/', index_1.default);
 app.use('/api', api_1.default);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist'));
-app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/devExpress', express.static(__dirname + '/node_modules/devextreme/dist'));
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

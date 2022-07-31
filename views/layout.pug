@@ -2,6 +2,26 @@ doctype html
 html
   head
     title=title
+
+    link(rel='stylesheet', href='/stylesheets/header.css')
+    link(rel='stylesheet', href='/stylesheets/footer.css')
+    link(rel='stylesheet', href='/stylesheets/layout.css')
+
+    link(rel='stylesheet', href='/stylesheets/dx.material.craffel-scheme.css')
+
+    script(src='/jquery/jquery.min.js')
+    script(type="module" src='/javascripts/viewmodel/globalData.js')
+    script(type="module" src='/javascripts/viewmodel/layoutViewModel.js')
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.0.1/exceljs.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js')
+    script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js')
+
+    script(src='devExpress/js/dx.all.js')
   body
+    #sticky-container
+      #menu
   script.
+
   block content

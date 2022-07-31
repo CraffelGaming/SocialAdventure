@@ -6,6 +6,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { MigrationItem } from '../model/migrationItem';
 
+import jsonMigration = require('../model/migrationItem.json');
+import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
+import { MenuItem } from '../model/menuItem';
+import { TranslationItem } from '../model/translationItem';
+
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -26,12 +31,16 @@ export class Connection {
             MigrationItem.initialize(this.sequelize);
             VersionItem.initialize(this.sequelize);
             NodeItem.initialize(this.sequelize);
+            MenuItem.initialize(this.sequelize);
+            TranslationItem.initialize(this.sequelize);
 
             await this.sequelize.sync();
 
-            await MigrationItem.updateTableGlobal({ sequelize: this.sequelize });
+            await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await NodeItem.updateTable({ sequelize: this.sequelize });
+            await MenuItem.updateTable({ sequelize: this.sequelize });
+            await TranslationItem.updateTable({ sequelize: this.sequelize });
 
             await this.updater("migrations/global");
 
@@ -50,7 +59,7 @@ export class Connection {
 
             await this.sequelize.sync();
 
-            await MigrationItem.updateTable({ sequelize: this.sequelize });
+            await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
 
             await this.updater("migrations/general");
@@ -61,19 +70,19 @@ export class Connection {
         }
     }
 
-    async updater(folder){
+    async updater(folder: string){
         try{
 
             for(const item of Object.values(await this.sequelize.models.migration.findAll()) as unknown as MigrationItem[]){
                 global.worker.log.trace('add Migration ' + item.name);
 
-                if(!this.isNewDatabase){
+                if(!this.isNewDatabase && !item.isInstalled){
                     const fileName = path.join(__dirname, folder, item.name + '.js') ;
                     const file = require(fileName);
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }
                 item.isInstalled = true;
-                await this.sequelize.models.migration.update(item, {where: {name: item.name}});
+                await this.sequelize.models.migration.update({isInstalled: item.isInstalled}, {where: {name: item.name}});
             }
         } catch (ex) {
             global.worker.log.error(ex);
