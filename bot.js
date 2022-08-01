@@ -40,6 +40,7 @@ const morgan = require("morgan");
 const fs = __importStar(require("fs"));
 const log4js = require("log4js");
 const settings_json_1 = __importDefault(require("./settings.json"));
+const twitch_json_1 = __importDefault(require("./twitch.json"));
 const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
 const worker_1 = require("./controller/worker");
@@ -100,6 +101,7 @@ app.use((err, request, response) => {
     });
 });
 app.set('port', settings_json_1.default.port);
+app.set('twitch', twitch_json_1.default);
 global.worker = new worker_1.Worker(log4js.getLogger("default"));
 global.worker.initialize();
 // Logging

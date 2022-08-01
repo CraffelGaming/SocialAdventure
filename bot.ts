@@ -13,12 +13,21 @@ import morgan = require('morgan');
 import * as fs from 'fs';
 import log4js = require('log4js');
 import settings from './settings.json';
+import twitch from './twitch.json';
 import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
 
 const app = express();
+
+// extend session
+declare module 'express-session' {
+    interface SessionData {
+        state: string,
+        twitch: any
+    }
+}
 
 // session handler
 app.use(session({
@@ -86,6 +95,7 @@ app.use((err: any, request: express.Request, response: express.Response) => {
 });
 
 app.set('port', settings.port);
+app.set('twitch', twitch);
 
 // Global Database
 declare global {

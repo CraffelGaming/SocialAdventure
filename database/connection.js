@@ -36,13 +36,15 @@ exports.Connection = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const versionItem_1 = require("../model/versionItem");
 const nodeItem_1 = require("../model/nodeItem");
-const fs = __importStar(require("fs"));
-const path = __importStar(require("path"));
 const migrationItem_1 = require("../model/migrationItem");
-const jsonMigration = require("../model/migrationItem.json");
-const jsonMigrationGlobal = require("../model/migrationGlobalItem.json");
 const menuItem_1 = require("../model/menuItem");
 const translationItem_1 = require("../model/translationItem");
+const twitchItem_1 = require("../model/twitchItem");
+const twitchUserItem_1 = require("../model/twitchUserItem");
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
+const jsonMigration = require("../model/migrationItem.json");
+const jsonMigrationGlobal = require("../model/migrationGlobalItem.json");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -59,6 +61,8 @@ class Connection {
                 nodeItem_1.NodeItem.initialize(this.sequelize);
                 menuItem_1.MenuItem.initialize(this.sequelize);
                 translationItem_1.TranslationItem.initialize(this.sequelize);
+                twitchItem_1.TwitchItem.initialize(this.sequelize);
+                twitchUserItem_1.TwitchUserItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });

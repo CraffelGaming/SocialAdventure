@@ -22,29 +22,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 const express = __importStar(require("express"));
-const help_1 = __importDefault(require("./help"));
-const streamer_1 = __importDefault(require("./streamer"));
-const twitch_1 = __importDefault(require("./twitch"));
-const endpoint = 'index';
-const type = 'app';
+const endpoint = 'twitch';
 const router = express.Router();
-// Help
-router.get('/help', help_1.default);
-// Streamer
-router.get('/streamer', streamer_1.default);
-// Twitch
-router.get('/twitch', twitch_1.default);
-// index
-router.get('/', (request, response) => {
-    response.render(endpoint, {
-        title: 'Social Adventure'
-    });
+router.get('/' + endpoint, (request, response) => {
+    if (request.query.state === request.session.state) {
+        global.worker.login(request, response, callback);
+    }
+    else {
+        response.render(endpoint, {
+            title: 'Social Adventure'
+        });
+    }
 });
+function callback(request, response) {
+    response.render(endpoint, {
+        title: 'Craffels Abenteuer'
+    });
+}
 exports.default = router;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=twitch.js.map

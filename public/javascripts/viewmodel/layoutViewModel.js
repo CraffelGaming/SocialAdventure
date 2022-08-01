@@ -3,6 +3,7 @@ import { getTranslation, translate } from './globalData.js';
 $(async () => {
     let language = await getTranslation('navigation');
     let menus = await getMenu();
+    let twitch = await getTwitchURL();
 
     initialize();
 
@@ -42,7 +43,7 @@ $(async () => {
         if (subs.length == 0) {
             parent.push({
                 text: translate(language, item.name),
-                href: item.endpoint
+                href: item.name != 'login' ? item.endpoint : twitch.url
             });
         } else {
             var elements = [];
@@ -62,6 +63,23 @@ $(async () => {
     //#region Menu
     async function getMenu() {
         return await fetch('./api/menu/', {
+            method: 'get',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(function (res) {
+            if (res.status == 200) {
+                return res.json();
+            }
+        }).then(function (json) {
+            return json;
+        });
+    }
+    //#endregion
+
+    //#region Twitch
+    async function getTwitchURL() {
+        return await fetch('./api/twitch/', {
             method: 'get',
             headers: {
                 'Content-type': 'application/json'

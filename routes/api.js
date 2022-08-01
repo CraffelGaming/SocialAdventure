@@ -34,7 +34,32 @@ const api_node_1 = __importDefault(require("./api/api.node"));
 const api_menu_1 = __importDefault(require("./api/api.menu"));
 const api_migration_1 = __importDefault(require("./api/api.migration"));
 const api_translation_1 = __importDefault(require("./api/api.translation"));
+const api_twitch_1 = __importDefault(require("./api/api.twitch"));
 const router = express.Router();
+//#region Twitch
+/**
+ * @swagger
+ * /twitch:
+ *   get:
+ *     tags:
+ *     - Twitch
+ *     summary: Twitch URL
+ *     description: Rückgabe der Twitch URL.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             url:
+ *               type: string
+ *               example: "https://id.twitch.tv/oauth2/authorize?client_id=A&redirect_uri=B&response_type=C&scope=D&state=E"
+ *               descrition: Twitch URL zur Anmeldung
+ */
+router.get("/twitch", api_twitch_1.default);
+//#endregion
 //#region Version
 /**
  * @swagger

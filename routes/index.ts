@@ -4,6 +4,8 @@ import * as express from 'express';
 
 import help from "./help";
 import streamer from "./streamer";
+import twitch from "./twitch";
+
 const endpoint = 'index';
 const type = 'app';
 
@@ -14,6 +16,9 @@ router.get('/help', help);
 
 // Streamer
 router.get('/streamer', streamer);
+
+// Twitch
+router.get('/twitch', twitch);
 
 // index
 router.get('/', (request: express.Request, response: express.Response) => {

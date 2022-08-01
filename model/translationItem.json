@@ -14,5 +14,6 @@
     { "page": "streamer", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
     { "page": "streamer", "handle": "endpoint", "language": "de-DE", "translation": "Webseite"},
     { "page": "help", "handle": "title", "language": "de-DE", "translation": "Hilfe"},
-    { "page": "index", "handle": "title", "language": "de-DE", "translation": "Startseite"}
+    { "page": "index", "handle": "title", "language": "de-DE", "translation": "Startseite"},
+    { "page": "twitch", "handle": "title", "language": "de-DE", "translation": "Twitch"}
 ]

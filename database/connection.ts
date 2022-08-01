@@ -1,15 +1,18 @@
 import { Sequelize } from 'sequelize-typescript'
 import { VersionItem } from '../model/versionItem';
 import { NodeItem } from '../model/nodeItem';
+import { MigrationItem } from '../model/migrationItem';
+import { MenuItem } from '../model/menuItem';
+import { TranslationItem } from '../model/translationItem';
+import { TwitchItem } from '../model/twitchItem';
+import { TwitchUserItem } from '../model/twitchUserItem';
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { MigrationItem } from '../model/migrationItem';
 
 import jsonMigration = require('../model/migrationItem.json');
 import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
-import { MenuItem } from '../model/menuItem';
-import { TranslationItem } from '../model/translationItem';
+
 
 export class Connection {
     databaseName: string;
@@ -33,6 +36,8 @@ export class Connection {
             NodeItem.initialize(this.sequelize);
             MenuItem.initialize(this.sequelize);
             TranslationItem.initialize(this.sequelize);
+            TwitchItem.initialize(this.sequelize);
+            TwitchUserItem.initialize(this.sequelize);
 
             await this.sequelize.sync();
 

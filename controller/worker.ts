@@ -1,3 +1,4 @@
+import * as express from 'express';
 import { Connection } from '../database/connection';
 import log4js = require('log4js');
 import path = require('path');
@@ -5,6 +6,7 @@ import { NodeItem } from '../model/nodeItem';
 import { Channel } from './channel';
 import tmi = require('tmi.js');
 import tmiSettings = require('../bot.json');
+import { Twitch } from './twitch';
 
 export class Worker {
     pathModel: string;
@@ -13,6 +15,7 @@ export class Worker {
     channels: Channel[];
     log: log4js.Logger;
     tmi: any;
+    twitch: Twitch;
 
     constructor(log: log4js.Logger){
         this.log = log;
@@ -20,7 +23,7 @@ export class Worker {
         this.pathMigration = path.join(__dirname, '..','database', 'migrations');
         this.channels = [];
         this.tmi = new tmi.client(tmiSettings);
-
+        this.twitch = new Twitch(log);
         this.log.trace('twitch chat client initialized');
 
         this.globalDatabase = new Connection({ databaseName: Buffer.from('global').toString('base64')});
@@ -42,11 +45,18 @@ export class Worker {
 
             // Register Channel to twitch
             this.register(channel);
-
             this.channels.push(channel);
         }
     }
 
+    //#region Twitch API
+    async login(request: express.Request, response: express.Response, callback: any){
+        this.log.trace('login');
+        callback(request, response);
+    }
+    //#endregion
+
+    //#region Chatbot
     async connect(){
         this.tmi.on('message', this.onMessageHandler);
         this.tmi.on('connected', this.onConnectedHandler);
@@ -70,18 +80,19 @@ export class Worker {
             global.worker.log.trace('incomming message target: ' + target);
             global.worker.log.trace('incomming message message: ' + message);
 
-            //TODO
+            // TODO
 
         } catch (ex){
             global.worker.log.error(ex);
         }
     }
 
-    onConnectedHandler (addr, port) {
-        this.log.info(`bot connected to ${addr}:${port}`);
+    onConnectedHandler (address: string, port: number) {
+        this.log.info(`bot connected to ${address}:${port}`);
     }
 
     onDisconnectedHandler() {
         this.tmi.connect();
     }
+    //#endregion
 }

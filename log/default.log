@@ -1581,3 +1581,118 @@ notNull Violation: node.isActive cannot be null
 [2022-08-01T08:58:16.777] [TRACE] default - incomming message self: false
 [2022-08-01T08:58:16.778] [TRACE] default - incomming message target: #craffel
 [2022-08-01T08:58:16.778] [TRACE] default - incomming message message: !test
+[2022-08-01T15:39:14.798] [TRACE] default - twitch chat client initialized
+[2022-08-01T15:39:14.929] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T15:39:14.930] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T15:39:14.945] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T15:39:14.949] [INFO] default - HTTP Server listening on port 80
+[2022-08-01T15:39:15.250] [TRACE] default - add Migration update_001
+[2022-08-01T15:39:16.221] [TRACE] default - add Node craffel
+[2022-08-01T15:39:16.222] [TRACE] default - node connected: craffel
+[2022-08-01T15:41:13.155] [TRACE] default - GET translation
+[2022-08-01T15:41:13.157] [TRACE] default - GET translation
+[2022-08-01T15:41:13.164] [TRACE] default - GET menu
+[2022-08-01T15:41:27.731] [TRACE] default - GET twitch
+[2022-08-01T15:49:17.285] [TRACE] default - GET translation
+[2022-08-01T15:49:17.286] [TRACE] default - GET translation
+[2022-08-01T15:49:17.292] [TRACE] default - GET menu
+[2022-08-01T15:53:04.273] [TRACE] default - GET translation
+[2022-08-01T15:53:04.275] [TRACE] default - GET translation
+[2022-08-01T15:53:04.283] [TRACE] default - GET menu
+[2022-08-01T15:53:04.291] [TRACE] default - GET twitch
+[2022-08-01T15:53:35.416] [TRACE] default - GET translation
+[2022-08-01T15:53:35.418] [TRACE] default - GET translation
+[2022-08-01T15:53:35.425] [TRACE] default - GET menu
+[2022-08-01T15:53:35.434] [TRACE] default - GET twitch
+[2022-08-01T15:53:37.749] [TRACE] default - GET translation
+[2022-08-01T15:53:37.752] [TRACE] default - GET translation
+[2022-08-01T15:53:37.761] [TRACE] default - GET menu
+[2022-08-01T15:53:37.768] [TRACE] default - GET twitch
+[2022-08-01T15:56:22.797] [TRACE] default - twitch chat client initialized
+[2022-08-01T15:56:22.903] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T15:56:22.903] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T15:56:22.919] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T15:56:22.922] [INFO] default - HTTP Server listening on port 80
+[2022-08-01T15:56:23.207] [TRACE] default - add Migration update_001
+[2022-08-01T15:56:24.178] [TRACE] default - add Node craffel
+[2022-08-01T15:56:24.179] [TRACE] default - node connected: craffel
+[2022-08-01T15:56:59.136] [TRACE] default - GET translation
+[2022-08-01T15:56:59.139] [TRACE] default - GET translation
+[2022-08-01T15:56:59.146] [TRACE] default - GET menu
+[2022-08-01T15:56:59.162] [TRACE] default - GET twitch
+[2022-08-01T15:57:19.395] [TRACE] default - GET translation
+[2022-08-01T15:57:19.396] [TRACE] default - GET translation
+[2022-08-01T15:57:19.404] [TRACE] default - GET menu
+[2022-08-01T15:57:19.418] [TRACE] default - GET twitch
+[2022-08-01T15:57:23.424] [TRACE] default - GET translation
+[2022-08-01T15:57:23.425] [TRACE] default - GET translation
+[2022-08-01T15:57:23.431] [TRACE] default - GET menu
+[2022-08-01T15:57:23.439] [TRACE] default - GET twitch
+[2022-08-01T15:57:24.727] [TRACE] default - incomming message self: false
+[2022-08-01T15:57:52.617] [TRACE] default - twitch chat client initialized
+[2022-08-01T15:57:52.711] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T15:57:52.712] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T15:57:52.727] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T15:57:52.730] [INFO] default - HTTP Server listening on port 80
+[2022-08-01T15:57:53.061] [TRACE] default - add Migration update_001
+[2022-08-01T15:57:54.022] [TRACE] default - add Node craffel
+[2022-08-01T15:57:54.023] [TRACE] default - node connected: craffel
+[2022-08-01T15:58:05.696] [TRACE] default - GET translation
+[2022-08-01T15:58:05.699] [TRACE] default - GET translation
+[2022-08-01T15:58:05.706] [TRACE] default - GET menu
+[2022-08-01T15:58:05.720] [TRACE] default - GET twitch
+[2022-08-01T15:59:19.982] [TRACE] default - GET translation
+[2022-08-01T15:59:19.984] [TRACE] default - GET translation
+[2022-08-01T15:59:19.992] [TRACE] default - GET menu
+[2022-08-01T15:59:20.005] [TRACE] default - GET twitch
+[2022-08-01T15:59:44.984] [TRACE] default - GET translation
+[2022-08-01T15:59:44.986] [TRACE] default - GET translation
+[2022-08-01T15:59:44.994] [TRACE] default - GET menu
+[2022-08-01T15:59:45.003] [TRACE] default - GET twitch
+[2022-08-01T16:01:40.252] [TRACE] default - twitch chat client initialized
+[2022-08-01T16:01:40.359] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T16:01:40.360] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T16:01:40.375] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T16:01:40.387] [INFO] default - HTTPS Server listening on port 80
+[2022-08-01T16:01:40.672] [TRACE] default - add Migration update_001
+[2022-08-01T16:01:41.655] [TRACE] default - add Node craffel
+[2022-08-01T16:01:41.656] [TRACE] default - node connected: craffel
+[2022-08-01T16:02:35.978] [TRACE] default - twitch chat client initialized
+[2022-08-01T16:02:36.069] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T16:02:36.069] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T16:02:36.084] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T16:02:36.094] [INFO] default - HTTPS Server listening on port 80
+[2022-08-01T16:02:36.378] [TRACE] default - add Migration update_001
+[2022-08-01T16:03:56.874] [TRACE] default - twitch chat client initialized
+[2022-08-01T16:03:56.969] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T16:03:56.969] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T16:03:56.984] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T16:03:56.986] [INFO] default - HTTP Server listening on port 80
+[2022-08-01T16:03:57.280] [TRACE] default - add Migration update_001
+[2022-08-01T16:03:58.261] [TRACE] default - add Node craffel
+[2022-08-01T16:03:58.262] [TRACE] default - node connected: craffel
+[2022-08-01T16:04:09.302] [TRACE] default - GET translation
+[2022-08-01T16:04:09.305] [TRACE] default - GET translation
+[2022-08-01T16:04:09.312] [TRACE] default - GET menu
+[2022-08-01T16:04:09.327] [TRACE] default - GET twitch
+[2022-08-01T16:04:12.610] [TRACE] default - GET translation
+[2022-08-01T16:04:12.612] [TRACE] default - GET translation
+[2022-08-01T16:04:12.618] [TRACE] default - GET menu
+[2022-08-01T16:04:12.630] [TRACE] default - GET twitch
+[2022-08-01T17:24:01.939] [TRACE] default - twitch chat client initialized
+[2022-08-01T17:24:02.048] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-01T17:24:02.049] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-01T17:24:02.064] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-01T17:24:02.067] [INFO] default - HTTP Server listening on port 80
+[2022-08-01T17:24:02.436] [TRACE] default - add Migration update_001
+[2022-08-01T17:24:03.410] [TRACE] default - add Node craffel
+[2022-08-01T17:24:03.411] [TRACE] default - node connected: craffel
+[2022-08-01T17:24:08.309] [TRACE] default - GET translation
+[2022-08-01T17:24:08.312] [TRACE] default - GET translation
+[2022-08-01T17:24:08.321] [TRACE] default - GET menu
+[2022-08-01T17:24:08.334] [TRACE] default - GET twitch
+[2022-08-01T17:24:11.747] [TRACE] default - login
+[2022-08-01T17:24:12.090] [TRACE] default - GET translation
+[2022-08-01T17:24:12.092] [TRACE] default - GET translation
+[2022-08-01T17:24:12.098] [TRACE] default - GET menu
+[2022-08-01T17:24:12.106] [TRACE] default - GET twitch

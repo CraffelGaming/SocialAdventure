@@ -15,6 +15,7 @@ const path = require("path");
 const channel_1 = require("./channel");
 const tmi = require("tmi.js");
 const tmiSettings = require("../bot.json");
+const twitch_1 = require("./twitch");
 class Worker {
     constructor(log) {
         this.log = log;
@@ -22,6 +23,7 @@ class Worker {
         this.pathMigration = path.join(__dirname, '..', 'database', 'migrations');
         this.channels = [];
         this.tmi = new tmi.client(tmiSettings);
+        this.twitch = new twitch_1.Twitch(log);
         this.log.trace('twitch chat client initialized');
         this.globalDatabase = new connection_1.Connection({ databaseName: Buffer.from('global').toString('base64') });
         this.log.trace('basic model path: ' + this.pathModel);
@@ -42,6 +44,15 @@ class Worker {
             }
         });
     }
+    //#region Twitch API
+    login(request, response, callback) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.log.trace('login');
+            callback(request, response);
+        });
+    }
+    //#endregion
+    //#region Chatbot
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
             this.tmi.on('message', this.onMessageHandler);
@@ -65,13 +76,14 @@ class Worker {
             }
             global.worker.log.trace('incomming message target: ' + target);
             global.worker.log.trace('incomming message message: ' + message);
+            // TODO
         }
         catch (ex) {
             global.worker.log.error(ex);
         }
     }
-    onConnectedHandler(addr, port) {
-        this.log.info(`bot connected to ${addr}:${port}`);
+    onConnectedHandler(address, port) {
+        this.log.info(`bot connected to ${address}:${port}`);
     }
     onDisconnectedHandler() {
         this.tmi.connect();

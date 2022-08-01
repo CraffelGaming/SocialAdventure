@@ -45,31 +45,6 @@ export class NodeItem{
                type: DataTypes.STRING,
                allowNull: false,
                defaultValue: '/'
-            },
-            type: {
-                type: DataTypes.STRING,
-                allowNull: true
-            },
-            broadcasterType: {
-                type: DataTypes.STRING,
-                allowNull: true
-            },
-            description: {
-                type: DataTypes.STRING,
-                allowNull: true
-            },
-            profileImageUrl: {
-                type: DataTypes.STRING,
-                allowNull: true
-            },
-            viewCount: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
-            },
-            eMail: {
-                type: DataTypes.STRING,
-                allowNull: true
             }
           }, {freezeTableName: true});
     }

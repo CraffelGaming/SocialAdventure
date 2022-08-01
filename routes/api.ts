@@ -8,8 +8,34 @@ import node from "./api/api.node";
 import menu from "./api/api.menu";
 import migration from "./api/api.migration";
 import translation from "./api/api.translation";
+import twitch from "./api/api.twitch";
 
 const router = express.Router();
+
+//#region Twitch
+/**
+ * @swagger
+ * /twitch:
+ *   get:
+ *     tags:
+ *     - Twitch
+ *     summary: Twitch URL
+ *     description: Rückgabe der Twitch URL.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             url:
+ *               type: string
+ *               example: "https://id.twitch.tv/oauth2/authorize?client_id=A&redirect_uri=B&response_type=C&scope=D&state=E"
+ *               descrition: Twitch URL zur Anmeldung
+ */
+ router.get("/twitch", twitch);
+//#endregion
 
 //#region Version
 /**

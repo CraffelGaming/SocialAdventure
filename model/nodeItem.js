@@ -42,31 +42,6 @@ class NodeItem {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
                 defaultValue: '/'
-            },
-            type: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: true
-            },
-            broadcasterType: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: true
-            },
-            description: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: true
-            },
-            profileImageUrl: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: true
-            },
-            viewCount: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
-            },
-            eMail: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: true
             }
         }, { freezeTableName: true });
     }
