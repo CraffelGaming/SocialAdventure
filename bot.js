@@ -22,15 +22,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -48,8 +39,6 @@ const logFile = require("rotating-file-stream");
 const morgan = require("morgan");
 const fs = __importStar(require("fs"));
 const log4js = require("log4js");
-const tmi = require("tmi.js");
-const tmiSettings = require("./bot.json");
 const settings_json_1 = __importDefault(require("./settings.json"));
 const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
@@ -129,53 +118,6 @@ else {
     http.createServer(app)
         .listen(app.get('port'), () => {
         global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
-    });
-}
-startup();
-// start twitch bot
-function startup() {
-    return __awaiter(this, void 0, void 0, function* () {
-        // Create a client with our options
-        global.client = new tmi.client(tmiSettings);
-        // Register our event handlers (defined below)
-        global.client.on('message', onMessageHandler);
-        global.client.on('connected', onConnectedHandler);
-        global.client.on('disconnected', onDisconnectedHandler);
-        // Connect to Twitch:
-        yield global.client.connect();
-        // Connect Channels
-        global.worker.connect(global.client);
-    });
-}
-// Called every time a message comes in
-function onMessageHandler(target, context, message, self) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            global.worker.log.trace('incomming message');
-            if (self) {
-                return;
-            } // Ignore messages from the bot
-            if (!message.trim().toLowerCase().startsWith('!')) {
-                return;
-            } // Ignore normal chat messages
-            global.worker.log.trace('incomming message target: ' + target);
-            global.worker.log.trace('incomming message context: ' + context);
-            global.worker.log.trace('incomming message message: ' + message);
-            global.worker.log.trace('incomming message self: ' + self);
-        }
-        catch (ex) {
-            global.worker.log.error(ex);
-        }
-    });
-}
-// Called every time the bot connects to Twitch chat
-function onConnectedHandler(addr, port) {
-    global.worker.log.info(`bot connected to ${addr}:${port}`);
-}
-function onDisconnectedHandler() {
-    return __awaiter(this, void 0, void 0, function* () {
-        // Connect to Twitch:
-        global.client.connect();
     });
 }
 //# sourceMappingURL=bot.js.map
