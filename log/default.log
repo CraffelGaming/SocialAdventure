@@ -1696,3 +1696,2478 @@ notNull Violation: node.isActive cannot be null
 [2022-08-01T17:24:12.092] [TRACE] default - GET translation
 [2022-08-01T17:24:12.098] [TRACE] default - GET menu
 [2022-08-01T17:24:12.106] [TRACE] default - GET twitch
+[2022-08-02T19:43:59.123] [TRACE] default - twitch chat client initialized
+[2022-08-02T19:43:59.293] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T19:43:59.293] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T19:43:59.337] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T19:43:59.340] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T19:43:59.623] [TRACE] default - add Migration update_001
+[2022-08-02T19:44:00.593] [TRACE] default - add Node craffel
+[2022-08-02T19:44:00.596] [TRACE] default - node connected: craffel
+[2022-08-02T19:44:20.312] [TRACE] default - GET translation
+[2022-08-02T19:44:20.315] [TRACE] default - GET translation
+[2022-08-02T19:44:20.322] [TRACE] default - GET menu
+[2022-08-02T19:44:20.333] [TRACE] default - GET twitch
+[2022-08-02T19:44:22.785] [TRACE] default - login
+[2022-08-02T19:44:23.136] [TRACE] default - GET translation
+[2022-08-02T19:44:23.138] [TRACE] default - GET translation
+[2022-08-02T19:44:23.144] [TRACE] default - GET menu
+[2022-08-02T19:44:23.157] [TRACE] default - GET twitch
+[2022-08-02T19:45:07.822] [TRACE] default - login
+[2022-08-02T19:45:08.163] [TRACE] default - GET translation
+[2022-08-02T19:45:08.165] [TRACE] default - GET translation
+[2022-08-02T19:45:08.171] [TRACE] default - GET menu
+[2022-08-02T19:45:08.178] [TRACE] default - GET twitch
+[2022-08-02T19:45:18.592] [TRACE] default - GET translation
+[2022-08-02T19:45:18.595] [TRACE] default - GET translation
+[2022-08-02T19:45:18.599] [TRACE] default - GET menu
+[2022-08-02T19:45:18.607] [TRACE] default - GET twitch
+[2022-08-02T19:45:19.957] [TRACE] default - login
+[2022-08-02T19:45:20.291] [TRACE] default - GET translation
+[2022-08-02T19:45:20.292] [TRACE] default - GET translation
+[2022-08-02T19:45:20.299] [TRACE] default - GET menu
+[2022-08-02T19:45:20.311] [TRACE] default - GET twitch
+[2022-08-02T19:46:25.272] [TRACE] default - login
+[2022-08-02T19:46:25.618] [TRACE] default - GET translation
+[2022-08-02T19:46:25.620] [TRACE] default - GET translation
+[2022-08-02T19:46:25.626] [TRACE] default - GET menu
+[2022-08-02T19:46:25.637] [TRACE] default - GET twitch
+[2022-08-02T19:46:40.810] [TRACE] default - login
+[2022-08-02T19:46:41.146] [TRACE] default - GET translation
+[2022-08-02T19:46:41.148] [TRACE] default - GET translation
+[2022-08-02T19:46:41.154] [TRACE] default - GET menu
+[2022-08-02T19:46:41.160] [TRACE] default - GET twitch
+[2022-08-02T19:47:23.607] [TRACE] default - incomming message self: false
+[2022-08-02T19:48:37.601] [TRACE] default - login
+[2022-08-02T19:48:38.104] [TRACE] default - GET translation
+[2022-08-02T19:48:38.106] [TRACE] default - GET translation
+[2022-08-02T19:48:38.115] [TRACE] default - GET menu
+[2022-08-02T19:48:38.130] [TRACE] default - GET twitch
+[2022-08-02T19:48:46.172] [TRACE] default - login
+[2022-08-02T19:48:46.615] [TRACE] default - GET translation
+[2022-08-02T19:48:46.617] [TRACE] default - GET translation
+[2022-08-02T19:48:46.624] [TRACE] default - GET menu
+[2022-08-02T19:48:46.632] [TRACE] default - GET twitch
+[2022-08-02T19:50:06.504] [TRACE] default - login
+[2022-08-02T19:50:06.993] [TRACE] default - GET translation
+[2022-08-02T19:50:06.995] [TRACE] default - GET translation
+[2022-08-02T19:50:07.003] [TRACE] default - GET menu
+[2022-08-02T19:50:07.010] [TRACE] default - GET twitch
+[2022-08-02T19:50:31.294] [TRACE] default - login
+[2022-08-02T19:50:31.728] [TRACE] default - GET translation
+[2022-08-02T19:50:31.729] [TRACE] default - GET translation
+[2022-08-02T19:50:31.738] [TRACE] default - GET menu
+[2022-08-02T19:50:31.747] [TRACE] default - GET twitch
+[2022-08-02T19:50:40.199] [TRACE] default - login
+[2022-08-02T19:50:40.650] [TRACE] default - GET translation
+[2022-08-02T19:50:40.651] [TRACE] default - GET translation
+[2022-08-02T19:50:40.658] [TRACE] default - GET menu
+[2022-08-02T19:50:40.668] [TRACE] default - GET twitch
+[2022-08-02T19:51:11.116] [TRACE] default - login
+[2022-08-02T19:51:11.585] [TRACE] default - GET translation
+[2022-08-02T19:51:11.587] [TRACE] default - GET translation
+[2022-08-02T19:51:11.593] [TRACE] default - GET menu
+[2022-08-02T19:51:11.601] [TRACE] default - GET twitch
+[2022-08-02T19:51:22.956] [TRACE] default - login
+[2022-08-02T19:51:23.402] [TRACE] default - GET translation
+[2022-08-02T19:51:23.403] [TRACE] default - GET translation
+[2022-08-02T19:51:23.411] [TRACE] default - GET menu
+[2022-08-02T19:51:23.419] [TRACE] default - GET twitch
+[2022-08-02T19:51:27.617] [TRACE] default - login
+[2022-08-02T19:51:28.078] [TRACE] default - GET translation
+[2022-08-02T19:51:28.080] [TRACE] default - GET translation
+[2022-08-02T19:51:28.087] [TRACE] default - GET menu
+[2022-08-02T19:51:28.095] [TRACE] default - GET twitch
+[2022-08-02T19:51:37.536] [TRACE] default - login
+[2022-08-02T19:51:37.951] [TRACE] default - GET translation
+[2022-08-02T19:51:37.953] [TRACE] default - GET translation
+[2022-08-02T19:51:37.959] [TRACE] default - GET menu
+[2022-08-02T19:51:37.967] [TRACE] default - GET twitch
+[2022-08-02T19:52:18.337] [TRACE] default - twitch chat client initialized
+[2022-08-02T19:52:18.459] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T19:52:18.460] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T19:52:18.476] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T19:52:18.480] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T19:52:18.809] [TRACE] default - add Migration update_001
+[2022-08-02T19:52:19.783] [TRACE] default - add Node craffel
+[2022-08-02T19:52:19.785] [TRACE] default - node connected: craffel
+[2022-08-02T19:52:21.665] [TRACE] default - GET translation
+[2022-08-02T19:52:21.669] [TRACE] default - GET translation
+[2022-08-02T19:52:24.232] [TRACE] default - GET menu
+[2022-08-02T19:52:24.237] [TRACE] default - incomming message self: false
+[2022-08-02T19:52:24.787] [TRACE] default - GET twitch
+[2022-08-02T19:52:32.944] [TRACE] default - GET translation
+[2022-08-02T19:52:32.948] [TRACE] default - GET translation
+[2022-08-02T19:52:36.419] [TRACE] default - GET menu
+[2022-08-02T19:52:41.989] [TRACE] default - GET twitch
+[2022-08-02T19:53:00.626] [TRACE] default - login
+[2022-08-02T19:53:09.879] [TRACE] default - GET translation
+[2022-08-02T19:53:09.882] [TRACE] default - GET translation
+[2022-08-02T19:53:09.890] [TRACE] default - GET menu
+[2022-08-02T19:53:09.898] [TRACE] default - GET twitch
+[2022-08-02T19:53:37.407] [TRACE] default - GET translation
+[2022-08-02T19:53:37.411] [TRACE] default - GET translation
+[2022-08-02T19:53:37.419] [TRACE] default - GET menu
+[2022-08-02T19:53:37.429] [TRACE] default - GET twitch
+[2022-08-02T19:53:39.762] [TRACE] default - login
+[2022-08-02T19:53:40.102] [TRACE] default - GET translation
+[2022-08-02T19:53:40.105] [TRACE] default - GET translation
+[2022-08-02T19:53:40.112] [TRACE] default - GET menu
+[2022-08-02T19:53:40.120] [TRACE] default - GET twitch
+[2022-08-02T19:56:36.816] [TRACE] default - twitch chat client initialized
+[2022-08-02T19:56:36.913] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T19:56:36.913] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T19:56:36.929] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T19:56:36.931] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T19:56:37.243] [TRACE] default - add Migration update_001
+[2022-08-02T19:56:38.222] [TRACE] default - add Node craffel
+[2022-08-02T19:56:38.223] [TRACE] default - node connected: craffel
+[2022-08-02T19:56:56.811] [TRACE] default - GET translation
+[2022-08-02T19:56:56.814] [TRACE] default - GET translation
+[2022-08-02T19:56:56.820] [TRACE] default - GET menu
+[2022-08-02T19:56:56.832] [TRACE] default - GET twitch
+[2022-08-02T19:56:58.800] [TRACE] default - login
+[2022-08-02T19:56:59.177] [TRACE] default - GET translation
+[2022-08-02T19:56:59.179] [TRACE] default - GET translation
+[2022-08-02T19:56:59.185] [TRACE] default - GET menu
+[2022-08-02T19:56:59.197] [TRACE] default - GET twitch
+[2022-08-02T19:57:28.218] [TRACE] default - twitch chat client initialized
+[2022-08-02T19:57:28.322] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T19:57:28.323] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T19:57:28.340] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T19:57:28.343] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T19:57:28.643] [TRACE] default - add Migration update_001
+[2022-08-02T19:57:29.607] [TRACE] default - add Node craffel
+[2022-08-02T19:57:29.608] [TRACE] default - node connected: craffel
+[2022-08-02T19:58:02.466] [TRACE] default - GET translation
+[2022-08-02T19:58:02.469] [TRACE] default - GET translation
+[2022-08-02T19:58:02.475] [TRACE] default - GET menu
+[2022-08-02T19:58:02.488] [TRACE] default - GET twitch
+[2022-08-02T19:58:04.845] [TRACE] default - login
+[2022-08-02T20:01:07.306] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:01:07.427] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:01:07.427] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:01:07.443] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:01:07.445] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:01:07.729] [TRACE] default - add Migration update_001
+[2022-08-02T20:01:08.725] [TRACE] default - add Node craffel
+[2022-08-02T20:01:08.727] [TRACE] default - node connected: craffel
+[2022-08-02T20:01:33.990] [TRACE] default - GET translation
+[2022-08-02T20:01:33.995] [TRACE] default - GET translation
+[2022-08-02T20:01:34.004] [TRACE] default - GET menu
+[2022-08-02T20:01:34.018] [TRACE] default - GET twitch
+[2022-08-02T20:01:35.064] [TRACE] default - GET translation
+[2022-08-02T20:01:35.068] [TRACE] default - GET translation
+[2022-08-02T20:01:35.074] [TRACE] default - GET menu
+[2022-08-02T20:01:35.083] [TRACE] default - GET twitch
+[2022-08-02T20:01:37.149] [TRACE] default - login
+[2022-08-02T20:02:00.827] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:02:00.966] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:02:00.966] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:02:00.982] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:02:00.984] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:02:01.301] [TRACE] default - add Migration update_001
+[2022-08-02T20:02:02.255] [TRACE] default - add Node craffel
+[2022-08-02T20:02:02.257] [TRACE] default - node connected: craffel
+[2022-08-02T20:02:08.639] [TRACE] default - GET translation
+[2022-08-02T20:02:08.643] [TRACE] default - GET translation
+[2022-08-02T20:02:08.652] [TRACE] default - GET menu
+[2022-08-02T20:02:08.665] [TRACE] default - GET twitch
+[2022-08-02T20:02:10.281] [TRACE] default - login
+[2022-08-02T20:09:46.582] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:09:46.700] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:09:46.700] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:09:46.715] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:09:46.718] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:09:47.017] [TRACE] default - add Migration update_001
+[2022-08-02T20:09:48.003] [TRACE] default - add Node craffel
+[2022-08-02T20:09:48.005] [TRACE] default - node connected: craffel
+[2022-08-02T20:10:03.101] [TRACE] default - GET menu
+[2022-08-02T20:10:03.119] [TRACE] default - GET twitch
+[2022-08-02T20:10:05.266] [TRACE] default - login
+[2022-08-02T20:12:51.620] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:12:51.741] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:12:51.741] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:12:51.759] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:12:51.762] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:12:52.178] [TRACE] default - add Migration update_001
+[2022-08-02T20:12:53.191] [TRACE] default - add Node craffel
+[2022-08-02T20:12:53.192] [TRACE] default - node connected: craffel
+[2022-08-02T20:13:11.991] [TRACE] default - GET translation
+[2022-08-02T20:13:11.995] [TRACE] default - GET translation
+[2022-08-02T20:13:12.004] [TRACE] default - GET menu
+[2022-08-02T20:13:12.018] [TRACE] default - GET twitch
+[2022-08-02T20:13:19.743] [TRACE] default - login
+[2022-08-02T20:16:40.580] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:16:40.704] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:16:40.705] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:16:40.720] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:16:40.723] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:16:41.021] [TRACE] default - add Migration update_001
+[2022-08-02T20:16:41.974] [TRACE] default - add Node craffel
+[2022-08-02T20:16:41.975] [TRACE] default - node connected: craffel
+[2022-08-02T20:16:58.520] [TRACE] default - GET translation
+[2022-08-02T20:16:58.524] [TRACE] default - GET translation
+[2022-08-02T20:16:58.534] [TRACE] default - GET menu
+[2022-08-02T20:16:58.548] [TRACE] default - GET twitch
+[2022-08-02T20:17:01.874] [TRACE] default - login
+[2022-08-02T20:18:05.421] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:18:05.546] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:18:05.546] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:18:05.561] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:18:05.564] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:18:05.865] [TRACE] default - add Migration update_001
+[2022-08-02T20:18:06.827] [TRACE] default - add Node craffel
+[2022-08-02T20:18:06.828] [TRACE] default - node connected: craffel
+[2022-08-02T20:18:24.700] [TRACE] default - GET translation
+[2022-08-02T20:18:24.704] [TRACE] default - GET translation
+[2022-08-02T20:18:24.712] [TRACE] default - GET menu
+[2022-08-02T20:18:24.726] [TRACE] default - GET twitch
+[2022-08-02T20:18:27.205] [TRACE] default - login
+[2022-08-02T20:19:05.720] [TRACE] default - GET translation
+[2022-08-02T20:19:05.723] [TRACE] default - GET translation
+[2022-08-02T20:20:11.813] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:20:11.939] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:20:11.939] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:20:11.955] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:20:11.958] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:20:12.275] [TRACE] default - add Migration update_001
+[2022-08-02T20:20:13.245] [TRACE] default - add Node craffel
+[2022-08-02T20:20:13.246] [TRACE] default - node connected: craffel
+[2022-08-02T20:20:46.492] [TRACE] default - GET translation
+[2022-08-02T20:20:46.497] [TRACE] default - GET translation
+[2022-08-02T20:20:46.507] [TRACE] default - GET menu
+[2022-08-02T20:20:46.523] [TRACE] default - GET twitch
+[2022-08-02T20:20:48.263] [TRACE] default - login
+[2022-08-02T20:20:55.037] [TRACE] default - GET translation
+[2022-08-02T20:20:55.040] [TRACE] default - GET translation
+[2022-08-02T20:21:55.199] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:21:55.323] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:21:55.323] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:21:55.338] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:21:55.341] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:21:55.636] [TRACE] default - add Migration update_001
+[2022-08-02T20:21:56.636] [TRACE] default - add Node craffel
+[2022-08-02T20:21:56.637] [TRACE] default - node connected: craffel
+[2022-08-02T20:22:00.409] [TRACE] default - GET translation
+[2022-08-02T20:22:00.414] [TRACE] default - GET translation
+[2022-08-02T20:22:00.422] [TRACE] default - GET menu
+[2022-08-02T20:22:00.436] [TRACE] default - GET twitch
+[2022-08-02T20:22:02.387] [TRACE] default - login
+[2022-08-02T20:22:10.354] [TRACE] default - GET translation
+[2022-08-02T20:22:10.357] [TRACE] default - GET translation
+[2022-08-02T20:23:11.394] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:23:11.515] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:23:11.516] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:23:11.531] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:23:11.533] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:23:11.824] [TRACE] default - add Migration update_001
+[2022-08-02T20:23:12.800] [TRACE] default - add Node craffel
+[2022-08-02T20:23:12.802] [TRACE] default - node connected: craffel
+[2022-08-02T20:23:33.629] [TRACE] default - GET translation
+[2022-08-02T20:23:33.633] [TRACE] default - GET translation
+[2022-08-02T20:23:33.642] [TRACE] default - GET menu
+[2022-08-02T20:23:33.657] [TRACE] default - GET twitch
+[2022-08-02T20:23:35.768] [TRACE] default - login
+[2022-08-02T20:23:38.889] [TRACE] default - GET translation
+[2022-08-02T20:23:38.892] [TRACE] default - GET translation
+[2022-08-02T20:23:38.905] [TRACE] default - GET menu
+[2022-08-02T20:27:42.997] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:27:43.127] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:27:43.127] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:27:43.143] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:27:43.146] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:27:43.443] [TRACE] default - add Migration update_001
+[2022-08-02T20:27:44.415] [TRACE] default - add Node craffel
+[2022-08-02T20:27:44.416] [TRACE] default - node connected: craffel
+[2022-08-02T20:27:55.732] [TRACE] default - GET translation
+[2022-08-02T20:27:55.737] [TRACE] default - GET translation
+[2022-08-02T20:27:55.746] [TRACE] default - GET menu
+[2022-08-02T20:27:55.761] [TRACE] default - GET twitch
+[2022-08-02T20:28:00.169] [TRACE] default - GET translation
+[2022-08-02T20:28:00.172] [TRACE] default - GET translation
+[2022-08-02T20:28:00.179] [TRACE] default - GET menu
+[2022-08-02T20:28:00.190] [TRACE] default - GET twitch
+[2022-08-02T20:28:01.966] [TRACE] default - login
+[2022-08-02T20:28:14.441] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:28:14.565] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:28:14.565] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:28:14.581] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:28:14.584] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:28:14.881] [TRACE] default - add Migration update_001
+[2022-08-02T20:28:15.830] [TRACE] default - add Node craffel
+[2022-08-02T20:28:15.832] [TRACE] default - node connected: craffel
+[2022-08-02T20:28:26.107] [TRACE] default - GET translation
+[2022-08-02T20:28:26.113] [TRACE] default - GET translation
+[2022-08-02T20:28:26.122] [TRACE] default - GET menu
+[2022-08-02T20:28:26.140] [TRACE] default - GET twitch
+[2022-08-02T20:28:27.803] [TRACE] default - login
+[2022-08-02T20:29:39.825] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:29:39.924] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:29:39.925] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:29:39.940] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:29:39.943] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:29:40.230] [TRACE] default - add Migration update_001
+[2022-08-02T20:29:41.234] [TRACE] default - add Node craffel
+[2022-08-02T20:29:41.235] [TRACE] default - node connected: craffel
+[2022-08-02T20:29:59.300] [TRACE] default - GET translation
+[2022-08-02T20:29:59.304] [TRACE] default - GET translation
+[2022-08-02T20:29:59.311] [TRACE] default - GET menu
+[2022-08-02T20:29:59.326] [TRACE] default - GET twitch
+[2022-08-02T20:30:02.472] [TRACE] default - login
+[2022-08-02T20:31:01.502] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:31:01.597] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:31:01.598] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:31:01.613] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:31:01.616] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:31:01.903] [TRACE] default - add Migration update_001
+[2022-08-02T20:31:41.234] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:31:41.323] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:31:41.324] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:31:41.338] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:31:41.341] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:31:41.630] [TRACE] default - add Migration update_001
+[2022-08-02T20:31:42.601] [TRACE] default - add Node craffel
+[2022-08-02T20:31:42.602] [TRACE] default - node connected: craffel
+[2022-08-02T20:31:50.119] [TRACE] default - GET translation
+[2022-08-02T20:31:50.122] [TRACE] default - GET translation
+[2022-08-02T20:31:50.131] [TRACE] default - GET menu
+[2022-08-02T20:31:50.146] [TRACE] default - GET twitch
+[2022-08-02T20:32:08.142] [TRACE] default - login
+[2022-08-02T20:32:56.393] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:32:56.516] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:32:56.516] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:32:56.532] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:32:56.535] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:32:56.821] [TRACE] default - add Migration update_001
+[2022-08-02T20:32:57.782] [TRACE] default - add Node craffel
+[2022-08-02T20:32:57.783] [TRACE] default - node connected: craffel
+[2022-08-02T20:33:07.071] [TRACE] default - GET translation
+[2022-08-02T20:33:07.076] [TRACE] default - GET translation
+[2022-08-02T20:33:07.085] [TRACE] default - GET menu
+[2022-08-02T20:33:07.100] [TRACE] default - GET twitch
+[2022-08-02T20:33:10.555] [TRACE] default - login
+[2022-08-02T20:37:00.076] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:37:00.208] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T20:37:00.209] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:37:00.225] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T20:37:00.228] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:37:00.558] [TRACE] default - add Migration update_001
+[2022-08-02T20:37:01.537] [TRACE] default - add Node craffel
+[2022-08-02T20:37:01.538] [TRACE] default - node connected: craffel
+[2022-08-02T20:37:19.112] [TRACE] default - GET translation
+[2022-08-02T20:37:19.118] [TRACE] default - GET translation
+[2022-08-02T20:37:19.126] [TRACE] default - GET menu
+[2022-08-02T20:37:19.141] [TRACE] default - GET twitch
+[2022-08-02T20:37:23.444] [TRACE] default - incomming message self: false
+[2022-08-02T20:37:28.806] [TRACE] default - login
+[2022-08-02T20:41:46.425] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:41:46.518] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:41:46.519] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:41:46.534] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:41:46.537] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:41:46.861] [TRACE] default - add Migration update_001
+[2022-08-02T20:41:47.828] [TRACE] default - add Node craffel
+[2022-08-02T20:41:47.829] [TRACE] default - node connected: craffel
+[2022-08-02T20:41:51.725] [TRACE] default - GET translation
+[2022-08-02T20:41:51.727] [TRACE] default - GET translation
+[2022-08-02T20:41:51.735] [TRACE] default - GET menu
+[2022-08-02T20:41:51.747] [TRACE] default - GET twitch
+[2022-08-02T20:41:54.774] [TRACE] default - login
+[2022-08-02T20:42:56.466] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:42:56.563] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:42:56.564] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:42:56.579] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:42:56.581] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:42:56.897] [TRACE] default - add Migration update_001
+[2022-08-02T20:42:57.843] [TRACE] default - add Node craffel
+[2022-08-02T20:42:57.844] [TRACE] default - node connected: craffel
+[2022-08-02T20:43:24.551] [TRACE] default - GET translation
+[2022-08-02T20:43:24.554] [TRACE] default - GET translation
+[2022-08-02T20:43:24.562] [TRACE] default - GET menu
+[2022-08-02T20:43:24.578] [TRACE] default - GET twitch
+[2022-08-02T20:43:27.349] [TRACE] default - login
+[2022-08-02T20:45:18.826] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:45:18.942] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:45:18.942] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:45:18.958] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:45:18.961] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:45:19.269] [TRACE] default - add Migration update_001
+[2022-08-02T20:45:20.240] [TRACE] default - add Node craffel
+[2022-08-02T20:45:20.241] [TRACE] default - node connected: craffel
+[2022-08-02T20:45:47.011] [TRACE] default - GET translation
+[2022-08-02T20:45:47.013] [TRACE] default - GET translation
+[2022-08-02T20:45:47.020] [TRACE] default - GET menu
+[2022-08-02T20:45:47.037] [TRACE] default - GET twitch
+[2022-08-02T20:46:02.702] [TRACE] default - login
+[2022-08-02T20:47:44.063] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:47:44.160] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:47:44.161] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:47:44.175] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:47:44.178] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:47:44.473] [TRACE] default - add Migration update_001
+[2022-08-02T20:47:45.490] [TRACE] default - add Node craffel
+[2022-08-02T20:47:45.491] [TRACE] default - node connected: craffel
+[2022-08-02T20:47:49.771] [TRACE] default - GET translation
+[2022-08-02T20:47:49.774] [TRACE] default - GET translation
+[2022-08-02T20:47:49.781] [TRACE] default - GET menu
+[2022-08-02T20:47:49.797] [TRACE] default - GET twitch
+[2022-08-02T20:47:55.048] [TRACE] default - login
+[2022-08-02T20:51:12.539] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:51:12.647] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:51:12.647] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:51:12.662] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:51:12.665] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:51:12.953] [TRACE] default - add Migration update_001
+[2022-08-02T20:51:13.916] [TRACE] default - add Node craffel
+[2022-08-02T20:51:13.917] [TRACE] default - node connected: craffel
+[2022-08-02T20:51:19.670] [TRACE] default - GET translation
+[2022-08-02T20:51:19.672] [TRACE] default - GET translation
+[2022-08-02T20:51:19.679] [TRACE] default - GET menu
+[2022-08-02T20:51:19.692] [TRACE] default - GET twitch
+[2022-08-02T20:51:22.199] [TRACE] default - login
+[2022-08-02T20:52:23.977] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:52:24.077] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:52:24.077] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:52:24.094] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:52:24.097] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:52:24.384] [TRACE] default - add Migration update_001
+[2022-08-02T20:52:47.187] [TRACE] default - twitch chat client initialized
+[2022-08-02T20:52:47.289] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T20:52:47.290] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T20:52:47.305] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T20:52:47.308] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T20:52:47.604] [TRACE] default - add Migration update_001
+[2022-08-02T20:52:48.590] [TRACE] default - add Node craffel
+[2022-08-02T20:52:48.591] [TRACE] default - node connected: craffel
+[2022-08-02T20:52:53.729] [TRACE] default - GET translation
+[2022-08-02T20:52:53.732] [TRACE] default - GET translation
+[2022-08-02T20:52:53.739] [TRACE] default - GET menu
+[2022-08-02T20:52:53.755] [TRACE] default - GET twitch
+[2022-08-02T20:52:56.475] [TRACE] default - login
+[2022-08-02T21:06:54.128] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:06:54.235] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:06:54.236] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:06:54.251] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:06:54.254] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:06:54.549] [TRACE] default - add Migration update_001
+[2022-08-02T21:06:55.542] [TRACE] default - add Node craffel
+[2022-08-02T21:06:55.544] [TRACE] default - node connected: craffel
+[2022-08-02T21:06:58.967] [TRACE] default - GET translation
+[2022-08-02T21:06:58.971] [TRACE] default - GET translation
+[2022-08-02T21:06:58.979] [TRACE] default - GET menu
+[2022-08-02T21:06:58.995] [TRACE] default - GET twitch
+[2022-08-02T21:07:00.620] [TRACE] default - login
+[2022-08-02T21:18:17.476] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:18:17.575] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:18:17.575] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:18:17.591] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:18:17.594] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:18:17.926] [TRACE] default - add Migration update_001
+[2022-08-02T21:18:18.904] [TRACE] default - add Node craffel
+[2022-08-02T21:18:18.906] [TRACE] default - node connected: craffel
+[2022-08-02T21:18:33.252] [TRACE] default - GET translation
+[2022-08-02T21:18:33.256] [TRACE] default - GET translation
+[2022-08-02T21:18:33.264] [TRACE] default - GET menu
+[2022-08-02T21:18:33.282] [TRACE] default - GET twitch
+[2022-08-02T21:18:40.994] [TRACE] default - login
+[2022-08-02T21:19:00.494] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:19:00.595] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:19:00.596] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:19:00.611] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:19:00.614] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:19:00.959] [TRACE] default - add Migration update_001
+[2022-08-02T21:19:12.700] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:19:12.804] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:19:12.804] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:19:12.819] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:19:12.822] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:19:13.135] [TRACE] default - add Migration update_001
+[2022-08-02T21:19:14.121] [TRACE] default - add Node craffel
+[2022-08-02T21:19:14.123] [TRACE] default - node connected: craffel
+[2022-08-02T21:19:24.932] [TRACE] default - GET translation
+[2022-08-02T21:19:24.936] [TRACE] default - GET translation
+[2022-08-02T21:19:24.945] [TRACE] default - GET menu
+[2022-08-02T21:19:24.963] [TRACE] default - GET twitch
+[2022-08-02T21:19:44.132] [TRACE] default - login
+[2022-08-02T21:19:45.045] [TRACE] default - <ref *2> ServerResponse {
+  _events: [Object: null prototype] {
+    finish: [ [Function: bound resOnFinish], [Function: onevent] ],
+    end: [Function: onevent]
+  },
+  _eventsCount: 2,
+  _maxListeners: undefined,
+  outputData: [],
+  outputSize: 0,
+  writable: true,
+  destroyed: false,
+  _last: false,
+  chunkedEncoding: true,
+  shouldKeepAlive: true,
+  maxRequestsOnConnectionReached: false,
+  _defaultKeepAlive: true,
+  useChunkedEncodingByDefault: true,
+  sendDate: true,
+  _removedConnection: false,
+  _removedContLen: false,
+  _removedTE: false,
+  _contentLength: null,
+  _hasBody: true,
+  _trailer: '',
+  finished: false,
+  _headerSent: false,
+  _closed: false,
+  socket: <ref *1> Socket {
+    connecting: false,
+    _hadError: false,
+    _parent: null,
+    _host: null,
+    _readableState: ReadableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      buffer: BufferList { head: null, tail: null, length: 0 },
+      length: 0,
+      pipes: [],
+      flowing: true,
+      ended: false,
+      endEmitted: false,
+      reading: true,
+      constructed: true,
+      sync: false,
+      needReadable: true,
+      emittedReadable: false,
+      readableListening: false,
+      resumeScheduled: false,
+      errorEmitted: false,
+      emitClose: false,
+      autoDestroy: true,
+      destroyed: false,
+      errored: null,
+      closed: false,
+      closeEmitted: false,
+      defaultEncoding: 'utf8',
+      awaitDrainWriters: null,
+      multiAwaitDrain: false,
+      readingMore: false,
+      dataEmitted: false,
+      decoder: null,
+      encoding: null,
+      [Symbol(kPaused)]: false
+    },
+    _events: [Object: null prototype] {
+      end: [Array],
+      timeout: [Function: socketOnTimeout],
+      data: [Function: bound socketOnData],
+      error: [Array],
+      close: [Array],
+      drain: [Function: bound socketOnDrain],
+      resume: [Function: onSocketResume],
+      pause: [Function: onSocketPause]
+    },
+    _eventsCount: 8,
+    _maxListeners: undefined,
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: false,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      afterWriteTickInfo: null,
+      buffered: [],
+      bufferedIndex: 0,
+      allBuffers: true,
+      allNoop: true,
+      pendingcb: 0,
+      constructed: true,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: false,
+      autoDestroy: true,
+      errored: null,
+      closed: false,
+      closeEmitted: false,
+      [Symbol(kOnFinished)]: []
+    },
+    allowHalfOpen: true,
+    _sockname: null,
+    _pendingData: null,
+    _pendingEncoding: '',
+    server: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _connections: 2,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      keepAliveTimeout: 5000,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      headersTimeout: 60000,
+      requestTimeout: 0,
+      _connectionKey: '6::::80',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 10
+    },
+    _server: Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _connections: 2,
+      _handle: [TCP],
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      keepAliveTimeout: 5000,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      headersTimeout: 60000,
+      requestTimeout: 0,
+      _connectionKey: '6::::80',
+      [Symbol(IncomingMessage)]: [Function: IncomingMessage],
+      [Symbol(ServerResponse)]: [Function: ServerResponse],
+      [Symbol(kCapture)]: false,
+      [Symbol(async_id_symbol)]: 10
+    },
+    parser: HTTPParser {
+      '0': [Function: bound setRequestTimeout],
+      '1': [Function: parserOnHeaders],
+      '2': [Function: parserOnHeadersComplete],
+      '3': [Function: parserOnBody],
+      '4': [Function: parserOnMessageComplete],
+      '5': [Function: bound onParserExecute],
+      '6': [Function: bound onParserTimeout],
+      _headers: [],
+      _url: '',
+      socket: [Circular *1],
+      incoming: [IncomingMessage],
+      outgoing: null,
+      maxHeaderPairs: 2000,
+      _consumed: true,
+      onIncoming: [Function: bound parserOnIncoming],
+      [Symbol(owner_symbol)]: [HTTPServerAsyncResource]
+    },
+    on: [Function: socketListenerWrap],
+    addListener: [Function: socketListenerWrap],
+    prependListener: [Function: socketListenerWrap],
+    setEncoding: [Function: socketSetEncoding],
+    _paused: false,
+    _httpMessage: [Circular *2],
+    _peername: { address: '::1', family: 'IPv6', port: 65426 },
+    [Symbol(async_id_symbol)]: 685,
+    [Symbol(kHandle)]: TCP {
+      reading: true,
+      onconnection: null,
+      _consumed: true,
+      [Symbol(owner_symbol)]: [Circular *1]
+    },
+    [Symbol(kSetNoDelay)]: false,
+    [Symbol(lastWriteQueueSize)]: 0,
+    [Symbol(timeout)]: null,
+    [Symbol(kBuffer)]: null,
+    [Symbol(kBufferCb)]: null,
+    [Symbol(kBufferGen)]: null,
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesRead)]: 0,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(RequestTimeout)]: undefined
+  },
+  _header: 'HTTP/1.1 200 OK\r\n' +
+    'Content-Type: application/json; charset=utf-8\r\n' +
+    'Date: Tue, 02 Aug 2022 19:19:45 GMT\r\n' +
+    'Connection: keep-alive\r\n' +
+    'Keep-Alive: timeout=5\r\n' +
+    'Transfer-Encoding: chunked\r\n' +
+    '\r\n',
+  _keepAliveTimeout: 5000,
+  _onPendingData: [Function: bound updateOutgoingData],
+  req: IncomingMessage {
+    _readableState: ReadableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      buffer: BufferList { head: null, tail: null, length: 0 },
+      length: 0,
+      pipes: [],
+      flowing: null,
+      ended: true,
+      endEmitted: false,
+      reading: false,
+      constructed: true,
+      sync: true,
+      needReadable: false,
+      emittedReadable: false,
+      readableListening: false,
+      resumeScheduled: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: true,
+      destroyed: false,
+      errored: null,
+      closed: false,
+      closeEmitted: false,
+      defaultEncoding: 'utf8',
+      awaitDrainWriters: null,
+      multiAwaitDrain: false,
+      readingMore: true,
+      dataEmitted: false,
+      decoder: null,
+      encoding: null,
+      [Symbol(kPaused)]: null
+    },
+    _events: [Object: null prototype] { end: [Function: clearRequestTimeout] },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    socket: <ref *1> Socket {
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: null,
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 8,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: [Server],
+      _server: [Server],
+      parser: [HTTPParser],
+      on: [Function: socketListenerWrap],
+      addListener: [Function: socketListenerWrap],
+      prependListener: [Function: socketListenerWrap],
+      setEncoding: [Function: socketSetEncoding],
+      _paused: false,
+      _httpMessage: [Circular *2],
+      _peername: [Object],
+      [Symbol(async_id_symbol)]: 685,
+      [Symbol(kHandle)]: [TCP],
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(RequestTimeout)]: undefined
+    },
+    httpVersionMajor: 1,
+    httpVersionMinor: 1,
+    httpVersion: '1.1',
+    complete: true,
+    rawHeaders: [
+      'Host',
+      'localhost',
+      'Connection',
+      'keep-alive',
+      'sec-ch-ua',
+      '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+      'sec-ch-ua-mobile',
+      '?0',
+      'sec-ch-ua-platform',
+      '"Windows"',
+      'Upgrade-Insecure-Requests',
+      '1',
+      'User-Agent',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+      'Accept',
+      'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+      'Sec-Fetch-Site',
+      'cross-site',
+      'Sec-Fetch-Mode',
+      'navigate',
+      'Sec-Fetch-Dest',
+      'document',
+      'Accept-Encoding',
+      'gzip, deflate, br',
+      'Accept-Language',
+      'de-DE,de;q=0.9,en;q=0.8',
+      'Cookie',
+      'connect.sid=s%3AixT5KwqLpUrqUdjbNNWnzFMZlRE1RETm.4x2hBTI7Gxpy4Ir8NOsE2f%2BR%2BsEinN8malpB%2FIDWbq0'
+    ],
+    rawTrailers: [],
+    aborted: false,
+    upgrade: false,
+    url: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+    method: 'GET',
+    statusCode: null,
+    statusMessage: null,
+    client: <ref *1> Socket {
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: null,
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 8,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: [Server],
+      _server: [Server],
+      parser: [HTTPParser],
+      on: [Function: socketListenerWrap],
+      addListener: [Function: socketListenerWrap],
+      prependListener: [Function: socketListenerWrap],
+      setEncoding: [Function: socketSetEncoding],
+      _paused: false,
+      _httpMessage: [Circular *2],
+      _peername: [Object],
+      [Symbol(async_id_symbol)]: 685,
+      [Symbol(kHandle)]: [TCP],
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(RequestTimeout)]: undefined
+    },
+    _consuming: false,
+    _dumped: false,
+    next: [Function: next],
+    baseUrl: '',
+    originalUrl: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+    _parsedUrl: Url {
+      protocol: null,
+      slashes: null,
+      auth: null,
+      host: null,
+      port: null,
+      hostname: null,
+      hash: null,
+      search: '?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      query: 'code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      pathname: '/twitch',
+      path: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      href: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      _raw: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4'
+    },
+    params: {},
+    query: {
+      code: 'ow0br4mvevzktwt3jsbn3ellu2ofl7',
+      scope: 'chat:read user:read:email',
+      state: '2bvlp46129wl6ckdoo4'
+    },
+    res: [Circular *2],
+    _parsedOriginalUrl: Url {
+      protocol: null,
+      slashes: null,
+      auth: null,
+      host: null,
+      port: null,
+      hostname: null,
+      hash: null,
+      search: '?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      query: 'code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      pathname: '/twitch',
+      path: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      href: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4',
+      _raw: '/twitch?code=ow0br4mvevzktwt3jsbn3ellu2ofl7&scope=chat%3Aread+user%3Aread%3Aemail&state=2bvlp46129wl6ckdoo4'
+    },
+    sessionStore: MemoryStore {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      sessions: [Object: null prototype],
+      generate: [Function (anonymous)],
+      [Symbol(kCapture)]: false
+    },
+    sessionID: 'ixT5KwqLpUrqUdjbNNWnzFMZlRE1RETm',
+    session: Session { cookie: [Object], state: '2bvlp46129wl6ckdoo4' },
+    body: {},
+    secret: undefined,
+    cookies: {
+      'connect.sid': 's:ixT5KwqLpUrqUdjbNNWnzFMZlRE1RETm.4x2hBTI7Gxpy4Ir8NOsE2f+R+sEinN8malpB/IDWbq0'
+    },
+    signedCookies: [Object: null prototype] {},
+    _startAt: [ 207846, 610469400 ],
+    _startTime: 2022-08-02T19:19:44.132Z,
+    _remoteAddress: '::1',
+    route: Route { path: '/twitch', stack: [Array], methods: [Object] },
+    [Symbol(kCapture)]: false,
+    [Symbol(kHeaders)]: {
+      host: 'localhost',
+      connection: 'keep-alive',
+      'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+      'upgrade-insecure-requests': '1',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+      'sec-fetch-site': 'cross-site',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-dest': 'document',
+      'accept-encoding': 'gzip, deflate, br',
+      'accept-language': 'de-DE,de;q=0.9,en;q=0.8',
+      cookie: 'connect.sid=s%3AixT5KwqLpUrqUdjbNNWnzFMZlRE1RETm.4x2hBTI7Gxpy4Ir8NOsE2f%2BR%2BsEinN8malpB%2FIDWbq0'
+    },
+    [Symbol(kHeadersCount)]: 28,
+    [Symbol(kTrailers)]: null,
+    [Symbol(kTrailersCount)]: 0,
+    [Symbol(RequestTimeout)]: undefined
+  },
+  _sent100: false,
+  _expect_continue: false,
+  locals: [Object: null prototype] {},
+  writeHead: [Function: writeHead],
+  end: [Function: end],
+  _startAt: [ 207847, 523484900 ],
+  _startTime: 2022-08-02T19:19:45.045Z,
+  __onFinished: [Function: listener] {
+    queue: [ [Function: logRequest], [Function: logRequest] ]
+  },
+  statusCode: 200,
+  statusMessage: 'OK',
+  [Symbol(kCapture)]: false,
+  [Symbol(kNeedDrain)]: false,
+  [Symbol(corked)]: 0,
+  [Symbol(kOutHeaders)]: [Object: null prototype] {
+    'content-type': [ 'Content-Type', 'application/json; charset=utf-8' ]
+  }
+}
+[2022-08-02T21:22:22.899] [TRACE] default - incomming message self: false
+[2022-08-02T21:23:01.325] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:23:01.424] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:23:01.425] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:23:01.441] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:23:01.444] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:23:01.748] [TRACE] default - add Migration update_001
+[2022-08-02T21:23:02.709] [TRACE] default - add Node craffel
+[2022-08-02T21:23:02.710] [TRACE] default - node connected: craffel
+[2022-08-02T21:23:07.645] [TRACE] default - GET translation
+[2022-08-02T21:23:07.647] [TRACE] default - GET translation
+[2022-08-02T21:23:07.654] [TRACE] default - GET menu
+[2022-08-02T21:23:07.669] [TRACE] default - GET twitch
+[2022-08-02T21:23:10.719] [TRACE] default - login
+[2022-08-02T21:23:11.648] [TRACE] default - {
+  access_token: 'qyscdjfuede9era509mdh2lw36wybj',
+  expires_in: 15669,
+  refresh_token: 'onu3fzdutvsv1qfc0echec5wrz255g031itsoxytxx1bx4so4l',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:38:20.107] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:38:20.210] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:38:20.210] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:38:20.225] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:38:20.228] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:38:20.520] [TRACE] default - add Migration update_001
+[2022-08-02T21:38:21.514] [TRACE] default - add Node craffel
+[2022-08-02T21:38:21.515] [TRACE] default - node connected: craffel
+[2022-08-02T21:38:25.021] [TRACE] default - GET translation
+[2022-08-02T21:38:25.023] [TRACE] default - GET translation
+[2022-08-02T21:38:25.030] [TRACE] default - GET menu
+[2022-08-02T21:38:25.043] [TRACE] default - GET twitch
+[2022-08-02T21:38:27.447] [TRACE] default - login
+[2022-08-02T21:39:09.663] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:39:09.777] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T21:39:09.777] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:39:09.793] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T21:39:09.795] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:39:10.090] [TRACE] default - add Migration update_001
+[2022-08-02T21:39:11.044] [TRACE] default - add Node craffel
+[2022-08-02T21:39:11.045] [TRACE] default - node connected: craffel
+[2022-08-02T21:39:16.452] [TRACE] default - GET translation
+[2022-08-02T21:39:16.457] [TRACE] default - GET translation
+[2022-08-02T21:39:16.465] [TRACE] default - GET menu
+[2022-08-02T21:39:16.480] [TRACE] default - GET twitch
+[2022-08-02T21:39:17.413] [TRACE] default - GET translation
+[2022-08-02T21:39:17.417] [TRACE] default - GET translation
+[2022-08-02T21:39:17.426] [TRACE] default - GET menu
+[2022-08-02T21:39:17.438] [TRACE] default - GET twitch
+[2022-08-02T21:39:47.681] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:39:47.783] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:39:47.784] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:39:47.800] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:39:47.803] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:39:48.098] [TRACE] default - add Migration update_001
+[2022-08-02T21:39:49.054] [TRACE] default - add Node craffel
+[2022-08-02T21:39:49.055] [TRACE] default - node connected: craffel
+[2022-08-02T21:39:58.111] [TRACE] default - GET translation
+[2022-08-02T21:39:58.114] [TRACE] default - GET translation
+[2022-08-02T21:39:58.122] [TRACE] default - GET menu
+[2022-08-02T21:39:58.134] [TRACE] default - GET twitch
+[2022-08-02T21:40:06.205] [TRACE] default - login
+[2022-08-02T21:40:06.205] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:40:07.114] [TRACE] default - {
+  access_token: 'rwomslm921chywp7manaw20zg0pgfm',
+  expires_in: 15461,
+  refresh_token: 'utgy8q41bov1wfv0730i5zehovghjbhufosfin9i8mzjqv7xde',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:40:42.079] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:40:42.197] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T21:40:42.198] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:40:42.216] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T21:40:42.220] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:40:42.759] [TRACE] default - add Migration update_001
+[2022-08-02T21:40:42.946] [TRACE] default - GET translation
+[2022-08-02T21:40:42.950] [TRACE] default - GET translation
+[2022-08-02T21:40:42.957] [TRACE] default - GET menu
+[2022-08-02T21:40:42.970] [TRACE] default - GET twitch
+[2022-08-02T21:40:43.735] [TRACE] default - add Node craffel
+[2022-08-02T21:40:43.737] [TRACE] default - node connected: craffel
+[2022-08-02T21:41:10.364] [TRACE] default - login
+[2022-08-02T21:41:10.365] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:41:11.324] [TRACE] default - {
+  access_token: 'f520wbkp5cy1u2zw83sjqw99th8mue',
+  expires_in: 14908,
+  refresh_token: '0gsl9fgt5l735qcq0uoldw6xes9o3wwd0a9nfms006ayimhi7u',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:42:26.769] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:42:26.890] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T21:42:26.890] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:42:26.906] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T21:42:26.909] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:42:27.338] [TRACE] default - add Migration update_001
+[2022-08-02T21:42:28.305] [TRACE] default - add Node craffel
+[2022-08-02T21:42:28.307] [TRACE] default - node connected: craffel
+[2022-08-02T21:42:30.210] [TRACE] default - GET translation
+[2022-08-02T21:42:30.214] [TRACE] default - GET translation
+[2022-08-02T21:42:30.223] [TRACE] default - GET menu
+[2022-08-02T21:42:30.236] [TRACE] default - GET twitch
+[2022-08-02T21:42:33.121] [TRACE] default - GET translation
+[2022-08-02T21:42:33.124] [TRACE] default - GET translation
+[2022-08-02T21:42:33.131] [TRACE] default - GET menu
+[2022-08-02T21:42:33.144] [TRACE] default - GET twitch
+[2022-08-02T21:42:35.080] [TRACE] default - login
+[2022-08-02T21:42:35.081] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:42:36.042] [TRACE] default - {
+  access_token: 'so3ao0bnhxodq7pf9t5mft3r98w0ta',
+  expires_in: 15314,
+  refresh_token: 'cg5si96hbrufbsiphjschs498agei2ehfobeb0oogtum1rg1v6',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:44:31.235] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:44:31.333] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:44:31.333] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:44:31.349] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:44:31.351] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:44:31.653] [TRACE] default - add Migration update_001
+[2022-08-02T21:44:32.626] [TRACE] default - add Node craffel
+[2022-08-02T21:44:32.627] [TRACE] default - node connected: craffel
+[2022-08-02T21:44:37.891] [TRACE] default - GET translation
+[2022-08-02T21:44:37.894] [TRACE] default - GET translation
+[2022-08-02T21:44:37.902] [TRACE] default - GET menu
+[2022-08-02T21:44:37.915] [TRACE] default - GET twitch
+[2022-08-02T21:44:38.504] [TRACE] default - GET translation
+[2022-08-02T21:44:38.506] [TRACE] default - GET translation
+[2022-08-02T21:44:38.512] [TRACE] default - GET menu
+[2022-08-02T21:44:38.522] [TRACE] default - GET twitch
+[2022-08-02T21:44:41.860] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:44:42.777] [TRACE] default - {
+  access_token: 'y0ogzq8mtly8xf548fp5dtw7p58804',
+  expires_in: 13425,
+  refresh_token: 'mckqvzwoov44070jbifdps497ahw3cd7zmzp3z35bcwxayiuow',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:45:40.984] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:45:41.119] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T21:45:41.120] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:45:41.135] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T21:45:41.138] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:45:41.655] [TRACE] default - add Migration update_001
+[2022-08-02T21:45:41.982] [TRACE] default - GET translation
+[2022-08-02T21:45:41.986] [TRACE] default - GET translation
+[2022-08-02T21:45:41.993] [TRACE] default - GET menu
+[2022-08-02T21:45:42.005] [TRACE] default - GET twitch
+[2022-08-02T21:45:42.646] [TRACE] default - add Node craffel
+[2022-08-02T21:45:42.647] [TRACE] default - node connected: craffel
+[2022-08-02T21:45:53.051] [TRACE] default - GET translation
+[2022-08-02T21:45:53.055] [TRACE] default - GET translation
+[2022-08-02T21:45:53.063] [TRACE] default - GET menu
+[2022-08-02T21:45:53.074] [TRACE] default - GET twitch
+[2022-08-02T21:45:59.664] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:46:00.578] [TRACE] default - {
+  access_token: 'drt18eqrlj8zyb348hegq6vjq99bs7',
+  expires_in: 13306,
+  refresh_token: '199bfcttq762cdqy44f5b2pssp01up5fivkqajblw3cwgc2ruf',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:48:31.457] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:48:31.569] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:48:31.569] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:48:31.585] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:48:31.589] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:48:31.915] [TRACE] default - add Migration update_001
+[2022-08-02T21:48:32.910] [TRACE] default - add Node craffel
+[2022-08-02T21:48:32.911] [TRACE] default - node connected: craffel
+[2022-08-02T21:49:22.328] [TRACE] default - GET translation
+[2022-08-02T21:49:22.331] [TRACE] default - GET translation
+[2022-08-02T21:49:22.338] [TRACE] default - GET menu
+[2022-08-02T21:49:22.354] [TRACE] default - GET twitch
+[2022-08-02T21:49:24.335] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:49:25.248] [TRACE] default - {
+  access_token: 'q80zef1jjw7y3a3qd486qgtghpztpe',
+  expires_in: 13158,
+  refresh_token: '36nltki1wwifm87wwcsdokf0zwg2fztzoibdj9qme1d1p59dvv',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:49:42.059] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:49:42.155] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:49:42.155] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:49:42.171] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:49:42.174] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:49:42.470] [TRACE] default - add Migration update_001
+[2022-08-02T21:49:43.431] [TRACE] default - add Node craffel
+[2022-08-02T21:49:43.432] [TRACE] default - node connected: craffel
+[2022-08-02T21:49:46.513] [TRACE] default - GET translation
+[2022-08-02T21:49:46.516] [TRACE] default - GET translation
+[2022-08-02T21:49:46.524] [TRACE] default - GET menu
+[2022-08-02T21:49:46.537] [TRACE] default - GET twitch
+[2022-08-02T21:49:51.067] [TRACE] default - GET translation
+[2022-08-02T21:49:51.069] [TRACE] default - GET translation
+[2022-08-02T21:49:51.075] [TRACE] default - GET menu
+[2022-08-02T21:49:51.086] [TRACE] default - GET twitch
+[2022-08-02T21:49:55.415] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:49:56.402] [TRACE] default - {
+  access_token: 'pg1qjajvcu1kuqtmkh4t6uo6xglgh9',
+  expires_in: 14163,
+  refresh_token: '90skxii0xf4q9atgtgrjj16yzv0wfdfbeflnlrxwegiu2r0ng7',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:52:11.536] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:52:11.635] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:52:11.636] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:52:11.651] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:52:11.653] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:52:12.151] [TRACE] default - add Migration update_001
+[2022-08-02T21:52:12.535] [TRACE] default - GET translation
+[2022-08-02T21:52:12.538] [TRACE] default - GET translation
+[2022-08-02T21:52:12.545] [TRACE] default - GET menu
+[2022-08-02T21:52:12.560] [TRACE] default - GET twitch
+[2022-08-02T21:52:13.130] [TRACE] default - add Node craffel
+[2022-08-02T21:52:13.131] [TRACE] default - node connected: craffel
+[2022-08-02T21:52:19.678] [TRACE] default - GET translation
+[2022-08-02T21:52:19.680] [TRACE] default - GET translation
+[2022-08-02T21:52:19.688] [TRACE] default - GET menu
+[2022-08-02T21:52:19.704] [TRACE] default - GET twitch
+[2022-08-02T21:52:21.695] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:52:22.644] [TRACE] default - {
+  access_token: 'tsmg4ark8vfap725qw45gzg9cq0mb3',
+  expires_in: 14697,
+  refresh_token: 'v95fqb8blzdtnd8nq3wxmh2cd4uhf6mb7w2g3lmliw5qrfmkzj',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:52:56.883] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:52:56.983] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:52:56.983] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:52:56.999] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:52:57.002] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:52:57.304] [TRACE] default - add Migration update_001
+[2022-08-02T21:52:58.272] [TRACE] default - add Node craffel
+[2022-08-02T21:52:58.273] [TRACE] default - node connected: craffel
+[2022-08-02T21:52:59.176] [TRACE] default - GET translation
+[2022-08-02T21:52:59.178] [TRACE] default - GET translation
+[2022-08-02T21:52:59.185] [TRACE] default - GET menu
+[2022-08-02T21:52:59.202] [TRACE] default - GET twitch
+[2022-08-02T21:53:01.004] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:53:01.944] [TRACE] default - {
+  access_token: '2w08w66f80fqxzwjjc8w9ue0usfoia',
+  expires_in: 15226,
+  refresh_token: '4lvw2fe9qc00wuyoq4pwni4nqd78fpcz9g3yw19yvlxx14oa0q',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:54:21.360] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:54:21.457] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:54:21.457] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:54:21.473] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:54:21.476] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:54:21.977] [TRACE] default - add Migration update_001
+[2022-08-02T21:54:22.233] [TRACE] default - GET translation
+[2022-08-02T21:54:22.236] [TRACE] default - GET translation
+[2022-08-02T21:54:22.242] [TRACE] default - GET menu
+[2022-08-02T21:54:22.260] [TRACE] default - GET twitch
+[2022-08-02T21:54:22.940] [TRACE] default - add Node craffel
+[2022-08-02T21:54:22.941] [TRACE] default - node connected: craffel
+[2022-08-02T21:54:27.791] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:54:28.719] [TRACE] default - {
+  access_token: '1nzbfepbpatufbxjq36buyoc4l4imb',
+  expires_in: 14304,
+  refresh_token: 'q2fyqda25vkpzr3ojsy735hpe877607av85gv312qev2sificf',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:55:15.319] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:55:15.427] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:55:15.427] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:55:15.442] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:55:15.445] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:55:15.766] [TRACE] default - add Migration update_001
+[2022-08-02T21:55:16.731] [TRACE] default - add Node craffel
+[2022-08-02T21:55:16.732] [TRACE] default - node connected: craffel
+[2022-08-02T21:55:24.426] [TRACE] default - GET translation
+[2022-08-02T21:55:24.429] [TRACE] default - GET translation
+[2022-08-02T21:55:24.436] [TRACE] default - GET menu
+[2022-08-02T21:55:24.453] [TRACE] default - GET twitch
+[2022-08-02T21:55:26.470] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:55:27.397] [TRACE] default - {
+  access_token: '20s5a8eb1ez6s2fcv4wjsnxnu286fj',
+  expires_in: 15169,
+  refresh_token: 't4avcbgoljto46e4rsis6bwid7u1wflcbm1ljsvjd8ysse1zfh',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:55:42.806] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:55:42.927] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T21:55:42.928] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:55:42.945] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T21:55:42.947] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:55:43.251] [TRACE] default - add Migration update_001
+[2022-08-02T21:55:44.240] [TRACE] default - add Node craffel
+[2022-08-02T21:55:44.242] [TRACE] default - node connected: craffel
+[2022-08-02T21:56:04.004] [TRACE] default - GET translation
+[2022-08-02T21:56:04.010] [TRACE] default - GET translation
+[2022-08-02T21:56:04.020] [TRACE] default - GET menu
+[2022-08-02T21:56:04.035] [TRACE] default - GET twitch
+[2022-08-02T21:56:05.891] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:56:06.832] [TRACE] default - {
+  access_token: 'n0zbsqfg1vuilhcaz3g28wdr5oa7ej',
+  expires_in: 13894,
+  refresh_token: 'x3zbwyryvsy2wt6pycdocmdih3vjz0vvf2ovlbirisy67l57qk',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T21:59:30.571] [TRACE] default - twitch chat client initialized
+[2022-08-02T21:59:30.672] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T21:59:30.672] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T21:59:30.687] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T21:59:30.690] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T21:59:31.235] [TRACE] default - add Migration update_001
+[2022-08-02T21:59:31.523] [TRACE] default - GET translation
+[2022-08-02T21:59:31.526] [TRACE] default - GET translation
+[2022-08-02T21:59:31.537] [TRACE] default - GET menu
+[2022-08-02T21:59:31.554] [TRACE] default - GET twitch
+[2022-08-02T21:59:32.203] [TRACE] default - add Node craffel
+[2022-08-02T21:59:32.204] [TRACE] default - node connected: craffel
+[2022-08-02T21:59:33.754] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T21:59:34.673] [TRACE] default - {
+  access_token: 'p9690vwua2qlt78otmwyipbhh9hhor',
+  expires_in: 15795,
+  refresh_token: 'i5qkmq2p39fyffj55s056kjkflc6twe684gyi13webyqohio0o',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:00:54.697] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:00:54.795] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:00:54.795] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:00:54.811] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:00:54.814] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:00:55.148] [TRACE] default - add Migration update_001
+[2022-08-02T22:00:56.134] [TRACE] default - add Node craffel
+[2022-08-02T22:00:56.135] [TRACE] default - node connected: craffel
+[2022-08-02T22:01:15.229] [TRACE] default - GET translation
+[2022-08-02T22:01:15.232] [TRACE] default - GET translation
+[2022-08-02T22:01:15.240] [TRACE] default - GET menu
+[2022-08-02T22:01:15.254] [TRACE] default - GET twitch
+[2022-08-02T22:01:15.888] [TRACE] default - GET translation
+[2022-08-02T22:01:15.889] [TRACE] default - GET translation
+[2022-08-02T22:01:15.895] [TRACE] default - GET menu
+[2022-08-02T22:01:15.906] [TRACE] default - GET twitch
+[2022-08-02T22:01:17.869] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:01:18.815] [TRACE] default - {
+  access_token: 'msatk1921si1b4pvak56u7r9hvtkys',
+  expires_in: 15709,
+  refresh_token: 'ypw4m3kbq509dnzix6253l542ig4l5d3zdo4qy1xq0mcj2wbnf',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:01:19.058] [TRACE] default - Response {
+  size: 0,
+  timeout: 0,
+  [Symbol(Body internals)]: {
+    body: PassThrough {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kCallback)]: null
+    },
+    disturbed: false,
+    error: null
+  },
+  [Symbol(Response internals)]: {
+    url: 'https://api.twitch.tv/helix/users?client_id=9azszz1fb1jzcbvirxf8qxh7nybgez',
+    status: 200,
+    statusText: 'OK',
+    headers: Headers { [Symbol(map)]: [Object: null prototype] },
+    counter: 0
+  }
+}
+[2022-08-02T22:01:19.061] [TRACE] default - {
+  data: [
+    {
+      id: '440371621',
+      login: 'craffel',
+      display_name: 'craffel',
+      type: '',
+      broadcaster_type: 'affiliate',
+      description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+      profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+      offline_image_url: '',
+      view_count: 21997,
+      email: 'rosbund.gaming@gmail.com',
+      created_at: '2019-06-07T18:38:13Z'
+    }
+  ]
+}
+[2022-08-02T22:07:23.175] [TRACE] default - incomming message self: false
+[2022-08-02T22:11:52.739] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:11:52.850] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:11:52.850] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:11:52.865] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:11:52.869] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:11:53.253] [TRACE] default - add Migration update_001
+[2022-08-02T22:11:54.057] [TRACE] default - GET translation
+[2022-08-02T22:11:54.060] [TRACE] default - GET translation
+[2022-08-02T22:11:54.069] [TRACE] default - GET menu
+[2022-08-02T22:11:54.083] [TRACE] default - GET twitch
+[2022-08-02T22:11:54.261] [TRACE] default - add Node craffel
+[2022-08-02T22:11:54.262] [TRACE] default - node connected: craffel
+[2022-08-02T22:12:05.958] [TRACE] default - GET translation
+[2022-08-02T22:12:05.961] [TRACE] default - GET translation
+[2022-08-02T22:12:05.972] [TRACE] default - GET menu
+[2022-08-02T22:12:05.985] [TRACE] default - GET twitch
+[2022-08-02T22:12:21.582] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:12:22.514] [TRACE] default - {
+  access_token: '5n7w4t4or2ire7zqh3e9ogqlq8p2qq',
+  expires_in: 14660,
+  refresh_token: 'pm6qg5uapy7ms6rb1ldntc7lmtiquike02jzicq99j3ud54uzl',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:12:22.756] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:17:12.544] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:17:12.649] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:17:12.650] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:17:12.666] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:17:12.669] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:17:12.968] [TRACE] default - add Migration update_001
+[2022-08-02T22:17:13.928] [TRACE] default - add Node craffel
+[2022-08-02T22:17:13.930] [TRACE] default - node connected: craffel
+[2022-08-02T22:17:49.094] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:17:49.226] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:17:49.227] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:17:49.243] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:17:49.246] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:17:49.584] [TRACE] default - add Migration update_001
+[2022-08-02T22:17:50.568] [TRACE] default - add Node craffel
+[2022-08-02T22:17:50.569] [TRACE] default - node connected: craffel
+[2022-08-02T22:18:22.337] [TRACE] default - GET translation
+[2022-08-02T22:18:22.341] [TRACE] default - GET translation
+[2022-08-02T22:18:22.349] [TRACE] default - GET menu
+[2022-08-02T22:18:22.368] [TRACE] default - GET twitch
+[2022-08-02T22:18:24.564] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:18:25.501] [TRACE] default - {
+  access_token: 'lcvek2iv2t1m68j13lmjazewgi43jd',
+  expires_in: 13998,
+  refresh_token: 'pz2rimka38yxm8g11ot6luxgfnuictob84ryk6hy2gie9dj3x6',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:18:25.761] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:19:46.154] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:19:46.259] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:19:46.260] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:19:46.275] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:19:46.278] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:19:46.570] [TRACE] default - add Migration update_001
+[2022-08-02T22:19:47.555] [TRACE] default - add Node craffel
+[2022-08-02T22:19:47.557] [TRACE] default - node connected: craffel
+[2022-08-02T22:19:53.155] [TRACE] default - GET translation
+[2022-08-02T22:19:53.157] [TRACE] default - GET translation
+[2022-08-02T22:19:53.166] [TRACE] default - GET menu
+[2022-08-02T22:19:53.181] [TRACE] default - GET twitch
+[2022-08-02T22:19:55.043] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:19:55.954] [TRACE] default - {
+  access_token: 'wl8kxuh3thjpq5kocb2mdeju8ww9rs',
+  expires_in: 13594,
+  refresh_token: 'ewvfwb37qh268a65jmacdwmr1bqbbb9w7uhyjb9ivfhqnu3i3h',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:19:56.192] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:21:01.861] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:21:02.003] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-02T22:21:02.003] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:21:02.020] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-02T22:21:02.022] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:21:02.331] [TRACE] default - add Migration update_001
+[2022-08-02T22:21:03.333] [TRACE] default - add Node craffel
+[2022-08-02T22:21:03.334] [TRACE] default - node connected: craffel
+[2022-08-02T22:21:20.894] [TRACE] default - GET translation
+[2022-08-02T22:21:20.899] [TRACE] default - GET translation
+[2022-08-02T22:21:20.908] [TRACE] default - GET menu
+[2022-08-02T22:21:20.923] [TRACE] default - GET twitch
+[2022-08-02T22:21:23.305] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:21:24.225] [TRACE] default - {
+  access_token: '55o5378e2ipj7vwd6t8rwghk42fucd',
+  expires_in: 14255,
+  refresh_token: 'ofmm5ng7dkvkf6n7rk93w82b6ktylbfjqo4b03g0csqnheiy4f',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:21:24.460] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:24:33.543] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:24:33.636] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:24:33.637] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:24:33.653] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:24:33.656] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:24:33.948] [TRACE] default - add Migration update_001
+[2022-08-02T22:24:34.926] [TRACE] default - add Node craffel
+[2022-08-02T22:24:34.927] [TRACE] default - node connected: craffel
+[2022-08-02T22:24:39.526] [TRACE] default - GET translation
+[2022-08-02T22:24:39.529] [TRACE] default - GET translation
+[2022-08-02T22:24:39.536] [TRACE] default - GET menu
+[2022-08-02T22:24:39.551] [TRACE] default - GET twitch
+[2022-08-02T22:24:43.304] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:24:44.227] [TRACE] default - {
+  access_token: '42jopl8wetnne5w6oki84mgevzp8yi',
+  expires_in: 14051,
+  refresh_token: 'ajed6fmtcb03p8b6hb7q7xoxhih1dk4r6obma0rzuthfyexfgk',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:24:44.462] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:24:56.288] [TRACE] default - GET translation
+[2022-08-02T22:24:56.290] [TRACE] default - GET translation
+[2022-08-02T22:24:56.297] [TRACE] default - GET menu
+[2022-08-02T22:24:56.311] [TRACE] default - GET twitch
+[2022-08-02T22:24:57.973] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:24:58.891] [TRACE] default - {
+  access_token: 'n3ozysfanjpxwqz2yh398jkk6pm12n',
+  expires_in: 15008,
+  refresh_token: 'au09pems8luzva5r4kt53sw6so4ndni08elpbtl1loqlxgzzmc',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:24:59.111] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:25:59.597] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:25:59.700] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:25:59.701] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:25:59.717] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:25:59.720] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:26:00.021] [TRACE] default - add Migration update_001
+[2022-08-02T22:26:12.160] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:26:12.256] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:26:12.257] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:26:12.272] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:26:12.275] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:26:12.574] [TRACE] default - add Migration update_001
+[2022-08-02T22:26:13.543] [TRACE] default - add Node craffel
+[2022-08-02T22:26:13.544] [TRACE] default - node connected: craffel
+[2022-08-02T22:26:27.785] [TRACE] default - GET translation
+[2022-08-02T22:26:27.788] [TRACE] default - GET translation
+[2022-08-02T22:26:27.798] [TRACE] default - GET menu
+[2022-08-02T22:26:27.814] [TRACE] default - GET twitch
+[2022-08-02T22:26:29.625] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:26:30.551] [TRACE] default - {
+  access_token: 'jt14s27pic9uuh69wir1qee1oa5p6f',
+  expires_in: 13365,
+  refresh_token: 'gq70bzzn6ieswipfw9cdy8tzj8fmupgbxu7oa17ei3t52tyc5f',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:26:30.770] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:27:44.765] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:27:44.869] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:27:44.870] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:27:44.885] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:27:44.889] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:27:45.407] [TRACE] default - add Migration update_001
+[2022-08-02T22:27:45.618] [TRACE] default - GET translation
+[2022-08-02T22:27:45.620] [TRACE] default - GET translation
+[2022-08-02T22:27:45.628] [TRACE] default - GET menu
+[2022-08-02T22:27:45.642] [TRACE] default - GET twitch
+[2022-08-02T22:27:46.371] [TRACE] default - add Node craffel
+[2022-08-02T22:27:46.373] [TRACE] default - node connected: craffel
+[2022-08-02T22:27:53.278] [TRACE] default - GET translation
+[2022-08-02T22:27:53.279] [TRACE] default - GET translation
+[2022-08-02T22:27:53.286] [TRACE] default - GET menu
+[2022-08-02T22:27:53.298] [TRACE] default - GET twitch
+[2022-08-02T22:27:55.189] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:27:56.133] [TRACE] default - {
+  access_token: '1g5uvvzsu2rr93y7s44k6w4h57qq20',
+  expires_in: 14621,
+  refresh_token: 'f1ofb4fjy4gtija8ffrpn718dqpn719xqmx2yw2oi8f3pz9nkj',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:27:56.368] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:27:56.866] [TRACE] default - GET translation
+[2022-08-02T22:27:56.868] [TRACE] default - GET translation
+[2022-08-02T22:27:56.875] [TRACE] default - GET menu
+[2022-08-02T22:27:56.888] [TRACE] default - GET twitch
+[2022-08-02T22:28:04.439] [TRACE] default - GET translation
+[2022-08-02T22:28:04.442] [TRACE] default - GET translation
+[2022-08-02T22:28:04.448] [TRACE] default - GET menu
+[2022-08-02T22:28:04.453] [TRACE] default - GET node
+[2022-08-02T22:28:04.464] [TRACE] default - GET twitch
+[2022-08-02T22:28:17.007] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T22:28:17.965] [TRACE] default - {
+  access_token: 'o11io34ugc42f3sujowsyelqgjltj7',
+  expires_in: 13982,
+  refresh_token: 'i0d9jdxxcauif3jsk0agjyu7ccxfab495z65nhyx3z3vefhzx0',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T22:28:18.217] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T22:28:18.667] [TRACE] default - GET translation
+[2022-08-02T22:28:18.669] [TRACE] default - GET translation
+[2022-08-02T22:28:18.674] [TRACE] default - GET menu
+[2022-08-02T22:28:18.683] [TRACE] default - GET twitch
+[2022-08-02T22:28:35.597] [TRACE] default - GET translation
+[2022-08-02T22:28:35.599] [TRACE] default - GET translation
+[2022-08-02T22:28:35.605] [TRACE] default - GET menu
+[2022-08-02T22:28:35.609] [TRACE] default - GET node
+[2022-08-02T22:28:35.616] [TRACE] default - GET twitch
+[2022-08-02T22:38:51.682] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:38:51.784] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:38:51.785] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:38:51.800] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:38:51.804] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:38:52.343] [TRACE] default - add Migration update_001
+[2022-08-02T22:38:53.336] [TRACE] default - add Node craffel
+[2022-08-02T22:38:53.337] [TRACE] default - node connected: craffel
+[2022-08-02T22:39:01.346] [TRACE] default - GET translation
+[2022-08-02T22:39:01.349] [TRACE] default - GET translation
+[2022-08-02T22:39:01.358] [TRACE] default - GET menu
+[2022-08-02T22:39:01.373] [TRACE] default - GET twitch
+[2022-08-02T22:47:31.241] [TRACE] default - twitch chat client initialized
+[2022-08-02T22:47:31.362] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T22:47:31.363] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T22:47:31.378] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T22:47:31.381] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T22:47:31.811] [TRACE] default - add Migration update_001
+[2022-08-02T22:47:32.758] [TRACE] default - add Node craffel
+[2022-08-02T22:47:32.759] [TRACE] default - node connected: craffel
+[2022-08-02T22:47:41.714] [TRACE] default - GET translation
+[2022-08-02T22:47:41.718] [TRACE] default - GET translation
+[2022-08-02T22:47:41.724] [TRACE] default - GET menu
+[2022-08-02T22:47:41.739] [TRACE] default - GET twitch
+[2022-08-02T22:48:41.096] [TRACE] default - GET translation
+[2022-08-02T22:48:41.097] [TRACE] default - GET translation
+[2022-08-02T22:48:41.105] [TRACE] default - GET menu
+[2022-08-02T22:48:41.110] [TRACE] default - GET node
+[2022-08-02T22:48:41.120] [TRACE] default - GET twitch
+[2022-08-02T22:51:28.148] [TRACE] default - GET translation
+[2022-08-02T22:51:28.150] [TRACE] default - GET translation
+[2022-08-02T22:51:28.156] [TRACE] default - GET menu
+[2022-08-02T22:51:28.164] [TRACE] default - GET twitch
+[2022-08-02T22:52:23.130] [TRACE] default - incomming message self: false
+[2022-08-02T23:00:08.315] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:00:08.420] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:00:08.421] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:00:08.437] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:00:08.439] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:00:09.040] [TRACE] default - add Migration update_001
+[2022-08-02T23:00:10.018] [TRACE] default - add Node craffel
+[2022-08-02T23:00:10.020] [TRACE] default - node connected: craffel
+[2022-08-02T23:02:58.711] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:02:58.819] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:02:58.820] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:02:58.835] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:02:58.838] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:02:59.396] [TRACE] default - add Migration update_001
+[2022-08-02T23:03:00.375] [TRACE] default - add Node craffel
+[2022-08-02T23:03:00.377] [TRACE] default - node connected: craffel
+[2022-08-02T23:03:18.595] [TRACE] default - GET translation
+[2022-08-02T23:03:18.598] [TRACE] default - GET translation
+[2022-08-02T23:03:18.605] [TRACE] default - GET menu
+[2022-08-02T23:03:18.620] [TRACE] default - GET twitch
+[2022-08-02T23:03:24.391] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-02T23:03:25.333] [TRACE] default - {
+  access_token: 'ncb6dw5132x86nht5g0aeeyp0rrbmn',
+  expires_in: 14887,
+  refresh_token: '9f7eku2ddmgkb76w80fbkmp5rd9osqrn6edyd2np8dx4un60u2',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-02T23:03:25.547] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-02T23:03:25.952] [TRACE] default - GET translation
+[2022-08-02T23:03:25.954] [TRACE] default - GET translation
+[2022-08-02T23:03:25.960] [TRACE] default - GET menu
+[2022-08-02T23:03:25.972] [TRACE] default - GET twitch
+[2022-08-02T23:03:29.551] [TRACE] default - GET translation
+[2022-08-02T23:03:29.553] [TRACE] default - GET translation
+[2022-08-02T23:03:29.559] [TRACE] default - GET menu
+[2022-08-02T23:03:29.571] [TRACE] default - GET twitch
+[2022-08-02T23:03:30.773] [TRACE] default - GET translation
+[2022-08-02T23:03:30.774] [TRACE] default - GET translation
+[2022-08-02T23:03:30.782] [TRACE] default - GET menu
+[2022-08-02T23:03:30.790] [TRACE] default - GET twitch
+[2022-08-02T23:03:32.148] [TRACE] default - GET translation
+[2022-08-02T23:03:32.150] [TRACE] default - GET translation
+[2022-08-02T23:03:32.157] [TRACE] default - GET menu
+[2022-08-02T23:03:32.167] [TRACE] default - GET twitch
+[2022-08-02T23:03:33.298] [TRACE] default - GET translation
+[2022-08-02T23:03:33.300] [TRACE] default - GET translation
+[2022-08-02T23:03:33.306] [TRACE] default - GET menu
+[2022-08-02T23:03:33.317] [TRACE] default - GET twitch
+[2022-08-02T23:03:34.554] [TRACE] default - GET translation
+[2022-08-02T23:03:34.557] [TRACE] default - GET translation
+[2022-08-02T23:03:34.563] [TRACE] default - GET menu
+[2022-08-02T23:03:34.572] [TRACE] default - GET twitch
+[2022-08-02T23:03:35.683] [TRACE] default - GET translation
+[2022-08-02T23:03:35.684] [TRACE] default - GET translation
+[2022-08-02T23:03:35.692] [TRACE] default - GET menu
+[2022-08-02T23:03:35.702] [TRACE] default - GET twitch
+[2022-08-02T23:07:12.317] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:07:12.427] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:07:12.427] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:07:12.442] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:07:12.445] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:07:13.049] [TRACE] default - add Migration update_001
+[2022-08-02T23:07:14.031] [TRACE] default - add Node craffel
+[2022-08-02T23:07:14.032] [TRACE] default - node connected: craffel
+[2022-08-02T23:07:22.864] [TRACE] default - incomming message self: false
+[2022-08-02T23:07:27.598] [TRACE] default - GET translation
+[2022-08-02T23:07:27.601] [TRACE] default - GET translation
+[2022-08-02T23:07:27.609] [TRACE] default - GET menu
+[2022-08-02T23:07:27.634] [TRACE] default - GET twitch
+[2022-08-02T23:07:38.733] [TRACE] default - GET translation
+[2022-08-02T23:07:38.734] [TRACE] default - GET translation
+[2022-08-02T23:07:38.741] [TRACE] default - GET menu
+[2022-08-02T23:07:38.745] [TRACE] default - GET node
+[2022-08-02T23:07:38.754] [TRACE] default - GET twitch
+[2022-08-02T23:12:56.389] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:12:56.488] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:12:56.488] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:12:56.504] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:12:56.507] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:12:57.107] [TRACE] default - add Migration update_001
+[2022-08-02T23:12:58.077] [TRACE] default - add Node craffel
+[2022-08-02T23:12:58.078] [TRACE] default - node connected: craffel
+[2022-08-02T23:12:58.108] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'count')
+    at Function.<anonymous> (C:\Projects\SocialAdventure\model\levelModel.js:43:54)
+    at Generator.next (<anonymous>)
+    at C:\Projects\SocialAdventure\model\levelModel.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Projects\SocialAdventure\model\levelModel.js:4:12)
+    at Function.updateTable (C:\Projects\SocialAdventure\model\levelModel.js:39:16)
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:91:46)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-08-02T23:13:51.982] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:13:52.094] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:13:52.094] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:13:52.116] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:13:52.119] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:13:52.697] [TRACE] default - add Migration update_001
+[2022-08-02T23:13:53.661] [TRACE] default - add Node craffel
+[2022-08-02T23:13:53.662] [TRACE] default - node connected: craffel
+[2022-08-02T23:13:53.673] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'count')
+    at Function.<anonymous> (C:\Projects\SocialAdventure\model\levelModel.js:43:54)
+    at Generator.next (<anonymous>)
+    at C:\Projects\SocialAdventure\model\levelModel.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Projects\SocialAdventure\model\levelModel.js:4:12)
+    at Function.updateTable (C:\Projects\SocialAdventure\model\levelModel.js:39:16)
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:91:46)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-08-02T23:14:24.724] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:14:24.823] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:14:24.823] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:14:24.838] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:14:24.841] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:14:25.412] [TRACE] default - add Migration update_001
+[2022-08-02T23:14:26.376] [TRACE] default - add Node craffel
+[2022-08-02T23:14:26.377] [TRACE] default - node connected: craffel
+[2022-08-02T23:26:25.222] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:26:25.323] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:26:25.323] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:26:25.338] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:26:25.341] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:26:25.912] [TRACE] default - add Migration update_001
+[2022-08-02T23:26:37.852] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:26:37.944] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:26:37.945] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:26:37.960] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:26:37.964] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:26:38.527] [TRACE] default - add Migration update_001
+[2022-08-02T23:26:39.490] [TRACE] default - add Node craffel
+[2022-08-02T23:26:39.491] [TRACE] default - node connected: craffel
+[2022-08-02T23:26:55.559] [TRACE] default - GET translation
+[2022-08-02T23:26:55.561] [TRACE] default - GET translation
+[2022-08-02T23:26:55.569] [TRACE] default - GET menu
+[2022-08-02T23:26:55.586] [TRACE] default - GET twitch
+[2022-08-02T23:27:50.338] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:27:50.439] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:27:50.440] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:27:50.455] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:27:50.458] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:27:51.008] [TRACE] default - add Migration update_001
+[2022-08-02T23:27:51.980] [TRACE] default - add Node craffel
+[2022-08-02T23:27:51.982] [TRACE] default - node connected: craffel
+[2022-08-02T23:28:06.411] [TRACE] default - GET level
+[2022-08-02T23:33:47.542] [TRACE] default - GET translation
+[2022-08-02T23:33:47.545] [TRACE] default - GET translation
+[2022-08-02T23:33:47.551] [TRACE] default - GET menu
+[2022-08-02T23:33:47.565] [TRACE] default - GET twitch
+[2022-08-02T23:33:49.889] [TRACE] default - GET translation
+[2022-08-02T23:33:49.892] [TRACE] default - GET translation
+[2022-08-02T23:33:49.898] [TRACE] default - GET menu
+[2022-08-02T23:33:49.902] [TRACE] default - GET node
+[2022-08-02T23:33:49.912] [TRACE] default - GET twitch
+[2022-08-02T23:37:23.850] [TRACE] default - incomming message self: false
+[2022-08-02T23:37:24.510] [TRACE] default - incomming message self: false
+[2022-08-02T23:44:28.829] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:44:28.932] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:44:28.933] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:44:28.948] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:44:28.951] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:44:29.516] [TRACE] default - add Migration update_001
+[2022-08-02T23:44:30.477] [TRACE] default - add Node craffel
+[2022-08-02T23:44:30.479] [TRACE] default - node connected: craffel
+[2022-08-02T23:47:55.915] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:47:56.029] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:47:56.029] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:47:56.045] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:47:56.048] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:47:56.539] [TRACE] default - add Migration update_001
+[2022-08-02T23:47:57.488] [TRACE] default - add Node craffel
+[2022-08-02T23:47:57.489] [TRACE] default - node connected: craffel
+[2022-08-02T23:48:18.673] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:48:18.759] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:48:18.759] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:48:18.773] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:48:18.776] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:48:19.373] [TRACE] default - add Migration update_001
+[2022-08-02T23:48:20.311] [TRACE] default - add Node craffel
+[2022-08-02T23:48:20.312] [TRACE] default - node connected: craffel
+[2022-08-02T23:48:51.523] [TRACE] default - GET SELECT node
+[2022-08-02T23:49:03.052] [TRACE] default - POST SELECT node
+[2022-08-02T23:49:06.907] [TRACE] default - POST SELECT node
+[2022-08-02T23:52:29.057] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:52:29.144] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:52:29.144] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:52:29.158] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:52:29.160] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:52:29.753] [TRACE] default - add Migration update_001
+[2022-08-02T23:52:30.734] [TRACE] default - add Node craffel
+[2022-08-02T23:52:30.735] [TRACE] default - node connected: craffel
+[2022-08-02T23:52:56.383] [TRACE] default - POST SELECT node
+[2022-08-02T23:52:58.215] [TRACE] default - POST SELECT node
+[2022-08-02T23:53:01.019] [TRACE] default - POST SELECT node
+[2022-08-02T23:58:46.957] [TRACE] default - twitch chat client initialized
+[2022-08-02T23:58:47.053] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-02T23:58:47.053] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-02T23:58:47.069] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-02T23:58:47.072] [INFO] default - HTTP Server listening on port 80
+[2022-08-02T23:58:47.663] [TRACE] default - add Migration update_001
+[2022-08-02T23:58:48.627] [TRACE] default - add Node craffel
+[2022-08-02T23:58:48.628] [TRACE] default - node connected: craffel
+[2022-08-03T00:00:02.234] [TRACE] default - GET translation
+[2022-08-03T00:00:02.236] [TRACE] default - GET translation
+[2022-08-03T00:00:02.242] [TRACE] default - GET menu
+[2022-08-03T00:00:02.259] [TRACE] default - GET twitch
+[2022-08-03T00:00:06.324] [TRACE] default - GET translation
+[2022-08-03T00:00:06.326] [TRACE] default - GET translation
+[2022-08-03T00:00:06.333] [TRACE] default - GET level
+[2022-08-03T00:00:06.336] [TRACE] default - GET menu
+[2022-08-03T00:00:06.496] [TRACE] default - GET twitch
+[2022-08-03T00:00:46.117] [TRACE] default - GET translation
+[2022-08-03T00:00:46.119] [TRACE] default - GET translation
+[2022-08-03T00:00:46.127] [TRACE] default - GET menu
+[2022-08-03T00:00:46.129] [TRACE] default - GET level
+[2022-08-03T00:00:46.287] [TRACE] default - GET twitch
+[2022-08-03T00:03:11.152] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:03:11.246] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T00:03:11.246] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:03:11.262] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T00:03:11.265] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:03:11.834] [TRACE] default - add Migration update_001
+[2022-08-03T00:03:12.803] [TRACE] default - add Node craffel
+[2022-08-03T00:03:12.804] [TRACE] default - node connected: craffel
+[2022-08-03T00:03:16.947] [TRACE] default - GET translation
+[2022-08-03T00:03:16.949] [TRACE] default - GET translation
+[2022-08-03T00:03:16.956] [TRACE] default - GET menu
+[2022-08-03T00:03:16.963] [TRACE] default - GET level
+[2022-08-03T00:03:17.062] [TRACE] default - GET twitch
+[2022-08-03T00:03:18.931] [TRACE] default - GET translation
+[2022-08-03T00:03:18.932] [TRACE] default - GET translation
+[2022-08-03T00:03:18.939] [TRACE] default - GET menu
+[2022-08-03T00:03:18.942] [TRACE] default - GET level
+[2022-08-03T00:03:19.013] [TRACE] default - GET twitch
+[2022-08-03T00:04:27.294] [TRACE] default - GET translation
+[2022-08-03T00:04:27.296] [TRACE] default - GET translation
+[2022-08-03T00:04:27.303] [TRACE] default - GET menu
+[2022-08-03T00:04:27.306] [TRACE] default - GET level
+[2022-08-03T00:04:27.411] [TRACE] default - GET twitch
+[2022-08-03T00:04:41.212] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:04:41.297] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T00:04:41.297] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:04:41.311] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T00:04:41.314] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:04:41.887] [TRACE] default - add Migration update_001
+[2022-08-03T00:04:42.862] [TRACE] default - add Node craffel
+[2022-08-03T00:04:42.863] [TRACE] default - node connected: craffel
+[2022-08-03T00:04:51.122] [TRACE] default - GET translation
+[2022-08-03T00:04:51.125] [TRACE] default - GET translation
+[2022-08-03T00:04:51.134] [TRACE] default - GET menu
+[2022-08-03T00:04:51.150] [TRACE] default - GET twitch
+[2022-08-03T00:04:54.633] [TRACE] default - GET translation
+[2022-08-03T00:04:54.635] [TRACE] default - GET translation
+[2022-08-03T00:04:54.641] [TRACE] default - GET menu
+[2022-08-03T00:04:54.644] [TRACE] default - GET level
+[2022-08-03T00:04:54.761] [TRACE] default - GET twitch
+[2022-08-03T00:05:21.742] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:05:21.869] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T00:05:21.870] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:05:21.886] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T00:05:21.890] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:05:22.632] [TRACE] default - add Migration update_001
+[2022-08-03T00:05:23.613] [TRACE] default - add Node craffel
+[2022-08-03T00:05:23.615] [TRACE] default - node connected: craffel
+[2022-08-03T00:05:25.465] [TRACE] default - GET translation
+[2022-08-03T00:05:25.469] [TRACE] default - GET translation
+[2022-08-03T00:05:25.476] [TRACE] default - GET menu
+[2022-08-03T00:05:55.722] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:05:55.809] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T00:05:55.809] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:05:55.824] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T00:05:55.827] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:05:56.413] [TRACE] default - add Migration update_001
+[2022-08-03T00:05:57.397] [TRACE] default - add Node craffel
+[2022-08-03T00:05:57.398] [TRACE] default - node connected: craffel
+[2022-08-03T00:05:58.303] [TRACE] default - GET translation
+[2022-08-03T00:05:58.306] [TRACE] default - GET translation
+[2022-08-03T00:05:58.313] [TRACE] default - GET menu
+[2022-08-03T00:05:58.318] [TRACE] default - GET level
+[2022-08-03T00:05:58.417] [TRACE] default - GET twitch
+[2022-08-03T00:06:14.115] [TRACE] default - GET translation
+[2022-08-03T00:06:14.117] [TRACE] default - GET translation
+[2022-08-03T00:06:14.123] [TRACE] default - GET menu
+[2022-08-03T00:06:14.126] [TRACE] default - GET level
+[2022-08-03T00:06:14.269] [TRACE] default - GET twitch
+[2022-08-03T00:06:18.025] [TRACE] default - GET translation
+[2022-08-03T00:06:18.027] [TRACE] default - GET translation
+[2022-08-03T00:06:18.034] [TRACE] default - GET menu
+[2022-08-03T00:06:18.036] [TRACE] default - GET level
+[2022-08-03T00:06:18.156] [TRACE] default - GET twitch
+[2022-08-03T00:06:33.427] [TRACE] default - GET translation
+[2022-08-03T00:06:33.429] [TRACE] default - GET level
+[2022-08-03T00:06:33.443] [TRACE] default - GET level
+[2022-08-03T00:06:33.445] [TRACE] default - GET menu
+[2022-08-03T00:06:33.602] [TRACE] default - GET twitch
+[2022-08-03T00:07:05.464] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:07:05.551] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T00:07:05.551] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:07:05.566] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T00:07:05.569] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:07:06.353] [TRACE] default - add Migration update_001
+[2022-08-03T00:07:07.326] [TRACE] default - add Node craffel
+[2022-08-03T00:07:07.327] [TRACE] default - node connected: craffel
+[2022-08-03T00:07:12.035] [TRACE] default - GET translation
+[2022-08-03T00:07:12.038] [TRACE] default - GET level
+[2022-08-03T00:07:12.043] [TRACE] default - GET level
+[2022-08-03T00:07:12.046] [TRACE] default - GET menu
+[2022-08-03T00:07:12.200] [TRACE] default - GET twitch
+[2022-08-03T00:07:15.109] [TRACE] default - GET translation
+[2022-08-03T00:07:15.111] [TRACE] default - GET level
+[2022-08-03T00:07:15.122] [TRACE] default - GET level
+[2022-08-03T00:07:15.125] [TRACE] default - GET menu
+[2022-08-03T00:07:15.232] [TRACE] default - GET twitch
+[2022-08-03T00:08:13.063] [TRACE] default - GET translation
+[2022-08-03T00:08:13.065] [TRACE] default - GET level
+[2022-08-03T00:08:13.069] [TRACE] default - GET level
+[2022-08-03T00:08:13.071] [TRACE] default - GET menu
+[2022-08-03T00:08:13.236] [TRACE] default - GET twitch
+[2022-08-03T00:08:19.318] [TRACE] default - GET translation
+[2022-08-03T00:08:19.320] [TRACE] default - GET level
+[2022-08-03T00:08:19.326] [TRACE] default - GET level
+[2022-08-03T00:08:19.329] [TRACE] default - GET menu
+[2022-08-03T00:08:19.504] [TRACE] default - GET twitch
+[2022-08-03T00:09:18.902] [TRACE] default - GET translation
+[2022-08-03T00:09:18.904] [TRACE] default - GET translation
+[2022-08-03T00:09:18.912] [TRACE] default - GET menu
+[2022-08-03T00:09:18.924] [TRACE] default - GET twitch
+[2022-08-03T00:09:19.663] [TRACE] default - GET translation
+[2022-08-03T00:09:19.666] [TRACE] default - GET translation
+[2022-08-03T00:09:19.674] [TRACE] default - GET menu
+[2022-08-03T00:09:19.678] [TRACE] default - GET node
+[2022-08-03T00:09:19.692] [TRACE] default - GET twitch
+[2022-08-03T00:09:21.678] [TRACE] default - GET translation
+[2022-08-03T00:09:21.681] [TRACE] default - GET translation
+[2022-08-03T00:09:21.687] [TRACE] default - GET menu
+[2022-08-03T00:09:21.689] [TRACE] default - GET node
+[2022-08-03T00:09:21.706] [TRACE] default - GET twitch
+[2022-08-03T00:09:23.948] [TRACE] default - GET translation
+[2022-08-03T00:09:23.950] [TRACE] default - GET level
+[2022-08-03T00:09:23.958] [TRACE] default - GET level
+[2022-08-03T00:09:23.960] [TRACE] default - GET menu
+[2022-08-03T00:09:24.126] [TRACE] default - GET twitch
+[2022-08-03T00:09:44.844] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:09:44.958] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T00:09:44.959] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:09:44.974] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T00:09:44.976] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:09:45.543] [TRACE] default - add Migration update_001
+[2022-08-03T00:10:03.649] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:10:03.772] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T00:10:03.772] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:10:03.788] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T00:10:03.791] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:10:04.410] [TRACE] default - add Migration update_001
+[2022-08-03T00:10:05.372] [TRACE] default - add Node craffel
+[2022-08-03T00:10:05.373] [TRACE] default - node connected: craffel
+[2022-08-03T00:10:15.886] [TRACE] default - GET translation
+[2022-08-03T00:10:15.891] [TRACE] default - GET level
+[2022-08-03T00:10:15.900] [TRACE] default - GET level
+[2022-08-03T00:10:15.905] [TRACE] default - GET menu
+[2022-08-03T00:10:15.996] [TRACE] default - GET twitch
+[2022-08-03T00:11:13.689] [TRACE] default - GET level
+[2022-08-03T00:11:20.143] [TRACE] default - GET translation
+[2022-08-03T00:11:30.433] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:11:30.563] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T00:11:30.563] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:11:30.580] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T00:11:30.584] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:11:31.193] [TRACE] default - add Migration update_001
+[2022-08-03T00:11:32.165] [TRACE] default - add Node craffel
+[2022-08-03T00:11:32.166] [TRACE] default - node connected: craffel
+[2022-08-03T00:11:33.303] [TRACE] default - GET translation
+[2022-08-03T00:12:12.274] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:12:12.398] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T00:12:12.398] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:12:12.413] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T00:12:12.416] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:12:13.122] [TRACE] default - add Migration update_001
+[2022-08-03T00:12:14.133] [TRACE] default - add Node craffel
+[2022-08-03T00:12:14.134] [TRACE] default - node connected: craffel
+[2022-08-03T00:12:15.927] [TRACE] default - GET translation
+[2022-08-03T00:12:22.338] [TRACE] default - GET level
+[2022-08-03T00:13:17.075] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:13:17.162] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T00:13:17.162] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:13:17.177] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T00:13:17.180] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:13:17.817] [TRACE] default - add Migration update_001
+[2022-08-03T00:13:18.810] [TRACE] default - add Node craffel
+[2022-08-03T00:13:18.811] [TRACE] default - node connected: craffel
+[2022-08-03T00:13:20.997] [TRACE] default - GET translation
+[2022-08-03T00:13:21.000] [TRACE] default - GET level
+[2022-08-03T00:13:21.005] [TRACE] default - GET level
+[2022-08-03T00:13:21.009] [TRACE] default - GET menu
+[2022-08-03T00:13:21.194] [TRACE] default - GET twitch
+[2022-08-03T00:14:09.141] [TRACE] default - GET translation
+[2022-08-03T00:14:09.143] [TRACE] default - GET translation
+[2022-08-03T00:14:09.150] [TRACE] default - GET menu
+[2022-08-03T00:14:09.162] [TRACE] default - GET twitch
+[2022-08-03T00:14:15.168] [TRACE] default - GET translation
+[2022-08-03T00:14:15.170] [TRACE] default - GET translation
+[2022-08-03T00:14:15.178] [TRACE] default - GET menu
+[2022-08-03T00:14:15.194] [TRACE] default - GET twitch
+[2022-08-03T00:14:20.997] [TRACE] default - GET translation
+[2022-08-03T00:14:20.999] [TRACE] default - GET translation
+[2022-08-03T00:14:21.008] [TRACE] default - GET menu
+[2022-08-03T00:14:21.012] [TRACE] default - GET node
+[2022-08-03T00:14:21.025] [TRACE] default - GET twitch
+[2022-08-03T00:14:54.695] [TRACE] default - twitch chat client initialized
+[2022-08-03T00:14:54.816] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T00:14:54.816] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T00:14:54.832] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T00:14:54.835] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T00:14:55.537] [TRACE] default - add Migration update_001
+[2022-08-03T00:15:01.053] [TRACE] default - GET translation
+[2022-08-03T00:15:03.965] [TRACE] default - GET translation
+[2022-08-03T00:15:03.977] [TRACE] default - GET menu
+[2022-08-03T00:15:03.985] [TRACE] default - GET node
+[2022-08-03T00:15:04.002] [TRACE] default - GET twitch
+[2022-08-03T00:15:04.186] [TRACE] default - add Node craffel
+[2022-08-03T00:15:04.187] [TRACE] default - node connected: craffel
+[2022-08-03T00:15:11.139] [TRACE] default - GET translation
+[2022-08-03T00:15:11.560] [TRACE] default - GET translation
+[2022-08-03T00:15:11.568] [TRACE] default - GET menu
+[2022-08-03T00:15:11.573] [TRACE] default - GET node
+[2022-08-03T00:15:11.584] [TRACE] default - GET twitch
+[2022-08-03T00:15:20.045] [TRACE] default - GET translation
+[2022-08-03T00:15:20.048] [TRACE] default - GET level
+[2022-08-03T00:15:20.055] [TRACE] default - GET level
+[2022-08-03T00:15:20.058] [TRACE] default - GET menu
+[2022-08-03T00:15:20.144] [TRACE] default - GET twitch
+[2022-08-03T00:17:22.992] [TRACE] default - incomming message self: false

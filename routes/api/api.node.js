@@ -43,5 +43,21 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
     else
         response.status(404).json();
 }));
+router.get('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace('GET SELECT ' + endpoint);
+    if (!request.session.node)
+        request.session.node = 'craffel';
+    response.status(200).json({ node: request.session.node });
+}));
+router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace('POST SELECT ' + endpoint);
+    const channel = global.worker.channels.find(x => x.node.name === request.query.node);
+    if (channel) {
+        request.session.node = request.query.node;
+        response.status(200).json({ node: request.session.node });
+    }
+    else
+        response.status(404).json();
+}));
 exports.default = router;
 //# sourceMappingURL=api.node.js.map

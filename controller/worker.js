@@ -47,7 +47,17 @@ class Worker {
     //#region Twitch API
     login(request, response, callback) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.log.trace('login');
+            const data = request.app.get('twitch');
+            this.log.trace(data);
+            const twitch = new twitch_1.Twitch(this.log);
+            const credentials = yield twitch.twitchAuthentification(request, response);
+            if (credentials) {
+                const userData = yield twitch.TwitchPush(request, response, "GET", "/users?client_id=" + data.client_id);
+                if (userData) {
+                    yield twitch.saveTwitch(request, response, userData);
+                    yield twitch.saveTwitchUser(request, response, userData);
+                }
+            }
             callback(request, response);
         });
     }

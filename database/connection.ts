@@ -6,12 +6,14 @@ import { MenuItem } from '../model/menuItem';
 import { TranslationItem } from '../model/translationItem';
 import { TwitchItem } from '../model/twitchItem';
 import { TwitchUserItem } from '../model/twitchUserItem';
+import { LevelItem } from '../model/levelModel';
 
 import * as fs from 'fs';
 import * as path from 'path';
 
 import jsonMigration = require('../model/migrationItem.json');
 import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
+
 
 
 export class Connection {
@@ -61,11 +63,13 @@ export class Connection {
 
             MigrationItem.initialize(this.sequelize);
             VersionItem.initialize(this.sequelize);
+            LevelItem.initialize(this.sequelize);
 
             await this.sequelize.sync();
 
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
+            await LevelItem.updateTable({ sequelize: this.sequelize });
 
             await this.updater("migrations/general");
 

@@ -51,7 +51,20 @@ export class Worker {
 
     //#region Twitch API
     async login(request: express.Request, response: express.Response, callback: any){
-        this.log.trace('login');
+        const data = request.app.get('twitch');
+        this.log.trace(data);
+
+        const twitch = new Twitch(this.log);
+        const credentials = await twitch.twitchAuthentification(request, response);
+
+        if(credentials){
+            const userData = await twitch.TwitchPush(request, response,"GET", "/users?client_id=" + data.client_id);
+
+            if(userData){
+                await twitch.saveTwitch(request, response, userData);
+                await twitch.saveTwitchUser(request, response, userData);
+            }
+        }
         callback(request, response);
     }
     //#endregion

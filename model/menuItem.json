@@ -16,13 +16,65 @@
         "order": 1100
     },
     {
+        "endpoint": "adventure",
+        "name": "adventure",
+        "order": 1200
+    },
+    {
+        "endpoint": "hero",
+        "name": "hero",
+        "order": 1210,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "item",
+        "name": "item",
+        "order": 1220,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "taverne",
+        "name": "taverne",
+        "order": 1230,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "daily",
+        "name": "daily",
+        "order": 1240,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "level",
+        "name": "level",
+        "order": 1250,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "statistic",
+        "name": "statistic",
+        "order": 1280,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "command",
+        "name": "command",
+        "order": 1290,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "say",
+        "name": "say",
+        "order": 1300
+    },
+    {
         "endpoint": "help",
         "name": "help",
-        "order": 1200
+        "order": 1400
     },
     {
         "endpoint": "api",
         "name": "api",
-        "order": 1300
+        "order": 1500
     }
 ]

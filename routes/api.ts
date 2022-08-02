@@ -9,8 +9,59 @@ import menu from "./api/api.menu";
 import migration from "./api/api.migration";
 import translation from "./api/api.translation";
 import twitch from "./api/api.twitch";
+import level from "./api/api.level";
 
 const router = express.Router();
+
+//#region Level
+/**
+ * @swagger
+ * /{node}/level:
+ *   get:
+ *     tags:
+ *     - Level
+ *     summary: Level
+ *     description: Rückgabe aller Level, die erreicht werden können.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: number
+ *                 example: 1
+ *                 descrition: Level
+ *               experienceMin:
+ *                 type: number
+ *                 example: 0
+ *                 descrition: Minimale Erfahrung, die für das Level gebraucht wird.
+ *               experienceMax:
+ *                 type: number
+ *                 example: 499
+ *                 descrition: Maximale Erfahrung, bis zum nächsten Level.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/:node/level", level);
+//#endregion
 
 //#region Twitch
 /**
@@ -119,6 +170,59 @@ const router = express.Router();
  *                 descrition: Datum der letzten Änderung
  */
  router.get("/node", node);
+
+/**
+ * @swagger
+ * /node/default:
+ *   get:
+ *     tags:
+ *     - Node
+ *     summary: Node
+ *     description: Rückgabe des ausgewählten Standard Nodes.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             node:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Nodes
+ */
+router.get("/node/default", node);
+
+/**
+ * @swagger
+ * /node/default:
+ *   post:
+ *     tags:
+ *     - Node
+ *     summary: Node
+ *     description: Auswahl des Standard Nodes.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "query"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             node:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Nodes
+ */
+router.post("/node/default", node);
 //#endregion
 
 //#region Migration

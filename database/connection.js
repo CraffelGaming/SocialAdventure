@@ -41,6 +41,7 @@ const menuItem_1 = require("../model/menuItem");
 const translationItem_1 = require("../model/translationItem");
 const twitchItem_1 = require("../model/twitchItem");
 const twitchUserItem_1 = require("../model/twitchUserItem");
+const levelModel_1 = require("../model/levelModel");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const jsonMigration = require("../model/migrationItem.json");
@@ -83,9 +84,11 @@ class Connection {
                 yield this.sequelize.authenticate();
                 migrationItem_1.MigrationItem.initialize(this.sequelize);
                 versionItem_1.VersionItem.initialize(this.sequelize);
+                levelModel_1.LevelItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
+                yield levelModel_1.LevelItem.updateTable({ sequelize: this.sequelize });
                 yield this.updater("migrations/general");
                 return true;
             }

@@ -54,7 +54,7 @@ $(async () => {
 
             parent.push({
                 text: translate(language, item.name),
-                items: elements
+                items: elements 
             });
         }
     }

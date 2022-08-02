@@ -31,6 +31,14 @@ const express = __importStar(require("express"));
 const help_1 = __importDefault(require("./help"));
 const streamer_1 = __importDefault(require("./streamer"));
 const twitch_1 = __importDefault(require("./twitch"));
+const daily_1 = __importDefault(require("./daily"));
+const command_1 = __importDefault(require("./command"));
+const hero_1 = __importDefault(require("./hero"));
+const item_1 = __importDefault(require("./item"));
+const say_1 = __importDefault(require("./say"));
+const statistic_1 = __importDefault(require("./statistic"));
+const taverne_1 = __importDefault(require("./taverne"));
+const level_1 = __importDefault(require("./level"));
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
@@ -40,6 +48,22 @@ router.get('/help', help_1.default);
 router.get('/streamer', streamer_1.default);
 // Twitch
 router.get('/twitch', twitch_1.default);
+// Daily
+router.get('/daily', daily_1.default);
+// Command
+router.get('/command', command_1.default);
+// Hero
+router.get('/hero', hero_1.default);
+// Item
+router.get('/item', item_1.default);
+// Say
+router.get('/say', say_1.default);
+// Statistic
+router.get('/statistic', statistic_1.default);
+// Taverne
+router.get('/taverne', taverne_1.default);
+// Level
+router.get('/level', level_1.default);
 // index
 router.get('/', (request, response) => {
     response.render(endpoint, {

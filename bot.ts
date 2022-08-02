@@ -18,14 +18,43 @@ import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
+import { Twitch } from "./controller/twitch";
 
 const app = express();
+
+// Global Database
+declare global {
+    var worker: Worker;
+
+    type credentialItem = {
+        access_token: string;
+        expires_in: number;
+        refresh_token: string;
+        scope: string[];
+        token_type: string;
+      };
+
+      type credentialUserItem = {
+        id: string;
+        login: string;
+        display_name: string;
+        type: string;
+        broadcaster_type: string;
+        description: string;
+        profile_image_url: string;
+        offline_image_url: string;
+        view_count: number;
+        email: string;
+        created_at: string;
+      };
+  }
 
 // extend session
 declare module 'express-session' {
     interface SessionData {
         state: string,
-        twitch: any
+        twitch: globalThis.credentialItem,
+        node: string
     }
 }
 
@@ -96,11 +125,6 @@ app.use((err: any, request: express.Request, response: express.Response) => {
 
 app.set('port', settings.port);
 app.set('twitch', twitch);
-
-// Global Database
-declare global {
-    var worker: Worker;
-  }
 
 global.worker = new Worker(log4js.getLogger("default"));
 global.worker.initialize();
