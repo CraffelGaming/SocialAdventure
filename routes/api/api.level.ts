@@ -3,7 +3,7 @@ import * as express from 'express';
 const router = express.Router();
 const endpoint = 'level';
 
-router.get('/:node/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
+router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace('GET ' + endpoint);
     let node = 'craffel';
 

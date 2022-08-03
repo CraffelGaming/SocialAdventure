@@ -16,6 +16,7 @@ const channel_1 = require("./channel");
 const tmi = require("tmi.js");
 const tmiSettings = require("../bot.json");
 const twitch_1 = require("./twitch");
+const command_1 = require("./command");
 class Worker {
     constructor(log) {
         this.log = log;
@@ -86,7 +87,11 @@ class Worker {
             }
             global.worker.log.trace('incomming message target: ' + target);
             global.worker.log.trace('incomming message message: ' + message);
-            // TODO
+            const channel = global.worker.channels.find(x => x.node.name === target.replace('#', ''));
+            if (channel) {
+                const command = new command_1.Command(message);
+                global.worker.log.trace(command);
+            }
         }
         catch (ex) {
             global.worker.log.error(ex);

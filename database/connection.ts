@@ -13,8 +13,7 @@ import * as path from 'path';
 
 import jsonMigration = require('../model/migrationItem.json');
 import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
-
-
+import { SayItem } from '../model/sayItem';
 
 export class Connection {
     databaseName: string;
@@ -64,12 +63,14 @@ export class Connection {
             MigrationItem.initialize(this.sequelize);
             VersionItem.initialize(this.sequelize);
             LevelItem.initialize(this.sequelize);
+            SayItem.initialize(this.sequelize);
 
             await this.sequelize.sync();
 
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await LevelItem.updateTable({ sequelize: this.sequelize });
+            await SayItem.updateTable({ sequelize: this.sequelize });
 
             await this.updater("migrations/general");
 

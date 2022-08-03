@@ -1,0 +1,9 @@
+[
+    {
+        "command": "craffel",
+        "minutes": 60,
+        "help": "",
+        "text": "Schau dir deinen Helden auf craffel.de an.",
+        "isActive": true
+    }
+]

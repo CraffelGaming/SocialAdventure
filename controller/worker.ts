@@ -7,6 +7,7 @@ import { Channel } from './channel';
 import tmi = require('tmi.js');
 import tmiSettings = require('../bot.json');
 import { Twitch } from './twitch';
+import { Command } from './command';
 
 export class Worker {
     pathModel: string;
@@ -83,7 +84,7 @@ export class Worker {
         this.tmi.join(channel.node.name.replace('#', ''));
     }
 
-    onMessageHandler (target, context, message, self) {
+    onMessageHandler (target : string, context : any, message : string, self: boolean) {
         try{
             global.worker.log.trace('incomming message self: ' + self);
 
@@ -93,8 +94,12 @@ export class Worker {
             global.worker.log.trace('incomming message target: ' + target);
             global.worker.log.trace('incomming message message: ' + message);
 
-            // TODO
+            const channel = global.worker.channels.find(x => x.node.name === target.replace('#',''))
 
+            if(channel){
+                const command = new Command(message);
+                global.worker.log.trace(command);
+            }
         } catch (ex){
             global.worker.log.error(ex);
         }

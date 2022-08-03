@@ -1,9 +1,9 @@
 [
     {
-        "name": "craffel",
-        "displayName": "Craffel",
+        "name": "craffelmat",
+        "displayName": "Craffelmat",
         "language": "de-DE",
         "isActive": true,
-        "endpoint": "https://www.twitch.tv/craffel"
+        "endpoint": "https://www.twitch.tv/craffelmat"
     }
 ]

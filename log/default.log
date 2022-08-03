@@ -4171,3 +4171,429 @@ notNull Violation: node.isActive cannot be null
 [2022-08-03T00:15:20.058] [TRACE] default - GET menu
 [2022-08-03T00:15:20.144] [TRACE] default - GET twitch
 [2022-08-03T00:17:22.992] [TRACE] default - incomming message self: false
+[2022-08-03T11:29:46.790] [TRACE] default - twitch chat client initialized
+[2022-08-03T11:29:46.928] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T11:29:46.928] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T11:29:46.974] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T11:29:46.977] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T11:29:47.553] [TRACE] default - add Migration update_001
+[2022-08-03T11:29:48.532] [TRACE] default - add Node craffel
+[2022-08-03T11:29:48.533] [TRACE] default - node connected: craffel
+[2022-08-03T11:34:35.793] [TRACE] default - GET translation
+[2022-08-03T11:34:35.795] [TRACE] default - GET translation
+[2022-08-03T11:34:35.812] [TRACE] default - GET menu
+[2022-08-03T11:34:35.827] [TRACE] default - GET twitch
+[2022-08-03T11:34:38.653] [TRACE] default - GET translation
+[2022-08-03T11:34:38.655] [TRACE] default - GET level
+[2022-08-03T11:34:38.660] [TRACE] default - GET level
+[2022-08-03T11:34:38.662] [TRACE] default - GET menu
+[2022-08-03T11:34:38.811] [TRACE] default - GET twitch
+[2022-08-03T11:37:24.382] [TRACE] default - incomming message self: false
+[2022-08-03T11:38:09.663] [TRACE] default - twitch chat client initialized
+[2022-08-03T11:38:09.755] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T11:38:09.755] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T11:38:09.769] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T11:38:09.772] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T11:38:10.355] [TRACE] default - add Migration update_001
+[2022-08-03T11:38:11.327] [TRACE] default - add Node craffel
+[2022-08-03T11:38:11.328] [TRACE] default - node connected: craffel
+[2022-08-03T11:38:24.410] [TRACE] default - GET translation
+[2022-08-03T11:38:24.413] [TRACE] default - GET translation
+[2022-08-03T11:38:24.419] [TRACE] default - GET menu
+[2022-08-03T11:38:24.434] [TRACE] default - GET twitch
+[2022-08-03T11:38:26.716] [TRACE] default - GET translation
+[2022-08-03T11:38:26.718] [TRACE] default - GET translation
+[2022-08-03T11:38:26.726] [TRACE] default - GET menu
+[2022-08-03T11:38:26.729] [TRACE] default - GET level
+[2022-08-03T11:38:26.874] [TRACE] default - GET twitch
+[2022-08-03T11:38:41.047] [TRACE] default - GET translation
+[2022-08-03T11:38:41.049] [TRACE] default - GET translation
+[2022-08-03T11:38:41.056] [TRACE] default - GET menu
+[2022-08-03T11:38:41.059] [TRACE] default - GET node
+[2022-08-03T11:38:41.069] [TRACE] default - GET twitch
+[2022-08-03T11:38:47.647] [TRACE] default - GET translation
+[2022-08-03T11:38:47.649] [TRACE] default - GET translation
+[2022-08-03T11:38:47.656] [TRACE] default - GET menu
+[2022-08-03T11:38:47.667] [TRACE] default - GET twitch
+[2022-08-03T11:38:48.930] [TRACE] default - GET translation
+[2022-08-03T11:38:48.931] [TRACE] default - GET translation
+[2022-08-03T11:38:48.938] [TRACE] default - GET menu
+[2022-08-03T11:38:48.947] [TRACE] default - GET twitch
+[2022-08-03T11:38:50.888] [TRACE] default - GET translation
+[2022-08-03T11:38:50.889] [TRACE] default - GET translation
+[2022-08-03T11:38:50.895] [TRACE] default - GET menu
+[2022-08-03T11:38:50.905] [TRACE] default - GET twitch
+[2022-08-03T11:39:01.011] [TRACE] default - GET translation
+[2022-08-03T11:39:01.013] [TRACE] default - GET translation
+[2022-08-03T11:39:01.019] [TRACE] default - GET menu
+[2022-08-03T11:39:01.022] [TRACE] default - GET level
+[2022-08-03T11:39:01.032] [TRACE] default - GET twitch
+[2022-08-03T11:39:21.996] [TRACE] default - GET translation
+[2022-08-03T11:39:21.998] [TRACE] default - GET translation
+[2022-08-03T11:39:22.004] [TRACE] default - GET menu
+[2022-08-03T11:39:22.015] [TRACE] default - GET twitch
+[2022-08-03T11:39:24.476] [TRACE] default - GET translation
+[2022-08-03T11:39:24.478] [TRACE] default - GET translation
+[2022-08-03T11:39:24.484] [TRACE] default - GET menu
+[2022-08-03T11:39:24.494] [TRACE] default - GET twitch
+[2022-08-03T11:39:25.669] [TRACE] default - GET translation
+[2022-08-03T11:39:25.671] [TRACE] default - GET translation
+[2022-08-03T11:39:25.676] [TRACE] default - GET menu
+[2022-08-03T11:39:25.687] [TRACE] default - GET twitch
+[2022-08-03T11:39:27.342] [TRACE] default - GET translation
+[2022-08-03T11:39:27.344] [TRACE] default - GET translation
+[2022-08-03T11:39:27.349] [TRACE] default - GET menu
+[2022-08-03T11:39:27.358] [TRACE] default - GET twitch
+[2022-08-03T11:39:28.404] [TRACE] default - GET translation
+[2022-08-03T11:39:28.406] [TRACE] default - GET translation
+[2022-08-03T11:39:28.411] [TRACE] default - GET menu
+[2022-08-03T11:39:28.421] [TRACE] default - GET twitch
+[2022-08-03T11:39:29.248] [TRACE] default - GET translation
+[2022-08-03T11:39:29.249] [TRACE] default - GET translation
+[2022-08-03T11:39:29.254] [TRACE] default - GET menu
+[2022-08-03T11:39:29.262] [TRACE] default - GET twitch
+[2022-08-03T11:39:29.924] [TRACE] default - GET translation
+[2022-08-03T11:39:29.926] [TRACE] default - GET translation
+[2022-08-03T11:39:29.933] [TRACE] default - GET menu
+[2022-08-03T11:39:29.960] [TRACE] default - GET twitch
+[2022-08-03T11:57:23.673] [TRACE] default - incomming message self: false
+[2022-08-03T12:07:23.272] [TRACE] default - incomming message self: false
+[2022-08-03T12:22:23.886] [TRACE] default - incomming message self: false
+[2022-08-03T12:34:50.740] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:34:50.857] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:34:50.858] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:34:50.873] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:34:50.876] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:34:51.439] [TRACE] default - add Migration update_001
+[2022-08-03T12:34:52.430] [TRACE] default - add Node craffel
+[2022-08-03T12:34:52.431] [TRACE] default - node connected: craffel
+[2022-08-03T12:34:52.855] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.rawSelect (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:434:18)
+    at async Function.aggregate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1265:19)
+    at async Function.count (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1288:20) {
+  name: 'SequelizeDatabaseError',
+  parent: [Error: SQLITE_ERROR: no such column: say.name] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "SELECT count(*) AS `count` FROM `say` AS `say` WHERE `say`.`name` = 'craffel';"
+  },
+  original: [Error: SQLITE_ERROR: no such column: say.name] {
+    errno: 1,
+    code: 'SQLITE_ERROR',
+    sql: "SELECT count(*) AS `count` FROM `say` AS `say` WHERE `say`.`name` = 'craffel';"
+  },
+  sql: "SELECT count(*) AS `count` FROM `say` AS `say` WHERE `say`.`name` = 'craffel';",
+  parameters: {}
+}
+[2022-08-03T12:35:51.109] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:35:51.198] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:35:51.198] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:35:51.214] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:35:51.217] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:35:51.791] [TRACE] default - add Migration update_001
+[2022-08-03T12:35:52.744] [TRACE] default - add Node craffel
+[2022-08-03T12:35:52.745] [TRACE] default - node connected: craffel
+[2022-08-03T12:35:56.709] [TRACE] default - incomming message self: false
+[2022-08-03T12:35:56.709] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:35:56.709] [TRACE] default - incomming message message: !test
+[2022-08-03T12:35:56.710] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'name')
+    at C:\Projects\SocialAdventure\controller\worker.js:90:60
+    at Array.find (<anonymous>)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:90:43)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+[2022-08-03T12:37:27.664] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:37:27.755] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:37:27.755] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:37:27.770] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:37:27.773] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:37:28.318] [TRACE] default - add Migration update_001
+[2022-08-03T12:37:29.282] [TRACE] default - add Node craffel
+[2022-08-03T12:37:29.283] [TRACE] default - node connected: craffel
+[2022-08-03T12:37:36.912] [TRACE] default - incomming message self: false
+[2022-08-03T12:37:36.912] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:37:36.912] [TRACE] default - incomming message message: !test
+[2022-08-03T12:37:36.913] [TRACE] default - [ '#craffel' ]
+[2022-08-03T12:37:36.913] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'name')
+    at C:\Projects\SocialAdventure\controller\worker.js:91:60
+    at Array.find (<anonymous>)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:91:43)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+[2022-08-03T12:38:29.234] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:38:29.351] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:38:29.351] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:38:29.367] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:38:29.370] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:38:29.958] [TRACE] default - add Migration update_001
+[2022-08-03T12:38:36.531] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:38:36.659] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:38:36.659] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:38:36.676] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:38:36.679] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:38:37.302] [TRACE] default - add Migration update_001
+[2022-08-03T12:38:38.251] [TRACE] default - add Node craffel
+[2022-08-03T12:38:38.253] [TRACE] default - node connected: craffel
+[2022-08-03T12:41:48.650] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:41:48.737] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:41:48.737] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:41:48.752] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:41:48.755] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:41:49.322] [TRACE] default - add Migration update_001
+[2022-08-03T12:41:50.309] [TRACE] default - add Node craffel
+[2022-08-03T12:41:50.310] [TRACE] default - node connected: craffel
+[2022-08-03T12:41:57.020] [TRACE] default - incomming message self: false
+[2022-08-03T12:41:57.021] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:41:57.021] [TRACE] default - incomming message message: !test
+[2022-08-03T12:43:26.379] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:43:26.477] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:43:26.478] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:43:26.493] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:43:26.495] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:43:27.055] [TRACE] default - add Migration update_001
+[2022-08-03T12:43:28.030] [TRACE] default - add Node craffel
+[2022-08-03T12:43:28.031] [TRACE] default - node connected: craffel
+[2022-08-03T12:43:36.632] [TRACE] default - incomming message self: false
+[2022-08-03T12:43:36.633] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:43:36.633] [TRACE] default - incomming message message: !test
+[2022-08-03T12:43:36.633] [TRACE] default - [
+  Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    }
+  }
+]
+[2022-08-03T12:43:36.636] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'push')
+    at new Command (C:\Projects\SocialAdventure\controller\command.js:15:33)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:93:33)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+[2022-08-03T12:44:56.570] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:44:56.661] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:44:56.661] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:44:56.676] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:44:56.678] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:44:57.233] [TRACE] default - add Migration update_001
+[2022-08-03T12:44:58.212] [TRACE] default - add Node craffel
+[2022-08-03T12:44:58.213] [TRACE] default - node connected: craffel
+[2022-08-03T12:45:05.407] [TRACE] default - incomming message self: false
+[2022-08-03T12:45:05.408] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:45:05.408] [TRACE] default - incomming message message: !test
+[2022-08-03T12:45:05.408] [TRACE] default - Command { name: '', message: '!test', target: '', parameters: [ '0' ] }
+[2022-08-03T12:46:12.078] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:46:12.166] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:46:12.166] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:46:12.180] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:46:12.182] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:46:12.735] [TRACE] default - add Migration update_001
+[2022-08-03T12:46:13.702] [TRACE] default - add Node craffel
+[2022-08-03T12:46:13.703] [TRACE] default - node connected: craffel
+[2022-08-03T12:46:15.945] [TRACE] default - incomming message self: false
+[2022-08-03T12:46:15.946] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:46:15.946] [TRACE] default - incomming message message: !test
+[2022-08-03T12:46:15.947] [TRACE] default - [ '!test' ]
+[2022-08-03T12:46:15.948] [TRACE] default - Command { name: '', message: '!test', target: '', parameters: [ '0' ] }
+[2022-08-03T12:48:19.189] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:48:19.314] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:48:19.315] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:48:19.332] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:48:19.334] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:48:19.932] [TRACE] default - add Migration update_001
+[2022-08-03T12:48:37.480] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:48:37.620] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:48:37.620] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:48:37.637] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:48:37.639] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:48:38.224] [TRACE] default - add Migration update_001
+[2022-08-03T12:48:39.225] [TRACE] default - add Node craffel
+[2022-08-03T12:48:39.226] [TRACE] default - node connected: craffel
+[2022-08-03T12:50:12.596] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:50:12.726] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:50:12.727] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:50:12.743] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:50:12.746] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:50:13.362] [TRACE] default - add Migration update_001
+[2022-08-03T12:50:14.322] [TRACE] default - add Node craffel
+[2022-08-03T12:50:14.323] [TRACE] default - node connected: craffel
+[2022-08-03T12:50:26.964] [TRACE] default - incomming message self: false
+[2022-08-03T12:50:26.965] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:50:26.965] [TRACE] default - incomming message message: !test
+[2022-08-03T12:50:26.966] [TRACE] default - [ '!test' ]
+[2022-08-03T12:50:26.967] [TRACE] default - Command { name: '', message: '!test', target: '', parameters: [ '0' ] }
+[2022-08-03T12:51:16.895] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:51:17.001] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:51:17.001] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:51:17.017] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:51:17.021] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:51:17.607] [TRACE] default - add Migration update_001
+[2022-08-03T12:51:18.578] [TRACE] default - add Node craffel
+[2022-08-03T12:51:18.579] [TRACE] default - node connected: craffel
+[2022-08-03T12:51:20.865] [TRACE] default - incomming message self: false
+[2022-08-03T12:51:20.866] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:51:20.866] [TRACE] default - incomming message message: !test
+[2022-08-03T12:51:20.866] [TRACE] default - [ '!test' ]
+[2022-08-03T12:51:20.867] [ERROR] default - TypeError: Cannot set properties of undefined (setting 'name')
+    at C:\Projects\SocialAdventure\controller\command.js:14:27
+    at Array.forEach (<anonymous>)
+    at new Command (C:\Projects\SocialAdventure\controller\command.js:12:15)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:92:33)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+[2022-08-03T12:52:29.669] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:52:29.758] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:52:29.758] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:52:29.773] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:52:29.775] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:52:30.334] [TRACE] default - add Migration update_001
+[2022-08-03T12:52:31.321] [TRACE] default - add Node craffel
+[2022-08-03T12:52:31.322] [TRACE] default - node connected: craffel
+[2022-08-03T12:52:36.487] [TRACE] default - incomming message self: false
+[2022-08-03T12:52:36.487] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:52:36.487] [TRACE] default - incomming message message: !test
+[2022-08-03T12:52:36.488] [TRACE] default - [ '!test' ]
+[2022-08-03T12:52:36.489] [ERROR] default - TypeError: Cannot set properties of undefined (setting 'name')
+    at parse (C:\Projects\SocialAdventure\controller\command.js:16:23)
+    at Array.forEach (<anonymous>)
+    at new Command (C:\Projects\SocialAdventure\controller\command.js:12:15)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:92:33)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+[2022-08-03T12:54:19.664] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:54:19.804] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:54:19.804] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:54:19.821] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:54:19.824] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:54:20.507] [TRACE] default - add Migration update_001
+[2022-08-03T12:54:21.496] [TRACE] default - add Node craffel
+[2022-08-03T12:54:21.498] [TRACE] default - node connected: craffel
+[2022-08-03T12:54:29.241] [TRACE] default - incomming message self: false
+[2022-08-03T12:54:29.241] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:54:29.242] [TRACE] default - incomming message message: !test
+[2022-08-03T12:54:29.242] [TRACE] default - [ '!test' ]
+[2022-08-03T12:54:29.243] [ERROR] default - TypeError: Cannot set properties of undefined (setting 'name')
+    at parse (c:\Projects\SocialAdventure\controller\command.js:16:23)
+    at Array.forEach (<anonymous>)
+    at new Command (c:\Projects\SocialAdventure\controller\command.js:12:15)
+    at client.onMessageHandler (c:\Projects\SocialAdventure\controller\worker.js:92:33)
+    at client.EventEmitter.emit (c:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (c:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (c:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at c:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (c:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+[2022-08-03T12:56:51.309] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:56:51.401] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T12:56:51.401] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:56:51.418] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T12:56:51.421] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:56:51.988] [TRACE] default - add Migration update_001
+[2022-08-03T12:56:52.954] [TRACE] default - add Node craffel
+[2022-08-03T12:56:52.956] [TRACE] default - node connected: craffel
+[2022-08-03T12:57:05.905] [TRACE] default - incomming message self: false
+[2022-08-03T12:57:05.906] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:57:05.906] [TRACE] default - incomming message message: !test
+[2022-08-03T12:57:05.907] [TRACE] default - [ '!test' ]
+[2022-08-03T12:57:05.907] [TRACE] default - Command { name: '', message: '!test', target: '', parameters: [ '0' ] }
+[2022-08-03T12:57:23.718] [TRACE] default - incomming message self: false
+[2022-08-03T12:57:47.623] [TRACE] default - twitch chat client initialized
+[2022-08-03T12:57:47.750] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T12:57:47.750] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T12:57:47.767] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T12:57:47.770] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T12:57:48.366] [TRACE] default - add Migration update_001
+[2022-08-03T12:57:49.785] [TRACE] default - add Node craffel
+[2022-08-03T12:57:49.787] [TRACE] default - node connected: craffel
+[2022-08-03T12:57:52.163] [TRACE] default - incomming message self: false
+[2022-08-03T12:57:52.164] [TRACE] default - incomming message target: #craffel
+[2022-08-03T12:57:52.164] [TRACE] default - incomming message message: !test
+[2022-08-03T12:57:52.164] [TRACE] default - [ '!test' ]
+[2022-08-03T12:57:57.631] [TRACE] default - Command { name: '', message: '!test', target: '', parameters: [ '0' ] }
+[2022-08-03T13:05:07.987] [TRACE] default - twitch chat client initialized
+[2022-08-03T13:05:08.111] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-03T13:05:08.112] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-03T13:05:08.127] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-03T13:05:08.130] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T13:05:08.761] [TRACE] default - add Migration update_001
+[2022-08-03T13:05:09.730] [TRACE] default - add Node craffel
+[2022-08-03T13:05:09.732] [TRACE] default - node connected: craffel
+[2022-08-03T13:07:35.930] [TRACE] default - twitch chat client initialized
+[2022-08-03T13:07:36.026] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T13:07:36.026] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T13:07:36.041] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T13:07:36.044] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T13:07:36.607] [TRACE] default - add Migration update_001
+[2022-08-03T13:07:37.566] [TRACE] default - add Node craffel
+[2022-08-03T13:07:37.568] [TRACE] default - node connected: craffel
+[2022-08-03T13:07:43.794] [TRACE] default - incomming message self: false
+[2022-08-03T13:07:43.794] [TRACE] default - incomming message target: #craffel
+[2022-08-03T13:07:43.795] [TRACE] default - incomming message message: !test
+[2022-08-03T13:07:43.795] [TRACE] default - [ '!test' ]
+[2022-08-03T13:07:43.796] [TRACE] default - Command { name: '!test', message: '!test', target: '', parameters: [] }
+[2022-08-03T13:07:51.807] [TRACE] default - incomming message self: false
+[2022-08-03T13:07:51.808] [TRACE] default - incomming message target: #craffel
+[2022-08-03T13:07:51.808] [TRACE] default - incomming message message: !test:Auto
+[2022-08-03T13:07:51.809] [TRACE] default - [ '!test', 'Auto' ]
+[2022-08-03T13:07:51.809] [TRACE] default - Command {
+  name: '!test',
+  message: '!test:Auto',
+  target: '',
+  parameters: [ 'Auto' ]
+}
+[2022-08-03T13:08:08.374] [TRACE] default - incomming message self: false
+[2022-08-03T13:08:08.374] [TRACE] default - incomming message target: #craffel
+[2022-08-03T13:08:08.374] [TRACE] default - incomming message message: !test:"Das Auto" 50 100 @craffelmat
+[2022-08-03T13:08:08.375] [TRACE] default - [ '!test', '"Das Auto"', '50', '100', '@craffelmat' ]
+[2022-08-03T13:08:08.375] [TRACE] default - Command {
+  name: '!test',
+  message: '!test:"Das Auto" 50 100 @craffelmat',
+  target: '@craffelmat',
+  parameters: [ 'Das Auto"', '50', '100' ]
+}
+[2022-08-03T13:09:52.818] [TRACE] default - twitch chat client initialized
+[2022-08-03T13:09:52.905] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T13:09:52.906] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T13:09:52.920] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T13:09:52.922] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T13:09:53.496] [TRACE] default - add Migration update_001
+[2022-08-03T13:09:54.456] [TRACE] default - add Node craffel
+[2022-08-03T13:09:54.457] [TRACE] default - node connected: craffel

@@ -35,7 +35,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'level';
-router.get('/:node/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace('GET ' + endpoint);
     let node = 'craffel';
     if (request.params.node !== 'default')

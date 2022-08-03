@@ -16,7 +16,7 @@ const router = express.Router();
 //#region Level
 /**
  * @swagger
- * /{node}/level:
+ * /level/{node}:
  *   get:
  *     tags:
  *     - Level
@@ -60,7 +60,7 @@ const router = express.Router();
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
  */
- router.get("/:node/level", level);
+ router.get("/level/:node", level);
 //#endregion
 
 //#region Twitch

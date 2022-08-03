@@ -10,7 +10,7 @@ $(async () => {
 
     //#region Load
     function load() {
-        fetch('./api/default/level', {
+        fetch('./api/level/default', {
             method: 'get',
             headers: {
                 'Content-type': 'application/json'

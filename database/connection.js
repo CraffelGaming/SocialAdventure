@@ -46,6 +46,7 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const jsonMigration = require("../model/migrationItem.json");
 const jsonMigrationGlobal = require("../model/migrationGlobalItem.json");
+const sayItem_1 = require("../model/sayItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -85,10 +86,12 @@ class Connection {
                 migrationItem_1.MigrationItem.initialize(this.sequelize);
                 versionItem_1.VersionItem.initialize(this.sequelize);
                 levelModel_1.LevelItem.initialize(this.sequelize);
+                sayItem_1.SayItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
                 yield levelModel_1.LevelItem.updateTable({ sequelize: this.sequelize });
+                yield sayItem_1.SayItem.updateTable({ sequelize: this.sequelize });
                 yield this.updater("migrations/general");
                 return true;
             }
