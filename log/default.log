@@ -4597,3 +4597,21 @@ notNull Violation: node.isActive cannot be null
 [2022-08-03T13:09:53.496] [TRACE] default - add Migration update_001
 [2022-08-03T13:09:54.456] [TRACE] default - add Node craffel
 [2022-08-03T13:09:54.457] [TRACE] default - node connected: craffel
+[2022-08-03T13:13:31.949] [TRACE] default - twitch chat client initialized
+[2022-08-03T13:13:32.044] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-03T13:13:32.044] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-03T13:13:32.059] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-03T13:13:32.061] [INFO] default - HTTP Server listening on port 80
+[2022-08-03T13:13:32.610] [TRACE] default - add Migration update_001
+[2022-08-03T13:13:33.581] [TRACE] default - add Node craffel
+[2022-08-03T13:13:33.582] [TRACE] default - node connected: craffel
+[2022-08-03T13:13:54.273] [TRACE] default - incomming message self: false
+[2022-08-03T13:13:54.273] [TRACE] default - incomming message target: #craffel
+[2022-08-03T13:13:54.273] [TRACE] default - incomming message message: !test:"Das Auto" 50 100 @craffelmat
+[2022-08-03T13:13:54.274] [TRACE] default - [ '!test', '"Das Auto"', '50', '100', '@craffelmat' ]
+[2022-08-03T13:13:54.275] [TRACE] default - Command {
+  name: '!test',
+  message: '!test:"Das Auto" 50 100 @craffelmat',
+  target: '@craffelmat',
+  parameters: [ 'Das Auto', '50', '100' ]
+}
