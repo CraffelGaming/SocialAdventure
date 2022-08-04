@@ -13,8 +13,7 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 router.get('/' + endpoint + '/default', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace('GET SELECT ' + endpoint);
 
-    if(!request.session.node)
-        request.session.node = 'craffel';
+    global.defaultNode(request, response);
 
     response.status(200).json({ node: request.session.node});
 });

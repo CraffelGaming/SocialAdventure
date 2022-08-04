@@ -1,14 +1,13 @@
 import * as express from 'express';
-
 const router = express.Router();
 const endpoint = 'level';
 
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace('GET ' + endpoint);
-    let node = 'craffel';
+    let node = request.params.node;
 
-    if(request.params.node !== 'default')
-        node = request.params.node;
+    if(node === 'default')
+        node = global.defaultNode(request, response);
 
     const channel = global.worker.channels.find(x => x.node.name === node )
 

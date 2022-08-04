@@ -45,8 +45,7 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
 }));
 router.get('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace('GET SELECT ' + endpoint);
-    if (!request.session.node)
-        request.session.node = 'craffel';
+    global.defaultNode(request, response);
     response.status(200).json({ node: request.session.node });
 }));
 router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {

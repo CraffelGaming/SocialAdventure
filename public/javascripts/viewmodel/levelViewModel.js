@@ -84,7 +84,6 @@ $(async () => {
     }
     //#endregion
 
-
     //#region Translation
     function translation() {
         document.getElementById("labelTitle").textContent = translate(language, 'title');

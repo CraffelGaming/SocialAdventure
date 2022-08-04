@@ -10,8 +10,359 @@ import migration from "./api/api.migration";
 import translation from "./api/api.translation";
 import twitch from "./api/api.twitch";
 import level from "./api/api.level";
+import say from "./api/api.say";
+import hero from "./api/api.hero";
+import herowallet from "./api/api.heroWallet";
+import herotrait from "./api/api.heroTrait";
+import heroinventory from "./api/api.heroInventory";
+import item from "./api/api.item";
 
 const router = express.Router();
+
+//#region Hero Inventory
+/**
+ * @swagger
+ * /heroinventory/{node}:
+ *   get:
+ *     tags:
+ *     - heroinventory
+ *     summary: Hero Inventory
+ *     description: Rückgabe aller Gegenstände eines Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               itemHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstands
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               quantity:
+ *                 type: integer
+ *                 example: 3
+ *                 descrition: Anzahl
+ *               isReload:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Gegenstand gearde im Abenteuer im besitz ist
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/heroinventory/:node", heroinventory);
+//#endregion
+
+
+//#region Item
+/**
+ * @swagger
+ * /item/{node}:
+ *   get:
+ *     tags:
+ *     - Item
+ *     summary: Item
+ *     description: Rückgabe aller Gegenst&auml;nde.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstands
+ *               value:
+ *                 type: string
+ *                 example: "Schwert"
+ *                 descrition: Nabe des Gegenstandes
+ *               gold:
+ *                 type: integer
+ *                 example: 150
+ *                 descrition: Wert des Gegenstandes in Gold
+ *               type:
+ *                 type: number
+ *                 example: 1
+ *                 descrition: Typ des Gegenstandes
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/item/:node", item);
+//#endregion
+
+//#region Hero Trait
+/**
+ * @swagger
+ * /herotrait/{node}:
+ *   get:
+ *     tags:
+ *     - Hero Trait
+ *     summary: Hero Eigenschaften
+ *     description: Rückgabe aller Eigenschaften.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               goldMultipler:
+ *                 type: string
+ *                 example: 1
+ *                 descrition: Skillstufe f&uuml;r Goldfund
+ *               stealMultipler:
+ *                 type: string
+ *                 example: 1
+ *                 descrition: Skillstufe f&uuml;r Diebst&auml;hle
+ *               defenceMultipler:
+ *                 type: number
+ *                 example: 1
+ *                 descrition: Skillstufe f&uuml;r Verteidigung
+ *               workMultipler:
+ *                 type: number
+ *                 example: 1
+ *                 descrition: Skillstufe f&uuml;r t&auml;gliche Arbeit
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/herotrait/:node", herotrait);
+//#endregion
+
+//#region Hero Wallet
+/**
+ * @swagger
+ * /herowallet/{node}:
+ *   get:
+ *     tags:
+ *     - Hero Wallet
+ *     summary: Hero Geldtasche
+ *     description: Rückgabe aller Geldtaschen.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               gold:
+ *                 type: string
+ *                 example: 750
+ *                 descrition: Anzahl an Gold
+ *               diamand:
+ *                 type: string
+ *                 example: 50
+ *                 descrition: Anzahl an Diamanten
+ *               blood:
+ *                 type: number
+ *                 example: 17
+ *                 descrition: Blutrauschpunkte
+ *               lastBlood:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Zeitpunkt des letzten Blutrauschs
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/herowallet/:node", herowallet);
+//#endregion
+
+//#region Hero
+/**
+ * @swagger
+ * /hero/{node}:
+ *   get:
+ *     tags:
+ *     - Hero
+ *     summary: Hero
+ *     description: Rückgabe aller Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               lastSteal:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Letzter Diebszahl.
+ *               lastJoin:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Letzte Teilnahme an einem Abenteuer.
+ *               startIndex:
+ *                 type: number
+ *                 example: 2
+ *                 descrition: Interner Berechnungswert für ein faires Spiel.
+ *               experience:
+ *                 type: number
+ *                 example: 12500
+ *                 descrition: Menge der gesammelten Erfahrung.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/hero/:node", hero);
+//#endregion
+
+//#region Say
+/**
+ * @swagger
+ * /say/{node}:
+ *   get:
+ *     tags:
+ *     - Say
+ *     summary: Say
+ *     description: Rückgabe aller Commands.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               command:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Eindeutiger Name des Commands
+ *               text:
+ *                 type: string
+ *                 example: "Schau dir deinen Helden auf craffel.de an."
+ *                 descrition: Text, der angezeigt wird, wenn der Command ausgelößt wurde.
+ *               minutes:
+ *                 type: number
+ *                 example: 60
+ *                 descrition: Intervall, um den Text automatisch anzuzeigen (Default 0).
+ *               help:
+ *                 type: string
+ *                 example: ""
+ *                 descrition: Hilfetext, für die Zuschauer.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an, ob der Command aktiviert ist.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+ router.get("/say/:node", say);
+//#endregion
 
 //#region Level
 /**
@@ -30,7 +381,7 @@ const router = express.Router();
  *       description: "Node / Channel"
  *       required: true
  *       type: "string"
- *       default: "craffel"
+ *       default: "default"
  *     responses:
  *       200:
  *         description: successful operation
@@ -210,7 +561,7 @@ router.get("/node/default", node);
  *       description: "Node / Channel"
  *       required: true
  *       type: "string"
- *       default: "craffel"
+ *       default: "default"
  *     responses:
  *       200:
  *         description: successful operation

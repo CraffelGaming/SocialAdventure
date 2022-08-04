@@ -29,6 +29,7 @@
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
     "log4js": "^6.4.3",
+    "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "popper.js": "^1.16.1",
     "pug": "^3.0.2",

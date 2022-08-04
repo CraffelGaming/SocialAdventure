@@ -37,9 +37,9 @@ const router = express.Router();
 const endpoint = 'level';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace('GET ' + endpoint);
-    let node = 'craffel';
-    if (request.params.node !== 'default')
-        node = request.params.node;
+    let node = request.params.node;
+    if (node === 'default')
+        node = global.defaultNode(request, response);
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
         const item = yield channel.database.sequelize.models.level.findAll({ order: [['handle', 'ASC']], raw: true });

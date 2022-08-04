@@ -9,42 +9,55 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LevelItem = void 0;
+exports.HeroWalletItem = void 0;
 const sequelize_1 = require("sequelize");
-const json = require("./levelModel.json");
-class LevelItem {
-    constructor(handle, experienceMin, experienceMax) {
-        this.handle = 0;
-        this.experienceMin = 0;
-        this.experienceMax = 0;
+const json = require("./heroWalletItem.json");
+class HeroWalletItem {
+    constructor() {
+        this.heroName = "";
     }
     static initialize(sequelize) {
-        sequelize.define('level', {
-            handle: {
+        sequelize.define('heroWallet', {
+            heroName: {
+                type: sequelize_1.DataTypes.STRING,
+                primaryKey: true,
+                allowNull: false
+            },
+            gold: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
-                primaryKey: true
+                defaultValue: 100
             },
-            experienceMin: {
+            diamand: {
                 type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                defaultValue: 0
             },
-            experienceMax: {
+            blood: {
                 type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                defaultValue: 0
+            },
+            lastBlood: {
+                type: sequelize_1.DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
             }
         }, { freezeTableName: true });
+    }
+    static setAssociation({ sequelize }) {
+        sequelize.models.heroWallet.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
-                    if ((yield sequelize.models.level.count({ where: { handle: item.handle } })) === 0) {
-                        yield sequelize.models.level.create(item);
+                    if ((yield sequelize.models.heroWallet.count({ where: { heroName: item.heroName } })) === 0) {
+                        yield sequelize.models.heroWallet.create(item);
                     }
                     else
-                        yield sequelize.models.level.update(item, { where: { handle: item.handle } });
+                        yield sequelize.models.heroWallet.update(item, { where: { heroName: item.heroName } });
                 }
             }
             catch (ex) {
@@ -53,6 +66,6 @@ class LevelItem {
         });
     }
 }
-exports.LevelItem = LevelItem;
-module.exports.default = LevelItem;
-//# sourceMappingURL=levelModel.js.map
+exports.HeroWalletItem = HeroWalletItem;
+module.exports.default = HeroWalletItem;
+//# sourceMappingURL=heroWalletItem.js.map

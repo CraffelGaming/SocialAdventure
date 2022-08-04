@@ -6,7 +6,7 @@ import { MenuItem } from '../model/menuItem';
 import { TranslationItem } from '../model/translationItem';
 import { TwitchItem } from '../model/twitchItem';
 import { TwitchUserItem } from '../model/twitchUserItem';
-import { LevelItem } from '../model/levelModel';
+import { LevelItem } from '../model/levelItem';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -14,6 +14,11 @@ import * as path from 'path';
 import jsonMigration = require('../model/migrationItem.json');
 import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
 import { SayItem } from '../model/sayItem';
+import { HeroItem } from '../model/heroItem';
+import { HeroTraitItem } from '../model/heroTraitItem';
+import { HeroInventoryItem } from '../model/heroInventoryItem';
+import { HeroWalletItem } from '../model/heroWalletItem';
+import { ItemItem } from '../model/itemItem';
 
 export class Connection {
     databaseName: string;
@@ -40,6 +45,8 @@ export class Connection {
             TwitchItem.initialize(this.sequelize);
             TwitchUserItem.initialize(this.sequelize);
 
+            MenuItem.setAssociation({ sequelize: this.sequelize });
+
             await this.sequelize.sync();
 
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[] });
@@ -64,6 +71,11 @@ export class Connection {
             VersionItem.initialize(this.sequelize);
             LevelItem.initialize(this.sequelize);
             SayItem.initialize(this.sequelize);
+            HeroItem.initialize(this.sequelize);
+            HeroTraitItem.initialize(this.sequelize);
+            HeroWalletItem.initialize(this.sequelize);
+            HeroInventoryItem.initialize(this.sequelize);
+            ItemItem.initialize(this.sequelize);
 
             await this.sequelize.sync();
 
@@ -71,6 +83,16 @@ export class Connection {
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await LevelItem.updateTable({ sequelize: this.sequelize });
             await SayItem.updateTable({ sequelize: this.sequelize });
+            await HeroItem.updateTable({ sequelize: this.sequelize });
+            await HeroTraitItem.updateTable({ sequelize: this.sequelize });
+            await HeroWalletItem.updateTable({ sequelize: this.sequelize });
+            await HeroInventoryItem.updateTable({ sequelize: this.sequelize });
+            await ItemItem.updateTable({ sequelize: this.sequelize });
+
+            HeroItem.setAssociation({ sequelize: this.sequelize });
+            HeroTraitItem.setAssociation({ sequelize: this.sequelize });
+            HeroWalletItem.setAssociation({ sequelize: this.sequelize });
+            HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
 
             await this.updater("migrations/general");
 

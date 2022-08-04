@@ -18,7 +18,6 @@ import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
-import { Twitch } from "./controller/twitch";
 
 const app = express();
 
@@ -47,7 +46,13 @@ declare global {
         email: string;
         created_at: string;
       };
-  }
+}
+
+global.defaultNode = function getDefaultNode(request: express.Request, response: express.Response){
+    if(!request.session.node)
+        request.session.node = "craffelmat";
+    return request.session.node;
+}
 
 // extend session
 declare module 'express-session' {
@@ -100,6 +105,7 @@ app.use('/', routes);
 app.use('/api', api);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/devExpress', express.static(__dirname + '/node_modules/devextreme/dist'));
+app.use('/moment', express.static(__dirname + '/node_modules/moment/src'));
 
 // development error handler
 // will print stacktrace

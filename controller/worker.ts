@@ -26,7 +26,6 @@ export class Worker {
         this.tmi = new tmi.client(tmiSettings);
         this.twitch = new Twitch(log);
         this.log.trace('twitch chat client initialized');
-
         this.globalDatabase = new Connection({ databaseName: Buffer.from('global').toString('base64')});
 
         this.log.trace('basic model path: ' + this.pathModel);

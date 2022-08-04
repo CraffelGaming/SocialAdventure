@@ -41,12 +41,17 @@ const menuItem_1 = require("../model/menuItem");
 const translationItem_1 = require("../model/translationItem");
 const twitchItem_1 = require("../model/twitchItem");
 const twitchUserItem_1 = require("../model/twitchUserItem");
-const levelModel_1 = require("../model/levelModel");
+const levelItem_1 = require("../model/levelItem");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const jsonMigration = require("../model/migrationItem.json");
 const jsonMigrationGlobal = require("../model/migrationGlobalItem.json");
 const sayItem_1 = require("../model/sayItem");
+const heroItem_1 = require("../model/heroItem");
+const heroTraitItem_1 = require("../model/heroTraitItem");
+const heroInventoryItem_1 = require("../model/heroInventoryItem");
+const heroWalletItem_1 = require("../model/heroWalletItem");
+const itemItem_1 = require("../model/itemItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -65,6 +70,7 @@ class Connection {
                 translationItem_1.TranslationItem.initialize(this.sequelize);
                 twitchItem_1.TwitchItem.initialize(this.sequelize);
                 twitchUserItem_1.TwitchUserItem.initialize(this.sequelize);
+                menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
@@ -85,13 +91,27 @@ class Connection {
                 yield this.sequelize.authenticate();
                 migrationItem_1.MigrationItem.initialize(this.sequelize);
                 versionItem_1.VersionItem.initialize(this.sequelize);
-                levelModel_1.LevelItem.initialize(this.sequelize);
+                levelItem_1.LevelItem.initialize(this.sequelize);
                 sayItem_1.SayItem.initialize(this.sequelize);
+                heroItem_1.HeroItem.initialize(this.sequelize);
+                heroTraitItem_1.HeroTraitItem.initialize(this.sequelize);
+                heroWalletItem_1.HeroWalletItem.initialize(this.sequelize);
+                heroInventoryItem_1.HeroInventoryItem.initialize(this.sequelize);
+                itemItem_1.ItemItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
-                yield levelModel_1.LevelItem.updateTable({ sequelize: this.sequelize });
+                yield levelItem_1.LevelItem.updateTable({ sequelize: this.sequelize });
                 yield sayItem_1.SayItem.updateTable({ sequelize: this.sequelize });
+                yield heroItem_1.HeroItem.updateTable({ sequelize: this.sequelize });
+                yield heroTraitItem_1.HeroTraitItem.updateTable({ sequelize: this.sequelize });
+                yield heroWalletItem_1.HeroWalletItem.updateTable({ sequelize: this.sequelize });
+                yield heroInventoryItem_1.HeroInventoryItem.updateTable({ sequelize: this.sequelize });
+                yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize });
+                heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
+                heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
+                heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });
+                heroInventoryItem_1.HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
                 yield this.updater("migrations/general");
                 return true;
             }

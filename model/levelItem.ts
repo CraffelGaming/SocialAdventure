@@ -1,7 +1,7 @@
 
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./levelModel.json');
+import json = require('./levelItem.json');
 
 export class LevelItem{
     handle: number;

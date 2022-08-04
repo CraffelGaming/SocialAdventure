@@ -45,6 +45,11 @@ const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
 const worker_1 = require("./controller/worker");
 const app = express();
+global.defaultNode = function getDefaultNode(request, response) {
+    if (!request.session.node)
+        request.session.node = "craffelmat";
+    return request.session.node;
+};
 // session handler
 app.use(session({
     'secret': settings_json_1.default.secret,
@@ -80,6 +85,7 @@ app.use('/', index_1.default);
 app.use('/api', api_1.default);
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/devExpress', express.static(__dirname + '/node_modules/devextreme/dist'));
+app.use('/moment', express.static(__dirname + '/node_modules/moment/src'));
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

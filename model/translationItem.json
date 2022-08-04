@@ -35,5 +35,20 @@
     { "page": "level", "handle": "title", "language": "de-DE", "translation": "Level"},
     { "page": "level", "handle": "handle", "language": "de-DE", "translation": "Level"},
     { "page": "level", "handle": "experienceMin", "language": "de-DE", "translation": "Erfahrung von"},
-    { "page": "level", "handle": "experienceMax", "language": "de-DE", "translation": "Erfahrung bis"}
+    { "page": "level", "handle": "experienceMax", "language": "de-DE", "translation": "Erfahrung bis"},
+    { "page": "say", "handle": "command", "language": "de-DE", "translation": "Befehl"},
+    { "page": "say", "handle": "text", "language": "de-DE", "translation": "Text"},
+    { "page": "say", "handle": "minutes", "language": "de-DE", "translation": "Minuten"},
+    { "page": "say", "handle": "help", "language": "de-DE", "translation": "Hilfe"},
+    { "page": "say", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "item", "handle": "handle", "language": "de-DE", "translation": "Nummer"},
+    { "page": "item", "handle": "value", "language": "de-DE", "translation": "Name"},
+    { "page": "item", "handle": "gold", "language": "de-DE", "translation": "Wert"},
+    { "page": "item", "handle": "type", "language": "de-DE", "translation": "Typ"},
+    { "page": "hero", "handle": "name", "language": "de-DE", "translation": "Name"},
+    { "page": "hero", "handle": "lastSteal", "language": "de-DE", "translation": "Name"},
+    { "page": "hero", "handle": "lastJoin", "language": "de-DE", "translation": "Name"},
+    { "page": "hero", "handle": "startIndex", "language": "de-DE", "translation": "Name"},
+    { "page": "hero", "handle": "experience", "language": "de-DE", "translation": "Name"},
+    { "page": "hero", "handle": "isActive", "language": "de-DE", "translation": "Name"}
 ]

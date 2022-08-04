@@ -34,6 +34,8 @@ class MenuItem {
                 allowNull: false
             }
         }, { freezeTableName: true });
+    }
+    static setAssociation({ sequelize }) {
         sequelize.models.menu.hasMany(sequelize.models.menu, { as: 'childs', foreignKey: 'parentEndpoint' });
         sequelize.models.menu.belongsTo(sequelize.models.menu, { as: 'parent', foreignKey: 'parentEndpoint' });
     }
