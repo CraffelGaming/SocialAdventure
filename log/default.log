@@ -293,3 +293,77 @@
 [2022-08-04T21:14:58.148] [TRACE] default - GET translation
 [2022-08-04T21:14:58.159] [TRACE] default - GET menu
 [2022-08-04T21:14:58.176] [TRACE] default - GET twitch
+[2022-08-04T21:15:17.350] [TRACE] default - twitch chat client initialized
+[2022-08-04T21:15:17.438] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-04T21:15:17.438] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-04T21:15:17.453] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-04T21:15:17.455] [INFO] default - HTTP Server listening on port 80
+[2022-08-04T21:15:18.192] [TRACE] default - add Migration update_001
+[2022-08-04T21:15:19.209] [TRACE] default - add Node craffelmat
+[2022-08-04T21:15:19.211] [TRACE] default - node connected: craffelmat
+[2022-08-04T21:15:24.324] [TRACE] default - GET translation
+[2022-08-04T21:15:24.333] [TRACE] default - GET menu
+[2022-08-04T21:15:24.351] [TRACE] default - GET twitch
+[2022-08-04T21:16:25.118] [TRACE] default - GET translation
+[2022-08-04T21:16:25.121] [TRACE] default - GET translation
+[2022-08-04T21:16:25.128] [TRACE] default - GET menu
+[2022-08-04T21:16:25.132] [TRACE] default - GET hero
+[2022-08-04T21:16:25.145] [TRACE] default - GET twitch
+[2022-08-04T21:17:00.203] [TRACE] default - GET translation
+[2022-08-04T21:17:00.205] [TRACE] default - GET translation
+[2022-08-04T21:17:00.216] [TRACE] default - GET menu
+[2022-08-04T21:17:00.218] [TRACE] default - GET hero
+[2022-08-04T21:17:00.228] [TRACE] default - GET twitch
+[2022-08-04T21:17:04.261] [TRACE] default - GET translation
+[2022-08-04T21:17:04.263] [TRACE] default - GET translation
+[2022-08-04T21:17:04.270] [TRACE] default - GET menu
+[2022-08-04T21:17:04.280] [TRACE] default - GET twitch
+[2022-08-04T21:17:07.014] [TRACE] default - GET translation
+[2022-08-04T21:17:07.015] [TRACE] default - GET translation
+[2022-08-04T21:17:07.021] [TRACE] default - GET menu
+[2022-08-04T21:17:07.024] [TRACE] default - GET say
+[2022-08-04T21:17:07.032] [TRACE] default - GET twitch
+[2022-08-04T21:17:11.808] [TRACE] default - GET translation
+[2022-08-04T21:17:11.810] [TRACE] default - GET translation
+[2022-08-04T21:17:11.815] [TRACE] default - GET menu
+[2022-08-04T21:17:11.818] [TRACE] default - GET hero
+[2022-08-04T21:17:11.829] [TRACE] default - GET twitch
+[2022-08-04T21:17:13.316] [TRACE] default - GET translation
+[2022-08-04T21:17:13.317] [TRACE] default - GET translation
+[2022-08-04T21:17:13.322] [TRACE] default - GET menu
+[2022-08-04T21:17:13.325] [TRACE] default - GET item
+[2022-08-04T21:17:13.333] [TRACE] default - GET twitch
+[2022-08-04T21:17:15.305] [TRACE] default - GET translation
+[2022-08-04T21:17:15.306] [TRACE] default - GET translation
+[2022-08-04T21:17:15.311] [TRACE] default - GET menu
+[2022-08-04T21:17:15.319] [TRACE] default - GET twitch
+[2022-08-04T21:17:16.592] [TRACE] default - GET translation
+[2022-08-04T21:17:16.593] [TRACE] default - GET translation
+[2022-08-04T21:17:16.599] [TRACE] default - GET menu
+[2022-08-04T21:17:16.607] [TRACE] default - GET twitch
+[2022-08-04T21:17:18.123] [TRACE] default - GET translation
+[2022-08-04T21:17:18.124] [TRACE] default - GET translation
+[2022-08-04T21:17:18.131] [TRACE] default - GET menu
+[2022-08-04T21:17:18.134] [TRACE] default - GET level
+[2022-08-04T21:17:18.245] [TRACE] default - GET twitch
+[2022-08-04T21:17:19.403] [TRACE] default - GET translation
+[2022-08-04T21:17:19.404] [TRACE] default - GET translation
+[2022-08-04T21:17:19.412] [TRACE] default - GET menu
+[2022-08-04T21:17:19.421] [TRACE] default - GET twitch
+[2022-08-04T21:17:20.407] [TRACE] default - GET translation
+[2022-08-04T21:17:20.409] [TRACE] default - GET translation
+[2022-08-04T21:17:20.416] [TRACE] default - GET menu
+[2022-08-04T21:17:20.425] [TRACE] default - GET twitch
+[2022-08-04T21:17:21.775] [TRACE] default - GET translation
+[2022-08-04T21:17:21.777] [TRACE] default - GET translation
+[2022-08-04T21:17:21.782] [TRACE] default - GET menu
+[2022-08-04T21:17:21.784] [TRACE] default - GET node
+[2022-08-04T21:17:21.793] [TRACE] default - GET twitch
+[2022-08-04T21:17:24.705] [TRACE] default - GET translation
+[2022-08-04T21:17:24.706] [TRACE] default - GET translation
+[2022-08-04T21:17:24.711] [TRACE] default - GET menu
+[2022-08-04T21:17:24.718] [TRACE] default - GET twitch
+[2022-08-04T21:17:25.336] [TRACE] default - GET translation
+[2022-08-04T21:17:25.337] [TRACE] default - GET translation
+[2022-08-04T21:17:25.343] [TRACE] default - GET menu
+[2022-08-04T21:17:25.356] [TRACE] default - GET twitch
