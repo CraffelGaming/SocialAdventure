@@ -367,3 +367,1282 @@
 [2022-08-04T21:17:25.337] [TRACE] default - GET translation
 [2022-08-04T21:17:25.343] [TRACE] default - GET menu
 [2022-08-04T21:17:25.356] [TRACE] default - GET twitch
+[2022-08-04T21:18:08.587] [TRACE] default - GET translation
+[2022-08-04T21:18:08.589] [TRACE] default - GET translation
+[2022-08-04T21:18:08.595] [TRACE] default - GET menu
+[2022-08-04T21:18:08.603] [TRACE] default - GET twitch
+[2022-08-04T21:18:11.395] [TRACE] default - GET translation
+[2022-08-04T21:18:11.397] [TRACE] default - GET translation
+[2022-08-04T21:18:11.403] [TRACE] default - GET menu
+[2022-08-04T21:18:11.405] [TRACE] default - GET say
+[2022-08-04T21:18:11.413] [TRACE] default - GET twitch
+[2022-08-04T21:18:30.895] [TRACE] default - GET translation
+[2022-08-04T21:18:30.896] [TRACE] default - GET translation
+[2022-08-04T21:18:30.902] [TRACE] default - GET menu
+[2022-08-04T21:18:30.904] [TRACE] default - GET node
+[2022-08-04T21:18:30.911] [TRACE] default - GET twitch
+[2022-08-04T21:18:38.840] [TRACE] default - GET translation
+[2022-08-04T21:18:38.842] [TRACE] default - GET translation
+[2022-08-04T21:18:38.847] [TRACE] default - GET menu
+[2022-08-04T21:18:38.855] [TRACE] default - GET twitch
+[2022-08-04T21:18:42.071] [TRACE] default - GET translation
+[2022-08-04T21:18:42.073] [TRACE] default - GET translation
+[2022-08-04T21:18:42.079] [TRACE] default - GET menu
+[2022-08-04T21:18:42.082] [TRACE] default - GET hero
+[2022-08-04T21:18:42.093] [TRACE] default - GET twitch
+[2022-08-04T21:19:42.861] [TRACE] default - twitch chat client initialized
+[2022-08-04T21:19:42.954] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-04T21:19:42.954] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-04T21:19:42.968] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-04T21:19:42.971] [INFO] default - HTTP Server listening on port 80
+[2022-08-04T21:19:43.696] [TRACE] default - add Migration update_001
+[2022-08-04T21:19:44.653] [TRACE] default - add Node craffelmat
+[2022-08-04T21:19:44.654] [TRACE] default - node connected: craffelmat
+[2022-08-04T21:20:10.735] [TRACE] default - GET translation
+[2022-08-04T21:20:10.738] [TRACE] default - GET translation
+[2022-08-04T21:20:10.745] [TRACE] default - GET menu
+[2022-08-04T21:20:10.750] [TRACE] default - GET hero
+[2022-08-04T21:20:10.762] [TRACE] default - GET twitch
+[2022-08-04T21:20:16.155] [TRACE] default - GET translation
+[2022-08-04T21:20:16.156] [TRACE] default - GET translation
+[2022-08-04T21:20:16.162] [TRACE] default - GET menu
+[2022-08-04T21:20:16.164] [TRACE] default - GET say
+[2022-08-04T21:20:16.172] [TRACE] default - GET twitch
+[2022-08-04T21:20:17.857] [TRACE] default - GET translation
+[2022-08-04T21:20:17.859] [TRACE] default - GET translation
+[2022-08-04T21:20:17.865] [TRACE] default - GET menu
+[2022-08-04T21:20:17.868] [TRACE] default - GET item
+[2022-08-04T21:20:17.875] [TRACE] default - GET twitch
+[2022-08-04T21:20:49.360] [TRACE] default - GET translation
+[2022-08-04T21:20:49.361] [TRACE] default - GET translation
+[2022-08-04T21:20:49.367] [TRACE] default - GET menu
+[2022-08-04T21:20:49.371] [TRACE] default - GET level
+[2022-08-04T21:20:49.380] [TRACE] default - GET twitch
+[2022-08-04T21:20:52.044] [TRACE] default - GET translation
+[2022-08-04T21:20:52.045] [TRACE] default - GET translation
+[2022-08-04T21:20:52.051] [TRACE] default - GET menu
+[2022-08-04T21:20:52.061] [TRACE] default - GET twitch
+[2022-08-04T21:20:53.777] [TRACE] default - GET translation
+[2022-08-04T21:20:53.778] [TRACE] default - GET translation
+[2022-08-04T21:20:53.784] [TRACE] default - GET menu
+[2022-08-04T21:20:53.786] [TRACE] default - GET item
+[2022-08-04T21:20:53.794] [TRACE] default - GET twitch
+[2022-08-04T21:26:27.112] [TRACE] default - GET hero
+[2022-08-04T21:26:54.525] [TRACE] default - GET menu
+[2022-08-04T21:26:54.528] [TRACE] default - GET item
+[2022-08-04T21:26:54.683] [TRACE] default - GET twitch
+[2022-08-04T21:27:52.944] [TRACE] default - GET translation
+[2022-08-04T21:27:52.946] [TRACE] default - GET translation
+[2022-08-04T21:27:52.952] [TRACE] default - GET menu
+[2022-08-04T21:27:52.954] [TRACE] default - GET node
+[2022-08-04T21:27:52.964] [TRACE] default - GET twitch
+[2022-08-04T21:27:55.076] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-04T21:27:55.991] [TRACE] default - {
+  access_token: 'ifli3ilzacf11300nnhypmxrqveot8',
+  expires_in: 15429,
+  refresh_token: '2mp4d9ys78o9cb32pyq8n29lmstg90sdgzq9dtdhghbwk2wt5v',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-04T21:27:56.262] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-04T21:27:56.623] [TRACE] default - GET translation
+[2022-08-04T21:27:56.624] [TRACE] default - GET translation
+[2022-08-04T21:27:56.629] [TRACE] default - GET menu
+[2022-08-04T21:27:56.641] [TRACE] default - GET twitch
+[2022-08-05T16:22:23.767] [TRACE] default - twitch chat client initialized
+[2022-08-05T16:22:23.938] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-05T16:22:23.938] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-05T16:22:23.984] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-05T16:22:23.988] [INFO] default - HTTP Server listening on port 80
+[2022-08-05T16:22:24.929] [TRACE] default - add Migration update_001
+[2022-08-05T16:22:25.928] [TRACE] default - add Node craffelmat
+[2022-08-05T16:22:25.930] [TRACE] default - node connected: craffelmat
+[2022-08-05T16:22:36.973] [TRACE] default - incomming message self: false
+[2022-08-05T16:22:36.973] [TRACE] default - incomming message target: #craffelmat
+[2022-08-05T16:22:36.973] [TRACE] default - incomming message message: !test
+[2022-08-05T16:22:36.974] [TRACE] default - message push !test
+[2022-08-05T16:22:36.974] [TRACE] default - [ '!test' ]
+[2022-08-05T16:22:36.975] [TRACE] default - Command { name: '!test', message: '!test', target: '', parameters: [] }
+[2022-08-05T16:22:37.183] [TRACE] default - message shift !test
+[2022-08-05T16:22:37.185] [TRACE] default - incomming message self: true
+[2022-08-05T16:22:48.013] [TRACE] default - incomming message self: false
+[2022-08-05T16:22:48.013] [TRACE] default - incomming message target: #craffelmat
+[2022-08-05T16:22:48.013] [TRACE] default - incomming message message: !a
+[2022-08-05T16:22:48.013] [TRACE] default - message push !a
+[2022-08-05T16:22:48.014] [TRACE] default - [ '!a' ]
+[2022-08-05T16:22:48.014] [TRACE] default - Command { name: '!a', message: '!a', target: '', parameters: [] }
+[2022-08-05T16:22:48.449] [TRACE] default - message shift !a
+[2022-08-05T16:22:48.450] [TRACE] default - incomming message self: true
+[2022-08-05T16:32:28.569] [TRACE] default - GET translation
+[2022-08-05T16:32:28.572] [TRACE] default - GET translation
+[2022-08-05T16:32:28.579] [TRACE] default - GET menu
+[2022-08-05T16:32:28.593] [TRACE] default - GET twitch
+[2022-08-05T16:32:30.994] [TRACE] default - GET translation
+[2022-08-05T16:32:30.995] [TRACE] default - GET translation
+[2022-08-05T16:32:31.003] [TRACE] default - GET menu
+[2022-08-05T16:32:31.006] [TRACE] default - GET hero
+[2022-08-05T16:32:31.016] [TRACE] default - GET twitch
+[2022-08-05T16:32:53.305] [TRACE] default - GET hero
+[2022-08-05T16:33:00.383] [TRACE] default - GET item
+[2022-08-05T16:33:06.387] [TRACE] default - GET heroinventory
+[2022-08-05T17:03:01.520] [TRACE] default - twitch chat client initialized
+[2022-08-05T17:03:01.619] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-05T17:03:01.620] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-05T17:03:01.635] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-05T17:03:01.637] [INFO] default - HTTP Server listening on port 80
+[2022-08-05T17:03:02.358] [TRACE] default - add Migration update_001
+[2022-08-05T17:03:03.315] [TRACE] default - add Node craffelmat
+[2022-08-05T17:03:03.317] [TRACE] default - node connected: craffelmat
+[2022-08-05T17:03:42.287] [TRACE] default - GET heroinventory
+[2022-08-05T17:03:44.946] [TRACE] default - GET heroinventory
+[2022-08-05T17:03:48.448] [TRACE] default - GET heroinventory
+[2022-08-05T17:04:03.955] [TRACE] default - GET heroinventory
+[2022-08-05T17:05:01.397] [TRACE] default - twitch chat client initialized
+[2022-08-05T17:05:01.487] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-05T17:05:01.487] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-05T17:05:01.504] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-05T17:05:01.507] [INFO] default - HTTP Server listening on port 80
+[2022-08-05T17:05:02.252] [TRACE] default - add Migration update_001
+[2022-08-05T17:05:03.257] [TRACE] default - add Node craffelmat
+[2022-08-05T17:05:03.259] [TRACE] default - node connected: craffelmat
+[2022-08-05T17:05:58.456] [TRACE] default - GET heroinventory
+[2022-08-05T17:08:46.765] [TRACE] default - twitch chat client initialized
+[2022-08-05T17:08:46.866] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-05T17:08:46.866] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-05T17:08:46.881] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-05T17:08:46.884] [INFO] default - HTTP Server listening on port 80
+[2022-08-05T17:08:47.585] [TRACE] default - add Migration update_001
+[2022-08-05T17:09:42.465] [TRACE] default - twitch chat client initialized
+[2022-08-05T17:09:42.569] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-05T17:09:42.570] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-05T17:09:42.586] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-05T17:09:42.589] [INFO] default - HTTP Server listening on port 80
+[2022-08-05T17:09:43.295] [TRACE] default - add Migration update_001
+[2022-08-05T17:09:44.273] [TRACE] default - add Node craffelmat
+[2022-08-05T17:09:44.274] [TRACE] default - node connected: craffelmat
+[2022-08-05T17:11:20.329] [TRACE] default - GET heroinventory
+[2022-08-05T17:17:24.858] [TRACE] default - GET translation
+[2022-08-05T17:17:24.861] [TRACE] default - GET translation
+[2022-08-05T17:17:24.868] [TRACE] default - GET menu
+[2022-08-05T17:17:24.880] [TRACE] default - GET twitch
+[2022-08-05T17:17:26.932] [TRACE] default - GET translation
+[2022-08-05T17:17:26.934] [TRACE] default - GET translation
+[2022-08-05T17:17:26.940] [TRACE] default - GET menu
+[2022-08-05T17:17:26.942] [TRACE] default - GET translation
+[2022-08-05T17:17:26.950] [TRACE] default - GET twitch
+[2022-08-05T17:17:26.952] [TRACE] default - GET hero
+[2022-08-05T17:17:56.876] [TRACE] default - GET translation
+[2022-08-05T17:17:56.878] [TRACE] default - GET translation
+[2022-08-05T17:17:56.885] [TRACE] default - GET menu
+[2022-08-05T17:17:56.888] [TRACE] default - GET translation
+[2022-08-05T17:17:56.898] [TRACE] default - GET twitch
+[2022-08-05T17:17:56.901] [TRACE] default - GET hero
+[2022-08-05T17:18:37.845] [TRACE] default - GET translation
+[2022-08-05T17:18:37.847] [TRACE] default - GET translation
+[2022-08-05T17:18:37.853] [TRACE] default - GET menu
+[2022-08-05T17:18:37.856] [TRACE] default - GET translation
+[2022-08-05T17:18:37.867] [TRACE] default - GET twitch
+[2022-08-05T17:18:37.869] [TRACE] default - GET hero
+[2022-08-05T17:18:39.008] [TRACE] default - GET heroinventory
+[2022-08-05T17:52:51.906] [TRACE] default - GET translation
+[2022-08-05T17:52:51.909] [TRACE] default - GET translation
+[2022-08-05T17:52:51.917] [TRACE] default - GET menu
+[2022-08-05T17:52:51.921] [TRACE] default - GET translation
+[2022-08-05T17:52:51.933] [TRACE] default - GET twitch
+[2022-08-05T17:52:51.935] [TRACE] default - GET hero
+[2022-08-05T17:52:55.338] [TRACE] default - GET translation
+[2022-08-05T17:52:55.341] [TRACE] default - GET translation
+[2022-08-05T17:52:55.347] [TRACE] default - GET menu
+[2022-08-05T17:52:55.358] [TRACE] default - GET twitch
+[2022-08-05T17:52:56.618] [TRACE] default - GET translation
+[2022-08-05T17:52:56.620] [TRACE] default - GET translation
+[2022-08-05T17:52:56.627] [TRACE] default - GET menu
+[2022-08-05T17:52:56.630] [TRACE] default - GET translation
+[2022-08-05T17:52:56.637] [TRACE] default - GET twitch
+[2022-08-05T17:52:56.639] [TRACE] default - GET hero
+[2022-08-05T17:52:58.019] [TRACE] default - GET heroinventory
+[2022-08-05T17:53:07.073] [TRACE] default - GET translation
+[2022-08-05T17:53:07.075] [TRACE] default - GET translation
+[2022-08-05T17:53:07.080] [TRACE] default - GET menu
+[2022-08-05T17:53:07.083] [TRACE] default - GET say
+[2022-08-05T17:53:07.091] [TRACE] default - GET twitch
+[2022-08-05T17:53:11.469] [TRACE] default - GET translation
+[2022-08-05T17:53:11.471] [TRACE] default - GET translation
+[2022-08-05T17:53:11.476] [TRACE] default - GET menu
+[2022-08-05T17:53:11.479] [TRACE] default - GET node
+[2022-08-05T17:53:11.486] [TRACE] default - GET twitch
+[2022-08-05T18:01:00.334] [TRACE] default - GET translation
+[2022-08-05T18:01:00.337] [TRACE] default - GET translation
+[2022-08-05T18:01:00.346] [TRACE] default - GET menu
+[2022-08-05T18:01:00.348] [TRACE] default - GET node
+[2022-08-05T18:01:00.360] [TRACE] default - GET twitch
+[2022-08-05T18:01:21.867] [TRACE] default - GET translation
+[2022-08-05T18:01:21.869] [TRACE] default - GET translation
+[2022-08-05T18:01:21.875] [TRACE] default - GET menu
+[2022-08-05T18:01:21.889] [TRACE] default - GET twitch
+[2022-08-05T18:01:24.402] [TRACE] default - GET translation
+[2022-08-05T18:01:24.404] [TRACE] default - GET translation
+[2022-08-05T18:01:24.411] [TRACE] default - GET menu
+[2022-08-05T18:01:24.414] [TRACE] default - GET item
+[2022-08-05T18:01:24.575] [TRACE] default - GET twitch
+[2022-08-05T18:01:35.207] [TRACE] default - GET translation
+[2022-08-05T18:01:35.209] [TRACE] default - GET translation
+[2022-08-05T18:01:35.217] [TRACE] default - GET menu
+[2022-08-05T18:01:35.224] [TRACE] default - GET level
+[2022-08-05T18:01:35.232] [TRACE] default - GET twitch
+[2022-08-05T18:01:52.963] [TRACE] default - {
+  url_authorize: 'https://id.twitch.tv/oauth2/authorize',
+  url_token: 'https://id.twitch.tv/oauth2/token',
+  url_base: 'https://api.twitch.tv/helix',
+  client_id: '9azszz1fb1jzcbvirxf8qxh7nybgez',
+  client_secret: 'pyjnyw1de8y77lx3wds1joy54nx5wn',
+  redirect_uri: 'http://localhost/twitch',
+  redirect_uri_echtsystem: 'https://craffel.de/twitch',
+  response_type: 'code',
+  scope: 'chat:read user:read:email',
+  state: 'craffel',
+  grant_type: 'authorization_code',
+  refresh_type: 'refresh_token'
+}
+[2022-08-05T18:01:53.906] [TRACE] default - {
+  access_token: 'qzchzes0gjzina08eqygux26jajid4',
+  expires_in: 14883,
+  refresh_token: 'ptkpyzfo6ow1mjlcmx3vo59a4j5q9bxpo1yiwlglzcr1s25m9i',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-05T18:01:54.130] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-05T18:01:54.634] [TRACE] default - GET translation
+[2022-08-05T18:01:54.637] [TRACE] default - GET translation
+[2022-08-05T18:01:54.644] [TRACE] default - GET menu
+[2022-08-05T18:01:54.656] [TRACE] default - GET twitch
+[2022-08-05T18:01:57.804] [TRACE] default - GET translation
+[2022-08-05T18:01:57.806] [TRACE] default - GET translation
+[2022-08-05T18:01:57.813] [TRACE] default - GET menu
+[2022-08-05T18:01:57.823] [TRACE] default - GET twitch
+[2022-08-05T18:02:00.196] [TRACE] default - GET translation
+[2022-08-05T18:02:00.198] [TRACE] default - GET translation
+[2022-08-05T18:02:00.206] [TRACE] default - GET menu
+[2022-08-05T18:02:00.211] [TRACE] default - GET say
+[2022-08-05T18:02:00.373] [TRACE] default - GET twitch
+[2022-08-05T18:02:06.775] [TRACE] default - GET translation
+[2022-08-05T18:02:06.777] [TRACE] default - GET translation
+[2022-08-05T18:02:06.787] [TRACE] default - GET menu
+[2022-08-05T18:02:06.801] [TRACE] default - GET twitch
+[2022-08-07T16:24:04.373] [TRACE] default - twitch chat client initialized
+[2022-08-07T16:24:04.516] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T16:24:04.516] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T16:24:04.561] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T16:24:04.565] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T16:24:05.271] [TRACE] default - add Migration update_001
+[2022-08-07T16:24:06.251] [TRACE] default - add Node craffelmat
+[2022-08-07T16:24:06.253] [TRACE] default - node connected: craffelmat
+[2022-08-07T16:24:21.188] [TRACE] default - GET translation
+[2022-08-07T16:24:21.191] [TRACE] default - GET translation
+[2022-08-07T16:24:21.208] [TRACE] default - GET menu
+[2022-08-07T16:24:21.222] [TRACE] default - GET twitch
+[2022-08-07T16:24:23.134] [TRACE] default - GET translation
+[2022-08-07T16:24:23.136] [TRACE] default - GET translation
+[2022-08-07T16:24:23.142] [TRACE] default - GET menu
+[2022-08-07T16:24:23.145] [TRACE] default - GET translation
+[2022-08-07T16:24:23.154] [TRACE] default - GET twitch
+[2022-08-07T16:24:23.156] [TRACE] default - GET hero
+[2022-08-07T16:24:24.684] [TRACE] default - GET heroinventory
+[2022-08-07T16:25:07.808] [TRACE] default - GET translation
+[2022-08-07T16:25:07.810] [TRACE] default - GET translation
+[2022-08-07T16:25:07.817] [TRACE] default - GET menu
+[2022-08-07T16:25:07.821] [TRACE] default - GET translation
+[2022-08-07T16:25:07.830] [TRACE] default - GET twitch
+[2022-08-07T16:25:07.833] [TRACE] default - GET hero
+[2022-08-07T16:25:09.436] [TRACE] default - GET heroinventory
+[2022-08-07T16:25:41.686] [TRACE] default - GET translation
+[2022-08-07T16:25:41.688] [TRACE] default - GET translation
+[2022-08-07T16:25:41.697] [TRACE] default - GET menu
+[2022-08-07T16:25:41.701] [TRACE] default - GET translation
+[2022-08-07T16:25:41.711] [TRACE] default - GET twitch
+[2022-08-07T16:25:41.713] [TRACE] default - GET hero
+[2022-08-07T16:25:42.680] [TRACE] default - GET heroinventory
+[2022-08-07T16:32:15.484] [TRACE] default - GET translation
+[2022-08-07T16:32:15.490] [TRACE] default - GET translation
+[2022-08-07T16:32:15.493] [TRACE] default - GET menu
+[2022-08-07T16:32:15.505] [TRACE] default - GET translation
+[2022-08-07T16:32:15.510] [TRACE] default - GET twitch
+[2022-08-07T16:32:15.517] [TRACE] default - GET hero
+[2022-08-07T16:32:18.278] [TRACE] default - GET heroinventory
+[2022-08-07T16:32:53.963] [TRACE] default - GET translation
+[2022-08-07T16:32:53.966] [TRACE] default - GET translation
+[2022-08-07T16:32:53.972] [TRACE] default - GET menu
+[2022-08-07T16:32:53.976] [TRACE] default - GET translation
+[2022-08-07T16:32:53.985] [TRACE] default - GET twitch
+[2022-08-07T16:32:53.987] [TRACE] default - GET hero
+[2022-08-07T16:33:45.871] [TRACE] default - GET translation
+[2022-08-07T16:33:45.873] [TRACE] default - GET translation
+[2022-08-07T16:33:45.880] [TRACE] default - GET menu
+[2022-08-07T16:33:45.884] [TRACE] default - GET translation
+[2022-08-07T16:33:45.902] [TRACE] default - GET twitch
+[2022-08-07T16:33:45.904] [TRACE] default - GET hero
+[2022-08-07T16:33:51.326] [TRACE] default - GET heroinventory
+[2022-08-07T16:34:03.505] [TRACE] default - GET translation
+[2022-08-07T16:34:03.507] [TRACE] default - GET translation
+[2022-08-07T16:34:03.524] [TRACE] default - GET menu
+[2022-08-07T16:34:03.527] [TRACE] default - GET translation
+[2022-08-07T16:34:03.537] [TRACE] default - GET twitch
+[2022-08-07T16:34:03.540] [TRACE] default - GET hero
+[2022-08-07T16:34:05.166] [TRACE] default - GET heroinventory
+[2022-08-07T16:34:23.071] [TRACE] default - GET translation
+[2022-08-07T16:34:23.072] [TRACE] default - GET translation
+[2022-08-07T16:34:23.080] [TRACE] default - GET menu
+[2022-08-07T16:34:23.082] [TRACE] default - GET translation
+[2022-08-07T16:34:23.090] [TRACE] default - GET twitch
+[2022-08-07T16:34:23.094] [TRACE] default - GET hero
+[2022-08-07T16:34:25.073] [TRACE] default - GET heroinventory
+[2022-08-07T16:34:54.042] [TRACE] default - GET translation
+[2022-08-07T16:34:54.043] [TRACE] default - GET translation
+[2022-08-07T16:34:54.051] [TRACE] default - GET menu
+[2022-08-07T16:34:54.054] [TRACE] default - GET translation
+[2022-08-07T16:34:54.064] [TRACE] default - GET twitch
+[2022-08-07T16:34:54.065] [TRACE] default - GET hero
+[2022-08-07T16:34:55.090] [TRACE] default - GET heroinventory
+[2022-08-07T16:35:44.520] [TRACE] default - GET translation
+[2022-08-07T16:35:44.521] [TRACE] default - GET translation
+[2022-08-07T16:35:44.529] [TRACE] default - GET menu
+[2022-08-07T16:35:44.531] [TRACE] default - GET translation
+[2022-08-07T16:35:44.542] [TRACE] default - GET twitch
+[2022-08-07T16:35:44.544] [TRACE] default - GET hero
+[2022-08-07T16:35:46.086] [TRACE] default - GET heroinventory
+[2022-08-07T16:36:04.168] [TRACE] default - GET translation
+[2022-08-07T16:36:04.170] [TRACE] default - GET translation
+[2022-08-07T16:36:04.178] [TRACE] default - GET menu
+[2022-08-07T16:36:04.181] [TRACE] default - GET translation
+[2022-08-07T16:36:04.190] [TRACE] default - GET twitch
+[2022-08-07T16:36:04.192] [TRACE] default - GET hero
+[2022-08-07T16:36:05.206] [TRACE] default - GET heroinventory
+[2022-08-07T16:37:42.229] [TRACE] default - GET translation
+[2022-08-07T16:37:42.230] [TRACE] default - GET translation
+[2022-08-07T16:37:42.237] [TRACE] default - GET menu
+[2022-08-07T16:37:42.242] [TRACE] default - GET translation
+[2022-08-07T16:37:42.254] [TRACE] default - GET twitch
+[2022-08-07T16:37:42.256] [TRACE] default - GET hero
+[2022-08-07T16:37:43.281] [TRACE] default - GET heroinventory
+[2022-08-07T16:38:30.172] [TRACE] default - twitch chat client initialized
+[2022-08-07T16:38:30.260] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T16:38:30.260] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T16:38:30.277] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T16:38:30.280] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T16:38:31.163] [TRACE] default - GET translation
+[2022-08-07T16:38:31.167] [TRACE] default - GET translation
+[2022-08-07T16:38:31.175] [TRACE] default - GET menu
+[2022-08-07T16:38:31.194] [TRACE] default - GET twitch
+[2022-08-07T16:38:31.222] [TRACE] default - add Migration update_001
+[2022-08-07T16:38:32.210] [TRACE] default - add Node craffelmat
+[2022-08-07T16:38:32.212] [TRACE] default - node connected: craffelmat
+[2022-08-07T16:38:33.355] [TRACE] default - GET translation
+[2022-08-07T16:38:33.356] [TRACE] default - GET translation
+[2022-08-07T16:38:33.362] [TRACE] default - GET menu
+[2022-08-07T16:38:33.366] [TRACE] default - GET node
+[2022-08-07T16:38:33.377] [TRACE] default - GET twitch
+[2022-08-07T16:39:40.051] [TRACE] default - GET translation
+[2022-08-07T16:39:40.053] [TRACE] default - GET translation
+[2022-08-07T16:39:40.062] [TRACE] default - GET menu
+[2022-08-07T16:39:40.064] [TRACE] default - GET node
+[2022-08-07T16:39:40.075] [TRACE] default - GET twitch
+[2022-08-07T16:39:43.827] [TRACE] default - GET translation
+[2022-08-07T16:39:43.829] [TRACE] default - GET translation
+[2022-08-07T16:39:43.835] [TRACE] default - GET menu
+[2022-08-07T16:39:43.839] [TRACE] default - GET item
+[2022-08-07T16:39:43.854] [TRACE] default - GET twitch
+[2022-08-07T16:39:46.938] [TRACE] default - GET translation
+[2022-08-07T16:39:46.940] [TRACE] default - GET translation
+[2022-08-07T16:39:46.947] [TRACE] default - GET menu
+[2022-08-07T16:39:46.951] [TRACE] default - GET translation
+[2022-08-07T16:39:46.962] [TRACE] default - GET twitch
+[2022-08-07T16:39:46.964] [TRACE] default - GET hero
+[2022-08-07T16:39:47.864] [TRACE] default - GET heroinventory
+[2022-08-07T16:39:57.205] [TRACE] default - GET translation
+[2022-08-07T16:39:57.206] [TRACE] default - GET translation
+[2022-08-07T16:39:57.224] [TRACE] default - GET menu
+[2022-08-07T16:39:57.227] [TRACE] default - GET translation
+[2022-08-07T16:39:57.239] [TRACE] default - GET twitch
+[2022-08-07T16:39:57.240] [TRACE] default - GET hero
+[2022-08-07T16:39:59.476] [TRACE] default - GET heroinventory
+[2022-08-07T16:40:19.673] [TRACE] default - GET translation
+[2022-08-07T16:40:19.675] [TRACE] default - GET translation
+[2022-08-07T16:40:19.681] [TRACE] default - GET menu
+[2022-08-07T16:40:19.692] [TRACE] default - GET twitch
+[2022-08-07T16:40:21.649] [TRACE] default - GET translation
+[2022-08-07T16:40:21.651] [TRACE] default - GET translation
+[2022-08-07T16:40:21.660] [TRACE] default - GET menu
+[2022-08-07T16:40:21.674] [TRACE] default - GET twitch
+[2022-08-07T16:40:23.364] [TRACE] default - GET translation
+[2022-08-07T16:40:23.366] [TRACE] default - GET translation
+[2022-08-07T16:40:23.372] [TRACE] default - GET menu
+[2022-08-07T16:40:23.375] [TRACE] default - GET item
+[2022-08-07T16:40:23.532] [TRACE] default - GET twitch
+[2022-08-07T16:40:24.581] [TRACE] default - GET translation
+[2022-08-07T16:40:24.583] [TRACE] default - GET translation
+[2022-08-07T16:40:24.589] [TRACE] default - GET menu
+[2022-08-07T16:40:24.592] [TRACE] default - GET node
+[2022-08-07T16:40:24.603] [TRACE] default - GET twitch
+[2022-08-07T16:40:56.969] [TRACE] default - incomming message self: false
+[2022-08-07T16:40:56.969] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T16:40:56.969] [TRACE] default - incomming message message: !test
+[2022-08-07T16:40:56.970] [TRACE] default - [ '!test' ]
+[2022-08-07T16:40:56.971] [TRACE] default - Command { name: '!test', message: '!test', target: '', parameters: [] }
+[2022-08-07T16:40:56.972] [TRACE] default - message push !test
+[2022-08-07T16:40:57.199] [TRACE] default - message shift !test
+[2022-08-07T16:40:57.200] [TRACE] default - incomming message self: true
+[2022-08-07T17:11:39.271] [TRACE] default - twitch chat client initialized
+[2022-08-07T17:11:39.372] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T17:11:39.372] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T17:11:39.388] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T17:11:39.391] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T17:11:40.127] [TRACE] default - add Migration update_001
+[2022-08-07T17:11:41.098] [TRACE] default - add Node craffelmat
+[2022-08-07T17:11:41.099] [TRACE] default - node connected: craffelmat
+[2022-08-07T17:11:54.998] [TRACE] default - incomming message self: false
+[2022-08-07T17:11:54.999] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T17:11:54.999] [TRACE] default - incomming message message: !test
+[2022-08-07T17:11:55.000] [TRACE] default - {
+  'badge-info': null,
+  badges: { premium: '1' },
+  'client-nonce': '729a639eaabe576cc6573a6d9ea64299',
+  color: '#8A2BE2',
+  'display-name': 'craffel',
+  emotes: null,
+  'first-msg': false,
+  flags: null,
+  id: '09b3c525-ec73-4dfc-bbf0-6b1c539d8220',
+  mod: false,
+  'returning-chatter': false,
+  'room-id': '664649274',
+  subscriber: false,
+  'tmi-sent-ts': '1659885113846',
+  turbo: false,
+  'user-id': '440371621',
+  'user-type': null,
+  'emotes-raw': null,
+  'badge-info-raw': null,
+  'badges-raw': 'premium/1',
+  username: 'craffel',
+  'message-type': 'chat'
+}
+[2022-08-07T17:11:55.003] [TRACE] default - [ '!test' ]
+[2022-08-07T17:11:55.004] [TRACE] default - Command {
+  name: '!test',
+  message: '!test',
+  target: '',
+  source: '',
+  parameters: []
+}
+[2022-08-07T17:11:55.005] [TRACE] default - message push !test
+[2022-08-07T17:11:55.170] [TRACE] default - message shift !test
+[2022-08-07T17:11:55.172] [TRACE] default - incomming message self: true
+[2022-08-07T17:20:05.426] [TRACE] default - twitch chat client initialized
+[2022-08-07T17:20:05.518] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T17:20:05.518] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T17:20:05.534] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T17:20:05.537] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T17:20:06.265] [TRACE] default - add Migration update_001
+[2022-08-07T17:20:07.344] [TRACE] default - add Node craffelmat
+[2022-08-07T17:20:07.345] [TRACE] default - node connected: craffelmat
+[2022-08-07T17:20:23.202] [TRACE] default - incomming message self: false
+[2022-08-07T17:20:23.203] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T17:20:23.203] [TRACE] default - incomming message message: !test
+[2022-08-07T17:20:23.204] [TRACE] default - [ '!test' ]
+[2022-08-07T17:20:23.204] [TRACE] default - Command {
+  name: '!test',
+  message: '!test',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T17:20:23.205] [TRACE] default - message push !test
+[2022-08-07T17:20:24.226] [TRACE] default - message shift !test
+[2022-08-07T17:20:24.227] [TRACE] default - incomming message self: true
+[2022-08-07T18:12:31.523] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:12:31.634] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:12:31.635] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:12:31.650] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:12:31.653] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:12:32.474] [TRACE] default - add Migration update_001
+[2022-08-07T18:12:33.428] [TRACE] default - add Node craffelmat
+[2022-08-07T18:17:09.014] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:17:09.131] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-08-07T18:17:09.132] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:17:09.148] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-08-07T18:17:09.150] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:17:10.039] [TRACE] default - add Migration update_001
+[2022-08-07T18:18:31.366] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:18:31.460] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:18:31.461] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:18:31.476] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:18:31.478] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:18:32.296] [TRACE] default - add Migration update_001
+[2022-08-07T18:18:33.248] [TRACE] default - add Node craffelmat
+[2022-08-07T18:18:57.908] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:18:58.002] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:18:58.002] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:18:58.017] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:18:58.021] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:18:58.840] [TRACE] default - add Migration update_001
+[2022-08-07T18:18:59.800] [TRACE] default - add Node craffelmat
+[2022-08-07T18:19:00.274] [TRACE] default - <ref *1> [
+  Say {
+    translation: null,
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 16:19:00.211 +00:00'
+    }
+  }
+]
+[2022-08-07T18:19:00.277] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:31:26.929] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:31:27.022] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:31:27.022] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:31:27.036] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:31:27.039] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:31:27.849] [TRACE] default - add Migration update_001
+[2022-08-07T18:31:28.808] [TRACE] default - add Node craffelmat
+[2022-08-07T18:31:29.282] [TRACE] default - {
+  command: 'craffel',
+  text: 'Schau dir deinen Helden auf craffel.de an.',
+  minutes: 60,
+  help: '',
+  isActive: 1,
+  createdAt: '2022-08-04 18:41:13.614 +00:00',
+  updatedAt: '2022-08-07 16:31:29.219 +00:00'
+}
+[2022-08-07T18:31:29.284] [TRACE] default - <ref *1> Loot {
+  translation: Promise { <pending> },
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T18:31:29.287] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:35:03.976] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:35:04.069] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:35:04.070] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:35:04.085] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:35:04.088] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:35:04.980] [TRACE] default - add Migration update_001
+[2022-08-07T18:35:05.953] [TRACE] default - add Node craffelmat
+[2022-08-07T18:35:06.473] [TRACE] default - {
+  command: 'craffel',
+  text: 'Schau dir deinen Helden auf craffel.de an.',
+  minutes: 60,
+  help: '',
+  isActive: 1,
+  createdAt: '2022-08-04 18:41:13.614 +00:00',
+  updatedAt: '2022-08-07 16:35:06.408 +00:00'
+}
+[2022-08-07T18:35:06.477] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T18:35:06.480] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:36:00.630] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:36:00.720] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:36:00.721] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:36:00.734] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:36:00.737] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:36:01.564] [TRACE] default - add Migration update_001
+[2022-08-07T18:36:02.561] [TRACE] default - add Node craffelmat
+[2022-08-07T18:36:03.049] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 16:36:02.982 +00:00'
+    }
+  }
+]
+[2022-08-07T18:36:03.055] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T18:36:03.058] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:44:59.225] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:44:59.319] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:44:59.319] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:44:59.336] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:44:59.340] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:45:00.196] [TRACE] default - add Migration update_001
+[2022-08-07T18:45:01.171] [TRACE] default - add Node craffelmat
+[2022-08-07T18:45:01.645] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 16:45:01.579 +00:00'
+    }
+  }
+]
+[2022-08-07T18:45:01.651] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T18:45:01.654] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:45:10.151] [TRACE] default - incomming message self: false
+[2022-08-07T18:45:10.151] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T18:45:10.151] [TRACE] default - incomming message message: !test
+[2022-08-07T18:45:10.152] [TRACE] default - loot execute
+[2022-08-07T18:45:10.152] [TRACE] default - say execute
+[2022-08-07T18:45:10.152] [TRACE] default - Command {
+  name: '!test',
+  message: '!test',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T18:45:10.153] [TRACE] default - message push !test
+[2022-08-07T18:45:11.015] [TRACE] default - message shift !test
+[2022-08-07T18:45:11.016] [TRACE] default - incomming message self: true
+[2022-08-07T18:51:51.234] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:51:51.329] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:51:51.329] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:51:51.346] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:51:51.350] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:51:52.216] [TRACE] default - add Migration update_001
+[2022-08-07T18:51:53.199] [TRACE] default - add Node craffelmat
+[2022-08-07T18:51:53.697] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 16:51:53.633 +00:00'
+    }
+  }
+]
+[2022-08-07T18:51:53.703] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T18:51:53.706] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:52:03.272] [TRACE] default - incomming message self: false
+[2022-08-07T18:52:03.273] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T18:52:03.273] [TRACE] default - incomming message message: !test
+[2022-08-07T18:52:03.274] [TRACE] default - loot execute
+[2022-08-07T18:52:03.274] [TRACE] default - say execute
+[2022-08-07T18:52:03.274] [TRACE] default - 1337
+[2022-08-07T18:52:03.274] [TRACE] default - Command {
+  name: '!test',
+  message: '!test',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T18:52:03.275] [TRACE] default - message push !test
+[2022-08-07T18:52:04.448] [TRACE] default - message shift !test
+[2022-08-07T18:52:04.450] [TRACE] default - incomming message self: true
+[2022-08-07T18:59:14.607] [TRACE] default - twitch chat client initialized
+[2022-08-07T18:59:14.714] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T18:59:14.714] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T18:59:14.729] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T18:59:14.732] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T18:59:15.568] [TRACE] default - add Migration update_001
+[2022-08-07T18:59:16.541] [TRACE] default - add Node craffelmat
+[2022-08-07T18:59:17.044] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 16:59:16.976 +00:00'
+    }
+  }
+]
+[2022-08-07T18:59:17.052] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T18:59:17.055] [TRACE] default - node connected: craffelmat
+[2022-08-07T18:59:23.263] [TRACE] default - incomming message self: false
+[2022-08-07T18:59:23.263] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T18:59:23.264] [TRACE] default - incomming message message: !loot
+[2022-08-07T18:59:23.264] [TRACE] default - loot execute
+[2022-08-07T18:59:23.265] [TRACE] default - say execute
+[2022-08-07T18:59:23.265] [TRACE] default - Command {
+  name: '!loot',
+  message: '!loot',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T18:59:23.266] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'length')
+    at Puffer.addMessages (C:\Projects\SocialAdventure\controller\puffer.js:18:35)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:97:32)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+[2022-08-07T19:00:33.773] [TRACE] default - incomming message self: false
+[2022-08-07T19:00:33.773] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T19:00:33.774] [TRACE] default - incomming message message: !loot
+[2022-08-07T19:00:33.774] [TRACE] default - loot execute
+[2022-08-07T19:00:33.774] [TRACE] default - say execute
+[2022-08-07T19:00:33.775] [TRACE] default - Command {
+  name: '!loot',
+  message: '!loot',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T19:00:33.776] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'length')
+    at Puffer.addMessages (C:\Projects\SocialAdventure\controller\puffer.js:18:35)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:97:32)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+[2022-08-07T19:01:03.627] [TRACE] default - twitch chat client initialized
+[2022-08-07T19:01:03.716] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T19:01:03.717] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T19:01:03.732] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T19:01:03.735] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T19:01:04.554] [TRACE] default - add Migration update_001
+[2022-08-07T19:01:17.298] [TRACE] default - twitch chat client initialized
+[2022-08-07T19:01:17.393] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T19:01:17.394] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T19:01:17.409] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T19:01:17.412] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T19:01:18.223] [TRACE] default - add Migration update_001
+[2022-08-07T19:01:19.211] [TRACE] default - add Node craffelmat
+[2022-08-07T19:01:19.687] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 17:01:19.620 +00:00'
+    }
+  }
+]
+[2022-08-07T19:01:19.694] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T19:01:19.697] [TRACE] default - node connected: craffelmat
+[2022-08-07T19:01:26.672] [TRACE] default - incomming message self: false
+[2022-08-07T19:01:26.672] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T19:01:26.673] [TRACE] default - incomming message message: !loot
+[2022-08-07T19:01:26.673] [TRACE] default - loot execute
+[2022-08-07T19:01:26.674] [TRACE] default - say execute
+[2022-08-07T19:01:26.674] [TRACE] default - Command {
+  name: '!loot',
+  message: '!loot',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T19:01:26.675] [TRACE] default - 0
+[2022-08-07T19:01:26.675] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'length')
+    at Puffer.addMessages (C:\Projects\SocialAdventure\controller\puffer.js:19:35)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:97:32)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+[2022-08-07T19:01:48.876] [TRACE] default - twitch chat client initialized
+[2022-08-07T19:01:48.968] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T19:01:48.968] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T19:01:48.983] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T19:01:48.986] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T19:01:49.908] [TRACE] default - add Migration update_001
+[2022-08-07T19:01:50.853] [TRACE] default - add Node craffelmat
+[2022-08-07T19:01:51.351] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 17:01:51.283 +00:00'
+    }
+  }
+]
+[2022-08-07T19:01:51.359] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T19:01:51.362] [TRACE] default - node connected: craffelmat
+[2022-08-07T19:02:16.873] [TRACE] default - twitch chat client initialized
+[2022-08-07T19:02:16.970] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T19:02:16.971] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T19:02:16.986] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T19:02:16.989] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T19:02:17.837] [TRACE] default - add Migration update_001
+[2022-08-07T19:02:18.782] [TRACE] default - add Node craffelmat
+[2022-08-07T19:02:19.259] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 17:02:19.191 +00:00'
+    }
+  }
+]
+[2022-08-07T19:02:19.265] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T19:02:19.268] [TRACE] default - node connected: craffelmat
+[2022-08-07T19:02:51.128] [TRACE] default - incomming message self: false
+[2022-08-07T19:02:51.129] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T19:02:51.129] [TRACE] default - incomming message message: !loot
+[2022-08-07T19:02:51.130] [TRACE] default - loot execute
+[2022-08-07T19:02:51.130] [TRACE] default - say execute
+[2022-08-07T19:02:51.131] [TRACE] default - Command {
+  name: '!loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-08-07T19:02:51.132] [TRACE] default - undefined
+[2022-08-07T19:02:51.132] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'length')
+    at Puffer.addMessages (C:\Projects\SocialAdventure\controller\puffer.js:19:35)
+    at client.onMessageHandler (C:\Projects\SocialAdventure\controller\worker.js:97:32)
+    at client.EventEmitter.emit (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\events.js:88:13)
+    at client.emits (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:90:13)
+    at client.handleMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1117:13)
+    at C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1228:9
+    at Array.forEach (<anonymous>)
+    at client._onMessage (C:\Projects\SocialAdventure\node_modules\tmi.js\lib\client.js:1225:8)
+    at WebSocket.onMessage (C:\Projects\SocialAdventure\node_modules\ws\lib\event-target.js:199:18)
+    at WebSocket.emit (node:events:390:28)
+[2022-08-07T19:04:14.977] [TRACE] default - twitch chat client initialized
+[2022-08-07T19:04:15.072] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-07T19:04:15.073] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-07T19:04:15.088] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-07T19:04:15.091] [INFO] default - HTTP Server listening on port 80
+[2022-08-07T19:04:15.915] [TRACE] default - add Migration update_001
+[2022-08-07T19:04:16.892] [TRACE] default - add Node craffelmat
+[2022-08-07T19:04:17.371] [TRACE] default - <ref *1> [
+  Say {
+    translation: [
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation],
+      [translation]
+    ],
+    channel: Channel {
+      node: [node],
+      database: [Connection],
+      puffer: [Puffer],
+      say: [Circular *1]
+    },
+    basicTranslation: Promise { <pending> },
+    item: {
+      command: 'craffel',
+      text: 'Schau dir deinen Helden auf craffel.de an.',
+      minutes: 60,
+      help: '',
+      isActive: 1,
+      createdAt: '2022-08-04 18:41:13.614 +00:00',
+      updatedAt: '2022-08-07 17:04:17.305 +00:00'
+    }
+  }
+]
+[2022-08-07T19:04:17.378] [TRACE] default - <ref *1> Loot {
+  translation: [],
+  channel: Channel {
+    node: node {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    database: Connection {
+      databaseName: 'Y3JhZmZlbG1hdA==',
+      databasePath: 'C:\\Projects\\SocialAdventure\\database\\Y3JhZmZlbG1hdA==.sqlite',
+      isNewDatabase: false,
+      sequelize: [Sequelize]
+    },
+    puffer: Puffer { messages: [], node: [node] },
+    say: [ [Say] ],
+    loot: [Circular *1]
+  },
+  basicTranslation: Promise { <pending> }
+}
+[2022-08-07T19:04:17.382] [TRACE] default - node connected: craffelmat
+[2022-08-07T19:04:20.209] [TRACE] default - incomming message self: false
+[2022-08-07T19:04:20.209] [TRACE] default - incomming message target: #craffelmat
+[2022-08-07T19:04:20.210] [TRACE] default - incomming message message: !loot
+[2022-08-07T19:04:20.210] [TRACE] default - loot execute
+[2022-08-07T19:04:20.211] [TRACE] default - say execute
+[2022-08-07T19:04:20.211] [TRACE] default - Command {
+  name: '!loot',
+  message: '!loot',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-08-07T19:04:20.212] [TRACE] default - [ 'Lootieloot', '' ]
+[2022-08-07T19:04:20.212] [TRACE] default - Lootieloot
+[2022-08-07T19:04:20.212] [TRACE] default - message push Lootieloot
+[2022-08-07T19:04:20.213] [TRACE] default - [ 'Lootieloot', '' ]
+[2022-08-07T19:04:20.213] [TRACE] default - 
+[2022-08-07T19:04:21.125] [TRACE] default - message shift Lootieloot
+[2022-08-07T19:04:21.126] [TRACE] default - incomming message self: true

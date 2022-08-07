@@ -24,7 +24,7 @@ class Worker {
         this.pathMigration = path.join(__dirname, '..', 'database', 'migrations');
         this.channels = [];
         this.tmi = new tmi.client(tmiSettings);
-        this.twitch = new twitch_1.Twitch(log);
+        this.twitch = new twitch_1.Twitch();
         this.log.trace('twitch chat client initialized');
         this.globalDatabase = new connection_1.Connection({ databaseName: Buffer.from('global').toString('base64') });
         this.log.trace('basic model path: ' + this.pathModel);
@@ -38,7 +38,9 @@ class Worker {
             for (const item of Object.values(yield this.globalDatabase.sequelize.models.node.findAll())) {
                 this.log.trace('add Node ' + item.name);
                 const channel = new channel_1.Channel(item);
-                channel.database.initialize();
+                yield channel.database.initialize();
+                yield channel.addSay();
+                yield channel.addLoot();
                 // Register Channel to twitch
                 this.register(channel);
                 this.channels.push(channel);
@@ -50,7 +52,7 @@ class Worker {
         return __awaiter(this, void 0, void 0, function* () {
             const data = request.app.get('twitch');
             this.log.trace(data);
-            const twitch = new twitch_1.Twitch(this.log);
+            const twitch = new twitch_1.Twitch();
             const credentials = yield twitch.twitchAuthentification(request, response);
             if (credentials) {
                 const userData = yield twitch.TwitchPush(request, response, "GET", "/users?client_id=" + data.client_id);
@@ -89,8 +91,10 @@ class Worker {
             global.worker.log.trace('incomming message message: ' + message);
             const channel = global.worker.channels.find(x => x.node.name === target.replace('#', ''));
             if (channel) {
-                const command = new command_1.Command(message);
+                const command = new command_1.Command(message, context);
+                const messages = channel.execute(command);
                 global.worker.log.trace(command);
+                channel.puffer.addMessages(messages);
             }
         }
         catch (ex) {

@@ -5,12 +5,6 @@ import log4js = require('log4js');
 import fetch from 'node-fetch';
 
 export class Twitch {
-    log: log4js.Logger;
-
-    constructor(log: log4js.Logger){
-        this.log = log;
-    }
-
     async twitchAuthentification(request: express.Request, response: express.Response) {
         const data = request.app.get('twitch');
         const twitch = await fetch(data.url_token + '?client_id=' + data.client_id +
@@ -26,7 +20,7 @@ export class Twitch {
 
         if (twitch.ok) {
             const result = (await twitch.json()) as globalThis.credentialItem;
-            this.log.trace(result);
+            global.worker.log.trace(result);
             request.session.twitch = result;
             return true;
         }
@@ -49,7 +43,7 @@ export class Twitch {
 
         if (twitch.ok) {
             const result = ((await twitch.json()).data[0]) as globalThis.credentialUserItem;
-            this.log.trace(result);
+            global.worker.log.trace(result);
             return result;
         }
 

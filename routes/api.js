@@ -95,6 +95,63 @@ const router = express.Router();
  *                 descrition: Datum der letzten Änderung
  */
 router.get("/heroinventory/:node", api_heroInventory_1.default);
+/**
+ * @swagger
+ * /heroinventory/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - heroinventory
+ *     summary: Hero Inventory
+ *     description: Rückgabe aller Gegenstände eines Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Hero"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               itemHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstands
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               quantity:
+ *                 type: integer
+ *                 example: 3
+ *                 descrition: Anzahl
+ *               isReload:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Gegenstand gearde im Abenteuer im besitz ist
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ */
+router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
 //#endregion
 //#region Item
 /**

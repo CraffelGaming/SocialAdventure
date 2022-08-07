@@ -112,20 +112,30 @@ global.worker = new worker_1.Worker(log4js.getLogger("default"));
 global.worker.initialize();
 // Logging
 global.worker.log.trace('Execution Path: ' + __dirname);
-// start server
-if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.existsSync(path.join(__dirname, settings_json_1.default.cert))) {
-    https.createServer({
-        key: fs.readFileSync(path.join(__dirname, settings_json_1.default.key)),
-        cert: fs.readFileSync(path.join(__dirname, settings_json_1.default.cert))
-    }, app)
-        .listen(app.get('port'), () => {
-        global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
-    });
-}
-else {
-    http.createServer(app)
-        .listen(app.get('port'), () => {
-        global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
-    });
+start();
+function start() {
+    try {
+        // start server
+        if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.existsSync(path.join(__dirname, settings_json_1.default.cert))) {
+            https.createServer({
+                key: fs.readFileSync(path.join(__dirname, settings_json_1.default.key)),
+                cert: fs.readFileSync(path.join(__dirname, settings_json_1.default.cert))
+            }, app)
+                .listen(app.get('port'), () => {
+                global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
+            });
+        }
+        else {
+            http.createServer(app)
+                .listen(app.get('port'), () => {
+                global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
+            });
+        }
+    }
+    catch (ex) {
+        global.worker.log.info('Error start server! Restart...');
+        setTimeout(start, 1000);
+        start();
+    }
 }
 //# sourceMappingURL=bot.js.map

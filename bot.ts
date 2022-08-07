@@ -18,6 +18,7 @@ import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
+import { delay } from "bluebird";
 
 const app = express();
 
@@ -138,18 +139,29 @@ global.worker.initialize();
 // Logging
 global.worker.log.trace('Execution Path: ' + __dirname);
 
-// start server
-if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join(__dirname, settings.cert))) {
-    https.createServer({
-        key: fs.readFileSync(path.join(__dirname, settings.key)),
-        cert: fs.readFileSync(path.join(__dirname, settings.cert))
-    }, app)
-        .listen(app.get('port'), () => {
-            global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
-            })
-} else {
-    http.createServer(app)
-        .listen(app.get('port'), () => {
-                global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
-            })
+start();
+
+function start(){
+    try{
+    // start server
+    if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join(__dirname, settings.cert))) {
+        https.createServer({
+            key: fs.readFileSync(path.join(__dirname, settings.key)),
+            cert: fs.readFileSync(path.join(__dirname, settings.cert))
+        }, app)
+            .listen(app.get('port'), () => {
+                global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
+                })
+    } else {
+        http.createServer(app)
+            .listen(app.get('port'), () => {
+                    global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
+                })
+    }
+    } catch(ex){
+        global.worker.log.info('Error start server! Restart...');
+        setTimeout(start, 1000);
+        start();
+    }
+
 }

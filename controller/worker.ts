@@ -24,7 +24,7 @@ export class Worker {
         this.pathMigration = path.join(__dirname, '..','database', 'migrations');
         this.channels = [];
         this.tmi = new tmi.client(tmiSettings);
-        this.twitch = new Twitch(log);
+        this.twitch = new Twitch();
         this.log.trace('twitch chat client initialized');
         this.globalDatabase = new Connection({ databaseName: Buffer.from('global').toString('base64')});
 
@@ -41,7 +41,10 @@ export class Worker {
         for(const item of Object.values(await this.globalDatabase.sequelize.models.node.findAll()) as unknown as NodeItem[]){
             this.log.trace('add Node ' + item.name);
             const channel = new Channel(item);
-            channel.database.initialize();
+
+            await channel.database.initialize();
+            await channel.addSay();
+            await channel.addLoot();
 
             // Register Channel to twitch
             this.register(channel);
@@ -54,7 +57,7 @@ export class Worker {
         const data = request.app.get('twitch');
         this.log.trace(data);
 
-        const twitch = new Twitch(this.log);
+        const twitch = new Twitch();
         const credentials = await twitch.twitchAuthentification(request, response);
 
         if(credentials){
@@ -96,8 +99,10 @@ export class Worker {
             const channel = global.worker.channels.find(x => x.node.name === target.replace('#',''))
 
             if(channel){
-                const command = new Command(message);
+                const command = new Command(message, context);
+                const messages = channel.execute(command);
                 global.worker.log.trace(command);
+                channel.puffer.addMessages(messages);
             }
         } catch (ex){
             global.worker.log.error(ex);

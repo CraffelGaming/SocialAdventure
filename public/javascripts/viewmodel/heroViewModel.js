@@ -2,6 +2,8 @@ import { getTranslation, translate } from './globalData.js';
 
 $(async () => {
     let language = await getTranslation('hero');
+    let languageItem = await getTranslation('item');
+
     window.jsPDF = window.jspdf.jsPDF;
     
     translation();
@@ -46,6 +48,10 @@ $(async () => {
                 },
                 showRowLines: true,
                 showBorders: true,
+                masterDetail: {
+                    enabled: true,
+                    template: masterDetailTemplate
+                },
                 columns: [
                     { dataField: "name", caption: translate(language, 'name') },
                     { dataField: "lastSteal",caption: translate(language, 'lastSteal') },
@@ -83,6 +89,67 @@ $(async () => {
                 }
             });
         });
+
+        function masterDetailTemplate(_, masterDetailOptions) {
+            return $('<div>').dxTabPanel({
+                items: [{
+                    title: translate(languageItem, 'title'),
+                    template: createItemTabTemplate(masterDetailOptions.data, 1),
+                }],
+            });
+        }
+
+        function createItemTabTemplate(masterDetailData) {
+            return function () {
+                return $('<div>').dxDataGrid({
+                    dataSource: new DevExpress.data.CustomStore({
+                        key: ["itemHandle", "heroName"],
+                        loadMode: "raw",
+                        load: async function () {
+                            var properties;
+                            await fetch('./api/heroinventory/default/hero/' + masterDetailData.name, {
+                                method: 'get',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                }
+                            }).then(function (res) {
+                                switch (res.status) {
+                                    case 200:
+                                        return res.json();
+                                }
+                            }).then(function (json) {
+                                if (json != undefined) {
+                                    console.log(json);
+                                    properties = json;
+                                }
+                            });
+                            return properties;
+                        }
+                    }),
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    selection: { mode: "single" },
+                    editing: {
+                        mode: "row",
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        allowAdding: false
+                    },
+                    columns: [
+                        { dataField: "item.value", caption: translate(languageItem, 'value') },
+                        { dataField: "item.gold", caption: translate(languageItem, 'gold') },
+                        { dataField: "quantity", caption: translate(language, 'quantity') },
+                        {
+                            caption: translate(language, 'total'),
+                            calculateCellValue(data) {
+                                console.log(data);
+                              return data.quantity * data.item.gold;
+                            }
+                        }
+                    ]
+                });
+            };
+        }
     }
     //#endregion
 

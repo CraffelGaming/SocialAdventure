@@ -2,17 +2,17 @@ export class  Command {
     name: string;
     message: string;
     target: string;
+    source: string;
     parameters: string[];
 
-    constructor(message: string){
+    constructor(message: string, context : any){
         this.name = "";
         this.message =  message;
         this.target = "";
+        this.source =  context.username;
         this.parameters = [];
 
         const parts = message.match(/(?:[^\s:"]+|"[^"]*")+/g)
-
-        global.worker.log.trace(parts);
 
         for(const part in parts){
             if(parts[part].trim().startsWith("!"))

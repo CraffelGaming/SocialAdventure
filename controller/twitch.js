@@ -15,9 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Twitch = void 0;
 const node_fetch_1 = __importDefault(require("node-fetch"));
 class Twitch {
-    constructor(log) {
-        this.log = log;
-    }
     twitchAuthentification(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const data = request.app.get('twitch');
@@ -33,7 +30,7 @@ class Twitch {
             });
             if (twitch.ok) {
                 const result = (yield twitch.json());
-                this.log.trace(result);
+                global.worker.log.trace(result);
                 request.session.twitch = result;
                 return true;
             }
@@ -55,7 +52,7 @@ class Twitch {
             });
             if (twitch.ok) {
                 const result = ((yield twitch.json()).data[0]);
-                this.log.trace(result);
+                global.worker.log.trace(result);
                 return result;
             }
             return null;
