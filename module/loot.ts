@@ -13,15 +13,10 @@ export class Loot extends Module {
         super(translation, channel);
     }
 
-
-    initialize(){
-        global.worker.log.trace('loot initialize');
-    }
-
     execute(command: Command){
         try{
             global.worker.log.trace('loot execute');
-            return this[command.name.replaceAll('!','')]();
+            return this[command.name]();
         } catch(ex){
             return '';
         }

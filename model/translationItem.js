@@ -60,6 +60,12 @@ class TranslationItem {
             }
         });
     }
+    static translate(translation, handle) {
+        const value = translation.find(x => x.handle === handle);
+        if (value && value.translation)
+            return value.translation;
+        return '[missing translation]';
+    }
 }
 exports.TranslationItem = TranslationItem;
 module.exports.default = TranslationItem;

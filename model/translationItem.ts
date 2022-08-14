@@ -1,7 +1,6 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./translationItem.json');
-
 export class TranslationItem{
     page: string;
     handle: string;
@@ -52,6 +51,14 @@ export class TranslationItem{
         } catch(ex){
             global.worker.log.error(ex);
         }
+    }
+
+    static translate(translation: TranslationItem[], handle: string): string {
+        const value = translation.find(x => x.handle === handle)
+        if (value && value.translation)
+            return value.translation;
+
+        return '[missing translation]';
     }
 }
 

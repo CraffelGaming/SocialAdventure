@@ -16,7 +16,7 @@ export class  Command {
 
         for(const part in parts){
             if(parts[part].trim().startsWith("!"))
-                this.name = parts[part].trim().toLowerCase();
+                this.name = parts[part].trim().toLowerCase().replaceAll('!','');
             else if(parts[part].startsWith("@"))
                 this.target = parts[part].trim().toLowerCase();
             else this.parameters.push(parts[part].replaceAll('"', '').trim());

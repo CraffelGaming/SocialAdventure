@@ -12,7 +12,11 @@ export class Module {
     constructor(translation : TranslationItem[], channel: Channel){
         this.translation = translation;
         this.channel = channel;
-        this.basicTranslation = global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.language }, order: [ [ 'handle', 'ASC' ]], raw: false}) as unknown as TranslationItem[];
+
+    }
+
+    async initialize(){
+        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[];
     }
 
     isOwner(command : Command){

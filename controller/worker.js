@@ -79,27 +79,29 @@ class Worker {
         this.tmi.join(channel.node.name.replace('#', ''));
     }
     onMessageHandler(target, context, message, self) {
-        try {
-            global.worker.log.trace('incomming message self: ' + self);
-            if (self) {
-                return;
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                global.worker.log.trace('incomming message self: ' + self);
+                if (self) {
+                    return;
+                }
+                if (!message.trim().toLowerCase().startsWith('!')) {
+                    return;
+                }
+                global.worker.log.trace('incomming message target: ' + target);
+                global.worker.log.trace('incomming message message: ' + message);
+                const channel = global.worker.channels.find(x => x.node.name === target.replace('#', ''));
+                if (channel) {
+                    const command = new command_1.Command(message, context);
+                    const messages = yield channel.execute(command);
+                    global.worker.log.trace(command);
+                    channel.puffer.addMessages(messages);
+                }
             }
-            if (!message.trim().toLowerCase().startsWith('!')) {
-                return;
+            catch (ex) {
+                global.worker.log.error(ex);
             }
-            global.worker.log.trace('incomming message target: ' + target);
-            global.worker.log.trace('incomming message message: ' + message);
-            const channel = global.worker.channels.find(x => x.node.name === target.replace('#', ''));
-            if (channel) {
-                const command = new command_1.Command(message, context);
-                const messages = channel.execute(command);
-                global.worker.log.trace(command);
-                channel.puffer.addMessages(messages);
-            }
-        }
-        catch (ex) {
-            global.worker.log.error(ex);
-        }
+        });
     }
     onConnectedHandler(address, port) {
         this.log.info(`bot connected to ${address}:${port}`);

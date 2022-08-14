@@ -86,7 +86,7 @@ export class Worker {
         this.tmi.join(channel.node.name.replace('#', ''));
     }
 
-    onMessageHandler (target : string, context : any, message : string, self: boolean) {
+    async onMessageHandler (target : string, context : any, message : string, self: boolean) {
         try{
             global.worker.log.trace('incomming message self: ' + self);
 
@@ -100,7 +100,7 @@ export class Worker {
 
             if(channel){
                 const command = new Command(message, context);
-                const messages = channel.execute(command);
+                const messages = await channel.execute(command);
                 global.worker.log.trace(command);
                 channel.puffer.addMessages(messages);
             }

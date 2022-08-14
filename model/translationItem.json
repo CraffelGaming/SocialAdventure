@@ -59,8 +59,11 @@
     { "page": "module", "handle": "stopError", "language": "de-DE", "translation": "Modul konnte nicht beendet werden."},
     { "page": "module", "handle": "startError", "language": "de-DE", "translation": "Modul konnte nicht gestartet werden."},
     { "page": "module", "handle": "changeError", "language": "de-DE", "translation": "Modul konnte nicht geändert werden."},
-    { "page": "module", "handle": "alreadyStopped", "language": "de-DE", "translation": "Modul ist bereits gestartet."},
-    { "page": "module", "handle": "alreadyStarted", "language": "de-DE", "translation": "Modul ist bereits beendet."},
+    { "page": "module", "handle": "alreadyStopped", "language": "de-DE", "translation": "Modul ist bereits beendet."},
+    { "page": "module", "handle": "alreadyStarted", "language": "de-DE", "translation": "Modul ist bereits gestartet."},
     { "page": "module", "handle": "noParameter", "language": "de-DE", "translation": "Keine Parameter übergeben."},
-    { "page": "module", "handle": "intervalChanged", "language": "de-DE", "translation": "Intervall erfolgreich geändert"}
+    { "page": "module", "handle": "notRunning", "language": "de-DE", "translation": "Modul ist nicht aktiv."},
+    { "page": "module", "handle": "intervalChanged", "language": "de-DE", "translation": "Intervall erfolgreich auf <interval> Minuten geändert"},
+    { "page": "module", "handle": "noInterval", "language": "de-DE", "translation": "Intervall ist keine Zahl."},
+    { "page": "module", "handle": "nothingToSay", "language": "de-DE", "translation": "Dieser Command ist leer. Der Streamer muss mit !<module>text:Beispiel einen Text festlagen."}
 ]

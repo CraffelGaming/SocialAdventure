@@ -6,13 +6,10 @@ class Loot extends module_1.Module {
     constructor(translation, channel) {
         super(translation, channel);
     }
-    initialize() {
-        global.worker.log.trace('loot initialize');
-    }
     execute(command) {
         try {
             global.worker.log.trace('loot execute');
-            return this[command.name.replaceAll('!', '')]();
+            return this[command.name]();
         }
         catch (ex) {
             return '';

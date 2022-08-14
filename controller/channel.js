@@ -24,29 +24,34 @@ class Channel {
     }
     addSay() {
         return __awaiter(this, void 0, void 0, function* () {
-            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: false });
+            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
             for (const item of Object.values(yield this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: true }))) {
-                this.say.push(new say_1.Say(translation, this, item));
+                const element = new say_1.Say(translation, this, item);
+                yield element.initialize();
+                this.say.push(element);
             }
-            global.worker.log.trace(this.say);
+            // global.worker.log.trace(this.say);
         });
     }
     addLoot() {
         return __awaiter(this, void 0, void 0, function* () {
-            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: false });
+            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
             this.loot = new loot_1.Loot(translation, this);
-            global.worker.log.trace(this.loot);
+            yield this.loot.initialize();
+            // global.worker.log.trace(this.loot);
         });
     }
     execute(command) {
-        const messages = [];
-        messages.push(this.loot.execute(command));
-        for (const key in Object.keys(this.say)) {
-            if (this.say.hasOwnProperty(key)) {
-                messages.push(this.say[key].execute(command));
+        return __awaiter(this, void 0, void 0, function* () {
+            const messages = [];
+            messages.push(this.loot.execute(command));
+            for (const key in Object.keys(this.say)) {
+                if (this.say.hasOwnProperty(key)) {
+                    messages.push(yield this.say[key].execute(command));
+                }
             }
-        }
-        return messages;
+            return messages;
+        });
     }
 }
 exports.Channel = Channel;
