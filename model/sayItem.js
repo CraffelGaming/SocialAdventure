@@ -19,6 +19,7 @@ class SayItem {
         this.help = "";
         this.text = "";
         this.isActive = true;
+        this.delay = 5;
     }
     static initialize(sequelize) {
         sequelize.define('say', {
@@ -34,7 +35,7 @@ class SayItem {
             minutes: {
                 type: sequelize_1.DataTypes.DECIMAL,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: 60
             },
             help: {
                 type: sequelize_1.DataTypes.STRING,
@@ -43,7 +44,17 @@ class SayItem {
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: true
-            }
+            },
+            lastRun: {
+                type: sequelize_1.DataTypes.DATE,
+                allowNull: false,
+                defaultValue: new Date(2020, 1, 1)
+            },
+            delay: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 5
+            },
         }, { freezeTableName: true });
     }
     static updateTable({ sequelize }) {

@@ -91,14 +91,20 @@ export class Worker {
             global.worker.log.trace('incomming message self: ' + self);
 
             if (self) { return; }
-            if(!message.trim().toLowerCase().startsWith('!')) { return; }
-
-            global.worker.log.trace('incomming message target: ' + target);
-            global.worker.log.trace('incomming message message: ' + message);
 
             const channel = global.worker.channels.find(x => x.node.name === target.replace('#',''))
 
             if(channel){
+                if(!message.trim().toLowerCase().startsWith('!')) {
+                    ++channel.countMessages;
+                    global.worker.log.trace(`incomming real message count: ${channel.countMessages}`);
+                    return;
+                }
+
+                global.worker.log.trace(`incomming message channel: ${channel.node.name})`);
+                global.worker.log.trace(`incomming message target: ${target} (Channel: ${channel.node.name})`);
+                global.worker.log.trace(`incomming message message: ${message}`);
+
                 const command = new Command(message, context);
                 const messages = await channel.execute(command);
                 global.worker.log.trace(command);

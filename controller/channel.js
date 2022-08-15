@@ -17,6 +17,7 @@ const puffer_1 = require("./puffer");
 class Channel {
     constructor(node) {
         this.node = node;
+        this.countMessages = 0;
         this.database = new connection_1.Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new puffer_1.Puffer(node),
             this.puffer.interval();
@@ -30,7 +31,6 @@ class Channel {
                 yield element.initialize();
                 this.say.push(element);
             }
-            // global.worker.log.trace(this.say);
         });
     }
     addLoot() {
@@ -38,7 +38,6 @@ class Channel {
             const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
             this.loot = new loot_1.Loot(translation, this);
             yield this.loot.initialize();
-            // global.worker.log.trace(this.loot);
         });
     }
     execute(command) {

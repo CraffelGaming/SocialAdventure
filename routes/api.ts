@@ -409,6 +409,14 @@ const router = express.Router();
  *                 type: boolean
  *                 example: true
  *                 descrition: Gibt an, ob der Command aktiviert ist.
+ *               lastRun:
+ *                 type: boolean
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Gibt an, wann der Command zuletzt ausgeführt wurde.
+ *               delay:
+ *                 type: number
+ *                 example: 5
+ *                 descrition: Gibt an, wie viele reale Nachrichten zwischen wiederholten automatischen Ausgaben liegen muss.
  *               createdAt:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"

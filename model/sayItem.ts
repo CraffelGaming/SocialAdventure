@@ -8,6 +8,8 @@ export class SayItem{
     help: string;
     text: string;
     isActive : boolean;
+    lastRun: Date;
+    delay: number;
 
     constructor(){
         this.command = "";
@@ -15,6 +17,7 @@ export class SayItem{
         this.help = "";
         this.text = "";
         this.isActive = true;
+        this.delay = 5;
     }
 
     static initialize(sequelize){
@@ -31,7 +34,7 @@ export class SayItem{
             minutes: {
                 type: DataTypes.DECIMAL,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: 60
             },
             help: {
                 type: DataTypes.STRING,
@@ -40,7 +43,17 @@ export class SayItem{
             isActive: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true
-            }
+            },
+            lastRun: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: new Date(2020, 1, 1)
+            },
+            delay: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 5
+            },
           }, {freezeTableName: true});
     }
 

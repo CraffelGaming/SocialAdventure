@@ -41,6 +41,8 @@
     { "page": "say", "handle": "minutes", "language": "de-DE", "translation": "Minuten"},
     { "page": "say", "handle": "help", "language": "de-DE", "translation": "Hilfe"},
     { "page": "say", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "say", "handle": "delay", "language": "de-DE", "translation": "Verzögerung"},
+    { "page": "say", "handle": "lastRun", "language": "de-DE", "translation": "Letzte Ausführung"},
     { "page": "item", "handle": "handle", "language": "de-DE", "translation": "Nummer"},
     { "page": "item", "handle": "value", "language": "de-DE", "translation": "Name"},
     { "page": "item", "handle": "gold", "language": "de-DE", "translation": "Wert"},
@@ -63,7 +65,10 @@
     { "page": "module", "handle": "alreadyStarted", "language": "de-DE", "translation": "Modul ist bereits gestartet."},
     { "page": "module", "handle": "noParameter", "language": "de-DE", "translation": "Keine Parameter übergeben."},
     { "page": "module", "handle": "notRunning", "language": "de-DE", "translation": "Modul ist nicht aktiv."},
-    { "page": "module", "handle": "intervalChanged", "language": "de-DE", "translation": "Intervall erfolgreich auf <interval> Minuten geändert"},
-    { "page": "module", "handle": "noInterval", "language": "de-DE", "translation": "Intervall ist keine Zahl."},
+    { "page": "module", "handle": "intervalChanged", "language": "de-DE", "translation": "Intervall erfolgreich auf <interval> Minuten geändert."},
+    { "page": "module", "handle": "delayChanged", "language": "de-DE", "translation": "Nachricht wird frühestens nach <delay> anderen Nachrichten wiederholt."},
+    { "page": "module", "handle": "textChanged", "language": "de-DE", "translation": "Text des Moduls geändert: <text>"},
+    { "page": "module", "handle": "noInterval", "language": "de-DE", "translation": "Intervall ist keine positive Ganzzahl."},
+    { "page": "module", "handle": "noDelay", "language": "de-DE", "translation": "Delay ist keine positive Ganzzahl."},
     { "page": "module", "handle": "nothingToSay", "language": "de-DE", "translation": "Dieser Command ist leer. Der Streamer muss mit !<module>text:Beispiel einen Text festlagen."}
 ]
