@@ -93,6 +93,8 @@ const router = express.Router();
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/heroinventory/:node", api_heroInventory_1.default);
 /**
@@ -150,6 +152,8 @@ router.get("/heroinventory/:node", api_heroInventory_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
 //#endregion
@@ -203,8 +207,76 @@ router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/item/:node", api_item_1.default);
+/**
+ * @swagger
+ * /item/{node}:
+ *   put:
+ *     tags:
+ *     - Item
+ *     summary: Item
+ *     description: Anlage eines neuen Gegenstands.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Gegenstands.
+ *           value:
+ *             type: string
+ *             example: "Schwert"
+ *             descrition: Nabe des Gegenstandes
+ *           gold:
+ *             type: integer
+ *             example: 150
+ *             descrition: Wert des Gegenstandes in Gold
+ *           type:
+ *             type: number
+ *             example: 1
+ *             descrition: Typ des Gegenstandes
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Schwert"
+ *               descrition: Nabe des Gegenstandes
+ *             gold:
+ *               type: integer
+ *               example: 150
+ *               descrition: Wert des Gegenstandes in Gold
+ *             type:
+ *               type: number
+ *               example: 1
+ *               descrition: Typ des Gegenstandes
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/item/:node", api_item_1.default);
 //#endregion
 //#region Hero Trait
 /**
@@ -260,6 +332,8 @@ router.get("/item/:node", api_item_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/herotrait/:node", api_heroTrait_1.default);
 //#endregion
@@ -317,6 +391,8 @@ router.get("/herotrait/:node", api_heroTrait_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/herowallet/:node", api_heroWallet_1.default);
 //#endregion
@@ -378,6 +454,8 @@ router.get("/herowallet/:node", api_heroWallet_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/hero/:node", api_hero_1.default);
 //#endregion
@@ -443,6 +521,8 @@ router.get("/hero/:node", api_hero_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/say/:node", api_say_1.default);
 //#endregion
@@ -492,6 +572,8 @@ router.get("/say/:node", api_say_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/level/:node", api_level_1.default);
 //#endregion
@@ -516,8 +598,91 @@ router.get("/level/:node", api_level_1.default);
  *               type: string
  *               example: "https://id.twitch.tv/oauth2/authorize?client_id=A&redirect_uri=B&response_type=C&scope=D&state=E"
  *               descrition: Twitch URL zur Anmeldung
+ *       404:
+ *         description: no data
  */
 router.get("/twitch", api_twitch_1.default);
+/**
+ * @swagger
+ * /twitch/userdata:
+ *   get:
+ *     tags:
+ *     - Twitch
+ *     summary: Twitch Anmeldedaten.
+ *     description: Rückgabe der Twitch Anmeldedaten, nachdem die Anmeldung erfolgreich durchgeführt wurde.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: string
+ *               example: "440371621"
+ *               descrition: Twitch Benutzer-ID
+ *             login:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Twitch Loginname
+ *             display_name:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Twitch Anzeigename
+ *             type:
+ *               type: string
+ *               example: ""
+ *               descrition: Twitch Accounttyp
+ *             broadcaster_type:
+ *               type: string
+ *               example: "affiliate"
+ *               descrition: Twitch Streamer-Typ
+ *             description:
+ *               type: string
+ *               example: "Ich bin ein Streamer"
+ *               descrition: Twitch Beschreibung
+ *             profile_image_url:
+ *               type: string
+ *               example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
+ *               descrition: Twitch Profilbild
+ *             offline_image_url:
+ *               type: string
+ *               example: ""
+ *               descrition: Twitch Offline-Profilbild
+ *             view_count:
+ *               type: string
+ *               example: "21997"
+ *               descrition: Anzahl einzigartiger Twitch Aufrufe
+ *             email:
+ *               type: string
+ *               example: "max.mustermann@mail.de"
+ *               descrition: Twitch E-Mail Adresse
+ *             created_at:
+ *               type: string
+ *               example: "2019-06-07T18:38:13Z"
+ *               descrition: Twitch Account-Erstellungsdatum
+ *       404:
+ *         description: no data
+ */
+router.get("/twitch/userdata", api_twitch_1.default);
+/**
+ * @swagger
+ * /twitch:
+ *   post:
+ *     tags:
+ *     - Twitch
+ *     summary: Registrierung neuer Streamer
+ *     description: Registrierung des angemeldeten Streamer.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       404:
+ *         description: no data
+ */
+router.post("/twitch", api_twitch_1.default);
 //#endregion
 //#region Version
 /**
@@ -548,6 +713,8 @@ router.get("/twitch", api_twitch_1.default);
  *               type: string
  *               example: "2022-05-12 10:11:35.027 +00:00"
  *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/version", api_version_1.default);
 //#endregion
@@ -598,6 +765,8 @@ router.get("/version", api_version_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/node", api_node_1.default);
 /**
@@ -620,6 +789,8 @@ router.get("/node", api_node_1.default);
  *               type: string
  *               example: "craffel"
  *               descrition: Name des Nodes
+ *       404:
+ *         description: no data
  */
 router.get("/node/default", api_node_1.default);
 /**
@@ -687,6 +858,8 @@ router.post("/node/default", api_node_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/migration", api_migration_1.default);
 //#endregion
@@ -729,6 +902,8 @@ router.get("/migration", api_migration_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/menu", api_menu_1.default);
 //#endregion
@@ -781,6 +956,8 @@ router.get("/menu", api_menu_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/translation", api_translation_1.default);
 /**
@@ -836,6 +1013,8 @@ router.get("/translation", api_translation_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
  */
 router.get("/translation/:page", api_translation_1.default);
 //#endregion

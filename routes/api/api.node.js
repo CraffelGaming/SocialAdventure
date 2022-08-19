@@ -51,6 +51,7 @@ router.get('/' + endpoint + '/default', (request, response) => __awaiter(void 0,
 router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace('POST SELECT ' + endpoint);
     const channel = global.worker.channels.find(x => x.node.name === request.query.node);
+    global.worker.log.trace(request.session);
     if (channel) {
         request.session.node = request.query.node;
         response.status(200).json({ node: request.session.node });

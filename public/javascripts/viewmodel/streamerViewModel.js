@@ -1,11 +1,21 @@
-import { getTranslation, translate } from './globalData.js';
+import { getTranslation, translate, infoPanel } from './globalData.js';
 
 $(async () => {
-    let language = await getTranslation('streamer');
     window.jsPDF = window.jspdf.jsPDF;
+
+    let language = await getTranslation('streamer');
+    let streamer;
     
     translation();
+    initialize();
     load();
+    infoPanel();
+
+    //#region Initialize
+    function initialize() {
+
+    }
+    //#endregion
 
     //#region Load
     function load() {
@@ -76,7 +86,7 @@ $(async () => {
                                     return res.json();
                                 }
                             }).then(async function (json) {
-                                alert(json.node);
+                                streamer = json;
                             });
                         }
                     }]

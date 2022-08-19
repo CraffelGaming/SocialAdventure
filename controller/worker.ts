@@ -38,9 +38,18 @@ export class Worker {
         // Connect client to twitch
         await this.connect();
 
-        for(const item of Object.values(await this.globalDatabase.sequelize.models.node.findAll()) as unknown as NodeItem[]){
-            this.log.trace('add Node ' + item.name);
-            const channel = new Channel(item);
+        for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll()) as unknown as NodeItem[]){
+            this.startNode(node);
+        }
+    }
+
+    async startNode(node: NodeItem){
+
+        let channel = global.worker.channels.find(x => x.node.name === node.name);
+
+        if(channel == null){
+            this.log.trace('add Node ' + node.name);
+            channel = new Channel(node);
 
             await channel.database.initialize();
             await channel.addSay();
@@ -49,14 +58,14 @@ export class Worker {
             // Register Channel to twitch
             this.register(channel);
             this.channels.push(channel);
+        } else {
+            this.log.trace('Node already added ' + node.name);
         }
     }
 
     //#region Twitch API
     async login(request: express.Request, response: express.Response, callback: any){
         const data = request.app.get('twitch');
-        this.log.trace(data);
-
         const twitch = new Twitch();
         const credentials = await twitch.twitchAuthentification(request, response);
 
@@ -66,6 +75,7 @@ export class Worker {
             if(userData){
                 await twitch.saveTwitch(request, response, userData);
                 await twitch.saveTwitchUser(request, response, userData);
+                request.session.userData = userData;
             }
         }
         callback(request, response);

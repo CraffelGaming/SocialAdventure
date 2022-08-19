@@ -41,37 +41,37 @@ class Say extends module_1.Module {
                 const delayDifference = this.channel.countMessages - this.countMessages;
                 if (delayDifference >= this.item.delay) {
                     const date = new Date();
-                    global.worker.log.info(`LAST RUN ${new Date(this.item.lastRun)}...`);
+                    global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} last run ${new Date(this.item.lastRun)}...`);
                     const timeDifference = Math.floor((date.getTime() - new Date(this.item.lastRun).getTime()) / 60000);
                     if (timeDifference >= this.item.minutes) {
                         try {
                             this.item.lastRun = date;
                             this.countMessages = this.channel.countMessages;
                             yield this.channel.database.sequelize.models.say.update(this.item, { where: { command: this.item.command } });
-                            global.worker.log.info(`module ${this.item.command} run after ${this.item.minutes} Minutes.`);
+                            global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
                             this.channel.puffer.addMessage(this.item.text);
                         }
                         catch (ex) {
-                            global.worker.log.error(`module ${this.item.command} automation error.`);
+                            global.worker.log.error(`node ${this.channel.node.name}, module ${this.item.command} automation error.`);
                             global.worker.log.error(ex);
                         }
                     }
                     else {
-                        global.worker.log.info(`module ${this.item.command} not executed`);
-                        global.worker.log.trace(`module ${this.item.command} minutes: ${this.item.minutes}`);
-                        global.worker.log.trace(`module ${this.item.command} time elapsed: ${timeDifference}`);
+                        global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} time elapsed: ${timeDifference}`);
                     }
                 }
                 else {
-                    global.worker.log.info(`module ${this.item.command} not executed`);
-                    global.worker.log.trace(`module ${this.item.command} delay: ${this.item.delay}`);
-                    global.worker.log.trace(`module ${this.item.command} delay diference: ${delayDifference}`);
+                    global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} delay: ${this.item.delay}`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} delay diference: ${delayDifference}`);
                 }
             }
             else {
-                global.worker.log.info(`module ${this.item.command} not executed`);
-                global.worker.log.trace(`module ${this.item.command} active: ${this.item.isActive}`);
-                global.worker.log.trace(`module ${this.item.command} minutes: ${this.item.minutes}`);
+                global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
+                global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} active: ${this.item.isActive}`);
+                global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
             }
         }), 60000 // Alle 60 Sekunden prüfen
         );

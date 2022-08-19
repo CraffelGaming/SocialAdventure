@@ -32,16 +32,38 @@ class NodeItem {
             },
             language: {
                 type: sequelize_1.DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                defaultValue: "DE-de",
             },
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
-                allowNull: false
+                allowNull: false,
+                defaultValue: true,
             },
             endpoint: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
                 defaultValue: '/'
+            },
+            type: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
+            },
+            broadcasterType: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
+            },
+            description: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
+            },
+            profileImageUrl: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
+            },
+            eMail: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
             }
         }, { freezeTableName: true });
     }

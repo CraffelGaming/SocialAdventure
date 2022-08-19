@@ -46,9 +46,18 @@ const api_1 = __importDefault(require("./routes/api"));
 const worker_1 = require("./controller/worker");
 const app = express();
 global.defaultNode = function getDefaultNode(request, response) {
-    if (!request.session.node)
+    if (!request.session.node) {
         request.session.node = "craffelmat";
+    }
     return request.session.node;
+};
+global.isMaster = function isMaster(request, response, node) {
+    if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
+        if (request.session.userData.login === node) {
+            return true;
+        }
+    }
+    return false;
 };
 // session handler
 app.use(session({

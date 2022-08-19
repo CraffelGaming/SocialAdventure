@@ -1,13 +1,21 @@
-import { getTranslation, translate } from './globalData.js';
+import { getTranslation, translate, infoPanel } from './globalData.js';
 
 $(async () => {
+    window.jsPDF = window.jspdf.jsPDF;
+
     let language = await getTranslation('hero');
     let languageItem = await getTranslation('item');
-
-    window.jsPDF = window.jspdf.jsPDF;
     
     translation();
+    initialize();
     load();
+    infoPanel();
+    
+    //#region Initialize
+    function initialize() {
+
+    }
+    //#endregion
 
     //#region Load
     function load() {

@@ -18,7 +18,6 @@ import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
-import { delay } from "bluebird";
 
 const app = express();
 
@@ -49,10 +48,20 @@ declare global {
       };
 }
 
-global.defaultNode = function getDefaultNode(request: express.Request, response: express.Response){
-    if(!request.session.node)
+global.defaultNode = function getDefaultNode(request: express.Request, response: express.Response) : string{
+    if(!request.session.node){
         request.session.node = "craffelmat";
+    }
     return request.session.node;
+}
+
+global.isMaster = function isMaster(request: express.Request, response: express.Response, node: string) : boolean{
+    if(request.session != null && request.session.userData != null && request.session.userData.login != null){
+        if(request.session.userData.login === node){
+            return true;
+        }
+    }
+    return false;
 }
 
 // extend session
@@ -60,7 +69,8 @@ declare module 'express-session' {
     interface SessionData {
         state: string,
         twitch: globalThis.credentialItem,
-        node: string
+        node: string,
+        userData: credentialUserItem
     }
 }
 

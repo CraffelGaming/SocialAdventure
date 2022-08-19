@@ -4,7 +4,7 @@ $(async () => {
     let language = await getTranslation('navigation');
     let menus = await getMenu();
     let twitch = await getTwitchURL();
-
+    
     initialize();
 
     //#region Initialize

@@ -1,21 +1,90 @@
-import { getTranslation, translate } from './globalData.js';
+import { getTranslation, translate, infoPanel } from './globalData.js';
 
 $(async () => {
-    let language = await getTranslation('twitch');
     window.jsPDF = window.jspdf.jsPDF;
+
+    let language = await getTranslation('twitch');
+    let userData;
     
     translation();
-    load();
+    initialize();
+    await load();
+    infoPanel();
+    
+    //#region Initialize
+    function initialize() {
+        $('#responsive-box').dxResponsiveBox({
+            rows: [
+                { ratio: 1 },
+                { ratio: 0 },
+                { ratio: 1 },
+            ],
+            cols: [
+                { ratio: 1 },
+                { ratio: 0, screen: 'lg' },
+                { ratio: 1 },
+            ],
+            singleColumnScreen: 'sm',
+            screenByWidth(width) {
+                return (width < 1080) ? 'sm' : 'lg';
+            },
+        });
+
+        $("#streamer").dxButton({
+            text: translate(language, 'streamerButton'),
+            onClick: async function() {
+                await fetch('./api/twitch/', {
+                    method: 'post',
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                }).then(async function (res) {
+                    if (res.status == 200) {
+                        window.location = "/streamer"
+                    }
+                });
+
+            } 
+        });
+
+        $("#viewer").dxButton({
+            text: translate(language, 'viewerButton'),
+            onClick: function() {
+                window.location = "/streamer"
+            } 
+        });
+    }
+    //#endregion
 
     //#region Load
-    function load() {
-      
+    async function load() {
+        await fetch('./api/twitch/userdata', {
+            method: 'get',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(async function (res) {
+            switch(res.status) {
+                case 200:
+                    return res.json();
+                case 404:
+                    break;
+            }
+        }).then(async function (json) {
+            userData = json;
+            document.getElementById("welcome").textContent = translate(language, 'welcome').replace('$1', userData.display_name);
+
+        });
     }
     //#endregion
 
     //#region Translation
     function translation() {
         document.getElementById("labelTitle").textContent = translate(language, 'title');
+        document.getElementById("streamerTitle").textContent = translate(language, 'streamer');
+        document.getElementById("viewerTitle").textContent = translate(language, 'viewer');
+        document.getElementById("streamerInformation").textContent = translate(language, 'streamerInformation').replace('$1', translate(language, 'streamerButton'));;
+        document.getElementById("viewerInformation").textContent = translate(language, 'viewerInformation').replace('$1', translate(language, 'viewerButton'));;
     }
     //#endregion
 });

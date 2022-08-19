@@ -6,5 +6,21 @@ block content
     body.dx-viewport
         #container.main-container
             h4#labelTitle
+            #informationStreamer
+            #informationViewer
 
+            .demo-container
+                #page
+                    #responsive-box
+                        .header(data-options="dxItem: { location: [{ row: 0, col: 0,  colspan: 3,  screen: 'lg' }, { row: 0, col: 0, colspan: 2, screen: 'sm' }] }")
+                            p#welcome
+                        .left-side-bar(data-options="dxItem: { location: [{ row: 1, col: 0, screen: 'lg' }, { row: 2, col: 0, screen: 'sm' }] }")
+                            h5#streamerTitle
+                            p#streamerInformation
+                            #streamer
+                        .right-side-bar(data-options="dxItem: { location: [{ row: 1, col: 2, screen: 'lg' }, { row: 2, col: 1, screen: 'sm' }] }")
+                            h5#viewerTitle
+                            p#viewerInformation
+                            #viewer
     footer#sticky-footer.footer
+        #info-panel

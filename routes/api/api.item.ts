@@ -18,4 +18,30 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     } else response.status(404).json();
 });
 
+router.put('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
+    global.worker.log.trace('GET ' + endpoint);
+    let node = request.params.node;
+
+    if(node === 'default')
+        node = global.defaultNode(request, response);
+
+    const channel = global.worker.channels.find(x => x.node.name === node)
+
+    if(channel) {
+        if(global.isMaster(request, response, node)){
+            if(request.body.handle != null && request.body.handle > 0){
+                const item = await channel.database.sequelize.models.item.findOne(request.body.handle);
+                if(item){
+                    await channel.database.sequelize.models.item.update(request.body, {where: {handle: request.body.handle}});
+                }
+            } else {
+                await channel.database.sequelize.models.item.create(request.body as any);
+            }
+            response.status(201).json(request.body);
+        } else {
+            response.status(403).json();
+        }
+    } else response.status(404).json();
+});
+
 export default router;

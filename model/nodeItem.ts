@@ -12,7 +12,6 @@ export class NodeItem{
     broadcasterType: string;
     description: string;
     profileImageUrl: string;
-    viewCount: number;
     eMail: string;
 
     constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
@@ -35,16 +34,38 @@ export class NodeItem{
             },
             language: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                defaultValue: "DE-de",
             },
             isActive: {
                type: DataTypes.BOOLEAN,
-               allowNull: false
+               allowNull: false,
+               defaultValue: true,
             },
             endpoint: {
                type: DataTypes.STRING,
                allowNull: false,
                defaultValue: '/'
+            },
+            type: {
+               type: DataTypes.STRING,
+               allowNull: true
+            },
+            broadcasterType: {
+               type: DataTypes.STRING,
+               allowNull: true
+            },
+            description: {
+               type: DataTypes.STRING,
+               allowNull: true
+            },
+            profileImageUrl: {
+               type: DataTypes.STRING,
+               allowNull: true
+            },
+            eMail: {
+               type: DataTypes.STRING,
+               allowNull: true
             }
           }, {freezeTableName: true});
     }

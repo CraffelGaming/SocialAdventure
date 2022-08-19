@@ -47,5 +47,36 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
             '&scope=' + twitch.scope +
             '&state=' + request.session.state });
 }));
+router.get('/' + endpoint + '/userdata', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace('GET ' + endpoint + '/userdata');
+    if (request.session.userData != null) {
+        response.status(200).json(request.session.userData);
+    }
+    else
+        response.status(404).json();
+}));
+router.post('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace('PUT ' + endpoint);
+    if (request.session.userData != null) {
+        const node = (yield global.worker.globalDatabase.sequelize.models.node.findOrCreate({
+            defaults: {
+                name: request.session.userData.login,
+                displayName: request.session.userData.display_name,
+                endpoint: request.app.get("twitch").url_twitch + request.session.userData.login
+            },
+            where: { name: request.session.userData.login }
+        }))[0];
+        node.type = request.session.userData.type;
+        node.broadcasterType = request.session.userData.broadcaster_type;
+        node.description = request.session.userData.description;
+        node.profileImageUrl = request.session.userData.profile_image_url;
+        node.eMail = request.session.userData.email;
+        yield global.worker.globalDatabase.sequelize.models.node.update(node, { where: { name: request.session.userData.login } });
+        yield global.worker.startNode(node);
+        response.status(200).json();
+    }
+    else
+        response.status(404).json();
+}));
 exports.default = router;
 //# sourceMappingURL=api.twitch.js.map

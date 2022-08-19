@@ -12,9 +12,7 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 
 router.get('/' + endpoint + '/default', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace('GET SELECT ' + endpoint);
-
     global.defaultNode(request, response);
-
     response.status(200).json({ node: request.session.node});
 });
 
@@ -22,7 +20,7 @@ router.post('/' + endpoint + '/default', async (request: express.Request, respon
     global.worker.log.trace('POST SELECT ' + endpoint);
 
     const channel = global.worker.channels.find(x => x.node.name === request.query.node);
-
+    global.worker.log.trace(request.session);
     if(channel) {
         request.session.node = request.query.node as string;
         response.status(200).json({ node: request.session.node});

@@ -1,12 +1,20 @@
-import { getTranslation, translate } from './globalData.js';
+import { getTranslation, translate, infoPanel } from './globalData.js';
 
 $(async () => {
-    let language = await getTranslation('level');
     window.jsPDF = window.jspdf.jsPDF;
+
+    let language = await getTranslation('level');
     
-    console.log(language);
     translation();
+    initialize();
     load();
+    infoPanel();
+
+    //#region Initialize
+    function initialize() {
+
+    }
+    //#endregion
 
     //#region Load
     function load() {

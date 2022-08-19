@@ -24,5 +24,68 @@ function translate(language, handle) {
     }
     return '[missing translation]'; 
 }
-export { getTranslation, translate };
 //#endregion
+
+//#region InfoPanel  
+async function infoPanel() {
+    let languageInfo = await getTranslation('information');
+    let userData = await loadUserData();
+    let defaultNode = await loadDefaultNode();
+    
+    $("#info-panel").dxButtonGroup({
+        width:"100%",
+        items: [{ 
+            text: (userData != null) ? translate(languageInfo, 'login').replace('$1', userData.display_name) : translate(languageInfo, 'noLogin'),
+            disabled: true, 
+            stylingMode: "text" 
+        }, {
+            text: (defaultNode != null) ? translate(languageInfo, 'streamer').replace('$1', defaultNode.node) : translate(languageInfo, 'noStreamer'),
+            disabled: true, 
+            stylingMode: "text"
+        }],
+    });
+}
+//#endregion
+
+//#region Load
+async function loadUserData() {
+    let item;
+    await fetch('./api/twitch/userdata', {
+        method: 'get',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then(async function (res) {
+        switch(res.status) {
+            case 200:
+                return res.json();
+            case 404:
+                break;
+        }
+    }).then(async function (json) {
+        item = json;
+    });
+    return item;
+}
+
+async function loadDefaultNode() {
+    let item;
+    await fetch('./api/node/default', {
+        method: 'get',
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }).then(async function (res) {
+        switch(res.status) {
+            case 200:
+                return res.json();
+            case 404:
+                break;
+        }
+    }).then(async function (json) {
+        item = json;
+    });
+    return item;
+}
+//#endregion
+export { getTranslation, translate, loadUserData, loadDefaultNode, infoPanel };
