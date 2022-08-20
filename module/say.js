@@ -19,6 +19,11 @@ class Say extends module_1.Module {
         this.item = item;
         this.automation();
     }
+    remove() {
+        if (this.timer != null) {
+            clearInterval(this.timer);
+        }
+    }
     execute(command) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -36,7 +41,7 @@ class Say extends module_1.Module {
         });
     }
     automation() {
-        setInterval(() => __awaiter(this, void 0, void 0, function* () {
+        this.timer = setInterval(() => __awaiter(this, void 0, void 0, function* () {
             if (this.item.isActive && this.item.minutes > 0) {
                 const delayDifference = this.channel.countMessages - this.countMessages;
                 if (delayDifference >= this.item.delay) {
@@ -46,6 +51,7 @@ class Say extends module_1.Module {
                     if (timeDifference >= this.item.minutes) {
                         try {
                             this.item.lastRun = date;
+                            this.item.countRuns += 1;
                             this.countMessages = this.channel.countMessages;
                             yield this.channel.database.sequelize.models.say.update(this.item, { where: { command: this.item.command } });
                             global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
@@ -162,6 +168,7 @@ class Say extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.item.isActive) {
                 if (this.item.text && this.item.text.length !== 0) {
+                    yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                     global.worker.log.trace(`module ${this.item.command} shout executed`);
                     return this.item.text;
                 }

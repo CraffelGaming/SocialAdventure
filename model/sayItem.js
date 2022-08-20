@@ -20,11 +20,13 @@ class SayItem {
         this.text = "";
         this.isActive = true;
         this.delay = 5;
+        this.countUses = 0;
+        this.countRuns = 0;
     }
     static initialize(sequelize) {
         sequelize.define('say', {
             command: {
-                type: sequelize_1.DataTypes.STRING,
+                type: sequelize_1.DataTypes.STRING(50),
                 allowNull: false,
                 primaryKey: true
             },
@@ -33,7 +35,7 @@ class SayItem {
                 allowNull: false
             },
             minutes: {
-                type: sequelize_1.DataTypes.DECIMAL,
+                type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 60
             },
@@ -55,6 +57,16 @@ class SayItem {
                 allowNull: false,
                 defaultValue: 5
             },
+            countUses: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            countRuns: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            }
         }, { freezeTableName: true });
     }
     static updateTable({ sequelize }) {

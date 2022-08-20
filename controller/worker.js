@@ -47,7 +47,7 @@ class Worker {
                 this.log.trace('add Node ' + node.name);
                 channel = new channel_1.Channel(node);
                 yield channel.database.initialize();
-                yield channel.addSay();
+                yield channel.addSays();
                 yield channel.addLoot();
                 // Register Channel to twitch
                 this.register(channel);

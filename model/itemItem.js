@@ -21,6 +21,7 @@ class ItemItem {
             handle: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
+                autoIncrement: true,
                 primaryKey: true
             },
             value: {
@@ -30,7 +31,7 @@ class ItemItem {
             gold: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: 50
             },
             type: {
                 type: sequelize_1.DataTypes.INTEGER,

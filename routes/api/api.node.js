@@ -36,7 +36,7 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'node';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}`);
     const item = yield global.worker.globalDatabase.sequelize.models.node.findAll({ order: [['name', 'ASC']], raw: true });
     if (item)
         response.status(200).json(item);
@@ -44,12 +44,12 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
         response.status(404).json();
 }));
 router.get('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET SELECT ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}, default`);
     global.defaultNode(request, response);
     response.status(200).json({ node: request.session.node });
 }));
 router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('POST SELECT ' + endpoint);
+    global.worker.log.trace(`post ${endpoint}, default`);
     const channel = global.worker.channels.find(x => x.node.name === request.query.node);
     global.worker.log.trace(request.session);
     if (channel) {

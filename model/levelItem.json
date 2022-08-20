@@ -38,5 +38,15 @@
     {"handle": 37, "experienceMin" : 612500, "experienceMax" : 657999},
     {"handle": 38, "experienceMin" : 658000, "experienceMax" : 705499},
     {"handle": 39, "experienceMin" : 705500, "experienceMax" : 754999},
-    {"handle": 40, "experienceMin" : 755000, "experienceMax" : 806999}
+    {"handle": 40, "experienceMin" : 755000, "experienceMax" : 806999},
+    {"handle": 41, "experienceMin" : 807000, "experienceMax" : 861499},
+    {"handle": 42, "experienceMin" : 861500, "experienceMax" : 918499},
+    {"handle": 43, "experienceMin" : 918500, "experienceMax" : 977999},
+    {"handle": 44, "experienceMin" : 978000, "experienceMax" : 1039999},
+    {"handle": 45, "experienceMin" : 1040000, "experienceMax" : 1104499},
+    {"handle": 46, "experienceMin" : 1104500, "experienceMax" : 1171499},
+    {"handle": 47, "experienceMin" : 1171500, "experienceMax" : 1240999},
+    {"handle": 48, "experienceMin" : 1241000, "experienceMax" : 1312999},
+    {"handle": 49, "experienceMin" : 1313000, "experienceMax" : 1387500},
+    {"handle": 50, "experienceMin" : 1387500, "experienceMax" : 1464999}
 ]

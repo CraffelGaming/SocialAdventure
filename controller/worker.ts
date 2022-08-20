@@ -52,7 +52,7 @@ export class Worker {
             channel = new Channel(node);
 
             await channel.database.initialize();
-            await channel.addSay();
+            await channel.addSays();
             await channel.addLoot();
 
             // Register Channel to twitch

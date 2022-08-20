@@ -6,7 +6,7 @@ import json = require('./heroWalletItem.json');
 export class HeroWalletItem{
     heroName: string;
     gold: number;
-    diamand: number;
+    diamond: number;
     blood: number;
     lastBlood: Date;
 
@@ -26,7 +26,7 @@ export class HeroWalletItem{
                 allowNull: false,
                 defaultValue: 100
             },
-            diamand: {
+            diamond: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0

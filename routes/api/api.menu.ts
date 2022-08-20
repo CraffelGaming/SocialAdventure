@@ -5,7 +5,7 @@ const router = express.Router();
 const endpoint = 'menu';
 
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}`);
     const item = await global.worker.globalDatabase.sequelize.models.menu.findAll({order: [ [ 'order', 'ASC' ]], raw: false, include: [{
         model: global.worker.globalDatabase.sequelize.models.menu,
         as: 'childs',

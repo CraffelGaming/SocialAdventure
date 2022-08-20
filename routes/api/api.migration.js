@@ -36,7 +36,7 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'migration';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}`);
     const item = yield global.worker.globalDatabase.sequelize.models.migration.findAll({ order: [['name', 'ASC']], raw: true });
     if (item)
         response.status(200).json(item);

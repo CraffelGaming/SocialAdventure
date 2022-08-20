@@ -1,5 +1,5 @@
 //#region Translation
-async function getTranslation(page, language = 'de-DE') {
+export async function getTranslation(page, language = 'de-DE') {
     page = page.replace('/', '').replace('\\', '');
     return await fetch('./api/translation/' + page + "?language=" + language, {
         method: 'get',
@@ -15,7 +15,7 @@ async function getTranslation(page, language = 'de-DE') {
     });
 }
 
-function translate(language, handle) {
+export function translate(language, handle) {
     if (language && handle) {
         var value = language.find(x => x.handle == handle)
 
@@ -27,7 +27,7 @@ function translate(language, handle) {
 //#endregion
 
 //#region InfoPanel  
-async function infoPanel() {
+export async function infoPanel() {
     let languageInfo = await getTranslation('information');
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
@@ -48,7 +48,7 @@ async function infoPanel() {
 //#endregion
 
 //#region Load
-async function loadUserData() {
+export async function loadUserData() {
     let item;
     await fetch('./api/twitch/userdata', {
         method: 'get',
@@ -68,7 +68,7 @@ async function loadUserData() {
     return item;
 }
 
-async function loadDefaultNode() {
+export async function loadDefaultNode() {
     let item;
     await fetch('./api/node/default', {
         method: 'get',
@@ -88,4 +88,73 @@ async function loadDefaultNode() {
     return item;
 }
 //#endregion
-export { getTranslation, translate, loadUserData, loadDefaultNode, infoPanel };
+
+//#region Export
+export function tableExport(e, name) {
+    if (e.format === 'xlsx') {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Main sheet");
+        DevExpress.excelExporter.exportDataGrid({
+            worksheet: worksheet,
+            component: e.component,
+        }).then(function () {
+            workbook.xlsx.writeBuffer().then(function (buffer) {
+                saveAs(new Blob([buffer], { type: "application/octet-stream" }), name + ".xlsx");
+            });
+        });
+        e.cancel = true;
+    }
+    else if (e.format === 'pdf') {
+        const doc = new jsPDF();
+        DevExpress.pdfExporter.exportDataGrid({
+            jsPDFDocument: doc,
+            component: e.component,
+        }).then(() => {
+            doc.save(name + '.pdf');
+        });
+    }
+}
+//#endregion
+
+//#region Notify
+export function notify(message, type) {
+    //type: error, info, success, warning;
+    DevExpress.ui.notify(
+        {
+            message: message,
+            width: 300,
+            position: {
+                my: "bottom",
+                at: "center",
+                of: "#sticky-footer"
+            }
+        },
+        type,
+        2000
+    );
+}
+//#endregion
+
+//#region Editing
+export async function getEditing() {
+    let userData = await loadUserData();
+    let defaultNode = await loadDefaultNode();
+
+    if(userData != null && defaultNode.node != null){
+        return {
+            mode: "popup",
+            allowUpdating: userData.login === defaultNode.node,
+            allowDeleting: userData.login === defaultNode.node,
+            allowAdding: userData.login === defaultNode.node,
+        }
+    } else {
+        return {
+            mode: "popup",
+            allowUpdating: true,
+            allowDeleting: true,
+            allowAdding: true
+        }
+    }
+
+}
+//#endregion

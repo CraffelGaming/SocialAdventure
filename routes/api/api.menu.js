@@ -36,7 +36,7 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'menu';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}`);
     const item = yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false, include: [{
                 model: global.worker.globalDatabase.sequelize.models.menu,
                 as: 'childs',

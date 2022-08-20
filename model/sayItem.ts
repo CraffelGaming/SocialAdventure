@@ -10,6 +10,8 @@ export class SayItem{
     isActive : boolean;
     lastRun: Date;
     delay: number;
+    countUses: number;
+    countRuns: number;
 
     constructor(){
         this.command = "";
@@ -18,12 +20,14 @@ export class SayItem{
         this.text = "";
         this.isActive = true;
         this.delay = 5;
+        this.countUses = 0;
+        this.countRuns = 0;
     }
 
     static initialize(sequelize){
         sequelize.define('say', {
             command: {
-                type: DataTypes.STRING,
+                type: DataTypes.STRING(50),
                 allowNull: false,
                 primaryKey: true
             },
@@ -32,7 +36,7 @@ export class SayItem{
                 allowNull: false
             },
             minutes: {
-                type: DataTypes.DECIMAL,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 60
             },
@@ -54,6 +58,16 @@ export class SayItem{
                 allowNull: false,
                 defaultValue: 5
             },
+            countUses: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            countRuns: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            }
           }, {freezeTableName: true});
     }
 

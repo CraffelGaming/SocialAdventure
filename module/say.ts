@@ -7,12 +7,19 @@ import { Module } from "./module";
 export class Say extends Module {
     item: SayItem;
     countMessages: number;
+    timer: NodeJS.Timer;
 
     constructor(translation: TranslationItem[], channel: Channel, item: SayItem){
         super(translation, channel);
         this.countMessages = 0;
         this.item = item;
         this.automation();
+    }
+
+    remove(){
+        if(this.timer != null){
+            clearInterval(this.timer);
+        }
     }
 
     async execute(command: Command){
@@ -31,7 +38,7 @@ export class Say extends Module {
     }
 
     automation(){
-        setInterval(
+        this.timer = setInterval(
             async () => {
                 if(this.item.isActive && this.item.minutes > 0){
                     const delayDifference = this.channel.countMessages - this.countMessages;
@@ -42,6 +49,7 @@ export class Say extends Module {
                         if(timeDifference >= this.item.minutes){
                             try{
                                 this.item.lastRun = date;
+                                this.item.countRuns += 1;
                                 this.countMessages = this.channel.countMessages;
                                 await this.channel.database.sequelize.models.say.update(this.item, {where: {command: this.item.command}});
                                 global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
@@ -145,6 +153,7 @@ export class Say extends Module {
     async shout(command: Command){
         if(this.item.isActive){
             if(this.item.text && this.item.text.length !== 0){
+                await this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: {command: this.item.command}});
                 global.worker.log.trace(`module ${this.item.command} shout executed`);
                 return this.item.text;
              }

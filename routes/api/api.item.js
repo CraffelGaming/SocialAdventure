@@ -36,7 +36,7 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'item';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
     if (node === 'default')
         node = global.defaultNode(request, response);
@@ -52,7 +52,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         response.status(404).json();
 }));
 router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
     if (node === 'default')
         node = global.defaultNode(request, response);
@@ -60,15 +60,49 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     if (channel) {
         if (global.isMaster(request, response, node)) {
             if (request.body.handle != null && request.body.handle > 0) {
-                const item = yield channel.database.sequelize.models.item.findOne(request.body.handle);
-                if (item) {
-                    yield channel.database.sequelize.models.item.update(request.body, { where: { handle: request.body.handle } });
+                if (request.body.value != null && request.body.value.length > 0) {
+                    const item = yield channel.database.sequelize.models.item.findByPk(request.body.handle);
+                    if (item) {
+                        yield channel.database.sequelize.models.item.update(request.body, { where: { handle: request.body.handle } });
+                    }
+                }
+                else {
+                    response.status(406).json();
                 }
             }
             else {
                 yield channel.database.sequelize.models.item.create(request.body);
             }
             response.status(201).json(request.body);
+        }
+        else {
+            response.status(403).json();
+        }
+    }
+    else
+        response.status(404).json();
+}));
+router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
+    let node = request.params.node;
+    if (node === 'default')
+        node = global.defaultNode(request, response);
+    const channel = global.worker.channels.find(x => x.node.name === node);
+    if (channel) {
+        if (global.isMaster(request, response, node)) {
+            if (request.params.handle != null) {
+                const item = yield channel.database.sequelize.models.item.findByPk(request.params.handle);
+                if (item) {
+                    for (const heroItem of Object.values(yield channel.database.sequelize.models.heroInventory.findAll({ where: { itemHandle: request.params.handle } }))) {
+                        yield channel.database.sequelize.models.heroWallet.increment('gold', { by: item.gold * heroItem.quantity, where: { heroName: heroItem.heroName } });
+                        yield channel.database.sequelize.models.heroInventory.destroy({ where: { itemHandle: request.params.handle } });
+                    }
+                    yield channel.database.sequelize.models.item.destroy({ where: { handle: request.params.handle } });
+                }
+                response.status(204).json();
+            }
+            else
+                response.status(404).json();
         }
         else {
             response.status(403).json();

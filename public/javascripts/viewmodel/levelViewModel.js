@@ -30,8 +30,9 @@ $(async () => {
                             'Content-type': 'application/json'
                         }
                     }).then(async function (res) {
-                        if (res.status == 200) {
-                            return res.json();
+                        switch(res.status){
+                            case 200:
+                                return res.json();
                         }
                     }).then(async function (json) {
                         items = json;
@@ -72,28 +73,7 @@ $(async () => {
                 formats: ['xlsx', 'pdf']
             },
             onExporting(e) {
-                if (e.format === 'xlsx') {
-                    const workbook = new ExcelJS.Workbook();
-                    const worksheet = workbook.addWorksheet("Main sheet");
-                    DevExpress.excelExporter.exportDataGrid({
-                        worksheet: worksheet,
-                        component: e.component,
-                    }).then(function () {
-                        workbook.xlsx.writeBuffer().then(function (buffer) {
-                            saveAs(new Blob([buffer], { type: "application/octet-stream" }), translate(language, 'title') + ".xlsx");
-                        });
-                    });
-                    e.cancel = true;
-                }
-                else if (e.format === 'pdf') {
-                    const doc = new jsPDF();
-                    DevExpress.pdfExporter.exportDataGrid({
-                        jsPDFDocument: doc,
-                        component: e.component,
-                    }).then(() => {
-                        doc.save(translate(language, 'title') + '.pdf');
-                    });
-                }
+                tableExport(e, translate(language, 'title'))
             }
         });
     }

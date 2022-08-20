@@ -28,7 +28,7 @@ class HeroWalletItem {
                 allowNull: false,
                 defaultValue: 100
             },
-            diamand: {
+            diamond: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0

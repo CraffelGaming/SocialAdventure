@@ -18,6 +18,7 @@ export class ItemItem{
             handle: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                autoIncrement: true,
                 primaryKey: true
              },
             value: {
@@ -27,7 +28,7 @@ export class ItemItem{
             gold: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: 50
             },
             type: {
                 type: DataTypes.INTEGER,

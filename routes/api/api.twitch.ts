@@ -6,7 +6,7 @@ const router = express.Router();
 const endpoint = 'twitch';
 
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}`);
 
     const twitch = request.app.get('twitch');
     if(!request.session.state)
@@ -20,7 +20,7 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 });
 
 router.get('/' + endpoint + '/userdata', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace('GET ' + endpoint + '/userdata');
+    global.worker.log.trace(`get ${endpoint} userdata`);
 
     if(request.session.userData != null){
         response.status(200).json(request.session.userData);
@@ -28,7 +28,7 @@ router.get('/' + endpoint + '/userdata', async (request: express.Request, respon
 });
 
 router.post('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace('PUT ' + endpoint);
+    global.worker.log.trace(`post ${endpoint}`);
 
     if(request.session.userData != null){
 
@@ -36,16 +36,15 @@ router.post('/' + endpoint + '/', async (request: express.Request, response: exp
             defaults: {
                 name: request.session.userData.login,
                 displayName: request.session.userData.display_name,
-                endpoint: request.app.get("twitch").url_twitch + request.session.userData.login
+                endpoint: request.app.get("twitch").url_twitch + request.session.userData.login,
+                type: request.session.userData.type,
+                broadcasterType: request.session.userData.broadcaster_type,
+                description: request.session.userData.description,
+                profileImageUrl: request.session.userData.profile_image_url,
+                eMail: request.session.userData.email
             },
             where: { name: request.session.userData.login }
         }))[0] as any as NodeItem;
-
-        node.type = request.session.userData.type;
-        node.broadcasterType = request.session.userData.broadcaster_type;
-        node.description = request.session.userData.description;
-        node.profileImageUrl = request.session.userData.profile_image_url;
-        node.eMail = request.session.userData.email;
 
         await global.worker.globalDatabase.sequelize.models.node.update(node, {where: { name: request.session.userData.login }});
         await global.worker.startNode(node);

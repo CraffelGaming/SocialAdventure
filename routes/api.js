@@ -49,9 +49,9 @@ const router = express.Router();
  * /heroinventory/{node}:
  *   get:
  *     tags:
- *     - heroinventory
- *     summary: Hero Inventory
- *     description: Rückgabe aller Gegenstände eines Helden.
+ *     - Hero Inventory
+ *     summary: Inventar der Helden
+ *     description: Rückgabe aller Gegenstände aller Helden.
  *     consumes:
  *     - application/json
  *     parameters:
@@ -102,8 +102,8 @@ router.get("/heroinventory/:node", api_heroInventory_1.default);
  * /heroinventory/{node}/hero/{name}:
  *   get:
  *     tags:
- *     - heroinventory
- *     summary: Hero Inventory
+ *     - Hero Inventory
+ *     summary: Inventar eines Helden
  *     description: Rückgabe aller Gegenstände eines Helden.
  *     consumes:
  *     - application/json
@@ -164,8 +164,8 @@ router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
  *   get:
  *     tags:
  *     - Item
- *     summary: Item
- *     description: Rückgabe aller Gegenst&auml;nde.
+ *     summary: Gegenstände
+ *     description: Rückgabe aller Gegenstände.
  *     consumes:
  *     - application/json
  *     parameters:
@@ -217,7 +217,7 @@ router.get("/item/:node", api_item_1.default);
  *   put:
  *     tags:
  *     - Item
- *     summary: Item
+ *     summary: Gegenstand
  *     description: Anlage eines neuen Gegenstands.
  *     consumes:
  *     - application/json
@@ -250,7 +250,7 @@ router.get("/item/:node", api_item_1.default);
  *             example: 1
  *             descrition: Typ des Gegenstandes
  *     responses:
- *       200:
+ *       201:
  *         description: successful operation
  *         schema:
  *           type: object
@@ -277,6 +277,38 @@ router.get("/item/:node", api_item_1.default);
  *         description: no data
  */
 router.put("/item/:node", api_item_1.default);
+/**
+ * @swagger
+ * /item/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Item
+ *     summary: Gegenstand
+ *     description: Löscht einen bestimmten Gegenstand. Jeder Held bekommt Gold in Form des Goldwertes erstattet.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/item/:node/:handle", api_item_1.default);
 //#endregion
 //#region Hero Trait
 /**
@@ -285,8 +317,8 @@ router.put("/item/:node", api_item_1.default);
  *   get:
  *     tags:
  *     - Hero Trait
- *     summary: Hero Eigenschaften
- *     description: Rückgabe aller Eigenschaften.
+ *     summary: Eigenschaften der Helden
+ *     description: Rückgabe aller Eigenschaften aller Helden
  *     consumes:
  *     - application/json
  *     parameters:
@@ -336,6 +368,67 @@ router.put("/item/:node", api_item_1.default);
  *         description: no data
  */
 router.get("/herotrait/:node", api_heroTrait_1.default);
+/**
+ * @swagger
+ * /herotrait/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - Hero Trait
+ *     summary: Eigenschaft eines Helden
+ *     description: Rückgabe der Eigenschaften vom ausgewählten Held.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Hero"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             heroName:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Helden
+ *             goldMultipler:
+ *               type: string
+ *               example: 1
+ *               descrition: Skillstufe f&uuml;r Goldfund
+ *             stealMultipler:
+ *               type: string
+ *               example: 1
+ *               descrition: Skillstufe f&uuml;r Diebst&auml;hle
+ *             defenceMultipler:
+ *               type: number
+ *               example: 1
+ *               descrition: Skillstufe f&uuml;r Verteidigung
+ *             workMultipler:
+ *               type: number
+ *               example: 1
+ *               descrition: Skillstufe f&uuml;r t&auml;gliche Arbeit
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/herotrait/:node/hero/:name", api_heroTrait_1.default);
 //#endregion
 //#region Hero Wallet
 /**
@@ -344,8 +437,8 @@ router.get("/herotrait/:node", api_heroTrait_1.default);
  *   get:
  *     tags:
  *     - Hero Wallet
- *     summary: Hero Geldtasche
- *     description: Rückgabe aller Geldtaschen.
+ *     summary: Geldtasche aller Helden
+ *     description: Rückgabe aller Geldtaschen aller Helden.
  *     consumes:
  *     - application/json
  *     parameters:
@@ -395,6 +488,67 @@ router.get("/herotrait/:node", api_heroTrait_1.default);
  *         description: no data
  */
 router.get("/herowallet/:node", api_heroWallet_1.default);
+/**
+ * @swagger
+ * /herowallet/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - Hero Wallet
+ *     summary: Geldtasche eines Helden.
+ *     description: Rückgabe der Geldtasche eines Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Hero"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             heroName:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Helden
+ *             gold:
+ *               type: string
+ *               example: 750
+ *               descrition: Anzahl an Gold
+ *             diamand:
+ *               type: string
+ *               example: 50
+ *               descrition: Anzahl an Diamanten
+ *             blood:
+ *               type: number
+ *               example: 17
+ *               descrition: Blutrauschpunkte
+ *             lastBlood:
+ *               type: string
+ *               example: "2020-02-01 00:00:00.000 +00:00"
+ *               descrition: Zeitpunkt des letzten Blutrauschs
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/herowallet/:node/hero/:name", api_heroWallet_1.default);
 //#endregion
 //#region Hero
 /**
@@ -403,7 +557,7 @@ router.get("/herowallet/:node", api_heroWallet_1.default);
  *   get:
  *     tags:
  *     - Hero
- *     summary: Hero
+ *     summary: Helden
  *     description: Rückgabe aller Helden.
  *     consumes:
  *     - application/json
@@ -466,8 +620,8 @@ router.get("/hero/:node", api_hero_1.default);
  *   get:
  *     tags:
  *     - Say
- *     summary: Say
- *     description: Rückgabe aller Commands.
+ *     summary: Befehle
+ *     description: Rückgabe aller Befehle.
  *     consumes:
  *     - application/json
  *     parameters:
@@ -521,10 +675,130 @@ router.get("/hero/:node", api_hero_1.default);
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
  *                 descrition: Datum der letzten Änderung
+ *               countUses:
+ *                 type: number
+ *                 example: 10
+ *                 descrition: Anzahl, wie oft der Befehl manuell verwendet wurde.
+ *               countRuns:
+ *                 type: number
+ *                 example: 10
+ *                 descrition: Anzahl, wie oft der Befehl automatisch getriggert wurde.
  *       404:
  *         description: no data
  */
 router.get("/say/:node", api_say_1.default);
+/**
+ * @swagger
+ * /say/{node}:
+ *   put:
+ *     tags:
+ *     - Say
+ *     summary: Befehle
+ *     description: Bearbeitung / Anlage eines neuen Befehls. Die Änderungen werden direkt im Stream wirksam.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           command:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Eindeutiger Name des Commands
+ *           text:
+ *             type: string
+ *             example: "Schau dir deinen Helden auf craffel.de an."
+ *             descrition: Text, der angezeigt wird, wenn der Command ausgelößt wurde.
+ *           minutes:
+ *             type: number
+ *             example: 60
+ *             descrition: Intervall, um den Text automatisch anzuzeigen (Default 0).
+ *           help:
+ *             type: string
+ *             example: ""
+ *             descrition: Hilfetext, für die Zuschauer.
+ *           isActive:
+ *             type: boolean
+ *             example: true
+ *             descrition: Gibt an, ob der Command aktiviert ist.
+ *           delay:
+ *             type: number
+ *             example: 5
+ *             descrition: Gibt an, wie viele reale Nachrichten zwischen wiederholten automatischen Ausgaben liegen muss.
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             command:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Eindeutiger Name des Commands
+ *             text:
+ *               type: string
+ *               example: "Schau dir deinen Helden auf craffel.de an."
+ *               descrition: Text, der angezeigt wird, wenn der Command ausgelößt wurde.
+ *             minutes:
+ *               type: number
+ *               example: 60
+ *               descrition: Intervall, um den Text automatisch anzuzeigen (Default 0).
+ *             help:
+ *               type: string
+ *               example: ""
+ *               descrition: Hilfetext, für die Zuschauer.
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Gibt an, ob der Command aktiviert ist.
+ *             delay:
+ *               type: number
+ *               example: 5
+ *               descrition: Gibt an, wie viele reale Nachrichten zwischen wiederholten automatischen Ausgaben liegen muss.
+ *       404:
+ *         description: no data
+ */
+router.put("/say/:node", api_say_1.default);
+/**
+ * @swagger
+ * /say/{node}/{command}:
+ *   delete:
+ *     tags:
+ *     - Say
+ *     summary: Befehle
+ *     description: Löscht einen bestimmten Befehl.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "command"
+ *       in: "path"
+ *       description: "Name des Befehls"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/say/:node/:command", api_say_1.default);
 //#endregion
 //#region Level
 /**
@@ -725,8 +999,8 @@ router.get("/version", api_version_1.default);
  *   get:
  *     tags:
  *     - Node
- *     summary: Node
- *     description: Rückgabe alles Nodes des Servers.
+ *     summary: Server Node
+ *     description: Rückgabe aller Server Nodes aller Streamer.
  *     consumes:
  *     - application/json
  *     responses:
@@ -757,6 +1031,26 @@ router.get("/version", api_version_1.default);
  *                 type: string
  *                 example: "/"
  *                 descrition: Endpunkt
+ *               type:
+ *                 type: string
+ *                 example: ""
+ *                 descrition: Twitch Accounttyp
+ *               broadcasterType:
+ *                 type: string
+ *                 example: "affiliate"
+ *                 descrition: Twitch Streamer-Typ
+ *               description:
+ *                 type: string
+ *                 example: "Ich bin ein Streamer"
+ *                 descrition: Twitch Beschreibung
+ *               profileImageUrl:
+ *                 type: string
+ *                 example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
+ *                 descrition: Twitch Profilbild
+ *               email:
+ *                 type: string
+ *                 example: "max.mustermann@mail.de"
+ *                 descrition: Twitch E-Mail Adresse
  *               createdAt:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
@@ -775,8 +1069,8 @@ router.get("/node", api_node_1.default);
  *   get:
  *     tags:
  *     - Node
- *     summary: Node
- *     description: Rückgabe des ausgewählten Standard Nodes.
+ *     summary: Server Node
+ *     description: Rückgabe des ausgewählten Standard Server Nodes.
  *     consumes:
  *     - application/json
  *     responses:
@@ -799,8 +1093,8 @@ router.get("/node/default", api_node_1.default);
  *   post:
  *     tags:
  *     - Node
- *     summary: Node
- *     description: Auswahl des Standard Nodes.
+ *     summary: Server Node
+ *     description: Auswahl des Server Standard Nodes.
  *     consumes:
  *     - application/json
  *     parameters:
@@ -914,7 +1208,7 @@ router.get("/menu", api_menu_1.default);
  *   get:
  *     tags:
  *     - Translation
- *     summary: Translation
+ *     summary: Übersetzungen
  *     description: Rückgabe aller Übersetzungen.
  *     consumes:
  *     - application/json
@@ -966,7 +1260,7 @@ router.get("/translation", api_translation_1.default);
  *   get:
  *     tags:
  *     - Translation
- *     summary: Translation
+ *     summary: Übersetzungen
  *     description: Rückgabe aller Übersetzungen einer Seite.
  *     consumes:
  *     - application/json

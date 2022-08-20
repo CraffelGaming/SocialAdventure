@@ -24,13 +24,32 @@ export class Channel {
         this.say = [];
     }
 
-    async addSay(){
+    async addSays(){
         const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
 
         for(const item of Object.values(await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]], raw: true})) as unknown as SayItem[]){
-            const element = new Say(translation, this, item)
+            const element = new Say(translation, this, item);
             await element.initialize();
             this.say.push(element);
+            global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+        }
+    }
+
+    async addSay(item: SayItem){
+        const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+        const element = new Say(translation, this, item);
+        await element.initialize();
+        this.say.push(element);
+        global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+    }
+
+    async removeSay(command: string){
+        const index = this.say.findIndex(d => d.item.command === command);
+
+        if(index > -1){
+            global.worker.log.info(`node ${this.node.name}, say remove ${this.say[index].item.command}.`);
+            this.say[index].remove();
+            this.say.splice(index, 1)
         }
     }
 

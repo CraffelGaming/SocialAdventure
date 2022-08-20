@@ -3,7 +3,7 @@ const router = express.Router();
 const endpoint = 'level';
 
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
 
     if(node === 'default')

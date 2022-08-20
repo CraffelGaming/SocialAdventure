@@ -36,7 +36,7 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'heroinventory';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
     if (node === 'default')
         node = global.defaultNode(request, response);
@@ -58,7 +58,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         response.status(404).json();
 }));
 router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace('GET ' + endpoint);
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
     let node = request.params.node;
     if (node === 'default')
         node = global.defaultNode(request, response);

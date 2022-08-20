@@ -31,8 +31,9 @@ $(async () => {
                             'Content-type': 'application/json'
                         }
                     }).then(async function (res) {
-                        if (res.status == 200) {
-                            return res.json();
+                        switch(res.status){
+                            case 200:
+                                return res.json();
                         }
                     }).then(async function (json) {
                         items = json;
@@ -64,10 +65,23 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                { dataField: "name", caption: translate(language, 'name'), visible: false  },
-                { dataField: "displayName", caption: translate(language, 'displayName') },
-                { dataField: "language", caption: translate(language, 'language') },
-                { dataField: "isActive", caption: translate(language, 'isActive'), dataType:"boolean", alignment: "left" },
+                {
+                    dataField: 'Picture',
+                    caption: "",
+                    width: 100,
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate(container, options) {
+                        console.log(options);
+                      $('<div>')
+                        .append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
+                        .appendTo(container);
+                    },
+                },
+                { dataField: "name", caption: translate(language, 'name'), visible: false },
+                { dataField: "displayName", caption: translate(language, 'displayName'), width: 400, overflow: 'hidden' },
+                { dataField: "language", caption: translate(language, 'language'), width: 120 },
+                { dataField: "isActive", caption: translate(language, 'isActive'), dataType:'boolean', alignment: 'left', width: 120 },
                 { dataField: "endpoint", caption: translate(language, 'endpoint')},
                 {
                     type: "buttons",
@@ -97,28 +111,7 @@ $(async () => {
                 formats: ['xlsx', 'pdf']
             },
             onExporting(e) {
-                if (e.format === 'xlsx') {
-                    const workbook = new ExcelJS.Workbook();
-                    const worksheet = workbook.addWorksheet("Main sheet");
-                    DevExpress.excelExporter.exportDataGrid({
-                        worksheet: worksheet,
-                        component: e.component,
-                    }).then(function () {
-                        workbook.xlsx.writeBuffer().then(function (buffer) {
-                            saveAs(new Blob([buffer], { type: "application/octet-stream" }), translate(language, 'title') + ".xlsx");
-                        });
-                    });
-                    e.cancel = true;
-                }
-                else if (e.format === 'pdf') {
-                    const doc = new jsPDF();
-                    DevExpress.pdfExporter.exportDataGrid({
-                        jsPDFDocument: doc,
-                        component: e.component,
-                    }).then(() => {
-                        doc.save(translate(language, 'title') + '.pdf');
-                    });
-                }
+                tableExport(e, translate(language, 'title'))
             }
         });
     }
