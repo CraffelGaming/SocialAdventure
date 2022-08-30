@@ -9,52 +9,50 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MenuItem = void 0;
+exports.CommandItem = void 0;
 const sequelize_1 = require("sequelize");
-const json = require("./menuItem.json");
-class MenuItem {
-    constructor(endpoint, name, order) {
-        this.endpoint = endpoint;
-        this.name = name;
-        this.order = order;
-        this.authenticationRequired = false;
+const json = require("./commandItem.json");
+class CommandItem {
+    constructor() {
+        this.module = "";
+        this.command = "";
+        this.isMaster = false;
+        this.translation = "";
     }
     static initialize(sequelize) {
-        sequelize.define('menu', {
-            endpoint: {
+        sequelize.define('command', {
+            module: {
                 type: sequelize_1.DataTypes.STRING,
-                allowNull: false,
-                primaryKey: true
-            },
-            name: {
-                type: sequelize_1.DataTypes.STRING,
+                primaryKey: true,
                 allowNull: false
             },
-            order: {
-                type: sequelize_1.DataTypes.INTEGER,
+            command: {
+                type: sequelize_1.DataTypes.STRING,
+                primaryKey: true,
                 allowNull: false
             },
-            authenticationRequired: {
+            isMaster: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
+            },
+            translation: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
             }
         }, { freezeTableName: true });
-    }
-    static setAssociation({ sequelize }) {
-        sequelize.models.menu.hasMany(sequelize.models.menu, { as: 'childs', foreignKey: 'parentEndpoint' });
-        sequelize.models.menu.belongsTo(sequelize.models.menu, { as: 'parent', foreignKey: 'parentEndpoint' });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
-                    if ((yield sequelize.models.menu.count({ where: { endpoint: item.endpoint } })) === 0) {
-                        yield sequelize.models.menu.create(item);
+                    if ((yield sequelize.models.command.count({ where: { module: item.module, command: item.command } })) === 0) {
+                        yield sequelize.models.command.create(item);
                     }
                     else
-                        yield sequelize.models.menu.update(item, { where: { endpoint: item.endpoint } });
+                        yield sequelize.models.command.update(item, { where: { module: item.module, command: item.command } });
                 }
             }
             catch (ex) {
@@ -63,6 +61,6 @@ class MenuItem {
         });
     }
 }
-exports.MenuItem = MenuItem;
-module.exports.default = MenuItem;
-//# sourceMappingURL=menuItem.js.map
+exports.CommandItem = CommandItem;
+module.exports.default = CommandItem;
+//# sourceMappingURL=commandItem.js.map

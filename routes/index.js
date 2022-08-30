@@ -34,6 +34,7 @@ const twitch_1 = __importDefault(require("./twitch"));
 const daily_1 = __importDefault(require("./daily"));
 const command_1 = __importDefault(require("./command"));
 const hero_1 = __importDefault(require("./hero"));
+const heroes_1 = __importDefault(require("./heroes"));
 const item_1 = __importDefault(require("./item"));
 const say_1 = __importDefault(require("./say"));
 const statistic_1 = __importDefault(require("./statistic"));
@@ -54,6 +55,8 @@ router.get('/daily', daily_1.default);
 router.get('/command', command_1.default);
 // Hero
 router.get('/hero', hero_1.default);
+// Heroes
+router.get('/heroes', heroes_1.default);
 // Item
 router.get('/item', item_1.default);
 // Say

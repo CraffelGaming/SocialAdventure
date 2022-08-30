@@ -8,6 +8,7 @@ import twitch from "./twitch";
 import daily from "./daily";
 import command from "./command";
 import hero from "./hero";
+import heroes from "./heroes";
 import item from "./item";
 import say from "./say";
 import statistic from "./statistic";
@@ -36,6 +37,9 @@ router.get('/command', command);
 
 // Hero
 router.get('/hero', hero);
+
+// Heroes
+router.get('/heroes', heroes);
 
 // Item
 router.get('/item', item);

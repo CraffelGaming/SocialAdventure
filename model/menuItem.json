@@ -21,8 +21,8 @@
         "order": 1200
     },
     {
-        "endpoint": "hero",
-        "name": "hero",
+        "endpoint": "heroes",
+        "name": "heroes",
         "order": 1210,
         "parentEndpoint": "adventure"
     },
@@ -33,48 +33,63 @@
         "parentEndpoint": "adventure"
     },
     {
-        "endpoint": "taverne",
-        "name": "taverne",
-        "order": 1230,
-        "parentEndpoint": "adventure"
-    },
-    {
-        "endpoint": "daily",
-        "name": "daily",
-        "order": 1240,
-        "parentEndpoint": "adventure"
-    },
-    {
         "endpoint": "level",
         "name": "level",
-        "order": 1250,
+        "order": 1230,
         "parentEndpoint": "adventure"
     },
     {
         "endpoint": "statistic",
         "name": "statistic",
-        "order": 1280,
+        "order": 1240,
         "parentEndpoint": "adventure"
     },
     {
         "endpoint": "command",
         "name": "command",
-        "order": 1290,
+        "order": 1250,
         "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "me",
+        "name": "me",
+        "order": 1300,
+        "authenticationRequired": true 
+    },
+    {
+        "endpoint": "hero",
+        "name": "hero",
+        "order": 1310,
+        "parentEndpoint": "me",
+        "authenticationRequired": true
+    },
+    {
+        "endpoint": "taverne",
+        "name": "taverne",
+        "order": 1320,
+        "parentEndpoint": "me",
+        "authenticationRequired": true
+    },
+    {
+        "endpoint": "daily",
+        "name": "daily",
+        "order": 1330,
+        "parentEndpoint": "me",
+        "authenticationRequired": true
     },
     {
         "endpoint": "say",
         "name": "say",
-        "order": 1300
+        "order": 1400
     },
     {
         "endpoint": "help",
         "name": "help",
-        "order": 1400
+        "order": 1500
     },
     {
         "endpoint": "api",
         "name": "api",
-        "order": 1500
+        "order": 1600
     }
 ]

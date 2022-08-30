@@ -72,6 +72,7 @@ $(async () => {
             },
             columns: [
                 { dataField: "name", caption: translate(language, 'name') },
+
                 {
                     caption: translate(language, 'lastSteal'), width: 200,
                     calculateCellValue(data) {

@@ -6,11 +6,13 @@ export class MenuItem{
     endpoint: string;
     name: string;
     order: number;
+    authenticationRequired: boolean;
 
     constructor(endpoint? : string, name? : string, order? : number){
         this.endpoint = endpoint;
         this.name = name;
         this.order = order;
+        this.authenticationRequired = false;
     }
 
     static initialize(sequelize){
@@ -27,6 +29,11 @@ export class MenuItem{
             order: {
                 type: DataTypes.INTEGER,
                 allowNull: false
+            },
+            authenticationRequired: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             }
           }, {freezeTableName: true});
     }

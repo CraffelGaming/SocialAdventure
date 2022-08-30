@@ -14919,3 +14919,2138 @@
 [2022-08-20T22:31:24.794] [TRACE] default - get say, node default
 [2022-08-20T22:31:24.814] [TRACE] default - get twitch userdata
 [2022-08-20T22:31:24.902] [TRACE] default - get node, default
+[2022-08-21T18:35:57.474] [TRACE] default - twitch chat client initialized
+[2022-08-21T18:35:57.639] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-21T18:35:57.640] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-21T18:35:57.684] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-21T18:35:57.687] [INFO] default - HTTP Server listening on port 80
+[2022-08-21T18:35:59.129] [TRACE] default - add Migration update_001
+[2022-08-21T18:36:00.146] [TRACE] default - add Node craffelmat
+[2022-08-21T18:36:00.836] [INFO] default - node craffelmat, say add craffel.
+[2022-08-21T18:36:00.839] [TRACE] default - node connected: craffelmat
+[2022-08-21T18:37:00.834] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:37:00.835] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:37:00.835] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:38:00.840] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:38:00.840] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:38:00.840] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:39:00.850] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:39:00.850] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:39:00.851] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:40:00.850] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:40:00.851] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:40:00.851] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:41:00.865] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:41:00.866] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:41:00.866] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:42:00.874] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:42:00.874] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:42:00.874] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:42:32.978] [TRACE] default - get translation, page navigation
+[2022-08-21T18:42:32.980] [TRACE] default - get translation, page index
+[2022-08-21T18:42:32.987] [TRACE] default - get menu
+[2022-08-21T18:42:32.992] [TRACE] default - get translation, page information
+[2022-08-21T18:42:33.005] [TRACE] default - get twitch
+[2022-08-21T18:42:33.007] [TRACE] default - get twitch userdata
+[2022-08-21T18:42:33.027] [TRACE] default - get node, default
+[2022-08-21T18:42:41.032] [TRACE] default - get translation, page navigation
+[2022-08-21T18:42:41.034] [TRACE] default - get translation, page hero
+[2022-08-21T18:42:41.039] [TRACE] default - get menu
+[2022-08-21T18:42:41.043] [TRACE] default - get translation, page item
+[2022-08-21T18:42:41.052] [TRACE] default - get twitch
+[2022-08-21T18:42:41.054] [TRACE] default - get translation, page wallet
+[2022-08-21T18:42:41.065] [TRACE] default - get translation, page trait
+[2022-08-21T18:42:41.140] [TRACE] default - get translation, page information
+[2022-08-21T18:42:41.144] [TRACE] default - get hero, node default
+[2022-08-21T18:42:41.157] [TRACE] default - get twitch userdata
+[2022-08-21T18:42:41.244] [TRACE] default - get node, default
+[2022-08-21T18:42:45.399] [TRACE] default - get translation, page navigation
+[2022-08-21T18:42:45.401] [TRACE] default - get translation, page hero
+[2022-08-21T18:42:45.411] [TRACE] default - get menu
+[2022-08-21T18:42:45.413] [TRACE] default - get translation, page item
+[2022-08-21T18:42:45.423] [TRACE] default - get twitch
+[2022-08-21T18:42:45.425] [TRACE] default - get translation, page wallet
+[2022-08-21T18:42:45.439] [TRACE] default - get translation, page trait
+[2022-08-21T18:42:45.485] [TRACE] default - get translation, page information
+[2022-08-21T18:42:45.487] [TRACE] default - get hero, node default
+[2022-08-21T18:42:45.494] [TRACE] default - get twitch userdata
+[2022-08-21T18:42:45.548] [TRACE] default - get node, default
+[2022-08-21T18:42:50.341] [TRACE] default - get heroinventory, node default, hero craffel
+[2022-08-21T18:43:00.886] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:43:00.886] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:43:00.887] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:43:18.638] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:18.640] [TRACE] default - get translation, page say
+[2022-08-21T18:43:18.646] [TRACE] default - get menu
+[2022-08-21T18:43:18.648] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:18.655] [TRACE] default - get node, default
+[2022-08-21T18:43:18.657] [TRACE] default - get twitch
+[2022-08-21T18:43:18.720] [TRACE] default - get translation, page information
+[2022-08-21T18:43:18.724] [TRACE] default - get say, node default
+[2022-08-21T18:43:18.735] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:18.805] [TRACE] default - get node, default
+[2022-08-21T18:43:20.115] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:20.117] [TRACE] default - get translation, page help
+[2022-08-21T18:43:20.124] [TRACE] default - get menu
+[2022-08-21T18:43:20.126] [TRACE] default - get translation, page information
+[2022-08-21T18:43:20.136] [TRACE] default - get twitch
+[2022-08-21T18:43:20.138] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:20.149] [TRACE] default - get node, default
+[2022-08-21T18:43:23.379] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:23.380] [TRACE] default - get translation, page say
+[2022-08-21T18:43:23.388] [TRACE] default - get menu
+[2022-08-21T18:43:23.391] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:23.397] [TRACE] default - get node, default
+[2022-08-21T18:43:23.400] [TRACE] default - get twitch
+[2022-08-21T18:43:23.450] [TRACE] default - get translation, page information
+[2022-08-21T18:43:23.454] [TRACE] default - get say, node default
+[2022-08-21T18:43:23.468] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:23.538] [TRACE] default - get node, default
+[2022-08-21T18:43:24.821] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:24.822] [TRACE] default - get translation, page help
+[2022-08-21T18:43:24.827] [TRACE] default - get menu
+[2022-08-21T18:43:24.830] [TRACE] default - get translation, page information
+[2022-08-21T18:43:24.838] [TRACE] default - get twitch
+[2022-08-21T18:43:24.840] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:24.849] [TRACE] default - get node, default
+[2022-08-21T18:43:25.616] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:25.617] [TRACE] default - get translation, page say
+[2022-08-21T18:43:25.625] [TRACE] default - get menu
+[2022-08-21T18:43:25.629] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:25.635] [TRACE] default - get node, default
+[2022-08-21T18:43:25.637] [TRACE] default - get twitch
+[2022-08-21T18:43:25.692] [TRACE] default - get translation, page information
+[2022-08-21T18:43:25.698] [TRACE] default - get say, node default
+[2022-08-21T18:43:25.711] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:25.780] [TRACE] default - get node, default
+[2022-08-21T18:43:44.427] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:44.429] [TRACE] default - get translation, page say
+[2022-08-21T18:43:44.434] [TRACE] default - get menu
+[2022-08-21T18:43:44.436] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:44.442] [TRACE] default - get node, default
+[2022-08-21T18:43:44.444] [TRACE] default - get twitch
+[2022-08-21T18:43:44.494] [TRACE] default - get translation, page information
+[2022-08-21T18:43:44.498] [TRACE] default - get say, node default
+[2022-08-21T18:43:44.515] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:44.580] [TRACE] default - get node, default
+[2022-08-21T18:43:45.068] [TRACE] default - get translation, page navigation
+[2022-08-21T18:43:45.071] [TRACE] default - get translation, page help
+[2022-08-21T18:43:45.078] [TRACE] default - get menu
+[2022-08-21T18:43:45.080] [TRACE] default - get translation, page information
+[2022-08-21T18:43:45.088] [TRACE] default - get twitch
+[2022-08-21T18:43:45.089] [TRACE] default - get twitch userdata
+[2022-08-21T18:43:45.100] [TRACE] default - get node, default
+[2022-08-21T18:44:00.894] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:44:00.894] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:44:00.895] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:45:00.898] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:45:00.899] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:45:00.899] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:45:29.721] [TRACE] default - get translation, page navigation
+[2022-08-21T18:45:29.723] [TRACE] default - get translation, page say
+[2022-08-21T18:45:29.728] [TRACE] default - get menu
+[2022-08-21T18:45:29.731] [TRACE] default - get twitch userdata
+[2022-08-21T18:45:29.737] [TRACE] default - get node, default
+[2022-08-21T18:45:29.738] [TRACE] default - get twitch
+[2022-08-21T18:45:29.821] [TRACE] default - get translation, page information
+[2022-08-21T18:45:29.826] [TRACE] default - get say, node default
+[2022-08-21T18:45:29.840] [TRACE] default - get twitch userdata
+[2022-08-21T18:45:29.921] [TRACE] default - get node, default
+[2022-08-21T18:46:00.910] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:46:00.910] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:46:00.910] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:47:00.916] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:47:00.916] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:47:00.917] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:47:17.282] [TRACE] default - get translation, page navigation
+[2022-08-21T18:47:17.283] [TRACE] default - get translation, page say
+[2022-08-21T18:47:17.289] [TRACE] default - get menu
+[2022-08-21T18:47:17.292] [TRACE] default - get twitch userdata
+[2022-08-21T18:47:17.302] [TRACE] default - get node, default
+[2022-08-21T18:47:17.306] [TRACE] default - get twitch
+[2022-08-21T18:47:17.389] [TRACE] default - get translation, page information
+[2022-08-21T18:47:17.393] [TRACE] default - get say, node default
+[2022-08-21T18:47:17.405] [TRACE] default - get twitch userdata
+[2022-08-21T18:47:17.499] [TRACE] default - get node, default
+[2022-08-21T18:48:00.931] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:48:00.931] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:48:00.931] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:49:00.940] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:49:00.940] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:49:00.941] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:50:00.942] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:50:00.942] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:50:00.943] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:51:00.951] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:51:00.952] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:51:00.952] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:52:00.959] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:52:00.960] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:52:00.960] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:53:00.972] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:53:00.972] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:53:00.973] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:54:00.986] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:54:00.986] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:54:00.987] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:55:00.991] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:55:00.992] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:55:00.992] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:56:00.996] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:56:00.997] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:56:00.997] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:57:01.003] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:57:01.003] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:57:01.004] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:58:01.015] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:58:01.016] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:58:01.017] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T18:59:01.018] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T18:59:01.019] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T18:59:01.019] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:00:01.021] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:00:01.022] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:00:01.022] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:01:01.034] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:01:01.034] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:01:01.035] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:02:01.043] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:02:01.043] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:02:01.044] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:03:01.044] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:03:01.044] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:03:01.045] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:04:01.056] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:04:01.056] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:04:01.057] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:05:01.064] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:05:01.064] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:05:01.064] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:06:02.629] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:06:02.630] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:06:02.630] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:07:02.635] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:07:02.636] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:07:02.636] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:08:02.646] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:08:02.647] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:08:02.647] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:09:02.650] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:09:02.650] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:09:02.650] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:10:02.654] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:10:02.655] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:10:02.655] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:11:02.667] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:11:02.667] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:11:02.668] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:12:02.676] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:12:02.676] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:12:02.677] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:13:02.691] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:13:02.692] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:13:02.692] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:14:02.703] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:14:02.703] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:14:02.703] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:15:02.716] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:15:02.716] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:15:02.717] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:16:02.729] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:16:02.730] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:16:02.730] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:17:02.737] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:17:02.737] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:17:02.738] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:18:02.737] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:18:02.738] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:18:02.738] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:19:02.747] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:19:02.748] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:19:02.748] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:20:02.754] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:20:02.755] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:20:02.755] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-21T19:21:02.768] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-21T19:21:02.768] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-21T19:21:02.769] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:07:12.345] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:07:12.545] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:07:12.546] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:07:12.589] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:07:12.593] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:07:14.069] [TRACE] default - add Migration update_001
+[2022-08-28T15:07:15.085] [TRACE] default - add Node craffelmat
+[2022-08-28T15:07:15.837] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:07:15.841] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:07:37.531] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:07:37.643] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:07:37.643] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:07:37.659] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:07:37.662] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:07:39.386] [TRACE] default - get translation, page navigation
+[2022-08-28T15:07:39.392] [TRACE] default - get translation, page index
+[2022-08-28T15:07:39.403] [TRACE] default - get menu
+[2022-08-28T15:07:39.413] [TRACE] default - get translation, page information
+[2022-08-28T15:07:39.430] [TRACE] default - get twitch
+[2022-08-28T15:07:39.434] [TRACE] default - get twitch userdata
+[2022-08-28T15:07:39.469] [TRACE] default - get node, default
+[2022-08-28T15:07:39.489] [TRACE] default - add Migration update_001
+[2022-08-28T15:07:40.472] [TRACE] default - add Node craffelmat
+[2022-08-28T15:07:41.069] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:07:41.072] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:07:52.014] [TRACE] default - get translation, page navigation
+[2022-08-28T15:07:52.015] [TRACE] default - get translation, page hero
+[2022-08-28T15:07:52.024] [TRACE] default - get menu
+[2022-08-28T15:07:52.026] [TRACE] default - get translation, page item
+[2022-08-28T15:07:52.037] [TRACE] default - get twitch
+[2022-08-28T15:07:52.039] [TRACE] default - get translation, page wallet
+[2022-08-28T15:07:52.058] [TRACE] default - get translation, page trait
+[2022-08-28T15:07:52.162] [TRACE] default - get translation, page information
+[2022-08-28T15:07:52.167] [TRACE] default - get hero, node default
+[2022-08-28T15:07:52.169] [TRACE] default - get twitch userdata
+[2022-08-28T15:07:52.176] [TRACE] default - get node, default
+[2022-08-28T15:07:53.373] [TRACE] default - get translation, page navigation
+[2022-08-28T15:07:53.375] [TRACE] default - get translation, page taverne
+[2022-08-28T15:07:53.383] [TRACE] default - get menu
+[2022-08-28T15:07:53.386] [TRACE] default - get translation, page information
+[2022-08-28T15:07:53.398] [TRACE] default - get twitch
+[2022-08-28T15:07:53.400] [TRACE] default - get twitch userdata
+[2022-08-28T15:07:53.412] [TRACE] default - get node, default
+[2022-08-28T15:07:54.529] [TRACE] default - get translation, page daily
+[2022-08-28T15:07:54.530] [TRACE] default - get translation, page navigation
+[2022-08-28T15:07:54.537] [TRACE] default - get translation, page information
+[2022-08-28T15:07:54.540] [TRACE] default - get menu
+[2022-08-28T15:07:54.550] [TRACE] default - get twitch userdata
+[2022-08-28T15:07:54.553] [TRACE] default - get twitch
+[2022-08-28T15:07:54.556] [TRACE] default - get node, default
+[2022-08-28T15:07:55.549] [TRACE] default - get translation, page navigation
+[2022-08-28T15:07:55.551] [TRACE] default - get translation, page hero
+[2022-08-28T15:07:55.557] [TRACE] default - get menu
+[2022-08-28T15:07:55.559] [TRACE] default - get translation, page item
+[2022-08-28T15:07:55.569] [TRACE] default - get twitch
+[2022-08-28T15:07:55.570] [TRACE] default - get translation, page wallet
+[2022-08-28T15:07:55.583] [TRACE] default - get translation, page trait
+[2022-08-28T15:07:55.657] [TRACE] default - get translation, page information
+[2022-08-28T15:07:55.667] [TRACE] default - get hero, node default
+[2022-08-28T15:07:55.674] [TRACE] default - get twitch userdata
+[2022-08-28T15:07:55.730] [TRACE] default - get node, default
+[2022-08-28T15:07:58.555] [TRACE] default - get heroinventory, node default, hero craffel
+[2022-08-28T15:08:20.765] [TRACE] default - get translation, page navigation
+[2022-08-28T15:08:20.766] [TRACE] default - get translation, page hero
+[2022-08-28T15:08:20.772] [TRACE] default - get menu
+[2022-08-28T15:08:20.775] [TRACE] default - get translation, page item
+[2022-08-28T15:08:20.786] [TRACE] default - get twitch
+[2022-08-28T15:08:20.789] [TRACE] default - get translation, page wallet
+[2022-08-28T15:08:20.803] [TRACE] default - get translation, page trait
+[2022-08-28T15:08:20.864] [TRACE] default - get translation, page information
+[2022-08-28T15:08:20.868] [TRACE] default - get hero, node default
+[2022-08-28T15:08:20.875] [TRACE] default - get twitch userdata
+[2022-08-28T15:08:20.937] [TRACE] default - get node, default
+[2022-08-28T15:08:22.440] [TRACE] default - get translation, page navigation
+[2022-08-28T15:08:22.442] [TRACE] default - get translation, page hero
+[2022-08-28T15:08:22.450] [TRACE] default - get menu
+[2022-08-28T15:08:22.458] [TRACE] default - get translation, page item
+[2022-08-28T15:08:22.468] [TRACE] default - get twitch
+[2022-08-28T15:08:22.469] [TRACE] default - get translation, page wallet
+[2022-08-28T15:08:22.486] [TRACE] default - get translation, page trait
+[2022-08-28T15:08:22.545] [TRACE] default - get translation, page information
+[2022-08-28T15:08:22.551] [TRACE] default - get hero, node default
+[2022-08-28T15:08:22.557] [TRACE] default - get twitch userdata
+[2022-08-28T15:08:22.625] [TRACE] default - get node, default
+[2022-08-28T15:08:28.888] [TRACE] default - get translation, page navigation
+[2022-08-28T15:08:28.889] [TRACE] default - get translation, page hero
+[2022-08-28T15:08:28.895] [TRACE] default - get menu
+[2022-08-28T15:08:28.898] [TRACE] default - get translation, page item
+[2022-08-28T15:08:28.907] [TRACE] default - get twitch
+[2022-08-28T15:08:28.909] [TRACE] default - get translation, page wallet
+[2022-08-28T15:08:28.925] [TRACE] default - get translation, page trait
+[2022-08-28T15:08:29.009] [TRACE] default - get translation, page information
+[2022-08-28T15:08:29.012] [TRACE] default - get hero, node default
+[2022-08-28T15:08:29.021] [TRACE] default - get twitch userdata
+[2022-08-28T15:08:29.084] [TRACE] default - get node, default
+[2022-08-28T15:08:41.076] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:08:41.076] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:08:41.077] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:09:41.085] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:09:41.085] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:09:41.085] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:10:41.095] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:10:41.095] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:10:41.095] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:11:41.107] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:11:41.108] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:11:41.108] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:12:41.121] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:12:41.121] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:12:41.122] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:13:41.131] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:13:41.131] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:13:41.131] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:14:20.482] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:14:20.592] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:14:20.593] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:14:20.608] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:14:20.611] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:14:21.153] [TRACE] default - get translation, page navigation
+[2022-08-28T15:14:21.157] [TRACE] default - get translation, page index
+[2022-08-28T15:14:21.176] [TRACE] default - get translation, page information
+[2022-08-28T15:14:21.179] [TRACE] default - get menu
+[2022-08-28T15:14:21.204] [TRACE] default - get twitch userdata
+[2022-08-28T15:14:21.208] [TRACE] default - get twitch
+[2022-08-28T15:14:21.212] [TRACE] default - get node, default
+[2022-08-28T15:14:22.341] [TRACE] default - add Migration update_001
+[2022-08-28T15:14:23.339] [TRACE] default - add Node craffelmat
+[2022-08-28T15:14:23.926] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:14:23.929] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:15:23.932] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:15:23.932] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:15:23.933] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:16:23.944] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:16:23.945] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:16:23.945] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:17:23.959] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:17:23.959] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:17:23.960] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:17:57.737] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:17:57.844] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:17:57.844] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:17:57.861] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:17:57.865] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:17:59.380] [TRACE] default - add Migration update_001
+[2022-08-28T15:18:00.547] [TRACE] default - add Node craffelmat
+[2022-08-28T15:18:00.804] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:00.806] [TRACE] default - get translation, page index
+[2022-08-28T15:18:00.815] [TRACE] default - get menu
+[2022-08-28T15:18:00.822] [TRACE] default - get translation, page information
+[2022-08-28T15:18:00.834] [TRACE] default - get twitch
+[2022-08-28T15:18:00.838] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:00.850] [TRACE] default - get node, default
+[2022-08-28T15:18:01.228] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:18:01.231] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:18:01.736] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:01.738] [TRACE] default - get translation, page index
+[2022-08-28T15:18:01.744] [TRACE] default - get menu
+[2022-08-28T15:18:01.746] [TRACE] default - get translation, page information
+[2022-08-28T15:18:01.755] [TRACE] default - get twitch
+[2022-08-28T15:18:01.756] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:01.769] [TRACE] default - get node, default
+[2022-08-28T15:18:03.983] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:03.985] [TRACE] default - get translation, page index
+[2022-08-28T15:18:03.992] [TRACE] default - get menu
+[2022-08-28T15:18:03.995] [TRACE] default - get translation, page information
+[2022-08-28T15:18:04.005] [TRACE] default - get twitch
+[2022-08-28T15:18:04.007] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:04.020] [TRACE] default - get node, default
+[2022-08-28T15:18:06.811] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:06.813] [TRACE] default - get translation, page index
+[2022-08-28T15:18:06.829] [TRACE] default - get menu
+[2022-08-28T15:18:06.831] [TRACE] default - get translation, page information
+[2022-08-28T15:18:06.845] [TRACE] default - get twitch
+[2022-08-28T15:18:06.847] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:06.865] [TRACE] default - get node, default
+[2022-08-28T15:18:10.342] [TRACE] default - {
+  access_token: 'kyddz27y705wd792pvg7vye7kb45pt',
+  expires_in: 13926,
+  refresh_token: 'vsafrbh4r6dhokeyv7nfy6ucd0flejndsuchjsht9u7zz168bq',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-28T15:18:10.579] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-28T15:18:11.057] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:11.058] [TRACE] default - get translation, page twitch
+[2022-08-28T15:18:11.067] [TRACE] default - get menu
+[2022-08-28T15:18:11.109] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:11.130] [TRACE] default - get twitch
+[2022-08-28T15:18:11.131] [TRACE] default - get translation, page information
+[2022-08-28T15:18:11.149] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:11.155] [TRACE] default - get node, default
+[2022-08-28T15:18:19.938] [TRACE] default - get translation, page streamer
+[2022-08-28T15:18:19.940] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:20.034] [TRACE] default - get translation, page information
+[2022-08-28T15:18:20.041] [TRACE] default - get node
+[2022-08-28T15:18:20.044] [TRACE] default - get menu
+[2022-08-28T15:18:20.048] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:20.058] [TRACE] default - get node, default
+[2022-08-28T15:18:20.149] [TRACE] default - get twitch
+[2022-08-28T15:18:30.385] [TRACE] default - post node, default
+[2022-08-28T15:18:30.385] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: 'kyddz27y705wd792pvg7vye7kb45pt',
+    expires_in: 13926,
+    refresh_token: 'vsafrbh4r6dhokeyv7nfy6ucd0flejndsuchjsht9u7zz168bq',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:18:39.627] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:39.628] [TRACE] default - get translation, page index
+[2022-08-28T15:18:39.634] [TRACE] default - get menu
+[2022-08-28T15:18:39.638] [TRACE] default - get translation, page information
+[2022-08-28T15:18:39.647] [TRACE] default - get twitch
+[2022-08-28T15:18:39.649] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:39.664] [TRACE] default - get node, default
+[2022-08-28T15:18:40.683] [TRACE] default - get translation, page navigation
+[2022-08-28T15:18:40.684] [TRACE] default - get translation, page streamer
+[2022-08-28T15:18:40.690] [TRACE] default - get menu
+[2022-08-28T15:18:40.746] [TRACE] default - get translation, page information
+[2022-08-28T15:18:40.748] [TRACE] default - get node
+[2022-08-28T15:18:40.751] [TRACE] default - get twitch
+[2022-08-28T15:18:40.754] [TRACE] default - get twitch userdata
+[2022-08-28T15:18:40.826] [TRACE] default - get node, default
+[2022-08-28T15:19:01.238] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:19:01.239] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:19:01.239] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:19:25.002] [TRACE] default - get translation, page navigation
+[2022-08-28T15:19:25.017] [TRACE] default - get translation, page streamer
+[2022-08-28T15:19:25.022] [TRACE] default - get menu
+[2022-08-28T15:19:25.100] [TRACE] default - get translation, page information
+[2022-08-28T15:19:25.103] [TRACE] default - get node
+[2022-08-28T15:19:25.109] [TRACE] default - get twitch
+[2022-08-28T15:19:25.112] [TRACE] default - get twitch userdata
+[2022-08-28T15:19:25.194] [TRACE] default - get node, default
+[2022-08-28T15:19:39.798] [TRACE] default - get translation, page navigation
+[2022-08-28T15:19:39.799] [TRACE] default - get translation, page streamer
+[2022-08-28T15:19:39.806] [TRACE] default - get menu
+[2022-08-28T15:19:39.872] [TRACE] default - get translation, page information
+[2022-08-28T15:19:39.875] [TRACE] default - get node
+[2022-08-28T15:19:39.876] [TRACE] default - get twitch
+[2022-08-28T15:19:39.892] [TRACE] default - get twitch userdata
+[2022-08-28T15:19:39.972] [TRACE] default - get node, default
+[2022-08-28T15:19:42.164] [TRACE] default - post node, default
+[2022-08-28T15:19:42.164] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: 'kyddz27y705wd792pvg7vye7kb45pt',
+    expires_in: 13926,
+    refresh_token: 'vsafrbh4r6dhokeyv7nfy6ucd0flejndsuchjsht9u7zz168bq',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:20:01.241] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:20:01.242] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:20:01.242] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:20:52.067] [TRACE] default - get translation, page navigation
+[2022-08-28T15:20:52.069] [TRACE] default - get translation, page streamer
+[2022-08-28T15:20:52.075] [TRACE] default - get menu
+[2022-08-28T15:20:52.131] [TRACE] default - get translation, page information
+[2022-08-28T15:20:52.136] [TRACE] default - get node
+[2022-08-28T15:20:52.141] [TRACE] default - get twitch
+[2022-08-28T15:20:52.143] [TRACE] default - get twitch userdata
+[2022-08-28T15:20:52.220] [TRACE] default - get node, default
+[2022-08-28T15:20:53.582] [TRACE] default - post node, default
+[2022-08-28T15:20:53.582] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: 'kyddz27y705wd792pvg7vye7kb45pt',
+    expires_in: 13926,
+    refresh_token: 'vsafrbh4r6dhokeyv7nfy6ucd0flejndsuchjsht9u7zz168bq',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:20:53.588] [TRACE] default - get translation, page information
+[2022-08-28T15:20:53.593] [TRACE] default - get twitch userdata
+[2022-08-28T15:20:53.597] [TRACE] default - get node, default
+[2022-08-28T15:20:58.303] [TRACE] default - {
+  access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+  expires_in: 13248,
+  refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-28T15:20:58.539] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-28T15:20:58.913] [TRACE] default - get translation, page navigation
+[2022-08-28T15:20:58.915] [TRACE] default - get translation, page twitch
+[2022-08-28T15:20:58.922] [TRACE] default - get menu
+[2022-08-28T15:20:58.947] [TRACE] default - get twitch userdata
+[2022-08-28T15:20:58.955] [TRACE] default - get twitch
+[2022-08-28T15:20:58.957] [TRACE] default - get translation, page information
+[2022-08-28T15:20:58.986] [TRACE] default - get twitch userdata
+[2022-08-28T15:20:58.992] [TRACE] default - get node, default
+[2022-08-28T15:21:00.740] [TRACE] default - post twitch
+[2022-08-28T15:21:00.757] [TRACE] default - add Node craffel
+[2022-08-28T15:21:01.246] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:21:01.246] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:21:01.247] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:21:01.532] [INFO] default - node craffel, say add craffel.
+[2022-08-28T15:21:01.537] [TRACE] default - node connected: craffel
+[2022-08-28T15:21:01.781] [TRACE] default - get translation, page navigation
+[2022-08-28T15:21:01.782] [TRACE] default - get translation, page streamer
+[2022-08-28T15:21:01.792] [TRACE] default - get menu
+[2022-08-28T15:21:01.844] [TRACE] default - get translation, page information
+[2022-08-28T15:21:01.848] [TRACE] default - get node
+[2022-08-28T15:21:01.861] [TRACE] default - get twitch
+[2022-08-28T15:21:01.864] [TRACE] default - get twitch userdata
+[2022-08-28T15:21:01.971] [TRACE] default - get node, default
+[2022-08-28T15:21:03.919] [TRACE] default - post node, default
+[2022-08-28T15:21:03.919] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:21:03.926] [TRACE] default - get translation, page information
+[2022-08-28T15:21:03.931] [TRACE] default - get twitch userdata
+[2022-08-28T15:21:03.935] [TRACE] default - get node, default
+[2022-08-28T15:21:05.746] [TRACE] default - post node, default
+[2022-08-28T15:21:05.747] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffel',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:21:05.753] [TRACE] default - get translation, page information
+[2022-08-28T15:21:05.759] [TRACE] default - get twitch userdata
+[2022-08-28T15:21:05.763] [TRACE] default - get node, default
+[2022-08-28T15:21:07.083] [TRACE] default - post node, default
+[2022-08-28T15:21:07.083] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:21:07.088] [TRACE] default - get translation, page information
+[2022-08-28T15:21:07.094] [TRACE] default - get twitch userdata
+[2022-08-28T15:21:07.098] [TRACE] default - get node, default
+[2022-08-28T15:21:10.052] [TRACE] default - post node, default
+[2022-08-28T15:21:10.052] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffel',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:21:10.062] [TRACE] default - get translation, page information
+[2022-08-28T15:21:10.070] [TRACE] default - get twitch userdata
+[2022-08-28T15:21:10.086] [TRACE] default - get node, default
+[2022-08-28T15:22:01.259] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:22:01.259] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:22:01.260] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:22:01.544] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:22:01.544] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:22:01.545] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T15:22:16.837] [TRACE] default - post node, default
+[2022-08-28T15:22:16.838] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:22:16.843] [TRACE] default - get translation, page information
+[2022-08-28T15:22:16.848] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:16.852] [TRACE] default - get node, default
+[2022-08-28T15:22:17.752] [TRACE] default - post node, default
+[2022-08-28T15:22:17.752] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffel',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:22:17.760] [TRACE] default - get translation, page information
+[2022-08-28T15:22:17.766] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:17.770] [TRACE] default - get node, default
+[2022-08-28T15:22:19.042] [TRACE] default - post node, default
+[2022-08-28T15:22:19.043] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:22:19.051] [TRACE] default - get translation, page information
+[2022-08-28T15:22:19.057] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:19.061] [TRACE] default - get node, default
+[2022-08-28T15:22:21.016] [TRACE] default - post node, default
+[2022-08-28T15:22:21.017] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffel',
+  twitch: {
+    access_token: '47dlakj88a87hn4v7jaihl4dnvzz54',
+    expires_in: 13248,
+    refresh_token: 'tylgn02o65i84iswlpd1wie2crnecsjw8ekpxi23hj1uwmq3gx',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:22:21.023] [TRACE] default - get translation, page information
+[2022-08-28T15:22:21.027] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:21.031] [TRACE] default - get node, default
+[2022-08-28T15:22:23.672] [TRACE] default - get translation, page navigation
+[2022-08-28T15:22:23.674] [TRACE] default - get translation, page hero
+[2022-08-28T15:22:23.682] [TRACE] default - get menu
+[2022-08-28T15:22:23.684] [TRACE] default - get translation, page item
+[2022-08-28T15:22:23.694] [TRACE] default - get twitch
+[2022-08-28T15:22:23.696] [TRACE] default - get translation, page wallet
+[2022-08-28T15:22:23.716] [TRACE] default - get translation, page trait
+[2022-08-28T15:22:23.825] [TRACE] default - get translation, page information
+[2022-08-28T15:22:23.829] [TRACE] default - get hero, node default
+[2022-08-28T15:22:23.837] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:23.925] [TRACE] default - get node, default
+[2022-08-28T15:22:26.130] [TRACE] default - get translation, page navigation
+[2022-08-28T15:22:26.131] [TRACE] default - get translation, page say
+[2022-08-28T15:22:26.137] [TRACE] default - get menu
+[2022-08-28T15:22:26.140] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:26.148] [TRACE] default - get node, default
+[2022-08-28T15:22:26.151] [TRACE] default - get twitch
+[2022-08-28T15:22:26.208] [TRACE] default - get translation, page information
+[2022-08-28T15:22:26.212] [TRACE] default - get say, node default
+[2022-08-28T15:22:26.230] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:26.304] [TRACE] default - get node, default
+[2022-08-28T15:22:29.294] [TRACE] default - get translation, page navigation
+[2022-08-28T15:22:29.297] [TRACE] default - get translation, page say
+[2022-08-28T15:22:29.312] [TRACE] default - get menu
+[2022-08-28T15:22:29.315] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:29.321] [TRACE] default - get node, default
+[2022-08-28T15:22:29.323] [TRACE] default - get twitch
+[2022-08-28T15:22:29.374] [TRACE] default - get translation, page information
+[2022-08-28T15:22:29.378] [TRACE] default - get say, node default
+[2022-08-28T15:22:29.390] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:29.470] [TRACE] default - get node, default
+[2022-08-28T15:22:48.983] [TRACE] default - get translation, page help
+[2022-08-28T15:22:48.985] [TRACE] default - get translation, page navigation
+[2022-08-28T15:22:48.991] [TRACE] default - get translation, page information
+[2022-08-28T15:22:48.993] [TRACE] default - get menu
+[2022-08-28T15:22:49.004] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:49.008] [TRACE] default - get twitch
+[2022-08-28T15:22:49.010] [TRACE] default - get node, default
+[2022-08-28T15:22:58.329] [TRACE] default - {
+  access_token: 'spdgeu7sgxx9nj1hx51w8tll2zf1zk',
+  expires_in: 15397,
+  refresh_token: 'ff33kxv6o1htir5tit6jqgk6x0p2v922k7dweg7jqbl67lsoky',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-28T15:22:58.577] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-28T15:22:58.996] [TRACE] default - get translation, page navigation
+[2022-08-28T15:22:58.997] [TRACE] default - get translation, page twitch
+[2022-08-28T15:22:59.003] [TRACE] default - get menu
+[2022-08-28T15:22:59.044] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:59.058] [TRACE] default - get twitch
+[2022-08-28T15:22:59.061] [TRACE] default - get translation, page information
+[2022-08-28T15:22:59.078] [TRACE] default - get twitch userdata
+[2022-08-28T15:22:59.083] [TRACE] default - get node, default
+[2022-08-28T15:23:01.270] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:23:01.270] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:23:01.270] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:23:01.550] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:23:01.550] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:23:01.550] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T15:23:17.473] [TRACE] default - get translation, page navigation
+[2022-08-28T15:23:17.474] [TRACE] default - get translation, page help
+[2022-08-28T15:23:17.482] [TRACE] default - get menu
+[2022-08-28T15:23:17.485] [TRACE] default - get translation, page information
+[2022-08-28T15:23:17.496] [TRACE] default - get twitch
+[2022-08-28T15:23:17.498] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:17.519] [TRACE] default - get node, default
+[2022-08-28T15:23:18.145] [TRACE] default - get translation, page navigation
+[2022-08-28T15:23:18.147] [TRACE] default - get translation, page say
+[2022-08-28T15:23:18.153] [TRACE] default - get menu
+[2022-08-28T15:23:18.158] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:18.164] [TRACE] default - get node, default
+[2022-08-28T15:23:18.167] [TRACE] default - get twitch
+[2022-08-28T15:23:18.258] [TRACE] default - get translation, page information
+[2022-08-28T15:23:18.261] [TRACE] default - get say, node default
+[2022-08-28T15:23:18.276] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:18.369] [TRACE] default - get node, default
+[2022-08-28T15:23:40.272] [TRACE] default - get translation, page navigation
+[2022-08-28T15:23:40.273] [TRACE] default - get translation, page index
+[2022-08-28T15:23:40.279] [TRACE] default - get menu
+[2022-08-28T15:23:40.284] [TRACE] default - get translation, page information
+[2022-08-28T15:23:40.294] [TRACE] default - get twitch
+[2022-08-28T15:23:40.297] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:40.311] [TRACE] default - get node, default
+[2022-08-28T15:23:41.212] [TRACE] default - get translation, page navigation
+[2022-08-28T15:23:41.215] [TRACE] default - get translation, page streamer
+[2022-08-28T15:23:41.223] [TRACE] default - get menu
+[2022-08-28T15:23:41.278] [TRACE] default - get translation, page information
+[2022-08-28T15:23:41.282] [TRACE] default - get node
+[2022-08-28T15:23:41.288] [TRACE] default - get twitch
+[2022-08-28T15:23:41.293] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:41.400] [TRACE] default - get node, default
+[2022-08-28T15:23:42.490] [TRACE] default - post node, default
+[2022-08-28T15:23:42.490] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: 'spdgeu7sgxx9nj1hx51w8tll2zf1zk',
+    expires_in: 15397,
+    refresh_token: 'ff33kxv6o1htir5tit6jqgk6x0p2v922k7dweg7jqbl67lsoky',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:23:42.498] [TRACE] default - get translation, page information
+[2022-08-28T15:23:42.504] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:42.509] [TRACE] default - get node, default
+[2022-08-28T15:23:43.635] [TRACE] default - post node, default
+[2022-08-28T15:23:43.635] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffelmat',
+  twitch: {
+    access_token: 'spdgeu7sgxx9nj1hx51w8tll2zf1zk',
+    expires_in: 15397,
+    refresh_token: 'ff33kxv6o1htir5tit6jqgk6x0p2v922k7dweg7jqbl67lsoky',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:23:43.641] [TRACE] default - get translation, page information
+[2022-08-28T15:23:43.646] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:43.650] [TRACE] default - get node, default
+[2022-08-28T15:23:49.765] [TRACE] default - post node, default
+[2022-08-28T15:23:49.766] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q3ikl7dcx2f8',
+  node: 'craffel',
+  twitch: {
+    access_token: 'spdgeu7sgxx9nj1hx51w8tll2zf1zk',
+    expires_in: 15397,
+    refresh_token: 'ff33kxv6o1htir5tit6jqgk6x0p2v922k7dweg7jqbl67lsoky',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T15:23:49.772] [TRACE] default - get translation, page information
+[2022-08-28T15:23:49.777] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:49.782] [TRACE] default - get node, default
+[2022-08-28T15:23:54.415] [TRACE] default - get translation, page navigation
+[2022-08-28T15:23:54.416] [TRACE] default - get translation, page help
+[2022-08-28T15:23:54.422] [TRACE] default - get menu
+[2022-08-28T15:23:54.426] [TRACE] default - get translation, page information
+[2022-08-28T15:23:54.438] [TRACE] default - get twitch
+[2022-08-28T15:23:54.440] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:54.457] [TRACE] default - get node, default
+[2022-08-28T15:23:55.295] [TRACE] default - get translation, page navigation
+[2022-08-28T15:23:55.297] [TRACE] default - get translation, page say
+[2022-08-28T15:23:55.303] [TRACE] default - get menu
+[2022-08-28T15:23:55.305] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:55.312] [TRACE] default - get node, default
+[2022-08-28T15:23:55.314] [TRACE] default - get twitch
+[2022-08-28T15:23:55.382] [TRACE] default - get translation, page information
+[2022-08-28T15:23:55.384] [TRACE] default - get say, node default
+[2022-08-28T15:23:55.397] [TRACE] default - get twitch userdata
+[2022-08-28T15:23:55.479] [TRACE] default - get node, default
+[2022-08-28T15:24:01.016] [TRACE] default - incomming message self: false
+[2022-08-28T15:24:01.017] [TRACE] default - incomming real message count: 1
+[2022-08-28T15:24:01.270] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:24:01.270] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:24:01.270] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:24:01.551] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:24:01.551] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:24:01.551] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:24:18.452] [TRACE] default - get translation, page navigation
+[2022-08-28T15:24:18.453] [TRACE] default - get translation, page hero
+[2022-08-28T15:24:18.459] [TRACE] default - get menu
+[2022-08-28T15:24:18.461] [TRACE] default - get translation, page item
+[2022-08-28T15:24:18.473] [TRACE] default - get twitch
+[2022-08-28T15:24:18.475] [TRACE] default - get translation, page wallet
+[2022-08-28T15:24:18.494] [TRACE] default - get translation, page trait
+[2022-08-28T15:24:18.572] [TRACE] default - get translation, page information
+[2022-08-28T15:24:18.576] [TRACE] default - get hero, node default
+[2022-08-28T15:24:18.583] [TRACE] default - get twitch userdata
+[2022-08-28T15:24:18.652] [TRACE] default - get node, default
+[2022-08-28T15:24:20.506] [TRACE] default - get heroinventory, node default, hero craffel
+[2022-08-28T15:24:21.757] [TRACE] default - get herowallet, node default, hero craffel
+[2022-08-28T15:24:22.129] [TRACE] default - get herotrait, node default, hero craffel
+[2022-08-28T15:24:29.579] [TRACE] default - get translation, page navigation
+[2022-08-28T15:24:29.581] [TRACE] default - get translation, page say
+[2022-08-28T15:24:29.587] [TRACE] default - get menu
+[2022-08-28T15:24:29.589] [TRACE] default - get twitch userdata
+[2022-08-28T15:24:29.596] [TRACE] default - get node, default
+[2022-08-28T15:24:29.599] [TRACE] default - get twitch
+[2022-08-28T15:24:29.658] [TRACE] default - get translation, page information
+[2022-08-28T15:24:29.661] [TRACE] default - get say, node default
+[2022-08-28T15:24:29.671] [TRACE] default - get twitch userdata
+[2022-08-28T15:24:29.751] [TRACE] default - get node, default
+[2022-08-28T15:25:01.275] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:25:01.275] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:25:01.275] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:25:01.560] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:25:01.560] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:25:01.560] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:25:54.530] [TRACE] default - get translation, page navigation
+[2022-08-28T15:25:54.532] [TRACE] default - get translation, page streamer
+[2022-08-28T15:25:54.538] [TRACE] default - get menu
+[2022-08-28T15:25:54.625] [TRACE] default - get translation, page information
+[2022-08-28T15:25:54.630] [TRACE] default - get node
+[2022-08-28T15:25:54.638] [TRACE] default - get twitch
+[2022-08-28T15:25:54.641] [TRACE] default - get twitch userdata
+[2022-08-28T15:25:54.760] [TRACE] default - get node, default
+[2022-08-28T15:25:57.064] [TRACE] default - get translation, page navigation
+[2022-08-28T15:25:57.066] [TRACE] default - get translation, page hero
+[2022-08-28T15:25:57.074] [TRACE] default - get menu
+[2022-08-28T15:25:57.077] [TRACE] default - get translation, page item
+[2022-08-28T15:25:57.088] [TRACE] default - get twitch
+[2022-08-28T15:25:57.090] [TRACE] default - get translation, page wallet
+[2022-08-28T15:25:57.108] [TRACE] default - get translation, page trait
+[2022-08-28T15:25:57.206] [TRACE] default - get translation, page information
+[2022-08-28T15:25:57.211] [TRACE] default - get hero, node default
+[2022-08-28T15:25:57.219] [TRACE] default - get twitch userdata
+[2022-08-28T15:25:57.296] [TRACE] default - get node, default
+[2022-08-28T15:25:57.973] [TRACE] default - get heroinventory, node default, hero craffel
+[2022-08-28T15:25:58.380] [TRACE] default - get herotrait, node default, hero craffel
+[2022-08-28T15:25:58.705] [TRACE] default - get herowallet, node default, hero craffel
+[2022-08-28T15:26:01.289] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:26:01.289] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:26:01.290] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:26:01.573] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:26:01.574] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:26:01.574] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:26:39.742] [TRACE] default - get translation, page navigation
+[2022-08-28T15:26:39.743] [TRACE] default - get translation, page say
+[2022-08-28T15:26:39.749] [TRACE] default - get menu
+[2022-08-28T15:26:39.763] [TRACE] default - get twitch
+[2022-08-28T15:27:01.304] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:27:01.305] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:27:01.305] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:27:01.584] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:27:01.585] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:27:01.585] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:28:01.306] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:28:01.306] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:28:01.307] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:28:01.592] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:28:01.592] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:28:01.593] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:28:49.283] [TRACE] default - get translation, page navigation
+[2022-08-28T15:28:49.284] [TRACE] default - get translation, page index
+[2022-08-28T15:28:49.290] [TRACE] default - get menu
+[2022-08-28T15:28:49.293] [TRACE] default - get translation, page information
+[2022-08-28T15:28:49.302] [TRACE] default - get twitch
+[2022-08-28T15:28:49.303] [TRACE] default - get twitch userdata
+[2022-08-28T15:28:49.326] [TRACE] default - get node, default
+[2022-08-28T15:28:50.655] [TRACE] default - get translation, page navigation
+[2022-08-28T15:28:50.656] [TRACE] default - get translation, page streamer
+[2022-08-28T15:28:50.661] [TRACE] default - get menu
+[2022-08-28T15:28:50.735] [TRACE] default - get translation, page information
+[2022-08-28T15:28:50.737] [TRACE] default - get node
+[2022-08-28T15:28:50.744] [TRACE] default - get twitch
+[2022-08-28T15:28:50.746] [TRACE] default - get twitch userdata
+[2022-08-28T15:28:50.860] [TRACE] default - get node, default
+[2022-08-28T15:28:53.081] [TRACE] default - get translation, page navigation
+[2022-08-28T15:28:53.083] [TRACE] default - get translation, page item
+[2022-08-28T15:28:53.092] [TRACE] default - get menu
+[2022-08-28T15:28:53.096] [TRACE] default - get twitch userdata
+[2022-08-28T15:28:53.104] [TRACE] default - get node, default
+[2022-08-28T15:28:53.106] [TRACE] default - get twitch
+[2022-08-28T15:28:53.160] [TRACE] default - get translation, page information
+[2022-08-28T15:28:53.163] [TRACE] default - get item, node default
+[2022-08-28T15:28:53.177] [TRACE] default - get twitch userdata
+[2022-08-28T15:28:53.219] [TRACE] default - get node, default
+[2022-08-28T15:28:56.171] [TRACE] default - get translation, page navigation
+[2022-08-28T15:28:56.172] [TRACE] default - get translation, page say
+[2022-08-28T15:28:56.179] [TRACE] default - get menu
+[2022-08-28T15:28:56.181] [TRACE] default - get twitch userdata
+[2022-08-28T15:28:56.188] [TRACE] default - get node, default
+[2022-08-28T15:28:56.190] [TRACE] default - get twitch
+[2022-08-28T15:28:56.239] [TRACE] default - get translation, page information
+[2022-08-28T15:28:56.244] [TRACE] default - get say, node default
+[2022-08-28T15:28:56.255] [TRACE] default - get twitch userdata
+[2022-08-28T15:28:56.337] [TRACE] default - get node, default
+[2022-08-28T15:29:01.308] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:29:01.308] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:29:01.308] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:29:01.603] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:29:01.603] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:29:01.603] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:30:01.322] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:30:01.322] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:30:01.323] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:30:01.604] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:30:01.604] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:30:01.604] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:31:01.330] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:31:01.330] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:31:01.331] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:31:01.611] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:31:01.611] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:31:01.612] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:31:33.594] [TRACE] default - get translation, page navigation
+[2022-08-28T15:31:33.595] [TRACE] default - get translation, page say
+[2022-08-28T15:31:33.612] [TRACE] default - get menu
+[2022-08-28T15:31:33.615] [TRACE] default - get twitch userdata
+[2022-08-28T15:31:33.623] [TRACE] default - get node, default
+[2022-08-28T15:31:33.624] [TRACE] default - get twitch
+[2022-08-28T15:31:33.681] [TRACE] default - get translation, page information
+[2022-08-28T15:31:33.686] [TRACE] default - get say, node default
+[2022-08-28T15:31:33.705] [TRACE] default - get twitch userdata
+[2022-08-28T15:31:33.786] [TRACE] default - get node, default
+[2022-08-28T15:32:01.342] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:32:01.343] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:32:01.343] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:32:01.621] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:32:01.622] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:32:01.622] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:33:01.348] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:33:01.348] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:33:01.348] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:33:01.631] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:33:01.631] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:33:01.631] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:33:31.289] [TRACE] default - get translation, page navigation
+[2022-08-28T15:33:31.291] [TRACE] default - get translation, page say
+[2022-08-28T15:33:31.302] [TRACE] default - get menu
+[2022-08-28T15:33:31.304] [TRACE] default - get twitch userdata
+[2022-08-28T15:33:31.312] [TRACE] default - get node, default
+[2022-08-28T15:33:31.316] [TRACE] default - get twitch
+[2022-08-28T15:33:31.405] [TRACE] default - get translation, page information
+[2022-08-28T15:33:31.410] [TRACE] default - get say, node default
+[2022-08-28T15:33:31.441] [TRACE] default - get twitch userdata
+[2022-08-28T15:33:31.537] [TRACE] default - get node, default
+[2022-08-28T15:34:01.351] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:34:01.351] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:34:01.352] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:34:01.634] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:34:01.635] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:34:01.635] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:34:09.638] [TRACE] default - get translation, page navigation
+[2022-08-28T15:34:09.639] [TRACE] default - get translation, page say
+[2022-08-28T15:34:09.655] [TRACE] default - get menu
+[2022-08-28T15:34:09.658] [TRACE] default - get twitch userdata
+[2022-08-28T15:34:09.670] [TRACE] default - get node, default
+[2022-08-28T15:34:09.673] [TRACE] default - get twitch
+[2022-08-28T15:34:09.738] [TRACE] default - get translation, page information
+[2022-08-28T15:34:09.754] [TRACE] default - get say, node default
+[2022-08-28T15:34:09.763] [TRACE] default - get twitch userdata
+[2022-08-28T15:34:09.849] [TRACE] default - get node, default
+[2022-08-28T15:34:19.133] [TRACE] default - get translation, page navigation
+[2022-08-28T15:34:19.134] [TRACE] default - get translation, page say
+[2022-08-28T15:34:19.151] [TRACE] default - get menu
+[2022-08-28T15:34:19.154] [TRACE] default - get twitch userdata
+[2022-08-28T15:34:19.161] [TRACE] default - get node, default
+[2022-08-28T15:34:19.163] [TRACE] default - get twitch
+[2022-08-28T15:34:19.217] [TRACE] default - get translation, page information
+[2022-08-28T15:34:19.221] [TRACE] default - get say, node default
+[2022-08-28T15:34:19.246] [TRACE] default - get twitch userdata
+[2022-08-28T15:34:19.320] [TRACE] default - get node, default
+[2022-08-28T15:35:01.357] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:35:01.358] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:35:01.358] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:35:01.633] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:35:01.634] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:35:01.634] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:35:48.028] [TRACE] default - get translation, page navigation
+[2022-08-28T15:35:48.029] [TRACE] default - get translation, page say
+[2022-08-28T15:35:48.043] [TRACE] default - get menu
+[2022-08-28T15:35:48.046] [TRACE] default - get twitch userdata
+[2022-08-28T15:35:48.053] [TRACE] default - get node, default
+[2022-08-28T15:35:48.055] [TRACE] default - get twitch
+[2022-08-28T15:35:48.112] [TRACE] default - get translation, page information
+[2022-08-28T15:35:48.117] [TRACE] default - get say, node default
+[2022-08-28T15:35:48.134] [TRACE] default - get twitch userdata
+[2022-08-28T15:35:48.236] [TRACE] default - get node, default
+[2022-08-28T15:36:01.364] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:36:01.365] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:36:01.365] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:36:01.648] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:36:01.648] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:36:01.649] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:37:01.375] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:37:01.376] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:37:01.376] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:37:01.655] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:37:01.655] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:37:01.655] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:38:01.376] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:38:01.376] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:38:01.377] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:38:01.659] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:38:01.659] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:38:01.660] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:39:01.382] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:39:01.382] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:39:01.382] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:39:01.662] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:39:01.662] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:39:01.662] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:40:01.382] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:40:01.383] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:40:01.383] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:40:01.666] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:40:01.666] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:40:01.667] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:41:01.390] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:41:01.391] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:41:01.391] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:41:01.671] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:41:01.671] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:41:01.673] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:42:01.401] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:42:01.401] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:42:01.401] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:42:01.683] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:42:01.683] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:42:01.683] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:43:01.404] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:43:01.404] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:43:01.405] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:43:01.689] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:43:01.689] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:43:01.690] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:44:01.416] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:44:01.417] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:44:01.417] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:44:01.697] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:44:01.698] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:44:01.698] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:45:01.424] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:45:01.424] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:45:01.424] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:45:01.703] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:45:01.703] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:45:01.703] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:46:01.426] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:46:01.427] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:46:01.427] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:46:01.709] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:46:01.710] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:46:01.710] [TRACE] default - node craffel, module craffel delay diference: 1
+[2022-08-28T15:47:01.370] [TRACE] default - incomming message self: false
+[2022-08-28T15:47:01.371] [TRACE] default - incomming real message count: 2
+[2022-08-28T15:47:01.433] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:47:01.433] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:47:01.434] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:47:01.713] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:47:01.713] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:47:01.714] [TRACE] default - node craffel, module craffel delay diference: 2
+[2022-08-28T15:48:01.434] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:48:01.435] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:48:01.435] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:48:01.720] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:48:01.721] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:48:01.721] [TRACE] default - node craffel, module craffel delay diference: 2
+[2022-08-28T15:48:31.534] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:48:31.637] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:48:31.637] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:48:31.654] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:48:31.657] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:48:33.257] [TRACE] default - add Migration update_001
+[2022-08-28T15:48:34.268] [TRACE] default - add Node craffelmat
+[2022-08-28T15:48:34.269] [TRACE] default - add Node craffel
+[2022-08-28T15:48:35.152] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:48:35.154] [INFO] default - node craffel, say add craffel.
+[2022-08-28T15:48:35.157] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:48:35.158] [TRACE] default - node connected: craffel
+[2022-08-28T15:49:35.165] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:49:35.165] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:49:35.165] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:49:35.166] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:49:35.166] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:49:35.166] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T15:50:35.172] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:50:35.172] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:50:35.172] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:50:35.173] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:50:35.173] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:50:35.173] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T15:51:35.177] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T15:51:35.177] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T15:51:35.177] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T15:51:35.178] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T15:51:35.178] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T15:51:35.178] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T15:58:15.737] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:58:15.836] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:58:15.836] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:58:15.852] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:58:15.855] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:58:17.349] [TRACE] default - add Migration update_001
+[2022-08-28T15:58:18.422] [TRACE] default - add Node craffelmat
+[2022-08-28T15:58:19.390] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:58:19.393] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:58:36.944] [TRACE] default - get translation, page navigation
+[2022-08-28T15:58:36.947] [TRACE] default - get translation, page say
+[2022-08-28T15:58:36.956] [TRACE] default - get menu
+[2022-08-28T15:58:36.965] [TRACE] default - get twitch userdata
+[2022-08-28T15:58:36.975] [TRACE] default - get node, default
+[2022-08-28T15:58:36.978] [TRACE] default - get twitch
+[2022-08-28T15:58:37.074] [TRACE] default - get translation, page information
+[2022-08-28T15:58:37.082] [TRACE] default - get say, node default
+[2022-08-28T15:58:37.103] [TRACE] default - get twitch userdata
+[2022-08-28T15:58:37.204] [TRACE] default - get node, default
+[2022-08-28T15:58:41.798] [TRACE] default - get command, node default
+[2022-08-28T15:59:15.798] [TRACE] default - twitch chat client initialized
+[2022-08-28T15:59:15.903] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T15:59:15.904] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T15:59:15.922] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T15:59:15.926] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T15:59:17.298] [TRACE] default - add Migration update_001
+[2022-08-28T15:59:18.299] [TRACE] default - add Node craffelmat
+[2022-08-28T15:59:19.166] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T15:59:19.169] [TRACE] default - node connected: craffelmat
+[2022-08-28T15:59:38.417] [TRACE] default - get command, node default
+[2022-08-28T16:00:19.165] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:00:19.166] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:00:19.166] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:01:16.833] [TRACE] default - twitch chat client initialized
+[2022-08-28T16:01:16.933] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T16:01:16.933] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T16:01:16.950] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T16:01:16.953] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T16:01:18.537] [TRACE] default - add Migration update_001
+[2022-08-28T16:01:19.541] [TRACE] default - add Node craffelmat
+[2022-08-28T16:01:20.421] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T16:01:20.425] [TRACE] default - node connected: craffelmat
+[2022-08-28T16:01:35.550] [TRACE] default - get command, node default
+[2022-08-28T16:01:56.000] [TRACE] default - twitch chat client initialized
+[2022-08-28T16:01:56.104] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T16:01:56.104] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T16:01:56.121] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T16:01:56.125] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T16:01:57.692] [TRACE] default - add Migration update_001
+[2022-08-28T16:01:58.675] [TRACE] default - add Node craffelmat
+[2022-08-28T16:01:59.494] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T16:01:59.498] [TRACE] default - node connected: craffelmat
+[2022-08-28T16:02:38.774] [TRACE] default - twitch chat client initialized
+[2022-08-28T16:02:38.875] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T16:02:38.875] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T16:02:38.891] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T16:02:38.894] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T16:02:40.274] [TRACE] default - add Migration update_001
+[2022-08-28T16:02:41.284] [TRACE] default - add Node craffelmat
+[2022-08-28T16:02:42.091] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T16:02:42.094] [TRACE] default - node connected: craffelmat
+[2022-08-28T16:03:09.444] [TRACE] default - twitch chat client initialized
+[2022-08-28T16:03:09.540] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T16:03:09.540] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T16:03:09.557] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T16:03:09.560] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T16:03:10.963] [TRACE] default - add Migration update_001
+[2022-08-28T16:03:11.945] [TRACE] default - add Node craffelmat
+[2022-08-28T16:03:12.820] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T16:03:12.823] [TRACE] default - node connected: craffelmat
+[2022-08-28T16:03:18.190] [TRACE] default - get command, node default
+[2022-08-28T16:03:21.334] [TRACE] default - get translation, page navigation
+[2022-08-28T16:03:21.336] [TRACE] default - get translation, page index
+[2022-08-28T16:03:21.344] [TRACE] default - get menu
+[2022-08-28T16:03:21.350] [TRACE] default - get translation, page information
+[2022-08-28T16:03:21.364] [TRACE] default - get twitch
+[2022-08-28T16:03:21.366] [TRACE] default - get twitch userdata
+[2022-08-28T16:03:21.388] [TRACE] default - get node, default
+[2022-08-28T16:03:23.540] [TRACE] default - get translation, page navigation
+[2022-08-28T16:03:23.542] [TRACE] default - get translation, page twitch
+[2022-08-28T16:03:23.558] [TRACE] default - get menu
+[2022-08-28T16:03:23.588] [TRACE] default - get twitch userdata
+[2022-08-28T16:03:23.604] [TRACE] default - get twitch
+[2022-08-28T16:03:28.495] [TRACE] default - get command, node default
+[2022-08-28T16:03:38.149] [TRACE] default - get command, node default
+[2022-08-28T16:03:43.844] [TRACE] default - post twitch
+[2022-08-28T16:03:48.562] [TRACE] default - {
+  access_token: '5vsgfvpuh4tltpgjvysai5ko3gb64l',
+  expires_in: 13152,
+  refresh_token: 'qy4uyf4su83fx6mrp76bw5bs4ndajmwqxmwjkshdkwt4f4p6lk',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-28T16:03:48.825] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-28T16:03:49.243] [TRACE] default - get translation, page navigation
+[2022-08-28T16:03:49.244] [TRACE] default - get translation, page twitch
+[2022-08-28T16:03:49.253] [TRACE] default - get menu
+[2022-08-28T16:03:49.293] [TRACE] default - get twitch userdata
+[2022-08-28T16:03:49.312] [TRACE] default - get twitch
+[2022-08-28T16:03:49.313] [TRACE] default - get translation, page information
+[2022-08-28T16:03:49.334] [TRACE] default - get twitch userdata
+[2022-08-28T16:03:49.344] [TRACE] default - get node, default
+[2022-08-28T16:03:49.963] [TRACE] default - post twitch
+[2022-08-28T16:03:49.988] [TRACE] default - add Node craffel
+[2022-08-28T16:03:50.893] [INFO] default - node craffel, say add craffel.
+[2022-08-28T16:03:50.896] [TRACE] default - node connected: craffel
+[2022-08-28T16:03:51.250] [TRACE] default - get translation, page navigation
+[2022-08-28T16:03:51.252] [TRACE] default - get translation, page streamer
+[2022-08-28T16:03:51.259] [TRACE] default - get menu
+[2022-08-28T16:03:51.341] [TRACE] default - get translation, page information
+[2022-08-28T16:03:51.343] [TRACE] default - get node
+[2022-08-28T16:03:51.347] [TRACE] default - get twitch
+[2022-08-28T16:03:51.352] [TRACE] default - get twitch userdata
+[2022-08-28T16:03:51.453] [TRACE] default - get node, default
+[2022-08-28T16:03:54.535] [TRACE] default - post node, default
+[2022-08-28T16:03:54.535] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  node: 'craffelmat',
+  state: 'e4r88q16wl7dejfbo',
+  twitch: {
+    access_token: '5vsgfvpuh4tltpgjvysai5ko3gb64l',
+    expires_in: 13152,
+    refresh_token: 'qy4uyf4su83fx6mrp76bw5bs4ndajmwqxmwjkshdkwt4f4p6lk',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T16:03:54.542] [TRACE] default - get translation, page information
+[2022-08-28T16:03:54.547] [TRACE] default - get twitch userdata
+[2022-08-28T16:03:54.552] [TRACE] default - get node, default
+[2022-08-28T16:04:01.974] [TRACE] default - get command, node default
+[2022-08-28T16:04:05.073] [TRACE] default - get command, node default
+[2022-08-28T16:04:12.822] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:04:12.822] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:04:12.823] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:04:13.303] [TRACE] default - get command, node craffel
+[2022-08-28T16:19:15.814] [TRACE] default - twitch chat client initialized
+[2022-08-28T16:19:15.956] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T16:19:15.956] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T16:19:15.972] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T16:19:15.975] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T16:19:17.665] [TRACE] default - add Migration update_001
+[2022-08-28T16:19:18.661] [TRACE] default - add Node craffelmat
+[2022-08-28T16:19:18.662] [TRACE] default - add Node craffel
+[2022-08-28T16:19:19.809] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T16:19:19.811] [INFO] default - node craffel, say add craffel.
+[2022-08-28T16:19:19.814] [TRACE] default - node connected: craffelmat
+[2022-08-28T16:19:19.815] [TRACE] default - node connected: craffel
+[2022-08-28T16:19:49.351] [TRACE] default - get translation, page navigation
+[2022-08-28T16:19:49.353] [TRACE] default - get translation, page index
+[2022-08-28T16:19:49.361] [TRACE] default - get menu
+[2022-08-28T16:19:49.369] [TRACE] default - get translation, page information
+[2022-08-28T16:19:49.385] [TRACE] default - get twitch
+[2022-08-28T16:19:49.388] [TRACE] default - get twitch userdata
+[2022-08-28T16:19:49.411] [TRACE] default - get node, default
+[2022-08-28T16:19:51.264] [TRACE] default - get translation, page navigation
+[2022-08-28T16:19:51.266] [TRACE] default - get translation, page say
+[2022-08-28T16:19:51.273] [TRACE] default - get menu
+[2022-08-28T16:19:51.275] [TRACE] default - get translation, page command
+[2022-08-28T16:19:51.283] [TRACE] default - get twitch
+[2022-08-28T16:19:51.285] [TRACE] default - get twitch userdata
+[2022-08-28T16:19:51.296] [TRACE] default - get node, default
+[2022-08-28T16:19:51.379] [TRACE] default - get translation, page information
+[2022-08-28T16:19:51.386] [TRACE] default - get say, node default
+[2022-08-28T16:19:51.389] [TRACE] default - get twitch userdata
+[2022-08-28T16:19:51.395] [TRACE] default - get node, default
+[2022-08-28T16:19:52.475] [TRACE] default - get command, node default
+[2022-08-28T16:20:08.828] [TRACE] default - get translation, page navigation
+[2022-08-28T16:20:08.830] [TRACE] default - get translation, page say
+[2022-08-28T16:20:08.838] [TRACE] default - get menu
+[2022-08-28T16:20:08.840] [TRACE] default - get translation, page command
+[2022-08-28T16:20:08.851] [TRACE] default - get twitch
+[2022-08-28T16:20:08.854] [TRACE] default - get twitch userdata
+[2022-08-28T16:20:08.866] [TRACE] default - get node, default
+[2022-08-28T16:20:08.924] [TRACE] default - get translation, page information
+[2022-08-28T16:20:08.928] [TRACE] default - get say, node default
+[2022-08-28T16:20:08.935] [TRACE] default - get twitch userdata
+[2022-08-28T16:20:09.018] [TRACE] default - get node, default
+[2022-08-28T16:20:10.016] [TRACE] default - get command, node default
+[2022-08-28T16:20:19.807] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:20:19.808] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:20:19.808] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:20:19.809] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T16:20:19.809] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T16:20:19.809] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T16:20:41.073] [TRACE] default - get translation, page navigation
+[2022-08-28T16:20:41.076] [TRACE] default - get translation, page say
+[2022-08-28T16:20:41.084] [TRACE] default - get menu
+[2022-08-28T16:20:41.089] [TRACE] default - get translation, page command
+[2022-08-28T16:20:41.100] [TRACE] default - get twitch
+[2022-08-28T16:20:41.102] [TRACE] default - get twitch userdata
+[2022-08-28T16:20:41.115] [TRACE] default - get node, default
+[2022-08-28T16:20:41.181] [TRACE] default - get translation, page information
+[2022-08-28T16:20:41.185] [TRACE] default - get say, node default
+[2022-08-28T16:20:41.197] [TRACE] default - get twitch userdata
+[2022-08-28T16:20:41.285] [TRACE] default - get node, default
+[2022-08-28T16:20:42.319] [TRACE] default - get command, node default
+[2022-08-28T16:21:19.817] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:21:19.817] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:21:19.817] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:21:19.818] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T16:21:19.818] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T16:21:19.818] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T16:21:25.612] [TRACE] default - get translation, page navigation
+[2022-08-28T16:21:25.613] [TRACE] default - get translation, page say
+[2022-08-28T16:21:25.621] [TRACE] default - get menu
+[2022-08-28T16:21:25.623] [TRACE] default - get translation, page command
+[2022-08-28T16:21:25.633] [TRACE] default - get twitch
+[2022-08-28T16:21:25.635] [TRACE] default - get twitch userdata
+[2022-08-28T16:21:25.650] [TRACE] default - get node, default
+[2022-08-28T16:21:25.707] [TRACE] default - get translation, page information
+[2022-08-28T16:21:25.716] [TRACE] default - get say, node default
+[2022-08-28T16:21:25.722] [TRACE] default - get twitch userdata
+[2022-08-28T16:21:25.803] [TRACE] default - get node, default
+[2022-08-28T16:21:26.877] [TRACE] default - get command, node default
+[2022-08-28T16:21:57.132] [TRACE] default - get translation, page navigation
+[2022-08-28T16:21:57.134] [TRACE] default - get translation, page say
+[2022-08-28T16:21:57.140] [TRACE] default - get menu
+[2022-08-28T16:21:57.142] [TRACE] default - get translation, page command
+[2022-08-28T16:21:57.152] [TRACE] default - get twitch
+[2022-08-28T16:21:57.155] [TRACE] default - get twitch userdata
+[2022-08-28T16:21:57.166] [TRACE] default - get node, default
+[2022-08-28T16:21:57.227] [TRACE] default - get translation, page information
+[2022-08-28T16:21:57.231] [TRACE] default - get say, node default
+[2022-08-28T16:21:57.241] [TRACE] default - get twitch userdata
+[2022-08-28T16:21:57.319] [TRACE] default - get node, default
+[2022-08-28T16:21:58.291] [TRACE] default - get command, node default
+[2022-08-28T16:22:12.874] [TRACE] default - get translation, page navigation
+[2022-08-28T16:22:12.875] [TRACE] default - get translation, page say
+[2022-08-28T16:22:12.882] [TRACE] default - get menu
+[2022-08-28T16:22:12.885] [TRACE] default - get translation, page command
+[2022-08-28T16:22:12.894] [TRACE] default - get twitch
+[2022-08-28T16:22:12.897] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:12.909] [TRACE] default - get node, default
+[2022-08-28T16:22:12.966] [TRACE] default - get translation, page information
+[2022-08-28T16:22:12.968] [TRACE] default - get say, node default
+[2022-08-28T16:22:12.974] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:13.051] [TRACE] default - get node, default
+[2022-08-28T16:22:13.970] [TRACE] default - get command, node default
+[2022-08-28T16:22:19.831] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:22:19.831] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:22:19.832] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:22:19.832] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T16:22:19.832] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T16:22:19.832] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T16:22:25.447] [TRACE] default - get translation, page navigation
+[2022-08-28T16:22:25.449] [TRACE] default - get translation, page say
+[2022-08-28T16:22:25.456] [TRACE] default - get menu
+[2022-08-28T16:22:25.458] [TRACE] default - get translation, page command
+[2022-08-28T16:22:25.469] [TRACE] default - get twitch
+[2022-08-28T16:22:25.471] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:25.484] [TRACE] default - get node, default
+[2022-08-28T16:22:25.538] [TRACE] default - get translation, page information
+[2022-08-28T16:22:25.542] [TRACE] default - get say, node default
+[2022-08-28T16:22:25.550] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:25.624] [TRACE] default - get node, default
+[2022-08-28T16:22:26.629] [TRACE] default - get command, node default
+[2022-08-28T16:22:33.911] [TRACE] default - {
+  access_token: '6l25rrr2wstwnpeh7fppc0eie59mwd',
+  expires_in: 15616,
+  refresh_token: 'zqejqra2729auyreynyata46ohqifl7px5n7cr34bz2332uin8',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-28T16:22:34.162] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-28T16:22:34.566] [TRACE] default - get translation, page navigation
+[2022-08-28T16:22:34.568] [TRACE] default - get translation, page twitch
+[2022-08-28T16:22:34.575] [TRACE] default - get menu
+[2022-08-28T16:22:34.606] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:34.609] [TRACE] default - get twitch
+[2022-08-28T16:22:34.612] [TRACE] default - get translation, page information
+[2022-08-28T16:22:34.625] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:34.630] [TRACE] default - get node, default
+[2022-08-28T16:22:35.297] [TRACE] default - get translation, page navigation
+[2022-08-28T16:22:35.299] [TRACE] default - get translation, page index
+[2022-08-28T16:22:35.305] [TRACE] default - get menu
+[2022-08-28T16:22:35.308] [TRACE] default - get translation, page information
+[2022-08-28T16:22:35.317] [TRACE] default - get twitch
+[2022-08-28T16:22:35.319] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:35.335] [TRACE] default - get node, default
+[2022-08-28T16:22:37.618] [TRACE] default - get translation, page navigation
+[2022-08-28T16:22:37.620] [TRACE] default - get translation, page streamer
+[2022-08-28T16:22:37.627] [TRACE] default - get menu
+[2022-08-28T16:22:37.685] [TRACE] default - get translation, page information
+[2022-08-28T16:22:37.689] [TRACE] default - get node
+[2022-08-28T16:22:37.695] [TRACE] default - get twitch
+[2022-08-28T16:22:37.697] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:37.787] [TRACE] default - get node, default
+[2022-08-28T16:22:40.859] [TRACE] default - post node, default
+[2022-08-28T16:22:40.859] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88qchol7df4jyi',
+  node: 'craffelmat',
+  twitch: {
+    access_token: '6l25rrr2wstwnpeh7fppc0eie59mwd',
+    expires_in: 15616,
+    refresh_token: 'zqejqra2729auyreynyata46ohqifl7px5n7cr34bz2332uin8',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T16:22:40.867] [TRACE] default - get translation, page information
+[2022-08-28T16:22:40.872] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:40.875] [TRACE] default - get node, default
+[2022-08-28T16:22:44.878] [TRACE] default - get translation, page navigation
+[2022-08-28T16:22:44.879] [TRACE] default - get translation, page say
+[2022-08-28T16:22:44.886] [TRACE] default - get menu
+[2022-08-28T16:22:44.889] [TRACE] default - get translation, page command
+[2022-08-28T16:22:44.898] [TRACE] default - get twitch
+[2022-08-28T16:22:44.900] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:44.914] [TRACE] default - get node, default
+[2022-08-28T16:22:44.977] [TRACE] default - get translation, page information
+[2022-08-28T16:22:44.980] [TRACE] default - get say, node default
+[2022-08-28T16:22:44.985] [TRACE] default - get twitch userdata
+[2022-08-28T16:22:45.073] [TRACE] default - get node, default
+[2022-08-28T16:22:45.949] [TRACE] default - get command, node default
+[2022-08-28T16:23:07.888] [TRACE] default - get translation, page navigation
+[2022-08-28T16:23:07.889] [TRACE] default - get translation, page index
+[2022-08-28T16:23:07.895] [TRACE] default - get menu
+[2022-08-28T16:23:07.899] [TRACE] default - get translation, page information
+[2022-08-28T16:23:07.910] [TRACE] default - get twitch
+[2022-08-28T16:23:07.913] [TRACE] default - get twitch userdata
+[2022-08-28T16:23:07.926] [TRACE] default - get node, default
+[2022-08-28T16:23:19.840] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:23:19.840] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:23:19.841] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:23:19.841] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T16:23:19.841] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T16:23:19.841] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T16:23:29.614] [TRACE] default - get translation, page navigation
+[2022-08-28T16:23:29.615] [TRACE] default - get translation, page streamer
+[2022-08-28T16:23:29.620] [TRACE] default - get menu
+[2022-08-28T16:23:29.679] [TRACE] default - get translation, page information
+[2022-08-28T16:23:29.684] [TRACE] default - get node
+[2022-08-28T16:23:29.688] [TRACE] default - get twitch
+[2022-08-28T16:23:29.690] [TRACE] default - get twitch userdata
+[2022-08-28T16:23:29.785] [TRACE] default - get node, default
+[2022-08-28T16:23:33.851] [TRACE] default - post node, default
+[2022-08-28T16:23:33.852] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88qchol7df4jyi',
+  node: 'craffel',
+  twitch: {
+    access_token: '6l25rrr2wstwnpeh7fppc0eie59mwd',
+    expires_in: 15616,
+    refresh_token: 'zqejqra2729auyreynyata46ohqifl7px5n7cr34bz2332uin8',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T16:23:33.858] [TRACE] default - get translation, page information
+[2022-08-28T16:23:33.861] [TRACE] default - get twitch userdata
+[2022-08-28T16:23:33.863] [TRACE] default - get node, default
+[2022-08-28T16:23:37.620] [TRACE] default - get translation, page navigation
+[2022-08-28T16:23:37.622] [TRACE] default - get translation, page say
+[2022-08-28T16:23:37.628] [TRACE] default - get menu
+[2022-08-28T16:23:37.630] [TRACE] default - get translation, page command
+[2022-08-28T16:23:37.641] [TRACE] default - get twitch
+[2022-08-28T16:23:37.642] [TRACE] default - get twitch userdata
+[2022-08-28T16:23:37.658] [TRACE] default - get node, default
+[2022-08-28T16:23:37.728] [TRACE] default - get translation, page information
+[2022-08-28T16:23:37.732] [TRACE] default - get say, node default
+[2022-08-28T16:23:37.747] [TRACE] default - get twitch userdata
+[2022-08-28T16:23:37.819] [TRACE] default - get node, default
+[2022-08-28T16:23:39.031] [TRACE] default - get command, node default
+[2022-08-28T16:23:58.714] [TRACE] default - get translation, page navigation
+[2022-08-28T16:23:58.716] [TRACE] default - get translation, page streamer
+[2022-08-28T16:23:58.722] [TRACE] default - get menu
+[2022-08-28T16:23:58.775] [TRACE] default - get translation, page information
+[2022-08-28T16:23:58.778] [TRACE] default - get node
+[2022-08-28T16:23:58.784] [TRACE] default - get twitch
+[2022-08-28T16:23:58.785] [TRACE] default - get twitch userdata
+[2022-08-28T16:23:58.902] [TRACE] default - get node, default
+[2022-08-28T16:24:00.363] [TRACE] default - post node, default
+[2022-08-28T16:24:00.363] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88qchol7df4jyi',
+  node: 'craffelmat',
+  twitch: {
+    access_token: '6l25rrr2wstwnpeh7fppc0eie59mwd',
+    expires_in: 15616,
+    refresh_token: 'zqejqra2729auyreynyata46ohqifl7px5n7cr34bz2332uin8',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T16:24:00.369] [TRACE] default - get translation, page information
+[2022-08-28T16:24:00.374] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:00.376] [TRACE] default - get node, default
+[2022-08-28T16:24:01.990] [TRACE] default - get translation, page navigation
+[2022-08-28T16:24:01.993] [TRACE] default - get translation, page say
+[2022-08-28T16:24:01.999] [TRACE] default - get menu
+[2022-08-28T16:24:02.001] [TRACE] default - get translation, page command
+[2022-08-28T16:24:02.008] [TRACE] default - get twitch
+[2022-08-28T16:24:02.010] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:02.024] [TRACE] default - get node, default
+[2022-08-28T16:24:02.075] [TRACE] default - get translation, page information
+[2022-08-28T16:24:02.082] [TRACE] default - get say, node default
+[2022-08-28T16:24:02.088] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:02.197] [TRACE] default - get node, default
+[2022-08-28T16:24:02.794] [TRACE] default - get command, node default
+[2022-08-28T16:24:19.842] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:24:19.842] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:24:19.843] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:24:19.843] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T16:24:19.843] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T16:24:19.844] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T16:24:20.318] [TRACE] default - get translation, page navigation
+[2022-08-28T16:24:20.320] [TRACE] default - get translation, page help
+[2022-08-28T16:24:20.329] [TRACE] default - get menu
+[2022-08-28T16:24:20.332] [TRACE] default - get translation, page information
+[2022-08-28T16:24:20.341] [TRACE] default - get twitch
+[2022-08-28T16:24:20.342] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:20.358] [TRACE] default - get node, default
+[2022-08-28T16:24:26.765] [TRACE] default - get translation, page navigation
+[2022-08-28T16:24:26.767] [TRACE] default - get translation, page say
+[2022-08-28T16:24:26.772] [TRACE] default - get menu
+[2022-08-28T16:24:26.774] [TRACE] default - get translation, page command
+[2022-08-28T16:24:26.785] [TRACE] default - get twitch
+[2022-08-28T16:24:26.787] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:26.802] [TRACE] default - get node, default
+[2022-08-28T16:24:26.883] [TRACE] default - get translation, page information
+[2022-08-28T16:24:26.893] [TRACE] default - get say, node default
+[2022-08-28T16:24:26.898] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:26.968] [TRACE] default - get node, default
+[2022-08-28T16:24:28.366] [TRACE] default - get command, node default
+[2022-08-28T16:24:50.177] [TRACE] default - get translation, page navigation
+[2022-08-28T16:24:50.178] [TRACE] default - get translation, page streamer
+[2022-08-28T16:24:50.183] [TRACE] default - get menu
+[2022-08-28T16:24:50.235] [TRACE] default - get translation, page information
+[2022-08-28T16:24:50.238] [TRACE] default - get node
+[2022-08-28T16:24:50.243] [TRACE] default - get twitch
+[2022-08-28T16:24:50.246] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:50.343] [TRACE] default - get node, default
+[2022-08-28T16:24:51.635] [TRACE] default - get translation, page navigation
+[2022-08-28T16:24:51.636] [TRACE] default - get translation, page say
+[2022-08-28T16:24:51.642] [TRACE] default - get menu
+[2022-08-28T16:24:51.644] [TRACE] default - get translation, page command
+[2022-08-28T16:24:51.653] [TRACE] default - get twitch
+[2022-08-28T16:24:51.655] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:51.670] [TRACE] default - get node, default
+[2022-08-28T16:24:51.721] [TRACE] default - get translation, page information
+[2022-08-28T16:24:51.726] [TRACE] default - get say, node default
+[2022-08-28T16:24:51.734] [TRACE] default - get twitch userdata
+[2022-08-28T16:24:51.825] [TRACE] default - get node, default
+[2022-08-28T16:25:08.580] [TRACE] default - twitch chat client initialized
+[2022-08-28T16:25:08.674] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-08-28T16:25:08.675] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-08-28T16:25:08.689] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-08-28T16:25:08.692] [INFO] default - HTTP Server listening on port 80
+[2022-08-28T16:25:10.394] [TRACE] default - add Migration update_001
+[2022-08-28T16:25:11.402] [TRACE] default - add Node craffelmat
+[2022-08-28T16:25:11.403] [TRACE] default - add Node craffel
+[2022-08-28T16:25:11.462] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:11.466] [TRACE] default - get translation, page index
+[2022-08-28T16:25:11.477] [TRACE] default - get menu
+[2022-08-28T16:25:11.484] [TRACE] default - get translation, page information
+[2022-08-28T16:25:11.499] [TRACE] default - get twitch
+[2022-08-28T16:25:11.501] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:11.530] [TRACE] default - get node, default
+[2022-08-28T16:25:12.608] [INFO] default - node craffel, say add craffel.
+[2022-08-28T16:25:12.610] [TRACE] default - node connected: craffel
+[2022-08-28T16:25:12.620] [INFO] default - node craffelmat, say add craffel.
+[2022-08-28T16:25:12.622] [TRACE] default - node connected: craffelmat
+[2022-08-28T16:25:15.007] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:15.009] [TRACE] default - get translation, page hero
+[2022-08-28T16:25:15.015] [TRACE] default - get menu
+[2022-08-28T16:25:15.018] [TRACE] default - get translation, page item
+[2022-08-28T16:25:15.026] [TRACE] default - get twitch
+[2022-08-28T16:25:15.029] [TRACE] default - get translation, page wallet
+[2022-08-28T16:25:15.041] [TRACE] default - get translation, page trait
+[2022-08-28T16:25:15.123] [TRACE] default - get translation, page information
+[2022-08-28T16:25:15.127] [TRACE] default - get hero, node default
+[2022-08-28T16:25:15.134] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:15.206] [TRACE] default - get node, default
+[2022-08-28T16:25:19.495] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:19.496] [TRACE] default - get translation, page command
+[2022-08-28T16:25:19.502] [TRACE] default - get menu
+[2022-08-28T16:25:19.506] [TRACE] default - get translation, page information
+[2022-08-28T16:25:19.515] [TRACE] default - get twitch
+[2022-08-28T16:25:19.517] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:19.525] [TRACE] default - get node, default
+[2022-08-28T16:25:27.591] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:27.592] [TRACE] default - get translation, page streamer
+[2022-08-28T16:25:27.598] [TRACE] default - get menu
+[2022-08-28T16:25:27.646] [TRACE] default - get translation, page information
+[2022-08-28T16:25:27.648] [TRACE] default - get node
+[2022-08-28T16:25:27.652] [TRACE] default - get twitch
+[2022-08-28T16:25:27.657] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:27.664] [TRACE] default - get node, default
+[2022-08-28T16:25:30.842] [TRACE] default - {
+  access_token: 'xx7ovgryg9oydswwp1oxp78mo8i43p',
+  expires_in: 14695,
+  refresh_token: 'z96i5w3udn722aka8zua51cb83canvwcjakg0e3himn3up96xj',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-08-28T16:25:31.066] [TRACE] default - {
+  id: '440371621',
+  login: 'craffel',
+  display_name: 'craffel',
+  type: '',
+  broadcaster_type: 'affiliate',
+  description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+  profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 21997,
+  email: 'rosbund.gaming@gmail.com',
+  created_at: '2019-06-07T18:38:13Z'
+}
+[2022-08-28T16:25:31.327] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:31.328] [TRACE] default - get translation, page twitch
+[2022-08-28T16:25:31.335] [TRACE] default - get menu
+[2022-08-28T16:25:31.359] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:31.365] [TRACE] default - get twitch
+[2022-08-28T16:25:31.369] [TRACE] default - get translation, page information
+[2022-08-28T16:25:31.389] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:31.399] [TRACE] default - get node, default
+[2022-08-28T16:25:51.257] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:51.258] [TRACE] default - get translation, page say
+[2022-08-28T16:25:51.264] [TRACE] default - get menu
+[2022-08-28T16:25:51.267] [TRACE] default - get translation, page command
+[2022-08-28T16:25:51.276] [TRACE] default - get twitch
+[2022-08-28T16:25:51.279] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:51.295] [TRACE] default - get node, default
+[2022-08-28T16:25:51.375] [TRACE] default - get translation, page information
+[2022-08-28T16:25:51.380] [TRACE] default - get say, node default
+[2022-08-28T16:25:51.385] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:51.479] [TRACE] default - get node, default
+[2022-08-28T16:25:52.725] [TRACE] default - get command, node default
+[2022-08-28T16:25:54.187] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:54.189] [TRACE] default - get translation, page index
+[2022-08-28T16:25:54.195] [TRACE] default - get menu
+[2022-08-28T16:25:54.197] [TRACE] default - get translation, page information
+[2022-08-28T16:25:54.208] [TRACE] default - get twitch
+[2022-08-28T16:25:54.210] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:54.225] [TRACE] default - get node, default
+[2022-08-28T16:25:56.712] [TRACE] default - get translation, page navigation
+[2022-08-28T16:25:56.713] [TRACE] default - get translation, page streamer
+[2022-08-28T16:25:56.719] [TRACE] default - get menu
+[2022-08-28T16:25:56.778] [TRACE] default - get translation, page information
+[2022-08-28T16:25:56.780] [TRACE] default - get node
+[2022-08-28T16:25:56.787] [TRACE] default - get twitch
+[2022-08-28T16:25:56.789] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:56.889] [TRACE] default - get node, default
+[2022-08-28T16:25:58.571] [TRACE] default - post node, default
+[2022-08-28T16:25:58.572] [TRACE] default - Session {
+  cookie: { path: '/', _expires: null, originalMaxAge: null, httpOnly: true },
+  state: 'e4r88q4s4l7dfbgi4',
+  node: 'craffelmat',
+  twitch: {
+    access_token: 'xx7ovgryg9oydswwp1oxp78mo8i43p',
+    expires_in: 14695,
+    refresh_token: 'z96i5w3udn722aka8zua51cb83canvwcjakg0e3himn3up96xj',
+    scope: [ 'chat:read', 'user:read:email' ],
+    token_type: 'bearer'
+  },
+  userData: {
+    id: '440371621',
+    login: 'craffel',
+    display_name: 'craffel',
+    type: '',
+    broadcaster_type: 'affiliate',
+    description: 'Ups, hallo edler Zuschauer, du hast sicher eine professionelle Biographie erwartet mit höhen und tiefen? *super mega professionelle und garnicht geschöne Biographie von mir*Kurzfassung: Programmierhase auf Abwegen kommt aus den Keller um dich zu unterhalten! ',
+    profile_image_url: 'https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png',
+    offline_image_url: '',
+    view_count: 21997,
+    email: 'rosbund.gaming@gmail.com',
+    created_at: '2019-06-07T18:38:13Z'
+  }
+}
+[2022-08-28T16:25:58.578] [TRACE] default - get translation, page information
+[2022-08-28T16:25:58.583] [TRACE] default - get twitch userdata
+[2022-08-28T16:25:58.586] [TRACE] default - get node, default
+[2022-08-28T16:26:00.579] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:00.580] [TRACE] default - get translation, page hero
+[2022-08-28T16:26:00.585] [TRACE] default - get menu
+[2022-08-28T16:26:00.587] [TRACE] default - get translation, page item
+[2022-08-28T16:26:00.597] [TRACE] default - get twitch
+[2022-08-28T16:26:00.598] [TRACE] default - get translation, page wallet
+[2022-08-28T16:26:00.613] [TRACE] default - get translation, page trait
+[2022-08-28T16:26:00.694] [TRACE] default - get translation, page information
+[2022-08-28T16:26:00.698] [TRACE] default - get hero, node default
+[2022-08-28T16:26:00.702] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:00.707] [TRACE] default - get node, default
+[2022-08-28T16:26:01.908] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:01.910] [TRACE] default - get translation, page taverne
+[2022-08-28T16:26:01.916] [TRACE] default - get menu
+[2022-08-28T16:26:01.918] [TRACE] default - get translation, page information
+[2022-08-28T16:26:01.929] [TRACE] default - get twitch
+[2022-08-28T16:26:01.931] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:01.946] [TRACE] default - get node, default
+[2022-08-28T16:26:03.002] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:03.003] [TRACE] default - get translation, page item
+[2022-08-28T16:26:03.008] [TRACE] default - get menu
+[2022-08-28T16:26:03.011] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:03.018] [TRACE] default - get node, default
+[2022-08-28T16:26:03.020] [TRACE] default - get twitch
+[2022-08-28T16:26:03.068] [TRACE] default - get translation, page information
+[2022-08-28T16:26:03.072] [TRACE] default - get item, node default
+[2022-08-28T16:26:03.086] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:03.129] [TRACE] default - get node, default
+[2022-08-28T16:26:04.858] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:04.860] [TRACE] default - get translation, page statistic
+[2022-08-28T16:26:04.868] [TRACE] default - get menu
+[2022-08-28T16:26:04.871] [TRACE] default - get translation, page information
+[2022-08-28T16:26:04.880] [TRACE] default - get twitch
+[2022-08-28T16:26:04.881] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:04.895] [TRACE] default - get node, default
+[2022-08-28T16:26:06.333] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:06.335] [TRACE] default - get translation, page command
+[2022-08-28T16:26:06.340] [TRACE] default - get menu
+[2022-08-28T16:26:06.342] [TRACE] default - get translation, page information
+[2022-08-28T16:26:06.351] [TRACE] default - get twitch
+[2022-08-28T16:26:06.353] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:06.367] [TRACE] default - get node, default
+[2022-08-28T16:26:07.720] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:07.721] [TRACE] default - get translation, page hero
+[2022-08-28T16:26:07.728] [TRACE] default - get menu
+[2022-08-28T16:26:07.730] [TRACE] default - get translation, page item
+[2022-08-28T16:26:07.738] [TRACE] default - get twitch
+[2022-08-28T16:26:07.739] [TRACE] default - get translation, page wallet
+[2022-08-28T16:26:07.753] [TRACE] default - get translation, page trait
+[2022-08-28T16:26:07.829] [TRACE] default - get translation, page information
+[2022-08-28T16:26:07.844] [TRACE] default - get hero, node default
+[2022-08-28T16:26:07.850] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:07.907] [TRACE] default - get node, default
+[2022-08-28T16:26:09.171] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:09.173] [TRACE] default - get translation, page command
+[2022-08-28T16:26:09.180] [TRACE] default - get menu
+[2022-08-28T16:26:09.183] [TRACE] default - get translation, page information
+[2022-08-28T16:26:09.193] [TRACE] default - get twitch
+[2022-08-28T16:26:09.195] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:09.207] [TRACE] default - get node, default
+[2022-08-28T16:26:11.062] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:11.063] [TRACE] default - get translation, page say
+[2022-08-28T16:26:11.069] [TRACE] default - get menu
+[2022-08-28T16:26:11.071] [TRACE] default - get translation, page command
+[2022-08-28T16:26:11.082] [TRACE] default - get twitch
+[2022-08-28T16:26:11.084] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:11.105] [TRACE] default - get node, default
+[2022-08-28T16:26:11.170] [TRACE] default - get translation, page information
+[2022-08-28T16:26:11.183] [TRACE] default - get say, node default
+[2022-08-28T16:26:11.188] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:11.260] [TRACE] default - get node, default
+[2022-08-28T16:26:12.622] [INFO] default - node craffel, module craffel not executed
+[2022-08-28T16:26:12.622] [TRACE] default - node craffel, module craffel delay: 5
+[2022-08-28T16:26:12.622] [TRACE] default - node craffel, module craffel delay diference: 0
+[2022-08-28T16:26:12.623] [INFO] default - node craffelmat, module craffel not executed
+[2022-08-28T16:26:12.623] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-08-28T16:26:12.623] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-08-28T16:26:12.838] [TRACE] default - get command, node default
+[2022-08-28T16:26:19.804] [TRACE] default - get translation, page navigation
+[2022-08-28T16:26:19.805] [TRACE] default - get translation, page command
+[2022-08-28T16:26:19.810] [TRACE] default - get menu
+[2022-08-28T16:26:19.814] [TRACE] default - get translation, page information
+[2022-08-28T16:26:19.822] [TRACE] default - get twitch
+[2022-08-28T16:26:19.824] [TRACE] default - get twitch userdata
+[2022-08-28T16:26:19.836] [TRACE] default - get node, default

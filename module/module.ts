@@ -1,3 +1,4 @@
+import { NaptrRecord } from "dns";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
 import { TranslationItem } from "../model/translationItem";
@@ -8,11 +9,12 @@ export class Module {
     basicTranslation: TranslationItem[];
     channel: Channel;
     lastRun: Date;
+    name: string;
 
-    constructor(translation : TranslationItem[], channel: Channel){
+    constructor(translation : TranslationItem[], channel: Channel, name: string){
         this.translation = translation;
         this.channel = channel;
-
+        this.name = name;
     }
 
     async initialize(){

@@ -34,23 +34,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const router = express.Router();
-const endpoint = 'menu';
-router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}`);
-    let item = yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false, include: [{
-                model: global.worker.globalDatabase.sequelize.models.menu,
-                as: 'childs',
-            }, {
-                model: global.worker.globalDatabase.sequelize.models.menu,
-                as: 'parent',
-            }] });
-    if (!global.isRegistered(request, response)) {
-        item = item.filter(x => x.authenticationRequired === false);
+const endpoint = 'command';
+router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node = request.params.node;
+    if (node === 'default')
+        node = global.defaultNode(request, response);
+    const channel = global.worker.channels.find(x => x.node.name === node);
+    if (channel) {
+        let item = yield channel.database.sequelize.models.command.findAll({ order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
+        if (!global.isMaster(request, response)) {
+            item = item.filter(x => x.isMaster === false);
+        }
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
     }
-    if (item)
-        response.status(200).json(item);
+    else
+        response.status(404).json();
+}));
+router.get('/' + endpoint + '/:node/:module', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node = request.params.node;
+    if (node === 'default')
+        node = global.defaultNode(request, response);
+    const channel = global.worker.channels.find(x => x.node.name === node);
+    if (channel) {
+        let item = yield channel.database.sequelize.models.command.findAll({ where: { module: request.params.module }, order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
+        if (!global.isMaster(request, response, node)) {
+            item = item.filter(x => x.isMaster === false);
+        }
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
     else
         response.status(404).json();
 }));
 exports.default = router;
-//# sourceMappingURL=api.menu.js.map
+//# sourceMappingURL=api.command.js.map

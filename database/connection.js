@@ -52,6 +52,7 @@ const heroTraitItem_1 = require("../model/heroTraitItem");
 const heroInventoryItem_1 = require("../model/heroInventoryItem");
 const heroWalletItem_1 = require("../model/heroWalletItem");
 const itemItem_1 = require("../model/itemItem");
+const commandItem_1 = require("../model/commandItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -98,6 +99,7 @@ class Connection {
                 heroWalletItem_1.HeroWalletItem.initialize(this.sequelize);
                 heroInventoryItem_1.HeroInventoryItem.initialize(this.sequelize);
                 itemItem_1.ItemItem.initialize(this.sequelize);
+                commandItem_1.CommandItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
@@ -108,6 +110,7 @@ class Connection {
                 yield heroWalletItem_1.HeroWalletItem.updateTable({ sequelize: this.sequelize });
                 yield heroInventoryItem_1.HeroInventoryItem.updateTable({ sequelize: this.sequelize });
                 yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize });
+                yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
                 heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });

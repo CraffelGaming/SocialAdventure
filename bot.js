@@ -57,6 +57,12 @@ global.isMaster = function isMaster(request, response, node) {
             return true;
         }
     }
+    return false; // true
+};
+global.isRegistered = function isMaster(request, response) {
+    if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
+        return true;
+    }
     return false;
 };
 // session handler

@@ -42,7 +42,122 @@ const api_heroWallet_1 = __importDefault(require("./api/api.heroWallet"));
 const api_heroTrait_1 = __importDefault(require("./api/api.heroTrait"));
 const api_heroInventory_1 = __importDefault(require("./api/api.heroInventory"));
 const api_item_1 = __importDefault(require("./api/api.item"));
+const api_command_1 = __importDefault(require("./api/api.command"));
 const router = express.Router();
+//#region Command
+/**
+ * @swagger
+ * /command/{node}:
+ *   get:
+ *     tags:
+ *     - Command
+ *     summary: Chat-Befehle
+ *     description: Rückgabe aller Chat-Befehle.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               module:
+ *                 type: string
+ *                 example: "say"
+ *                 descrition: Name des Moduls
+ *               command:
+ *                 type: string
+ *                 example: "text"
+ *                 descrition: Name des Befehls.
+ *               isMaster:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob nur der Streamer den Befehl verwenden darf.
+ *               translation:
+ *                 type: string
+ *                 example: "text"
+ *                 descrition: GName der Übersetzung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/command/:node", api_command_1.default);
+/**
+ * @swagger
+ * /command/{node}/{module}:
+ *   get:
+ *     tags:
+ *     - Command
+ *     summary: Chat-Befehle eines Moduls
+ *     description: Rückgabe aller Chat-Befehle eines Moduls.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "module"
+ *       in: "path"
+ *       description: "Modul"
+ *       required: true
+ *       type: "string"
+ *       default: "say"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               module:
+ *                 type: string
+ *                 example: "say"
+ *                 descrition: Name des Moduls
+ *               command:
+ *                 type: string
+ *                 example: "text"
+ *                 descrition: Name des Befehls.
+ *               isMaster:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob nur der Streamer den Befehl verwenden darf.
+ *               translation:
+ *                 type: string
+ *                 example: "text"
+ *                 descrition: GName der Übersetzung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/command/:node/:module", api_command_1.default);
+//#endregion
 //#region Hero Inventory
 /**
  * @swagger
@@ -1188,6 +1303,10 @@ router.get("/migration", api_migration_1.default);
  *                 type: integer
  *                 example: 1000
  *                 descrition: Anzeigereihenfolge des Menüs
+ *               authenticationRequired:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob diese Seiten erhöhte Berechtigungen benötigen.
  *               createdAt:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"

@@ -86,7 +86,6 @@ $(async () => {
                 {
                     type: "buttons",
                     buttons: [{
-                        text: "Auswählen",
                         icon: "check",
                         hint: "Alles von diesem Streamer anzeigen.",
                         onClick: function (e) {
@@ -101,6 +100,7 @@ $(async () => {
                                 }
                             }).then(async function (json) {
                                 streamer = json;
+                                infoPanel();
                             });
                         }
                     }]

@@ -140,6 +140,15 @@ export async function getEditing() {
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
 
+    /*
+    return {
+        mode: "popup",
+        allowUpdating: true,
+        allowDeleting: true,
+        allowAdding: true
+    }
+    */
+
     if(userData != null && defaultNode.node != null){
         return {
             mode: "popup",
@@ -150,9 +159,9 @@ export async function getEditing() {
     } else {
         return {
             mode: "popup",
-            allowUpdating: true,
-            allowDeleting: true,
-            allowAdding: true
+            allowUpdating: false,
+            allowDeleting: false,
+            allowAdding: false
         }
     }
 

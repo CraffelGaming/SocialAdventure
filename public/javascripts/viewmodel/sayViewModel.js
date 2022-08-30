@@ -4,7 +4,8 @@ $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
     let language = await getTranslation('say');
-    
+    let languageCommand = await getTranslation('command');
+
     translation();
     initialize();
     await load();
@@ -121,17 +122,7 @@ $(async () => {
             showBorders: true,
             masterDetail: {
                 enabled: true,
-                template(container, options) {
-                    container.append($("<div>").dxDataGrid({
-                        dataSource: new Array(options.data),
-                        allowColumnReordering: true,
-                        allowColumnResizing: true,
-                        columns: [
-                            { dataField: "countUses", caption: translate(language, 'countUses') },
-                            { dataField: "countRuns", caption: translate(language, 'countRuns') }
-                        ]
-                    }));
-                }
+                template: masterDetailTemplate
             },
             columns: [
                 { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
@@ -180,6 +171,88 @@ $(async () => {
                 }
             }
         });
+
+        function masterDetailTemplate(_, masterDetailOptions) {
+            return $('<div>').dxTabPanel({
+                items: [{
+                    title: translate(language, 'overview'),
+                    template: createOverviewTabTemplate(masterDetailOptions.data, 1),
+                }, {
+                    title: translate(language, 'statistic'),
+                    template: createStatisticTabTemplate(masterDetailOptions.data, 1),
+                }],
+            });
+        }
+
+        function createStatisticTabTemplate(masterDetailData) {
+            return function () {
+                return $('<div>').dxDataGrid({
+                    dataSource: new Array(masterDetailData),
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    selection: { mode: "single" },
+                    columns: [
+                        { dataField: "countUses", caption: translate(language, 'countUses') },
+                        { dataField: "countRuns", caption: translate(language, 'countRuns') }
+                    ]
+                });
+            };
+        }
+
+        function createOverviewTabTemplate(masterDetailData) {
+            return function () {
+                return $('<div>').dxDataGrid({
+                    dataSource: new DevExpress.data.CustomStore({
+                        key: ["module", "command"],
+                        loadMode: "raw",
+                        load: async function () {
+                            var properties;
+                            await fetch('./api/command/default/say', {
+                                method: 'get',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                }
+                            }).then(function (res) {
+                                switch (res.status) {
+                                    case 200:
+                                        return res.json();
+                                }
+                            }).then(function (json) {
+                                if (json != undefined) {
+                                    console.log(json);
+                                    properties = json;
+                                }
+                            });
+                            return properties;
+                        }
+                    }),
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    selection: { mode: "single" },
+                    editing: {
+                        mode: "row",
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        allowAdding: false
+                    },
+                    columns: [
+                        {
+                            caption: translate(languageCommand, 'command'), width: 200,
+                            calculateCellValue(data) {
+                              return "!" + masterDetailData.command + data.command;
+                            }
+                        },
+                        { dataField: "isMaster", caption: translate(languageCommand, 'isMaster'), width: 200 },
+                        {
+                            caption: translate(languageCommand, 'description'),
+                            calculateCellValue(data) {
+                              return translate(languageCommand, data.translation)
+                            }
+                        }
+                    ]
+                });
+            };
+        }
     }
     //#endregion
 

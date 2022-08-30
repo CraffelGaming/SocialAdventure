@@ -61,6 +61,13 @@ global.isMaster = function isMaster(request: express.Request, response: express.
             return true;
         }
     }
+    return false; // true
+}
+
+global.isRegistered = function isMaster(request: express.Request, response: express.Response) : boolean{
+    if(request.session != null && request.session.userData != null && request.session.userData.login != null){
+        return true;
+    }
     return false;
 }
 

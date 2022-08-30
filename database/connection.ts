@@ -19,6 +19,7 @@ import { HeroTraitItem } from '../model/heroTraitItem';
 import { HeroInventoryItem } from '../model/heroInventoryItem';
 import { HeroWalletItem } from '../model/heroWalletItem';
 import { ItemItem } from '../model/itemItem';
+import { CommandItem } from '../model/commandItem';
 
 export class Connection {
     databaseName: string;
@@ -76,6 +77,7 @@ export class Connection {
             HeroWalletItem.initialize(this.sequelize);
             HeroInventoryItem.initialize(this.sequelize);
             ItemItem.initialize(this.sequelize);
+            CommandItem.initialize(this.sequelize);
 
             await this.sequelize.sync();
 
@@ -88,6 +90,7 @@ export class Connection {
             await HeroWalletItem.updateTable({ sequelize: this.sequelize });
             await HeroInventoryItem.updateTable({ sequelize: this.sequelize });
             await ItemItem.updateTable({ sequelize: this.sequelize });
+            await CommandItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });
