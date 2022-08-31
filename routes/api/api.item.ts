@@ -5,6 +5,17 @@ import { ItemItem } from '../../model/itemItem';
 const router = express.Router();
 const endpoint = 'item';
 
+router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
+    global.worker.log.trace(`get ${endpoint}`);
+    const item = await global.worker.globalDatabase.sequelize.models.item.findAll({ order: [ [ 'value', 'ASC' ]], raw: false, include: [{
+        model: global.worker.globalDatabase.sequelize.models.itemCategory,
+        as: 'category',
+    }]}) as unknown as ItemItem[];
+
+    if(item) response.status(200).json(item);
+    else response.status(404).json();
+});
+
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
@@ -15,7 +26,10 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     const channel = global.worker.channels.find(x => x.node.name === node )
 
     if(channel) {
-        const item = await channel.database.sequelize.models.item.findAll({order: [ [ 'handle', 'ASC' ]], raw: false});
+        const item = await channel.database.sequelize.models.item.findAll({order: [ [ 'value', 'ASC' ]], raw: false, include: [{
+            model: global.worker.globalDatabase.sequelize.models.itemCategory,
+            as: 'category',
+        }]});
         if(item) response.status(200).json(item);
         else response.status(404).json();
     } else response.status(404).json();

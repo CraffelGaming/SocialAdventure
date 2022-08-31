@@ -13,33 +13,50 @@ exports.Say = void 0;
 const translationItem_1 = require("../model/translationItem");
 const module_1 = require("./module");
 class Say extends module_1.Module {
+    //#region Construct
     constructor(translation, channel, item) {
-        super(translation, channel);
+        super(translation, channel, 'say');
         this.countMessages = 0;
         this.item = item;
         this.automation();
     }
+    //#endregion
+    //#region Remove
     remove() {
         if (this.timer != null) {
             clearInterval(this.timer);
         }
     }
+    //#endregion
+    //#region Execute
     execute(command) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 global.worker.log.trace(`module ${this.item.command} say execute`);
                 if (command.name.startsWith(this.item.command)) {
                     command.name = command.name.replace(this.item.command, "");
-                    if (command.name.length === 0)
-                        command.name = "shout";
-                    return yield this[command.name](command);
+                    const allowedCommand = this.commands.find(x => x.command === command.name);
+                    if (allowedCommand) {
+                        if (!allowedCommand.isMaster || this.isOwner(command)) {
+                            if (command.name.length === 0)
+                                command.name = "shout";
+                            return yield this[command.name](command);
+                        }
+                        else
+                            global.worker.log.trace(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                    }
+                    else
+                        global.worker.log.trace(`hack dedection ${this.item.command} ${command.name} blocked`);
                 }
             }
             catch (ex) {
-                return '';
+                global.worker.log.error(`module ${this.item.command} error ${ex.message}`);
             }
+            return '';
         });
     }
+    //#endregion
+    //#region Automation
     automation() {
         this.timer = setInterval(() => __awaiter(this, void 0, void 0, function* () {
             if (this.item.isActive && this.item.minutes > 0) {
@@ -82,6 +99,8 @@ class Say extends module_1.Module {
         }), 60000 // Alle 60 Sekunden prüfen
         );
     }
+    //#endregion
+    //#region Commands
     start(command) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.item.isActive) {

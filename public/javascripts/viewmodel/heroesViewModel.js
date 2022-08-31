@@ -133,7 +133,6 @@ $(async () => {
                                 }
                             }).then(function (json) {
                                 if (json != undefined) {
-                                    console.log(json);
                                     properties = json;
                                 }
                             });
@@ -156,7 +155,6 @@ $(async () => {
                         {
                             caption: translate(language, 'total'), width: 250,
                             calculateCellValue(data) {
-                                console.log(data);
                               return data.quantity * data.item.gold;
                             }
                         }

@@ -1,3 +1,5 @@
 [
-    {"handle": 1,       "type": 0,      "gold": 150,          "value":"Schwert"}
+    {"handle": 1,   "categoryHandle": 1,       "type": 0,      "gold": 100,          "value":"Schwert"},
+    {"handle": 2,   "categoryHandle": 1,       "type": 0,      "gold": 100,          "value":"Schild"},
+    {"handle": 3,   "categoryHandle": 6,       "type": 0,      "gold": 100,          "value":"Nimmermehr"}
 ]

@@ -9,16 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemItem = void 0;
+exports.ItemCategoryItem = void 0;
 const sequelize_1 = require("sequelize");
-const json = require("./itemItem.json");
-class ItemItem {
+const json = require("./itemCategoryItem.json");
+class ItemCategoryItem {
     constructor() {
         this.handle = 0;
-        this.categoryHandle = 1;
+        this.value = "";
     }
     static initialize(sequelize) {
-        sequelize.define('item', {
+        sequelize.define('itemCategory', {
             handle: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
@@ -28,45 +28,27 @@ class ItemItem {
             value: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false
-            },
-            gold: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 50
-            },
-            categoryHandle: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 1
-            },
-            type: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
             }
         }, { freezeTableName: true });
     }
-    static setAssociation({ sequelize, isGlobal }) {
-        if (!isGlobal) {
-            sequelize.models.item.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'itemhandle' });
-        }
-        sequelize.models.item.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle' });
+    static setAssociation({ sequelize }) {
+        sequelize.models.itemCategory.hasMany(sequelize.models.item, { as: 'items', foreignKey: 'categoryHandle' });
     }
     static updateTable({ sequelize, isGlobal }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
-                    if ((yield sequelize.models.item.count({ where: { handle: item.handle } })) === 0) {
-                        if (isGlobal === true && item.categoryHandle !== 1) {
-                            yield sequelize.models.item.create(item);
+                    if ((yield sequelize.models.itemCategory.count({ where: { handle: item.handle } })) === 0) {
+                        if (isGlobal === true && item.handle !== 1) {
+                            yield sequelize.models.itemCategory.create(item);
                         }
-                        else if (isGlobal === false && item.categoryHandle === 1) {
-                            yield sequelize.models.item.create(item);
+                        else if (isGlobal === false && item.handle === 1) {
+                            yield sequelize.models.itemCategory.create(item);
                         }
                     }
                     else
-                        yield sequelize.models.item.update(item, { where: { handle: item.handle } });
+                        yield sequelize.models.itemCategory.update(item, { where: { handle: item.handle } });
                 }
             }
             catch (ex) {
@@ -75,6 +57,6 @@ class ItemItem {
         });
     }
 }
-exports.ItemItem = ItemItem;
-module.exports.default = ItemItem;
-//# sourceMappingURL=itemItem.js.map
+exports.ItemCategoryItem = ItemCategoryItem;
+module.exports.default = ItemCategoryItem;
+//# sourceMappingURL=itemCategoryItem.js.map

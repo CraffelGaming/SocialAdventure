@@ -11,13 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Module = void 0;
 class Module {
-    constructor(translation, channel) {
+    constructor(translation, channel, name) {
         this.translation = translation;
         this.channel = channel;
+        this.name = name;
     }
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
             this.basicTranslation = (yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.language }, order: [['handle', 'ASC']], raw: true }));
+            this.commands = (yield this.channel.database.sequelize.models.command.findAll({ where: { module: this.name }, order: [['command', 'ASC']], raw: true }));
         });
     }
     isOwner(command) {

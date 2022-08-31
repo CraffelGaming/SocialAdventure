@@ -167,3 +167,16 @@ export async function getEditing() {
 
 }
 //#endregion
+
+//#region Editing
+export async function isMaster() {
+    let userData = await loadUserData();
+    let defaultNode = await loadDefaultNode();
+
+    if(userData != null && defaultNode.node != null){
+        return userData.login === defaultNode.node;
+    }
+    return false; //true
+
+}
+//#endregion

@@ -16,9 +16,186 @@ import herowallet from "./api/api.heroWallet";
 import herotrait from "./api/api.heroTrait";
 import heroinventory from "./api/api.heroInventory";
 import item from "./api/api.item";
+import itemCategory from "./api/api.itemCategory";
 import command from "./api/api.command";
 
 const router = express.Router();
+
+//#region Item Category
+/**
+ * @swagger
+ * /itemcategory:
+ *   get:
+ *     tags:
+ *     - Item Category
+ *     summary: Item Category
+ *     description: Rückgabe aller Item Kategorien.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: intener
+ *                 example: 1
+ *                 descrition: ID der Item Kategorie.
+ *               value:
+ *                 type: string
+ *                 example: "default"
+ *                 descrition: Name  für die Übersetzung der Item Kategorie.
+ *               items:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     handle:
+ *                       type: integer
+ *                       example: 1
+ *                       descrition: ID des Gegenstands
+ *                     value:
+ *                       type: string
+ *                       example: "Schwert"
+ *                       descrition: Nabe des Gegenstandes
+ *                     gold:
+ *                       type: integer
+ *                       example: 150
+ *                       descrition: Wert des Gegenstandes in Gold
+ *                     type:
+ *                       type: number
+ *                       example: 1
+ *                       descrition: Typ des Gegenstandes
+ *                     createdAt:
+ *                       type: string
+ *                       example: "2022-05-12 10:11:35.027 +00:00"
+ *                       descrition: Datum der Anlage
+ *                     updatedAt:
+ *                       type: string
+ *                       example: "2022-05-12 10:11:35.027 +00:00"
+ *                       descrition: Datum der letzten Änderung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/itemcategory", itemCategory);
+
+/**
+ * @swagger
+ * /itemcategory/{node}:
+ *   get:
+ *     tags:
+ *     - Item Category
+ *     summary: Item Category
+ *     description: Rückgabe aller Item Kategorien.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: intener
+ *                 example: 1
+ *                 descrition: ID der Item Kategorie.
+ *               value:
+ *                 type: string
+ *                 example: "default"
+ *                 descrition: Name  für die Übersetzung der Item Kategorie.
+ *               items:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     handle:
+ *                       type: integer
+ *                       example: 1
+ *                       descrition: ID des Gegenstands
+ *                     value:
+ *                       type: string
+ *                       example: "Schwert"
+ *                       descrition: Nabe des Gegenstandes
+ *                     gold:
+ *                       type: integer
+ *                       example: 150
+ *                       descrition: Wert des Gegenstandes in Gold
+ *                     type:
+ *                       type: number
+ *                       example: 1
+ *                       descrition: Typ des Gegenstandes
+ *                     createdAt:
+ *                       type: string
+ *                       example: "2022-05-12 10:11:35.027 +00:00"
+ *                       descrition: Datum der Anlage
+ *                     updatedAt:
+ *                       type: string
+ *                       example: "2022-05-12 10:11:35.027 +00:00"
+ *                       descrition: Datum der letzten Änderung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+  router.get("/itemcategory/:node", itemCategory);
+
+/**
+ * @swagger
+ * /itemcategory/{node}/transfer/{handle}:
+ *   post:
+ *     tags:
+ *     - Item Category
+ *     summary: Item Category
+ *     description: Überträgt eine globale Gegenstandskategorie in einen Node
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "Gegenstandskategorie"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       404:
+ *         description: no data
+ */
+  router.post("/itemcategory/:node/transfer/:handle", itemCategory);
+//#endregion
 
 //#region Command
 /**
@@ -255,6 +432,64 @@ const router = express.Router();
 //#region Item
 /**
  * @swagger
+ * /item/:
+ *   get:
+ *     tags:
+ *     - Item
+ *     summary: Gegenstände
+ *     description: Rückgabe aller Gegenstände.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstands
+ *               value:
+ *                 type: string
+ *                 example: "Schwert"
+ *                 descrition: Nabe des Gegenstandes
+ *               gold:
+ *                 type: integer
+ *                 example: 150
+ *                 descrition: Wert des Gegenstandes in Gold
+ *               type:
+ *                 type: number
+ *                 example: 1
+ *                 descrition: Typ des Gegenstandes
+ *               category:
+ *                 type: object
+ *                 properties:
+ *                   handle:
+ *                     type: intener
+ *                     example: 1
+ *                     descrition: ID der Item Kategorie.
+ *                   value:
+ *                     type: string
+ *                     example: "default"
+ *                     descrition: Name  für die Übersetzung der Item Kategorie.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/item", item);
+
+/**
+ * @swagger
  * /item/{node}:
  *   get:
  *     tags:
@@ -294,6 +529,17 @@ const router = express.Router();
  *                 type: number
  *                 example: 1
  *                 descrition: Typ des Gegenstandes
+ *               category:
+ *                 type: object
+ *                 properties:
+ *                   handle:
+ *                     type: intener
+ *                     example: 1
+ *                     descrition: ID der Item Kategorie.
+ *                   value:
+ *                     type: string
+ *                     example: "default"
+ *                     descrition: Name  für die Übersetzung der Item Kategorie.
  *               createdAt:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"

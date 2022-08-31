@@ -36,6 +36,7 @@ const command_1 = __importDefault(require("./command"));
 const hero_1 = __importDefault(require("./hero"));
 const heroes_1 = __importDefault(require("./heroes"));
 const item_1 = __importDefault(require("./item"));
+const itemCategory_1 = __importDefault(require("./itemCategory"));
 const say_1 = __importDefault(require("./say"));
 const statistic_1 = __importDefault(require("./statistic"));
 const taverne_1 = __importDefault(require("./taverne"));
@@ -59,6 +60,8 @@ router.get('/hero', hero_1.default);
 router.get('/heroes', heroes_1.default);
 // Item
 router.get('/item', item_1.default);
+// Item Category
+router.get('/itemCategory', itemCategory_1.default);
 // Say
 router.get('/say', say_1.default);
 // Statistic

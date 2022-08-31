@@ -34,12 +34,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const router = express.Router();
-const endpoint = 'item';
+const endpoint = 'itemcategory';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}`);
-    const item = yield global.worker.globalDatabase.sequelize.models.item.findAll({ order: [['value', 'ASC']], raw: false, include: [{
-                model: global.worker.globalDatabase.sequelize.models.itemCategory,
-                as: 'category',
+    const item = yield global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
+                model: global.worker.globalDatabase.sequelize.models.item,
+                as: 'items',
             }] });
     if (item)
         response.status(200).json(item);
@@ -53,9 +53,9 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         node = global.defaultNode(request, response);
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
-        const item = yield channel.database.sequelize.models.item.findAll({ order: [['value', 'ASC']], raw: false, include: [{
-                    model: global.worker.globalDatabase.sequelize.models.itemCategory,
-                    as: 'category',
+        const item = yield channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
+                    model: global.worker.globalDatabase.sequelize.models.item,
+                    as: 'items',
                 }] });
         if (item)
             response.status(200).json(item);
@@ -65,7 +65,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     else
         response.status(404).json();
 }));
-router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.post('/' + endpoint + '/:node/transfer/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
     if (node === 'default')
@@ -73,50 +73,21 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
         if (global.isMaster(request, response, node)) {
-            if (request.body.handle != null && request.body.handle > 0) {
-                if (request.body.value != null && request.body.value.length > 0) {
-                    const item = yield channel.database.sequelize.models.item.findByPk(request.body.handle);
+            const globalItems = yield global.worker.globalDatabase.sequelize.models.item.findAll({ where: { categoryHandle: request.params.handle } });
+            for (const globalItem in globalItems) {
+                if (globalItem != null) {
+                    const item = yield channel.database.sequelize.models.item.findOne({ where: { categoryHandle: request.params.handle, value: globalItems[globalItem].value } });
                     if (item) {
-                        yield channel.database.sequelize.models.item.update(request.body, { where: { handle: request.body.handle } });
+                        globalItems[globalItem].handle = item.handle;
+                        yield channel.database.sequelize.models.item.update(globalItems[globalItem], { where: { handle: item.handle } });
+                    }
+                    else {
+                        globalItems[globalItem].handle = null;
+                        yield channel.database.sequelize.models.item.create(globalItems[globalItem]);
                     }
                 }
-                else {
-                    response.status(406).json();
-                }
             }
-            else {
-                yield channel.database.sequelize.models.item.create(request.body);
-            }
-            response.status(201).json(request.body);
-        }
-        else {
-            response.status(403).json();
-        }
-    }
-    else
-        response.status(404).json();
-}));
-router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
-    let node = request.params.node;
-    if (node === 'default')
-        node = global.defaultNode(request, response);
-    const channel = global.worker.channels.find(x => x.node.name === node);
-    if (channel) {
-        if (global.isMaster(request, response, node)) {
-            if (request.params.handle != null) {
-                const item = yield channel.database.sequelize.models.item.findByPk(request.params.handle);
-                if (item) {
-                    for (const heroItem of Object.values(yield channel.database.sequelize.models.heroInventory.findAll({ where: { itemHandle: request.params.handle } }))) {
-                        yield channel.database.sequelize.models.heroWallet.increment('gold', { by: item.gold * heroItem.quantity, where: { heroName: heroItem.heroName } });
-                        yield channel.database.sequelize.models.heroInventory.destroy({ where: { itemHandle: request.params.handle } });
-                    }
-                    yield channel.database.sequelize.models.item.destroy({ where: { handle: request.params.handle } });
-                }
-                response.status(204).json();
-            }
-            else
-                response.status(404).json();
+            response.status(204).json();
         }
         else {
             response.status(403).json();
@@ -126,4 +97,4 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
         response.status(404).json();
 }));
 exports.default = router;
-//# sourceMappingURL=api.item.js.map
+//# sourceMappingURL=api.itemCategory.js.map

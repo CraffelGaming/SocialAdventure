@@ -33,21 +33,27 @@
         "parentEndpoint": "adventure"
     },
     {
+        "endpoint": "itemCategory",
+        "name": "itemCategory",
+        "order": 1230,
+        "parentEndpoint": "adventure"
+    },
+    {
         "endpoint": "level",
         "name": "level",
-        "order": 1230,
+        "order": 1240,
         "parentEndpoint": "adventure"
     },
     {
         "endpoint": "statistic",
         "name": "statistic",
-        "order": 1240,
+        "order": 1250,
         "parentEndpoint": "adventure"
     },
     {
         "endpoint": "command",
         "name": "command",
-        "order": 1250,
+        "order": 1260,
         "parentEndpoint": "adventure"
     },
     {

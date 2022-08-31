@@ -4,6 +4,8 @@ $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
     let language = await getTranslation('item');
+    let languageItemCategory = await getTranslation('itemCategory');
+    let languageItemCategoryList = await getTranslation('itemCategoryList');
 
     translation();
     initialize();
@@ -121,7 +123,13 @@ $(async () => {
             showBorders: true,
             columns: [
                 { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }]  },
-                { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200 }
+                { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200 },
+                {
+                    caption: translate(languageItemCategory, 'value'), width: 250,
+                    calculateCellValue(data) {
+                      return translate(languageItemCategoryList, data.category.value);
+                    }
+                }
             ],
             editing: await getEditing(),
             export: {

@@ -53,6 +53,7 @@ const heroInventoryItem_1 = require("../model/heroInventoryItem");
 const heroWalletItem_1 = require("../model/heroWalletItem");
 const itemItem_1 = require("../model/itemItem");
 const commandItem_1 = require("../model/commandItem");
+const itemCategoryItem_1 = require("../model/itemCategoryItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -71,6 +72,8 @@ class Connection {
                 translationItem_1.TranslationItem.initialize(this.sequelize);
                 twitchItem_1.TwitchItem.initialize(this.sequelize);
                 twitchUserItem_1.TwitchUserItem.initialize(this.sequelize);
+                itemCategoryItem_1.ItemCategoryItem.initialize(this.sequelize);
+                itemItem_1.ItemItem.initialize(this.sequelize);
                 menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
@@ -78,6 +81,10 @@ class Connection {
                 yield nodeItem_1.NodeItem.updateTable({ sequelize: this.sequelize });
                 yield menuItem_1.MenuItem.updateTable({ sequelize: this.sequelize });
                 yield translationItem_1.TranslationItem.updateTable({ sequelize: this.sequelize });
+                yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
+                yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
+                itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
+                itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
                 yield this.updater("migrations/global");
                 return true;
             }
@@ -98,6 +105,7 @@ class Connection {
                 heroTraitItem_1.HeroTraitItem.initialize(this.sequelize);
                 heroWalletItem_1.HeroWalletItem.initialize(this.sequelize);
                 heroInventoryItem_1.HeroInventoryItem.initialize(this.sequelize);
+                itemCategoryItem_1.ItemCategoryItem.initialize(this.sequelize);
                 itemItem_1.ItemItem.initialize(this.sequelize);
                 commandItem_1.CommandItem.initialize(this.sequelize);
                 yield this.sequelize.sync();
@@ -109,12 +117,15 @@ class Connection {
                 yield heroTraitItem_1.HeroTraitItem.updateTable({ sequelize: this.sequelize });
                 yield heroWalletItem_1.HeroWalletItem.updateTable({ sequelize: this.sequelize });
                 yield heroInventoryItem_1.HeroInventoryItem.updateTable({ sequelize: this.sequelize });
-                yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize });
+                yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
+                yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
                 yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
                 heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });
                 heroInventoryItem_1.HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
+                itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
+                itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
                 yield this.updater("migrations/general");
                 return true;
             }

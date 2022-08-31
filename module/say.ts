@@ -9,34 +9,46 @@ export class Say extends Module {
     countMessages: number;
     timer: NodeJS.Timer;
 
+    //#region Construct
     constructor(translation: TranslationItem[], channel: Channel, item: SayItem){
-        super(translation, channel);
+        super(translation, channel, 'say');
         this.countMessages = 0;
         this.item = item;
         this.automation();
     }
+    //#endregion
 
+    //#region Remove
     remove(){
         if(this.timer != null){
             clearInterval(this.timer);
         }
     }
+    //#endregion
 
+    //#region Execute
     async execute(command: Command){
         try{
             global.worker.log.trace(`module ${this.item.command} say execute`);
 
             if(command.name.startsWith(this.item.command)){
                 command.name = command.name.replace(this.item.command, "");
-                if(command.name.length === 0) command.name = "shout";
-                return await this[command.name](command);
+                const allowedCommand = this.commands.find(x => x.command === command.name);
+                if(allowedCommand){
+                    if(!allowedCommand.isMaster || this.isOwner(command)){
+                        if(command.name.length === 0) command.name = "shout";
+                        return await this[command.name](command);
+                    } else global.worker.log.trace(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                } else global.worker.log.trace(`hack dedection ${this.item.command} ${command.name} blocked`);
             }
-
         } catch(ex){
-            return '';
+            global.worker.log.error(`module ${this.item.command} error ${ex.message}`);
         }
+        return '';
     }
+    //#endregion
 
+    //#region Automation
     automation(){
         this.timer = setInterval(
             async () => {
@@ -77,7 +89,9 @@ export class Say extends Module {
             60000 // Alle 60 Sekunden prüfen
         );
     }
+    //#endregion
 
+    //#region Commands
     async start(command: Command){
         if(!this.item.isActive){
             this.item.isActive = true;
@@ -166,4 +180,5 @@ export class Say extends Module {
             return TranslationItem.translate(this.basicTranslation, "notRunning");
         }
     }
+    //#endregion
 }

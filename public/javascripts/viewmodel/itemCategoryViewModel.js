@@ -1,14 +1,15 @@
-import { getTranslation, translate, infoPanel } from './globalData.js';
+import { getTranslation, translate, infoPanel, tableExport, getEditing, notify, isMaster } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('streamer');
-    let streamer;
-    
+    let language = await getTranslation('itemCategory');
+    let languageItem = await getTranslation('item');
+    let languageItemCategoryList = await getTranslation('itemCategoryList');
+
     translation();
     initialize();
-    load();
+    await load();
     infoPanel();
 
     //#region Initialize
@@ -18,14 +19,14 @@ $(async () => {
     //#endregion
 
     //#region Load
-    function load() {
+    async function load() {
         $("#dataGrid").dxDataGrid({
             dataSource: new DevExpress.data.CustomStore({
-                key: "name",
+                key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
                     var items;
-                    await fetch('./api/node', {
+                    await fetch('./api/itemCategory', {
                         method: 'get',
                         headers: {
                             'Content-type': 'application/json'
@@ -64,32 +65,45 @@ $(async () => {
             },
             showRowLines: true,
             showBorders: true,
+            masterDetail: {
+                enabled: true,
+                template(container, options) {
+                    container.append($("<div>").dxDataGrid({
+                        dataSource: options.data.items,
+                        allowColumnReordering: true,
+                        allowColumnResizing: true,
+                        columns: [
+                            { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }]  },
+                            { dataField: "gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 200 }
+                        ]
+                    }));
+                }
+            },
             columns: [
                 {
-                    dataField: 'Picture',
-                    caption: "",
-                    width: 100,
-                    allowFiltering: false,
-                    allowSorting: false,
-                    cellTemplate(container, options) {
-                        console.log(options);
-                      $('<div>')
-                        .append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
-                        .appendTo(container);
-                    },
+                    caption: translate(language, 'value'),
+                    calculateCellValue(data) {
+                      return translate(languageItemCategoryList, data.value)
+                    }
                 },
-                { dataField: "name", caption: translate(language, 'name'), visible: false },
-                { dataField: "displayName", caption: translate(language, 'displayName'), width: 400, overflow: 'hidden' },
-                { dataField: "language", caption: translate(language, 'language'), width: 120 },
-                { dataField: "isActive", caption: translate(language, 'isActive'), dataType:'boolean', alignment: 'left', width: 120 },
-                { dataField: "endpoint", caption: translate(language, 'endpoint')},
+                {
+                    caption: translate(language, 'count'), width: 250,
+                    calculateCellValue(data) {
+                        if(data.items != null) {
+                            return data.items.length;
+                        } else {
+                            return 0;
+                        }
+                    }
+                },
                 {
                     type: "buttons",
+                    visible: await isMaster(),
                     buttons: [{
                         icon: "check",
                         hint: translate(language, "checkHint"),
                         onClick: function (e) {
-                            fetch(`./api/node/default?node=${e.row.key}`, {
+                            fetch(`./api/itemCategory/default/transfer/${e.row.key}`, {
                                 method: 'post',
                                 headers: {
                                     'Content-type': 'application/json'
@@ -106,6 +120,7 @@ $(async () => {
                     }]
                 }
             ],
+            editing: await getEditing(),
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']

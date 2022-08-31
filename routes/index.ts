@@ -10,6 +10,7 @@ import command from "./command";
 import hero from "./hero";
 import heroes from "./heroes";
 import item from "./item";
+import itemCategory from "./itemCategory";
 import say from "./say";
 import statistic from "./statistic";
 import taverne from "./taverne";
@@ -43,6 +44,9 @@ router.get('/heroes', heroes);
 
 // Item
 router.get('/item', item);
+
+// Item Category
+router.get('/itemCategory', itemCategory);
 
 // Say
 router.get('/say', say);
