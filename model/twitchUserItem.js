@@ -13,7 +13,7 @@ class TwitchUserItem {
         this.viewCount = 0;
         this.eMail = "";
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('twitchUser', {
             channelName: {
                 type: sequelize_1.DataTypes.STRING,

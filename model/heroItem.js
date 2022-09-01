@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -10,14 +19,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroItem = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./heroItem.json");
-class HeroItem {
+let HeroItem = class HeroItem extends sequelize_typescript_1.Model {
     constructor() {
+        super();
+        this.lastSteal = new Date(2020, 1, 1);
+        this.lastJoin = new Date(2020, 1, 1);
+        this.startIndex = 0;
+        this.experience = 0;
+        this.isActive = false;
         this.name = "";
     }
-    static initialize(sequelize) {
-        sequelize.define('hero', {
+    static createTable({ sequelize }) {
+        const a = sequelize.define('hero', {
             name: {
                 type: sequelize_1.DataTypes.STRING,
                 primaryKey: true,
@@ -46,9 +62,10 @@ class HeroItem {
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: true
+                defaultValue: false
             }
         }, { freezeTableName: true });
+        global.worker.log.error(a);
     }
     static setAssociation({ sequelize }) {
         sequelize.models.hero.hasOne(sequelize.models.heroTrait, { as: 'trait', foreignKey: 'heroName' });
@@ -72,7 +89,36 @@ class HeroItem {
             }
         });
     }
-}
+};
+__decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], HeroItem.prototype, "name", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], HeroItem.prototype, "lastSteal", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], HeroItem.prototype, "lastJoin", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "startIndex", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "experience", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], HeroItem.prototype, "isActive", void 0);
+HeroItem = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "hero", modelName: "hero" }),
+    __metadata("design:paramtypes", [])
+], HeroItem);
 exports.HeroItem = HeroItem;
 module.exports.default = HeroItem;
 //# sourceMappingURL=heroItem.js.map

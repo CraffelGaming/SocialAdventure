@@ -12,7 +12,7 @@ export class ItemCategoryItem{
         this.value = "";
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('itemCategory', {
             handle: {
                 type: DataTypes.INTEGER,

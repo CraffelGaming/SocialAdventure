@@ -16,7 +16,7 @@ export class CommandItem{
         this.translation = "";
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('command', {
             module: {
                 type: DataTypes.STRING,

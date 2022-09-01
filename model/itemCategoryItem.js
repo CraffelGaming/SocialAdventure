@@ -17,7 +17,7 @@ class ItemCategoryItem {
         this.handle = 0;
         this.value = "";
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('itemCategory', {
             handle: {
                 type: sequelize_1.DataTypes.INTEGER,

@@ -18,7 +18,7 @@ class LevelItem {
         this.experienceMin = 0;
         this.experienceMax = 0;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('level', {
             handle: {
                 type: sequelize_1.DataTypes.INTEGER,

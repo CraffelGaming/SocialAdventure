@@ -19,7 +19,7 @@ class CommandItem {
         this.isMaster = false;
         this.translation = "";
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('command', {
             module: {
                 type: sequelize_1.DataTypes.STRING,

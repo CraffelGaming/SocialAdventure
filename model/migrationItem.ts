@@ -12,7 +12,7 @@ export class MigrationItem{
         this.isInstalled = isInstalled;
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('migration', {
             name: {
                 type: DataTypes.STRING,

@@ -21,7 +21,7 @@ export class NodeItem{
         this.isActive = isActive;
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('node', {
             name: {
                 type: DataTypes.STRING,

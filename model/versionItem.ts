@@ -8,7 +8,7 @@ export class VersionItem{
         this.version = version;
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('version', {
             version: {
                 type: DataTypes.STRING,

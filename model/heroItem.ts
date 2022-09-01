@@ -3,20 +3,29 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import json = require('./heroItem.json');
 
-export class HeroItem{
+@Table({ tableName: "hero", modelName: "hero"})
+export class HeroItem extends Model<HeroItem> {
+    @PrimaryKey
+    @Column
     name: string;
-    lastSteal: Date;
-    lastJoin: Date;
-    startIndex: number;
-    experience: number;
-    isActive: boolean;
+    @Column
+    lastSteal: Date = new Date(2020, 1, 1);
+    @Column
+    lastJoin: Date = new Date(2020, 1, 1);
+    @Column
+    startIndex: number = 0;
+    @Column
+    experience: number = 0;
+    @Column
+    isActive: boolean = false;
 
     constructor(){
+        super();
         this.name = "";
     }
 
-    static initialize(sequelize){
-        sequelize.define('hero', {
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
+        const a = sequelize.define('hero', {
             name: {
                 type: DataTypes.STRING,
                 primaryKey: true,
@@ -45,9 +54,11 @@ export class HeroItem{
             isActive: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: true
+                defaultValue: false
             }
           }, {freezeTableName: true});
+
+          global.worker.log.error(a);
     }
 
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){

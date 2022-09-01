@@ -16,7 +16,7 @@ class HeroInventoryItem {
     constructor() {
         this.itemHandle = 0;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('heroInventory', {
             itemHandle: {
                 type: sequelize_1.DataTypes.INTEGER,

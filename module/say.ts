@@ -38,8 +38,8 @@ export class Say extends Module {
                     if(!allowedCommand.isMaster || this.isOwner(command)){
                         if(command.name.length === 0) command.name = "shout";
                         return await this[command.name](command);
-                    } else global.worker.log.trace(`not owner dedection ${this.item.command} ${command.name} blocked`);
-                } else global.worker.log.trace(`hack dedection ${this.item.command} ${command.name} blocked`);
+                    } else global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                } else global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
             }
         } catch(ex){
             global.worker.log.error(`module ${this.item.command} error ${ex.message}`);

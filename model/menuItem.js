@@ -19,7 +19,7 @@ class MenuItem {
         this.order = order;
         this.authenticationRequired = false;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('menu', {
             endpoint: {
                 type: sequelize_1.DataTypes.STRING,

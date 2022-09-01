@@ -14,7 +14,7 @@ export class HeroTraitItem{
         this.heroName = "";
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('heroTrait', {
             heroName: {
                 type: DataTypes.STRING,

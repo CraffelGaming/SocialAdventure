@@ -1,3 +1,4 @@
+import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
 import { HeroItem } from "../model/heroItem";
@@ -6,8 +7,6 @@ import { TranslationItem } from "../model/translationItem";
 import { Module } from "./module";
 
 export class Loot extends Module {
-    heroes: HeroItem[];
-    items: ItemItem[];
     timer: NodeJS.Timer;
 
     //#region Construct
@@ -18,19 +17,19 @@ export class Loot extends Module {
     //#endregion
 
     //#region Execute
-    execute(command: Command){
+    async execute(command: Command){
         try{
             global.worker.log.trace('loot execute');
             const allowedCommand = this.commands.find(x => x.command === command.name);
             if(allowedCommand){
                 if(!allowedCommand.isMaster || this.isOwner(command)){
-                    return this[command.name]();
-                } else global.worker.log.trace(`not owner dedection loot ${command.name} blocked`);
+                    return await this[command.name](command);
+                } else global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
             } else {
-                global.worker.log.trace(`hack dedection loot ${command.name} blocked`);
+                global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
             }
         } catch(ex){
-            global.worker.log.error(`loot error ${ex.message}`);
+            global.worker.log.error(`loot error - function execute - ${ex.message}`);
         }
         return '';
     }
@@ -48,75 +47,118 @@ export class Loot extends Module {
     }
     //#endregion
 
+    //#region Join / Leave
+    async loot(command: Command){
+        try{
+            const value : [Model<HeroItem>, boolean] = await this.channel.database.sequelize.models.hero.findOrCreate({
+                defaults: { isActive: true, lastJoin: new Date() },
+                where: { name: command.source}
+            }) as [Model<HeroItem>, boolean];
+
+            if(value[1]){
+                    return TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
+                } else {
+                    if(!value[0].getDataValue("isActive")){
+                        value[0].setDataValue("isActive",true);
+                        value[0].setDataValue("lastJoin",new Date());
+                        await value[0].save();
+                        return TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
+                    } else return TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
+                }
+        } catch (ex){
+            global.worker.log.error(`loot error - function loot - ${ex.message}`);
+        }
+    }
+
+    async leave(command: Command){
+        try{
+            const hero = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
+            if(hero !== undefined){
+                if(hero.getDataValue("isActive") === true){
+                    hero.setDataValue("isActive", false)
+                    await hero.save();
+                    return TranslationItem.translate(this.translation, 'heroLeave').replace('$1', command.source);
+                } else return TranslationItem.translate(this.translation, 'heroNotJoined').replace('$1', command.source);
+            } else return TranslationItem.translate(this.translation, 'heroNotExists').replace('$1', command.source);
+        } catch (ex){
+            global.worker.log.error(`loot error - function leave - ${ex.message}`);
+        }
+    }
+    //#endregion
+
+    //#region Statistics
+    async adventure(command: Command){
+        try{
+            const count = await this.channel.database.sequelize.models.hero.count({where: {isActive: true}});
+            global.worker.log.trace(`loot adventure - count - ${count}`);
+            return TranslationItem.translate(this.translation, 'heroCount').replace('$1', count.toString());
+        } catch (ex){
+            global.worker.log.error(`loot error - function adventure - ${ex.message}`);
+        }
+    }
+    //#endregion
+
     //#region Commands
-    inventory(){
+    inventory(command: Command){
         return 'inventory';
     }
 
-    steal(){
+    steal(command: Command){
         return 'steal';
     }
 
-    give(){
+    give(command: Command){
         return 'give';
     }
 
-    find(){
+    find(command: Command){
         return 'find';
     }
 
-    leave(){
-        return 'leave';
-    }
-
-    gold(){
+    gold(command: Command){
         return 'gold';
     }
 
-    chest(){
+    chest(command: Command){
         return 'chest';
     }
 
-    level(){
+    level(command: Command){
         return 'level';
     }
 
-    adventure(){
-        return 'adventure';
-    }
-
-    blut(){
+    blut(command: Command){
         return 'blut';
     }
 
-    rank(){
+    rank(command: Command){
         return 'rank';
     }
 
-    diamond(){
+    diamond(command: Command){
         return 'diamond';
     }
 
-    lootstart(){
+    lootstart(command: Command){
         return 'lootstart';
     }
 
-    lootstop(){
+    lootstop(command: Command){
         return 'lootstop';
     }
 
-    lootclear(){
+    lootclear(command: Command){
         return 'lootclear';
     }
     //#endregion
 
     //#region Shortcots
-    inv(){
-        this.inventory();
+    inv(command: Command){
+        this.inventory(command);
     }
 
-    lvl(){
-        this.level();
+    lvl(command: Command){
+        this.level(command);
     }
     //#endregion
 }

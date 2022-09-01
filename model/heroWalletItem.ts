@@ -14,7 +14,7 @@ export class HeroWalletItem{
         this.heroName = "";
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('heroWallet', {
             heroName: {
                 type: DataTypes.STRING,

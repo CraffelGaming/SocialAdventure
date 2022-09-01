@@ -23,7 +23,7 @@ class SayItem {
         this.countUses = 0;
         this.countRuns = 0;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('say', {
             command: {
                 type: sequelize_1.DataTypes.STRING(50),

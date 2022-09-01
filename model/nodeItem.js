@@ -19,7 +19,7 @@ class NodeItem {
         this.language = language;
         this.isActive = isActive;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('node', {
             name: {
                 type: sequelize_1.DataTypes.STRING,

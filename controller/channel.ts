@@ -62,7 +62,7 @@ export class Channel {
     async execute(command: Command){
         const messages : string[] = [];
 
-        messages.push(this.loot.execute(command));
+        messages.push(await this.loot.execute(command));
 
         for(const key in Object.keys(this.say)){
             if (this.say.hasOwnProperty(key)) {

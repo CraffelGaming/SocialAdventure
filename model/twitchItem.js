@@ -11,7 +11,7 @@ class TwitchItem {
         this.scope = "";
         this.tokenType = "";
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('twitch', {
             state: {
                 type: sequelize_1.DataTypes.STRING,

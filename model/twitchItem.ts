@@ -20,7 +20,7 @@ export class TwitchItem{
         this.tokenType = "";
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('twitch', {
             state: {
                 type: DataTypes.STRING,

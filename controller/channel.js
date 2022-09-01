@@ -63,7 +63,7 @@ class Channel {
     execute(command) {
         return __awaiter(this, void 0, void 0, function* () {
             const messages = [];
-            messages.push(this.loot.execute(command));
+            messages.push(yield this.loot.execute(command));
             for (const key in Object.keys(this.say)) {
                 if (this.say.hasOwnProperty(key)) {
                     messages.push(yield this.say[key].execute(command));

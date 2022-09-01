@@ -20115,3 +20115,2300 @@
 [2022-08-31T18:53:13.414] [TRACE] default - get twitch userdata
 [2022-08-31T18:53:13.466] [TRACE] default - get node, default
 [2022-08-31T18:53:17.227] [TRACE] default - put itemcategory, node default
+[2022-09-01T08:09:18.006] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:09:18.184] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:09:18.185] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:09:18.202] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:09:18.205] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:09:20.157] [TRACE] default - add Migration update_001
+[2022-09-01T08:09:21.144] [TRACE] default - add Node craffelmat
+[2022-09-01T08:09:23.290] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:09:23.295] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:09:26.501] [TRACE] default - get translation, page navigation
+[2022-09-01T08:09:26.504] [TRACE] default - get translation, page index
+[2022-09-01T08:09:26.513] [TRACE] default - get menu
+[2022-09-01T08:09:26.520] [TRACE] default - get translation, page information
+[2022-09-01T08:09:26.532] [TRACE] default - get twitch
+[2022-09-01T08:09:26.535] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:26.583] [TRACE] default - get node, default
+[2022-09-01T08:09:30.321] [TRACE] default - get translation, page navigation
+[2022-09-01T08:09:30.322] [TRACE] default - get translation, page streamer
+[2022-09-01T08:09:30.413] [TRACE] default - get translation, page information
+[2022-09-01T08:09:30.416] [TRACE] default - get node
+[2022-09-01T08:09:30.418] [TRACE] default - get menu
+[2022-09-01T08:09:30.430] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:30.521] [TRACE] default - get node, default
+[2022-09-01T08:09:30.522] [TRACE] default - get twitch
+[2022-09-01T08:09:34.290] [TRACE] default - {
+  access_token: '5mljm0frr5j8xcsar6kbpsb7pkiibu',
+  expires_in: 14634,
+  refresh_token: 'pu347q5n3lgqx89dfwh7u2ycm7hqxlyunosk4woch4nzcocylr',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-09-01T08:09:34.517] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-09-01T08:09:34.917] [TRACE] default - get translation, page navigation
+[2022-09-01T08:09:34.918] [TRACE] default - get translation, page twitch
+[2022-09-01T08:09:34.957] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:34.963] [TRACE] default - get menu
+[2022-09-01T08:09:34.968] [TRACE] default - get translation, page information
+[2022-09-01T08:09:34.977] [TRACE] default - get twitch
+[2022-09-01T08:09:34.993] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:34.997] [TRACE] default - get node, default
+[2022-09-01T08:09:37.272] [TRACE] default - get translation, page navigation
+[2022-09-01T08:09:37.274] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:09:37.286] [TRACE] default - get menu
+[2022-09-01T08:09:37.296] [TRACE] default - get translation, page item
+[2022-09-01T08:09:37.306] [TRACE] default - get twitch
+[2022-09-01T08:09:37.312] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:09:37.333] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:37.354] [TRACE] default - get node, default
+[2022-09-01T08:09:37.362] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:37.370] [TRACE] default - get node, default
+[2022-09-01T08:09:37.441] [TRACE] default - get translation, page information
+[2022-09-01T08:09:37.443] [TRACE] default - get itemcategory
+[2022-09-01T08:09:37.453] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:37.511] [TRACE] default - get node, default
+[2022-09-01T08:09:39.932] [TRACE] default - get translation, page navigation
+[2022-09-01T08:09:39.933] [TRACE] default - get translation, page item
+[2022-09-01T08:09:39.940] [TRACE] default - get menu
+[2022-09-01T08:09:39.942] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:09:39.952] [TRACE] default - get twitch
+[2022-09-01T08:09:39.953] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:09:39.973] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:39.976] [TRACE] default - get node, default
+[2022-09-01T08:09:40.044] [TRACE] default - get translation, page information
+[2022-09-01T08:09:40.046] [TRACE] default - get item, node default
+[2022-09-01T08:09:40.052] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:40.129] [TRACE] default - get node, default
+[2022-09-01T08:09:48.408] [TRACE] default - get translation, page navigation
+[2022-09-01T08:09:48.410] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:09:48.416] [TRACE] default - get menu
+[2022-09-01T08:09:48.421] [TRACE] default - get translation, page item
+[2022-09-01T08:09:48.432] [TRACE] default - get twitch
+[2022-09-01T08:09:48.434] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:09:48.452] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:48.455] [TRACE] default - get node, default
+[2022-09-01T08:09:48.459] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:48.463] [TRACE] default - get node, default
+[2022-09-01T08:09:48.548] [TRACE] default - get translation, page information
+[2022-09-01T08:09:48.550] [TRACE] default - get itemcategory
+[2022-09-01T08:09:48.558] [TRACE] default - get twitch userdata
+[2022-09-01T08:09:48.616] [TRACE] default - get node, default
+[2022-09-01T08:09:52.985] [TRACE] default - put itemcategory, node default
+[2022-09-01T08:11:03.307] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:11:03.425] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T08:11:03.426] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:11:03.441] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T08:11:03.443] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:11:05.358] [TRACE] default - add Migration update_001
+[2022-09-01T08:11:06.301] [TRACE] default - add Node craffelmat
+[2022-09-01T08:11:07.173] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:11:07.178] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:11:19.550] [TRACE] default - get translation, page navigation
+[2022-09-01T08:11:19.553] [TRACE] default - get translation, page index
+[2022-09-01T08:11:19.564] [TRACE] default - get menu
+[2022-09-01T08:11:19.571] [TRACE] default - get translation, page information
+[2022-09-01T08:11:19.586] [TRACE] default - get twitch
+[2022-09-01T08:11:19.589] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:19.606] [TRACE] default - get node, default
+[2022-09-01T08:11:22.028] [TRACE] default - get translation, page navigation
+[2022-09-01T08:11:22.031] [TRACE] default - get translation, page twitch
+[2022-09-01T08:11:22.039] [TRACE] default - get menu
+[2022-09-01T08:11:22.068] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:22.073] [TRACE] default - get twitch
+[2022-09-01T08:11:26.036] [TRACE] default - {
+  access_token: 'regs3815rtjzk2flcdfix8k9lp495r',
+  expires_in: 13775,
+  refresh_token: 'k32gzi72ibq1fzs1y1o56sb7s2qevlhapyk73gyak8rvl41k09',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-09-01T08:11:26.262] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-09-01T08:11:26.634] [TRACE] default - get translation, page navigation
+[2022-09-01T08:11:26.637] [TRACE] default - get translation, page twitch
+[2022-09-01T08:11:26.645] [TRACE] default - get menu
+[2022-09-01T08:11:26.673] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:26.679] [TRACE] default - get twitch
+[2022-09-01T08:11:26.684] [TRACE] default - get translation, page information
+[2022-09-01T08:11:26.700] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:26.707] [TRACE] default - get node, default
+[2022-09-01T08:11:33.632] [TRACE] default - get translation, page navigation
+[2022-09-01T08:11:33.635] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:11:33.643] [TRACE] default - get menu
+[2022-09-01T08:11:33.647] [TRACE] default - get translation, page item
+[2022-09-01T08:11:33.659] [TRACE] default - get twitch
+[2022-09-01T08:11:33.662] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:11:33.689] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:33.694] [TRACE] default - get node, default
+[2022-09-01T08:11:33.699] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:33.704] [TRACE] default - get node, default
+[2022-09-01T08:11:33.774] [TRACE] default - get translation, page information
+[2022-09-01T08:11:33.777] [TRACE] default - get itemcategory
+[2022-09-01T08:11:33.788] [TRACE] default - get twitch userdata
+[2022-09-01T08:11:33.838] [TRACE] default - get node, default
+[2022-09-01T08:11:36.348] [TRACE] default - put itemcategory, node default
+[2022-09-01T08:13:44.990] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:13:45.085] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:13:45.085] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:13:45.101] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:13:45.105] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:13:46.957] [TRACE] default - add Migration update_001
+[2022-09-01T08:13:47.928] [TRACE] default - add Node craffelmat
+[2022-09-01T08:13:48.751] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:13:48.755] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:14:10.392] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:10.396] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:14:10.403] [TRACE] default - get menu
+[2022-09-01T08:14:10.409] [TRACE] default - get translation, page item
+[2022-09-01T08:14:10.420] [TRACE] default - get twitch
+[2022-09-01T08:14:10.423] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:14:10.441] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:10.447] [TRACE] default - get node, default
+[2022-09-01T08:14:10.451] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:10.454] [TRACE] default - get node, default
+[2022-09-01T08:14:10.536] [TRACE] default - get translation, page information
+[2022-09-01T08:14:10.538] [TRACE] default - get itemcategory
+[2022-09-01T08:14:10.546] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:10.608] [TRACE] default - get node, default
+[2022-09-01T08:14:13.604] [TRACE] default - {
+  access_token: 'c4b2ht1g458biujch1pjubf96pilsh',
+  expires_in: 13599,
+  refresh_token: '1hzneg99rtm6ld2jyrishuufse1106havdp8rie1ripwmq9kvk',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-09-01T08:14:13.840] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-09-01T08:14:14.362] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:14.364] [TRACE] default - get translation, page twitch
+[2022-09-01T08:14:14.372] [TRACE] default - get menu
+[2022-09-01T08:14:14.404] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:14.411] [TRACE] default - get twitch
+[2022-09-01T08:14:14.413] [TRACE] default - get translation, page information
+[2022-09-01T08:14:14.430] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:14.433] [TRACE] default - get node, default
+[2022-09-01T08:14:16.699] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:16.701] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:14:16.707] [TRACE] default - get menu
+[2022-09-01T08:14:16.709] [TRACE] default - get translation, page item
+[2022-09-01T08:14:16.718] [TRACE] default - get twitch
+[2022-09-01T08:14:16.721] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:14:16.738] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:16.743] [TRACE] default - get node, default
+[2022-09-01T08:14:16.747] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:16.750] [TRACE] default - get node, default
+[2022-09-01T08:14:16.828] [TRACE] default - get translation, page information
+[2022-09-01T08:14:16.830] [TRACE] default - get itemcategory
+[2022-09-01T08:14:16.837] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:16.897] [TRACE] default - get node, default
+[2022-09-01T08:14:18.768] [TRACE] default - put itemcategory, node default
+[2022-09-01T08:14:24.587] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:24.588] [TRACE] default - get translation, page item
+[2022-09-01T08:14:24.676] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:14:24.677] [TRACE] default - get menu
+[2022-09-01T08:14:24.686] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:14:24.688] [TRACE] default - get twitch
+[2022-09-01T08:14:24.708] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:24.713] [TRACE] default - get node, default
+[2022-09-01T08:14:24.868] [TRACE] default - get translation, page information
+[2022-09-01T08:14:24.870] [TRACE] default - get item, node default
+[2022-09-01T08:14:24.877] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:24.944] [TRACE] default - get node, default
+[2022-09-01T08:14:32.676] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:32.677] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:14:32.682] [TRACE] default - get menu
+[2022-09-01T08:14:32.686] [TRACE] default - get translation, page item
+[2022-09-01T08:14:32.696] [TRACE] default - get twitch
+[2022-09-01T08:14:32.698] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:14:32.716] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:32.720] [TRACE] default - get node, default
+[2022-09-01T08:14:32.724] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:32.727] [TRACE] default - get node, default
+[2022-09-01T08:14:32.803] [TRACE] default - get translation, page information
+[2022-09-01T08:14:32.805] [TRACE] default - get itemcategory
+[2022-09-01T08:14:32.811] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:32.872] [TRACE] default - get node, default
+[2022-09-01T08:14:35.506] [TRACE] default - put itemcategory, node default
+[2022-09-01T08:14:37.953] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:37.955] [TRACE] default - get translation, page item
+[2022-09-01T08:14:37.961] [TRACE] default - get menu
+[2022-09-01T08:14:37.964] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:14:37.974] [TRACE] default - get twitch
+[2022-09-01T08:14:37.975] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:14:37.996] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:38.000] [TRACE] default - get node, default
+[2022-09-01T08:14:38.083] [TRACE] default - get translation, page information
+[2022-09-01T08:14:38.085] [TRACE] default - get item, node default
+[2022-09-01T08:14:38.091] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:38.155] [TRACE] default - get node, default
+[2022-09-01T08:14:45.448] [TRACE] default - get translation, page navigation
+[2022-09-01T08:14:45.451] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:14:45.456] [TRACE] default - get menu
+[2022-09-01T08:14:45.459] [TRACE] default - get translation, page item
+[2022-09-01T08:14:45.475] [TRACE] default - get twitch
+[2022-09-01T08:14:45.477] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:14:45.503] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:45.507] [TRACE] default - get node, default
+[2022-09-01T08:14:45.513] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:45.516] [TRACE] default - get node, default
+[2022-09-01T08:14:45.592] [TRACE] default - get translation, page information
+[2022-09-01T08:14:45.594] [TRACE] default - get itemcategory
+[2022-09-01T08:14:45.599] [TRACE] default - get twitch userdata
+[2022-09-01T08:14:45.683] [TRACE] default - get node, default
+[2022-09-01T08:14:48.754] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:14:48.754] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:14:48.754] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:15:00.617] [TRACE] default - get translation, page navigation
+[2022-09-01T08:15:00.619] [TRACE] default - get translation, page itemCategory
+[2022-09-01T08:15:00.637] [TRACE] default - get menu
+[2022-09-01T08:15:00.640] [TRACE] default - get translation, page item
+[2022-09-01T08:15:00.656] [TRACE] default - get twitch
+[2022-09-01T08:15:00.658] [TRACE] default - get translation, page itemCategoryList
+[2022-09-01T08:15:00.680] [TRACE] default - get twitch userdata
+[2022-09-01T08:15:00.689] [TRACE] default - get node, default
+[2022-09-01T08:15:00.700] [TRACE] default - get twitch userdata
+[2022-09-01T08:15:00.708] [TRACE] default - get node, default
+[2022-09-01T08:15:00.793] [TRACE] default - get translation, page information
+[2022-09-01T08:15:00.795] [TRACE] default - get itemcategory
+[2022-09-01T08:15:00.801] [TRACE] default - get twitch userdata
+[2022-09-01T08:15:00.864] [TRACE] default - get node, default
+[2022-09-01T08:15:01.968] [TRACE] default - put itemcategory, node default
+[2022-09-01T08:15:29.246] [TRACE] default - get translation, page navigation
+[2022-09-01T08:15:29.247] [TRACE] default - get translation, page hero
+[2022-09-01T08:15:29.253] [TRACE] default - get menu
+[2022-09-01T08:15:29.256] [TRACE] default - get translation, page item
+[2022-09-01T08:15:29.265] [TRACE] default - get twitch
+[2022-09-01T08:15:29.268] [TRACE] default - get translation, page wallet
+[2022-09-01T08:15:29.284] [TRACE] default - get translation, page trait
+[2022-09-01T08:15:29.360] [TRACE] default - get translation, page information
+[2022-09-01T08:15:29.363] [TRACE] default - get hero, node default
+[2022-09-01T08:15:29.370] [TRACE] default - get twitch userdata
+[2022-09-01T08:15:29.458] [TRACE] default - get node, default
+[2022-09-01T08:15:32.628] [TRACE] default - get heroinventory, node default, hero craffel
+[2022-09-01T08:15:48.763] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:15:48.764] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:15:48.764] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:39:50.829] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:39:50.929] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:39:50.930] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:39:50.945] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:39:50.948] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:39:52.782] [TRACE] default - add Migration update_001
+[2022-09-01T08:39:53.794] [TRACE] default - add Node craffelmat
+[2022-09-01T08:39:54.652] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:39:54.657] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:40:03.955] [TRACE] default - get translation, page navigation
+[2022-09-01T08:40:03.966] [TRACE] default - get translation, page index
+[2022-09-01T08:40:03.974] [TRACE] default - get menu
+[2022-09-01T08:40:03.981] [TRACE] default - get translation, page information
+[2022-09-01T08:40:03.995] [TRACE] default - get twitch
+[2022-09-01T08:40:03.998] [TRACE] default - get twitch userdata
+[2022-09-01T08:40:04.017] [TRACE] default - get node, default
+[2022-09-01T08:40:16.388] [TRACE] default - incomming message self: false
+[2022-09-01T08:40:16.388] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:40:16.388] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:40:16.389] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:40:16.389] [TRACE] default - loot execute
+[2022-09-01T08:40:16.390] [ERROR] default - loot error - function loot - Cannot read properties of undefined (reading 'find')
+[2022-09-01T08:40:16.390] [TRACE] default - module craffel say execute
+[2022-09-01T08:40:16.390] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:40:16.393] [TRACE] default - undefined
+[2022-09-01T08:40:16.393] [TRACE] default - 
+[2022-09-01T08:40:54.659] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:40:54.660] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:40:54.660] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:41:25.840] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:41:25.939] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:41:25.939] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:41:25.953] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:41:25.956] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:41:27.819] [TRACE] default - add Migration update_001
+[2022-09-01T08:41:28.787] [TRACE] default - add Node craffelmat
+[2022-09-01T08:41:29.666] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:41:29.669] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:41:33.977] [TRACE] default - incomming message self: false
+[2022-09-01T08:41:33.978] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:41:33.978] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:41:33.979] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:41:33.979] [TRACE] default - loot execute
+[2022-09-01T08:41:33.979] [ERROR] default - loot error - function loot - Cannot read properties of undefined (reading 'source')
+[2022-09-01T08:41:33.980] [TRACE] default - module craffel say execute
+[2022-09-01T08:41:33.980] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:41:33.981] [TRACE] default - undefined
+[2022-09-01T08:41:33.982] [TRACE] default - 
+[2022-09-01T08:42:17.514] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:42:17.605] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:42:17.606] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:42:17.621] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:42:17.623] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:42:19.562] [TRACE] default - add Migration update_001
+[2022-09-01T08:42:20.538] [TRACE] default - add Node craffelmat
+[2022-09-01T08:42:22.704] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:42:22.709] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:42:27.707] [TRACE] default - incomming message self: false
+[2022-09-01T08:42:27.707] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:42:27.708] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:42:27.708] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:42:27.708] [TRACE] default - loot execute
+[2022-09-01T08:42:27.709] [TRACE] default - module craffel say execute
+[2022-09-01T08:42:27.709] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:42:27.710] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:42:27.711] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:42:27.711] [TRACE] default - 
+[2022-09-01T08:42:28.990] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:42:28.991] [TRACE] default - incomming message self: true
+[2022-09-01T08:43:30.315] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:43:30.446] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T08:43:30.446] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:43:30.462] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T08:43:30.466] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:43:32.497] [TRACE] default - add Migration update_001
+[2022-09-01T08:43:33.467] [TRACE] default - add Node craffelmat
+[2022-09-01T08:43:34.342] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:43:34.347] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:44:40.299] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:44:40.400] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:44:40.400] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:44:40.415] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:44:40.418] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:44:42.412] [TRACE] default - add Migration update_001
+[2022-09-01T08:44:43.377] [TRACE] default - add Node craffelmat
+[2022-09-01T08:44:44.220] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:44:44.225] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:44:48.459] [TRACE] default - incomming message self: false
+[2022-09-01T08:44:48.459] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:44:48.459] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:44:48.460] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:44:48.460] [TRACE] default - loot execute
+[2022-09-01T08:44:48.460] [ERROR] default - []
+[2022-09-01T08:44:48.461] [TRACE] default - module craffel say execute
+[2022-09-01T08:44:48.461] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:44:48.462] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:44:48.463] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:44:48.463] [TRACE] default - 
+[2022-09-01T08:44:49.003] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:44:49.004] [TRACE] default - incomming message self: true
+[2022-09-01T08:45:38.678] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:45:38.779] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:45:38.780] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:45:38.796] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:45:38.798] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:45:40.686] [TRACE] default - add Migration update_001
+[2022-09-01T08:45:41.674] [TRACE] default - add Node craffelmat
+[2022-09-01T08:45:43.680] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:45:43.684] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:45:55.399] [TRACE] default - incomming message self: false
+[2022-09-01T08:45:55.400] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:45:55.400] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:45:55.400] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:45:55.401] [TRACE] default - loot execute
+[2022-09-01T08:45:55.401] [ERROR] default - undefined
+[2022-09-01T08:45:55.402] [TRACE] default - module craffel say execute
+[2022-09-01T08:45:55.402] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:45:55.404] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:45:55.404] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:45:55.404] [TRACE] default - 
+[2022-09-01T08:45:55.748] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:45:55.749] [TRACE] default - incomming message self: true
+[2022-09-01T08:46:21.549] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:46:21.639] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:46:21.639] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:46:21.654] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:46:21.657] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:46:23.557] [TRACE] default - add Migration update_001
+[2022-09-01T08:46:24.551] [TRACE] default - add Node craffelmat
+[2022-09-01T08:46:25.391] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:46:25.396] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:46:30.267] [TRACE] default - incomming message self: false
+[2022-09-01T08:46:30.267] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:46:30.268] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:46:30.268] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:46:30.268] [TRACE] default - loot execute
+[2022-09-01T08:46:30.269] [ERROR] default - undefined
+[2022-09-01T08:46:30.269] [TRACE] default - module craffel say execute
+[2022-09-01T08:46:30.270] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:46:30.271] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:46:30.271] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:46:30.271] [TRACE] default - 
+[2022-09-01T08:46:31.580] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T08:46:31.581] [TRACE] default - incomming message self: true
+[2022-09-01T08:46:51.915] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:46:52.009] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:46:52.010] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:46:52.025] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:46:52.029] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:46:53.916] [TRACE] default - add Migration update_001
+[2022-09-01T08:46:54.881] [TRACE] default - add Node craffelmat
+[2022-09-01T08:46:55.764] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:46:55.768] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:46:58.468] [TRACE] default - incomming message self: false
+[2022-09-01T08:46:58.469] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:46:58.469] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:46:58.469] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:46:58.470] [TRACE] default - loot execute
+[2022-09-01T08:46:58.470] [ERROR] default - undefined
+[2022-09-01T08:46:58.567] [TRACE] default - module craffel say execute
+[2022-09-01T08:46:58.568] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:46:58.569] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:46:58.569] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:46:58.569] [TRACE] default - 
+[2022-09-01T08:46:59.102] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:46:59.104] [TRACE] default - incomming message self: true
+[2022-09-01T08:47:05.667] [TRACE] default - incomming message self: false
+[2022-09-01T08:47:05.667] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:47:05.667] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:47:05.668] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:47:05.668] [TRACE] default - loot execute
+[2022-09-01T08:47:05.669] [ERROR] default - undefined
+[2022-09-01T08:47:05.673] [TRACE] default - module craffel say execute
+[2022-09-01T08:47:05.673] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:47:05.674] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:47:05.674] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:47:05.674] [TRACE] default - 
+[2022-09-01T08:47:06.138] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:47:06.139] [TRACE] default - incomming message self: true
+[2022-09-01T08:47:55.768] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:47:55.769] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:47:55.769] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:48:47.835] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:48:47.933] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:48:47.933] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:48:47.948] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:48:47.951] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:48:49.855] [TRACE] default - add Migration update_001
+[2022-09-01T08:48:50.858] [TRACE] default - add Node craffelmat
+[2022-09-01T08:48:51.731] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:48:51.735] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:48:56.216] [TRACE] default - incomming message self: false
+[2022-09-01T08:48:56.217] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:48:56.217] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:48:56.217] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:48:56.218] [TRACE] default - loot execute
+[2022-09-01T08:48:56.218] [ERROR] default - []
+[2022-09-01T08:48:56.219] [ERROR] default - undefined
+[2022-09-01T08:48:56.224] [TRACE] default - module craffel say execute
+[2022-09-01T08:48:56.224] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:48:56.225] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:48:56.225] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:48:56.226] [TRACE] default - 
+[2022-09-01T08:48:56.478] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:48:56.480] [TRACE] default - incomming message self: true
+[2022-09-01T08:49:04.629] [TRACE] default - incomming message self: false
+[2022-09-01T08:49:04.629] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:49:04.630] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:49:04.630] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:49:04.630] [TRACE] default - loot execute
+[2022-09-01T08:49:04.631] [ERROR] default - [
+  [
+    {
+      name: 'craffelmat',
+      lastSteal: '2020-02-01 00:00:00.000 +00:00',
+      lastJoin: '2020-02-01 00:00:00.000 +00:00',
+      startIndex: 0,
+      experience: 0,
+      isActive: 1,
+      createdAt: '2022-09-01 06:46:58.475 +00:00',
+      updatedAt: '2022-09-01 06:46:58.475 +00:00'
+    },
+    false
+  ]
+]
+[2022-09-01T08:49:04.632] [ERROR] default - undefined
+[2022-09-01T08:49:04.637] [TRACE] default - module craffel say execute
+[2022-09-01T08:49:04.637] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:49:04.638] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:49:04.638] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:49:04.638] [TRACE] default - 
+[2022-09-01T08:49:04.929] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:49:04.930] [TRACE] default - incomming message self: true
+[2022-09-01T08:49:51.739] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:49:51.740] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:49:51.740] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:52:13.409] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:52:13.503] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:52:13.503] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:52:13.519] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:52:13.523] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:52:15.387] [TRACE] default - add Migration update_001
+[2022-09-01T08:52:16.362] [TRACE] default - add Node craffelmat
+[2022-09-01T08:52:17.207] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:52:17.211] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:52:24.456] [TRACE] default - incomming message self: false
+[2022-09-01T08:52:24.457] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:52:24.457] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:52:24.457] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:52:24.458] [TRACE] default - loot execute
+[2022-09-01T08:52:24.458] [ERROR] default - []
+[2022-09-01T08:52:24.459] [ERROR] default - undefined
+[2022-09-01T08:52:24.464] [TRACE] default - module craffel say execute
+[2022-09-01T08:52:24.465] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:52:24.466] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:52:24.466] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:52:24.466] [TRACE] default - 
+[2022-09-01T08:52:24.806] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:52:24.807] [TRACE] default - incomming message self: true
+[2022-09-01T08:52:50.876] [TRACE] default - incomming message self: false
+[2022-09-01T08:52:50.877] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:52:50.877] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:52:50.877] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:52:50.877] [TRACE] default - loot execute
+[2022-09-01T08:52:50.877] [ERROR] default - [
+  [
+    {
+      name: 'craffelmat',
+      lastSteal: '2020-02-01 00:00:00.000 +00:00',
+      lastJoin: '2020-02-01 00:00:00.000 +00:00',
+      startIndex: 0,
+      experience: 0,
+      isActive: 1,
+      createdAt: '2022-09-01 06:46:58.475 +00:00',
+      updatedAt: '2022-09-01 06:46:58.475 +00:00'
+    },
+    false
+  ]
+]
+[2022-09-01T08:52:50.878] [ERROR] default - undefined
+[2022-09-01T08:52:50.882] [TRACE] default - module craffel say execute
+[2022-09-01T08:52:50.882] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:52:50.884] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:52:50.884] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:52:50.884] [TRACE] default - 
+[2022-09-01T08:52:51.536] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:52:51.537] [TRACE] default - incomming message self: true
+[2022-09-01T08:53:17.219] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:53:17.219] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:53:17.219] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:53:18.856] [TRACE] default - incomming message self: false
+[2022-09-01T08:53:18.857] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:53:18.857] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:53:18.857] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:53:18.857] [TRACE] default - loot execute
+[2022-09-01T08:53:18.858] [ERROR] default - [
+  [
+    {
+      name: 'craffelmat',
+      lastSteal: '2020-02-01 00:00:00.000 +00:00',
+      lastJoin: '2020-02-01 00:00:00.000 +00:00',
+      startIndex: 0,
+      experience: 0,
+      isActive: 1,
+      createdAt: '2022-09-01 06:46:58.475 +00:00',
+      updatedAt: '2022-09-01 06:46:58.475 +00:00'
+    },
+    false
+  ],
+  [
+    {
+      name: 'craffelmat',
+      lastSteal: '2020-02-01 00:00:00.000 +00:00',
+      lastJoin: '2020-02-01 00:00:00.000 +00:00',
+      startIndex: 0,
+      experience: 0,
+      isActive: 1,
+      createdAt: '2022-09-01 06:46:58.475 +00:00',
+      updatedAt: '2022-09-01 06:46:58.475 +00:00'
+    },
+    false
+  ]
+]
+[2022-09-01T08:53:18.860] [ERROR] default - undefined
+[2022-09-01T08:53:18.864] [TRACE] default - module craffel say execute
+[2022-09-01T08:53:18.864] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:53:18.865] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:53:18.865] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:53:18.865] [TRACE] default - 
+[2022-09-01T08:53:19.658] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:53:19.660] [TRACE] default - incomming message self: true
+[2022-09-01T08:54:17.223] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:54:17.223] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:54:17.224] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:54:53.928] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:54:54.026] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:54:54.026] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:54:54.042] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:54:54.045] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:54:55.895] [TRACE] default - add Migration update_001
+[2022-09-01T08:54:56.869] [TRACE] default - add Node craffelmat
+[2022-09-01T08:54:58.863] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:54:58.868] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:55:05.801] [TRACE] default - incomming message self: false
+[2022-09-01T08:55:05.802] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:55:05.802] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:55:05.802] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:55:05.803] [TRACE] default - loot execute
+[2022-09-01T08:55:05.803] [ERROR] default - []
+[2022-09-01T08:55:05.803] [ERROR] default - undefined
+[2022-09-01T08:55:05.810] [TRACE] default - module craffel say execute
+[2022-09-01T08:55:05.811] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:55:05.812] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:55:05.812] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:55:05.813] [TRACE] default - 
+[2022-09-01T08:55:06.726] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:55:06.728] [TRACE] default - incomming message self: true
+[2022-09-01T08:55:14.185] [TRACE] default - incomming message self: false
+[2022-09-01T08:55:14.185] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:55:14.185] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:55:14.186] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:55:14.186] [TRACE] default - loot execute
+[2022-09-01T08:55:14.186] [ERROR] default - [
+  [
+    hero {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    false
+  ]
+]
+[2022-09-01T08:55:14.188] [ERROR] default - undefined
+[2022-09-01T08:55:14.192] [TRACE] default - module craffel say execute
+[2022-09-01T08:55:14.192] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:55:14.193] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:55:14.193] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:55:14.193] [TRACE] default - 
+[2022-09-01T08:55:15.174] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:55:15.175] [TRACE] default - incomming message self: true
+[2022-09-01T08:55:58.860] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:55:58.861] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:55:58.861] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:56:58.860] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:56:58.860] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:56:58.861] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T08:57:55.396] [TRACE] default - twitch chat client initialized
+[2022-09-01T08:57:55.493] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T08:57:55.493] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T08:57:55.508] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T08:57:55.510] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T08:57:57.409] [TRACE] default - add Migration update_001
+[2022-09-01T08:57:58.389] [TRACE] default - add Node craffelmat
+[2022-09-01T08:58:00.569] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T08:58:00.573] [TRACE] default - node connected: craffelmat
+[2022-09-01T08:58:03.342] [TRACE] default - incomming message self: false
+[2022-09-01T08:58:03.342] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:58:03.343] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:58:03.343] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:58:03.344] [TRACE] default - loot execute
+[2022-09-01T08:58:03.344] [ERROR] default - []
+[2022-09-01T08:58:03.344] [ERROR] default - undefined
+[2022-09-01T08:58:03.345] [TRACE] default - module craffel say execute
+[2022-09-01T08:58:03.346] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:58:03.347] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:58:03.347] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:58:03.347] [TRACE] default - 
+[2022-09-01T08:58:04.028] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T08:58:04.029] [TRACE] default - incomming message self: true
+[2022-09-01T08:58:07.745] [TRACE] default - incomming message self: false
+[2022-09-01T08:58:07.745] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T08:58:07.746] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T08:58:07.746] [TRACE] default - incomming message message: !loot
+[2022-09-01T08:58:07.746] [TRACE] default - loot execute
+[2022-09-01T08:58:07.747] [ERROR] default - [ undefined ]
+[2022-09-01T08:58:07.747] [ERROR] default - loot error - function loot - Cannot read properties of undefined (reading 'name')
+[2022-09-01T08:58:07.748] [TRACE] default - module craffel say execute
+[2022-09-01T08:58:07.748] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T08:58:07.749] [TRACE] default - undefined
+[2022-09-01T08:58:07.749] [TRACE] default - 
+[2022-09-01T08:59:00.575] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T08:59:00.575] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T08:59:00.575] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:00:00.580] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:00:00.580] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:00:00.581] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:01:00.592] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:01:00.593] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:01:00.593] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:01:27.639] [TRACE] default - twitch chat client initialized
+[2022-09-01T09:01:27.741] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T09:01:27.741] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T09:01:27.756] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T09:01:27.759] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T09:01:29.769] [TRACE] default - add Migration update_001
+[2022-09-01T09:01:30.756] [TRACE] default - add Node craffelmat
+[2022-09-01T09:01:31.614] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T09:01:31.618] [TRACE] default - node connected: craffelmat
+[2022-09-01T09:01:34.062] [TRACE] default - incomming message self: false
+[2022-09-01T09:01:34.063] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:01:34.063] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:01:34.063] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:01:34.064] [TRACE] default - loot execute
+[2022-09-01T09:01:34.064] [ERROR] default - []
+[2022-09-01T09:01:34.064] [ERROR] default - undefined
+[2022-09-01T09:01:34.070] [TRACE] default - module craffel say execute
+[2022-09-01T09:01:34.071] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:01:34.072] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:01:34.072] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:01:34.072] [TRACE] default - 
+[2022-09-01T09:01:34.966] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:01:34.967] [TRACE] default - incomming message self: true
+[2022-09-01T09:01:42.703] [TRACE] default - incomming message self: false
+[2022-09-01T09:01:42.703] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:01:42.703] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:01:42.704] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:01:42.704] [TRACE] default - loot execute
+[2022-09-01T09:01:42.704] [ERROR] default - [
+  {
+    name: 'craffelmat',
+    lastSteal: '2020-02-01 00:00:00.000 +00:00',
+    lastJoin: '2020-02-01 00:00:00.000 +00:00',
+    startIndex: 0,
+    experience: 0,
+    isActive: 1,
+    createdAt: '2022-09-01 06:46:58.475 +00:00',
+    updatedAt: '2022-09-01 06:46:58.475 +00:00'
+  }
+]
+[2022-09-01T09:01:42.706] [ERROR] default - {
+  name: 'craffelmat',
+  lastSteal: '2020-02-01 00:00:00.000 +00:00',
+  lastJoin: '2020-02-01 00:00:00.000 +00:00',
+  startIndex: 0,
+  experience: 0,
+  isActive: 1,
+  createdAt: '2022-09-01 06:46:58.475 +00:00',
+  updatedAt: '2022-09-01 06:46:58.475 +00:00'
+}
+[2022-09-01T09:01:42.707] [TRACE] default - module craffel say execute
+[2022-09-01T09:01:42.708] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:01:42.709] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T09:01:42.709] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T09:01:42.709] [TRACE] default - 
+[2022-09-01T09:01:43.393] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T09:01:43.394] [TRACE] default - incomming message self: true
+[2022-09-01T09:01:51.193] [TRACE] default - incomming message self: false
+[2022-09-01T09:01:51.193] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:01:51.193] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:01:51.193] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:01:51.194] [TRACE] default - loot execute
+[2022-09-01T09:01:51.194] [ERROR] default - [
+  {
+    name: 'craffelmat',
+    lastSteal: '2020-02-01 00:00:00.000 +00:00',
+    lastJoin: '2020-02-01 00:00:00.000 +00:00',
+    startIndex: 0,
+    experience: 0,
+    isActive: 1,
+    createdAt: '2022-09-01 06:46:58.475 +00:00',
+    updatedAt: '2022-09-01 06:46:58.475 +00:00'
+  }
+]
+[2022-09-01T09:01:51.195] [ERROR] default - {
+  name: 'craffelmat',
+  lastSteal: '2020-02-01 00:00:00.000 +00:00',
+  lastJoin: '2020-02-01 00:00:00.000 +00:00',
+  startIndex: 0,
+  experience: 0,
+  isActive: 1,
+  createdAt: '2022-09-01 06:46:58.475 +00:00',
+  updatedAt: '2022-09-01 06:46:58.475 +00:00'
+}
+[2022-09-01T09:01:51.196] [TRACE] default - module craffel say execute
+[2022-09-01T09:01:51.196] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:01:51.197] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T09:01:51.197] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T09:01:51.198] [TRACE] default - 
+[2022-09-01T09:01:51.827] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T09:01:51.827] [TRACE] default - incomming message self: true
+[2022-09-01T09:05:19.514] [TRACE] default - twitch chat client initialized
+[2022-09-01T09:05:19.617] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T09:05:19.618] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T09:05:19.634] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T09:05:19.637] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T09:05:21.652] [TRACE] default - add Migration update_001
+[2022-09-01T09:05:22.625] [TRACE] default - add Node craffelmat
+[2022-09-01T09:05:23.507] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T09:05:23.511] [TRACE] default - node connected: craffelmat
+[2022-09-01T09:05:27.736] [TRACE] default - incomming message self: false
+[2022-09-01T09:05:27.736] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:05:27.736] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:05:27.737] [TRACE] default - incomming message message: !adventure
+[2022-09-01T09:05:27.737] [TRACE] default - loot execute
+[2022-09-01T09:05:27.738] [TRACE] default - module craffel say execute
+[2022-09-01T09:05:27.738] [TRACE] default - Command {
+  name: 'adventure',
+  message: '!adventure',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:05:27.739] [TRACE] default - Es befinden sich 0 Helden auf Abenteuer.
+[2022-09-01T09:05:27.739] [TRACE] default - message push Es befinden sich 0 Helden auf Abenteuer.
+[2022-09-01T09:05:27.739] [TRACE] default - 
+[2022-09-01T09:05:28.248] [TRACE] default - message shift Es befinden sich 0 Helden auf Abenteuer.
+[2022-09-01T09:05:28.249] [TRACE] default - incomming message self: true
+[2022-09-01T09:05:31.452] [TRACE] default - incomming message self: false
+[2022-09-01T09:05:31.453] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:05:31.453] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:05:31.453] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:05:31.454] [TRACE] default - loot execute
+[2022-09-01T09:05:31.459] [TRACE] default - module craffel say execute
+[2022-09-01T09:05:31.459] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:05:31.460] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:05:31.460] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:05:31.461] [TRACE] default - 
+[2022-09-01T09:05:32.460] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:05:32.461] [TRACE] default - incomming message self: true
+[2022-09-01T09:05:36.058] [TRACE] default - incomming message self: false
+[2022-09-01T09:05:36.058] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:05:36.058] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:05:36.058] [TRACE] default - incomming message message: !adventure
+[2022-09-01T09:05:36.059] [TRACE] default - loot execute
+[2022-09-01T09:05:36.059] [TRACE] default - module craffel say execute
+[2022-09-01T09:05:36.059] [TRACE] default - Command {
+  name: 'adventure',
+  message: '!adventure',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:05:36.060] [TRACE] default - Es befinden sich 1 Helden auf Abenteuer.
+[2022-09-01T09:05:36.060] [TRACE] default - message push Es befinden sich 1 Helden auf Abenteuer.
+[2022-09-01T09:05:36.060] [TRACE] default - 
+[2022-09-01T09:05:36.682] [TRACE] default - message shift Es befinden sich 1 Helden auf Abenteuer.
+[2022-09-01T09:05:36.683] [TRACE] default - incomming message self: true
+[2022-09-01T09:06:23.513] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:06:23.514] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:06:23.514] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:07:23.520] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:07:23.520] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:07:23.521] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:24:53.678] [TRACE] default - twitch chat client initialized
+[2022-09-01T09:24:53.793] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T09:24:53.793] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T09:24:53.810] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T09:24:53.813] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T09:24:55.794] [TRACE] default - add Migration update_001
+[2022-09-01T09:24:56.765] [TRACE] default - add Node craffelmat
+[2022-09-01T09:24:57.756] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T09:24:57.761] [TRACE] default - node connected: craffelmat
+[2022-09-01T09:25:57.759] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:25:57.759] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:25:57.759] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:26:57.763] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:26:57.764] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:26:57.764] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:27:57.767] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:27:57.768] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:27:57.768] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:28:57.769] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:28:57.769] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:28:57.770] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:29:57.783] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:29:57.784] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:29:57.784] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:30:57.792] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:30:57.793] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:30:57.793] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:31:57.794] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:31:57.794] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:31:57.795] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:32:57.805] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:32:57.805] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:32:57.806] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:33:57.816] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:33:57.817] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:33:57.817] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:34:57.769] [INFO] default - node craffelmat, module loot run automtion Minutes.
+[2022-09-01T09:34:57.769] [TRACE] default - message push loot executed
+[2022-09-01T09:34:57.830] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:34:57.831] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:34:57.831] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:34:58.172] [TRACE] default - message shift loot executed
+[2022-09-01T09:34:58.174] [TRACE] default - incomming message self: true
+[2022-09-01T09:35:57.838] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:35:57.839] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:35:57.839] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:36:57.848] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:36:57.848] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:36:57.848] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:37:57.850] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:37:57.850] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:37:57.851] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:38:57.854] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:38:57.855] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:38:57.855] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:39:57.864] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:39:57.864] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:39:57.865] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:40:57.879] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:40:57.879] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:40:57.879] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:41:57.891] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:41:57.891] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:41:57.892] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:42:57.892] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:42:57.892] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:42:57.892] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:43:57.897] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:43:57.898] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:43:57.898] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:44:57.769] [INFO] default - node craffelmat, module loot run automtion Minutes.
+[2022-09-01T09:44:57.770] [TRACE] default - message push loot executed
+[2022-09-01T09:44:57.911] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:44:57.911] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:44:57.911] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:44:58.333] [TRACE] default - message shift loot executed
+[2022-09-01T09:44:58.334] [TRACE] default - incomming message self: true
+[2022-09-01T09:45:57.920] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:45:57.921] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:45:57.921] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:46:57.920] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:46:57.920] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:46:57.921] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:47:57.927] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:47:57.927] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:47:57.928] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:48:57.934] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:48:57.934] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:48:57.935] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:49:57.942] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:49:57.942] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:49:57.942] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:50:57.945] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:50:57.946] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:50:57.946] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:51:57.955] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:51:57.956] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:51:57.956] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:52:57.966] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:52:57.966] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:52:57.966] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:53:35.584] [TRACE] default - incomming message self: false
+[2022-09-01T09:53:35.585] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:53:35.585] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:53:35.585] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:53:35.586] [TRACE] default - loot execute
+[2022-09-01T09:53:35.610] [TRACE] default - module craffel say execute
+[2022-09-01T09:53:35.611] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:53:35.612] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:53:35.612] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:53:35.613] [TRACE] default - 
+[2022-09-01T09:53:36.395] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:53:36.395] [TRACE] default - incomming message self: true
+[2022-09-01T09:53:39.892] [TRACE] default - incomming message self: false
+[2022-09-01T09:53:39.893] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:53:39.893] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:53:39.893] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:53:39.893] [TRACE] default - loot execute
+[2022-09-01T09:53:39.908] [TRACE] default - module craffel say execute
+[2022-09-01T09:53:39.909] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:53:39.910] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:53:39.910] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:53:39.910] [TRACE] default - 
+[2022-09-01T09:53:40.625] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:53:40.625] [TRACE] default - incomming message self: true
+[2022-09-01T09:53:57.972] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:53:57.973] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:53:57.973] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:54:24.792] [TRACE] default - twitch chat client initialized
+[2022-09-01T09:54:24.928] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T09:54:24.929] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T09:54:24.946] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T09:54:24.949] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T09:54:27.210] [TRACE] default - add Migration update_001
+[2022-09-01T09:54:28.192] [TRACE] default - add Node craffelmat
+[2022-09-01T09:54:29.304] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T09:54:29.308] [TRACE] default - node connected: craffelmat
+[2022-09-01T09:55:02.022] [TRACE] default - incomming message self: false
+[2022-09-01T09:55:02.023] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:55:02.023] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:55:02.023] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:55:02.024] [TRACE] default - loot execute
+[2022-09-01T09:55:17.913] [TRACE] default - module craffel say execute
+[2022-09-01T09:55:17.914] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:55:17.915] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:55:17.915] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:55:17.915] [TRACE] default - 
+[2022-09-01T09:55:17.915] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:55:17.916] [TRACE] default - incomming message self: true
+[2022-09-01T09:55:29.314] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:55:29.314] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:55:29.315] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:56:01.493] [TRACE] default - incomming message self: false
+[2022-09-01T09:56:01.494] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:56:01.494] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:56:01.495] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:56:01.495] [TRACE] default - loot execute
+[2022-09-01T09:56:52.122] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:56:52.122] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:56:52.122] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:57:13.699] [TRACE] default - module craffel say execute
+[2022-09-01T09:57:13.699] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:57:13.700] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:57:13.700] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:57:13.700] [TRACE] default - 
+[2022-09-01T09:57:13.700] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:57:13.701] [TRACE] default - incomming message self: true
+[2022-09-01T09:58:03.703] [TRACE] default - twitch chat client initialized
+[2022-09-01T09:58:03.811] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T09:58:03.812] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T09:58:03.827] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T09:58:03.831] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T09:58:05.888] [TRACE] default - add Migration update_001
+[2022-09-01T09:58:28.493] [TRACE] default - twitch chat client initialized
+[2022-09-01T09:58:28.588] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T09:58:28.588] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T09:58:28.604] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T09:58:28.607] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T09:58:30.579] [TRACE] default - add Migration update_001
+[2022-09-01T09:58:31.564] [TRACE] default - add Node craffelmat
+[2022-09-01T09:58:33.769] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T09:58:33.773] [TRACE] default - node connected: craffelmat
+[2022-09-01T09:58:45.009] [TRACE] default - incomming message self: false
+[2022-09-01T09:58:45.010] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:58:45.010] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:58:45.010] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:58:45.011] [TRACE] default - loot execute
+[2022-09-01T09:58:45.035] [TRACE] default - module craffel say execute
+[2022-09-01T09:58:45.036] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:58:45.037] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:58:45.037] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:58:45.037] [TRACE] default - 
+[2022-09-01T09:58:45.623] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:58:45.624] [TRACE] default - incomming message self: true
+[2022-09-01T09:58:54.865] [TRACE] default - incomming message self: false
+[2022-09-01T09:58:54.866] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:58:54.866] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:58:54.866] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:58:54.866] [TRACE] default - loot execute
+[2022-09-01T09:58:54.888] [TRACE] default - module craffel say execute
+[2022-09-01T09:58:54.888] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T09:58:54.889] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:58:54.890] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:58:54.890] [TRACE] default - 
+[2022-09-01T09:58:55.458] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T09:58:55.458] [TRACE] default - incomming message self: true
+[2022-09-01T09:59:33.778] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T09:59:33.779] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T09:59:33.779] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T09:59:55.922] [TRACE] default - incomming message self: false
+[2022-09-01T09:59:55.923] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T09:59:55.923] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T09:59:55.923] [TRACE] default - incomming message message: !loot
+[2022-09-01T09:59:55.923] [TRACE] default - loot execute
+[2022-09-01T09:59:55.945] [TRACE] default - module craffel say execute
+[2022-09-01T09:59:55.945] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-09-01T09:59:55.946] [TRACE] default - craffel ist dem Abenteuer beigetreten.
+[2022-09-01T09:59:55.946] [TRACE] default - message push craffel ist dem Abenteuer beigetreten.
+[2022-09-01T09:59:55.946] [TRACE] default - 
+[2022-09-01T09:59:55.963] [TRACE] default - message shift craffel ist dem Abenteuer beigetreten.
+[2022-09-01T09:59:55.964] [TRACE] default - incomming message self: true
+[2022-09-01T10:00:33.794] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:00:33.794] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:00:33.795] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:01:04.411] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:01:04.536] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T10:01:04.537] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:01:04.553] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T10:01:04.556] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:01:06.529] [TRACE] default - add Migration update_001
+[2022-09-01T10:01:07.518] [TRACE] default - add Node craffelmat
+[2022-09-01T10:01:09.860] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:01:09.863] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:01:34.460] [TRACE] default - incomming message self: false
+[2022-09-01T10:01:34.461] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:01:34.461] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:01:34.462] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:01:34.462] [TRACE] default - loot execute
+[2022-09-01T10:02:42.679] [TRACE] default - module craffel say execute
+[2022-09-01T10:02:42.680] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:02:42.681] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T10:02:42.681] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T10:02:42.681] [TRACE] default - 
+[2022-09-01T10:02:42.681] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T10:02:42.682] [TRACE] default - incomming message self: true
+[2022-09-01T10:02:42.684] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:02:42.685] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:02:42.685] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:02:46.955] [TRACE] default - incomming message self: false
+[2022-09-01T10:02:46.955] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:02:46.956] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:02:46.956] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:02:46.956] [TRACE] default - loot execute
+[2022-09-01T10:03:19.296] [TRACE] default - module craffel say execute
+[2022-09-01T10:03:19.296] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:03:19.297] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T10:03:19.297] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T10:03:19.297] [TRACE] default - 
+[2022-09-01T10:03:20.686] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T10:03:20.687] [TRACE] default - incomming message self: true
+[2022-09-01T10:11:03.820] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:11:03.922] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:11:03.923] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:11:03.937] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:11:03.940] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:11:05.938] [TRACE] default - add Migration update_001
+[2022-09-01T10:11:06.910] [TRACE] default - add Node craffelmat
+[2022-09-01T10:11:07.759] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:11:07.764] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:11:15.545] [TRACE] default - incomming message self: false
+[2022-09-01T10:11:15.546] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:11:15.546] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:11:15.546] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:11:15.547] [TRACE] default - loot execute
+[2022-09-01T10:11:15.553] [WARN] default - loot error - function leave - [object Object],false
+[2022-09-01T10:11:15.553] [TRACE] default - module craffel say execute
+[2022-09-01T10:11:15.554] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:11:15.555] [TRACE] default - undefined
+[2022-09-01T10:11:15.555] [TRACE] default - 
+[2022-09-01T10:11:37.759] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:11:37.859] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:11:37.859] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:11:37.874] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:11:37.878] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:11:39.836] [TRACE] default - add Migration update_001
+[2022-09-01T10:11:40.814] [TRACE] default - add Node craffelmat
+[2022-09-01T10:11:41.642] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:11:41.647] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:11:44.156] [TRACE] default - incomming message self: false
+[2022-09-01T10:11:44.156] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:11:44.156] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:11:44.157] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:11:44.157] [TRACE] default - loot execute
+[2022-09-01T10:11:44.162] [WARN] default - [
+  {
+    name: 'craffelmat',
+    lastSteal: '2020-02-01 00:00:00.000 +00:00',
+    lastJoin: '2020-02-01 00:00:00.000 +00:00',
+    startIndex: 0,
+    experience: 0,
+    isActive: 1,
+    createdAt: '2022-09-01 08:01:42.743 +00:00',
+    updatedAt: '2022-09-01 08:03:19.284 +00:00'
+  },
+  false
+]
+[2022-09-01T10:11:44.164] [TRACE] default - module craffel say execute
+[2022-09-01T10:11:44.164] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:11:44.165] [TRACE] default - undefined
+[2022-09-01T10:11:44.165] [TRACE] default - 
+[2022-09-01T10:12:39.229] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:12:39.326] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:12:39.326] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:12:39.341] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:12:39.344] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:12:41.333] [TRACE] default - add Migration update_001
+[2022-09-01T10:12:42.296] [TRACE] default - add Node craffelmat
+[2022-09-01T10:12:43.212] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:12:43.216] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:12:59.911] [TRACE] default - incomming message self: false
+[2022-09-01T10:12:59.912] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:12:59.912] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:12:59.912] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:12:59.913] [TRACE] default - loot execute
+[2022-09-01T10:12:59.928] [WARN] default - [
+  hero {
+    dataValues: {
+      lastSteal: 1580515200000,
+      lastJoin: 1580515200000,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      name: 'craffelmat',
+      updatedAt: 2022-09-01T08:12:59.918Z,
+      createdAt: 2022-09-01T08:12:59.918Z
+    },
+    _previousDataValues: {
+      lastSteal: 1580515200000,
+      lastJoin: 1580515200000,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      name: 'craffelmat',
+      createdAt: 2022-09-01T08:12:59.918Z,
+      updatedAt: 2022-09-01T08:12:59.918Z
+    },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: true,
+      _schema: null,
+      _schemaDelimiter: '',
+      attributes: undefined,
+      include: undefined,
+      raw: true,
+      silent: undefined
+    },
+    isNewRecord: false,
+    null: 2
+  },
+  true
+]
+[2022-09-01T10:12:59.932] [TRACE] default - module craffel say execute
+[2022-09-01T10:12:59.932] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:12:59.933] [TRACE] default - undefined
+[2022-09-01T10:12:59.933] [TRACE] default - 
+[2022-09-01T10:14:30.453] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:14:30.558] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:14:30.558] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:14:30.574] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:14:30.577] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:14:32.736] [TRACE] default - add Migration update_001
+[2022-09-01T10:14:33.726] [TRACE] default - add Node craffelmat
+[2022-09-01T10:14:34.661] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:14:34.665] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:14:39.331] [TRACE] default - incomming message self: false
+[2022-09-01T10:14:39.332] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:14:39.332] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:14:39.332] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:14:39.333] [TRACE] default - loot execute
+[2022-09-01T10:14:39.349] [ERROR] default - [
+  hero {
+    dataValues: {
+      lastSteal: 1580515200000,
+      lastJoin: 1580515200000,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      name: 'craffelmat',
+      updatedAt: 2022-09-01T08:14:39.339Z,
+      createdAt: 2022-09-01T08:14:39.339Z
+    },
+    _previousDataValues: {
+      name: 'craffelmat',
+      lastSteal: 1580515200000,
+      lastJoin: 1580515200000,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      createdAt: 2022-09-01T08:14:39.339Z,
+      updatedAt: 2022-09-01T08:14:39.339Z
+    },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: true,
+      _schema: null,
+      _schemaDelimiter: '',
+      attributes: undefined,
+      include: undefined,
+      raw: undefined,
+      silent: undefined
+    },
+    isNewRecord: false,
+    null: 2
+  },
+  true
+]
+[2022-09-01T10:14:39.354] [TRACE] default - module craffel say execute
+[2022-09-01T10:14:39.354] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:14:39.355] [TRACE] default - undefined
+[2022-09-01T10:14:39.355] [TRACE] default - 
+[2022-09-01T10:14:48.330] [TRACE] default - incomming message self: false
+[2022-09-01T10:14:48.331] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:14:48.331] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:14:48.331] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:14:48.331] [TRACE] default - loot execute
+[2022-09-01T10:14:48.335] [ERROR] default - [
+  hero {
+    dataValues: {
+      name: 'craffelmat',
+      lastSteal: 2020-02-01T00:00:00.000Z,
+      lastJoin: 2020-02-01T00:00:00.000Z,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      createdAt: 2022-09-01T08:14:39.339Z,
+      updatedAt: 2022-09-01T08:14:39.339Z
+    },
+    _previousDataValues: {
+      name: 'craffelmat',
+      lastSteal: 2020-02-01T00:00:00.000Z,
+      lastJoin: 2020-02-01T00:00:00.000Z,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      createdAt: 2022-09-01T08:14:39.339Z,
+      updatedAt: 2022-09-01T08:14:39.339Z
+    },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  false
+]
+[2022-09-01T10:14:48.339] [TRACE] default - module craffel say execute
+[2022-09-01T10:14:48.339] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:14:48.340] [TRACE] default - undefined
+[2022-09-01T10:14:48.340] [TRACE] default - 
+[2022-09-01T10:15:34.659] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:15:34.660] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:15:34.660] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:16:34.668] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:16:34.669] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:16:34.669] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:17:09.136] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:17:09.247] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:17:09.247] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:17:09.262] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:17:09.265] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:17:11.412] [TRACE] default - add Migration update_001
+[2022-09-01T10:17:12.373] [TRACE] default - add Node craffelmat
+[2022-09-01T10:17:13.266] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:17:13.270] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:17:21.810] [TRACE] default - incomming message self: false
+[2022-09-01T10:17:21.810] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:17:21.811] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:17:21.811] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:17:21.812] [TRACE] default - loot execute
+[2022-09-01T10:17:21.817] [ERROR] default - [
+  hero {
+    dataValues: {
+      name: 'craffelmat',
+      lastSteal: 2020-02-01T00:00:00.000Z,
+      lastJoin: 2020-02-01T00:00:00.000Z,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      createdAt: 2022-09-01T08:14:39.339Z,
+      updatedAt: 2022-09-01T08:14:39.339Z
+    },
+    _previousDataValues: {
+      name: 'craffelmat',
+      lastSteal: 2020-02-01T00:00:00.000Z,
+      lastJoin: 2020-02-01T00:00:00.000Z,
+      startIndex: 0,
+      experience: 0,
+      isActive: false,
+      createdAt: 2022-09-01T08:14:39.339Z,
+      updatedAt: 2022-09-01T08:14:39.339Z
+    },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  false
+]
+[2022-09-01T10:17:21.821] [TRACE] default - module craffel say execute
+[2022-09-01T10:17:21.821] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:17:21.822] [TRACE] default - undefined
+[2022-09-01T10:17:21.823] [TRACE] default - 
+[2022-09-01T10:18:13.276] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:18:13.276] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:18:13.277] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:19:13.289] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:19:13.290] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:19:13.290] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:19:53.815] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:19:53.918] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:19:53.918] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:19:53.933] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:19:53.936] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:19:55.999] [TRACE] default - add Migration update_001
+[2022-09-01T10:19:56.973] [TRACE] default - add Node craffelmat
+[2022-09-01T10:19:57.957] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:19:57.961] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:20:04.780] [TRACE] default - incomming message self: false
+[2022-09-01T10:20:04.780] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:20:04.780] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:20:04.781] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:20:04.781] [TRACE] default - loot execute
+[2022-09-01T10:20:04.805] [ERROR] default - hero {
+  dataValues: {
+    lastSteal: 1580515200000,
+    lastJoin: 1580515200000,
+    startIndex: 0,
+    experience: 0,
+    isActive: true,
+    name: 'craffelmat',
+    updatedAt: 2022-09-01T08:20:04.786Z,
+    createdAt: 2022-09-01T08:20:04.786Z
+  },
+  _previousDataValues: {
+    isActive: true,
+    name: 'craffelmat',
+    lastSteal: 1580515200000,
+    lastJoin: 1580515200000,
+    startIndex: 0,
+    experience: 0,
+    createdAt: 2022-09-01T08:20:04.786Z,
+    updatedAt: 2022-09-01T08:20:04.786Z
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: true,
+    _schema: null,
+    _schemaDelimiter: '',
+    attributes: undefined,
+    include: undefined,
+    raw: undefined,
+    silent: undefined
+  },
+  isNewRecord: false,
+  null: 2
+}
+[2022-09-01T10:20:04.809] [ERROR] default - true
+[2022-09-01T10:20:04.810] [TRACE] default - module craffel say execute
+[2022-09-01T10:20:04.810] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:20:04.811] [TRACE] default - undefined
+[2022-09-01T10:20:04.811] [TRACE] default - 
+[2022-09-01T10:27:37.507] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:27:37.608] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:27:37.608] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:27:37.623] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:27:37.626] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:27:39.633] [TRACE] default - add Migration update_001
+[2022-09-01T10:27:40.596] [TRACE] default - add Node craffelmat
+[2022-09-01T10:27:41.531] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:27:41.536] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:27:51.841] [TRACE] default - incomming message self: false
+[2022-09-01T10:27:51.842] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:27:51.842] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:27:51.842] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:27:51.843] [TRACE] default - loot execute
+[2022-09-01T10:27:51.867] [TRACE] default - module craffel say execute
+[2022-09-01T10:27:51.868] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:27:51.869] [TRACE] default - undefined
+[2022-09-01T10:27:51.869] [TRACE] default - 
+[2022-09-01T10:28:17.407] [TRACE] default - incomming message self: false
+[2022-09-01T10:28:17.407] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T10:28:17.408] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T10:28:17.408] [TRACE] default - incomming message message: !loot
+[2022-09-01T10:28:17.408] [TRACE] default - loot execute
+[2022-09-01T10:28:17.431] [TRACE] default - module craffel say execute
+[2022-09-01T10:28:17.432] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T10:28:17.433] [TRACE] default - undefined
+[2022-09-01T10:28:17.433] [TRACE] default - 
+[2022-09-01T10:28:41.536] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:28:41.537] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:28:41.537] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:29:41.548] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:29:41.548] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:29:41.549] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:30:41.563] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:30:41.564] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:30:41.564] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:31:41.566] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:31:41.566] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:31:41.567] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:32:41.566] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:32:41.567] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:32:41.567] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:33:41.566] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:33:41.566] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:33:41.567] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:34:41.572] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:34:41.572] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:34:41.573] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:35:41.579] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T10:35:41.579] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T10:35:41.580] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T10:37:33.615] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:37:33.717] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:37:33.717] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:37:33.732] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:37:33.735] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:37:35.666] [TRACE] default - add Migration update_001
+[2022-09-01T10:37:36.625] [TRACE] default - add Node craffelmat
+[2022-09-01T10:37:37.393] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T10:37:37.396] [TRACE] default - node connected: craffelmat
+[2022-09-01T10:48:04.399] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:48:04.497] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:48:04.497] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:48:04.512] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:48:04.516] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:48:06.535] [TRACE] default - add Migration update_001
+[2022-09-01T10:48:07.524] [TRACE] default - add Node craffelmat
+[2022-09-01T10:49:54.641] [TRACE] default - twitch chat client initialized
+[2022-09-01T10:49:54.738] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T10:49:54.739] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T10:49:54.754] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T10:49:54.757] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T10:49:56.769] [TRACE] default - add Migration update_001
+[2022-09-01T10:49:57.762] [TRACE] default - add Node craffelmat
+[2022-09-01T11:06:49.948] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:06:50.055] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:06:50.055] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:06:50.072] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:06:50.075] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:06:52.255] [TRACE] default - add Migration update_001
+[2022-09-01T11:06:53.242] [TRACE] default - add Node craffelmat
+[2022-09-01T11:07:50.937] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:07:51.054] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:07:51.055] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:07:51.070] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:07:51.072] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:07:53.127] [TRACE] default - add Migration update_001
+[2022-09-01T11:08:10.112] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:08:10.235] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:08:10.235] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:08:10.251] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:08:10.254] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:08:12.319] [TRACE] default - add Migration update_001
+[2022-09-01T11:08:13.313] [TRACE] default - add Node craffelmat
+[2022-09-01T11:09:07.727] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:09:07.847] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:09:07.847] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:09:07.866] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:09:07.868] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:09:09.913] [TRACE] default - add Migration update_001
+[2022-09-01T11:09:10.898] [TRACE] default - add Node craffelmat
+[2022-09-01T11:10:22.039] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:10:22.157] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:10:22.157] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:10:22.173] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:10:22.175] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:10:24.155] [TRACE] default - add Migration update_001
+[2022-09-01T11:10:25.143] [TRACE] default - add Node craffelmat
+[2022-09-01T11:11:20.316] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:11:20.407] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:11:20.408] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:11:20.423] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:11:20.426] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:11:22.549] [TRACE] default - add Migration update_001
+[2022-09-01T11:11:23.519] [TRACE] default - add Node craffelmat
+[2022-09-01T11:11:24.443] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:11:24.447] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:12:24.451] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:12:24.452] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:12:24.452] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:13:24.459] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:13:24.460] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:13:24.460] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:14:24.461] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:14:24.461] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:14:24.461] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:15:24.474] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:15:24.475] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:15:24.475] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:16:24.488] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:16:24.489] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:16:24.489] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:17:24.489] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:17:24.489] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:17:24.490] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:18:01.360] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:18:01.462] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:18:01.463] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:18:01.478] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:18:01.481] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:18:03.624] [TRACE] default - add Migration update_001
+[2022-09-01T11:18:04.608] [TRACE] default - add Node craffelmat
+[2022-09-01T11:18:05.559] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:18:05.563] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:18:10.459] [TRACE] default - get translation, page navigation
+[2022-09-01T11:18:10.463] [TRACE] default - get translation, page index
+[2022-09-01T11:18:10.470] [TRACE] default - get menu
+[2022-09-01T11:18:10.475] [TRACE] default - get translation, page information
+[2022-09-01T11:18:10.486] [TRACE] default - get twitch
+[2022-09-01T11:18:10.489] [TRACE] default - get twitch userdata
+[2022-09-01T11:18:10.509] [TRACE] default - get node, default
+[2022-09-01T11:18:11.567] [TRACE] default - get translation, page navigation
+[2022-09-01T11:18:11.569] [TRACE] default - get translation, page hero
+[2022-09-01T11:18:11.575] [TRACE] default - get menu
+[2022-09-01T11:18:11.578] [TRACE] default - get translation, page item
+[2022-09-01T11:18:11.586] [TRACE] default - get twitch
+[2022-09-01T11:18:11.588] [TRACE] default - get translation, page wallet
+[2022-09-01T11:18:11.605] [TRACE] default - get translation, page trait
+[2022-09-01T11:18:11.681] [TRACE] default - get translation, page information
+[2022-09-01T11:18:11.684] [TRACE] default - get hero, node default
+[2022-09-01T11:18:11.690] [TRACE] default - get twitch userdata
+[2022-09-01T11:18:11.786] [TRACE] default - get node, default
+[2022-09-01T11:19:05.563] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:19:05.563] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:19:05.564] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:19:12.245] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:19:12.363] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:19:12.363] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:19:12.378] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:19:12.380] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:19:14.329] [TRACE] default - add Migration update_001
+[2022-09-01T11:19:15.286] [TRACE] default - add Node craffelmat
+[2022-09-01T11:22:44.117] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:22:44.217] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:22:44.217] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:22:44.233] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:22:44.238] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:22:46.364] [TRACE] default - add Migration update_001
+[2022-09-01T11:22:47.348] [TRACE] default - add Node craffelmat
+[2022-09-01T11:23:32.602] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:23:32.723] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:23:32.723] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:23:32.738] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:23:32.741] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:23:34.814] [TRACE] default - add Migration update_001
+[2022-09-01T11:23:49.174] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:23:49.300] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:23:49.300] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:23:49.319] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:23:49.321] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:23:51.274] [TRACE] default - add Migration update_001
+[2022-09-01T11:23:52.246] [TRACE] default - add Node craffelmat
+[2022-09-01T11:26:06.273] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:26:06.375] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:26:06.375] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:26:06.391] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:26:06.394] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:26:08.335] [TRACE] default - add Migration update_001
+[2022-09-01T11:26:09.321] [TRACE] default - add Node craffelmat
+[2022-09-01T11:26:19.955] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:26:20.076] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:26:20.076] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:26:20.092] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:26:20.095] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:26:22.128] [TRACE] default - add Migration update_001
+[2022-09-01T11:26:23.095] [TRACE] default - add Node craffelmat
+[2022-09-01T11:30:03.250] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:30:03.362] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:30:03.363] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:30:03.378] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:30:03.380] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:30:05.280] [TRACE] default - add Migration update_001
+[2022-09-01T11:30:06.259] [TRACE] default - add Node craffelmat
+[2022-09-01T11:30:06.262] [ERROR] default - hero
+[2022-09-01T11:30:07.234] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:30:07.239] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:31:07.236] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:31:07.237] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:31:07.237] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:32:07.247] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:32:07.248] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:32:07.248] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:33:07.262] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:33:07.263] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:33:07.263] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:34:07.265] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:34:07.266] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:34:07.266] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:35:07.279] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:35:07.279] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:35:07.280] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:36:07.287] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:36:07.287] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:36:07.287] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:37:01.949] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:37:02.057] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:37:02.057] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:37:02.073] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:37:02.075] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:37:04.117] [TRACE] default - add Migration update_001
+[2022-09-01T11:37:05.087] [TRACE] default - add Node craffelmat
+[2022-09-01T11:37:21.051] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:37:21.176] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:37:21.176] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:37:21.192] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:37:21.195] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:37:23.161] [TRACE] default - add Migration update_001
+[2022-09-01T11:37:24.106] [TRACE] default - add Node craffelmat
+[2022-09-01T11:40:28.884] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:40:28.986] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:40:28.986] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:40:29.000] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:40:29.003] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:40:31.000] [TRACE] default - add Migration update_001
+[2022-09-01T11:40:31.973] [TRACE] default - add Node craffelmat
+[2022-09-01T11:40:48.769] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:40:48.896] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:40:48.897] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:40:48.914] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:40:48.917] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:40:50.968] [TRACE] default - add Migration update_001
+[2022-09-01T11:40:51.927] [TRACE] default - add Node craffelmat
+[2022-09-01T11:41:31.205] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:41:31.303] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:41:31.303] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:41:31.318] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:41:31.320] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:41:33.384] [TRACE] default - add Migration update_001
+[2022-09-01T11:41:34.340] [TRACE] default - add Node craffelmat
+[2022-09-01T11:41:36.524] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'count')
+    at Function.<anonymous> (C:\Projects\SocialAdventure\model\heroItem.js:82:54)
+    at Generator.next (<anonymous>)
+    at C:\Projects\SocialAdventure\model\heroItem.js:17:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Projects\SocialAdventure\model\heroItem.js:13:12)
+    at Function.updateTable (C:\Projects\SocialAdventure\model\heroItem.js:78:16)
+    at Connection.<anonymous> (C:\Projects\SocialAdventure\database\connection.js:117:43)
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\Projects\SocialAdventure\database\connection.js:28:58)
+[2022-09-01T11:41:36.859] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:41:36.863] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:42:36.867] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:42:36.868] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:42:36.868] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:43:36.868] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:43:36.869] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:43:36.869] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:44:36.876] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:44:36.877] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:44:36.877] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:45:42.209] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:45:42.319] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:45:42.319] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:45:42.334] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:45:42.337] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:45:44.333] [TRACE] default - add Migration update_001
+[2022-09-01T11:45:45.311] [TRACE] default - add Node craffelmat
+[2022-09-01T11:45:46.245] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:45:46.249] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:46:46.252] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:46:46.253] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:46:46.253] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:47:31.690] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:47:31.790] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:47:31.790] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:47:31.806] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:47:31.809] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:47:33.871] [TRACE] default - add Migration update_001
+[2022-09-01T11:47:34.842] [TRACE] default - add Node craffelmat
+[2022-09-01T11:47:35.765] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:47:35.771] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:49:37.143] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:49:37.271] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:49:37.271] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:49:37.288] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:49:37.291] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:49:39.374] [TRACE] default - add Migration update_001
+[2022-09-01T11:49:40.343] [TRACE] default - add Node craffelmat
+[2022-09-01T11:50:14.592] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:50:14.714] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T11:50:14.714] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:50:14.729] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T11:50:14.732] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:50:16.647] [TRACE] default - add Migration update_001
+[2022-09-01T11:50:17.591] [TRACE] default - add Node craffelmat
+[2022-09-01T11:57:47.706] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:57:47.805] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:57:47.805] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:57:47.820] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:57:47.824] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:57:49.893] [TRACE] default - add Migration update_001
+[2022-09-01T11:57:50.874] [TRACE] default - add Node craffelmat
+[2022-09-01T11:57:50.878] [ERROR] default - hero
+[2022-09-01T11:57:51.823] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:57:51.828] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:58:51.826] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T11:58:51.827] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T11:58:51.827] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T11:59:12.950] [TRACE] default - twitch chat client initialized
+[2022-09-01T11:59:13.060] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T11:59:13.060] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T11:59:13.077] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T11:59:13.080] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T11:59:15.140] [TRACE] default - add Migration update_001
+[2022-09-01T11:59:16.161] [TRACE] default - add Node craffelmat
+[2022-09-01T11:59:16.166] [ERROR] default - hero
+[2022-09-01T11:59:17.034] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T11:59:17.039] [TRACE] default - node connected: craffelmat
+[2022-09-01T11:59:19.857] [TRACE] default - incomming message self: false
+[2022-09-01T11:59:19.857] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T11:59:19.857] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T11:59:19.858] [TRACE] default - incomming message message: !loot
+[2022-09-01T11:59:19.858] [TRACE] default - loot execute
+[2022-09-01T11:59:19.884] [TRACE] default - module craffel say execute
+[2022-09-01T11:59:19.885] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T11:59:19.886] [TRACE] default - craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T11:59:19.886] [TRACE] default - message push craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T11:59:19.887] [TRACE] default - 
+[2022-09-01T11:59:20.390] [TRACE] default - message shift craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T11:59:20.392] [TRACE] default - incomming message self: true
+[2022-09-01T11:59:36.984] [TRACE] default - incomming message self: false
+[2022-09-01T11:59:36.985] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T11:59:36.985] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T11:59:36.985] [TRACE] default - incomming message message: !loot
+[2022-09-01T11:59:36.986] [TRACE] default - loot execute
+[2022-09-01T11:59:37.008] [TRACE] default - module craffel say execute
+[2022-09-01T11:59:37.008] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T11:59:37.010] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T11:59:37.010] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T11:59:37.010] [TRACE] default - 
+[2022-09-01T11:59:37.284] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T11:59:37.284] [TRACE] default - incomming message self: true
+[2022-09-01T12:00:17.035] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T12:00:17.036] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T12:00:17.036] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T12:01:22.936] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:01:23.029] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:01:23.029] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:01:23.044] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:01:23.048] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:01:25.153] [TRACE] default - add Migration update_001
+[2022-09-01T12:01:26.127] [TRACE] default - add Node craffelmat
+[2022-09-01T12:01:26.132] [ERROR] default - hero
+[2022-09-01T12:01:27.099] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:01:27.104] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:01:45.991] [TRACE] default - incomming message self: false
+[2022-09-01T12:01:45.992] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:01:45.992] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:01:45.992] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:01:45.993] [TRACE] default - loot execute
+[2022-09-01T12:01:46.007] [TRACE] default - module craffel say execute
+[2022-09-01T12:01:46.008] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:01:46.009] [TRACE] default - craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:01:46.010] [TRACE] default - message push craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:01:46.010] [TRACE] default - 
+[2022-09-01T12:01:47.229] [TRACE] default - message shift craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:01:47.230] [TRACE] default - incomming message self: true
+[2022-09-01T12:01:51.269] [TRACE] default - incomming message self: false
+[2022-09-01T12:01:51.269] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:01:51.269] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:01:51.270] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:01:51.270] [TRACE] default - loot execute
+[2022-09-01T12:01:51.273] [TRACE] default - module craffel say execute
+[2022-09-01T12:01:51.273] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:01:51.274] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:01:51.275] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:01:51.275] [TRACE] default - 
+[2022-09-01T12:01:51.452] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:01:51.453] [TRACE] default - incomming message self: true
+[2022-09-01T12:01:55.875] [TRACE] default - incomming message self: false
+[2022-09-01T12:01:55.875] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:01:55.875] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:01:55.875] [TRACE] default - incomming message message: !leave
+[2022-09-01T12:01:55.876] [TRACE] default - loot execute
+[2022-09-01T12:01:55.878] [TRACE] default - module craffel say execute
+[2022-09-01T12:01:55.878] [TRACE] default - Command {
+  name: 'leave',
+  message: '!leave',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:01:55.879] [TRACE] default - undefined
+[2022-09-01T12:01:55.879] [TRACE] default - 
+[2022-09-01T12:02:27.101] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T12:02:27.102] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T12:02:27.102] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T12:02:33.721] [TRACE] default - incomming message self: false
+[2022-09-01T12:02:33.721] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:02:33.722] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:02:33.722] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:02:33.722] [TRACE] default - loot execute
+[2022-09-01T12:02:33.746] [TRACE] default - module craffel say execute
+[2022-09-01T12:02:33.746] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-09-01T12:02:33.747] [TRACE] default - craffel ist dem Abenteuer beigetreten.
+[2022-09-01T12:02:33.747] [TRACE] default - message push craffel ist dem Abenteuer beigetreten.
+[2022-09-01T12:02:33.748] [TRACE] default - 
+[2022-09-01T12:02:35.082] [TRACE] default - message shift craffel ist dem Abenteuer beigetreten.
+[2022-09-01T12:02:35.083] [TRACE] default - incomming message self: true
+[2022-09-01T12:02:39.908] [TRACE] default - incomming message self: false
+[2022-09-01T12:02:39.909] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:02:39.909] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:02:39.909] [TRACE] default - incomming message message: !adventure
+[2022-09-01T12:02:39.910] [TRACE] default - loot execute
+[2022-09-01T12:02:39.911] [TRACE] default - loot adventure - count - 2
+[2022-09-01T12:02:39.912] [TRACE] default - module craffel say execute
+[2022-09-01T12:02:39.912] [TRACE] default - Command {
+  name: 'adventure',
+  message: '!adventure',
+  target: '',
+  source: 'craffel',
+  parameters: []
+}
+[2022-09-01T12:02:39.913] [TRACE] default - Es befinden sich 2 Helden auf Abenteuer.
+[2022-09-01T12:02:39.913] [TRACE] default - message push Es befinden sich 2 Helden auf Abenteuer.
+[2022-09-01T12:02:39.913] [TRACE] default - 
+[2022-09-01T12:02:40.701] [TRACE] default - message shift Es befinden sich 2 Helden auf Abenteuer.
+[2022-09-01T12:02:40.702] [TRACE] default - incomming message self: true
+[2022-09-01T12:03:27.116] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T12:03:27.116] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T12:03:27.117] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T12:04:21.238] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:04:21.337] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:04:21.337] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:04:21.352] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:04:21.356] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:04:23.294] [TRACE] default - add Migration update_001
+[2022-09-01T12:04:24.281] [TRACE] default - add Node craffelmat
+[2022-09-01T12:04:24.285] [ERROR] default - hero
+[2022-09-01T12:04:25.095] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:04:25.099] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:04:38.751] [TRACE] default - incomming message self: false
+[2022-09-01T12:04:38.752] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:04:38.752] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:04:38.753] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:04:38.753] [TRACE] default - loot execute
+[2022-09-01T12:04:38.759] [TRACE] default - module craffel say execute
+[2022-09-01T12:04:38.759] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:04:38.760] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:04:38.760] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:04:38.760] [TRACE] default - 
+[2022-09-01T12:04:39.766] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:04:39.767] [TRACE] default - incomming message self: true
+[2022-09-01T12:05:11.916] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:05:12.011] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:05:12.011] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:05:12.026] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:05:12.028] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:05:14.128] [TRACE] default - add Migration update_001
+[2022-09-01T12:05:15.096] [TRACE] default - add Node craffelmat
+[2022-09-01T12:05:15.100] [ERROR] default - hero
+[2022-09-01T12:05:16.091] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:05:16.096] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:05:17.723] [TRACE] default - incomming message self: false
+[2022-09-01T12:05:17.724] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:05:17.724] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:05:17.724] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:05:17.725] [TRACE] default - loot execute
+[2022-09-01T12:05:18.001] [TRACE] default - module craffel say execute
+[2022-09-01T12:05:18.002] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:05:18.003] [TRACE] default - craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:05:18.003] [TRACE] default - message push craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:05:18.003] [TRACE] default - 
+[2022-09-01T12:05:19.314] [TRACE] default - message shift craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:05:19.315] [TRACE] default - incomming message self: true
+[2022-09-01T12:05:21.688] [TRACE] default - incomming message self: false
+[2022-09-01T12:05:21.689] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:05:21.689] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:05:21.689] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:05:21.689] [TRACE] default - loot execute
+[2022-09-01T12:05:21.693] [TRACE] default - module craffel say execute
+[2022-09-01T12:05:21.693] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:05:21.694] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:05:21.695] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:05:21.695] [TRACE] default - 
+[2022-09-01T12:05:22.124] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:05:22.125] [TRACE] default - incomming message self: true
+[2022-09-01T12:05:25.185] [TRACE] default - incomming message self: false
+[2022-09-01T12:05:25.186] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:05:25.186] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:05:25.186] [TRACE] default - incomming message message: !leave
+[2022-09-01T12:05:25.187] [TRACE] default - loot execute
+[2022-09-01T12:05:25.207] [TRACE] default - module craffel say execute
+[2022-09-01T12:05:25.208] [TRACE] default - Command {
+  name: 'leave',
+  message: '!leave',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:05:25.208] [TRACE] default - undefined
+[2022-09-01T12:05:25.209] [TRACE] default - 
+[2022-09-01T12:06:16.101] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T12:06:16.102] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T12:06:16.102] [TRACE] default - node craffelmat, module craffel delay diference: 0

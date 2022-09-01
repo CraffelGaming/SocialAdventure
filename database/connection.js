@@ -65,15 +65,15 @@ class Connection {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.sequelize.authenticate();
-                migrationItem_1.MigrationItem.initialize(this.sequelize);
-                versionItem_1.VersionItem.initialize(this.sequelize);
-                nodeItem_1.NodeItem.initialize(this.sequelize);
-                menuItem_1.MenuItem.initialize(this.sequelize);
-                translationItem_1.TranslationItem.initialize(this.sequelize);
-                twitchItem_1.TwitchItem.initialize(this.sequelize);
-                twitchUserItem_1.TwitchUserItem.initialize(this.sequelize);
-                itemCategoryItem_1.ItemCategoryItem.initialize(this.sequelize);
-                itemItem_1.ItemItem.initialize(this.sequelize);
+                migrationItem_1.MigrationItem.createTable({ sequelize: this.sequelize });
+                versionItem_1.VersionItem.createTable({ sequelize: this.sequelize });
+                nodeItem_1.NodeItem.createTable({ sequelize: this.sequelize });
+                menuItem_1.MenuItem.createTable({ sequelize: this.sequelize });
+                translationItem_1.TranslationItem.createTable({ sequelize: this.sequelize });
+                twitchItem_1.TwitchItem.createTable({ sequelize: this.sequelize });
+                twitchUserItem_1.TwitchUserItem.createTable({ sequelize: this.sequelize });
+                itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
+                itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
                 menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
@@ -97,17 +97,17 @@ class Connection {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.sequelize.authenticate();
-                migrationItem_1.MigrationItem.initialize(this.sequelize);
-                versionItem_1.VersionItem.initialize(this.sequelize);
-                levelItem_1.LevelItem.initialize(this.sequelize);
-                sayItem_1.SayItem.initialize(this.sequelize);
-                heroItem_1.HeroItem.initialize(this.sequelize);
-                heroTraitItem_1.HeroTraitItem.initialize(this.sequelize);
-                heroWalletItem_1.HeroWalletItem.initialize(this.sequelize);
-                heroInventoryItem_1.HeroInventoryItem.initialize(this.sequelize);
-                itemCategoryItem_1.ItemCategoryItem.initialize(this.sequelize);
-                itemItem_1.ItemItem.initialize(this.sequelize);
-                commandItem_1.CommandItem.initialize(this.sequelize);
+                migrationItem_1.MigrationItem.createTable({ sequelize: this.sequelize });
+                versionItem_1.VersionItem.createTable({ sequelize: this.sequelize });
+                levelItem_1.LevelItem.createTable({ sequelize: this.sequelize });
+                sayItem_1.SayItem.createTable({ sequelize: this.sequelize });
+                heroItem_1.HeroItem.createTable({ sequelize: this.sequelize });
+                heroTraitItem_1.HeroTraitItem.createTable({ sequelize: this.sequelize });
+                heroWalletItem_1.HeroWalletItem.createTable({ sequelize: this.sequelize });
+                heroInventoryItem_1.HeroInventoryItem.createTable({ sequelize: this.sequelize });
+                itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
+                itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
+                commandItem_1.CommandItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });

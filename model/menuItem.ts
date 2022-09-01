@@ -15,7 +15,7 @@ export class MenuItem{
         this.authenticationRequired = false;
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('menu', {
             endpoint: {
                 type: DataTypes.STRING,

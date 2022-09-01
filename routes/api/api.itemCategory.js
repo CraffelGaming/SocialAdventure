@@ -73,17 +73,24 @@ router.post('/' + endpoint + '/:node/transfer/:handle', (request, response) => _
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
         if (global.isMaster(request, response, node)) {
-            const globalItems = yield global.worker.globalDatabase.sequelize.models.item.findAll({ where: { categoryHandle: request.params.handle } });
-            for (const globalItem in globalItems) {
-                if (globalItem != null) {
-                    const item = yield channel.database.sequelize.models.item.findOne({ where: { categoryHandle: request.params.handle, value: globalItems[globalItem].value } });
-                    if (item) {
-                        globalItems[globalItem].handle = item.handle;
-                        yield channel.database.sequelize.models.item.update(globalItems[globalItem], { where: { handle: item.handle } });
-                    }
-                    else {
-                        globalItems[globalItem].handle = null;
-                        yield channel.database.sequelize.models.item.create(globalItems[globalItem]);
+            const globalCategory = yield global.worker.globalDatabase.sequelize.models.itemCategory.findByPk(request.params.handle, { raw: true });
+            if (globalCategory !== null) {
+                const category = yield channel.database.sequelize.models.itemCategory.findByPk(request.params.handle, { raw: true });
+                if (category === null) {
+                    yield channel.database.sequelize.models.itemCategory.create(globalCategory);
+                }
+                const globalItems = yield global.worker.globalDatabase.sequelize.models.item.findAll({ where: { categoryHandle: request.params.handle }, raw: true });
+                for (const globalItem in globalItems) {
+                    if (globalItem != null) {
+                        const item = yield channel.database.sequelize.models.item.findOne({ where: { categoryHandle: request.params.handle, value: globalItems[globalItem].value }, raw: true });
+                        if (item) {
+                            globalItems[globalItem].handle = item.handle;
+                            yield channel.database.sequelize.models.item.update(globalItems[globalItem], { where: { handle: item.handle } });
+                        }
+                        else {
+                            globalItems[globalItem].handle = null;
+                            yield channel.database.sequelize.models.item.create(globalItems[globalItem]);
+                        }
                     }
                 }
             }

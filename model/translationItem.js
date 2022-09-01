@@ -19,7 +19,7 @@ class TranslationItem {
         this.language = language;
         this.translation = translation;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('translation', {
             page: {
                 type: sequelize_1.DataTypes.STRING,
@@ -34,7 +34,7 @@ class TranslationItem {
             language: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: false,
-                default: "de-DE",
+                defaultValue: "de-DE",
                 primaryKey: true
             },
             translation: {

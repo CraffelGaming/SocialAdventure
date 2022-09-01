@@ -16,7 +16,7 @@ class MigrationItem {
         this.name = name;
         this.isInstalled = isInstalled;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('migration', {
             name: {
                 type: sequelize_1.DataTypes.STRING,

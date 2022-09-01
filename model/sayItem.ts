@@ -24,7 +24,7 @@ export class SayItem{
         this.countRuns = 0;
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('say', {
             command: {
                 type: DataTypes.STRING(50),

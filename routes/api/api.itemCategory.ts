@@ -43,23 +43,35 @@ router.post('/' + endpoint + '/:node/transfer/:handle', async (request: express.
         node = global.defaultNode(request, response);
 
     const channel = global.worker.channels.find(x => x.node.name === node)
-    //TODO
+
     if(channel) {
         if(global.isMaster(request, response, node)){
-            const globalItems = await global.worker.globalDatabase.sequelize.models.item.findAll({ where: { categoryHandle: request.params.handle }}) as unknown as ItemItem[];
 
-            for(const globalItem in globalItems){
-                if(globalItem != null){
-                    const item = await channel.database.sequelize.models.item.findOne({ where: { categoryHandle: request.params.handle, value: globalItems[globalItem].value }}) as unknown as ItemItem;
-                    if(item){
-                        globalItems[globalItem].handle = item.handle;
-                        await channel.database.sequelize.models.item.update(globalItems[globalItem], {where: {handle: item.handle}});
-                    } else {
-                        globalItems[globalItem].handle = null;
-                        await channel.database.sequelize.models.item.create(globalItems[globalItem] as any);
+            const globalCategory = await global.worker.globalDatabase.sequelize.models.itemCategory.findByPk(request.params.handle, {raw: true}) as unknown as ItemCategoryItem;
+
+            if(globalCategory !== null){
+                const category = await channel.database.sequelize.models.itemCategory.findByPk(request.params.handle, {raw: true}) as unknown as ItemCategoryItem;
+
+                if(category === null){
+                    await channel.database.sequelize.models.itemCategory.create(globalCategory as any);
+                }
+
+                const globalItems = await global.worker.globalDatabase.sequelize.models.item.findAll({ where: { categoryHandle: request.params.handle }, raw: true}) as unknown as ItemItem[];
+
+                for(const globalItem in globalItems){
+                    if(globalItem != null){
+                        const item = await channel.database.sequelize.models.item.findOne({ where: { categoryHandle: request.params.handle, value: globalItems[globalItem].value }, raw: true}) as unknown as ItemItem;
+                        if(item){
+                            globalItems[globalItem].handle = item.handle;
+                            await channel.database.sequelize.models.item.update(globalItems[globalItem], {where: {handle: item.handle}});
+                        } else {
+                            globalItems[globalItem].handle = null;
+                            await channel.database.sequelize.models.item.create(globalItems[globalItem] as any);
+                        }
                     }
                 }
             }
+
             response.status(204).json();
         } else {
             response.status(403).json();

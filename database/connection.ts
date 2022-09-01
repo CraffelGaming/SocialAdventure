@@ -39,15 +39,15 @@ export class Connection {
         try{
             await this.sequelize.authenticate();
 
-            MigrationItem.initialize(this.sequelize);
-            VersionItem.initialize(this.sequelize);
-            NodeItem.initialize(this.sequelize);
-            MenuItem.initialize(this.sequelize);
-            TranslationItem.initialize(this.sequelize);
-            TwitchItem.initialize(this.sequelize);
-            TwitchUserItem.initialize(this.sequelize);
-            ItemCategoryItem.initialize(this.sequelize);
-            ItemItem.initialize(this.sequelize);
+            MigrationItem.createTable({ sequelize: this.sequelize });
+            VersionItem.createTable({ sequelize: this.sequelize });
+            NodeItem.createTable({ sequelize: this.sequelize });
+            MenuItem.createTable({ sequelize: this.sequelize });
+            TranslationItem.createTable({ sequelize: this.sequelize });
+            TwitchItem.createTable({ sequelize: this.sequelize });
+            TwitchUserItem.createTable({ sequelize: this.sequelize });
+            ItemCategoryItem.createTable({ sequelize: this.sequelize });
+            ItemItem.createTable({ sequelize: this.sequelize });
 
             MenuItem.setAssociation({ sequelize: this.sequelize });
 
@@ -76,17 +76,17 @@ export class Connection {
         try{
             await this.sequelize.authenticate();
 
-            MigrationItem.initialize(this.sequelize);
-            VersionItem.initialize(this.sequelize);
-            LevelItem.initialize(this.sequelize);
-            SayItem.initialize(this.sequelize);
-            HeroItem.initialize(this.sequelize);
-            HeroTraitItem.initialize(this.sequelize);
-            HeroWalletItem.initialize(this.sequelize);
-            HeroInventoryItem.initialize(this.sequelize);
-            ItemCategoryItem.initialize(this.sequelize);
-            ItemItem.initialize(this.sequelize);
-            CommandItem.initialize(this.sequelize);
+            MigrationItem.createTable({ sequelize: this.sequelize });
+            VersionItem.createTable({ sequelize: this.sequelize });
+            LevelItem.createTable({ sequelize: this.sequelize });
+            SayItem.createTable({ sequelize: this.sequelize });
+            HeroItem.createTable({ sequelize: this.sequelize });
+            HeroTraitItem.createTable({ sequelize: this.sequelize });
+            HeroWalletItem.createTable({ sequelize: this.sequelize });
+            HeroInventoryItem.createTable({ sequelize: this.sequelize });
+            ItemCategoryItem.createTable({ sequelize: this.sequelize });
+            ItemItem.createTable({ sequelize: this.sequelize });
+            CommandItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 

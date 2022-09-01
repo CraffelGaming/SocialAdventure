@@ -95,7 +95,7 @@
     { "page": "hero", "handle": "lastJoin", "language": "de-DE", "translation": "letztes Abenteuer"},
     { "page": "hero", "handle": "startIndex", "language": "de-DE", "translation": "Startnummer"},
     { "page": "hero", "handle": "experience", "language": "de-DE", "translation": "Erfahrungspunkte"},
-    { "page": "hero", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "hero", "handle": "isActive", "language": "de-DE", "translation": "Abenteuer aktiv?"},
     { "page": "hero", "handle": "quantity", "language": "de-DE", "translation": "Menge"},
     { "page": "hero", "handle": "total", "language": "de-DE", "translation": "Wert (Gesamt)"},
     { "page": "module", "handle": "stop", "language": "de-DE", "translation": "Modul wurde beendet."},
@@ -133,6 +133,7 @@
     { "page": "command", "handle": "blut", "language": "de-DE", "translation": "Startet einen Blutrausch."},
     { "page": "command", "handle": "rank", "language": "de-DE", "translation": "Zeigt deine aktuelle Platzierung an."},
     { "page": "command", "handle": "clear", "language": "de-DE", "translation": "Beendet das bestehende Abenteuer und startet ein neues."},
+    { "page": "command", "handle": "loot", "language": "de-DE", "translation": "Tritt dem Abenteuer bei."},
     { "page": "command", "handle": "isMaster", "language": "de-DE", "translation": "Nur Streamer?"},
     { "page": "command", "handle": "command", "language": "de-DE", "translation": "Befehl"},
     { "page": "command", "handle": "description", "language": "de-DE", "translation": "Erklärung"},
@@ -153,5 +154,12 @@
     { "page": "itemCategory", "handle": "handle", "language": "de-DE", "translation": "ID"},
     { "page": "itemCategory", "handle": "value", "language": "de-DE", "translation": "Kategorie"},
     { "page": "itemCategory", "handle": "count", "language": "de-DE", "translation": "Anzahl Gegenstände"},
-    { "page": "itemCategory", "handle": "checkHint", "language": "de-DE", "translation": "Diese Kategorie auf meinen Stream übertragen."} 
+    { "page": "itemCategory", "handle": "checkHint", "language": "de-DE", "translation": "Diese Kategorie auf meinen Stream übertragen."}, 
+    { "page": "loot", "handle": "heroAlreadyJoined", "language": "de-DE", "translation": "$1 ist bereits auf Abenteuer."}, 
+    { "page": "loot", "handle": "heroJoined", "language": "de-DE", "translation": "$1 ist dem Abenteuer beigetreten."},
+    { "page": "loot", "handle": "heroNewJoined", "language": "de-DE", "translation": "$1 bestreitet sein erstes Abenteuer."},
+    { "page": "loot", "handle": "heroCount", "language": "de-DE", "translation": "Es befinden sich $1 Helden auf Abenteuer."},
+    { "page": "loot", "handle": "heroNotJoined", "language": "de-DE", "translation": "$1 ist nicht auf Abenteuer. Tippe !loot um teilzunehmen."},
+    { "page": "loot", "handle": "heroNotExists", "language": "de-DE", "translation": "$1 ist kein Held. Tippe !loot um auch ein Held zu werden."},
+    { "page": "loot", "handle": "heroLeave", "language": "de-DE", "translation": "$1 hat das Abenteuer verlassen."}
 ]

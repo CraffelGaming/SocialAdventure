@@ -24,7 +24,7 @@ export class TwitchUserItem{
         this.eMail = "";
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('twitchUser', {
             channelName: {
                 type: DataTypes.STRING,

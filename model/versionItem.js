@@ -15,7 +15,7 @@ class VersionItem {
     constructor(version) {
         this.version = version;
     }
-    static initialize(sequelize) {
+    static createTable({ sequelize }) {
         sequelize.define('version', {
             version: {
                 type: sequelize_1.DataTypes.STRING,

@@ -43,10 +43,10 @@ class Say extends module_1.Module {
                             return yield this[command.name](command);
                         }
                         else
-                            global.worker.log.trace(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                            global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
                     }
                     else
-                        global.worker.log.trace(`hack dedection ${this.item.command} ${command.name} blocked`);
+                        global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
                 }
             }
             catch (ex) {

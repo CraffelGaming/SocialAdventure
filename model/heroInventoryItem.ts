@@ -13,7 +13,7 @@ export class HeroInventoryItem{
         this.itemHandle = 0;
     }
 
-    static initialize(sequelize){
+    static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('heroInventory', {
             itemHandle: {
                 type: DataTypes.INTEGER,
