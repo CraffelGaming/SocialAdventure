@@ -25,12 +25,12 @@ const json = require("./heroItem.json");
 let HeroItem = class HeroItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
+        this.name = "";
         this.lastSteal = new Date(2020, 1, 1);
         this.lastJoin = new Date(2020, 1, 1);
         this.startIndex = 0;
         this.experience = 0;
         this.isActive = false;
-        this.name = "";
     }
     static createTable({ sequelize }) {
         const a = sequelize.define('hero', {

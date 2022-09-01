@@ -22412,3 +22412,335 @@
 [2022-09-01T12:06:16.101] [INFO] default - node craffelmat, module craffel not executed
 [2022-09-01T12:06:16.102] [TRACE] default - node craffelmat, module craffel delay: 5
 [2022-09-01T12:06:16.102] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T12:17:55.594] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:17:55.686] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:17:55.686] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:17:55.701] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:17:55.704] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:17:57.680] [TRACE] default - add Migration update_001
+[2022-09-01T12:17:58.658] [TRACE] default - add Node craffelmat
+[2022-09-01T12:17:58.662] [ERROR] default - hero
+[2022-09-01T12:17:59.347] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at Database.serialize (<anonymous>)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async CommandItem.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35) {
+  name: 'SequelizeUniqueConstraintError',
+  errors: [
+    ValidationErrorItem {
+      message: 'module must be unique',
+      type: 'unique violation',
+      path: 'module',
+      value: 'say',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    }
+  ],
+  parent: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  original: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  fields: [ 'module' ],
+  sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+}
+[2022-09-01T12:17:59.362] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:17:59.366] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:24:47.716] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:24:47.815] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:24:47.815] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:24:47.831] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:24:47.834] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:24:49.839] [TRACE] default - add Migration update_001
+[2022-09-01T12:24:50.810] [TRACE] default - add Node craffelmat
+[2022-09-01T12:24:50.815] [ERROR] default - hero
+[2022-09-01T12:24:52.923] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async CommandItem.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12)
+    at async Function.findOrCreate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1404:25) {
+  name: 'SequelizeUniqueConstraintError',
+  errors: [
+    ValidationErrorItem {
+      message: 'module must be unique',
+      type: 'unique violation',
+      path: 'module',
+      value: '',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    },
+    ValidationErrorItem {
+      message: 'command must be unique',
+      type: 'unique violation',
+      path: 'command',
+      value: '',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    }
+  ],
+  parent: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module, command.command] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  original: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module, command.command] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  fields: [ 'module', 'command' ],
+  sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+}
+[2022-09-01T12:24:52.939] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:24:52.943] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:25:52.950] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-01T12:25:52.951] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-01T12:25:52.951] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-01T12:26:41.997] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:26:42.090] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:26:42.091] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:26:42.107] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:26:42.110] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:26:44.150] [TRACE] default - add Migration update_001
+[2022-09-01T12:26:45.126] [TRACE] default - add Node craffelmat
+[2022-09-01T12:26:45.130] [ERROR] default - hero
+[2022-09-01T12:26:45.834] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async CommandItem.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12)
+    at async Function.findOrCreate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1404:25) {
+  name: 'SequelizeUniqueConstraintError',
+  errors: [
+    ValidationErrorItem {
+      message: 'module must be unique',
+      type: 'unique violation',
+      path: 'module',
+      value: '',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    },
+    ValidationErrorItem {
+      message: 'command must be unique',
+      type: 'unique violation',
+      path: 'command',
+      value: '',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    }
+  ],
+  parent: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module, command.command] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  original: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module, command.command] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  fields: [ 'module', 'command' ],
+  sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+}
+[2022-09-01T12:26:45.850] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:26:45.854] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:27:58.342] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:27:58.434] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:27:58.435] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:27:58.449] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:27:58.452] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:28:00.438] [TRACE] default - add Migration update_001
+[2022-09-01T12:28:01.404] [TRACE] default - add Node craffelmat
+[2022-09-01T12:28:01.408] [ERROR] default - hero
+[2022-09-01T12:28:02.104] [ERROR] default - Error
+    at Database.<anonymous> (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:179:27)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:50
+    at new Promise (<anonymous>)
+    at Query.run (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\sqlite\query.js:177:12)
+    at C:\Projects\SocialAdventure\node_modules\sequelize\lib\sequelize.js:311:28
+    at async SQLiteQueryInterface.insert (C:\Projects\SocialAdventure\node_modules\sequelize\lib\dialects\abstract\query-interface.js:308:21)
+    at async CommandItem.save (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:2432:35)
+    at async Function.create (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1344:12)
+    at async Function.findOrCreate (C:\Projects\SocialAdventure\node_modules\sequelize\lib\model.js:1404:25) {
+  name: 'SequelizeUniqueConstraintError',
+  errors: [
+    ValidationErrorItem {
+      message: 'module must be unique',
+      type: 'unique violation',
+      path: 'module',
+      value: '',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    },
+    ValidationErrorItem {
+      message: 'command must be unique',
+      type: 'unique violation',
+      path: 'command',
+      value: '',
+      origin: 'DB',
+      instance: [command],
+      validatorKey: 'not_unique',
+      validatorName: null,
+      validatorArgs: []
+    }
+  ],
+  parent: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module, command.command] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  original: [Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: command.module, command.command] {
+    errno: 19,
+    code: 'SQLITE_CONSTRAINT',
+    sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+  },
+  fields: [ 'module', 'command' ],
+  sql: 'INSERT INTO `command` (`module`,`command`,`isMaster`,`translation`,`createdAt`,`updatedAt`) VALUES ($1,$2,$3,$4,$5,$6);'
+}
+[2022-09-01T12:28:02.119] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:28:02.123] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:28:48.555] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:28:48.690] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-01T12:28:48.690] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:28:48.707] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-01T12:28:48.710] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:28:50.784] [TRACE] default - add Migration update_001
+[2022-09-01T12:28:51.778] [TRACE] default - add Node craffelmat
+[2022-09-01T12:28:51.784] [ERROR] default - hero
+[2022-09-01T12:34:05.708] [TRACE] default - twitch chat client initialized
+[2022-09-01T12:34:05.821] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-01T12:34:05.821] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-01T12:34:05.837] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-01T12:34:05.840] [INFO] default - HTTP Server listening on port 80
+[2022-09-01T12:34:08.447] [TRACE] default - add Migration update_001
+[2022-09-01T12:34:09.423] [TRACE] default - add Node craffelmat
+[2022-09-01T12:34:09.427] [ERROR] default - hero
+[2022-09-01T12:34:10.340] [INFO] default - node craffelmat, say add craffel.
+[2022-09-01T12:34:10.344] [TRACE] default - node connected: craffelmat
+[2022-09-01T12:34:30.231] [TRACE] default - incomming message self: false
+[2022-09-01T12:34:30.231] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:34:30.232] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:34:30.232] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:34:30.233] [TRACE] default - loot execute
+[2022-09-01T12:34:30.247] [TRACE] default - module craffel say execute
+[2022-09-01T12:34:30.248] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:34:30.249] [TRACE] default - craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:34:30.249] [TRACE] default - message push craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:34:30.250] [TRACE] default - 
+[2022-09-01T12:34:30.524] [TRACE] default - message shift craffelmat bestreitet sein erstes Abenteuer.
+[2022-09-01T12:34:30.526] [TRACE] default - incomming message self: true
+[2022-09-01T12:34:42.052] [TRACE] default - incomming message self: false
+[2022-09-01T12:34:42.052] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:34:42.052] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:34:42.053] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:34:42.053] [TRACE] default - loot execute
+[2022-09-01T12:34:42.057] [TRACE] default - module craffel say execute
+[2022-09-01T12:34:42.057] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:34:42.058] [TRACE] default - craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:34:42.058] [TRACE] default - message push craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:34:42.058] [TRACE] default - 
+[2022-09-01T12:34:43.188] [TRACE] default - message shift craffelmat ist bereits auf Abenteuer.
+[2022-09-01T12:34:43.189] [TRACE] default - incomming message self: true
+[2022-09-01T12:34:46.725] [TRACE] default - incomming message self: false
+[2022-09-01T12:34:46.725] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:34:46.726] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:34:46.726] [TRACE] default - incomming message message: !adventure
+[2022-09-01T12:34:46.726] [TRACE] default - loot execute
+[2022-09-01T12:34:46.728] [TRACE] default - loot adventure - count - 1
+[2022-09-01T12:34:46.729] [TRACE] default - module craffel say execute
+[2022-09-01T12:34:46.729] [TRACE] default - Command {
+  name: 'adventure',
+  message: '!adventure',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:34:46.730] [TRACE] default - Es befinden sich 1 Helden auf Abenteuer.
+[2022-09-01T12:34:46.730] [TRACE] default - message push Es befinden sich 1 Helden auf Abenteuer.
+[2022-09-01T12:34:46.730] [TRACE] default - 
+[2022-09-01T12:34:47.413] [TRACE] default - message shift Es befinden sich 1 Helden auf Abenteuer.
+[2022-09-01T12:34:47.413] [TRACE] default - incomming message self: true
+[2022-09-01T12:34:48.660] [TRACE] default - incomming message self: false
+[2022-09-01T12:34:48.660] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:34:48.661] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:34:48.661] [TRACE] default - incomming message message: !leave
+[2022-09-01T12:34:48.661] [TRACE] default - loot execute
+[2022-09-01T12:34:48.673] [TRACE] default - module craffel say execute
+[2022-09-01T12:34:48.673] [TRACE] default - Command {
+  name: 'leave',
+  message: '!leave',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:34:48.674] [TRACE] default - craffelmat hat das Abenteuer verlassen.
+[2022-09-01T12:34:48.675] [TRACE] default - message push craffelmat hat das Abenteuer verlassen.
+[2022-09-01T12:34:48.675] [TRACE] default - 
+[2022-09-01T12:34:48.828] [TRACE] default - message shift craffelmat hat das Abenteuer verlassen.
+[2022-09-01T12:34:48.828] [TRACE] default - incomming message self: true
+[2022-09-01T12:34:50.241] [TRACE] default - incomming message self: false
+[2022-09-01T12:34:50.241] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-01T12:34:50.241] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-01T12:34:50.241] [TRACE] default - incomming message message: !loot
+[2022-09-01T12:34:50.242] [TRACE] default - loot execute
+[2022-09-01T12:34:50.254] [TRACE] default - module craffel say execute
+[2022-09-01T12:34:50.254] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-09-01T12:34:50.255] [TRACE] default - craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T12:34:50.255] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T12:34:50.256] [TRACE] default - 
+[2022-09-01T12:34:51.644] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-09-01T12:34:51.644] [TRACE] default - incomming message self: true

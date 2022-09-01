@@ -1,19 +1,25 @@
 
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize, Model, PrimaryKey, Column, Table } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./commandItem.json');
 
-export class CommandItem{
-    module: string;
-    command: string;
-    isMaster: boolean;
-    translation: string;
+@Table({ tableName: "command", modelName: "command"})
+export class CommandItem extends Model<CommandItem>{
+    @PrimaryKey
+    @Column
+    module: string = "";
+
+    @Column
+    command: string= "";
+
+    @Column
+    isMaster: boolean = false;
+
+    @Column
+    translation: string= "";
 
     constructor(){
-        this.module = "";
-        this.command = "";
-        this.isMaster = false;
-        this.translation = "";
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

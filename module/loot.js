@@ -87,12 +87,13 @@ class Loot extends module_1.Module {
                     if (hero.getDataValue("isActive") === true) {
                         hero.setDataValue("isActive", false);
                         yield hero.save();
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroLeave').replace('$1', command.source);
                     }
                     else
-                        translationItem_1.TranslationItem.translate(this.translation, 'heroNotJoined').replace('$1', command.source);
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroNotJoined').replace('$1', command.source);
                 }
                 else
-                    translationItem_1.TranslationItem.translate(this.translation, 'heroNotExists').replace('$1', command.source);
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroNotExists').replace('$1', command.source);
             }
             catch (ex) {
                 global.worker.log.error(`loot error - function leave - ${ex.message}`);
