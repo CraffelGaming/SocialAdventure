@@ -24471,3 +24471,421 @@
 [2022-09-02T18:46:46.515] [INFO] default - node craffelmat, module craffel not executed
 [2022-09-02T18:46:46.515] [TRACE] default - node craffelmat, module craffel delay: 5
 [2022-09-02T18:46:46.515] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:47:57.961] [TRACE] default - twitch chat client initialized
+[2022-09-02T18:47:58.054] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-02T18:47:58.054] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-02T18:47:58.070] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-02T18:47:58.072] [INFO] default - HTTP Server listening on port 80
+[2022-09-02T18:48:00.073] [TRACE] default - add Migration update_001
+[2022-09-02T18:48:01.057] [TRACE] default - add Node craffelmat
+[2022-09-02T18:48:01.062] [ERROR] default - hero
+[2022-09-02T18:48:01.940] [INFO] default - node craffelmat, say add craffel.
+[2022-09-02T18:48:01.944] [TRACE] default - node connected: craffelmat
+[2022-09-02T18:48:10.051] [TRACE] default - get translation, page navigation
+[2022-09-02T18:48:10.054] [TRACE] default - get translation, page item
+[2022-09-02T18:48:10.078] [TRACE] default - get menu
+[2022-09-02T18:48:10.084] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:48:10.134] [TRACE] default - get twitch
+[2022-09-02T18:48:10.138] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:48:10.207] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:48:10.248] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:10.274] [TRACE] default - get node, default
+[2022-09-02T18:48:10.379] [TRACE] default - get translation, page information
+[2022-09-02T18:48:10.381] [TRACE] default - get item, node default
+[2022-09-02T18:48:10.440] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:10.476] [TRACE] default - get node, default
+[2022-09-02T18:48:15.270] [TRACE] default - {
+  access_token: 'v5v2ci16ws7wowreykbssknt7ltmfn',
+  expires_in: 15448,
+  refresh_token: 'd0pz9rpf3qpzeb8xzc6oujxtv39xlcuwmf1fae8eopl0xy8dwl',
+  scope: [ 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-09-02T18:48:15.508] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-09-02T18:48:16.137] [TRACE] default - get translation, page navigation
+[2022-09-02T18:48:16.144] [TRACE] default - get translation, page twitch
+[2022-09-02T18:48:16.216] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:16.226] [TRACE] default - get menu
+[2022-09-02T18:48:16.295] [TRACE] default - get translation, page information
+[2022-09-02T18:48:16.298] [TRACE] default - get twitch
+[2022-09-02T18:48:16.326] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:16.333] [TRACE] default - get node, default
+[2022-09-02T18:48:23.981] [TRACE] default - get translation, page navigation
+[2022-09-02T18:48:23.982] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:48:24.077] [TRACE] default - get menu
+[2022-09-02T18:48:24.081] [TRACE] default - get translation, page item
+[2022-09-02T18:48:24.093] [TRACE] default - get twitch
+[2022-09-02T18:48:24.095] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:48:24.115] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:24.120] [TRACE] default - get node, default
+[2022-09-02T18:48:24.124] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:24.129] [TRACE] default - get node, default
+[2022-09-02T18:48:24.205] [TRACE] default - get translation, page information
+[2022-09-02T18:48:24.209] [TRACE] default - get itemcategory
+[2022-09-02T18:48:24.216] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:24.283] [TRACE] default - get node, default
+[2022-09-02T18:48:26.875] [TRACE] default - get translation, page navigation
+[2022-09-02T18:48:26.880] [TRACE] default - get translation, page item
+[2022-09-02T18:48:26.929] [TRACE] default - get menu
+[2022-09-02T18:48:26.932] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:48:26.986] [TRACE] default - get twitch
+[2022-09-02T18:48:26.988] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:48:27.076] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:48:27.095] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:27.100] [TRACE] default - get node, default
+[2022-09-02T18:48:27.218] [TRACE] default - get translation, page information
+[2022-09-02T18:48:27.220] [TRACE] default - get item, node default
+[2022-09-02T18:48:27.246] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:27.323] [TRACE] default - get node, default
+[2022-09-02T18:48:32.953] [TRACE] default - put item, node default
+[2022-09-02T18:48:33.012] [TRACE] default - get item, node default
+[2022-09-02T18:48:35.368] [TRACE] default - get translation, page navigation
+[2022-09-02T18:48:35.370] [TRACE] default - get translation, page item
+[2022-09-02T18:48:35.380] [TRACE] default - get menu
+[2022-09-02T18:48:35.384] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:48:35.395] [TRACE] default - get twitch
+[2022-09-02T18:48:35.397] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:48:35.416] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:48:35.423] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:35.427] [TRACE] default - get node, default
+[2022-09-02T18:48:35.500] [TRACE] default - get translation, page information
+[2022-09-02T18:48:35.503] [TRACE] default - get item, node default
+[2022-09-02T18:48:35.515] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:35.596] [TRACE] default - get node, default
+[2022-09-02T18:48:43.359] [TRACE] default - put item, node default
+[2022-09-02T18:48:43.411] [TRACE] default - get item, node default
+[2022-09-02T18:48:56.328] [TRACE] default - get translation, page navigation
+[2022-09-02T18:48:56.331] [TRACE] default - get translation, page item
+[2022-09-02T18:48:56.346] [TRACE] default - get menu
+[2022-09-02T18:48:56.348] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:48:56.360] [TRACE] default - get twitch
+[2022-09-02T18:48:56.362] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:48:56.386] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:48:56.394] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:56.398] [TRACE] default - get node, default
+[2022-09-02T18:48:56.491] [TRACE] default - get translation, page information
+[2022-09-02T18:48:56.510] [TRACE] default - get item, node default
+[2022-09-02T18:48:56.531] [TRACE] default - get twitch userdata
+[2022-09-02T18:48:56.616] [TRACE] default - get node, default
+[2022-09-02T18:49:00.234] [TRACE] default - put item, node default
+[2022-09-02T18:49:00.282] [TRACE] default - get item, node default
+[2022-09-02T18:49:01.938] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:49:01.938] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:49:01.939] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:49:59.856] [TRACE] default - get translation, page navigation
+[2022-09-02T18:49:59.857] [TRACE] default - get translation, page item
+[2022-09-02T18:49:59.867] [TRACE] default - get menu
+[2022-09-02T18:49:59.871] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:49:59.882] [TRACE] default - get twitch
+[2022-09-02T18:49:59.884] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:49:59.920] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:49:59.928] [TRACE] default - get twitch userdata
+[2022-09-02T18:49:59.932] [TRACE] default - get node, default
+[2022-09-02T18:50:00.020] [TRACE] default - get translation, page information
+[2022-09-02T18:50:00.024] [TRACE] default - get item, node default
+[2022-09-02T18:50:00.029] [TRACE] default - get twitch userdata
+[2022-09-02T18:50:00.108] [TRACE] default - get node, default
+[2022-09-02T18:50:01.941] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:50:01.941] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:50:01.942] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:50:04.944] [TRACE] default - put item, node default
+[2022-09-02T18:50:04.992] [TRACE] default - get item, node default
+[2022-09-02T18:50:21.852] [TRACE] default - get translation, page navigation
+[2022-09-02T18:50:21.854] [TRACE] default - get translation, page item
+[2022-09-02T18:50:21.862] [TRACE] default - get menu
+[2022-09-02T18:50:21.872] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:50:21.875] [TRACE] default - get twitch
+[2022-09-02T18:50:21.899] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:50:21.905] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:50:21.916] [TRACE] default - get twitch userdata
+[2022-09-02T18:50:21.923] [TRACE] default - get node, default
+[2022-09-02T18:50:22.031] [TRACE] default - get translation, page information
+[2022-09-02T18:50:22.039] [TRACE] default - get item, node default
+[2022-09-02T18:50:22.089] [TRACE] default - get twitch userdata
+[2022-09-02T18:50:22.158] [TRACE] default - get node, default
+[2022-09-02T18:50:27.182] [TRACE] default - put item, node default
+[2022-09-02T18:50:27.232] [TRACE] default - get item, node default
+[2022-09-02T18:50:34.762] [TRACE] default - put item, node default
+[2022-09-02T18:50:34.835] [TRACE] default - get item, node default
+[2022-09-02T18:50:55.011] [TRACE] default - get translation, page navigation
+[2022-09-02T18:50:55.013] [TRACE] default - get translation, page item
+[2022-09-02T18:50:55.023] [TRACE] default - get menu
+[2022-09-02T18:50:55.026] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:50:55.037] [TRACE] default - get twitch
+[2022-09-02T18:50:55.039] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:50:55.062] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:50:55.072] [TRACE] default - get twitch userdata
+[2022-09-02T18:50:55.077] [TRACE] default - get node, default
+[2022-09-02T18:50:55.167] [TRACE] default - get translation, page information
+[2022-09-02T18:50:55.177] [TRACE] default - get item, node default
+[2022-09-02T18:50:55.194] [TRACE] default - get twitch userdata
+[2022-09-02T18:50:55.286] [TRACE] default - get node, default
+[2022-09-02T18:51:01.839] [TRACE] default - put item, node default
+[2022-09-02T18:51:01.884] [TRACE] default - get item, node default
+[2022-09-02T18:51:01.944] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:51:01.944] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:51:01.944] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:51:09.632] [TRACE] default - put item, node default
+[2022-09-02T18:51:09.692] [TRACE] default - get item, node default
+[2022-09-02T18:52:01.949] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:52:01.949] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:52:01.950] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:52:26.371] [TRACE] default - get translation, page navigation
+[2022-09-02T18:52:26.374] [TRACE] default - get translation, page item
+[2022-09-02T18:52:26.385] [TRACE] default - get menu
+[2022-09-02T18:52:26.388] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:52:26.400] [TRACE] default - get twitch
+[2022-09-02T18:52:26.401] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:52:26.422] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:52:26.429] [TRACE] default - get twitch userdata
+[2022-09-02T18:52:26.434] [TRACE] default - get node, default
+[2022-09-02T18:52:26.524] [TRACE] default - get translation, page information
+[2022-09-02T18:52:26.528] [TRACE] default - get item, node default
+[2022-09-02T18:52:26.548] [TRACE] default - get twitch userdata
+[2022-09-02T18:52:26.627] [TRACE] default - get node, default
+[2022-09-02T18:52:46.297] [TRACE] default - get translation, page navigation
+[2022-09-02T18:52:46.299] [TRACE] default - get translation, page item
+[2022-09-02T18:52:46.305] [TRACE] default - get menu
+[2022-09-02T18:52:46.308] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:52:46.318] [TRACE] default - get twitch
+[2022-09-02T18:52:46.320] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:52:46.350] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:52:46.357] [TRACE] default - get twitch userdata
+[2022-09-02T18:52:46.370] [TRACE] default - get node, default
+[2022-09-02T18:52:46.440] [TRACE] default - get translation, page information
+[2022-09-02T18:52:46.449] [TRACE] default - get item, node default
+[2022-09-02T18:52:46.456] [TRACE] default - get twitch userdata
+[2022-09-02T18:52:46.537] [TRACE] default - get node, default
+[2022-09-02T18:52:55.143] [TRACE] default - put item, node default
+[2022-09-02T18:52:55.199] [TRACE] default - get item, node default
+[2022-09-02T18:53:00.578] [TRACE] default - put item, node default
+[2022-09-02T18:53:00.637] [TRACE] default - get item, node default
+[2022-09-02T18:53:01.960] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:53:01.960] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:53:01.961] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:54:01.971] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:54:01.971] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:54:01.971] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:54:04.593] [TRACE] default - get translation, page navigation
+[2022-09-02T18:54:04.595] [TRACE] default - get translation, page item
+[2022-09-02T18:54:04.601] [TRACE] default - get menu
+[2022-09-02T18:54:04.604] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:54:04.614] [TRACE] default - get twitch
+[2022-09-02T18:54:04.616] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:54:04.635] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:54:04.642] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:04.648] [TRACE] default - get node, default
+[2022-09-02T18:54:04.719] [TRACE] default - get translation, page information
+[2022-09-02T18:54:04.723] [TRACE] default - get item, node default
+[2022-09-02T18:54:04.736] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:04.811] [TRACE] default - get node, default
+[2022-09-02T18:54:27.184] [TRACE] default - get translation, page navigation
+[2022-09-02T18:54:27.186] [TRACE] default - get translation, page item
+[2022-09-02T18:54:27.191] [TRACE] default - get menu
+[2022-09-02T18:54:27.195] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:54:27.205] [TRACE] default - get twitch
+[2022-09-02T18:54:27.209] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:54:27.226] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:54:27.232] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:27.236] [TRACE] default - get node, default
+[2022-09-02T18:54:27.313] [TRACE] default - get translation, page information
+[2022-09-02T18:54:27.316] [TRACE] default - get item, node default
+[2022-09-02T18:54:27.330] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:27.417] [TRACE] default - get node, default
+[2022-09-02T18:54:42.628] [TRACE] default - get translation, page navigation
+[2022-09-02T18:54:42.629] [TRACE] default - get translation, page item
+[2022-09-02T18:54:42.635] [TRACE] default - get menu
+[2022-09-02T18:54:42.638] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:54:42.654] [TRACE] default - get twitch
+[2022-09-02T18:54:42.665] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:54:42.702] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:54:42.712] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:42.717] [TRACE] default - get node, default
+[2022-09-02T18:54:42.805] [TRACE] default - get translation, page information
+[2022-09-02T18:54:42.807] [TRACE] default - get item, node default
+[2022-09-02T18:54:42.816] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:42.896] [TRACE] default - get node, default
+[2022-09-02T18:54:52.052] [TRACE] default - get translation, page navigation
+[2022-09-02T18:54:52.053] [TRACE] default - get translation, page item
+[2022-09-02T18:54:52.063] [TRACE] default - get menu
+[2022-09-02T18:54:52.065] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:54:52.078] [TRACE] default - get twitch
+[2022-09-02T18:54:52.080] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:54:52.100] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:54:52.107] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:52.111] [TRACE] default - get node, default
+[2022-09-02T18:54:52.184] [TRACE] default - get translation, page information
+[2022-09-02T18:54:52.188] [TRACE] default - get item, node default
+[2022-09-02T18:54:52.196] [TRACE] default - get twitch userdata
+[2022-09-02T18:54:52.277] [TRACE] default - get node, default
+[2022-09-02T18:55:01.973] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:55:01.973] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:55:01.974] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:55:37.555] [TRACE] default - get translation, page navigation
+[2022-09-02T18:55:37.557] [TRACE] default - get translation, page item
+[2022-09-02T18:55:37.611] [TRACE] default - get menu
+[2022-09-02T18:55:37.614] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:55:37.655] [TRACE] default - get twitch
+[2022-09-02T18:55:37.662] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:55:37.726] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:55:37.764] [TRACE] default - get twitch userdata
+[2022-09-02T18:55:37.770] [TRACE] default - get node, default
+[2022-09-02T18:55:37.873] [TRACE] default - get translation, page information
+[2022-09-02T18:55:37.875] [TRACE] default - get item, node default
+[2022-09-02T18:55:37.947] [TRACE] default - get twitch userdata
+[2022-09-02T18:55:37.985] [TRACE] default - get node, default
+[2022-09-02T18:56:01.977] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:56:01.978] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:56:01.978] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:56:03.954] [TRACE] default - get translation, page navigation
+[2022-09-02T18:56:03.960] [TRACE] default - get translation, page item
+[2022-09-02T18:56:03.989] [TRACE] default - get menu
+[2022-09-02T18:56:03.991] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:56:04.005] [TRACE] default - get twitch
+[2022-09-02T18:56:04.006] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:56:04.028] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:56:04.037] [TRACE] default - get twitch userdata
+[2022-09-02T18:56:04.042] [TRACE] default - get node, default
+[2022-09-02T18:56:04.117] [TRACE] default - get translation, page information
+[2022-09-02T18:56:04.120] [TRACE] default - get item, node default
+[2022-09-02T18:56:04.134] [TRACE] default - get twitch userdata
+[2022-09-02T18:56:04.228] [TRACE] default - get node, default
+[2022-09-02T18:56:50.360] [TRACE] default - get translation, page navigation
+[2022-09-02T18:56:50.363] [TRACE] default - get translation, page item
+[2022-09-02T18:56:50.411] [TRACE] default - get menu
+[2022-09-02T18:56:50.414] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:56:50.480] [TRACE] default - get twitch
+[2022-09-02T18:56:50.482] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:56:50.549] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:56:50.628] [TRACE] default - get twitch userdata
+[2022-09-02T18:56:50.647] [TRACE] default - get node, default
+[2022-09-02T18:56:50.723] [TRACE] default - get translation, page information
+[2022-09-02T18:56:50.725] [TRACE] default - get item, node default
+[2022-09-02T18:56:50.734] [TRACE] default - get twitch userdata
+[2022-09-02T18:56:50.827] [TRACE] default - get node, default
+[2022-09-02T18:57:01.991] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:57:01.992] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:57:01.992] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:57:15.481] [TRACE] default - get translation, page navigation
+[2022-09-02T18:57:15.485] [TRACE] default - get translation, page item
+[2022-09-02T18:57:15.523] [TRACE] default - get menu
+[2022-09-02T18:57:15.525] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:57:15.543] [TRACE] default - get twitch
+[2022-09-02T18:57:15.544] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:57:15.567] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:57:15.578] [TRACE] default - get twitch userdata
+[2022-09-02T18:57:15.583] [TRACE] default - get node, default
+[2022-09-02T18:57:15.673] [TRACE] default - get translation, page information
+[2022-09-02T18:57:15.696] [TRACE] default - get item, node default
+[2022-09-02T18:57:15.760] [TRACE] default - get twitch userdata
+[2022-09-02T18:57:15.833] [TRACE] default - get node, default
+[2022-09-02T18:57:49.279] [TRACE] default - get translation, page navigation
+[2022-09-02T18:57:49.282] [TRACE] default - get translation, page item
+[2022-09-02T18:57:49.330] [TRACE] default - get menu
+[2022-09-02T18:57:49.333] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:57:49.379] [TRACE] default - get twitch
+[2022-09-02T18:57:49.383] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:57:49.439] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:57:49.447] [TRACE] default - get twitch userdata
+[2022-09-02T18:57:49.454] [TRACE] default - get node, default
+[2022-09-02T18:57:49.526] [TRACE] default - get translation, page information
+[2022-09-02T18:57:49.530] [TRACE] default - get item, node default
+[2022-09-02T18:57:49.534] [TRACE] default - get twitch userdata
+[2022-09-02T18:57:49.539] [TRACE] default - get node, default
+[2022-09-02T18:58:01.949] [INFO] default - node craffelmat, module loot run automtion Minutes.
+[2022-09-02T18:58:01.949] [TRACE] default - message push loot executed
+[2022-09-02T18:58:01.979] [TRACE] default - message shift loot executed
+[2022-09-02T18:58:01.981] [TRACE] default - incomming message self: true
+[2022-09-02T18:58:01.995] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:58:01.996] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:58:01.996] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T18:58:04.623] [TRACE] default - get translation, page navigation
+[2022-09-02T18:58:04.624] [TRACE] default - get translation, page item
+[2022-09-02T18:58:04.635] [TRACE] default - get menu
+[2022-09-02T18:58:04.639] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:58:04.653] [TRACE] default - get twitch
+[2022-09-02T18:58:04.655] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:58:04.680] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:58:04.697] [TRACE] default - get twitch userdata
+[2022-09-02T18:58:04.724] [TRACE] default - get node, default
+[2022-09-02T18:58:04.817] [TRACE] default - get translation, page information
+[2022-09-02T18:58:04.826] [TRACE] default - get item, node default
+[2022-09-02T18:58:04.829] [TRACE] default - get twitch userdata
+[2022-09-02T18:58:04.839] [TRACE] default - get node, default
+[2022-09-02T18:58:18.401] [TRACE] default - get translation, page navigation
+[2022-09-02T18:58:18.404] [TRACE] default - get translation, page item
+[2022-09-02T18:58:18.416] [TRACE] default - get menu
+[2022-09-02T18:58:18.419] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:58:18.432] [TRACE] default - get twitch
+[2022-09-02T18:58:18.434] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:58:18.473] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:58:18.488] [TRACE] default - get twitch userdata
+[2022-09-02T18:58:18.499] [TRACE] default - get node, default
+[2022-09-02T18:58:18.588] [TRACE] default - get translation, page information
+[2022-09-02T18:58:18.590] [TRACE] default - get item, node default
+[2022-09-02T18:58:18.604] [TRACE] default - get twitch userdata
+[2022-09-02T18:58:18.682] [TRACE] default - get node, default
+[2022-09-02T18:58:28.697] [TRACE] default - get translation, page navigation
+[2022-09-02T18:58:28.698] [TRACE] default - get translation, page item
+[2022-09-02T18:58:28.709] [TRACE] default - get menu
+[2022-09-02T18:58:28.712] [TRACE] default - get translation, page itemCategory
+[2022-09-02T18:58:28.738] [TRACE] default - get twitch
+[2022-09-02T18:58:28.745] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T18:58:28.819] [TRACE] default - get itemcategory, node default
+[2022-09-02T18:58:28.859] [TRACE] default - get twitch userdata
+[2022-09-02T18:58:28.898] [TRACE] default - get node, default
+[2022-09-02T18:58:28.980] [TRACE] default - get translation, page information
+[2022-09-02T18:58:28.986] [TRACE] default - get item, node default
+[2022-09-02T18:58:28.990] [TRACE] default - get twitch userdata
+[2022-09-02T18:58:29.065] [TRACE] default - get node, default
+[2022-09-02T18:58:32.941] [TRACE] default - put item, node default
+[2022-09-02T18:58:33.016] [TRACE] default - get item, node default
+[2022-09-02T18:58:36.540] [TRACE] default - put item, node default
+[2022-09-02T18:58:36.598] [TRACE] default - get item, node default
+[2022-09-02T18:59:02.011] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T18:59:02.011] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T18:59:02.011] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T19:00:02.024] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T19:00:02.024] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T19:00:02.024] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T19:01:02.024] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-02T19:01:02.025] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-02T19:01:02.026] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-02T19:01:12.141] [TRACE] default - get translation, page navigation
+[2022-09-02T19:01:12.144] [TRACE] default - get translation, page item
+[2022-09-02T19:01:12.186] [TRACE] default - get menu
+[2022-09-02T19:01:12.195] [TRACE] default - get translation, page itemCategory
+[2022-09-02T19:01:12.301] [TRACE] default - get twitch
+[2022-09-02T19:01:12.304] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T19:01:12.350] [TRACE] default - get itemcategory, node default
+[2022-09-02T19:01:12.372] [TRACE] default - get twitch userdata
+[2022-09-02T19:01:12.379] [TRACE] default - get node, default
+[2022-09-02T19:01:12.570] [TRACE] default - get translation, page information
+[2022-09-02T19:01:12.580] [TRACE] default - get item, node default
+[2022-09-02T19:01:12.602] [TRACE] default - get twitch userdata
+[2022-09-02T19:01:12.812] [TRACE] default - get node, default
+[2022-09-02T19:01:26.027] [TRACE] default - get translation, page navigation
+[2022-09-02T19:01:26.028] [TRACE] default - get translation, page item
+[2022-09-02T19:01:26.046] [TRACE] default - get menu
+[2022-09-02T19:01:26.049] [TRACE] default - get translation, page itemCategory
+[2022-09-02T19:01:26.062] [TRACE] default - get twitch
+[2022-09-02T19:01:26.065] [TRACE] default - get translation, page itemCategoryList
+[2022-09-02T19:01:26.108] [TRACE] default - get itemcategory, node default
+[2022-09-02T19:01:26.120] [TRACE] default - get twitch userdata
+[2022-09-02T19:01:26.125] [TRACE] default - get node, default
+[2022-09-02T19:01:26.222] [TRACE] default - get translation, page information
+[2022-09-02T19:01:26.225] [TRACE] default - get item, node default
+[2022-09-02T19:01:26.231] [TRACE] default - get twitch userdata
+[2022-09-02T19:01:26.340] [TRACE] default - get node, default
