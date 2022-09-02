@@ -20,7 +20,7 @@ export class HeroItem extends Model<HeroItem> {
 
     @Column
     experience: number = 0;
-    
+
     @Column
     isActive: boolean = false;
 

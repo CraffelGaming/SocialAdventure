@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel } from './globalData.js';
+import { getTranslation, translate, infoPanel, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -58,23 +58,8 @@ $(async () => {
 
     //#region Load
     async function load() {
-        await fetch('./api/twitch/userdata', {
-            method: 'get',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }).then(async function (res) {
-            switch(res.status) {
-                case 200:
-                    return res.json();
-                case 404:
-                    break;
-            }
-        }).then(async function (json) {
-            userData = json;
-            document.getElementById("welcome").textContent = translate(language, 'welcome').replace('$1', userData.display_name);
-
-        });
+        userData = await get(`/twitch/userdata`, language);
+        document.getElementById("welcome").textContent = translate(language, 'welcome').replace('$1', userData.display_name);
     }
     //#endregion
 

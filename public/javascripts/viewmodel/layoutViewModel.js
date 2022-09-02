@@ -1,4 +1,4 @@
-import { getTranslation, translate } from './globalData.js';
+import { getTranslation, translate, get } from './globalData.js';
 
 $(async () => {
     let language = await getTranslation('navigation');
@@ -62,35 +62,13 @@ $(async () => {
 
     //#region Menu
     async function getMenu() {
-        return await fetch('./api/menu/', {
-            method: 'get',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }).then(function (res) {
-            if (res.status == 200) {
-                return res.json();
-            }
-        }).then(function (json) {
-            return json;
-        });
+        return await get(`/menu`, language);
     }
     //#endregion
 
     //#region Twitch
     async function getTwitchURL() {
-        return await fetch('./api/twitch/', {
-            method: 'get',
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }).then(function (res) {
-            if (res.status == 200) {
-                return res.json();
-            }
-        }).then(function (json) {
-            return json;
-        });
+        return await get(`/twitch`, language);
     }
     //#endregion
 });

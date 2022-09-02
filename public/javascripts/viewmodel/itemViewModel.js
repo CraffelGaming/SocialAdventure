@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, tableExport, getEditing, notify } from './globalData.js';
+import { getTranslation, translate, infoPanel, tableExport, getEditing, notify, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -6,6 +6,7 @@ $(async () => {
     let language = await getTranslation('item');
     let languageItemCategory = await getTranslation('itemCategory');
     let languageItemCategoryList = await getTranslation('itemCategoryList');
+    let category = await get('/itemCategory/default');
 
     translation();
     initialize();
@@ -25,21 +26,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    var items;
-                    await fetch('./api/item/default', {
-                        method: 'get',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 200:
-                                return res.json();
-                        }
-                    }).then(async function (json) {
-                        items = json;
-                    });
-                    return items;
+                    return await get('/item/default', language);
                 },
                 insert: async function (values) {
                     await fetch('./api/item/default', {
@@ -62,6 +49,10 @@ $(async () => {
                 update: async function (key, values) {
                     var item = values;
                     item.handle = key;
+
+                    if(item.category != null)
+                        item.categoryHandle = item.category.handle;
+
                     await fetch('./api/item/default', {
                         method: 'put',
                         headers: {
@@ -125,9 +116,48 @@ $(async () => {
                 { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }]  },
                 { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200 },
                 {
-                    caption: translate(languageItemCategory, 'value'), width: 250,
+                    dataField: "category.handle",
+                    caption: translate(languageItemCategory , 'value'),
+                    width: 300,
                     calculateCellValue(data) {
-                      return translate(languageItemCategoryList, data.category.value);
+                        return translate(languageItemCategoryList, data.category.value);
+                    },
+                    editorType: 'dxDropDownBox',
+                    editorOptions: {
+                        value: "default",
+                        valueExpr: "handle",  
+                        displayExpr: function(item) {
+                          
+                            if(item != null){
+                                console.log(item.value);
+                                return translate(languageItemCategoryList, item.value);
+                            }
+                            else return null;
+                        },
+                        dataSource: new DevExpress.data.ArrayStore({
+                            data: category,
+                            key: "handle"
+                        }),
+                        contentTemplate: function(e){
+                            const $dataGrid = $("<div>").dxDataGrid({
+                                dataSource: e.component.option("dataSource"),
+                                columns: [{
+                                    calculateCellValue(data) {
+                                        return translate(languageItemCategoryList, data.value);
+                                    }
+                                }],
+                                height: 265,
+                                selection: { mode: "single" },
+                                selectedRowKeys: ["default"],
+                                onSelectionChanged: function(selectedItems){
+                                    const keys = selectedItems.selectedRowKeys,
+                                        hasSelection = keys.length;
+                                    e.component.option("value", hasSelection ? keys[0] : null); 
+                                    e.component.close();
+                                }
+                            });
+                            return $dataGrid;
+                        }
                     }
                 }
             ],

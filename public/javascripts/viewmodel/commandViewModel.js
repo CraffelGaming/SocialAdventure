@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel } from './globalData.js';
+import { getTranslation, translate, infoPanel, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -23,21 +23,7 @@ $(async () => {
                 key: "command",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    var items;
-                    await fetch('./api/command/default/loot', {
-                        method: 'get',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 200:
-                                return res.json();
-                        }
-                    }).then(async function (json) {
-                        items = json;
-                    });
-                    return items;
+                    return await get('/command/default/loot', language);
                 }
             }),
             filterRow: { visible: true },

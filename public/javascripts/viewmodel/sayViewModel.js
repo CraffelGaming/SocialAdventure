@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, getEditing, notify } from './globalData.js';
+import { getTranslation, translate, infoPanel, getEditing, notify, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -24,21 +24,7 @@ $(async () => {
                 key: "command",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    var items;
-                    await fetch('./api/say/default', {
-                        method: 'get',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 200:
-                                return res.json();
-                        }
-                    }).then(async function (json) {
-                        items = json;
-                    });
-                    return items;
+                    return await get(`/command/say/default`, language);
                 },
                 insert: async function (values) {
                     await fetch('./api/say/default', {
@@ -206,24 +192,7 @@ $(async () => {
                         key: ["module", "command"],
                         loadMode: "raw",
                         load: async function () {
-                            var properties;
-                            await fetch('./api/command/default/say', {
-                                method: 'get',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                }
-                            }).then(function (res) {
-                                switch (res.status) {
-                                    case 200:
-                                        return res.json();
-                                }
-                            }).then(function (json) {
-                                if (json != undefined) {
-                                    console.log(json);
-                                    properties = json;
-                                }
-                            });
-                            return properties;
+                            return await get(`/command/default/say`, language);
                         }
                     }),
                     allowColumnReordering: true,

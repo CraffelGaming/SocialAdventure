@@ -1,18 +1,6 @@
 //#region Translation
 export async function getTranslation(page, language = 'de-DE') {
-    page = page.replace('/', '').replace('\\', '');
-    return await fetch('./api/translation/' + page + "?language=" + language, {
-        method: 'get',
-        headers: {
-            'Content-type': 'application/json'
-        }
-    }).then(function (res) {
-        if (res.status == 200) {
-            return res.json();
-        }
-    }).then(function (json) {
-        return json;
-    });
+    return await get(`/translation/${page.replace('/', '').replace('\\', '')}?language=${language}`);
 }
 
 export function translate(language, handle) {
@@ -49,43 +37,11 @@ export async function infoPanel() {
 
 //#region Load
 export async function loadUserData() {
-    let item;
-    await fetch('./api/twitch/userdata', {
-        method: 'get',
-        headers: {
-            'Content-type': 'application/json'
-        }
-    }).then(async function (res) {
-        switch(res.status) {
-            case 200:
-                return res.json();
-            case 404:
-                break;
-        }
-    }).then(async function (json) {
-        item = json;
-    });
-    return item;
+    return await get(`/twitch/userdata`);
 }
 
 export async function loadDefaultNode() {
-    let item;
-    await fetch('./api/node/default', {
-        method: 'get',
-        headers: {
-            'Content-type': 'application/json'
-        }
-    }).then(async function (res) {
-        switch(res.status) {
-            case 200:
-                return res.json();
-            case 404:
-                break;
-        }
-    }).then(async function (json) {
-        item = json;
-    });
-    return item;
+    return await get(`/node/default`);
 }
 //#endregion
 
@@ -178,5 +134,34 @@ export async function isMaster() {
     }
     return false; //true
 
+}
+//#endregion
+
+//#region Get
+export async function get(endpoint, language = undefined) {
+    let items;
+
+    if (endpoint) {
+        await fetch('./api' + endpoint, {
+            method: 'get',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(async function (res) {
+            //console.log(res);
+            switch (res.status) {
+                case 200:
+                    items = await res.json();
+                    break;
+                default:
+                    if (language != undefined)
+                        notify(translate(language, res.status), 'error');
+                    break;
+            }
+            return items;
+        });
+    }
+
+    return items;
 }
 //#endregion

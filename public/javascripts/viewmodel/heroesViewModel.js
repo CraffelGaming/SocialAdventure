@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel } from './globalData.js';
+import { getTranslation, translate, infoPanel, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -26,21 +26,7 @@ $(async () => {
                 key: "name",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    var items;
-                    await fetch('./api/hero/default', {
-                        method: 'get',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 200:
-                                return res.json();
-                        }
-                    }).then(async function (json) {
-                        items = json;
-                    });
-                    return items;
+                    return await get('/hero/default', language);
                 }
             }),
             filterRow: { visible: true },
@@ -120,23 +106,7 @@ $(async () => {
                         key: ["itemHandle", "heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            var properties;
-                            await fetch('./api/heroinventory/default/hero/' + masterDetailData.name, {
-                                method: 'get',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                }
-                            }).then(function (res) {
-                                switch (res.status) {
-                                    case 200:
-                                        return res.json();
-                                }
-                            }).then(function (json) {
-                                if (json != undefined) {
-                                    properties = json;
-                                }
-                            });
-                            return properties;
+                            return await get(`/heroinventory/default/hero/${masterDetailData.name}`, language);
                         }
                     }),
                     allowColumnReordering: true,
@@ -170,24 +140,7 @@ $(async () => {
                         key: ["heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            var properties;
-                            await fetch('./api/herowallet/default/hero/' + masterDetailData.name, {
-                                method: 'get',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                }
-                            }).then(function (res) {
-                                switch (res.status) {
-                                    case 200:
-                                        return res.json();
-                                }
-                            }).then(function (json) {
-                                if (json != undefined) {
-                                    console.log(json);
-                                    properties = json;
-                                }
-                            });
-                            return properties;
+                            return await get(`/herowallet/default/hero/${masterDetailData.name}`, language);
                         }
                     }),
                     allowColumnReordering: true,
@@ -221,24 +174,7 @@ $(async () => {
                         key: ["heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            var properties;
-                            await fetch('./api/herotrait/default/hero/' + masterDetailData.name, {
-                                method: 'get',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                }
-                            }).then(function (res) {
-                                switch (res.status) {
-                                    case 200:
-                                        return res.json();
-                                }
-                            }).then(function (json) {
-                                if (json != undefined) {
-                                    console.log(json);
-                                    properties = json;
-                                }
-                            });
-                            return properties;
+                            return await get(`/herotrait/default/hero/${masterDetailData.name}`, language);
                         }
                     }),
                     allowColumnReordering: true,

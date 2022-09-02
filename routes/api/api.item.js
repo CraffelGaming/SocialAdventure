@@ -74,20 +74,21 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     if (channel) {
         if (global.isMaster(request, response, node)) {
             if (request.body.handle != null && request.body.handle > 0) {
+                const item = yield channel.database.sequelize.models.item.findByPk(request.body.handle);
+                if (item) {
+                    yield channel.database.sequelize.models.item.update(request.body, { where: { handle: request.body.handle } });
+                    response.status(201).json(request.body);
+                }
+            }
+            else {
                 if (request.body.value != null && request.body.value.length > 0) {
-                    const item = yield channel.database.sequelize.models.item.findByPk(request.body.handle);
-                    if (item) {
-                        yield channel.database.sequelize.models.item.update(request.body, { where: { handle: request.body.handle } });
-                    }
+                    yield channel.database.sequelize.models.item.create(request.body);
+                    response.status(201).json(request.body);
                 }
                 else {
                     response.status(406).json();
                 }
             }
-            else {
-                yield channel.database.sequelize.models.item.create(request.body);
-            }
-            response.status(201).json(request.body);
         }
         else {
             response.status(403).json();

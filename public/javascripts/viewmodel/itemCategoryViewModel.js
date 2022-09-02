@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, tableExport, getEditing, notify, isMaster } from './globalData.js';
+import { getTranslation, translate, infoPanel, tableExport, getEditing, notify, isMaster, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -25,21 +25,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    var items;
-                    await fetch('./api/itemCategory', {
-                        method: 'get',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 200:
-                                return res.json();
-                        }
-                    }).then(async function (json) {
-                        items = json;
-                    });
-                    return items;
+                    return await get(`/itemCategory`, language);
                 }
             }),
             filterRow: { visible: true },
