@@ -7,16 +7,13 @@ import json = require('./commandItem.json');
 export class CommandItem extends Model<CommandItem>{
     @PrimaryKey
     @Column
-    module: string = "";
-
+    module: string;
     @Column
-    command: string= "";
-
+    command: string;
     @Column
     isMaster: boolean = false;
-
     @Column
-    translation: string= "";
+    translation: string;
 
     constructor(){
         super();
@@ -40,9 +37,8 @@ export class CommandItem extends Model<CommandItem>{
                 defaultValue: false
             },
             translation: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                type: DataTypes.STRING,
+                allowNull: false
             }
           }, {freezeTableName: true});
     }

@@ -2,16 +2,22 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./heroTraitItem.json');
-
-export class HeroTraitItem{
+@Table({ tableName: "heroTrait", modelName: "heroTrait"})
+export class HeroTraitItem extends Model<HeroTraitItem>{
+    @PrimaryKey
+    @Column
     heroName: string;
-    goldMultipler: number;
-    stealMultipler: number;
-    defenceMultipler: number;
-    workMultipler: number;
+    @Column
+    goldMultipler: number = 1;
+    @Column
+    stealMultipler: number = 1;
+    @Column
+    defenceMultipler: number = 1;
+    @Column
+    workMultipler: number = 1;
 
     constructor(){
-        this.heroName = "";
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

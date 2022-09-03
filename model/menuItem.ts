@@ -1,18 +1,23 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./menuItem.json');
-
-export class MenuItem{
+@Table({ tableName: "menu", modelName: "menu"})
+export class MenuItem extends Model<MenuItem>{
+    @PrimaryKey
+    @Column
     endpoint: string;
+    @Column
     name: string;
+    @Column
     order: number;
-    authenticationRequired: boolean;
+    @Column
+    authenticationRequired: boolean = false;
 
     constructor(endpoint? : string, name? : string, order? : number){
+        super();
         this.endpoint = endpoint;
         this.name = name;
         this.order = order;
-        this.authenticationRequired = false;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

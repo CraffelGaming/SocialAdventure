@@ -24,10 +24,10 @@ $(async () => {
                 key: "command",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/command/say/default`, language);
+                    return await get(`/say/default`, language);
                 },
                 insert: async function (values) {
-                    await fetch('./api/say/default', {
+                    await fetch('./say/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -47,7 +47,7 @@ $(async () => {
                 update: async function (key, values) {
                     var item = values;
                     item.command = key;
-                    await fetch('./api/say/default', {
+                    await fetch('./say/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -66,7 +66,7 @@ $(async () => {
                 },
                 remove: async function (key) {
                     console.log(key);
-                    await fetch('./api/say/default/' + key, {
+                    await fetch('./say/default' + key, {
                         method: 'delete',
                         headers: {
                             'Content-type': 'application/json'

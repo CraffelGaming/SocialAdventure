@@ -2,16 +2,22 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./heroWalletItem.json');
-
-export class HeroWalletItem{
+@Table({ tableName: "heroWallet", modelName: "heroWallet"})
+export class HeroWalletItem extends Model<HeroWalletItem>{
+    @PrimaryKey
+    @Column
     heroName: string;
-    gold: number;
-    diamond: number;
-    blood: number;
-    lastBlood: Date;
+    @Column
+    gold: number = 1000;
+    @Column
+    diamond: number = 0
+    @Column
+    blood: number = 0
+    @Column
+    lastBlood: Date = new Date(2020, 1, 1);
 
     constructor(){
-        this.heroName = "";
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -24,7 +30,7 @@ export class HeroWalletItem{
             gold: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 100
+                defaultValue: 1000
             },
             diamond: {
                 type: DataTypes.INTEGER,

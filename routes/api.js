@@ -56,6 +56,13 @@ const router = express.Router();
  *     description: Rückgabe aller Item Kategorien.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -130,6 +137,12 @@ router.get("/itemcategory", api_itemCategory_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -236,6 +249,12 @@ router.post("/itemcategory/:node/transfer/:handle", api_itemCategory_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -295,6 +314,12 @@ router.get("/command/:node", api_command_1.default);
  *       required: true
  *       type: "string"
  *       default: "say"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -350,6 +375,12 @@ router.get("/command/:node/:module", api_command_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -409,6 +440,12 @@ router.get("/heroinventory/:node", api_heroInventory_1.default);
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -457,6 +494,13 @@ router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
  *     description: Rückgabe aller Gegenstände.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -521,6 +565,12 @@ router.get("/item", api_item_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -685,6 +735,12 @@ router.delete("/item/:node/:handle", api_item_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -748,6 +804,12 @@ router.get("/herotrait/:node", api_heroTrait_1.default);
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -805,6 +867,12 @@ router.get("/herotrait/:node/hero/:name", api_heroTrait_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -868,6 +936,12 @@ router.get("/herowallet/:node", api_heroWallet_1.default);
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -925,6 +999,12 @@ router.get("/herowallet/:node/hero/:name", api_heroWallet_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -988,6 +1068,12 @@ router.get("/hero/:node", api_hero_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1175,6 +1261,12 @@ router.delete("/say/:node/:command", api_say_1.default);
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1360,6 +1452,13 @@ router.get("/version", api_version_1.default);
  *     description: Rückgabe aller Server Nodes aller Streamer.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1485,6 +1584,13 @@ router.post("/node/default", api_node_1.default);
  *     description: Rückgabe alles Migration des Servers.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1525,6 +1631,13 @@ router.get("/migration", api_migration_1.default);
  *     description: Rückgabe aller Menüeinträge.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1579,6 +1692,12 @@ router.get("/menu", api_menu_1.default);
  *       description: "Sprache für die Übersetzung."
  *       required: true
  *       default: "de-DE"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation

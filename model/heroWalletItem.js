@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -10,11 +19,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroWalletItem = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./heroWalletItem.json");
-class HeroWalletItem {
+let HeroWalletItem = class HeroWalletItem extends sequelize_typescript_1.Model {
     constructor() {
-        this.heroName = "";
+        super();
+        this.gold = 1000;
+        this.diamond = 0;
+        this.blood = 0;
+        this.lastBlood = new Date(2020, 1, 1);
     }
     static createTable({ sequelize }) {
         sequelize.define('heroWallet', {
@@ -26,7 +40,7 @@ class HeroWalletItem {
             gold: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 100
+                defaultValue: 1000
             },
             diamond: {
                 type: sequelize_1.DataTypes.INTEGER,
@@ -65,7 +79,32 @@ class HeroWalletItem {
             }
         });
     }
-}
+};
+__decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], HeroWalletItem.prototype, "heroName", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroWalletItem.prototype, "gold", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroWalletItem.prototype, "diamond", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroWalletItem.prototype, "blood", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], HeroWalletItem.prototype, "lastBlood", void 0);
+HeroWalletItem = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "heroWallet", modelName: "heroWallet" }),
+    __metadata("design:paramtypes", [])
+], HeroWalletItem);
 exports.HeroWalletItem = HeroWalletItem;
 module.exports.default = HeroWalletItem;
 //# sourceMappingURL=heroWalletItem.js.map

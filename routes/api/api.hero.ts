@@ -1,10 +1,12 @@
 import * as express from 'express';
+import { HeroItem } from '../../model/heroItem';
 const router = express.Router();
 const endpoint = 'hero';
 
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
+    let item : HeroItem[];
 
     if(node === 'default')
         node = global.defaultNode(request, response);
@@ -12,13 +14,16 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     const channel = global.worker.channels.find(x => x.node.name === node )
 
     if(channel) {
-        const item = await channel.database.sequelize.models.hero.findAll({order: [ [ 'name', 'ASC' ]], raw: false, include: [{
-            model: channel.database.sequelize.models.heroTrait,
-            as: 'trait',
-        }, {
-            model: channel.database.sequelize.models.heroWallet,
-            as: 'wallet',
-        }]});
+        if(request.query.childs !== "false"){
+            item = await channel.database.sequelize.models.hero.findAll({order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+                model: channel.database.sequelize.models.heroTrait,
+                as: 'trait',
+            }, {
+                model: channel.database.sequelize.models.heroWallet,
+                as: 'wallet',
+            }]}) as unknown as HeroItem[];
+        } else item = await channel.database.sequelize.models.hero.findAll({order: [ [ 'name', 'ASC' ]], raw: false }) as unknown as HeroItem[];
+
         if(item) response.status(200).json(item);
         else response.status(404).json();
     } else response.status(404).json();

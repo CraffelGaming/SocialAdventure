@@ -1,10 +1,13 @@
-import { Column, Table, Model, Sequelize } from 'sequelize-typescript';
+import { Column, Table, PrimaryKey, Sequelize, Model } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-
-export class VersionItem{
+@Table({ tableName: "version", modelName: "version"})
+export class VersionItem extends Model<VersionItem>{
+    @PrimaryKey
+    @Column
     version: string;
 
     constructor(version : string){
+        super();
         this.version = version;
     }
 
@@ -20,9 +23,10 @@ export class VersionItem{
 
     static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
         try{
-            const item = new VersionItem(require('./../package.json').version);
-            if(await sequelize.models.version.count({ where: { version: item.version } }) === 0){
-                await sequelize.models.version.create(item as any);
+            const version = require('./../package.json').version;
+
+            if(await sequelize.models.version.count({ where: { version } }) === 0){
+                await sequelize.models.version.create({version});
             }
         } catch(ex){
             global.worker.log.error(ex);

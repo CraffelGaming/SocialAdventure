@@ -2,12 +2,16 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import jsonMigration = require('./migrationItem.json');
 import jsonMigrationGlobal = require('./migrationGlobalItem.json');
-
-export class MigrationItem{
+@Table({ tableName: "migration", modelName: "migration"})
+export class MigrationItem extends Model<MigrationItem>{
+    @PrimaryKey
+    @Column
     name: string;
-    isInstalled: boolean;
+    @Column
+    isInstalled: boolean = false;
 
     constructor(name? : string, isInstalled? : boolean){
+        super();
         this.name = name;
         this.isInstalled = isInstalled;
     }

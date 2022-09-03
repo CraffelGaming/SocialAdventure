@@ -73,7 +73,7 @@ $(async () => {
                 },
 
                 { dataField: "experience", caption: translate(language, 'experience'), width: 300 }, 
-                { dataField: "isActive", caption: translate(language, 'isActive'), width: 120 }
+                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200 }
             ],
             export: {
                 enabled: true,

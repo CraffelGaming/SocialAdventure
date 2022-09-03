@@ -1,13 +1,22 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./translationItem.json');
-export class TranslationItem{
+@Table({ tableName: "translation", modelName: "translation"})
+export class TranslationItem extends Model<TranslationItem>{
+    @PrimaryKey
+    @Column
     page: string;
+    @PrimaryKey
+    @Column
     handle: string;
-    language: string;
+    @PrimaryKey
+    @Column
+    language: string = "de-DE";
+    @Column
     translation: string;
 
     constructor(page? : string, handle? : string, language? : string, translation? : string){
+        super();
         this.page = page;
         this.handle = handle;
         this.language = language;

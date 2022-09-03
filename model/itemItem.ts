@@ -2,17 +2,22 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./itemItem.json');
-
-export class ItemItem{
+@Table({ tableName: "item", modelName: "item"})
+export class ItemItem extends Model<ItemItem>{
+    @PrimaryKey
+    @Column
     handle: number;
+    @Column
     value: string;
-    gold: number;
-    type: number;
-    categoryHandle: number;
+    @Column
+    gold: number = 50;
+    @Column
+    type: number = 0;
+    @Column
+    categoryHandle: number = 1;
 
     constructor(){
-        this.handle = 0;
-        this.categoryHandle = 1;
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

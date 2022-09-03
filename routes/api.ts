@@ -32,6 +32,13 @@ const router = express.Router();
  *     description: Rückgabe aller Item Kategorien.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -107,6 +114,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -215,6 +228,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -275,6 +294,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "say"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -331,6 +356,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -391,6 +422,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -440,6 +477,13 @@ const router = express.Router();
  *     description: Rückgabe aller Gegenstände.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -505,6 +549,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -672,6 +722,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -736,6 +792,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -794,6 +856,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -858,6 +926,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -916,6 +990,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -980,6 +1060,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1170,6 +1256,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1360,6 +1452,13 @@ const router = express.Router();
  *     description: Rückgabe aller Server Nodes aller Streamer.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1488,6 +1587,13 @@ router.post("/node/default", node);
  *     description: Rückgabe alles Migration des Servers.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1529,6 +1635,13 @@ router.post("/node/default", node);
  *     description: Rückgabe aller Menüeinträge.
  *     consumes:
  *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation
@@ -1584,6 +1697,12 @@ router.post("/node/default", node);
  *       description: "Sprache für die Übersetzung."
  *       required: true
  *       default: "de-DE"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
  *     responses:
  *       200:
  *         description: successful operation

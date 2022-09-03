@@ -37,10 +37,15 @@ const router = express.Router();
 const endpoint = 'itemcategory';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}`);
-    const item = yield global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
-                model: global.worker.globalDatabase.sequelize.models.item,
-                as: 'items',
-            }] });
+    let item;
+    if (request.query.childs !== "false") {
+        item = (yield global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
+                    model: global.worker.globalDatabase.sequelize.models.item,
+                    as: 'items',
+                }] }));
+    }
+    else
+        item = (yield global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false }));
     if (item)
         response.status(200).json(item);
     else
@@ -49,14 +54,19 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
+    let item;
     if (node === 'default')
         node = global.defaultNode(request, response);
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
-        const item = yield channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
-                    model: global.worker.globalDatabase.sequelize.models.item,
-                    as: 'items',
-                }] });
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
+                        model: global.worker.globalDatabase.sequelize.models.item,
+                        as: 'items',
+                    }] }));
+        }
+        else
+            item = (yield channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false }));
         if (item)
             response.status(200).json(item);
         else
@@ -94,7 +104,7 @@ router.post('/' + endpoint + '/:node/transfer/:handle', (request, response) => _
                     }
                 }
             }
-            response.status(204).json();
+            response.status(201).json();
         }
         else {
             response.status(403).json();

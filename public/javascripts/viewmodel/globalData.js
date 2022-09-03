@@ -148,7 +148,7 @@ export async function get(endpoint, language = undefined) {
                 'Content-type': 'application/json'
             }
         }).then(async function (res) {
-            //console.log(res);
+            console.log(res);
             switch (res.status) {
                 case 200:
                     items = await res.json();

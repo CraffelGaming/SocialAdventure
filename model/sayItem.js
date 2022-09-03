@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -10,15 +19,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SayItem = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./sayItem.json");
-class SayItem {
+let SayItem = class SayItem extends sequelize_typescript_1.Model {
     constructor() {
-        this.command = "";
+        super();
         this.minutes = 60;
-        this.help = "";
-        this.text = "";
         this.isActive = true;
+        this.lastRun = new Date(2020, 1, 1);
         this.delay = 5;
         this.countUses = 0;
         this.countRuns = 0;
@@ -86,7 +95,48 @@ class SayItem {
             }
         });
     }
-}
+};
+__decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], SayItem.prototype, "command", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], SayItem.prototype, "minutes", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], SayItem.prototype, "help", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], SayItem.prototype, "text", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], SayItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], SayItem.prototype, "lastRun", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], SayItem.prototype, "delay", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], SayItem.prototype, "countUses", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], SayItem.prototype, "countRuns", void 0);
+SayItem = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "say", modelName: "say" }),
+    __metadata("design:paramtypes", [])
+], SayItem);
 exports.SayItem = SayItem;
 module.exports.default = SayItem;
 //# sourceMappingURL=sayItem.js.map

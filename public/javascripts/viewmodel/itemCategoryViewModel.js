@@ -28,9 +28,9 @@ $(async () => {
                     return await get(`/itemCategory`, language);
                 }
             }),
-            filterRow: { visible: true },
-            filterPanel: { visible: true },
-            searchPanel: { visible: true },
+            filterRow: { visible: false },
+            filterPanel: { visible: false },
+            searchPanel: { visible: false },
             allowColumnReordering: true,
             allowColumnResizing: true,
             groupPanel: { visible: true },
@@ -95,12 +95,15 @@ $(async () => {
                                     'Content-type': 'application/json'
                                 }
                             }).then(async function (res) {
-                                if (res.status == 200) {
-                                    return res.json();
+                                switch(res.status){
+                                    case 201:
+                                        notify(translate(language, res.status), "success");
+                                        infoPanel();
+                                        break;
+                                    default:
+                                        notify(translate(language, res.status), "error");
+                                        break;
                                 }
-                            }).then(async function (json) {
-                                streamer = json;
-                                infoPanel();
                             });
                         }
                     }]

@@ -1,20 +1,32 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./nodeItem.json');
-
-export class NodeItem{
+@Table({ tableName: "node", modelName: "node"})
+export class NodeItem extends Model<NodeItem>{
+    @PrimaryKey
+    @Column
     name: string;
+    @Column
     displayName: string;
-    language: string;
-    isActive: boolean;
-    endpoint : string;
+    @Column
+    language: string = "DE-de"
+    @Column
+    isActive: boolean = true;
+    @Column
+    endpoint : string = '/';
+    @Column
     type: string;
+    @Column
     broadcasterType: string;
+    @Column
     description: string;
+    @Column
     profileImageUrl: string;
+    @Column
     eMail: string;
 
     constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
+        super();
         this.name = name;
         this.displayName = displayName;
         this.language = language;
@@ -35,7 +47,7 @@ export class NodeItem{
             language: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                defaultValue: "DE-de",
+                defaultValue: "de-DE",
             },
             isActive: {
                type: DataTypes.BOOLEAN,

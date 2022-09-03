@@ -37,13 +37,18 @@ const router = express.Router();
 const endpoint = 'menu';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}`);
-    let item = yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false, include: [{
-                model: global.worker.globalDatabase.sequelize.models.menu,
-                as: 'childs',
-            }, {
-                model: global.worker.globalDatabase.sequelize.models.menu,
-                as: 'parent',
-            }] });
+    let item;
+    if (request.query.childs !== "false") {
+        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false, include: [{
+                    model: global.worker.globalDatabase.sequelize.models.menu,
+                    as: 'childs',
+                }, {
+                    model: global.worker.globalDatabase.sequelize.models.menu,
+                    as: 'parent',
+                }] }));
+    }
+    else
+        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false }));
     if (!global.isRegistered(request, response)) {
         item = item.filter(x => x.authenticationRequired === false);
     }

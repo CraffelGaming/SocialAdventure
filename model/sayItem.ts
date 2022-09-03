@@ -1,27 +1,30 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./sayItem.json');
-
-export class SayItem{
+@Table({ tableName: "say", modelName: "say"})
+export class SayItem extends Model<SayItem>{
+    @PrimaryKey
+    @Column
     command: string;
-    minutes: number;
+    @Column
+    minutes: number= 60;
+    @Column
     help: string;
+    @Column
     text: string;
-    isActive : boolean;
-    lastRun: Date;
-    delay: number;
-    countUses: number;
-    countRuns: number;
+    @Column
+    isActive : boolean = true;
+    @Column
+    lastRun: Date = new Date(2020, 1, 1);
+    @Column
+    delay: number = 5;
+    @Column
+    countUses: number = 0;
+    @Column
+    countRuns: number = 0;
 
     constructor(){
-        this.command = "";
-        this.minutes = 60;
-        this.help = "";
-        this.text = "";
-        this.isActive = true;
-        this.delay = 5;
-        this.countUses = 0;
-        this.countRuns = 0;
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

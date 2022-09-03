@@ -25,10 +25,7 @@ const json = require("./commandItem.json");
 let CommandItem = class CommandItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
-        this.module = "";
-        this.command = "";
         this.isMaster = false;
-        this.translation = "";
     }
     static createTable({ sequelize }) {
         sequelize.define('command', {
@@ -48,9 +45,8 @@ let CommandItem = class CommandItem extends sequelize_typescript_1.Model {
                 defaultValue: false
             },
             translation: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: false
             }
         }, { freezeTableName: true });
     }

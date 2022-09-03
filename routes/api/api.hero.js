@@ -38,17 +38,22 @@ const endpoint = 'hero';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
+    let item;
     if (node === 'default')
         node = global.defaultNode(request, response);
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
-        const item = yield channel.database.sequelize.models.hero.findAll({ order: [['name', 'ASC']], raw: false, include: [{
-                    model: channel.database.sequelize.models.heroTrait,
-                    as: 'trait',
-                }, {
-                    model: channel.database.sequelize.models.heroWallet,
-                    as: 'wallet',
-                }] });
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.hero.findAll({ order: [['name', 'ASC']], raw: false, include: [{
+                        model: channel.database.sequelize.models.heroTrait,
+                        as: 'trait',
+                    }, {
+                        model: channel.database.sequelize.models.heroWallet,
+                        as: 'wallet',
+                    }] }));
+        }
+        else
+            item = (yield channel.database.sequelize.models.hero.findAll({ order: [['name', 'ASC']], raw: false }));
         if (item)
             response.status(200).json(item);
         else

@@ -3,15 +3,18 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import json = require('./levelItem.json');
 
-export class LevelItem{
+@Table({ tableName: "level", modelName: "level"})
+export class LevelItem extends Model<LevelItem>{
+    @PrimaryKey
+    @Column
     handle: number;
+    @Column
     experienceMin: number;
+    @Column
     experienceMax: number;
 
-    constructor(handle? : number, experienceMin? : number, experienceMax? : number){
-        this.handle = 0;
-        this.experienceMin = 0;
-        this.experienceMax = 0;
+    constructor(){
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

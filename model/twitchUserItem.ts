@@ -1,27 +1,29 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./nodeItem.json');
-
-export class TwitchUserItem{
+@Table({ tableName: "twitchUser", modelName: "twitchUser"})
+export class TwitchUserItem extends Model<TwitchUserItem>{
+    @PrimaryKey
+    @Column
     channelName: string;
+    @Column
     displayName: string;
+    @Column
     type: string;
+    @Column
     broadcasterType: string;
+    @Column
     description : string;
+    @Column
     profileImageUrl: string;
-    viewCount : number;
+    @Column
+    viewCount : number = 0;
+    @Column
     eMail: string;
 
 
     constructor(){
-        this.channelName = "";
-        this.displayName = "";
-        this.type = "";
-        this.broadcasterType = "";
-        this.description = "";
-        this.profileImageUrl = "";
-        this.viewCount = 0;
-        this.eMail = "";
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

@@ -7,20 +7,15 @@ import json = require('./heroItem.json');
 export class HeroItem extends Model<HeroItem> {
     @PrimaryKey
     @Column
-    name: string = "";
-
+    name: string;
     @Column
     lastSteal: Date = new Date(2020, 1, 1);
-
     @Column
     lastJoin: Date = new Date(2020, 1, 1);
-
     @Column
     startIndex: number = 0;
-
     @Column
     experience: number = 0;
-
     @Column
     isActive: boolean = false;
 

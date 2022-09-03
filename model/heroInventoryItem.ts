@@ -3,14 +3,21 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import json = require('./heroInventoryItem.json');
 
-export class HeroInventoryItem{
+@Table({ tableName: "heroInventory", modelName: "heroInventory"})
+export class HeroInventoryItem extends Model<HeroInventoryItem>{
+    @PrimaryKey
+    @Column
     itemHandle: number;
+    @PrimaryKey
+    @Column
     heroName: string;
-    quantity: number;
-    isReload: boolean;
+    @Column
+    quantity: number = 0;
+    @Column
+    isReload: boolean = false;
 
     constructor(){
-        this.itemHandle = 0;
+        super();
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

@@ -38,14 +38,19 @@ const endpoint = 'herotrait';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node = request.params.node;
+    let item;
     if (node === 'default')
         node = global.defaultNode(request, response);
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
-        const item = yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
-                    model: channel.database.sequelize.models.hero,
-                    as: 'hero',
-                }] });
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
+                        model: channel.database.sequelize.models.hero,
+                        as: 'hero',
+                    }] }));
+        }
+        else
+            item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false }));
         if (item)
             response.status(200).json(item);
         else
@@ -57,11 +62,19 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
 router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
     let node = request.params.node;
+    let item;
     if (node === 'default')
         node = global.defaultNode(request, response);
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
-        const item = yield channel.database.sequelize.models.heroTrait.findAll({ where: { heroName: request.params.name }, raw: false });
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.heroTrait.findAll({ where: { heroName: request.params.name }, raw: false, include: [{
+                        model: channel.database.sequelize.models.hero,
+                        as: 'hero',
+                    }] }));
+        }
+        else
+            item = (yield channel.database.sequelize.models.heroTrait.findAll({ where: { heroName: request.params.name }, raw: false }));
         if (item)
             response.status(200).json(item);
         else

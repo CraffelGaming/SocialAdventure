@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -10,13 +19,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LevelItem = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./levelItem.json");
-class LevelItem {
-    constructor(handle, experienceMin, experienceMax) {
-        this.handle = 0;
-        this.experienceMin = 0;
-        this.experienceMax = 0;
+let LevelItem = class LevelItem extends sequelize_typescript_1.Model {
+    constructor() {
+        super();
     }
     static createTable({ sequelize }) {
         sequelize.define('level', {
@@ -52,7 +60,24 @@ class LevelItem {
             }
         });
     }
-}
+};
+__decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], LevelItem.prototype, "handle", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], LevelItem.prototype, "experienceMin", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], LevelItem.prototype, "experienceMax", void 0);
+LevelItem = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "level", modelName: "level" }),
+    __metadata("design:paramtypes", [])
+], LevelItem);
 exports.LevelItem = LevelItem;
 module.exports.default = LevelItem;
 //# sourceMappingURL=levelItem.js.map

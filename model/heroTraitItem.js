@@ -1,4 +1,13 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -10,11 +19,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroTraitItem = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./heroTraitItem.json");
-class HeroTraitItem {
+let HeroTraitItem = class HeroTraitItem extends sequelize_typescript_1.Model {
     constructor() {
-        this.heroName = "";
+        super();
+        this.goldMultipler = 1;
+        this.stealMultipler = 1;
+        this.defenceMultipler = 1;
+        this.workMultipler = 1;
     }
     static createTable({ sequelize }) {
         sequelize.define('heroTrait', {
@@ -65,7 +79,32 @@ class HeroTraitItem {
             }
         });
     }
-}
+};
+__decorate([
+    sequelize_typescript_1.PrimaryKey,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], HeroTraitItem.prototype, "heroName", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroTraitItem.prototype, "goldMultipler", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroTraitItem.prototype, "stealMultipler", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroTraitItem.prototype, "defenceMultipler", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroTraitItem.prototype, "workMultipler", void 0);
+HeroTraitItem = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "heroTrait", modelName: "heroTrait" }),
+    __metadata("design:paramtypes", [])
+], HeroTraitItem);
 exports.HeroTraitItem = HeroTraitItem;
 module.exports.default = HeroTraitItem;
 //# sourceMappingURL=heroTraitItem.js.map
