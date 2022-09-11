@@ -33,6 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const heroItem_1 = require("../../model/heroItem");
 const router = express.Router();
 const endpoint = 'hero';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -58,6 +59,50 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             response.status(200).json(item);
         else
             response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.get('/' + endpoint + '/:node/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node = request.params.node;
+    let item;
+    if (node === 'default')
+        node = global.defaultNode(request, response);
+    const channel = global.worker.channels.find(x => x.node.name === node);
+    if (channel) {
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.hero.findByPk(request.params.name, { raw: false, include: [{
+                        model: channel.database.sequelize.models.heroTrait,
+                        as: 'trait',
+                    }, {
+                        model: channel.database.sequelize.models.heroWallet,
+                        as: 'wallet',
+                    }] }));
+        }
+        else
+            item = (yield channel.database.sequelize.models.hero.findByPk(request.params.name, { raw: false }));
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
+    let node = request.params.node;
+    if (node === 'default')
+        node = global.defaultNode(request, response);
+    const channel = global.worker.channels.find(x => x.node.name === node);
+    if (channel) {
+        if (global.isMaster(request, response, node)) {
+            response.status(yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
+        }
+        else {
+            response.status(403).json();
+        }
     }
     else
         response.status(404).json();

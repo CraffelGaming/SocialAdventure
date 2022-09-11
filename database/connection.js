@@ -54,6 +54,8 @@ const heroWalletItem_1 = require("../model/heroWalletItem");
 const itemItem_1 = require("../model/itemItem");
 const commandItem_1 = require("../model/commandItem");
 const itemCategoryItem_1 = require("../model/itemCategoryItem");
+const locationItem_1 = require("../model/locationItem");
+const enemyItem_1 = require("../model/enemyItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -107,6 +109,8 @@ class Connection {
                 heroInventoryItem_1.HeroInventoryItem.createTable({ sequelize: this.sequelize });
                 itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
+                locationItem_1.LocationItem.createTable({ sequelize: this.sequelize });
+                enemyItem_1.EnemyItem.createTable({ sequelize: this.sequelize });
                 commandItem_1.CommandItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
@@ -119,6 +123,8 @@ class Connection {
                 yield heroInventoryItem_1.HeroInventoryItem.updateTable({ sequelize: this.sequelize });
                 yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
                 yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
+                yield locationItem_1.LocationItem.updateTable({ sequelize: this.sequelize });
+                yield enemyItem_1.EnemyItem.updateTable({ sequelize: this.sequelize });
                 yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
@@ -126,6 +132,7 @@ class Connection {
                 heroInventoryItem_1.HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
                 itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
+                locationItem_1.LocationItem.setAssociation({ sequelize: this.sequelize });
                 yield this.updater("migrations/general");
                 return true;
             }

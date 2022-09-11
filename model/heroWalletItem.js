@@ -22,13 +22,13 @@ exports.HeroWalletItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./heroWalletItem.json");
-let HeroWalletItem = class HeroWalletItem extends sequelize_typescript_1.Model {
-    constructor() {
-        super();
+let HeroWalletItem = class HeroWalletItem {
+    constructor(heroName) {
         this.gold = 1000;
         this.diamond = 0;
         this.blood = 0;
         this.lastBlood = new Date(2020, 1, 1);
+        this.heroName = heroName;
     }
     static createTable({ sequelize }) {
         sequelize.define('heroWallet', {
@@ -79,6 +79,26 @@ let HeroWalletItem = class HeroWalletItem extends sequelize_typescript_1.Model {
             }
         });
     }
+    static put({ sequelize, element }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (element.heroName !== null && element.heroName !== "") {
+                    if ((yield sequelize.models.heroWallet.count({ where: { heroName: element.heroName } })) === 0) {
+                        yield sequelize.models.heroWallet.create(element);
+                    }
+                    else
+                        yield sequelize.models.heroWallet.update(element, { where: { heroName: element.heroName } });
+                    return 201;
+                }
+                else
+                    return 406;
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -103,7 +123,7 @@ __decorate([
 ], HeroWalletItem.prototype, "lastBlood", void 0);
 HeroWalletItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "heroWallet", modelName: "heroWallet" }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [String])
 ], HeroWalletItem);
 exports.HeroWalletItem = HeroWalletItem;
 module.exports.default = HeroWalletItem;

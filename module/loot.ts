@@ -2,7 +2,6 @@ import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
 import { HeroItem } from "../model/heroItem";
-import { ItemItem } from "../model/itemItem";
 import { TranslationItem } from "../model/translationItem";
 import { Module } from "./module";
 
@@ -50,21 +49,24 @@ export class Loot extends Module {
     //#region Join / Leave
     async loot(command: Command){
         try{
-            const value : [Model<HeroItem>, boolean] = await this.channel.database.sequelize.models.hero.findOrCreate({
-                defaults: { isActive: true, lastJoin: new Date() },
-                where: { name: command.source}
-            }) as [Model<HeroItem>, boolean];
+            let isNew = false;
+            let value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
 
-            if(value[1]){
+            if(!value){
+                await HeroItem.put({sequelize: this.channel.database.sequelize, element: new HeroItem(command.source)})
+                value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
+                isNew = true;
+            }
+
+            if(!value.getDataValue("isActive")){
+                value.setDataValue("isActive",true);
+                value.setDataValue("lastJoin",new Date());
+                await value.save();
+
+                if(isNew) {
                     return TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
-                } else {
-                    if(!value[0].getDataValue("isActive")){
-                        value[0].setDataValue("isActive",true);
-                        value[0].setDataValue("lastJoin",new Date());
-                        await value[0].save();
-                        return TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
-                    } else return TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
-                }
+                } else return TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
+            } else return TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
         } catch (ex){
             global.worker.log.error(`loot error - function loot - ${ex.message}`);
         }

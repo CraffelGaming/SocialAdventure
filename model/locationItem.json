@@ -1,0 +1,7 @@
+[
+    { "handle": 1, "name": "Verlassene Höhle", "description": "Eine einsame, dunkle, verlassene Höhle. Mehr als Ratten wirst du hier sicher nicht antreffen, oder?", "difficulty": 1, "isActive": true },
+    { "handle": 2, "name": "Ramponierte Bibliothek", "description": "Ob du hier mehr als verstaubte Bücher finden wirst? Man sagt sich das schon der ein oder andere Bibliothekar verrückt geworden ist.", "difficulty": 1 },
+    { "handle": 3, "name": "Mysteriöser Turm", "description": "Nachts geht ein unheimlicher Schleier von diesem Turm aus. Der magier sollte aber schon lange tot sein.", "difficulty": 1 },
+    { "handle": 4, "name": "Königliche Schatzkammer", "description": "Die Wachen schauen gerade nicht hin, füllt die Taschen!", "difficulty": 1 },
+    { "handle": 5, "name": "Versunkenes Schiff", "description": "Dieses Schiff war reich beladen und die ertrunkenen werden doch sicher nichts tun? ", "difficulty": 1 }
+]

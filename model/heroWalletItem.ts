@@ -3,7 +3,7 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import json = require('./heroWalletItem.json');
 @Table({ tableName: "heroWallet", modelName: "heroWallet"})
-export class HeroWalletItem extends Model<HeroWalletItem>{
+export class HeroWalletItem {
     @PrimaryKey
     @Column
     heroName: string;
@@ -16,8 +16,8 @@ export class HeroWalletItem extends Model<HeroWalletItem>{
     @Column
     lastBlood: Date = new Date(2020, 1, 1);
 
-    constructor(){
-        super();
+    constructor(heroName: string){
+        this.heroName = heroName;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -65,6 +65,21 @@ export class HeroWalletItem extends Model<HeroWalletItem>{
             }
         } catch(ex){
             global.worker.log.error(ex);
+        }
+    }
+
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroWalletItem }): Promise<number>{
+        try{
+            if(element.heroName !== null && element.heroName !== ""){
+                if(await sequelize.models.heroWallet.count({where: {heroName: element.heroName}}) === 0){
+                    await sequelize.models.heroWallet.create(element as any);
+                } else await sequelize.models.heroWallet.update(element, {where: {heroName: element.heroName}});
+                return 201;
+            } else return 406;
+
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
         }
     }
 }

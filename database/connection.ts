@@ -21,6 +21,8 @@ import { HeroWalletItem } from '../model/heroWalletItem';
 import { ItemItem } from '../model/itemItem';
 import { CommandItem } from '../model/commandItem';
 import { ItemCategoryItem } from '../model/itemCategoryItem';
+import { LocationItem } from '../model/locationItem';
+import { EnemyItem } from '../model/enemyItem';
 
 export class Connection {
     databaseName: string;
@@ -86,6 +88,8 @@ export class Connection {
             HeroInventoryItem.createTable({ sequelize: this.sequelize });
             ItemCategoryItem.createTable({ sequelize: this.sequelize });
             ItemItem.createTable({ sequelize: this.sequelize });
+            LocationItem.createTable({ sequelize: this.sequelize });
+            EnemyItem.createTable({ sequelize: this.sequelize });
             CommandItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
@@ -100,6 +104,8 @@ export class Connection {
             await HeroInventoryItem.updateTable({ sequelize: this.sequelize });
             await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
             await ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
+            await LocationItem.updateTable({ sequelize: this.sequelize });
+            await EnemyItem.updateTable({ sequelize: this.sequelize });
             await CommandItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
@@ -108,6 +114,7 @@ export class Connection {
             HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
             ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
+            LocationItem.setAssociation({ sequelize: this.sequelize});
 
             await this.updater("migrations/general");
 

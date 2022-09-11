@@ -1,10 +1,11 @@
-
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./heroItem.json');
+import { HeroTraitItem } from './heroTraitItem';
+import { HeroWalletItem } from './heroWalletItem';
 
-@Table({ tableName: "hero", modelName: "hero"})
-export class HeroItem extends Model<HeroItem> {
+@Table({ tableName: "hero", modelName: "hero" })
+export class HeroItem {
     @PrimaryKey
     @Column
     name: string;
@@ -17,10 +18,12 @@ export class HeroItem extends Model<HeroItem> {
     @Column
     experience: number = 0;
     @Column
+    prestige: number = 0;
+    @Column
     isActive: boolean = false;
 
-    constructor(){
-        super();
+    constructor(name: string){
+        this.name = name;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -46,6 +49,11 @@ export class HeroItem extends Model<HeroItem> {
                 defaultValue: 0
             },
             experience: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            prestige: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
@@ -77,6 +85,27 @@ export class HeroItem extends Model<HeroItem> {
             }
         } catch(ex){
             global.worker.log.error(ex);
+        }
+    }
+
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<number>{
+        try{
+            if(element.name !== null && element.name !== ""){
+                if(await sequelize.models.hero.count({where: {name: element.name}}) === 0){
+                    await sequelize.models.hero.create(element as any);
+                    await HeroTraitItem.put({sequelize, element: new HeroTraitItem(element.name)});
+                    await HeroWalletItem.put({sequelize, element: new HeroWalletItem(element.name)});
+                    return 201;
+                } else {
+                    await sequelize.models.hero.update(element, {where: {name: element.name}})
+                    return 200;
+                }
+
+            } else return 406;
+
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
         }
     }
 }

@@ -22,14 +22,17 @@ exports.HeroItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./heroItem.json");
-let HeroItem = class HeroItem extends sequelize_typescript_1.Model {
-    constructor() {
-        super();
+const heroTraitItem_1 = require("./heroTraitItem");
+const heroWalletItem_1 = require("./heroWalletItem");
+let HeroItem = class HeroItem {
+    constructor(name) {
         this.lastSteal = new Date(2020, 1, 1);
         this.lastJoin = new Date(2020, 1, 1);
         this.startIndex = 0;
         this.experience = 0;
+        this.prestige = 0;
         this.isActive = false;
+        this.name = name;
     }
     static createTable({ sequelize }) {
         const a = sequelize.define('hero', {
@@ -54,6 +57,11 @@ let HeroItem = class HeroItem extends sequelize_typescript_1.Model {
                 defaultValue: 0
             },
             experience: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            prestige: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
@@ -88,6 +96,30 @@ let HeroItem = class HeroItem extends sequelize_typescript_1.Model {
             }
         });
     }
+    static put({ sequelize, element }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (element.name !== null && element.name !== "") {
+                    if ((yield sequelize.models.hero.count({ where: { name: element.name } })) === 0) {
+                        yield sequelize.models.hero.create(element);
+                        yield heroTraitItem_1.HeroTraitItem.put({ sequelize, element: new heroTraitItem_1.HeroTraitItem(element.name) });
+                        yield heroWalletItem_1.HeroWalletItem.put({ sequelize, element: new heroWalletItem_1.HeroWalletItem(element.name) });
+                        return 201;
+                    }
+                    else {
+                        yield sequelize.models.hero.update(element, { where: { name: element.name } });
+                        return 200;
+                    }
+                }
+                else
+                    return 406;
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -112,11 +144,15 @@ __decorate([
 ], HeroItem.prototype, "experience", void 0);
 __decorate([
     sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "prestige", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], HeroItem.prototype, "isActive", void 0);
 HeroItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "hero", modelName: "hero" }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [String])
 ], HeroItem);
 exports.HeroItem = HeroItem;
 module.exports.default = HeroItem;

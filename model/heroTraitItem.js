@@ -22,13 +22,13 @@ exports.HeroTraitItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./heroTraitItem.json");
-let HeroTraitItem = class HeroTraitItem extends sequelize_typescript_1.Model {
-    constructor() {
-        super();
+let HeroTraitItem = class HeroTraitItem {
+    constructor(heroName) {
         this.goldMultipler = 1;
         this.stealMultipler = 1;
         this.defenceMultipler = 1;
         this.workMultipler = 1;
+        this.heroName = heroName;
     }
     static createTable({ sequelize }) {
         sequelize.define('heroTrait', {
@@ -79,6 +79,26 @@ let HeroTraitItem = class HeroTraitItem extends sequelize_typescript_1.Model {
             }
         });
     }
+    static put({ sequelize, element }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (element.heroName !== null && element.heroName !== "") {
+                    if ((yield sequelize.models.heroTrait.count({ where: { heroName: element.heroName } })) === 0) {
+                        yield sequelize.models.heroTrait.create(element);
+                    }
+                    else
+                        yield sequelize.models.heroTrait.update(element, { where: { heroName: element.heroName } });
+                    return 201;
+                }
+                else
+                    return 406;
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -103,7 +123,7 @@ __decorate([
 ], HeroTraitItem.prototype, "workMultipler", void 0);
 HeroTraitItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "heroTrait", modelName: "heroTrait" }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [String])
 ], HeroTraitItem);
 exports.HeroTraitItem = HeroTraitItem;
 module.exports.default = HeroTraitItem;

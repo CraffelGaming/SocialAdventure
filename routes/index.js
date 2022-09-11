@@ -41,6 +41,8 @@ const say_1 = __importDefault(require("./say"));
 const statistic_1 = __importDefault(require("./statistic"));
 const taverne_1 = __importDefault(require("./taverne"));
 const level_1 = __importDefault(require("./level"));
+const location_1 = __importDefault(require("./location"));
+const enemy_1 = __importDefault(require("./enemy"));
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
@@ -62,6 +64,10 @@ router.get('/heroes', heroes_1.default);
 router.get('/item', item_1.default);
 // Item Category
 router.get('/itemCategory', itemCategory_1.default);
+// Location
+router.get('/location', location_1.default);
+// Enemy
+router.get('/enemy', enemy_1.default);
 // Say
 router.get('/say', say_1.default);
 // Statistic

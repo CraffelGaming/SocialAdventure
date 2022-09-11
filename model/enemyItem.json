@@ -1,0 +1,11 @@
+[
+    { "handle": 1, "name": "Skelett", "description": "War das Skelett auch mal ein Mensch?", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 2, "name": "Ratte", "description": "Die sind auch wirklich überall.", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 3, "name": "Goblin", "description": "Klein und Schwach, das Erfolgkonzept von Goblins.", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 4, "name": "Ork", "description": "Das Gegenteil von Goblins: Stark und Schlau.", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 5, "name": "Dieb", "description": "Gerade war er noch da! Wo ist mein Gold?", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 6, "name": "Kultulist", "description": "Immer auf der Suche nach einem dunklen Ritual.", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 7, "name": "Wolf", "description": "Als Haustier geeignet. Schnell und Wendig.", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 8, "name": "Oger", "description": "Oger sind Strohdumm, oder ist Stroh so schlau wie Oger?", "difficulty": 1 , "hitpoints": 100, "strength": 10},
+    { "handle": 9, "name": "Spinne", "description": "Wer eine Phobie hat sollte rennen!", "difficulty": 1 , "hitpoints": 100, "strength": 10}
+]

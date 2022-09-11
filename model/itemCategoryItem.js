@@ -42,6 +42,7 @@ let ItemCategoryItem = class ItemCategoryItem extends sequelize_typescript_1.Mod
     }
     static setAssociation({ sequelize }) {
         sequelize.models.itemCategory.hasMany(sequelize.models.item, { as: 'items', foreignKey: 'categoryHandle' });
+        sequelize.models.itemCategory.hasMany(sequelize.models.item, { as: 'locations', foreignKey: 'categoryHandle' });
     }
     static updateTable({ sequelize, isGlobal }) {
         return __awaiter(this, void 0, void 0, function* () {

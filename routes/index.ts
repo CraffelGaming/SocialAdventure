@@ -15,6 +15,8 @@ import say from "./say";
 import statistic from "./statistic";
 import taverne from "./taverne";
 import level from "./level";
+import location from "./location";
+import enemy from "./enemy";
 
 const endpoint = 'index';
 const type = 'app';
@@ -47,6 +49,12 @@ router.get('/item', item);
 
 // Item Category
 router.get('/itemCategory', itemCategory);
+
+// Location
+router.get('/location', location);
+
+// Enemy
+router.get('/enemy', enemy);
 
 // Say
 router.get('/say', say);

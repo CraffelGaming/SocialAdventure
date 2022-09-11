@@ -33,6 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const itemItem_1 = require("../../model/itemItem");
 const router = express.Router();
 const endpoint = 'item';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -73,22 +74,7 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     const channel = global.worker.channels.find(x => x.node.name === node);
     if (channel) {
         if (global.isMaster(request, response, node)) {
-            if (request.body.handle != null && request.body.handle > 0) {
-                const item = yield channel.database.sequelize.models.item.findByPk(request.body.handle);
-                if (item) {
-                    yield channel.database.sequelize.models.item.update(request.body, { where: { handle: request.body.handle } });
-                    response.status(201).json(request.body);
-                }
-            }
-            else {
-                if (request.body.value != null && request.body.value.length > 0) {
-                    yield channel.database.sequelize.models.item.create(request.body);
-                    response.status(201).json(request.body);
-                }
-                else {
-                    response.status(406).json();
-                }
-            }
+            response.status(yield itemItem_1.ItemItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
         }
         else {
             response.status(403).json();

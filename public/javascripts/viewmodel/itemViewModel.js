@@ -118,7 +118,7 @@ $(async () => {
                 { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200 },
                 {
                   dataField: 'category.handle',
-                  caption: translate(languageItemCategory , 'value'),
+                  caption: translate(languageItemCategory , 'value'), width: 300,
                   lookup: {
                     dataSource(options) {
                       return {

@@ -4,8 +4,7 @@ $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
     let language = await getTranslation('streamer');
-    let streamer;
-    
+
     translation();
     initialize();
     load();
@@ -85,7 +84,6 @@ $(async () => {
                                     return res.json();
                                 }
                             }).then(async function (json) {
-                                streamer = json;
                                 infoPanel();
                             });
                         }

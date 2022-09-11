@@ -39,21 +39,33 @@
         "parentEndpoint": "adventure"
     },
     {
+        "endpoint": "location",
+        "name": "location",
+        "order": 1240,
+        "parentEndpoint": "adventure"
+    },
+    {
+        "endpoint": "enemy",
+        "name": "enemy",
+        "order": 1250,
+        "parentEndpoint": "adventure"
+    },
+    {
         "endpoint": "level",
         "name": "level",
-        "order": 1240,
+        "order": 1260,
         "parentEndpoint": "adventure"
     },
     {
         "endpoint": "statistic",
         "name": "statistic",
-        "order": 1250,
+        "order": 1270,
         "parentEndpoint": "adventure"
     },
     {
         "endpoint": "command",
         "name": "command",
-        "order": 1260,
+        "order": 1280,
         "parentEndpoint": "adventure"
     },
     {

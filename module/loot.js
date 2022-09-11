@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Loot = void 0;
+const heroItem_1 = require("../model/heroItem");
 const translationItem_1 = require("../model/translationItem");
 const module_1 = require("./module");
 class Loot extends module_1.Module {
@@ -56,23 +57,25 @@ class Loot extends module_1.Module {
     loot(command) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const value = yield this.channel.database.sequelize.models.hero.findOrCreate({
-                    defaults: { isActive: true, lastJoin: new Date() },
-                    where: { name: command.source }
-                });
-                if (value[1]) {
-                    return translationItem_1.TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
+                let isNew = false;
+                let value = yield this.channel.database.sequelize.models.hero.findByPk(command.source);
+                if (!value) {
+                    yield heroItem_1.HeroItem.put({ sequelize: this.channel.database.sequelize, element: new heroItem_1.HeroItem(command.source) });
+                    value = (yield this.channel.database.sequelize.models.hero.findByPk(command.source));
+                    isNew = true;
                 }
-                else {
-                    if (!value[0].getDataValue("isActive")) {
-                        value[0].setDataValue("isActive", true);
-                        value[0].setDataValue("lastJoin", new Date());
-                        yield value[0].save();
-                        return translationItem_1.TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
+                if (!value.getDataValue("isActive")) {
+                    value.setDataValue("isActive", true);
+                    value.setDataValue("lastJoin", new Date());
+                    yield value.save();
+                    if (isNew) {
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
                     }
                     else
-                        return translationItem_1.TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
                 }
+                else
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
             }
             catch (ex) {
                 global.worker.log.error(`loot error - function loot - ${ex.message}`);

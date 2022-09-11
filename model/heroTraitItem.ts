@@ -1,9 +1,8 @@
-
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./heroTraitItem.json');
 @Table({ tableName: "heroTrait", modelName: "heroTrait"})
-export class HeroTraitItem extends Model<HeroTraitItem>{
+export class HeroTraitItem {
     @PrimaryKey
     @Column
     heroName: string;
@@ -16,8 +15,8 @@ export class HeroTraitItem extends Model<HeroTraitItem>{
     @Column
     workMultipler: number = 1;
 
-    constructor(){
-        super();
+    constructor(heroName: string){
+        this.heroName = heroName;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -65,6 +64,21 @@ export class HeroTraitItem extends Model<HeroTraitItem>{
             }
         } catch(ex){
             global.worker.log.error(ex);
+        }
+    }
+
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroTraitItem }): Promise<number>{
+        try{
+            if(element.heroName !== null && element.heroName !== ""){
+                if(await sequelize.models.heroTrait.count({where: {heroName: element.heroName}}) === 0){
+                    await sequelize.models.heroTrait.create(element as any);
+                } else await sequelize.models.heroTrait.update(element, {where: {heroName: element.heroName}});
+                return 201;
+            } else return 406;
+
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
         }
     }
 }

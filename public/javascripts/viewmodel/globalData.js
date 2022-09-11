@@ -151,6 +151,7 @@ export async function get(endpoint, language = undefined) {
             console.log(res);
             switch (res.status) {
                 case 200:
+                case 201:
                     items = await res.json();
                     break;
                 default:

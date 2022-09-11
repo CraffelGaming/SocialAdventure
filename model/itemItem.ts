@@ -74,6 +74,27 @@ export class ItemItem extends Model<ItemItem>{
             global.worker.log.error(ex);
         }
     }
+
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: ItemItem }): Promise<number>{
+        try{
+            if(element.handle != null && element.handle > 0){
+                const item = await sequelize.models.item.findByPk(element.handle);
+                if(item){
+                    await sequelize.models.item.update(element, {where: {handle: element.handle}});
+                    return 201;
+                }
+            } else {
+                if(element.value != null && element.value.length > 0){
+                    await sequelize.models.item.create(element as any);
+                    return 201;
+                } else return 406;
+            }
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
+        }
+    }
 }
 
 module.exports.default = ItemItem;
+

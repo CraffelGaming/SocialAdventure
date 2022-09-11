@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, loadUserData } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -7,15 +7,16 @@ $(async () => {
     let languageItem = await getTranslation('item');
     let languageWallet = await getTranslation('wallet');
     let languageTrait = await getTranslation('trait');
-    
+    let userdata = {};
+
+    await initialize();
     translation();
-    initialize();
     load();
     infoPanel();
     
     //#region Initialize
-    function initialize() {
-
+    async function initialize() {
+        userdata = await loadUserData();
     }
     //#endregion
 
@@ -26,7 +27,9 @@ $(async () => {
                 key: "name",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get('/hero/default', language);
+                    var a = await get('/hero/default/' + userdata.login, language)
+                    console.log(a);
+                    return [a];
                 }
             }),
             filterRow: { visible: true },
@@ -54,6 +57,7 @@ $(async () => {
             showBorders: true,
             masterDetail: {
                 enabled: true,
+                autoExpandAll:true,
                 template: masterDetailTemplate
             },
             columns: [
@@ -73,7 +77,7 @@ $(async () => {
                 },
 
                 { dataField: "experience", caption: translate(language, 'experience'), width: 300 }, 
-                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200 }
+                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" }
             ],
             export: {
                 enabled: true,
@@ -200,7 +204,7 @@ $(async () => {
 
     //#region Translation
     function translation() {
-        document.getElementById("labelTitle").textContent = translate(language, 'title');
+        document.getElementById("labelTitle").textContent = userdata.display_name;
     }
     //#endregion
 });

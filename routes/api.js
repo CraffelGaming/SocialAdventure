@@ -44,7 +44,386 @@ const api_heroInventory_1 = __importDefault(require("./api/api.heroInventory"));
 const api_item_1 = __importDefault(require("./api/api.item"));
 const api_itemCategory_1 = __importDefault(require("./api/api.itemCategory"));
 const api_command_1 = __importDefault(require("./api/api.command"));
+const api_location_1 = __importDefault(require("./api/api.location"));
+const api_enemy_1 = __importDefault(require("./api/api.enemy"));
 const router = express.Router();
+//#region Enemy
+/**
+ * @swagger
+ * /enemy/{node}:
+ *   get:
+ *     tags:
+ *     - Enemy
+ *     summary: Gegner
+ *     description: Rückgabe aller Gegner.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegners
+ *               name:
+ *                 type: string
+ *                 example: "Skelett"
+ *                 descrition: Name des Gegners
+ *               description:
+ *                 type: string
+ *                 example: "Ein schwaches Skelett. War das Skelett auch mal ein Mensch?"
+ *                 descrition: Beschreibung des Gegners
+ *               difficulty:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: Schwierigkeit des Gegners.
+ *               hitpoints:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Lebenspunkte des Gegners.
+ *               strength:
+ *                 type: integer
+ *                 example: 10
+ *                 descrition: Stärke des Gegners.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/enemy/:node", api_enemy_1.default);
+/**
+ * @swagger
+ * /enemy/{node}:
+ *   put:
+ *     tags:
+ *     - Enemy
+ *     summary: gegner
+ *     description: Anlage eines neuen Gegners.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Gegners
+ *           name:
+ *             type: string
+ *             example: "Skelett"
+ *             descrition: Name des Gegners
+ *           description:
+ *             type: string
+ *             example: "Ein schwaches Skelett. War das Skelett auch mal ein Mensch?"
+ *             descrition: Beschreibung des Gegners
+ *           difficulty:
+ *             type: integer
+ *             example: 1
+ *             descrition: Schwierigkeit des Gegners.
+ *           hitpoints:
+ *             type: integer
+ *             example: 100
+ *             descrition: Lebenspunkte des Gegners.
+ *           strength:
+ *             type: integer
+ *             example: 10
+ *             descrition: Stärke des Gegners.
+ *           isActive:
+ *             type: boolean
+ *             example: true
+ *             descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Gegners
+ *             name:
+ *               type: string
+ *               example: "Skelett"
+ *               descrition: Name des Gegners
+ *             description:
+ *               type: string
+ *               example: "Ein schwaches Skelett. War das Skelett auch mal ein Mensch?"
+ *               descrition: Beschreibung des Gegners
+ *             difficulty:
+ *               type: integer
+ *               example: 1
+ *               descrition: Schwierigkeit des Gegners.
+ *             hitpoints:
+ *               type: integer
+ *               example: 100
+ *               descrition: Lebenspunkte des Gegners.
+ *             strength:
+ *               type: integer
+ *               example: 10
+ *               descrition: Stärke des Gegners.
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/enemy/:node", api_enemy_1.default);
+/**
+ * @swagger
+ * /enemy/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Enemy
+ *     summary: Gegner
+ *     description: Löscht einen bestimmten Gegner.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Dungeons"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/enemy/:node/:handle", api_enemy_1.default);
+//#endregion
+//#region Location
+/**
+ * @swagger
+ * /location/{node}:
+ *   get:
+ *     tags:
+ *     - Location
+ *     summary: Dungeon
+ *     description: Rückgabe aller Dungeons.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Dungeons
+ *               name:
+ *                 type: string
+ *                 example: "Verlassene Höhle"
+ *                 descrition: Name des Dungeons
+ *               description:
+ *                 type: string
+ *                 example: "Eine einsame, dunkle, verlassene Höhle. Mehr als Ratten wirst du hier sicher nicht antreffen, oder?"
+ *                 descrition: Beschreibung des Dungeons
+ *               difficulty:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: Schwierigkeit des Dungeons.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *               category:
+ *                 type: object
+ *                 properties:
+ *                   handle:
+ *                     type: intener
+ *                     example: 1
+ *                     descrition: ID der Item Kategorie.
+ *                   value:
+ *                     type: string
+ *                     example: "default"
+ *                     descrition: Name  für die Übersetzung der Item Kategorie.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/location/:node", api_location_1.default);
+/**
+ * @swagger
+ * /location/{node}:
+ *   put:
+ *     tags:
+ *     - Location
+ *     summary: Dungeon
+ *     description: Anlage eines neuen Dungeons.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Dungeons
+ *           name:
+ *             type: string
+ *             example: "Verlassene Höhle"
+ *             descrition: Name des Dungeons
+ *           description:
+ *             type: string
+ *             example: "Eine einsame, dunkle, verlassene Höhle. Mehr als Ratten wirst du hier sicher nicht antreffen, oder?"
+ *             descrition: Beschreibung des Dungeons
+ *           difficulty:
+ *             type: integer
+ *             example: 1
+ *             descrition: Schwierigkeit des Dungeons.
+ *           isActive:
+ *             type: boolean
+ *             example: true
+ *             descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Dungeons
+ *             name:
+ *               type: string
+ *               example: "Verlassene Höhle"
+ *               descrition: Name des Dungeons
+ *             description:
+ *               type: string
+ *               example: "Eine einsame, dunkle, verlassene Höhle. Mehr als Ratten wirst du hier sicher nicht antreffen, oder?"
+ *               descrition: Beschreibung des Dungeons
+ *             difficulty:
+ *               type: integer
+ *               example: 1
+ *               descrition: Schwierigkeit des Dungeons.
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/location/:node", api_location_1.default);
+/**
+ * @swagger
+ * /location/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Location
+ *     summary: Dungeon
+ *     description: Löscht ein bestimmtes Dungeon.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Dungeons"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/location/:node/:handle", api_location_1.default);
+//#endregion
 //#region Item Category
 /**
  * @swagger
@@ -1049,6 +1428,161 @@ router.get("/herowallet/:node/hero/:name", api_heroWallet_1.default);
  *         description: no data
  */
 router.get("/hero/:node", api_hero_1.default);
+/**
+ * @swagger
+ * /hero/{node}/{name}:
+ *   get:
+ *     tags:
+ *     - Hero
+ *     summary: Held
+ *     description: Rückgabe eines Helden anhand des Namen
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               lastSteal:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Letzter Diebszahl.
+ *               lastJoin:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Letzte Teilnahme an einem Abenteuer.
+ *               startIndex:
+ *                 type: number
+ *                 example: 2
+ *                 descrition: Interner Berechnungswert für ein faires Spiel.
+ *               experience:
+ *                 type: number
+ *                 example: 12500
+ *                 descrition: Menge der gesammelten Erfahrung.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/hero/:node/:name", api_hero_1.default);
+/**
+ * @swagger
+ * /hero/{node}:
+ *   put:
+ *     tags:
+ *     - Hero
+ *     summary: Gegenstand
+ *     description: Anlage eines neuen Gegenstands.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "hero"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Name des Helden
+ *           lastSteal:
+ *             type: string
+ *             example: "2020-02-01 00:00:00.000 +00:00"
+ *             descrition: Letzter Diebszahl.
+ *           lastJoin:
+ *             type: string
+ *             example: "2020-02-01 00:00:00.000 +00:00"
+ *             descrition: Letzte Teilnahme an einem Abenteuer.
+ *           startIndex:
+ *             type: number
+ *             example: 2
+ *             descrition: Interner Berechnungswert für ein faires Spiel.
+ *           experience:
+ *             type: number
+ *             example: 12500
+ *             descrition: Menge der gesammelten Erfahrung.
+ *           isActive:
+ *             type: boolean
+ *             example: true
+ *             descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Helden
+ *             lastSteal:
+ *               type: string
+ *               example: "2020-02-01 00:00:00.000 +00:00"
+ *               descrition: Letzter Diebszahl.
+ *             lastJoin:
+ *               type: string
+ *               example: "2020-02-01 00:00:00.000 +00:00"
+ *               descrition: Letzte Teilnahme an einem Abenteuer.
+ *             startIndex:
+ *               type: number
+ *               example: 2
+ *               descrition: Interner Berechnungswert für ein faires Spiel.
+ *             experience:
+ *               type: number
+ *               example: 12500
+ *               descrition: Menge der gesammelten Erfahrung.
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/hero/:node", api_hero_1.default);
 //#endregion
 //#region Say
 /**

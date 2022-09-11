@@ -86,6 +86,31 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
             }
         });
     }
+    static put({ sequelize, element }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (element.handle != null && element.handle > 0) {
+                    const item = yield sequelize.models.item.findByPk(element.handle);
+                    if (item) {
+                        yield sequelize.models.item.update(element, { where: { handle: element.handle } });
+                        return 201;
+                    }
+                }
+                else {
+                    if (element.value != null && element.value.length > 0) {
+                        yield sequelize.models.item.create(element);
+                        return 201;
+                    }
+                    else
+                        return 406;
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
