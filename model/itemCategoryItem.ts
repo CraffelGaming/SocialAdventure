@@ -2,6 +2,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./itemCategoryItem.json');
+import { ItemItem } from './itemItem';
 @Table({ tableName: "itemCategory", modelName: "itemCategory"})
 export class ItemCategoryItem extends Model<ItemCategoryItem>{
     @PrimaryKey
@@ -9,6 +10,8 @@ export class ItemCategoryItem extends Model<ItemCategoryItem>{
     handle: number;
     @Column
     value: string;
+
+    items: ItemItem[];
 
     constructor(){
         super();

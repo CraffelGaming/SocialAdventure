@@ -3,6 +3,7 @@ import { DataTypes } from 'sequelize';
 import json = require('./heroItem.json');
 import { HeroTraitItem } from './heroTraitItem';
 import { HeroWalletItem } from './heroWalletItem';
+import { LevelItem } from './levelItem';
 
 @Table({ tableName: "hero", modelName: "hero" })
 export class HeroItem {
@@ -91,6 +92,19 @@ export class HeroItem {
     static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<number>{
         try{
             if(element.name !== null && element.name !== ""){
+
+                const level = await sequelize.models.level.findOne({
+                    attributes:[[sequelize.fn('max', sequelize.col('experienceMax')),'max']]
+                }) as Model<LevelItem>;
+                const maxExperience = level.getDataValue("experienceMax");
+
+                if(element.experience){
+                    if(element.experience >= maxExperience){
+                        element.experience -= maxExperience;
+                        element.prestige += 1;
+                    }
+                }
+
                 if(await sequelize.models.hero.count({where: {name: element.name}}) === 0){
                     await sequelize.models.hero.create(element as any);
                     await HeroTraitItem.put({sequelize, element: new HeroTraitItem(element.name)});
@@ -100,9 +114,7 @@ export class HeroItem {
                     await sequelize.models.hero.update(element, {where: {name: element.name}})
                     return 200;
                 }
-
             } else return 406;
-
         } catch(ex){
             global.worker.log.error(ex);
             return 500;

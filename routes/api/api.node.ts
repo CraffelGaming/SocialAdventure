@@ -12,8 +12,8 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 
 router.get('/' + endpoint + '/default', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, default`);
-    global.defaultNode(request, response);
-    response.status(200).json({ node: request.session.node});
+    await global.defaultNode(request, response);
+    response.status(200).json(request.session.node);
 });
 
 router.post('/' + endpoint + '/default', async (request: express.Request, response: express.Response) => {
@@ -22,7 +22,7 @@ router.post('/' + endpoint + '/default', async (request: express.Request, respon
     const channel = global.worker.channels.find(x => x.node.name === request.query.node);
     global.worker.log.trace(request.session);
     if(channel) {
-        request.session.node = request.query.node as string;
+        request.session.node = channel.node;
         response.status(200).json({ node: request.session.node});
     } else response.status(404).json();
 });

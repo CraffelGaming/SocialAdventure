@@ -64,8 +64,7 @@ $(async () => {
                         }
                     });
                 },
-                remove: async function (key) {
-                    console.log(key);
+                remove: async function (key) {;
                     await fetch('./say/default' + key, {
                         method: 'delete',
                         headers: {

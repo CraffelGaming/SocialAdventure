@@ -18,6 +18,8 @@ import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
+import { Channel } from "diagnostics_channel";
+import { NodeItem } from "./model/nodeItem";
 
 const app = express();
 
@@ -48,9 +50,9 @@ declare global {
       };
 }
 
-global.defaultNode = function getDefaultNode(request: express.Request, response: express.Response) : string{
+global.defaultNode = async function getDefaultNode(request: express.Request, response: express.Response) : Promise<NodeItem> {
     if(!request.session.node){
-        request.session.node = "craffelmat";
+        request.session.node =  await global.worker.globalDatabase.sequelize.models.node.findByPk("craffelmat") as NodeItem;
     }
     return request.session.node;
 }
@@ -76,7 +78,7 @@ declare module 'express-session' {
     interface SessionData {
         state: string,
         twitch: globalThis.credentialItem,
-        node: string,
+        node: NodeItem,
         userData: credentialUserItem
     }
 }

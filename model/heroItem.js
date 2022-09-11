@@ -100,6 +100,16 @@ let HeroItem = class HeroItem {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (element.name !== null && element.name !== "") {
+                    const level = yield sequelize.models.level.findOne({
+                        attributes: [[sequelize.fn('max', sequelize.col('experienceMax')), 'max']]
+                    });
+                    const maxExperience = level.getDataValue("experienceMax");
+                    if (element.experience) {
+                        if (element.experience >= maxExperience) {
+                            element.experience -= maxExperience;
+                            element.prestige += 1;
+                        }
+                    }
                     if ((yield sequelize.models.hero.count({ where: { name: element.name } })) === 0) {
                         yield sequelize.models.hero.create(element);
                         yield heroTraitItem_1.HeroTraitItem.put({ sequelize, element: new heroTraitItem_1.HeroTraitItem(element.name) });

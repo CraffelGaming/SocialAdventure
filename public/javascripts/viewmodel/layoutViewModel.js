@@ -2,8 +2,9 @@ import { getTranslation, translate, get } from './globalData.js';
 
 $(async () => {
     let language = await getTranslation('navigation');
-    let menus = await getMenu();
-    let twitch = await getTwitchURL();
+    let menus = await get(`/menu`, language);
+    let twitch = await get(`/twitch`, language);
+    let node = await get(`/node/default`, language);
     
     initialize();
 
@@ -12,7 +13,7 @@ $(async () => {
         var items = [];
 
         items.push({
-            icon: '/images/favicon.png',
+            icon: node?.profileImageUrl != null ? node.profileImageUrl : '/images/favicon.png',
             href: '/',
             text: translate(language, "title")
         });
@@ -57,18 +58,6 @@ $(async () => {
                 items: elements 
             });
         }
-    }
-    //#endregion
-
-    //#region Menu
-    async function getMenu() {
-        return await get(`/menu`, language);
-    }
-    //#endregion
-
-    //#region Twitch
-    async function getTwitchURL() {
-        return await get(`/twitch`, language);
     }
     //#endregion
 });

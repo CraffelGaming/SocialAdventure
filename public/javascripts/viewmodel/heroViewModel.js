@@ -27,9 +27,7 @@ $(async () => {
                 key: "name",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    var a = await get('/hero/default/' + userdata.login, language)
-                    console.log(a);
-                    return [a];
+                    return [await get('/hero/default/' + userdata.login, language)];
                 }
             }),
             filterRow: { visible: true },
@@ -60,9 +58,20 @@ $(async () => {
                 autoExpandAll:true,
                 template: masterDetailTemplate
             },
-            columns: [
+            columns: [                
+                {
+                    dataField: 'Picture',
+                    caption: "",
+                    width: 100,
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate(container, options) {
+                    $('<div>')
+                        .append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/prestige/' + options.row.data.prestige + '.png', width: 64, height: 64 }))
+                        .appendTo(container);
+                    },
+                },
                 { dataField: "name", caption: translate(language, 'name') },
-
                 {
                     caption: translate(language, 'lastSteal'), width: 200,
                     calculateCellValue(data) {
@@ -75,7 +84,6 @@ $(async () => {
                         return new Date(data.lastJoin).toLocaleDateString() + " " + new Date(data.lastJoin).toLocaleTimeString();
                     }
                 },
-
                 { dataField: "experience", caption: translate(language, 'experience'), width: 300 }, 
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" }
             ],

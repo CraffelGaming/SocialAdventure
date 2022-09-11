@@ -37,11 +37,13 @@ const router = express.Router();
 const endpoint = 'herotrait';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node = request.params.node;
     let item;
-    if (node === 'default')
-        node = global.defaultNode(request, response);
-    const channel = global.worker.channels.find(x => x.node.name === node);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (request.query.childs !== "false") {
             item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
@@ -61,11 +63,13 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
 }));
 router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-    let node = request.params.node;
     let item;
-    if (node === 'default')
-        node = global.defaultNode(request, response);
-    const channel = global.worker.channels.find(x => x.node.name === node);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (request.query.childs !== "false") {
             item = (yield channel.database.sequelize.models.heroTrait.findAll({ where: { heroName: request.params.name }, raw: false, include: [{

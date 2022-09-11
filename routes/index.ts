@@ -69,7 +69,14 @@ router.get('/taverne', taverne);
 router.get('/level', level);
 
 // index
-router.get('/', (request: express.Request, response: express.Response) => {
+router.get('/', async (request: express.Request, response: express.Response) => {
+    if(request.query.node){
+        const channel = global.worker.channels.find(x => x.node.name === request.query.node);
+        if(channel) {
+            request.session.node = channel.node;
+        }
+    }
+
     response.render(endpoint, {
         title: 'Social Adventure'
     });

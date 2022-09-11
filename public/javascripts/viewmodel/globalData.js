@@ -27,7 +27,7 @@ export async function infoPanel() {
             disabled: true, 
             stylingMode: "text" 
         }, {
-            text: (defaultNode != null) ? translate(languageInfo, 'streamer').replace('$1', defaultNode.node) : translate(languageInfo, 'noStreamer'),
+            text: (defaultNode != null) ? translate(languageInfo, 'streamer').replace('$1', defaultNode.displayName) : translate(languageInfo, 'noStreamer'),
             disabled: true, 
             stylingMode: "text"
         }],
@@ -105,12 +105,12 @@ export async function getEditing() {
     }
     */
 
-    if(userData != null && defaultNode.node != null){
+    if(userData != null && defaultNode.node?.name != null){
         return {
             mode: "popup",
-            allowUpdating: userData.login === defaultNode.node,
-            allowDeleting: userData.login === defaultNode.node,
-            allowAdding: userData.login === defaultNode.node,
+            allowUpdating: userData.login === defaultNode.node.name,
+            allowDeleting: userData.login === defaultNode.node.name,
+            allowAdding: userData.login === defaultNode.node.name,
         }
     } else {
         return {
@@ -129,8 +129,8 @@ export async function isMaster() {
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
 
-    if(userData != null && defaultNode.node != null){
-        return userData.login === defaultNode.node;
+    if(userData != null && defaultNode.node?.name != null){
+        return userData.login === defaultNode.node.name;
     }
     return false; //true
 
@@ -148,7 +148,7 @@ export async function get(endpoint, language = undefined) {
                 'Content-type': 'application/json'
             }
         }).then(async function (res) {
-            console.log(res);
+            //console.log(res);
             switch (res.status) {
                 case 200:
                 case 201:

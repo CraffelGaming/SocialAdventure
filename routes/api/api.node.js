@@ -45,15 +45,15 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
 }));
 router.get('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, default`);
-    global.defaultNode(request, response);
-    response.status(200).json({ node: request.session.node });
+    yield global.defaultNode(request, response);
+    response.status(200).json(request.session.node);
 }));
 router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`post ${endpoint}, default`);
     const channel = global.worker.channels.find(x => x.node.name === request.query.node);
     global.worker.log.trace(request.session);
     if (channel) {
-        request.session.node = request.query.node;
+        request.session.node = channel.node;
         response.status(200).json({ node: request.session.node });
     }
     else

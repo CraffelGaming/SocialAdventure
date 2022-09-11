@@ -57,7 +57,6 @@ $(async () => {
                     allowFiltering: false,
                     allowSorting: false,
                     cellTemplate(container, options) {
-                        console.log(options);
                       $('<div>')
                         .append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
                         .appendTo(container);
@@ -67,7 +66,7 @@ $(async () => {
                 { dataField: "displayName", caption: translate(language, 'displayName'), width: 400, overflow: 'hidden' },
                 { dataField: "language", caption: translate(language, 'language'), width: 120 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), dataType:'boolean', alignment: 'left', width: 120 },
-                { dataField: "endpoint", caption: translate(language, 'endpoint')},
+                { dataField: "endpoint", caption: translate(language, 'endpoint'), editorType: "dxTextBox", editorOptions: { type: 'url' }},
                 {
                     type: "buttons",
                     buttons: [{

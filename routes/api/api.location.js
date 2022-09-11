@@ -38,10 +38,12 @@ const router = express.Router();
 const endpoint = 'location';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node = request.params.node;
-    if (node === 'default')
-        node = global.defaultNode(request, response);
-    const channel = global.worker.channels.find(x => x.node.name === node);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         const item = yield channel.database.sequelize.models.location.findAll({ order: [['name', 'ASC']], raw: false, include: [{
                     model: global.worker.globalDatabase.sequelize.models.itemCategory,
@@ -57,10 +59,12 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
 }));
 router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
-    let node = request.params.node;
-    if (node === 'default')
-        node = global.defaultNode(request, response);
-    const channel = global.worker.channels.find(x => x.node.name === node);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (global.isMaster(request, response, node)) {
             response.status(yield locationItem_1.LocationItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
@@ -74,10 +78,12 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
 }));
 router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
-    let node = request.params.node;
-    if (node === 'default')
-        node = global.defaultNode(request, response);
-    const channel = global.worker.channels.find(x => x.node.name === node);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (global.isMaster(request, response, node)) {
             if (request.params.handle != null) {

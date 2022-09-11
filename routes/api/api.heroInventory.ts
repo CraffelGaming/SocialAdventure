@@ -1,17 +1,19 @@
 import * as express from 'express';
 import { HeroInventoryItem } from '../../model/heroInventoryItem';
+import { NodeItem } from '../../model/nodeItem';
 const router = express.Router();
 const endpoint = 'heroinventory';
 
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node = request.params.node;
     let item : HeroInventoryItem[];
+    let node: NodeItem;
 
-    if(node === 'default')
-        node = global.defaultNode(request, response);
+    if(request.params.node === 'default')
+        node = await global.defaultNode(request, response);
+    else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-    const channel = global.worker.channels.find(x => x.node.name === node )
+    const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
         if(request.query.childs !== "false"){
@@ -31,13 +33,14 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
 router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-    let node = request.params.node;
     let item : HeroInventoryItem[];
+    let node: NodeItem;
 
-    if(node === 'default')
-        node = global.defaultNode(request, response);
+    if(request.params.node === 'default')
+        node = await global.defaultNode(request, response);
+    else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-    const channel = global.worker.channels.find(x => x.node.name === node )
+    const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
         if(request.query.childs !== "false"){
