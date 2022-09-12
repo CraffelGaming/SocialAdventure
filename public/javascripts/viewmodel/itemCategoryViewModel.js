@@ -109,7 +109,7 @@ $(async () => {
                     }]
                 }
             ],
-            editing: await getEditing(),
+            //editing: await getEditing(),
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']

@@ -18,7 +18,6 @@ import routes from './routes/index';
 import api from './routes/api';
 
 import { Worker } from './controller/worker';
-import { Channel } from "diagnostics_channel";
 import { NodeItem } from "./model/nodeItem";
 
 const app = express();
@@ -57,9 +56,9 @@ global.defaultNode = async function getDefaultNode(request: express.Request, res
     return request.session.node;
 }
 
-global.isMaster = function isMaster(request: express.Request, response: express.Response, node: string) : boolean{
+global.isMaster = function isMaster(request: express.Request, response: express.Response, node: NodeItem) : boolean{
     if(request.session != null && request.session.userData != null && request.session.userData.login != null){
-        if(request.session.userData.login === node){
+        if(request.session.userData.login === node.name){
             return true;
         }
     }

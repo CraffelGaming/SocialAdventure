@@ -33,9 +33,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const enemyItem_1 = require("../../model/enemyItem");
+const adventureItem_1 = require("../../model/adventureItem");
 const router = express.Router();
-const endpoint = 'enemy';
+const endpoint = 'adventure';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node;
@@ -45,7 +45,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        const item = yield channel.database.sequelize.models.enemy.findAll({ order: [['name', 'ASC']], raw: false });
+        const item = yield channel.database.sequelize.models.adventure.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false });
         if (item)
             response.status(200).json(item);
         else
@@ -58,13 +58,13 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
     let node;
     if (request.params.node === 'default')
-        node = global.defaultNode(request, response);
+        node = yield global.defaultNode(request, response);
     else
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (global.isMaster(request, response, node)) {
-            response.status(yield enemyItem_1.EnemyItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
+            response.status(yield adventureItem_1.AdventureItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
         }
         else {
             response.status(403).json();
@@ -73,8 +73,8 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     else
         response.status(404).json();
 }));
-router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
+router.delete('/' + endpoint + '/:node/:heroName/:itemHandle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, heroName ${request.params.heroName}, itemHandle ${request.params.itemHandle}`);
     let node;
     if (request.params.node === 'default')
         node = yield global.defaultNode(request, response);
@@ -83,10 +83,10 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (global.isMaster(request, response, node)) {
-            if (request.params.handle != null) {
-                const item = yield channel.database.sequelize.models.enemy.findByPk(request.params.handle);
+            if (request.params.heroName != null && request.params.itemHandle != null) {
+                const item = yield channel.database.sequelize.models.adventure.findOne({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle } });
                 if (item) {
-                    yield channel.database.sequelize.models.enemy.destroy({ where: { handle: request.params.handle } });
+                    yield channel.database.sequelize.models.adventure.destroy({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle } });
                 }
                 response.status(204).json();
             }
@@ -101,4 +101,4 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
         response.status(404).json();
 }));
 exports.default = router;
-//# sourceMappingURL=api.enemy.js.map
+//# sourceMappingURL=api.adventure.js.map

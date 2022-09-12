@@ -159,7 +159,7 @@ class Loot extends module_1.Module {
         return 'lootclear';
     }
     //#endregion
-    //#region Shortcots
+    //#region Shortcuts
     inv(command) {
         this.inventory(command);
     }

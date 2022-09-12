@@ -21,18 +21,37 @@ $(async () => {
             },
             items: [{
                     dataField: "name",
+                    isRequired: "true",
+                    label: {
+                        text: translate(language, 'name')
+                        },
                     editorOptions: {
                     }            
                 }, {     
                     dataField: "mail",
+                    isRequired: "true",
+                    label: {
+                        text: translate(language, 'mail')
+                        },
                     editorOptions: {
                         mode:"email"
                     }   
                 }, {
                 dataField: "content",
+                isRequired: "true",
                 editorType: "dxTextArea",
+                label: {
+                    text: translate(language, 'content')
+                    },
                 editorOptions: {
-                    height: 300
+                    height: 300,
+                    maxLength: 800
+                }
+            }, {
+                itemType: "button",
+                buttonOptions: {
+                    text: translate(language, 'send'),
+                    useSubmitBehavior: true
                 }
             }]
         });

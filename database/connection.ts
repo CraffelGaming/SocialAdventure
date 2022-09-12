@@ -23,6 +23,7 @@ import { CommandItem } from '../model/commandItem';
 import { ItemCategoryItem } from '../model/itemCategoryItem';
 import { LocationItem } from '../model/locationItem';
 import { EnemyItem } from '../model/enemyItem';
+import { AdventureItem } from '../model/adventureItem';
 
 export class Connection {
     databaseName: string;
@@ -91,6 +92,7 @@ export class Connection {
             LocationItem.createTable({ sequelize: this.sequelize });
             EnemyItem.createTable({ sequelize: this.sequelize });
             CommandItem.createTable({ sequelize: this.sequelize });
+            AdventureItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -107,6 +109,7 @@ export class Connection {
             await LocationItem.updateTable({ sequelize: this.sequelize });
             await EnemyItem.updateTable({ sequelize: this.sequelize });
             await CommandItem.updateTable({ sequelize: this.sequelize });
+            await AdventureItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });
@@ -115,6 +118,7 @@ export class Connection {
             ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
             LocationItem.setAssociation({ sequelize: this.sequelize});
+            AdventureItem.setAssociation({ sequelize: this.sequelize});
 
             await this.updater("migrations/general");
 

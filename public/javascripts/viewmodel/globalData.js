@@ -105,12 +105,12 @@ export async function getEditing() {
     }
     */
 
-    if(userData != null && defaultNode.node?.name != null){
+    if(userData != null && defaultNode?.name != null){
         return {
             mode: "popup",
-            allowUpdating: userData.login === defaultNode.node.name,
-            allowDeleting: userData.login === defaultNode.node.name,
-            allowAdding: userData.login === defaultNode.node.name,
+            allowUpdating: userData.login === defaultNode.name,
+            allowDeleting: userData.login === defaultNode.name,
+            allowAdding: userData.login === defaultNode.name,
         }
     } else {
         return {
@@ -129,8 +129,8 @@ export async function isMaster() {
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
 
-    if(userData != null && defaultNode.node?.name != null){
-        return userData.login === defaultNode.node.name;
+    if(userData != null && defaultNode?.name != null){
+        return userData.login === defaultNode.name;
     }
     return false; //true
 

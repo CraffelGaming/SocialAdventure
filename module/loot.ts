@@ -154,7 +154,7 @@ export class Loot extends Module {
     }
     //#endregion
 
-    //#region Shortcots
+    //#region Shortcuts
     inv(command: Command){
         this.inventory(command);
     }

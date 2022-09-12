@@ -64,7 +64,7 @@ global.defaultNode = function getDefaultNode(request, response) {
 };
 global.isMaster = function isMaster(request, response, node) {
     if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
-        if (request.session.userData.login === node) {
+        if (request.session.userData.login === node.name) {
             return true;
         }
     }

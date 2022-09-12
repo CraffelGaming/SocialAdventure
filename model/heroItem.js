@@ -76,6 +76,7 @@ let HeroItem = class HeroItem {
     }
     static setAssociation({ sequelize }) {
         sequelize.models.hero.hasOne(sequelize.models.heroTrait, { as: 'trait', foreignKey: 'heroName' });
+        sequelize.models.hero.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'heroName' });
         sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName' });
         sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName' });
     }

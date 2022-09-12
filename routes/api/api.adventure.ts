@@ -1,8 +1,9 @@
 import * as express from 'express';
-import { EnemyItem } from '../../model/enemyItem';
+import { AdventureItem } from '../../model/adventureItem';
 import { NodeItem } from '../../model/nodeItem';
+
 const router = express.Router();
-const endpoint = 'enemy';
+const endpoint = 'adventure';
 
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
@@ -15,7 +16,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
-        const item = await channel.database.sequelize.models.enemy.findAll({order: [ [ 'name', 'ASC' ]], raw: false });
+        const item = await channel.database.sequelize.models.adventure.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false });
         if(item) response.status(200).json(item);
         else response.status(404).json();
     } else response.status(404).json();
@@ -26,22 +27,22 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
     let node: NodeItem;
 
     if(request.params.node === 'default')
-        node = global.defaultNode(request, response);
+        node = await global.defaultNode(request, response);
     else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
         if(global.isMaster(request, response, node)){
-            response.status(await EnemyItem.put({ sequelize: channel.database.sequelize, element: request.body})).json(request.body);
+            response.status(await AdventureItem.put({ sequelize: channel.database.sequelize, element: request.body})).json(request.body);
         } else {
             response.status(403).json();
         }
     } else response.status(404).json();
 });
 
-router.delete('/' + endpoint + '/:node/:handle', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
+router.delete('/' + endpoint + '/:node/:heroName/:itemHandle', async (request: express.Request, response: express.Response) => {
+    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, heroName ${request.params.heroName}, itemHandle ${request.params.itemHandle}`);
     let node: NodeItem;
 
     if(request.params.node === 'default')
@@ -52,10 +53,10 @@ router.delete('/' + endpoint + '/:node/:handle', async (request: express.Request
 
     if(channel) {
         if(global.isMaster(request, response, node)){
-            if(request.params.handle != null){
-                const item = await channel.database.sequelize.models.enemy.findByPk(request.params.handle) as unknown as EnemyItem;
+            if(request.params.heroName != null && request.params.itemHandle != null){
+                const item = await channel.database.sequelize.models.adventure.findOne({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle}}) as unknown as AdventureItem;
                 if(item){
-                    await channel.database.sequelize.models.enemy.destroy({where: {handle: request.params.handle}});
+                    await channel.database.sequelize.models.adventure.destroy({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle}});
                 }
                 response.status(204).json();
             } else response.status(404).json();

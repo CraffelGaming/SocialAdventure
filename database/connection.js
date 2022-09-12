@@ -56,6 +56,7 @@ const commandItem_1 = require("../model/commandItem");
 const itemCategoryItem_1 = require("../model/itemCategoryItem");
 const locationItem_1 = require("../model/locationItem");
 const enemyItem_1 = require("../model/enemyItem");
+const adventureItem_1 = require("../model/adventureItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -112,6 +113,7 @@ class Connection {
                 locationItem_1.LocationItem.createTable({ sequelize: this.sequelize });
                 enemyItem_1.EnemyItem.createTable({ sequelize: this.sequelize });
                 commandItem_1.CommandItem.createTable({ sequelize: this.sequelize });
+                adventureItem_1.AdventureItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
@@ -126,6 +128,7 @@ class Connection {
                 yield locationItem_1.LocationItem.updateTable({ sequelize: this.sequelize });
                 yield enemyItem_1.EnemyItem.updateTable({ sequelize: this.sequelize });
                 yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
+                yield adventureItem_1.AdventureItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
                 heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });
@@ -133,6 +136,7 @@ class Connection {
                 itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
                 locationItem_1.LocationItem.setAssociation({ sequelize: this.sequelize });
+                adventureItem_1.AdventureItem.setAssociation({ sequelize: this.sequelize });
                 yield this.updater("migrations/general");
                 return true;
             }

@@ -1,5 +1,4 @@
 import * as express from 'express';
-import sequelize from 'sequelize';
 import { HeroInventoryItem } from '../../model/heroInventoryItem';
 import { ItemItem } from '../../model/itemItem';
 import { NodeItem } from '../../model/nodeItem';

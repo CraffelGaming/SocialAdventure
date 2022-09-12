@@ -60,7 +60,8 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
     }
     static setAssociation({ sequelize, isGlobal }) {
         if (!isGlobal) {
-            sequelize.models.item.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'itemhandle' });
+            sequelize.models.item.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'itemHandle' });
+            sequelize.models.item.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'itemHandle' });
         }
         sequelize.models.item.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle' });
     }
