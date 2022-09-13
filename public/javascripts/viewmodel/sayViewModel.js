@@ -27,7 +27,7 @@ $(async () => {
                     return await get(`/say/default`, language);
                 },
                 insert: async function (values) {
-                    await fetch('./say/default', {
+                    await fetch('./api/say/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -47,7 +47,7 @@ $(async () => {
                 update: async function (key, values) {
                     var item = values;
                     item.command = key;
-                    await fetch('./say/default', {
+                    await fetch('./api/say/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -65,7 +65,7 @@ $(async () => {
                     });
                 },
                 remove: async function (key) {;
-                    await fetch('./say/default' + key, {
+                    await fetch('./api/say/default/' + key, {
                         method: 'delete',
                         headers: {
                             'Content-type': 'application/json'

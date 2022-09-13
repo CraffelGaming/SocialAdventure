@@ -39,16 +39,49 @@ const endpoint = 'location';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
     let node;
+    let item;
     if (request.params.node === 'default')
         node = yield global.defaultNode(request, response);
     else
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        const item = yield channel.database.sequelize.models.location.findAll({ order: [['name', 'ASC']], raw: false, include: [{
-                    model: global.worker.globalDatabase.sequelize.models.itemCategory,
-                    as: 'category',
-                }] });
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.location.findAll({ order: [['name', 'ASC']], raw: false, include: [{
+                        model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                        as: 'category',
+                    }] }));
+        }
+        else {
+            item = (yield channel.database.sequelize.models.location.findAll({ order: [['name', 'ASC']], raw: false }));
+        }
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.get('/' + endpoint + '/:node/active', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node;
+    let item;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (request.query.childs !== "false") {
+            item = (yield channel.database.sequelize.models.location.findAll({ where: { isActive: true }, order: [['name', 'ASC']], raw: false, include: [{
+                        model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                        as: 'category',
+                    }] }));
+        }
+        else {
+            item = (yield channel.database.sequelize.models.location.findAll({ where: { isActive: true }, order: [['name', 'ASC']], raw: false }));
+        }
         if (item)
             response.status(200).json(item);
         else

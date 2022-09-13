@@ -52,9 +52,12 @@ const taverne_1 = __importDefault(require("./taverne"));
 const level_1 = __importDefault(require("./level"));
 const location_1 = __importDefault(require("./location"));
 const enemy_1 = __importDefault(require("./enemy"));
+const adventure_1 = __importDefault(require("./adventure"));
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
+// Adventure
+router.get('/adventure', adventure_1.default);
 // Help
 router.get('/help', help_1.default);
 // Streamer

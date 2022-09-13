@@ -32,6 +32,7 @@ let HeroItem = class HeroItem {
         this.experience = 0;
         this.prestige = 0;
         this.isActive = false;
+        this.level = 1;
         this.name = name;
     }
     static createTable({ sequelize }) {
@@ -65,6 +66,16 @@ let HeroItem = class HeroItem {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
+            },
+            hitpoints: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            level: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 1
             },
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
@@ -111,6 +122,12 @@ let HeroItem = class HeroItem {
                             element.prestige += 1;
                         }
                     }
+                    const currentLevel = yield sequelize.models.level.findOne({
+                        where: { experienceMin: { [sequelize_1.Op.lte]: element.experience },
+                            experienceMax: { [sequelize_1.Op.gte]: element.experience }
+                        }
+                    });
+                    element.level = currentLevel.getDataValue("handle");
                     if ((yield sequelize.models.hero.count({ where: { name: element.name } })) === 0) {
                         yield sequelize.models.hero.create(element);
                         yield heroTraitItem_1.HeroTraitItem.put({ sequelize, element: new heroTraitItem_1.HeroTraitItem(element.name) });
@@ -161,6 +178,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], HeroItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "level", void 0);
 HeroItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "hero", modelName: "hero" }),
     __metadata("design:paramtypes", [String])

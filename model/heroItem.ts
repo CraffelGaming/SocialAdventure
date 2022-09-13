@@ -1,5 +1,5 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
-import { DataTypes } from 'sequelize';
+import { DataTypes, Op } from 'sequelize';
 import json = require('./heroItem.json');
 import { HeroTraitItem } from './heroTraitItem';
 import { HeroWalletItem } from './heroWalletItem';
@@ -22,6 +22,8 @@ export class HeroItem {
     prestige: number = 0;
     @Column
     isActive: boolean = false;
+    @Column
+    level: number = 1;
 
     constructor(name: string){
         this.name = name;
@@ -58,6 +60,16 @@ export class HeroItem {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
+            },
+            hitpoints: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            level: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 1
             },
             isActive: {
                 type: DataTypes.BOOLEAN,
@@ -105,6 +117,13 @@ export class HeroItem {
                         element.prestige += 1;
                     }
                 }
+
+                const currentLevel = await sequelize.models.level.findOne({
+                    where: { experienceMin :{[Op.lte]: element.experience },
+                    experienceMax :{[Op.gte]: element.experience }
+                }});
+
+                element.level = currentLevel.getDataValue("handle");
 
                 if(await sequelize.models.hero.count({where: {name: element.name}}) === 0){
                     await sequelize.models.hero.create(element as any);

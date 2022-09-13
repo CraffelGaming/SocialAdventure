@@ -45,7 +45,37 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        const item = yield channel.database.sequelize.models.adventure.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false });
+        const item = yield channel.database.sequelize.models.adventure.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
+                    model: channel.database.sequelize.models.hero,
+                    as: 'hero',
+                }, {
+                    model: channel.database.sequelize.models.item,
+                    as: 'item',
+                }] });
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        const item = yield channel.database.sequelize.models.adventure.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
+                    model: channel.database.sequelize.models.hero,
+                    as: 'hero',
+                }, {
+                    model: channel.database.sequelize.models.item,
+                    as: 'item',
+                }] });
         if (item)
             response.status(200).json(item);
         else

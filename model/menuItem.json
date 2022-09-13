@@ -16,57 +16,63 @@
         "order": 1100
     },
     {
+        "endpoint": "game",
+        "name": "game",
+        "order": 1200
+    },
+    {
         "endpoint": "adventure",
         "name": "adventure",
-        "order": 1200
+        "order": 1210,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "heroes",
         "name": "heroes",
-        "order": 1210,
-        "parentEndpoint": "adventure"
+        "order": 1220,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "item",
         "name": "item",
-        "order": 1220,
-        "parentEndpoint": "adventure"
+        "order": 1230,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "itemCategory",
         "name": "itemCategory",
-        "order": 1230,
-        "parentEndpoint": "adventure"
+        "order": 1240,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "location",
         "name": "location",
-        "order": 1240,
-        "parentEndpoint": "adventure"
+        "order": 1250,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "enemy",
         "name": "enemy",
-        "order": 1250,
-        "parentEndpoint": "adventure"
+        "order": 1260,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "level",
         "name": "level",
-        "order": 1260,
-        "parentEndpoint": "adventure"
+        "order": 1270,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "statistic",
         "name": "statistic",
-        "order": 1270,
-        "parentEndpoint": "adventure"
+        "order": 1280,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "command",
         "name": "command",
-        "order": 1280,
-        "parentEndpoint": "adventure"
+        "order": 1290,
+        "parentEndpoint": "game"
     },
     {
         "endpoint": "me",

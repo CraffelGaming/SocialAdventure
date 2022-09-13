@@ -41,8 +41,8 @@ let AdventureItem = class AdventureItem extends sequelize_typescript_1.Model {
         }, { freezeTableName: true });
     }
     static setAssociation({ sequelize }) {
-        sequelize.models.heroInventory.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
-        sequelize.models.heroInventory.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle' });
+        sequelize.models.adventure.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
+        sequelize.models.adventure.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle' });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -17,11 +17,15 @@ import taverne from "./taverne";
 import level from "./level";
 import location from "./location";
 import enemy from "./enemy";
+import adventure from "./adventure";
 
 const endpoint = 'index';
 const type = 'app';
 
 const router = express.Router();
+
+// Adventure
+router.get('/adventure', adventure);
 
 // Help
 router.get('/help', help);

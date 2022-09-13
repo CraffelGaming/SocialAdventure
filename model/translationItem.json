@@ -11,7 +11,7 @@
     { "page": "navigation", "handle": "help", "language": "de-DE", "translation": "Hilfe & Feedback"},
     { "page": "navigation", "handle": "impressum", "language": "de-DE", "translation": "Impressum"},
     { "page": "navigation", "handle": "title", "language": "de-DE", "translation": "Social Adventure"},
-    { "page": "navigation", "handle": "adventure", "language": "de-DE", "translation": "Dungeon & Loot"},
+    { "page": "navigation", "handle": "game", "language": "de-DE", "translation": "Dungeon & Loot"},
     { "page": "navigation", "handle": "hero", "language": "de-DE", "translation": "Held"},
     { "page": "navigation", "handle": "heroes", "language": "de-DE", "translation": "Helden"},
     { "page": "navigation", "handle": "me", "language": "de-DE", "translation": "Mein Account"},
@@ -20,6 +20,7 @@
     { "page": "navigation", "handle": "location", "language": "de-DE", "translation": "Dungeons"},
     { "page": "navigation", "handle": "enemy", "language": "de-DE", "translation": "Gegner"},
     { "page": "navigation", "handle": "itemCategory", "language": "de-DE", "translation": "Gegenstandskategorie"},
+    { "page": "navigation", "handle": "adventure", "language": "de-DE", "translation": "Abenteuer"},
     { "page": "navigation", "handle": "daily", "language": "de-DE", "translation": "Tägliche Aufgabe"},
     { "page": "navigation", "handle": "taverne", "language": "de-DE", "translation": "Taverne"},
     { "page": "navigation", "handle": "statistic", "language": "de-DE", "translation": "Statistiken"},
@@ -113,6 +114,7 @@
     { "page": "hero", "handle": "title", "language": "de-DE", "translation": "Helden"},
     { "page": "hero", "handle": "wallet", "language": "de-DE", "translation": "Geldbörse"},
     { "page": "hero", "handle": "inventory", "language": "de-DE", "translation": "Kiste"},
+    { "page": "hero", "handle": "hitpoints", "language": "de-DE", "translation": "HP"},
     { "page": "hero", "handle": "trait", "language": "de-DE", "translation": "Eigenschaften"},
     { "page": "hero", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "hero", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
@@ -210,5 +212,14 @@
     { "page": "enemy", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},
     { "page": "enemy", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "enemy", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
-    { "page": "enemy", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."}
+    { "page": "enemy", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "adventure", "handle": "adventure", "language": "de-DE", "translation": "Abenteuer"},
+    { "page": "adventure", "handle": "title", "language": "de-DE", "translation": "Aktuelles Abenteuer"},
+    { "page": "adventure", "handle": "owner", "language": "de-DE", "translation": "Aktueller Besitzer"},
+    { "page": "adventure", "handle": "item", "language": "de-DE", "translation": "Gefundener Gegenstand"},
+    { "page": "adventure", "handle": "trait", "language": "de-DE", "translation": "Eigenschaften des Besitzers"},
+    { "page": "adventure", "handle": "informationDungeon", "language": "de-DE", "translation": "Dungeon $1 von $2: Swipe nach links oder rechts um alle Dungeons zu sehen."}
+
+
+    
 ]

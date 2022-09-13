@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    script(type="module" src='/javascripts/viewmodel/adventureViewModel.js')   
+
+    body.dx-viewport
+        #container.main-container
+            h4#labelTitle
+            #multiview
+                #informationDungeon
+                #multiview-container
+            #dataGrid
+
+    footer#sticky-footer.footer
+        #info-panel

@@ -31,8 +31,8 @@ export class AdventureItem extends Model<AdventureItem>{
     }
 
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-        sequelize.models.heroInventory.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
-        sequelize.models.heroInventory.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle'});
+        sequelize.models.adventure.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
+        sequelize.models.adventure.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle'});
     }
 
     static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{

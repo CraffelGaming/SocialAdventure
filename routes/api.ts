@@ -79,6 +79,64 @@ const router = express.Router();
 
 /**
  * @swagger
+ * /adventure/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - Adventure
+ *     summary: Abenteuer
+ *     description: Rückgabe aller Daten im Abenteuer zu einem Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: 1
+ *                 descrition: Name des Helden
+ *               itemHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstandes
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+  router.get("/adventure/:node/hero/:name", adventure);
+
+/**
+ * @swagger
  * /adventure/{node}:
  *   put:
  *     tags:
@@ -546,6 +604,10 @@ const router = express.Router();
  *                 type: number
  *                 example: 12500
  *                 descrition: Menge der gesammelten Erfahrung.
+ *               level:
+ *                 type: number
+ *                 example: 7
+ *                 descrition: Level des Helden.
  *               isActive:
  *                 type: boolean
  *                 example: true
@@ -1678,6 +1740,81 @@ const router = express.Router();
  *         description: no data
  */
  router.get("/location/:node", location);
+
+/**
+ * @swagger
+ * /location/{node}/active:
+ *   get:
+ *     tags:
+ *     - Location
+ *     summary: Dungeon
+ *     description: Rückgabe aller aktiven Dungeons.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Dungeons
+ *               name:
+ *                 type: string
+ *                 example: "Verlassene Höhle"
+ *                 descrition: Name des Dungeons
+ *               description:
+ *                 type: string
+ *                 example: "Eine einsame, dunkle, verlassene Höhle. Mehr als Ratten wirst du hier sicher nicht antreffen, oder?"
+ *                 descrition: Beschreibung des Dungeons
+ *               difficulty:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: Schwierigkeit des Dungeons.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an ob das Dungeon gerade gelootet werden kann.
+ *               category:
+ *                 type: object
+ *                 properties:
+ *                   handle:
+ *                     type: intener
+ *                     example: 1
+ *                     descrition: ID der Item Kategorie.
+ *                   value:
+ *                     type: string
+ *                     example: "default"
+ *                     descrition: Name  für die Übersetzung der Item Kategorie.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+  router.get("/location/:node/active", location);
 
 /**
  * @swagger

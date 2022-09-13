@@ -7,6 +7,12 @@ $(async () => {
     let languageItem = await getTranslation('item');
     let languageWallet = await getTranslation('wallet');
     let languageTrait = await getTranslation('trait');
+    let languageAdventure = await getTranslation('adventure');
+    let languageLevel = await getTranslation('level');
+    let languageItemCategoryList = await getTranslation('itemCategoryList');
+    let languageItemCategory = await getTranslation('itemCategory');
+
+    let category = await get('/itemcategory/default/', language);
     let userdata = {};
 
     await initialize();
@@ -72,6 +78,9 @@ $(async () => {
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name') },
+                { dataField: "level", caption: translate(languageLevel, 'handle') },
+                { dataField: "experience", caption: translate(language, 'experience'), width: 300 },  
+                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200 }, 
                 {
                     caption: translate(language, 'lastSteal'), width: 200,
                     calculateCellValue(data) {
@@ -84,7 +93,6 @@ $(async () => {
                         return new Date(data.lastJoin).toLocaleDateString() + " " + new Date(data.lastJoin).toLocaleTimeString();
                     }
                 },
-                { dataField: "experience", caption: translate(language, 'experience'), width: 300 }, 
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" }
             ],
             export: {
@@ -107,8 +115,38 @@ $(async () => {
                 }, {
                     title: translate(language, 'trait'),
                     template: createTraitTabTemplate(masterDetailOptions.data, 1),
+                }, {
+                    title: translate(languageAdventure, 'adventure'),
+                    template: createAdventureTabTemplate(masterDetailOptions.data, 1),
                 }],
             });
+        }
+
+        function createAdventureTabTemplate(masterDetailData) {
+            return function () {
+                return $('<div>').dxDataGrid({
+                    dataSource: new DevExpress.data.CustomStore({
+                        key: ["itemHandle", "heroName"],
+                        loadMode: "raw",
+                        load: async function () {
+                            return await get(`/adventure/default/hero/${masterDetailData.name}`, language);
+                        }
+                    }),
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    selection: { mode: "single" },
+                    editing: {
+                        mode: "row",
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        allowAdding: false
+                    },
+                    columns: [
+                        { dataField: "item.value", caption: translate(languageItem, 'value') },
+                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 }
+                    ]
+                });
+            };
         }
 
         function createItemTabTemplate(masterDetailData) {
@@ -132,6 +170,25 @@ $(async () => {
                     },
                     columns: [
                         { dataField: "item.value", caption: translate(languageItem, 'value') },
+                        {
+                            dataField: 'item.categoryHandle',
+                            caption: translate(languageItemCategory , 'value'), width: 300,
+                            lookup: {
+                              dataSource(options) {
+                                return {
+                                  store: {  
+                                      type: 'array',  
+                                      data: category,  
+                                      key: "handle"  
+                                    }
+                                };
+                              },
+                              valueExpr: 'handle',
+                              displayExpr: function(item) {
+                                  return item && translate(languageItemCategoryList, item.value);
+                              }
+                            },
+                        },
                         { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 },
                         { dataField: "quantity", caption: translate(language, 'quantity'), width: 200 },
                         {

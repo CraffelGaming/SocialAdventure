@@ -16,7 +16,36 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
-        const item = await channel.database.sequelize.models.adventure.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false });
+        const item = await channel.database.sequelize.models.adventure.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false, include: [{
+            model: channel.database.sequelize.models.hero,
+            as: 'hero',
+        }, {
+            model: channel.database.sequelize.models.item,
+            as: 'item',
+        }] });
+        if(item) response.status(200).json(item);
+        else response.status(404).json();
+    } else response.status(404).json();
+});
+
+router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request, response: express.Response) => {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node: NodeItem;
+
+    if(request.params.node === 'default')
+        node = await global.defaultNode(request, response);
+    else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
+
+    const channel = global.worker.channels.find(x => x.node.name === node.name)
+
+    if(channel) {
+        const item = await channel.database.sequelize.models.adventure.findAll({where: {heroName: request.params.name}, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false, include: [{
+            model: channel.database.sequelize.models.hero,
+            as: 'hero',
+        }, {
+            model: channel.database.sequelize.models.item,
+            as: 'item',
+        }] });
         if(item) response.status(200).json(item);
         else response.status(404).json();
     } else response.status(404).json();
