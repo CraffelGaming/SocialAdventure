@@ -4,15 +4,15 @@ Version 1
 2.  [X] Prestige level für Helden
 2.  [X] Eigene URL für jeden Streamer
 3.  [X] Itemkategorien einbinden
-4.  [ ] Loot neue Logik implementieren.
+4.  [.] Loot neue Logik implementieren.
 5.  [ ] Shoutout im Say Modul
 6.  [ ] Counter im Say Modul
 7.  [ ] Twitch API Verbindung mit Chat
 8.  [X] Startseite
 9.  [X] SSL-Zertifikat einbinden (https://)
-10. [ ] Datenübernahme vom alten Craffelmat
-11. [ ] Hilfe & Feedback Kontaktformular
-12. [ ] Release
+10. [.] Datenübernahme vom alten Craffelmat
+11. [.] Hilfe & Feedback Kontaktformular
+12. [.] Release
 
 Version 2
 A.  [ ] Englische Übersetzung

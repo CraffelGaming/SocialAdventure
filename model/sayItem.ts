@@ -22,6 +22,10 @@ export class SayItem extends Model<SayItem>{
     countUses: number = 0;
     @Column
     countRuns: number = 0;
+    @Column
+    isCounter : boolean = true;
+    @Column
+    isShoutout : boolean = true;
 
     constructor(){
         super();

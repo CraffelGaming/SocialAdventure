@@ -17,9 +17,11 @@
     {"module": "loot",      "command": "level",         "isMaster": false,      "translation": "level"},
     {"module": "loot",      "command": "lvl",           "isMaster": false,      "translation": "level"},
     {"module": "loot",      "command": "adventure",     "isMaster": false,      "translation": "adventure"},
-    {"module": "loot",      "command": "blut",          "isMaster": false,      "translation": "blut"},
+    {"module": "loot",      "command": "blut",          "isMaster": false,      "translation": "blood"},
+    {"module": "loot",      "command": "blood",         "isMaster": false,      "translation": "blood"},
+    {"module": "loot",      "command": "bloodpoints",   "isMaster": false,      "translation": "bloodpoints"},
     {"module": "loot",      "command": "rank",          "isMaster": false,      "translation": "rank"},
-    {"module": "loot",      "command": "loot",          "isMaster": false,       "translation": "loot"},
+    {"module": "loot",      "command": "loot",          "isMaster": false,      "translation": "loot"},
     {"module": "loot",      "command": "lootstart",     "isMaster": true,       "translation": "start"},
     {"module": "loot",      "command": "lootstop",      "isMaster": true,       "translation": "stop"},
     {"module": "loot",      "command": "lootclear",     "isMaster": true,       "translation": "clear"}

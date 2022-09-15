@@ -154,7 +154,8 @@
     { "page": "command", "handle": "chest", "language": "de-DE", "translation": "Zeigt die Anzahl deiner jemals gefundener Gegenstände an."},
     { "page": "command", "handle": "level", "language": "de-DE", "translation": "Zeigt dein aktuelles Leven an."},
     { "page": "command", "handle": "adventure", "language": "de-DE", "translation": "Zeigt die Anzahl der Helden an, die gearde am Abenteuer teilnehmen."},
-    { "page": "command", "handle": "blut", "language": "de-DE", "translation": "Startet einen Blutrausch."},
+    { "page": "command", "handle": "blood", "language": "de-DE", "translation": "Startet einen Blutrausch."},
+    { "page": "command", "handle": "bloodpoints", "language": "de-DE", "translation": "zeigt deinen aktuellen Blutrausch an."},
     { "page": "command", "handle": "rank", "language": "de-DE", "translation": "Zeigt deine aktuelle Platzierung an."},
     { "page": "command", "handle": "clear", "language": "de-DE", "translation": "Beendet das bestehende Abenteuer und startet ein neues."},
     { "page": "command", "handle": "loot", "language": "de-DE", "translation": "Tritt dem Abenteuer bei."},
@@ -189,6 +190,14 @@
     { "page": "loot", "handle": "heroNotJoined", "language": "de-DE", "translation": "$1 ist nicht auf Abenteuer. Tippe !loot um teilzunehmen."},
     { "page": "loot", "handle": "heroNotExists", "language": "de-DE", "translation": "$1 ist kein Held. Tippe !loot um auch ein Held zu werden."},
     { "page": "loot", "handle": "heroLeave", "language": "de-DE", "translation": "$1 hat das Abenteuer verlassen."},
+    { "page": "loot", "handle": "heroLevel", "language": "de-DE", "translation": "$1 ist Level $2."},
+    { "page": "loot", "handle": "heroItem", "language": "de-DE", "translation": "$1 hat folgende Gegenstände: $2."},
+    { "page": "loot", "handle": "heroNoItem", "language": "de-DE", "translation": "$1 hat noch keine Items im Inventar."},
+    { "page": "loot", "handle": "heroJoin", "language": "de-DE", "translation": "$1, du warst noch nie auf Abenteuer.Tippe !loot um teilzunehmen."},
+    { "page": "loot", "handle": "heroGold", "language": "de-DE", "translation": "$1 hat $2 Gold."},
+    { "page": "loot", "handle": "heroNoGold", "language": "de-DE", "translation": "$1 hat kein Gold."},
+    { "page": "loot", "handle": "heroDiamond", "language": "de-DE", "translation": "$1 hat $2 Diamanten."},
+    { "page": "loot", "handle": "heroNoDiamond", "language": "de-DE", "translation": "$1 hat keine Diamanten."},
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},
     { "page": "location", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},
@@ -218,8 +227,5 @@
     { "page": "adventure", "handle": "owner", "language": "de-DE", "translation": "Aktueller Besitzer"},
     { "page": "adventure", "handle": "item", "language": "de-DE", "translation": "Gefundener Gegenstand"},
     { "page": "adventure", "handle": "trait", "language": "de-DE", "translation": "Eigenschaften des Besitzers"},
-    { "page": "adventure", "handle": "informationDungeon", "language": "de-DE", "translation": "Dungeon $1 von $2: Swipe nach links oder rechts um alle Dungeons zu sehen."}
-
-
-    
+    { "page": "adventure", "handle": "informationDungeon", "language": "de-DE", "translation": "Dungeon $1 von $2: Swipe nach links oder rechts um alle Dungeons zu sehen."}  
 ]

@@ -1,6 +1,8 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./adventureItem.json');
+import { ItemItem } from './itemItem';
+import { HeroItem } from './heroItem';
 
 @Table({ tableName: "adventure", modelName: "adventure"})
 export class AdventureItem extends Model<AdventureItem>{
@@ -10,6 +12,8 @@ export class AdventureItem extends Model<AdventureItem>{
     @PrimaryKey
     @Column
     heroName: string;
+    hero: HeroItem;
+    item: ItemItem;
 
     constructor(){
         super();

@@ -120,7 +120,17 @@ class Loot extends module_1.Module {
     //#endregion
     //#region Commands
     inventory(command) {
-        return 'inventory';
+        return __awaiter(this, void 0, void 0, function* () {
+            const items = yield this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: command.source }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], include: [{
+                        model: this.channel.database.sequelize.models.hero,
+                        as: 'hero',
+                    }, {
+                        model: this.channel.database.sequelize.models.item,
+                        as: 'item',
+                    }] });
+            global.worker.log.trace(items.map(a => a.item.value).toString());
+            return items.map(a => a.item.value).toString();
+        });
     }
     steal(command) {
         return 'steal';
@@ -138,7 +148,10 @@ class Loot extends module_1.Module {
         return 'chest';
     }
     level(command) {
-        return 'level';
+        return __awaiter(this, void 0, void 0, function* () {
+            const item = yield this.channel.database.sequelize.models.hero.findByPk(command.source);
+            return translationItem_1.TranslationItem.translate(this.translation, 'heroLevel').replace('$1', command.source).replace('$2', item.level.toString());
+        });
     }
     blut(command) {
         return 'blut';
@@ -161,10 +174,14 @@ class Loot extends module_1.Module {
     //#endregion
     //#region Shortcuts
     inv(command) {
-        this.inventory(command);
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.inventory(command);
+        });
     }
     lvl(command) {
-        this.level(command);
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.level(command);
+        });
     }
 }
 exports.Loot = Loot;

@@ -1,7 +1,9 @@
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
+import { AdventureItem } from "../model/adventureItem";
 import { HeroItem } from "../model/heroItem";
+import { HeroWalletItem } from "../model/heroWalletItem";
 import { TranslationItem } from "../model/translationItem";
 import { Module } from "./module";
 
@@ -20,6 +22,7 @@ export class Loot extends Module {
         try{
             global.worker.log.trace('loot execute');
             const allowedCommand = this.commands.find(x => x.command === command.name);
+
             if(allowedCommand){
                 if(!allowedCommand.isMaster || this.isOwner(command)){
                     return await this[command.name](command);
@@ -101,10 +104,6 @@ export class Loot extends Module {
     //#endregion
 
     //#region Commands
-    inventory(command: Command){
-        return 'inventory';
-    }
-
     steal(command: Command){
         return 'steal';
     }
@@ -117,28 +116,20 @@ export class Loot extends Module {
         return 'find';
     }
 
-    gold(command: Command){
-        return 'gold';
-    }
-
     chest(command: Command){
         return 'chest';
-    }
-
-    level(command: Command){
-        return 'level';
-    }
-
-    blut(command: Command){
-        return 'blut';
     }
 
     rank(command: Command){
         return 'rank';
     }
 
-    diamond(command: Command){
-        return 'diamond';
+    blood(command: Command){
+        return 'blood';
+    }
+
+    bloodpoints(command: Command){
+        return 'bloodpoints';
     }
 
     lootstart(command: Command){
@@ -153,14 +144,80 @@ export class Loot extends Module {
         return 'lootclear';
     }
     //#endregion
+    
+    //#region Inventory
+    async inventory(command: Command){
+        const hero = this.getTargetHero(command);
+
+        const items = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: hero}, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], include: [{
+            model: this.channel.database.sequelize.models.hero,
+            as: 'hero',
+        }, {
+            model: this.channel.database.sequelize.models.item,
+            as: 'item',
+        }] }) as unknown as AdventureItem[];
+
+        if (items && items.length > 0){
+            return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', items.map(a => a.item.value).toString());
+        } else return TranslationItem.translate(this.translation, 'heroNoItem').replace('$1', hero);      
+    }
+    //#endregion
+
+    //#region Level
+    async level(command: Command){
+        const hero = this.getTargetHero(command);
+        const item = await this.channel.database.sequelize.models.hero.findByPk(hero) as unknown as HeroItem;
+        
+        if(item && item.level > 0){
+            return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', item.level.toString());
+        } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
+    }
+    //#endregion
+
+    //#region Gold
+    async gold(command: Command){
+        const hero = this.getTargetHero(command);
+        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero) as unknown as HeroWalletItem;
+        
+        if(item && item.gold > 0){
+            return TranslationItem.translate(this.translation, 'heroGold').replace('$1', hero).replace('$2', item.gold.toString());
+        } else return TranslationItem.translate(this.translation, 'heroNoGold').replace('$1', hero);
+    }
+    //#endregion
+
+    //#region Diamant
+    async diamond(command: Command){
+        const hero = this.getTargetHero(command);
+        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero) as unknown as HeroWalletItem;
+        
+        if(item && item.gold > 0){
+            return TranslationItem.translate(this.translation, 'heroDiamond').replace('$1', hero).replace('$2', item.diamond.toString());
+        } else return TranslationItem.translate(this.translation, 'heroNoDiamond').replace('$1', hero);
+    }
+    //#endregion
 
     //#region Shortcuts
-    inv(command: Command){
-        this.inventory(command);
+    async inv(command: Command){
+        return await this.inventory(command);
     }
 
-    lvl(command: Command){
-        this.level(command);
+    async lvl(command: Command){
+        return await this.level(command);
+    }
+
+    async blut(command: Command){
+        return await this.level(command);
+    }
+    //#endregion
+      
+    //#region Hero
+    getTargetHero(command: Command){
+        let hero = command.source;
+
+        if(command.target && command.target.length > 0)
+            hero = command.target;
+
+        return hero;
     }
     //#endregion
 }
