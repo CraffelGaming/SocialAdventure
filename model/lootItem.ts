@@ -39,18 +39,10 @@ export class LootItem extends Model<LootItem>{
                 allowNull: false,
                 primaryKey: true
             },
-            text: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
             minutes: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 10
-            },
-            help: {
-                type: DataTypes.STRING,
-                allowNull: true
             },
             isActive: {
                 type: DataTypes.BOOLEAN,

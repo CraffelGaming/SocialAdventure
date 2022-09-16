@@ -1,10 +1,32 @@
 [
     {
-        "command": "craffel",
+        "command": "loot",
+        "minutes": 10,
+        "delay": 0,
+        "isActive": true
+    },
+    {
+        "command": "blood",
+        "minutes": 15,
+        "delay": 0,
+        "isActive": true
+    },
+    {
+        "command": "steal",
+        "minutes": 15,
+        "delay": 0,
+        "isActive": true
+    },
+    {
+        "command": "give",
+        "minutes": 15,
+        "delay": 0,
+        "isActive": true
+    },
+    {
+        "command": "work",
         "minutes": 60,
-        "delay": 5,
-        "help": "",
-        "text": "Schau dir deinen Helden auf craffel.de an.",
+        "delay": 0,
         "isActive": true
     }
 ]

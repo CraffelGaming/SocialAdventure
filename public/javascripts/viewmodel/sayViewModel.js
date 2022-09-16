@@ -114,16 +114,7 @@ $(async () => {
                 { dataField: "text", caption: translate(language, 'text'), validationRules: [{ type: "required" }]  },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 120 },
-                {
-                    caption: translate(language, 'lastRun'), allowEditing: false, width: 160,
-                    calculateCellValue(data) {
-                        if(data.lastRun != null){
-                            return new Date(data.lastRun).toLocaleDateString() + " " + new Date(data.lastRun).toLocaleTimeString();
-                        } else {
-                            return '';
-                        } 
-                    }
-                },
+                { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'date', width: 150 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
                         if(data.isActive != null){

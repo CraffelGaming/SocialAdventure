@@ -79,18 +79,8 @@ $(async () => {
                 { dataField: "level", caption: translate(languageLevel, 'handle') },
                 { dataField: "experience", caption: translate(language, 'experience'), width: 300 }, 
                 { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200 }, 
-                {
-                    caption: translate(language, 'lastSteal'), width: 200,
-                    calculateCellValue(data) {
-                        return new Date(data.lastSteal).toLocaleDateString() + " " + new Date(data.lastSteal).toLocaleTimeString();
-                    }
-                },
-                {
-                    caption: translate(language, 'lastJoin'), width: 200,
-                    calculateCellValue(data) {
-                        return new Date(data.lastJoin).toLocaleDateString() + " " + new Date(data.lastJoin).toLocaleTimeString();
-                    }
-                },
+                { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'date', width: 150 },
+                { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'date', width: 150 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200 }
             ],
             export: {
@@ -223,12 +213,7 @@ $(async () => {
                         { dataField: "gold", caption: translate(languageWallet, 'gold') },
                         { dataField: "diamond", caption: translate(languageWallet, 'diamond') },
                         { dataField: "blood", caption: translate(languageWallet, 'blood') },
-                        {
-                            caption: translate(languageWallet, 'lastBlood'), width: 200,
-                            calculateCellValue(data) {
-                                return new Date(data.lastBlood).toLocaleDateString() + " " + new Date(data.lastBlood).toLocaleTimeString();
-                            }
-                        }
+                        { dataField: 'lastBlood', caption: translate(language, 'lastBlood'), dataType: 'date', width: 150 }
                     ]
                 });
             };
