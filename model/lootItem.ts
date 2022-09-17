@@ -1,6 +1,6 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./LootItem.json');
+import json = require('./lootItem.json');
 
 @Table({ tableName: "loot", modelName: "loot"})
 export class LootItem extends Model<LootItem>{
@@ -10,23 +10,13 @@ export class LootItem extends Model<LootItem>{
     @Column
     minutes: number= 60;
     @Column
-    help: string;
-    @Column
-    text: string;
-    @Column
     isActive : boolean = true;
-    @Column
-    lastRun: Date = new Date(2020, 1, 1);
-    @Column
-    delay: number = 5;
     @Column
     countUses: number = 0;
     @Column
     countRuns: number = 0;
     @Column
-    isCounter : boolean = true;
-    @Column
-    isShoutout : boolean = true;
+    lastRun: Date = new Date(2020, 1, 1);
 
     constructor(){
         super();
@@ -44,19 +34,14 @@ export class LootItem extends Model<LootItem>{
                 allowNull: false,
                 defaultValue: 10
             },
-            isActive: {
-                type: DataTypes.BOOLEAN,
-                allowNull: true
-            },
             lastRun: {
                 type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: new Date(2020, 1, 1)
             },
-            delay: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
             },
             countUses: {
                 type: DataTypes.INTEGER,

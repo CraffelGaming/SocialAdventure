@@ -37,7 +37,15 @@ const router = express.Router();
 const endpoint = 'node';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}`);
-    const item = yield global.worker.globalDatabase.sequelize.models.node.findAll({ order: [['name', 'ASC']], raw: true });
+    let item;
+    if (request.query.childs !== "false") {
+        item = (yield global.worker.globalDatabase.sequelize.models.node.findAll({ order: [['name', 'ASC']], raw: false, include: [{
+                    model: global.worker.globalDatabase.sequelize.models.twitchUser,
+                    as: 'twitchUser',
+                }] }));
+    }
+    else
+        item = (yield global.worker.globalDatabase.sequelize.models.node.findAll({ order: [['name', 'ASC']], raw: false }));
     if (item)
         response.status(200).json(item);
     else

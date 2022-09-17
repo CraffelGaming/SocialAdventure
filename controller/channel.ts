@@ -57,6 +57,7 @@ export class Channel {
         const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'loot', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
         this.loot = new Loot(translation, this);
         await this.loot.initialize();
+        await this.loot.InitializeLoot();
     }
 
     async execute(command: Command){

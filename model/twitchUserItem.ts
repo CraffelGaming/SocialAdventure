@@ -1,6 +1,6 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./nodeItem.json');
+
 @Table({ tableName: "twitchUser", modelName: "twitchUser"})
 export class TwitchUserItem extends Model<TwitchUserItem>{
     @PrimaryKey
@@ -20,7 +20,6 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
     viewCount : number = 0;
     @Column
     eMail: string;
-
 
     constructor(){
         super();
@@ -63,6 +62,10 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
              allowNull: true
             }
           }, {freezeTableName: true});
+    }
+
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
+        sequelize.models.twitchUser.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name'});
     }
 }
 

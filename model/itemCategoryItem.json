@@ -11,5 +11,9 @@
     {"handle": 10,  "value": "rocketleague"},
     {"handle": 11,  "value": "satisfactory"},
     {"handle": 12,  "value": "stardewvalley"},
-    {"handle": 13,  "value": "7d2d"}
+    {"handle": 13,  "value": "7d2d"},
+    {"handle": 14,  "value": "dnd"},
+    {"handle": 15,  "value": "food"},
+    {"handle": 16,  "value": "retro"},
+    {"handle": 17,  "value": "pokemon"}
 ]

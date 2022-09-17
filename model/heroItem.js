@@ -36,7 +36,7 @@ let HeroItem = class HeroItem {
         this.name = name;
     }
     static createTable({ sequelize }) {
-        const a = sequelize.define('hero', {
+        sequelize.define('hero', {
             name: {
                 type: sequelize_1.DataTypes.STRING,
                 primaryKey: true,
@@ -83,7 +83,6 @@ let HeroItem = class HeroItem {
                 defaultValue: false
             }
         }, { freezeTableName: true });
-        global.worker.log.error(a);
     }
     static setAssociation({ sequelize }) {
         sequelize.models.hero.hasOne(sequelize.models.heroTrait, { as: 'trait', foreignKey: 'heroName' });

@@ -1,17 +1,37 @@
 import * as express from 'express';
 import { TwitchItem } from '../model/twitchItem';
 import { TwitchUserItem } from '../model/twitchUserItem';
-import log4js = require('log4js');
+import twitchData from '../twitch.json';
+
 import fetch from 'node-fetch';
 
 export class Twitch {
+
+    async twitchBotAuthentification() {
+        const twitch = await fetch(twitchData.url_token + '?client_id=' + twitchData.client_id +
+            '&client_secret=' + twitchData.client_secret +
+            '&grant_type=' + twitchData.bot_grant_type, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
+
+        if (twitch.ok) {
+            const result = (await twitch.json()) as globalThis.credentialItem;
+            global.worker.log.trace(result);
+            return result;
+        }
+
+        return null;
+    }
+
     async twitchAuthentification(request: express.Request, response: express.Response) {
-        const data = request.app.get('twitch');
-        const twitch = await fetch(data.url_token + '?client_id=' + data.client_id +
-            '&client_secret=' + data.client_secret +
+        const twitch = await fetch(twitchData.url_token + '?client_id=' + twitchData.client_id +
+            '&client_secret=' + twitchData.client_secret +
             '&code=' + request.query.code +
-            '&grant_type=' + data.grant_type +
-            '&redirect_uri=' + data.redirect_uri, {
+            '&grant_type=' + twitchData.user_grant_type +
+            '&redirect_uri=' + twitchData.redirect_uri, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -29,13 +49,12 @@ export class Twitch {
     }
 
     async TwitchPush(request: express.Request, response: express.Response, method: string, endpoint: string) {
-        const data = request.app.get('twitch');
-        const twitch = await fetch(data.url_base + endpoint, {
+        const twitch = await fetch(twitchData.url_base + endpoint, {
                 method,
                 withCredentials: true,
                 credentials: 'include',
                 headers: {
-                    'client-id': data.client_id,
+                    'client-id': twitchData.client_id,
                     'Authorization': "Bearer " + request.session.twitch.access_token,
                     'Content-Type': 'application/json'
                 },

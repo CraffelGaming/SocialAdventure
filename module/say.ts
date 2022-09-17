@@ -68,7 +68,7 @@ export class Say extends Module {
                                 this.channel.puffer.addMessage(this.item.text);
                             } catch(ex){
                                 global.worker.log.error(`node ${this.channel.node.name}, module ${this.item.command} automation error.`);
-                                global.worker.log.error(ex);
+                                global.worker.log.error(`exception ${ex.message}`);
                             }
                         } else {
                             global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);

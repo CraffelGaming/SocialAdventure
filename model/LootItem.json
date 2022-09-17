@@ -7,7 +7,7 @@
     },
     {
         "command": "blood",
-        "minutes": 15,
+        "minutes": 60,
         "delay": 0,
         "isActive": true
     },

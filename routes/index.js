@@ -53,9 +53,12 @@ const level_1 = __importDefault(require("./level"));
 const location_1 = __importDefault(require("./location"));
 const enemy_1 = __importDefault(require("./enemy"));
 const adventure_1 = __importDefault(require("./adventure"));
+const setting_1 = __importDefault(require("./setting"));
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
+// Setting
+router.get('/setting', setting_1.default);
 // Adventure
 router.get('/adventure', adventure_1.default);
 // Help

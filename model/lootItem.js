@@ -18,55 +18,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SayItem = void 0;
+exports.LootItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-const json = require("./sayItem.json");
-let SayItem = class SayItem extends sequelize_typescript_1.Model {
+const json = require("./lootItem.json");
+let LootItem = class LootItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.minutes = 60;
         this.isActive = true;
-        this.lastRun = new Date(2020, 1, 1);
-        this.delay = 5;
         this.countUses = 0;
         this.countRuns = 0;
-        this.isCounter = true;
-        this.isShoutout = true;
+        this.lastRun = new Date(2020, 1, 1);
     }
     static createTable({ sequelize }) {
-        sequelize.define('say', {
+        sequelize.define('loot', {
             command: {
                 type: sequelize_1.DataTypes.STRING(50),
                 allowNull: false,
                 primaryKey: true
             },
-            text: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: false
-            },
             minutes: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 60
-            },
-            help: {
-                type: sequelize_1.DataTypes.STRING,
-                allowNull: true
-            },
-            isActive: {
-                type: sequelize_1.DataTypes.BOOLEAN,
-                allowNull: true
+                defaultValue: 10
             },
             lastRun: {
                 type: sequelize_1.DataTypes.DATE,
                 allowNull: false,
                 defaultValue: new Date(2020, 1, 1)
             },
-            delay: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 5
+            isActive: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: true
             },
             countUses: {
                 type: sequelize_1.DataTypes.INTEGER,
@@ -85,11 +69,11 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
             try {
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
-                    if ((yield sequelize.models.say.count({ where: { command: item.command } })) === 0) {
-                        yield sequelize.models.say.create(item);
+                    if ((yield sequelize.models.loot.count({ where: { command: item.command } })) === 0) {
+                        yield sequelize.models.loot.create(item);
                     }
                     else
-                        yield sequelize.models.say.update(item, { where: { command: item.command } });
+                        yield sequelize.models.loot.update(item, { where: { command: item.command } });
                 }
             }
             catch (ex) {
@@ -102,51 +86,31 @@ __decorate([
     sequelize_typescript_1.PrimaryKey,
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], SayItem.prototype, "command", void 0);
+], LootItem.prototype, "command", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], SayItem.prototype, "minutes", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], SayItem.prototype, "help", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], SayItem.prototype, "text", void 0);
+], LootItem.prototype, "minutes", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
-], SayItem.prototype, "isActive", void 0);
+], LootItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], LootItem.prototype, "countUses", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], LootItem.prototype, "countRuns", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)
-], SayItem.prototype, "lastRun", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], SayItem.prototype, "delay", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], SayItem.prototype, "countUses", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], SayItem.prototype, "countRuns", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Boolean)
-], SayItem.prototype, "isCounter", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Boolean)
-], SayItem.prototype, "isShoutout", void 0);
-SayItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "say", modelName: "say" }),
+], LootItem.prototype, "lastRun", void 0);
+LootItem = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: "loot", modelName: "loot" }),
     __metadata("design:paramtypes", [])
-], SayItem);
-exports.SayItem = SayItem;
-module.exports.default = SayItem;
-//# sourceMappingURL=sayItem.js.map
+], LootItem);
+exports.LootItem = LootItem;
+module.exports.default = LootItem;
+//# sourceMappingURL=lootItem.js.map

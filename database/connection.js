@@ -57,12 +57,13 @@ const itemCategoryItem_1 = require("../model/itemCategoryItem");
 const locationItem_1 = require("../model/locationItem");
 const enemyItem_1 = require("../model/enemyItem");
 const adventureItem_1 = require("../model/adventureItem");
+const lootItem_1 = require("../model/lootItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
         this.databasePath = path.join(__dirname, this.databaseName + '.sqlite');
         this.isNewDatabase = !fs.existsSync(this.databasePath);
-        this.sequelize = new sequelize_typescript_1.Sequelize({ dialect: 'sqlite', storage: this.databasePath });
+        this.sequelize = new sequelize_typescript_1.Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: false });
     }
     initializeGlobal() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -78,10 +79,12 @@ class Connection {
                 itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
                 menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
+                nodeItem_1.NodeItem.setAssociation({ sequelize: this.sequelize });
+                twitchItem_1.TwitchItem.setAssociation({ sequelize: this.sequelize });
+                twitchUserItem_1.TwitchUserItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
-                yield nodeItem_1.NodeItem.updateTable({ sequelize: this.sequelize });
                 yield menuItem_1.MenuItem.updateTable({ sequelize: this.sequelize });
                 yield translationItem_1.TranslationItem.updateTable({ sequelize: this.sequelize });
                 yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
@@ -114,6 +117,7 @@ class Connection {
                 enemyItem_1.EnemyItem.createTable({ sequelize: this.sequelize });
                 commandItem_1.CommandItem.createTable({ sequelize: this.sequelize });
                 adventureItem_1.AdventureItem.createTable({ sequelize: this.sequelize });
+                lootItem_1.LootItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
@@ -129,6 +133,7 @@ class Connection {
                 yield enemyItem_1.EnemyItem.updateTable({ sequelize: this.sequelize });
                 yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
                 yield adventureItem_1.AdventureItem.updateTable({ sequelize: this.sequelize });
+                yield lootItem_1.LootItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
                 heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });
@@ -160,7 +165,7 @@ class Connection {
                 }
             }
             catch (ex) {
-                global.worker.log.error(ex);
+                global.worker.log.error(`exception ${ex.message}`);
             }
         });
     }

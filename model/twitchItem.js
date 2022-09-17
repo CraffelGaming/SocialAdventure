@@ -45,6 +45,9 @@ let TwitchItem = class TwitchItem extends sequelize_typescript_1.Model {
             }
         }, { freezeTableName: true });
     }
+    static setAssociation({ sequelize }) {
+        sequelize.models.twitch.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name' });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

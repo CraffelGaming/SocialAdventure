@@ -13,7 +13,7 @@ $(async () => {
         var items = [];
 
         items.push({
-            icon: node?.profileImageUrl != null ? node.profileImageUrl : '/images/favicon.png',
+            icon: node?.twitchUser?.profileImageUrl != null ? node.twitchUser.profileImageUrl : '/images/favicon.png',
             href: '/',
             text: translate(language, "title")
         });

@@ -1,11 +1,21 @@
 import * as express from 'express';
+import { NodeItem } from '../../model/nodeItem';
 
 const router = express.Router();
 const endpoint = 'node';
 
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}`);
-    const item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: true});
+    let item: NodeItem;
+
+    if(request.query.childs !== "false"){
+        item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+            model: global.worker.globalDatabase.sequelize.models.twitchUser,
+            as: 'twitchUser',
+        }]}) as undefined as NodeItem;
+    }
+    else item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: false}) as undefined as NodeItem;
+
     if(item) response.status(200).json(item);
     else response.status(404).json();
 });

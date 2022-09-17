@@ -81,8 +81,8 @@ $(async () => {
                 { dataField: "level", caption: translate(languageLevel, 'handle') },
                 { dataField: "experience", caption: translate(language, 'experience'), width: 300 },  
                 { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200 }, 
-                { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'date', width: 150 },
-                { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'date', width: 150 },
+                { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime', width: 150 },
+                { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime', width: 150 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" }
             ],
             export: {

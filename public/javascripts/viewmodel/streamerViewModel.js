@@ -58,7 +58,7 @@ $(async () => {
                     allowSorting: false,
                     cellTemplate(container, options) {
                       $('<div>')
-                        .append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
+                        .append($('<img>', { src: options.data.twitchUser.profileImageUrl != null ?options.data.twitchUser.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
                         .appendTo(container);
                     },
                 },
@@ -85,6 +85,16 @@ $(async () => {
                             }).then(async function (json) {
                                 infoPanel();
                             });
+                        }
+                    },
+                    {
+                        icon: "link",
+                        hint: translate(language, "checkTwitch"),
+                        onClick: function (e) {
+                            $("<a>").prop({
+                                target: "_blank",
+                                href: e.row.data.endpoint
+                            })[0].click();
                         }
                     }]
                 }

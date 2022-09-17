@@ -6,6 +6,7 @@ import { NodeItem } from '../model/nodeItem';
 import { Channel } from './channel';
 import tmi = require('tmi.js');
 import tmiSettings = require('../bot.json');
+import twitchData = require('../twitch.json');
 import { Twitch } from './twitch';
 import { Command } from './command';
 
@@ -17,6 +18,7 @@ export class Worker {
     log: log4js.Logger;
     tmi: any;
     twitch: Twitch;
+    botCredential: credentialItem;
 
     constructor(log: log4js.Logger){
         this.log = log;
@@ -38,7 +40,10 @@ export class Worker {
         // Connect client to twitch
         await this.connect();
 
-        for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll()) as unknown as NodeItem[]){
+        for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({include: [{
+            model: global.worker.globalDatabase.sequelize.models.twitchUser,
+            as: 'twitchUser',
+        }]})) as unknown as NodeItem[]){
             this.startNode(node);
         }
     }
@@ -65,12 +70,11 @@ export class Worker {
 
     //#region Twitch API
     async login(request: express.Request, response: express.Response, callback: any){
-        const data = request.app.get('twitch');
         const twitch = new Twitch();
         const credentials = await twitch.twitchAuthentification(request, response);
 
         if(credentials){
-            const userData = await twitch.TwitchPush(request, response,"GET", "/users?client_id=" + data.client_id);
+            const userData = await twitch.TwitchPush(request, response,"GET", "/users?client_id=" + twitchData.client_id);
 
             if(userData){
                 await twitch.saveTwitch(request, response, userData);
@@ -84,6 +88,9 @@ export class Worker {
 
     //#region Chatbot
     async connect(){
+        const twitch = new Twitch();
+        this.botCredential = await twitch.twitchBotAuthentification();
+
         this.tmi.on('message', this.onMessageHandler);
         this.tmi.on('connected', this.onConnectedHandler);
         this.tmi.on('disconnected', this.onDisconnectedHandler);
@@ -121,7 +128,7 @@ export class Worker {
                 channel.puffer.addMessages(messages);
             }
         } catch (ex){
-            global.worker.log.error(ex);
+            global.worker.log.error(`exception ${ex.message}`);
         }
     }
 

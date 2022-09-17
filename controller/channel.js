@@ -58,6 +58,7 @@ class Channel {
             const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
             this.loot = new loot_1.Loot(translation, this);
             yield this.loot.initialize();
+            yield this.loot.InitializeLoot();
         });
     }
     execute(command) {

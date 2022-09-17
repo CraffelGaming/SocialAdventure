@@ -31,20 +31,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const uniqid = require("uniqid");
+const twitch_json_1 = __importDefault(require("../../twitch.json"));
 const router = express.Router();
 const endpoint = 'twitch';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}`);
-    const twitch = request.app.get('twitch');
     if (!request.session.state)
         request.session.state = uniqid();
-    response.status(200).json({ url: twitch.url_authorize + '?client_id=' + twitch.client_id +
-            '&redirect_uri=' + twitch.redirect_uri +
-            '&response_type=' + twitch.response_type +
-            '&scope=' + twitch.scope +
+    response.status(200).json({ url: twitch_json_1.default.url_authorize + '?client_id=' + twitch_json_1.default.client_id +
+            '&redirect_uri=' + twitch_json_1.default.redirect_uri +
+            '&response_type=' + twitch_json_1.default.response_type +
+            '&scope=' + twitch_json_1.default.scope +
             '&state=' + request.session.state });
 }));
 router.get('/' + endpoint + '/userdata', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -53,7 +56,7 @@ router.get('/' + endpoint + '/userdata', (request, response) => __awaiter(void 0
         response.status(200).json(request.session.userData);
     }
     else
-        response.status(404).json();
+        response.status(204).json();
 }));
 router.post('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`post ${endpoint}`);
@@ -62,7 +65,7 @@ router.post('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 
             defaults: {
                 name: request.session.userData.login,
                 displayName: request.session.userData.display_name,
-                endpoint: request.app.get("twitch").url_twitch + request.session.userData.login,
+                endpoint: twitch_json_1.default.url_twitch + request.session.userData.login,
                 type: request.session.userData.type,
                 broadcasterType: request.session.userData.broadcaster_type,
                 description: request.session.userData.description,

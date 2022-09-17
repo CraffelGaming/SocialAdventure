@@ -92,7 +92,7 @@ export function notify(message, type) {
 //#endregion
 
 //#region Editing
-export async function getEditing() {
+export async function getEditing(allowUpdating = true, allowAdding = true, allowDeleting = true) {
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
 
@@ -108,9 +108,9 @@ export async function getEditing() {
     if(userData != null && defaultNode?.name != null){
         return {
             mode: "popup",
-            allowUpdating: userData.login === defaultNode.name,
-            allowDeleting: userData.login === defaultNode.name,
-            allowAdding: userData.login === defaultNode.name,
+            allowUpdating: userData.login === defaultNode.name && allowUpdating,
+            allowDeleting: userData.login === defaultNode.name && allowDeleting,
+            allowAdding: userData.login === defaultNode.name && allowAdding,
         }
     } else {
         return {
@@ -164,5 +164,12 @@ export async function get(endpoint, language = undefined) {
     }
 
     return items;
+}
+//#endregion
+
+//#region Clipboard
+export function copyToClipboard(text) {
+    console.log(text);
+    navigator.clipboard.writeText(text);
 }
 //#endregion

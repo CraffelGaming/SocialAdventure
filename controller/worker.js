@@ -15,6 +15,7 @@ const path = require("path");
 const channel_1 = require("./channel");
 const tmi = require("tmi.js");
 const tmiSettings = require("../bot.json");
+const twitchData = require("../twitch.json");
 const twitch_1 = require("./twitch");
 const command_1 = require("./command");
 class Worker {
@@ -35,7 +36,10 @@ class Worker {
             yield this.globalDatabase.initializeGlobal();
             // Connect client to twitch
             yield this.connect();
-            for (const node of Object.values(yield this.globalDatabase.sequelize.models.node.findAll())) {
+            for (const node of Object.values(yield this.globalDatabase.sequelize.models.node.findAll({ include: [{
+                        model: global.worker.globalDatabase.sequelize.models.twitchUser,
+                        as: 'twitchUser',
+                    }] }))) {
                 this.startNode(node);
             }
         });
@@ -61,11 +65,10 @@ class Worker {
     //#region Twitch API
     login(request, response, callback) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = request.app.get('twitch');
             const twitch = new twitch_1.Twitch();
             const credentials = yield twitch.twitchAuthentification(request, response);
             if (credentials) {
-                const userData = yield twitch.TwitchPush(request, response, "GET", "/users?client_id=" + data.client_id);
+                const userData = yield twitch.TwitchPush(request, response, "GET", "/users?client_id=" + twitchData.client_id);
                 if (userData) {
                     yield twitch.saveTwitch(request, response, userData);
                     yield twitch.saveTwitchUser(request, response, userData);
@@ -79,6 +82,8 @@ class Worker {
     //#region Chatbot
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
+            const twitch = new twitch_1.Twitch();
+            this.botCredential = yield twitch.twitchBotAuthentification();
             this.tmi.on('message', this.onMessageHandler);
             this.tmi.on('connected', this.onConnectedHandler);
             this.tmi.on('disconnected', this.onDisconnectedHandler);
@@ -113,7 +118,7 @@ class Worker {
                 }
             }
             catch (ex) {
-                global.worker.log.error(ex);
+                global.worker.log.error(`exception ${ex.message}`);
             }
         });
     }

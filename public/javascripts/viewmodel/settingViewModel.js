@@ -3,7 +3,7 @@ import { getTranslation, translate, infoPanel, getEditing, notify, get, copyToCl
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('say');
+    let language = await getTranslation('setting');
     let languageCommand = await getTranslation('command');
 
     translation();
@@ -24,10 +24,10 @@ $(async () => {
                 key: "command",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/say/default`, language);
+                    return await get(`/loot/default`, language);
                 },
                 insert: async function (values) {
-                    await fetch('./api/say/default', {
+                    await fetch('./api/loot/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -47,7 +47,7 @@ $(async () => {
                 update: async function (key, values) {
                     var item = values;
                     item.command = key;
-                    await fetch('./api/say/default', {
+                    await fetch('./api/loot/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -65,7 +65,7 @@ $(async () => {
                     });
                 },
                 remove: async function (key) {;
-                    await fetch('./api/say/default/' + key, {
+                    await fetch('./api/loot/default/' + key, {
                         method: 'delete',
                         headers: {
                             'Content-type': 'application/json'
@@ -105,16 +105,15 @@ $(async () => {
             },
             showRowLines: true,
             showBorders: true,
-            masterDetail: {
-                enabled: true,
-                template: masterDetailTemplate
-            },
             columns: [
-                { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
-                { dataField: "text", caption: translate(language, 'text'), validationRules: [{ type: "required" }]  },
+                { dataField: "command", caption: translate(language, 'command'), allowEditing: false,
+                    calculateCellValue(data) {
+                        return translate(language, data.command)
+                    }
+                },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
-                { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 120 },
-                { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'datetime', width: 150 },
+                { dataField: "countUses", caption: translate(language, 'countUses'), validationRules: [{ type: "required" }], width: 180, allowEditing: false },
+                { dataField: "countRuns", caption: translate(language, 'countRuns'), validationRules: [{ type: "required" }], width: 180, allowEditing: false },
                 { dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
                         if(data.isActive != null){
@@ -125,103 +124,15 @@ $(async () => {
                     } 
                 }
             ],
-            editing: await getEditing(),
+            editing: await getEditing(true, false, false),
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']
             },
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
-            },
-            onEditorPreparing(e) {
-                var names = ["command"];
-
-                if (names.includes(e.dataField) && e.parentType === "dataRow") {
-                    e.editorOptions.disabled = e.row.isNewRow ? false : true;
-                }
-
-                if (e.dataField === "isActive" && e.parentType === "dataRow") {
-                    if (e.row.isNewRow) {
-                        e.editorOptions.value = true;
-                    }
-                }
             }
         });
-
-        function masterDetailTemplate(_, masterDetailOptions) {
-            return $('<div>').dxTabPanel({
-                items: [{
-                    title: translate(language, 'overview'),
-                    template: createOverviewTabTemplate(masterDetailOptions.data, 1),
-                }, {
-                    title: translate(language, 'statistic'),
-                    template: createStatisticTabTemplate(masterDetailOptions.data, 1),
-                }],
-            });
-        }
-
-        function createStatisticTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new Array(masterDetailData),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    columns: [
-                        { dataField: "countUses", caption: translate(language, 'countUses') },
-                        { dataField: "countRuns", caption: translate(language, 'countRuns') }
-                    ]
-                });
-            };
-        }
-
-        function createOverviewTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["module", "command"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return await get(`/command/default/say`, language);
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
-                    },
-                    columns: [
-                        {
-                            type: "buttons",
-                            buttons: [{
-                                icon: "link",
-                                hint: translate(language, "copyToClipboard"),
-                                onClick: function (e) {
-                                    copyToClipboard(e.row.values[1]);
-                                }
-                            }]
-                        },
-                        {
-                            caption: translate(languageCommand, 'command'), width: 200,
-                            calculateCellValue(data) {
-                              return "!" + masterDetailData.command + data.command;
-                            }
-                        },
-                        { dataField: "isMaster", caption: translate(languageCommand, 'isMaster'), width: 200 },
-                        {
-                            caption: translate(languageCommand, 'description'),
-                            calculateCellValue(data) {
-                              return translate(languageCommand, data.translation)
-                            }
-                        }
-                    ]
-                });
-            };
-        }
     }
     //#endregion
 

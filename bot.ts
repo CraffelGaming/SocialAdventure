@@ -13,7 +13,6 @@ import morgan = require('morgan');
 import * as fs from 'fs';
 import log4js = require('log4js');
 import settings from './settings.json';
-import twitch from './twitch.json';
 import routes from './routes/index';
 import api from './routes/api';
 
@@ -51,7 +50,7 @@ declare global {
 
 global.defaultNode = async function getDefaultNode(request: express.Request, response: express.Response) : Promise<NodeItem> {
     if(!request.session.node){
-        request.session.node =  await global.worker.globalDatabase.sequelize.models.node.findByPk("craffelmat") as NodeItem;
+        request.session.node =  await global.worker.globalDatabase.sequelize.models.node.findOne() as NodeItem;
     }
     return request.session.node;
 }
@@ -149,7 +148,7 @@ app.use((err: any, request: express.Request, response: express.Response) => {
 });
 
 app.set('port', settings.port);
-app.set('twitch', twitch);
+// app.set('twitch', twitch);
 
 global.worker = new Worker(log4js.getLogger("default"));
 global.worker.initialize();

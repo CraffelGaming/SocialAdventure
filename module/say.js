@@ -76,7 +76,7 @@ class Say extends module_1.Module {
                         }
                         catch (ex) {
                             global.worker.log.error(`node ${this.channel.node.name}, module ${this.item.command} automation error.`);
-                            global.worker.log.error(ex);
+                            global.worker.log.error(`exception ${ex.message}`);
                         }
                     }
                     else {

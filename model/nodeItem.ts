@@ -1,6 +1,5 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./nodeItem.json');
 @Table({ tableName: "node", modelName: "node"})
 export class NodeItem extends Model<NodeItem>{
     @PrimaryKey
@@ -14,16 +13,6 @@ export class NodeItem extends Model<NodeItem>{
     isActive: boolean = true;
     @Column
     endpoint : string = '/';
-    @Column
-    type: string;
-    @Column
-    broadcasterType: string;
-    @Column
-    description: string;
-    @Column
-    profileImageUrl: string;
-    @Column
-    eMail: string;
 
     constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
         super();
@@ -58,43 +47,14 @@ export class NodeItem extends Model<NodeItem>{
                type: DataTypes.STRING,
                allowNull: false,
                defaultValue: '/'
-            },
-            type: {
-               type: DataTypes.STRING,
-               allowNull: true
-            },
-            broadcasterType: {
-               type: DataTypes.STRING,
-               allowNull: true
-            },
-            description: {
-               type: DataTypes.STRING,
-               allowNull: true
-            },
-            profileImageUrl: {
-               type: DataTypes.STRING,
-               allowNull: true
-            },
-            eMail: {
-               type: DataTypes.STRING,
-               allowNull: true
             }
           }, {freezeTableName: true});
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
-            const items = JSON.parse(JSON.stringify(json)) as NodeItem[];
-
-            for(const item of items){
-                if(await sequelize.models.node.count({where: {name: item.name}}) === 0){
-                    await sequelize.models.node.create(item as any);
-                } else await sequelize.models.node.update(item, {where: {name: item.name}});
-            }
-        } catch(ex){
-            global.worker.log.error(ex);
-        }
-    }
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
+      sequelize.models.node.belongsTo(sequelize.models.twitch, { as: 'twitch', foreignKey: 'name'});
+      sequelize.models.node.belongsTo(sequelize.models.twitchUser, { as: 'twitchUser', foreignKey: 'name'});
+}
 }
 
 module.exports.default = NodeItem;

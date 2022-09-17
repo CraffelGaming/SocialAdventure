@@ -11,6 +11,8 @@ import translation from "./api/api.translation";
 import twitch from "./api/api.twitch";
 import level from "./api/api.level";
 import say from "./api/api.say";
+import loot
+ from "./api/api.loot";
 import hero from "./api/api.hero";
 import herowallet from "./api/api.heroWallet";
 import herotrait from "./api/api.heroTrait";
@@ -1925,6 +1927,176 @@ const router = express.Router();
  router.delete("/location/:node/:handle", location);
 //#endregion
 
+
+//#region Loot
+/**
+ * @swagger
+ * /loot/{node}:
+ *   get:
+ *     tags:
+ *     - Loot
+ *     summary: Befehle
+ *     description: Rückgabe aller Befehle.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               command:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Eindeutiger Name des Commands
+ *               minutes:
+ *                 type: number
+ *                 example: 60
+ *                 descrition: Intervall, um den Text automatisch anzuzeigen (Default 0).
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an, ob der Command aktiviert ist.
+ *               delay:
+ *                 type: number
+ *                 example: 5
+ *                 descrition: Gibt an, wie viele reale Nachrichten zwischen wiederholten automatischen Ausgaben liegen muss.
+ *               countUses:
+ *                 type: number
+ *                 example: 10
+ *                 descrition: Anzahl, wie oft der Befehl manuell verwendet wurde.
+ *               countRuns:
+ *                 type: number
+ *                 example: 10
+ *                 descrition: Anzahl, wie oft der Befehl automatisch getriggert wurde.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/loot/:node", loot);
+
+/**
+ * @swagger
+ * /loot/{node}:
+ *   put:
+ *     tags:
+ *     - Loot
+ *     summary: Befehle
+ *     description: Bearbeitung / Anlage eines neuen Befehls. Die Änderungen werden direkt im Stream wirksam.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           command:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Eindeutiger Name des Commands
+ *           minutes:
+ *             type: number
+ *             example: 60
+ *             descrition: Intervall, um den Text automatisch anzuzeigen (Default 0).
+ *           isActive:
+ *             type: boolean
+ *             example: true
+ *             descrition: Gibt an, ob der Command aktiviert ist.
+ *           delay:
+ *             type: number
+ *             example: 5
+ *             descrition: Gibt an, wie viele reale Nachrichten zwischen wiederholten automatischen Ausgaben liegen muss.
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             command:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Eindeutiger Name des Commands
+ *             minutes:
+ *               type: number
+ *               example: 60
+ *               descrition: Intervall, um den Text automatisch anzuzeigen (Default 0).
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Gibt an, ob der Command aktiviert ist.
+ *             delay:
+ *               type: number
+ *               example: 5
+ *               descrition: Gibt an, wie viele reale Nachrichten zwischen wiederholten automatischen Ausgaben liegen muss.
+ *       404:
+ *         description: no data
+ */
+ router.put("/loot/:node", loot);
+
+/**
+ * @swagger
+ * /loot/{node}/{command}:
+ *   delete:
+ *     tags:
+ *     - Loot
+ *     summary: Befehle
+ *     description: Löscht einen bestimmten Befehl.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "command"
+ *       in: "path"
+ *       description: "Name des Befehls"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/loot/:node/:command", loot);
+//#endregion
+
+
 //#region Menu
 /**
  * @swagger
@@ -2075,26 +2247,49 @@ const router = express.Router();
  *                 type: string
  *                 example: "/"
  *                 descrition: Endpunkt
- *               type:
- *                 type: string
- *                 example: ""
- *                 descrition: Twitch Accounttyp
- *               broadcasterType:
- *                 type: string
- *                 example: "affiliate"
- *                 descrition: Twitch Streamer-Typ
- *               description:
- *                 type: string
- *                 example: "Ich bin ein Streamer"
- *                 descrition: Twitch Beschreibung
- *               profileImageUrl:
- *                 type: string
- *                 example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
- *                 descrition: Twitch Profilbild
- *               email:
- *                 type: string
- *                 example: "max.mustermann@mail.de"
- *                 descrition: Twitch E-Mail Adresse
+ *               twitchUser:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     example: "440371621"
+ *                     descrition: Twitch Benutzer-ID
+ *                   login:
+ *                     type: string
+ *                     example: "craffel"
+ *                     descrition: Twitch Loginname
+ *                   display_name:
+ *                     type: string
+ *                     example: "craffel"
+ *                     descrition: Twitch Anzeigename
+ *                   type:
+ *                     type: string
+ *                     example: ""
+ *                     descrition: Twitch Accounttyp
+ *                   broadcaster_type:
+ *                     type: string
+ *                     example: "affiliate"
+ *                     descrition: Twitch Streamer-Typ
+ *                   description:
+ *                     type: string
+ *                     example: "Ich bin ein Streamer"
+ *                     descrition: Twitch Beschreibung
+ *                   profile_image_url:
+ *                     type: string
+ *                     example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
+ *                     descrition: Twitch Profilbild
+ *                   offline_image_url:
+ *                     type: string
+ *                     example: ""
+ *                     descrition: Twitch Offline-Profilbild
+ *                   view_count:
+ *                     type: string
+ *                     example: "21997"
+ *                     descrition: Anzahl einzigartiger Twitch Aufrufe
+ *                   email:
+ *                     type: string
+ *                     example: "max.mustermann@mail.de"
+ *                     descrition: Twitch E-Mail Adresse
  *               createdAt:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"

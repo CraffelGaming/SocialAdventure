@@ -24,6 +24,7 @@ import { ItemCategoryItem } from '../model/itemCategoryItem';
 import { LocationItem } from '../model/locationItem';
 import { EnemyItem } from '../model/enemyItem';
 import { AdventureItem } from '../model/adventureItem';
+import { LootItem } from '../model/lootItem';
 
 export class Connection {
     databaseName: string;
@@ -35,7 +36,7 @@ export class Connection {
         this.databaseName = databaseName;
         this.databasePath = path.join(__dirname, this.databaseName + '.sqlite') ;
         this.isNewDatabase = !fs.existsSync(this.databasePath);
-        this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath });
+        this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: false });
     }
 
     async initializeGlobal(){
@@ -53,12 +54,14 @@ export class Connection {
             ItemItem.createTable({ sequelize: this.sequelize });
 
             MenuItem.setAssociation({ sequelize: this.sequelize });
+            NodeItem.setAssociation({ sequelize: this.sequelize });
+            TwitchItem.setAssociation({ sequelize: this.sequelize });
+            TwitchUserItem.setAssociation({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
-            await NodeItem.updateTable({ sequelize: this.sequelize });
             await MenuItem.updateTable({ sequelize: this.sequelize });
             await TranslationItem.updateTable({ sequelize: this.sequelize });
             await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
@@ -93,6 +96,7 @@ export class Connection {
             EnemyItem.createTable({ sequelize: this.sequelize });
             CommandItem.createTable({ sequelize: this.sequelize });
             AdventureItem.createTable({ sequelize: this.sequelize });
+            LootItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -110,6 +114,7 @@ export class Connection {
             await EnemyItem.updateTable({ sequelize: this.sequelize });
             await CommandItem.updateTable({ sequelize: this.sequelize });
             await AdventureItem.updateTable({ sequelize: this.sequelize });
+            await LootItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });
@@ -143,7 +148,7 @@ export class Connection {
                 await this.sequelize.models.migration.update({isInstalled: item.isInstalled}, {where: {name: item.name}});
             }
         } catch (ex) {
-            global.worker.log.error(ex);
+            global.worker.log.error(`exception ${ex.message}`);
         }
     }
 }

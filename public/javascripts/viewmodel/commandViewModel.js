@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, copyToClipboard } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -50,6 +50,16 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
+                {
+                    type: "buttons",
+                    buttons: [{
+                        icon: "link",
+                        hint: translate(language, "copyToClipboard"),
+                        onClick: function (e) {
+                            copyToClipboard(e.row.values[1]);
+                        }
+                    }]
+                },
                 {
                     caption: translate(language, 'command'), width: 200,
                     calculateCellValue(data) {

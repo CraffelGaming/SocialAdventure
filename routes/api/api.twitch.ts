@@ -1,6 +1,7 @@
 import * as express from 'express';
 import uniqid = require('uniqid');
 import { NodeItem } from '../../model/nodeItem';
+import twitchData from '../../twitch.json';
 
 const router = express.Router();
 const endpoint = 'twitch';
@@ -8,14 +9,13 @@ const endpoint = 'twitch';
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}`);
 
-    const twitch = request.app.get('twitch');
     if(!request.session.state)
         request.session.state = uniqid();
 
-    response.status(200).json({ url: twitch.url_authorize + '?client_id=' + twitch.client_id +
-                                    '&redirect_uri=' + twitch.redirect_uri +
-                                    '&response_type=' + twitch.response_type +
-                                    '&scope=' + twitch.scope +
+    response.status(200).json({ url: twitchData.url_authorize + '?client_id=' + twitchData.client_id +
+                                    '&redirect_uri=' + twitchData.redirect_uri +
+                                    '&response_type=' + twitchData.response_type +
+                                    '&scope=' + twitchData.scope +
                                     '&state=' + request.session.state });
 });
 
@@ -24,7 +24,7 @@ router.get('/' + endpoint + '/userdata', async (request: express.Request, respon
 
     if(request.session.userData != null){
         response.status(200).json(request.session.userData);
-    } else response.status(404).json();
+    } else response.status(204).json();
 });
 
 router.post('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
@@ -36,7 +36,7 @@ router.post('/' + endpoint + '/', async (request: express.Request, response: exp
             defaults: {
                 name: request.session.userData.login,
                 displayName: request.session.userData.display_name,
-                endpoint: request.app.get("twitch").url_twitch + request.session.userData.login,
+                endpoint: twitchData.url_twitch + request.session.userData.login,
                 type: request.session.userData.type,
                 broadcasterType: request.session.userData.broadcaster_type,
                 description: request.session.userData.description,

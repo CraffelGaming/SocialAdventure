@@ -18,11 +18,15 @@ import level from "./level";
 import location from "./location";
 import enemy from "./enemy";
 import adventure from "./adventure";
+import setting from "./setting";
 
 const endpoint = 'index';
 const type = 'app';
 
 const router = express.Router();
+
+// Setting
+router.get('/setting', setting);
 
 // Adventure
 router.get('/adventure', adventure);

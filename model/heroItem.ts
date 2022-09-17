@@ -30,7 +30,7 @@ export class HeroItem {
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
-        const a = sequelize.define('hero', {
+        sequelize.define('hero', {
             name: {
                 type: DataTypes.STRING,
                 primaryKey: true,
@@ -77,8 +77,6 @@ export class HeroItem {
                 defaultValue: false
             }
           }, {freezeTableName: true});
-
-          global.worker.log.error(a);
     }
 
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){

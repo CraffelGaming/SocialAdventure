@@ -13,16 +13,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Twitch = void 0;
+const twitch_json_1 = __importDefault(require("../twitch.json"));
 const node_fetch_1 = __importDefault(require("node-fetch"));
 class Twitch {
+    twitchBotAuthentification() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const twitch = yield (0, node_fetch_1.default)(twitch_json_1.default.url_token + '?client_id=' + twitch_json_1.default.client_id +
+                '&client_secret=' + twitch_json_1.default.client_secret +
+                '&grant_type=' + twitch_json_1.default.bot_grant_type, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
+            if (twitch.ok) {
+                const result = (yield twitch.json());
+                global.worker.log.trace(result);
+                return result;
+            }
+            return null;
+        });
+    }
     twitchAuthentification(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = request.app.get('twitch');
-            const twitch = yield (0, node_fetch_1.default)(data.url_token + '?client_id=' + data.client_id +
-                '&client_secret=' + data.client_secret +
+            const twitch = yield (0, node_fetch_1.default)(twitch_json_1.default.url_token + '?client_id=' + twitch_json_1.default.client_id +
+                '&client_secret=' + twitch_json_1.default.client_secret +
                 '&code=' + request.query.code +
-                '&grant_type=' + data.grant_type +
-                '&redirect_uri=' + data.redirect_uri, {
+                '&grant_type=' + twitch_json_1.default.user_grant_type +
+                '&redirect_uri=' + twitch_json_1.default.redirect_uri, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -39,13 +57,12 @@ class Twitch {
     }
     TwitchPush(request, response, method, endpoint) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = request.app.get('twitch');
-            const twitch = yield (0, node_fetch_1.default)(data.url_base + endpoint, {
+            const twitch = yield (0, node_fetch_1.default)(twitch_json_1.default.url_base + endpoint, {
                 method,
                 withCredentials: true,
                 credentials: 'include',
                 headers: {
-                    'client-id': data.client_id,
+                    'client-id': twitch_json_1.default.client_id,
                     'Authorization': "Bearer " + request.session.twitch.access_token,
                     'Content-Type': 'application/json'
                 },

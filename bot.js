@@ -49,7 +49,6 @@ const morgan = require("morgan");
 const fs = __importStar(require("fs"));
 const log4js = require("log4js");
 const settings_json_1 = __importDefault(require("./settings.json"));
-const twitch_json_1 = __importDefault(require("./twitch.json"));
 const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
 const worker_1 = require("./controller/worker");
@@ -57,7 +56,7 @@ const app = express();
 global.defaultNode = function getDefaultNode(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!request.session.node) {
-            request.session.node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk("craffelmat"));
+            request.session.node = (yield global.worker.globalDatabase.sequelize.models.node.findOne());
         }
         return request.session.node;
     });
@@ -133,7 +132,7 @@ app.use((err, request, response) => {
     });
 });
 app.set('port', settings_json_1.default.port);
-app.set('twitch', twitch_json_1.default);
+// app.set('twitch', twitch);
 global.worker = new worker_1.Worker(log4js.getLogger("default"));
 global.worker.initialize();
 // Logging
