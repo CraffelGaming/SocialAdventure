@@ -25,6 +25,9 @@ import { LocationItem } from '../model/locationItem';
 import { EnemyItem } from '../model/enemyItem';
 import { AdventureItem } from '../model/adventureItem';
 import { LootItem } from '../model/lootItem';
+import { HealingPotionItem } from '../model/healingPotionItem';
+import { TrainerItem } from '../model/trainerItem';
+import { DailyItem } from '../model/dailyItem';
 
 export class Connection {
     databaseName: string;
@@ -97,6 +100,9 @@ export class Connection {
             CommandItem.createTable({ sequelize: this.sequelize });
             AdventureItem.createTable({ sequelize: this.sequelize });
             LootItem.createTable({ sequelize: this.sequelize });
+            HealingPotionItem.createTable({ sequelize: this.sequelize });
+            TrainerItem.createTable({ sequelize: this.sequelize });
+            DailyItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -115,6 +121,9 @@ export class Connection {
             await CommandItem.updateTable({ sequelize: this.sequelize });
             await AdventureItem.updateTable({ sequelize: this.sequelize });
             await LootItem.updateTable({ sequelize: this.sequelize });
+            await HealingPotionItem.updateTable({ sequelize: this.sequelize });
+            await TrainerItem.updateTable({ sequelize: this.sequelize });
+            await DailyItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });

@@ -26,7 +26,7 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
     let node: NodeItem;
 
     if(request.params.node === 'default')
-        node = global.defaultNode(request, response);
+        node = await global.defaultNode(request, response);
     else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
     const channel = global.worker.channels.find(x => x.node.name === node.name)

@@ -78,9 +78,13 @@ $(async () => {
                 { dataField: "name", caption: translate(language, 'name') },
                 { dataField: "level", caption: translate(languageLevel, 'handle'), width: 100  },
                 { dataField: "experience", caption: translate(language, 'experience'), width: 150 }, 
-                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 150 }, 
+                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200, 
+                    calculateCellValue(data) {
+                        return data.hitpoints.toString() + ' / ' + data.hitpointsMax.toString();
+                }}, 
                 { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime', width: 150 },
+                { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date', width: 200 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200 }
             ],
             export: {

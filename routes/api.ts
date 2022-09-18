@@ -11,8 +11,7 @@ import translation from "./api/api.translation";
 import twitch from "./api/api.twitch";
 import level from "./api/api.level";
 import say from "./api/api.say";
-import loot
- from "./api/api.loot";
+import loot from "./api/api.loot";
 import hero from "./api/api.hero";
 import herowallet from "./api/api.heroWallet";
 import herotrait from "./api/api.heroTrait";
@@ -23,6 +22,9 @@ import command from "./api/api.command";
 import location from "./api/api.location";
 import enemy from "./api/api.enemy";
 import adventure from "./api/api.adventure";
+import trainer from "./api/api.trainer";
+import healingPotion from "./api/api.healingPotion";
+import daily from "./api/api.daily";
 
 const router = express.Router();
 
@@ -356,6 +358,176 @@ const router = express.Router();
   router.get("/command/:node/:module", command);
 //#endregion
 
+//#region Daily
+/**
+ * @swagger
+ * /daily/{node}:
+ *   get:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Rückgabe aller Täglichen Aufgaben.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID der Täglichen Aufgabe
+ *               value:
+ *                 type: string
+ *                 example: "Minenarbeit"
+ *                 descrition: Name der Täglichen Aufgabe
+ *               description:
+ *                 type: string
+ *                 example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *                 descrition: Beschreibung der Täglichen Aufgabe
+ *               goldMin:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Minimaler Verdienst
+ *               goldMax:
+ *                 type: integer
+ *                 example: 500
+ *                 descrition: Maximaler Verdienst
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/daily/:node", daily);
+
+/**
+ * @swagger
+ * /daily/{node}:
+ *   put:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Anlage einer neuen täglichen Aufgabe.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "gold"
+ *             descrition: ID der Täglichen Aufgabe
+ *           value:
+ *             type: string
+ *             example: "Minenarbeit"
+ *             descrition: Name der Täglichen Aufgabe
+ *           description:
+ *             type: string
+ *             example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *             descrition: Beschreibung der Täglichen Aufgabe
+ *           goldMin:
+ *             type: integer
+ *             example: 100
+ *             descrition: Minimaler Verdienst
+ *           goldMax:
+ *             type: integer
+ *             example: 500
+ *             descrition: Maximaler Verdienst
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "gold"
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Minenarbeit"
+ *               descrition: Name der Täglichen Aufgabe
+ *             description:
+ *               type: string
+ *               example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *               descrition: Beschreibung der Täglichen Aufgabe
+ *             gold:
+ *               type: integer
+ *               example: 150
+ *               descrition: Wert des Gegenstandes in Gold
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/daily/:node", daily);
+
+/**
+ * @swagger
+ * /daily/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Löscht eine bestimmte Tägliche Aufgabe.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID der Täglichen Aufgabe"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/daily/:node/:handle", daily);
+//#endregion
+
 //#region Enemy
 /**
  * @swagger
@@ -552,6 +724,180 @@ const router = express.Router();
  *         description: no data
  */
  router.delete("/enemy/:node/:handle", enemy);
+//#endregion
+
+//#region HealingPotion
+/**
+ * @swagger
+ * /healingPotion/{node}:
+ *   get:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Rückgabe aller Heiltränke.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstands
+ *               value:
+ *                 type: string
+ *                 example: "Mächtiger Heiltrank"
+ *                 descrition: Name des Heiltranks
+ *               description:
+ *                 type: string
+ *                 example: "Der beste Heiltrank weit und breit. Eine Flasche und du fühlst dich wie neu geboren. Leider spiegelt sich das auch am Preis wieder. Vegan."
+ *                 descrition: Beschreibung des Heiltranks
+ *               percent:
+ *                 type: integer
+ *                 example: 25
+ *                 descrition: Heilkraft des Heiltranks in prozent
+ *               gold:
+ *                 type: integer
+ *                 example: 200
+ *                 descrition: Wert des Heiltranks in Gold
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/healingPotion/:node", healingPotion);
+
+/**
+ * @swagger
+ * /healingPotion/{node}:
+ *   put:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Anlage eines neuen Heiltranks.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *            type: integer
+ *            example: 1
+ *            descrition: ID des Heiltranks
+ *           value:
+ *             type: string
+ *             example: "Mächtiger Heiltrank"
+ *             descrition: Name des Heiltranks
+ *           description:
+ *             type: string
+ *             example: "Der beste Heiltrank weit und breit. Eine Flasche und du fühlst dich wie neu geboren. Leider spiegelt sich das auch am Preis wieder. Vegan."
+ *             descrition: Beschreibung des Heiltranks
+ *           percent:
+ *             type: integer
+ *             example: 25
+ *             descrition: Heilkraft des Heiltranks in prozent
+ *           gold:
+ *             type: integer
+ *             example: 200
+ *             descrition: Wert des Heiltranks in Gold
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Mächtiger Heiltrank"
+ *               descrition: Name des Heiltranks
+ *             description:
+ *               type: string
+ *               example: "Der beste Heiltrank weit und breit. Eine Flasche und du fühlst dich wie neu geboren. Leider spiegelt sich das auch am Preis wieder. Vegan."
+ *               descrition: Beschreibung des Heiltranks
+ *             percent:
+ *               type: integer
+ *               example: 25
+ *               descrition: Heilkraft des Heiltranks in prozent
+ *             gold:
+ *               type: integer
+ *               example: 200
+ *               descrition: Wert des Heiltranks in Gold
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/healingPotion/:node", healingPotion);
+
+/**
+ * @swagger
+ * /healingPotion/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Löscht einen bestimmten Heiltrank.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/healingPotion/:node/:handle", healingPotion);
 //#endregion
 
 //#region Hero
@@ -1927,7 +2273,6 @@ const router = express.Router();
  router.delete("/location/:node/:handle", location);
 //#endregion
 
-
 //#region Loot
 /**
  * @swagger
@@ -2095,7 +2440,6 @@ const router = express.Router();
  */
  router.delete("/loot/:node/:command", loot);
 //#endregion
-
 
 //#region Menu
 /**
@@ -2553,6 +2897,168 @@ const router = express.Router();
  *         description: no data
  */
  router.delete("/say/:node/:command", say);
+//#endregion
+
+//#region Trainer
+/**
+ * @swagger
+ * /trainer/{node}:
+ *   get:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Rückgabe aller Trainer.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID des Gegenstands
+ *               value:
+ *                 type: string
+ *                 example: "Goldenes Händchen"
+ *                 descrition: Name des Trainers
+ *               description:
+ *                 type: string
+ *                 example: "Steigert den Bonus für Goldfund."
+ *                 descrition: Beschreibung des Trainers
+ *               gold:
+ *                 type: integer
+ *                 example: 150
+ *                 descrition: Kosten des Trainers in Gold
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/trainer/:node", trainer);
+
+/**
+ * @swagger
+ * /trainer/{node}:
+ *   put:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Anlage eines neuen Trainers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "gold"
+ *             descrition: ID des Gegenstands
+ *           value:
+ *             type: string
+ *             example: "Goldenes Händchen"
+ *             descrition: Name des Trainers
+ *           description:
+ *             type: string
+ *             example: "Steigert den Bonus für Goldfund."
+ *             descrition: Beschreibung des Trainers
+ *           gold:
+ *             type: integer
+ *             example: 150
+ *             descrition: Kosten des Trainers in Gold
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "gold"
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Goldenes Händchen"
+ *               descrition: Name des Trainers
+ *             description:
+ *               type: string
+ *               example: "Steigert den Bonus für Goldfund."
+ *               descrition: Beschreibung des Trainers
+ *             gold:
+ *               type: integer
+ *               example: 150
+ *               descrition: Kosten des Trainers in Gold
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/trainer/:node", trainer);
+
+/**
+ * @swagger
+ * /trainer/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Löscht einen bestimmten Trainer.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/trainer/:node/:handle", trainer);
 //#endregion
 
 //#region Translation

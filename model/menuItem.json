@@ -63,6 +63,12 @@
         "parentEndpoint": "game"
     },
     {
+        "endpoint": "daily",
+        "name": "daily",
+        "order": 1275,
+        "parentEndpoint": "game"
+    },
+    {
         "endpoint": "statistic",
         "name": "statistic",
         "order": 1280,
@@ -97,13 +103,6 @@
         "endpoint": "taverne",
         "name": "taverne",
         "order": 1320,
-        "parentEndpoint": "me",
-        "authenticationRequired": true
-    },
-    {
-        "endpoint": "daily",
-        "name": "daily",
-        "order": 1330,
         "parentEndpoint": "me",
         "authenticationRequired": true
     },

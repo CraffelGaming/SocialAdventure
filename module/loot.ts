@@ -1,10 +1,8 @@
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
-import { AdventureItem } from "../model/adventureItem";
 import { HeroInventoryItem } from "../model/heroInventoryItem";
 import { HeroItem } from "../model/heroItem";
-import { HeroWalletItem } from "../model/heroWalletItem";
 import { LootItem } from "../model/lootItem";
 import { TranslationItem } from "../model/translationItem";
 import { Module } from "./module";
@@ -115,7 +113,7 @@ export class Loot extends Module {
     }
     //#endregion
 
-    //#region Statistics
+    //#region Adventure
     async adventure(command: Command){
         try{
             const count = await this.channel.database.sequelize.models.hero.count({where: {isActive: true}});
@@ -160,7 +158,7 @@ export class Loot extends Module {
     //#region Blood
     async blood(command: Command){
         const hero = this.getTargetHero(command);
-        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero, {raw: true});
+        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero);
 
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");
@@ -179,7 +177,7 @@ export class Loot extends Module {
 
     async bloodpoints(command: Command){
         const hero = this.getTargetHero(command);
-        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero, {raw: true});
+        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero);
 
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");

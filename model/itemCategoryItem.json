@@ -15,5 +15,6 @@
     {"handle": 14,  "value": "dnd"},
     {"handle": 15,  "value": "food"},
     {"handle": 16,  "value": "retro"},
-    {"handle": 17,  "value": "pokemon"}
+    {"handle": 17,  "value": "pokemon"},
+    {"handle": 18,  "value": "hollowknight"}
 ]

@@ -59,17 +59,19 @@ export class ItemItem extends Model<ItemItem>{
     }
 
     static async updateTable({ sequelize, isGlobal }: { sequelize: Sequelize, isGlobal: boolean; }): Promise<void>{
+        let handle = 1;
         try{
             const items = JSON.parse(JSON.stringify(json)) as ItemItem[];
 
             for(const item of items){
-                if(await sequelize.models.item.count({where: {handle: item.handle}}) === 0){
+                if(await sequelize.models.item.count({where: {handle}}) === 0){
                     if(isGlobal === true && item.categoryHandle !== 1){
                         await sequelize.models.item.create(item as any);
                     } else if(isGlobal === false && item.categoryHandle === 1){
                         await sequelize.models.item.create(item as any);
                     }
-                } else await sequelize.models.item.update(item, {where: {handle: item.handle}});
+                } else await sequelize.models.item.update(item, {where: {handle}});
+                handle++;
             }
         } catch(ex){
             global.worker.log.error(ex);

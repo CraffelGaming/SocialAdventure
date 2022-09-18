@@ -67,10 +67,11 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
     }
     static updateTable({ sequelize, isGlobal }) {
         return __awaiter(this, void 0, void 0, function* () {
+            let handle = 1;
             try {
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
-                    if ((yield sequelize.models.item.count({ where: { handle: item.handle } })) === 0) {
+                    if ((yield sequelize.models.item.count({ where: { handle } })) === 0) {
                         if (isGlobal === true && item.categoryHandle !== 1) {
                             yield sequelize.models.item.create(item);
                         }
@@ -79,7 +80,8 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
                         }
                     }
                     else
-                        yield sequelize.models.item.update(item, { where: { handle: item.handle } });
+                        yield sequelize.models.item.update(item, { where: { handle } });
+                    handle++;
                 }
             }
             catch (ex) {

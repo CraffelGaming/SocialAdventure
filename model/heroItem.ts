@@ -21,7 +21,13 @@ export class HeroItem {
     @Column
     prestige: number = 0;
     @Column
+    hitpoints: number = 100;
+    @Column
+    hitpointsMax: number = 100;
+    @Column
     isActive: boolean = false;
+    @Column
+    isFounder: boolean = false;
     @Column
     level: number = 1;
 
@@ -46,6 +52,11 @@ export class HeroItem {
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)
             },
+            lastDaily: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
             startIndex: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
@@ -66,10 +77,20 @@ export class HeroItem {
                 allowNull: false,
                 defaultValue: 100
             },
+            hitpointsMax: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
             level: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 1
+            },
+            isFounder: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             isActive: {
                 type: DataTypes.BOOLEAN,

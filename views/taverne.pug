@@ -6,6 +6,24 @@ block content
     body.dx-viewport
         #container.main-container
             h4#labelTitle
-
+            .demo-container
+                #page
+                    #responsive-box
+                        .header(data-options="dxItem: { location: [{ row: 0, col: 0,  colspan: 3,  screen: 'lg' }, { row: 0, col: 0, colspan: 2, screen: 'sm' }] }")
+                            p#heal
+                        .left-side-bar(data-options="dxItem: { location: [{ row: 1, col: 0, screen: 'lg' }, { row: 2, col: 0, screen: 'sm' }] }")
+                            h5#heal25Title
+                            p#heal25Information
+                            #heal25
+                        .content(data-options="dxItem: { location: [{ row: 1, col: 1, screen: 'lg' }, { row: 1, col: 0, colspan: 2, screen: 'sm' }] }")
+                            h5#heal50Title
+                            p#heal50Information
+                            #heal50
+                        .right-side-bar(data-options="dxItem: { location: [{ row: 1, col: 2, screen: 'lg' }, { row: 2, col: 1, screen: 'sm' }] }")
+                            h5#heal100Title
+                            p#heal100Information
+                            #heal100
+            #healingDataGrid 
+            #trainerDataGrid
     footer#sticky-footer.footer
         #info-panel

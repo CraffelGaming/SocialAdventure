@@ -127,7 +127,7 @@ class Loot extends module_1.Module {
         });
     }
     //#endregion
-    //#region Statistics
+    //#region Adventure
     adventure(command) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -168,20 +168,20 @@ class Loot extends module_1.Module {
     blood(command) {
         return __awaiter(this, void 0, void 0, function* () {
             const hero = this.getTargetHero(command);
-            const item = yield this.channel.database.sequelize.models.heroWallet.findByPk(hero, { raw: true });
+            const item = yield this.channel.database.sequelize.models.heroWallet.findByPk(hero);
             if (item) {
                 const blood = this.settings.find(x => x.command === "blood");
                 const date = new Date();
-                const timeDifference = Math.floor((date.getTime() - new Date(item.lastBlood).getTime()) / 60000);
-                if (timeDifference >= blood.minutes || item.blood < 1) {
+                const timeDifference = Math.floor((date.getTime() - new Date(item.getDataValue("lastBlood")).getTime()) / 60000);
+                if (timeDifference >= blood.minutes || item.getDataValue("blood") < 1) {
                     const countHeroes = yield this.getCountActiveHeroes();
-                    item.blood = this.getRandomNumber(1 + countHeroes, 10 + countHeroes);
-                    item.lastBlood = date;
-                    yield this.channel.database.sequelize.models.heroWallet.update(item, { where: { heroName: item.heroName } });
-                    return translationItem_1.TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.blood.toString());
+                    item.setDataValue("blood", this.getRandomNumber(1 + countHeroes, 10 + countHeroes));
+                    item.setDataValue("lastBlood", date);
+                    yield item.save();
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.getDataValue("blood").toString());
                 }
                 else
-                    return translationItem_1.TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', (blood.minutes - timeDifference).toString()).replace('$3', item.blood.toString());
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', (blood.minutes - timeDifference).toString()).replace('$3', item.getDataValue("blood").toString());
             }
             else
                 return translationItem_1.TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
@@ -190,18 +190,18 @@ class Loot extends module_1.Module {
     bloodpoints(command) {
         return __awaiter(this, void 0, void 0, function* () {
             const hero = this.getTargetHero(command);
-            const item = yield this.channel.database.sequelize.models.heroWallet.findByPk(hero, { raw: true });
+            const item = yield this.channel.database.sequelize.models.heroWallet.findByPk(hero);
             if (item) {
                 const blood = this.settings.find(x => x.command === "blood");
                 const date = new Date();
-                const timeDifference = Math.floor((date.getTime() - new Date(item.lastBlood).getTime()) / 60000);
-                if (item.blood > 0 && timeDifference >= blood.minutes) {
-                    item.blood = 0;
-                    yield this.channel.database.sequelize.models.heroWallet.update(item, { where: { heroName: item.heroName } });
+                const timeDifference = Math.floor((date.getTime() - new Date(item.getDataValue("lastBlood")).getTime()) / 60000);
+                if (item.getDataValue("blood") > 0 && timeDifference >= blood.minutes) {
+                    item.setDataValue("blood", 0);
+                    yield item.save();
                     return translationItem_1.TranslationItem.translate(this.translation, 'heroNoBloodpoints').replace('$1', hero);
                 }
                 else
-                    return translationItem_1.TranslationItem.translate(this.translation, 'heroBloodpoints').replace('$1', hero).replace('$2', item.blood.toString()).replace('$3', (blood.minutes - timeDifference).toString());
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroBloodpoints').replace('$1', hero).replace('$2', item.getDataValue("blood").toString()).replace('$3', (blood.minutes - timeDifference).toString());
             }
             else
                 return translationItem_1.TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);

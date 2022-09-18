@@ -48,6 +48,9 @@ const api_command_1 = __importDefault(require("./api/api.command"));
 const api_location_1 = __importDefault(require("./api/api.location"));
 const api_enemy_1 = __importDefault(require("./api/api.enemy"));
 const api_adventure_1 = __importDefault(require("./api/api.adventure"));
+const api_trainer_1 = __importDefault(require("./api/api.trainer"));
+const api_healingPotion_1 = __importDefault(require("./api/api.healingPotion"));
+const api_daily_1 = __importDefault(require("./api/api.daily"));
 const router = express.Router();
 //#region Adventure
 /**
@@ -373,6 +376,173 @@ router.get("/command/:node", api_command_1.default);
  */
 router.get("/command/:node/:module", api_command_1.default);
 //#endregion
+//#region Daily
+/**
+ * @swagger
+ * /daily/{node}:
+ *   get:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Rückgabe aller Täglichen Aufgaben.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID der Täglichen Aufgabe
+ *               value:
+ *                 type: string
+ *                 example: "Minenarbeit"
+ *                 descrition: Name der Täglichen Aufgabe
+ *               description:
+ *                 type: string
+ *                 example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *                 descrition: Beschreibung der Täglichen Aufgabe
+ *               goldMin:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Minimaler Verdienst
+ *               goldMax:
+ *                 type: integer
+ *                 example: 500
+ *                 descrition: Maximaler Verdienst
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/daily/:node", api_daily_1.default);
+/**
+ * @swagger
+ * /daily/{node}:
+ *   put:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Anlage einer neuen täglichen Aufgabe.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "gold"
+ *             descrition: ID der Täglichen Aufgabe
+ *           value:
+ *             type: string
+ *             example: "Minenarbeit"
+ *             descrition: Name der Täglichen Aufgabe
+ *           description:
+ *             type: string
+ *             example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *             descrition: Beschreibung der Täglichen Aufgabe
+ *           goldMin:
+ *             type: integer
+ *             example: 100
+ *             descrition: Minimaler Verdienst
+ *           goldMax:
+ *             type: integer
+ *             example: 500
+ *             descrition: Maximaler Verdienst
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "gold"
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Minenarbeit"
+ *               descrition: Name der Täglichen Aufgabe
+ *             description:
+ *               type: string
+ *               example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *               descrition: Beschreibung der Täglichen Aufgabe
+ *             gold:
+ *               type: integer
+ *               example: 150
+ *               descrition: Wert des Gegenstandes in Gold
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/daily/:node", api_daily_1.default);
+/**
+ * @swagger
+ * /daily/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Löscht eine bestimmte Tägliche Aufgabe.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID der Täglichen Aufgabe"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/daily/:node/:handle", api_daily_1.default);
+//#endregion
 //#region Enemy
 /**
  * @swagger
@@ -567,6 +737,177 @@ router.put("/enemy/:node", api_enemy_1.default);
  *         description: no data
  */
 router.delete("/enemy/:node/:handle", api_enemy_1.default);
+//#endregion
+//#region HealingPotion
+/**
+ * @swagger
+ * /healingPotion/{node}:
+ *   get:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Rückgabe aller Heiltränke.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Gegenstands
+ *               value:
+ *                 type: string
+ *                 example: "Mächtiger Heiltrank"
+ *                 descrition: Name des Heiltranks
+ *               description:
+ *                 type: string
+ *                 example: "Der beste Heiltrank weit und breit. Eine Flasche und du fühlst dich wie neu geboren. Leider spiegelt sich das auch am Preis wieder. Vegan."
+ *                 descrition: Beschreibung des Heiltranks
+ *               percent:
+ *                 type: integer
+ *                 example: 25
+ *                 descrition: Heilkraft des Heiltranks in prozent
+ *               gold:
+ *                 type: integer
+ *                 example: 200
+ *                 descrition: Wert des Heiltranks in Gold
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/healingPotion/:node", api_healingPotion_1.default);
+/**
+ * @swagger
+ * /healingPotion/{node}:
+ *   put:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Anlage eines neuen Heiltranks.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *            type: integer
+ *            example: 1
+ *            descrition: ID des Heiltranks
+ *           value:
+ *             type: string
+ *             example: "Mächtiger Heiltrank"
+ *             descrition: Name des Heiltranks
+ *           description:
+ *             type: string
+ *             example: "Der beste Heiltrank weit und breit. Eine Flasche und du fühlst dich wie neu geboren. Leider spiegelt sich das auch am Preis wieder. Vegan."
+ *             descrition: Beschreibung des Heiltranks
+ *           percent:
+ *             type: integer
+ *             example: 25
+ *             descrition: Heilkraft des Heiltranks in prozent
+ *           gold:
+ *             type: integer
+ *             example: 200
+ *             descrition: Wert des Heiltranks in Gold
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Mächtiger Heiltrank"
+ *               descrition: Name des Heiltranks
+ *             description:
+ *               type: string
+ *               example: "Der beste Heiltrank weit und breit. Eine Flasche und du fühlst dich wie neu geboren. Leider spiegelt sich das auch am Preis wieder. Vegan."
+ *               descrition: Beschreibung des Heiltranks
+ *             percent:
+ *               type: integer
+ *               example: 25
+ *               descrition: Heilkraft des Heiltranks in prozent
+ *             gold:
+ *               type: integer
+ *               example: 200
+ *               descrition: Wert des Heiltranks in Gold
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/healingPotion/:node", api_healingPotion_1.default);
+/**
+ * @swagger
+ * /healingPotion/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Löscht einen bestimmten Heiltrank.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/healingPotion/:node/:handle", api_healingPotion_1.default);
 //#endregion
 //#region Hero
 /**
@@ -2533,6 +2874,165 @@ router.put("/say/:node", api_say_1.default);
  *         description: no data
  */
 router.delete("/say/:node/:command", api_say_1.default);
+//#endregion
+//#region Trainer
+/**
+ * @swagger
+ * /trainer/{node}:
+ *   get:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Rückgabe aller Trainer.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID des Gegenstands
+ *               value:
+ *                 type: string
+ *                 example: "Goldenes Händchen"
+ *                 descrition: Name des Trainers
+ *               description:
+ *                 type: string
+ *                 example: "Steigert den Bonus für Goldfund."
+ *                 descrition: Beschreibung des Trainers
+ *               gold:
+ *                 type: integer
+ *                 example: 150
+ *                 descrition: Kosten des Trainers in Gold
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/trainer/:node", api_trainer_1.default);
+/**
+ * @swagger
+ * /trainer/{node}:
+ *   put:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Anlage eines neuen Trainers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "gold"
+ *             descrition: ID des Gegenstands
+ *           value:
+ *             type: string
+ *             example: "Goldenes Händchen"
+ *             descrition: Name des Trainers
+ *           description:
+ *             type: string
+ *             example: "Steigert den Bonus für Goldfund."
+ *             descrition: Beschreibung des Trainers
+ *           gold:
+ *             type: integer
+ *             example: 150
+ *             descrition: Kosten des Trainers in Gold
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "gold"
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Goldenes Händchen"
+ *               descrition: Name des Trainers
+ *             description:
+ *               type: string
+ *               example: "Steigert den Bonus für Goldfund."
+ *               descrition: Beschreibung des Trainers
+ *             gold:
+ *               type: integer
+ *               example: 150
+ *               descrition: Kosten des Trainers in Gold
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/trainer/:node", api_trainer_1.default);
+/**
+ * @swagger
+ * /trainer/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Löscht einen bestimmten Trainer.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/trainer/:node/:handle", api_trainer_1.default);
 //#endregion
 //#region Translation
 /**

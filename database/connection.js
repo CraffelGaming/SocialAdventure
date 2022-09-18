@@ -58,6 +58,9 @@ const locationItem_1 = require("../model/locationItem");
 const enemyItem_1 = require("../model/enemyItem");
 const adventureItem_1 = require("../model/adventureItem");
 const lootItem_1 = require("../model/lootItem");
+const healingPotionItem_1 = require("../model/healingPotionItem");
+const trainerItem_1 = require("../model/trainerItem");
+const dailyItem_1 = require("../model/dailyItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -118,6 +121,9 @@ class Connection {
                 commandItem_1.CommandItem.createTable({ sequelize: this.sequelize });
                 adventureItem_1.AdventureItem.createTable({ sequelize: this.sequelize });
                 lootItem_1.LootItem.createTable({ sequelize: this.sequelize });
+                healingPotionItem_1.HealingPotionItem.createTable({ sequelize: this.sequelize });
+                trainerItem_1.TrainerItem.createTable({ sequelize: this.sequelize });
+                dailyItem_1.DailyItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
@@ -134,6 +140,9 @@ class Connection {
                 yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
                 yield adventureItem_1.AdventureItem.updateTable({ sequelize: this.sequelize });
                 yield lootItem_1.LootItem.updateTable({ sequelize: this.sequelize });
+                yield healingPotionItem_1.HealingPotionItem.updateTable({ sequelize: this.sequelize });
+                yield trainerItem_1.TrainerItem.updateTable({ sequelize: this.sequelize });
+                yield dailyItem_1.DailyItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
                 heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });

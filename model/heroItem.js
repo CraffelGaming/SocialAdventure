@@ -31,7 +31,10 @@ let HeroItem = class HeroItem {
         this.startIndex = 0;
         this.experience = 0;
         this.prestige = 0;
+        this.hitpoints = 100;
+        this.hitpointsMax = 100;
         this.isActive = false;
+        this.isFounder = false;
         this.level = 1;
         this.name = name;
     }
@@ -48,6 +51,11 @@ let HeroItem = class HeroItem {
                 defaultValue: Date.UTC(2020, 1, 1)
             },
             lastJoin: {
+                type: sequelize_1.DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
+            lastDaily: {
                 type: sequelize_1.DataTypes.DATE,
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)
@@ -72,10 +80,20 @@ let HeroItem = class HeroItem {
                 allowNull: false,
                 defaultValue: 100
             },
+            hitpointsMax: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
             level: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 1
+            },
+            isFounder: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
@@ -175,8 +193,20 @@ __decorate([
 ], HeroItem.prototype, "prestige", void 0);
 __decorate([
     sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "hitpoints", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "hitpointsMax", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], HeroItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], HeroItem.prototype, "isFounder", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)

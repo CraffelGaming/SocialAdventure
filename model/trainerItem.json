@@ -1,0 +1,6 @@
+[
+    {"handle": "gold", "value": "Goldenes Händchen", "description": "Steigert den Bonus für Goldfund.", "gold": 10000},
+    {"handle": "steal", "value": "Schatten der Nacht", "description": "Steigert den Bonus für Diebstahl.", "gold": 2500},
+    {"handle": "defence", "value": "Adlerauge", "description": "Steigert den Bonus für Verteidigung.", "gold": 2500},
+    {"handle": "work", "value": "Harter Arbeiter", "description": "Steigert den Bonus für Goldfund.", "gold": 5000}
+]

@@ -1,0 +1,5 @@
+[
+    {"handle": 1, "value": "Minenarbeit", "description": "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind.", "goldMin": 100, "goldMax": 500},
+    {"handle": 2, "value": "Holzfällen", "description": "Alle brauchen Brennholz von den tiefen Wäldern, die Brennen besonders lang und warm.", "goldMin": 100, "goldMax": 500},
+    {"handle": 3, "value": "Gartenarbeit", "description": "Der Königliche Hofgarten muss Tag ein Tag aus gepflegt werden.", "goldMin": 100, "goldMax": 500}
+]

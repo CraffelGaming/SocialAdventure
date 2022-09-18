@@ -24,5 +24,6 @@
     {"module": "loot",      "command": "loot",          "isMaster": false,      "translation": "loot"},
     {"module": "loot",      "command": "lootstart",     "isMaster": true,       "translation": "start"},
     {"module": "loot",      "command": "lootstop",      "isMaster": true,       "translation": "stop"},
+    {"module": "loot",      "command": "lootclear",     "isMaster": true,       "translation": "clear"},
     {"module": "loot",      "command": "lootclear",     "isMaster": true,       "translation": "clear"}
 ]

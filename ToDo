@@ -5,6 +5,10 @@ Version 1
 2.  [X] Eigene URL für jeden Streamer
 3.  [X] Itemkategorien einbinden
 4.  [.] Loot neue Logik implementieren.
+        Taverne
+        Give / Steal
+        Tägliche Aufgabe
+        Loottime
 5.  [.] Shoutout im Say Modul
 6.  [.] Counter im Say Modul
 7.  [X] Twitch API Verbindung mit Chat
@@ -23,11 +27,3 @@ Version 2
 A.  [ ] Englische Übersetzung
 B.  [ ] API aufräumen
 C.  [ ] Datenspeicher für Say-Module
-
-ToDO
-Loottime
-
-ItemKategorie 
-Ente  Retro
-Morty Rocket league / D&D /DBD
-SuperLootgeil Essen / Pokemon
