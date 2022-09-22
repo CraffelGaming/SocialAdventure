@@ -5,7 +5,7 @@ import { ItemItem } from './itemItem';
 import { HeroItem } from './heroItem';
 
 @Table({ tableName: "adventure", modelName: "adventure"})
-export class AdventureItem extends Model<AdventureItem>{
+export class AdventureItem{
     @PrimaryKey
     @Column
     itemHandle: number;
@@ -14,10 +14,6 @@ export class AdventureItem extends Model<AdventureItem>{
     heroName: string;
     hero: HeroItem;
     item: ItemItem;
-
-    constructor(){
-        super();
-    }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('adventure', {

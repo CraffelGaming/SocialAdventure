@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Loot = void 0;
 const heroItem_1 = require("../model/heroItem");
 const translationItem_1 = require("../model/translationItem");
+const lootExploring_1 = require("./lootExploring");
 const module_1 = require("./module");
 class Loot extends module_1.Module {
     //#region Construct
@@ -56,20 +57,28 @@ class Loot extends module_1.Module {
         const loot = this.settings.find(x => x.command === "loot");
         this.timer = setInterval(() => __awaiter(this, void 0, void 0, function* () {
             if (loot.isActive) {
-                const date = new Date();
                 global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun)}...`);
-                const timeDifference = Math.floor((date.getTime() - new Date(loot.lastRun).getTime()) / 60000);
-                if (timeDifference >= loot.minutes) {
-                    loot.lastRun = date;
+                if (this.isDateTimeoutExpired(new Date(loot.lastRun), loot.minutes)) {
+                    loot.lastRun = new Date();
                     loot.countRuns += 1;
                     yield this.channel.database.sequelize.models.loot.update(loot, { where: { command: loot.command } });
                     global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} run after ${loot.minutes} Minutes.`);
-                    this.channel.puffer.addMessage("loot executed");
+                    const exploring = new lootExploring_1.LootExploring(this);
+                    if (yield exploring.execute()) {
+                        this.channel.puffer.addMessage(exploring.hero.getDataValue("name") + ', ' +
+                            exploring.dungeon.getDataValue("name") + ', ' +
+                            exploring.item.getDataValue("value") + ', ' +
+                            exploring.enemy.getDataValue("name"));
+                        yield exploring.save();
+                    }
+                    else {
+                        global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} not executed - missing exploring`);
+                    }
                 }
                 else {
                     global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} not executed`);
                     global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} minutes: ${loot.minutes}`);
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} time elapsed: ${timeDifference}`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} time elapsed: ${this.getDateTimeoutRemainingMinutes(new Date(loot.lastRun), loot.minutes)}`);
                 }
             }
         }), 60000 // Alle 60 Sekunden prüfen
@@ -81,24 +90,29 @@ class Loot extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let isNew = false;
+                const loot = this.settings.find(x => x.command === "loot");
                 let value = yield this.channel.database.sequelize.models.hero.findByPk(command.source);
                 if (!value) {
                     yield heroItem_1.HeroItem.put({ sequelize: this.channel.database.sequelize, element: new heroItem_1.HeroItem(command.source) });
                     value = (yield this.channel.database.sequelize.models.hero.findByPk(command.source));
                     isNew = true;
                 }
-                if (!value.getDataValue("isActive")) {
-                    value.setDataValue("isActive", true);
-                    value.setDataValue("lastJoin", new Date());
-                    yield value.save();
-                    if (isNew) {
-                        return translationItem_1.TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
+                if (this.isDateTimeoutExpired(value.getDataValue("lastJoin"), loot.minutes)) {
+                    if (!value.getDataValue("isActive")) {
+                        value.setDataValue("isActive", true);
+                        value.setDataValue("lastJoin", new Date());
+                        yield value.save();
+                        if (isNew) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
+                        }
+                        else
+                            return translationItem_1.TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
                     }
                     else
-                        return translationItem_1.TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
                 }
                 else
-                    return translationItem_1.TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(value.getDataValue("lastJoin"), loot.minutes).toString());
             }
             catch (ex) {
                 global.worker.log.error(`loot error - function loot - ${ex.message}`);
@@ -318,6 +332,18 @@ class Loot extends module_1.Module {
         const random = Math.floor(Math.random() * (max - min + 1) + min);
         global.worker.log.trace(`node ${this.channel.node.name}, new random number ${random} between ${min} and ${max}`);
         return random;
+    }
+    //#endregion
+    //#region Date
+    getDateDifferenceMinutes(date) {
+        return Math.floor((Date.now() - date.getTime()) / 1000 / 60);
+    }
+    isDateTimeoutExpired(date, timeout) {
+        return this.getDateDifferenceMinutes(date) > timeout;
+    }
+    getDateTimeoutRemainingMinutes(date, timeout) {
+        const diff = this.getDateDifferenceMinutes(date);
+        return diff >= timeout ? 0 : timeout - diff;
     }
 }
 exports.Loot = Loot;

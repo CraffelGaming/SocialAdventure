@@ -5,7 +5,6 @@ $(async () => {
 
     let language = await getTranslation('location');
     let languageItemCategory = await getTranslation('itemCategory');
-    let languageItemCategoryList = await getTranslation('itemCategoryList');
     let category = await get('/itemCategory/default?childs=false');
 
     translation();
@@ -114,13 +113,13 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 300 },
+                { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 250 },
                 { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }]},
-                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 200},
-                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" },
+                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 120},
+                { dataField: "isActive", caption: translate(language, 'isActive'), width: 120, editorType: "dxCheckBox" },
                 {
                   dataField: 'category.handle',
-                  caption: translate(languageItemCategory , 'value'), width: 300,
+                  caption: translate(languageItemCategory , 'value'), width: 150,
                   lookup: {
                     dataSource(options) {
                       return {
@@ -133,7 +132,7 @@ $(async () => {
                     },
                     valueExpr: 'handle',
                     displayExpr: function(item) {
-                        return item && translate(languageItemCategoryList, item.value);
+                        return item && item.value;
                     }
                   },
                 }

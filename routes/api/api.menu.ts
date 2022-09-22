@@ -22,6 +22,10 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
         item = item.filter(x => x.authenticationRequired === false)
     }
 
+    // if(!request.session.node) {
+    //    item = item.filter(x => x.nodeRequired === false)
+    // }
+
     if(item) response.status(200).json(item);
     else response.status(404).json();
 });

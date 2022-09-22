@@ -19,6 +19,14 @@ export class EnemyItem extends Model<EnemyItem>{
     strength: number = 10;
     @Column
     isActive: boolean = true;
+    @Column
+    experienceMin: number = 100;
+    @Column
+    experienceMax: number = 200;
+    @Column
+    GoldMin: number = 100;
+    @Column
+    GoldMax: number = 200;
 
     constructor(){
         super();
@@ -54,6 +62,26 @@ export class EnemyItem extends Model<EnemyItem>{
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 10
+            },
+            experienceMin: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            experienceMax: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 200
+            },
+            GoldMin: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            GoldMax: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 200
             },
             isActive: {
                 type: DataTypes.BOOLEAN,

@@ -105,13 +105,33 @@ $(async () => {
             },
             showRowLines: true,
             showBorders: true,
+            masterDetail: {
+                enabled: true,
+                template(container, options) {
+                    container.append($("<div>").dxDataGrid({
+                        dataSource: [options.data],
+                        allowColumnReordering: true,
+                        allowColumnResizing: true,
+                        columns: [
+                            { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }]},
+                            { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }]},
+                            { dataField: "GoldMin", caption: translate(language, 'GoldMin'), validationRules: [{ type: "required" }]},
+                            { dataField: "GoldMax", caption: translate(language, 'GoldMax'), validationRules: [{ type: "required" }]},
+                        ]
+                    }));
+                }
+            },
             columns: [
-                { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 300 },
+                { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 150 },
                 { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }]},
-                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 200},
-                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), validationRules: [{ type: "required" }], width: 200},
-                { dataField: "strength", caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 200},
-                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" }
+                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 150},
+                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), validationRules: [{ type: "required" }], width: 150},
+                { dataField: "strength", caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 150},
+                { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "GoldMin", caption: translate(language, 'GoldMin'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "GoldMax", caption: translate(language, 'GoldMax'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox", width: 120 }
             ],
             editing: await getEditing(),
             export: {

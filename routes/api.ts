@@ -1952,8 +1952,93 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.post("/itemcategory/:node/transfer/:handle", itemCategory);
-//#endregion
+ router.post("/itemcategory/:node/transfer/:handle", itemCategory);
+
+/**
+ * @swagger
+ * /itemCategory/{node}:
+ *   put:
+ *     tags:
+ *     - Ctem Category
+ *     summary: Category
+ *     description: Anlage einer neuen Gegenstandskategorie.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID der Gegenstandskategorie.
+ *           value:
+ *             type: string
+ *             example: "Schwert"
+ *             descrition: Name der Gegenstandskategorie
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID der Gegenstandskategorie.
+ *             value:
+ *               type: string
+ *               example: "Schwert"
+ *               descrition: Name der Gegenstandskategorie
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/itemCategory/:node", itemCategory);
+
+/**
+ * @swagger
+ * /itemCategory/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Item Category
+ *     summary: Gegenstand
+ *     description: Löscht eine bestimmte Gegenstandskategorie und alle dazugehörigen Gegenstände. Jeder Held bekommt Gold in Form des Goldwertes erstattet.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/itemCategory/:node/:handle", itemCategory);
+
+ //#endregion
 
 //#region Level
 /**
@@ -2011,6 +2096,68 @@ const router = express.Router();
  *         description: no data
  */
  router.get("/level/:node", level);
+
+/**
+ * @swagger
+ * /level/{node}/{experience}:
+ *   get:
+ *     tags:
+ *     - Level
+ *     summary: Level
+ *     description: Rückgabe des Levels, das zu den Erfahrungspunkten passt.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "experience"
+ *       in: "path"
+ *       description: "Erfahrungspunkte"
+ *       required: true
+ *       type: "string"
+ *       default: "10000"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: number
+ *                 example: 1
+ *                 descrition: Level
+ *               experienceMin:
+ *                 type: number
+ *                 example: 0
+ *                 descrition: Minimale Erfahrung, die für das Level gebraucht wird.
+ *               experienceMax:
+ *                 type: number
+ *                 example: 499
+ *                 descrition: Maximale Erfahrung, bis zum nächsten Level.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/level/:node/:experience", level);
 //#endregion
 
 //#region Location

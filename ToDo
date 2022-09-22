@@ -7,8 +7,11 @@ Version 1
 4.  [.] Loot neue Logik implementieren.
         Taverne
         Give / Steal
+        Automation
         Tägliche Aufgabe
         Loottime
+        Experience
+        Verkaufen
 5.  [.] Shoutout im Say Modul
 6.  [.] Counter im Say Modul
 7.  [X] Twitch API Verbindung mit Chat

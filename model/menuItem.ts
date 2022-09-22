@@ -12,12 +12,16 @@ export class MenuItem extends Model<MenuItem>{
     order: number;
     @Column
     authenticationRequired: boolean = false;
+    @Column
+    nodeRequired: boolean = false;
 
     constructor(endpoint? : string, name? : string, order? : number){
         super();
         this.endpoint = endpoint;
         this.name = name;
         this.order = order;
+        this.authenticationRequired = false;
+        this.nodeRequired = false;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -36,6 +40,11 @@ export class MenuItem extends Model<MenuItem>{
                 allowNull: false
             },
             authenticationRequired: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            },
+            nodeRequired: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false

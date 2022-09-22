@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, tableExport, getEditing, notify, get } from './globalData.js';
+import { getTranslation, translate, infoPanel, tableExport, getEditing, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -6,7 +6,6 @@ $(async () => {
     let language = await getTranslation('adventure');
     let languageItem = await getTranslation('item');
     let languageTrait = await getTranslation('trait');
-    let languageItemCategoryList = await getTranslation('itemCategoryList');
     let languageItemCategory = await getTranslation('itemCategory');
     let languageLocation = await getTranslation('location');
 
@@ -25,8 +24,7 @@ $(async () => {
     //#endregion
 
     //#region Load
-    async function load() {
-        
+    async function load() {       
         $('#multiview-container').dxMultiView({
             height: 250,
             dataSource: dungeons,
@@ -40,7 +38,7 @@ $(async () => {
 
                 info.append(itemData.description + "</b></p>");
                 info.append("<p>" + translate(languageLocation, 'difficulty') + ": <b>" + itemData.difficulty + "</b></p>");
-                info.append("<p>" + translate(languageItemCategory, 'value') + ": <b>"+ translate(languageItemCategoryList, "default") + "</b></p>");
+                info.append("<p>" + translate(languageItemCategory, 'value') + ": <b>"+ category.find(x => x.handle == itemData.categoryHandle).value + "</b></p>");
 
                 container.append(info);
                 itemElement.append(container);
@@ -104,14 +102,13 @@ $(async () => {
                       },
                       valueExpr: 'handle',
                       displayExpr: function(item) {
-                          return item && translate(languageItemCategoryList, item.value);
+                          return item && item.value;
                       }
                     },
                 },
                 { dataField: "item.gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 300 },
                 { dataField: "hero.name", caption: translate(language, 'owner'), validationRules: [{ type: "required" }]}
             ],
-            editing: await getEditing(),
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']

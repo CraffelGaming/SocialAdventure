@@ -10,7 +10,7 @@ export function translate(language, handle) {
         if (value && value.translation)
             return value.translation;
     }
-    return '[missing translation]'; 
+    return ''; 
 }
 //#endregion
 
@@ -124,7 +124,7 @@ export async function getEditing(allowUpdating = true, allowAdding = true, allow
 }
 //#endregion
 
-//#region Editing
+//#region Authorisation
 export async function isMaster() {
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
@@ -148,7 +148,7 @@ export async function get(endpoint, language = undefined) {
                 'Content-type': 'application/json'
             }
         }).then(async function (res) {
-            //console.log(res);
+            console.log(res);
             switch (res.status) {
                 case 200:
                 case 201:

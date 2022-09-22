@@ -22,10 +22,7 @@ exports.AdventureItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./adventureItem.json");
-let AdventureItem = class AdventureItem extends sequelize_typescript_1.Model {
-    constructor() {
-        super();
-    }
+let AdventureItem = class AdventureItem {
     static createTable({ sequelize }) {
         sequelize.define('adventure', {
             itemHandle: {
@@ -90,8 +87,7 @@ __decorate([
     __metadata("design:type", String)
 ], AdventureItem.prototype, "heroName", void 0);
 AdventureItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "adventure", modelName: "adventure" }),
-    __metadata("design:paramtypes", [])
+    (0, sequelize_typescript_1.Table)({ tableName: "adventure", modelName: "adventure" })
 ], AdventureItem);
 exports.AdventureItem = AdventureItem;
 module.exports.default = AdventureItem;

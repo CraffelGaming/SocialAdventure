@@ -14,6 +14,8 @@ $(async () => {
 
     let category = await get('/itemcategory/default/', language);
     let userdata = {};
+    let hero = {};
+    let level = {};
 
     await initialize();
     translation();
@@ -23,6 +25,8 @@ $(async () => {
     //#region Initialize
     async function initialize() {
         userdata = await loadUserData();
+        hero = await get('/hero/default/' + userdata.login, language)
+        level = await get('/level/default/' + hero.experience, language)
     }
     //#endregion
 
@@ -33,7 +37,7 @@ $(async () => {
                 key: "name",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return [await get('/hero/default/' + userdata.login, language)];
+                    return [hero];
                 }
             }),
             filterRow: { visible: true },
@@ -78,12 +82,33 @@ $(async () => {
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name') },
-                { dataField: "level", caption: translate(languageLevel, 'handle') },
-                { dataField: "experience", caption: translate(language, 'experience'), width: 300 },  
+                { dataField: "level", caption: translate(languageLevel, 'handle') }, 
+                { dataField: "experience", caption: translate(language, 'experience'), width: 250, 
+                    cellTemplate: function (container, options) {  
+                        console.log(options);
+                        $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
+                            min: level.experienceMin,  
+                            max: level.experienceMax,
+                            value: options.data.experience,
+                            statusFormat: function(){
+                                return options.data.experience + ' / ' + level.experienceMax
+                            }  
+                        }).appendTo(container);  
+                    }
+                }, 
                 { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200, 
-                    calculateCellValue(data) {
-                        return data.hitpoints.toString() + ' / ' + data.hitpointsMax.toString();
-                }}, 
+                    cellTemplate: function (container, options) {  
+                        console.log(options);
+                        $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
+                            min: 0,  
+                            max: options.data.hitpointsMax,
+                            value: options.data.hitpoints,
+                            statusFormat: function(){
+                                return options.data.hitpoints + '/' + options.data.hitpointsMax
+                            }  
+                        }).appendTo(container);  
+                    }
+                }, 
                 { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date', width: 200 },

@@ -53,7 +53,7 @@ const index_1 = __importDefault(require("./routes/index"));
 const api_1 = __importDefault(require("./routes/api"));
 const worker_1 = require("./controller/worker");
 const app = express();
-global.defaultNode = function getDefaultNode(request, response) {
+global.defaultNode = function defaultNode(request, response) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!request.session.node) {
             request.session.node = (yield global.worker.globalDatabase.sequelize.models.node.findOne());
@@ -69,7 +69,7 @@ global.isMaster = function isMaster(request, response, node) {
     }
     return false; // true
 };
-global.isRegistered = function isMaster(request, response) {
+global.isRegistered = function isRegistered(request, response) {
     if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
         return true;
     }

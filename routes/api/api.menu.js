@@ -52,6 +52,9 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
     if (!global.isRegistered(request, response)) {
         item = item.filter(x => x.authenticationRequired === false);
     }
+    // if(!request.session.node) {
+    //    item = item.filter(x => x.nodeRequired === false)
+    // }
     if (item)
         response.status(200).json(item);
     else

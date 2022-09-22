@@ -26,9 +26,12 @@ let MenuItem = class MenuItem extends sequelize_typescript_1.Model {
     constructor(endpoint, name, order) {
         super();
         this.authenticationRequired = false;
+        this.nodeRequired = false;
         this.endpoint = endpoint;
         this.name = name;
         this.order = order;
+        this.authenticationRequired = false;
+        this.nodeRequired = false;
     }
     static createTable({ sequelize }) {
         sequelize.define('menu', {
@@ -46,6 +49,11 @@ let MenuItem = class MenuItem extends sequelize_typescript_1.Model {
                 allowNull: false
             },
             authenticationRequired: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            },
+            nodeRequired: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
@@ -91,6 +99,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], MenuItem.prototype, "authenticationRequired", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], MenuItem.prototype, "nodeRequired", void 0);
 MenuItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "menu", modelName: "menu" }),
     __metadata("design:paramtypes", [String, String, Number])

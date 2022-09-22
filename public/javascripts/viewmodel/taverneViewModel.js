@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, loadUserData } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -6,15 +6,21 @@ $(async () => {
     let language = await getTranslation('taverne');
     let languageHealing = await getTranslation('healing');
     let languageTrainer = await getTranslation('trainer');
+    let userdata = {};
+    let hero = {};
+
     
+    await initialize();
     translation();
-    initialize();
     loadHealing();
     loadTrainer();
     infoPanel();
 
     //#region Initialize
-    function initialize() {
+    async function initialize() {
+        userdata = await loadUserData();
+        hero = await get('/hero/default/' + userdata.login);
+        
         $('#responsive-box').dxResponsiveBox({
             rows: [
                 { ratio: 1 },
@@ -36,6 +42,15 @@ $(async () => {
 
     //#region Load
     function loadHealing() {
+        $("#heroHP").dxProgressBar({
+            value: hero.hitpoints,
+            min: 0,
+            max: hero.hitpointsMax,
+            statusFormat: function(){
+                return hero.hitpoints + '/' + hero.hitpointsMax
+            } 
+        });
+
         $("#healingDataGrid").dxDataGrid({
             dataSource: new DevExpress.data.CustomStore({
                 key: "handle",
@@ -134,6 +149,7 @@ $(async () => {
     //#region Translation
     function translation() {
         document.getElementById("labelTitle").textContent = translate(language, 'title');
+        document.getElementById("description").textContent = translate(language, 'description').replace('$1', hero.name);
     }
     //#endregion
 });

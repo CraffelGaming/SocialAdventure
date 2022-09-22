@@ -48,9 +48,9 @@ declare global {
       };
 }
 
-global.defaultNode = async function getDefaultNode(request: express.Request, response: express.Response) : Promise<NodeItem> {
+global.defaultNode = async function defaultNode(request: express.Request, response: express.Response) : Promise<NodeItem> {
     if(!request.session.node){
-        request.session.node =  await global.worker.globalDatabase.sequelize.models.node.findOne() as NodeItem;
+        request.session.node = await global.worker.globalDatabase.sequelize.models.node.findOne() as NodeItem;
     }
     return request.session.node;
 }
@@ -64,7 +64,7 @@ global.isMaster = function isMaster(request: express.Request, response: express.
     return false; // true
 }
 
-global.isRegistered = function isMaster(request: express.Request, response: express.Response) : boolean{
+global.isRegistered = function isRegistered(request: express.Request, response: express.Response) : boolean{
     if(request.session != null && request.session.userData != null && request.session.userData.login != null){
         return true;
     }

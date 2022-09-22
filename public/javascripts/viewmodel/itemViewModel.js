@@ -5,7 +5,6 @@ $(async () => {
 
     let language = await getTranslation('item');
     let languageItemCategory = await getTranslation('itemCategory');
-    let languageItemCategoryList = await getTranslation('itemCategoryList');
     let category = await get('/itemCategory/default?childs=false');
 
     translation();
@@ -119,6 +118,7 @@ $(async () => {
                 {
                   dataField: 'category.handle',
                   caption: translate(languageItemCategory , 'value'), width: 300,
+                  groupIndex: 0,
                   lookup: {
                     dataSource(options) {
                       return {
@@ -131,7 +131,7 @@ $(async () => {
                     },
                     valueExpr: 'handle',
                     displayExpr: function(item) {
-                        return item && translate(languageItemCategoryList, item.value);
+                        return item && item.value;
                     }
                   },
                 }

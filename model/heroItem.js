@@ -153,7 +153,7 @@ let HeroItem = class HeroItem {
                     }
                     else {
                         yield sequelize.models.hero.update(element, { where: { name: element.name } });
-                        return 200;
+                        return 201;
                     }
                 }
                 else

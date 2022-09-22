@@ -18,98 +18,114 @@
     {
         "endpoint": "game",
         "name": "game",
-        "order": 1200
+        "order": 1200,
+        "nodeRequired": true
     },
     {
         "endpoint": "adventure",
         "name": "adventure",
         "order": 1210,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "heroes",
         "name": "heroes",
         "order": 1220,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "item",
         "name": "item",
         "order": 1230,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "itemCategory",
         "name": "itemCategory",
         "order": 1240,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "location",
         "name": "location",
         "order": 1250,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "enemy",
         "name": "enemy",
         "order": 1260,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "level",
         "name": "level",
         "order": 1270,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "daily",
         "name": "daily",
         "order": 1275,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "statistic",
         "name": "statistic",
         "order": 1280,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "command",
         "name": "command",
         "order": 1290,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "setting",
         "name": "setting",
         "order": 1295,
-        "parentEndpoint": "game"
+        "parentEndpoint": "game",
+        "nodeRequired": true
     },
     {
         "endpoint": "me",
         "name": "me",
         "order": 1300,
-        "authenticationRequired": true 
+        "authenticationRequired": true ,
+        "nodeRequired": true
     },
     {
         "endpoint": "hero",
         "name": "hero",
         "order": 1310,
         "parentEndpoint": "me",
-        "authenticationRequired": true
+        "authenticationRequired": true,
+        "nodeRequired": true
     },
     {
         "endpoint": "taverne",
         "name": "taverne",
         "order": 1320,
         "parentEndpoint": "me",
-        "authenticationRequired": true
+        "authenticationRequired": true,
+        "nodeRequired": true
     },
     {
         "endpoint": "say",
         "name": "say",
-        "order": 1400
+        "order": 1400,
+        "nodeRequired": true
     },
     {
         "endpoint": "help",

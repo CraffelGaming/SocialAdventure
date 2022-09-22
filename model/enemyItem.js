@@ -29,6 +29,10 @@ let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
         this.hitpoints = 100;
         this.strength = 10;
         this.isActive = true;
+        this.experienceMin = 100;
+        this.experienceMax = 200;
+        this.GoldMin = 100;
+        this.GoldMax = 200;
     }
     static createTable({ sequelize }) {
         sequelize.define('enemy', {
@@ -60,6 +64,26 @@ let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 10
+            },
+            experienceMin: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            experienceMax: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 200
+            },
+            GoldMin: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            GoldMax: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 200
             },
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
@@ -140,6 +164,22 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], EnemyItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], EnemyItem.prototype, "experienceMin", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], EnemyItem.prototype, "experienceMax", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], EnemyItem.prototype, "GoldMin", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], EnemyItem.prototype, "GoldMax", void 0);
 EnemyItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "enemy", modelName: "enemy" }),
     __metadata("design:paramtypes", [])

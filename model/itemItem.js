@@ -79,8 +79,14 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
                             yield sequelize.models.item.create(item);
                         }
                     }
-                    else
-                        yield sequelize.models.item.update(item, { where: { handle } });
+                    else {
+                        if (isGlobal === true && item.categoryHandle !== 1) {
+                            yield sequelize.models.item.update(item, { where: { handle } });
+                        }
+                        else if (isGlobal === false && item.categoryHandle === 1) {
+                            yield sequelize.models.item.update(item, { where: { handle } });
+                        }
+                    }
                     handle++;
                 }
             }

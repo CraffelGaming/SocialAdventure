@@ -151,7 +151,7 @@ export class HeroItem {
                     return 201;
                 } else {
                     await sequelize.models.hero.update(element, {where: {name: element.name}})
-                    return 200;
+                    return 201;
                 }
             } else return 406;
         } catch(ex){

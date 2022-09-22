@@ -33,6 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const itemCategoryItem_1 = require("../../model/itemCategoryItem");
 const router = express.Router();
 const endpoint = 'itemcategory';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -73,6 +74,59 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             response.status(200).json(item);
         else
             response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (global.isMaster(request, response, node)) {
+            response.status(yield itemCategoryItem_1.ItemCategoryItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
+        }
+        else {
+            response.status(403).json();
+        }
+    }
+    else
+        response.status(404).json();
+}));
+router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (global.isMaster(request, response, node)) {
+            if (request.params.handle != null) {
+                const item = yield channel.database.sequelize.models.itemCategory.findByPk(request.params.handle);
+                if (item) {
+                    for (const itemItem of Object.values(yield channel.database.sequelize.models.item.findAll({ where: { categoryHandle: request.params.handle } }))) {
+                        for (const heroItem of Object.values(yield channel.database.sequelize.models.heroInventory.findAll({ where: { itemHandle: itemItem.handle } }))) {
+                            yield channel.database.sequelize.models.heroWallet.increment('gold', { by: itemItem.gold * heroItem.quantity, where: { heroName: heroItem.heroName } });
+                            yield channel.database.sequelize.models.heroInventory.destroy({ where: { itemHandle: request.params.handle } });
+                        }
+                        yield channel.database.sequelize.models.item.destroy({ where: { handle: itemItem.handle } });
+                    }
+                    yield channel.database.sequelize.models.itemCategory.destroy({ where: { handle: request.params.handle } });
+                }
+                response.status(204).json();
+            }
+            else
+                response.status(404).json();
+        }
+        else {
+            response.status(403).json();
+        }
     }
     else
         response.status(404).json();
