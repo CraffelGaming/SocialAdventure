@@ -92,35 +92,42 @@ export function notify(message, type) {
 //#endregion
 
 //#region Editing
-export async function getEditing(allowUpdating = true, allowAdding = true, allowDeleting = true) {
-    let userData = await loadUserData();
-    let defaultNode = await loadDefaultNode();
-
-    /*
-    return {
-        mode: "popup",
-        allowUpdating: true,
-        allowDeleting: true,
-        allowAdding: true
-    }
-    */
-
-    if(userData != null && defaultNode?.name != null){
+export async function getEditing(allowUpdating = true, allowAdding = true, allowDeleting = true, mode = "popup") {
+    let master = isMaster();  
+    if(master){
         return {
-            mode: "popup",
-            allowUpdating: userData.login === defaultNode.name && allowUpdating,
-            allowDeleting: userData.login === defaultNode.name && allowDeleting,
-            allowAdding: userData.login === defaultNode.name && allowAdding,
+            mode: mode,
+            allowUpdating: master && allowUpdating,
+            allowDeleting: master && allowDeleting,
+            allowAdding: master && allowAdding,
         }
     } else {
         return {
-            mode: "popup",
+            mode: mode,
             allowUpdating: false,
             allowDeleting: false,
             allowAdding: false
         }
     }
+}
 
+export async function getEditingHero(heroName, allowUpdating = true, allowAdding = true, allowDeleting = true, mode = "popup") {
+    let hero = isHero(heroName);  
+    if(hero){
+        return {
+            mode: mode,
+            allowUpdating: hero && allowUpdating,
+            allowDeleting: hero && allowDeleting,
+            allowAdding: hero && allowAdding,
+        }
+    } else {
+        return {
+            mode: mode,
+            allowUpdating: false,
+            allowDeleting: false,
+            allowAdding: false
+        }
+    }
 }
 //#endregion
 
@@ -132,8 +139,16 @@ export async function isMaster() {
     if(userData != null && defaultNode?.name != null){
         return userData.login === defaultNode.name;
     }
-    return false; //true
+    return false;
+}
 
+export async function isHero(heroName) {
+    let userData = await loadUserData();
+
+    if(userData != null && heroName != null){
+        return userData.login === heroName;
+    }
+    return false;
 }
 //#endregion
 

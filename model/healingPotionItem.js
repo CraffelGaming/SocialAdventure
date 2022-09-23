@@ -105,6 +105,19 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
             }
         });
     }
+    static heal({ sequelize, healingPotionHandle, heroName }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const potion = sequelize.models.healingPotion.findByPk(healingPotionHandle);
+                const hero = sequelize.models.hero.findByPk(heroName);
+                const heroWallet = sequelize.models.hero.findByPk(heroName);
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

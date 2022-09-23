@@ -55,9 +55,6 @@ $(async () => {
                     return [await get(`/herowallet/default/hero/${hero.name}`, language)];
                 }
             }),
-            allowColumnReordering: true,
-            allowColumnResizing: true,
-            selection: { mode: "single" },
             columns: [
                 { caption: translate(languageHero, 'hitpoints'), 
                     cellTemplate: function (container, options) {  
@@ -84,29 +81,7 @@ $(async () => {
                     return await get(`/healingPotion/default`, language);
                 }
             }),
-            filterRow: { visible: true },
-            filterPanel: { visible: true },
-            searchPanel: { visible: true },
-            allowColumnReordering: true,
-            allowColumnResizing: true,
-            groupPanel: { visible: true },
-            selection: { mode: "single" },
-            paging: {
-                pageSize: 10
-            },
-            pager: {
-                visible: true,
-                allowedPageSizes: [10, 25, 50, 100, 'all'],
-                showPageSizeSelector: true,
-                showInfo: true,
-                showNavigationButtons: true,
-            },
-            columnChooser: {
-                enabled: true,
-                allowSearch: true,
-            },
-            showRowLines: true,
-            showBorders: true,
+           
             columns: [
                 {
                     dataField: 'Picture',
@@ -121,7 +96,16 @@ $(async () => {
                     },
                 },
                 { dataField: "value", caption: translate(languageHealing, 'value'), width: 250 },
-                { dataField: "description", caption: translate(languageHealing, 'description'), editorType: "TextArea" },
+                { dataField: "description", caption: translate(languageHealing, 'description'),
+                    cellTemplate: function(element, info) {
+                    $("<div>")
+                        .appendTo(element)
+                        .text(info.value)
+                        .css("width", info.column.width - 20)
+                        .css("height", 100)
+                        .css("white-space", "normal")
+                        .css("overflow-wrap", 'break-word'); 
+                }},
                 { dataField: "isRevive", caption: translate(languageHealing, 'isRevive'), width: 200, editorType: "dxCheckBox", width: 120 },
                 { dataField: "percent", caption: translate(languageHealing, 'percent'), width: 150 },
                 { dataField: "gold", caption: translate(languageHealing, 'gold'), width: 150 },
@@ -135,14 +119,7 @@ $(async () => {
                         }
                     }]
                 }
-            ],
-            export: {
-                enabled: true,
-                formats: ['xlsx', 'pdf']
-            },
-            onExporting(e) {
-                tableExport(e, translate(languageHealing, 'title'))
-            }
+            ]
         });
     }
 
@@ -155,29 +132,6 @@ $(async () => {
                     return await get(`/trainer/default`, language);
                 }
             }),
-            filterRow: { visible: true },
-            filterPanel: { visible: true },
-            searchPanel: { visible: true },
-            allowColumnReordering: true,
-            allowColumnResizing: true,
-            groupPanel: { visible: true },
-            selection: { mode: "single" },
-            paging: {
-                pageSize: 10
-            },
-            pager: {
-                visible: true,
-                allowedPageSizes: [10, 25, 50, 100, 'all'],
-                showPageSizeSelector: true,
-                showInfo: true,
-                showNavigationButtons: true,
-            },
-            columnChooser: {
-                enabled: true,
-                allowSearch: true,
-            },
-            showRowLines: true,
-            showBorders: true,
             columns: [
                 {
                     dataField: 'Picture',
@@ -204,14 +158,7 @@ $(async () => {
                         }
                     }]
                 }
-            ],
-            export: {
-                enabled: true,
-                formats: ['xlsx', 'pdf']
-            },
-            onExporting(e) {
-                tableExport(e, translate(languageTrainer, 'title'))
-            }
+            ]
         });
     }
     //#endregion

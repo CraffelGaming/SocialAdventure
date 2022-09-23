@@ -100,5 +100,27 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
     else
         response.status(404).json();
 }));
+router.post('/' + endpoint + '/:node/heal/:handle/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}, heal ${request.params.handle}, hero ${request.params.name}`);
+    let node;
+    if (request.params.node === 'default')
+        node = global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (global.isHero(request, response, request.params.name)) {
+            const potion = channel.database.sequelize.models.healingPotion.findByPk(request.params.handle);
+            const hero = channel.database.sequelize.models.hero.findByPk(request.params.name);
+            const heroWallet = channel.database.sequelize.models.hero.findByPk(request.params.name);
+            response.status(yield healingPotionItem_1.HealingPotionItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
+        }
+        else {
+            response.status(403).json();
+        }
+    }
+    else
+        response.status(404).json();
+}));
 exports.default = router;
 //# sourceMappingURL=api.healingPotion.js.map

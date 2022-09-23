@@ -92,6 +92,17 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
             return 500;
         }
     }
+
+    static async heal({ sequelize, healingPotionHandle, heroName }: { sequelize: Sequelize, healingPotionHandle: number, heroName: string }): Promise<number>{
+        try{
+            const potion = sequelize.models.healingPotion.findByPk(healingPotionHandle);
+            const hero = sequelize.models.hero.findByPk(heroName);
+            const heroWallet = sequelize.models.hero.findByPk(heroName);
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
+        }
+    }
 }
 module.exports.default = HealingPotionItem;
 

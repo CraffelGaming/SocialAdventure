@@ -67,7 +67,15 @@ global.isMaster = function isMaster(request, response, node) {
             return true;
         }
     }
-    return false; // true
+    return false;
+};
+global.isHero = function isHero(request, response, heroName) {
+    if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
+        if (request.session.userData.login === heroName) {
+            return true;
+        }
+    }
+    return false;
 };
 global.isRegistered = function isRegistered(request, response) {
     if (request.session != null && request.session.userData != null && request.session.userData.login != null) {

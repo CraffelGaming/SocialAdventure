@@ -61,7 +61,15 @@ global.isMaster = function isMaster(request: express.Request, response: express.
             return true;
         }
     }
-    return false; // true
+    return false;
+}
+global.isHero = function isHero(request: express.Request, response: express.Response, heroName: string) : boolean{
+    if(request.session != null && request.session.userData != null && request.session.userData.login != null){
+        if(request.session.userData.login === heroName){
+            return true;
+        }
+    }
+    return false;
 }
 
 global.isRegistered = function isRegistered(request: express.Request, response: express.Response) : boolean{
@@ -70,7 +78,6 @@ global.isRegistered = function isRegistered(request: express.Request, response: 
     }
     return false;
 }
-
 // extend session
 declare module 'express-session' {
     interface SessionData {
