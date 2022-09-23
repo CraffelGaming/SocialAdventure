@@ -72,13 +72,13 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (request.query.childs !== "false") {
-            item = (yield channel.database.sequelize.models.heroTrait.findAll({ where: { heroName: request.params.name }, raw: false, include: [{
+            item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false, include: [{
                         model: channel.database.sequelize.models.hero,
                         as: 'hero',
                     }] }));
         }
         else
-            item = (yield channel.database.sequelize.models.heroTrait.findAll({ where: { heroName: request.params.name }, raw: false }));
+            item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false }));
         if (item)
             response.status(200).json(item);
         else

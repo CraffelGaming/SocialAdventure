@@ -27,6 +27,7 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
         super();
         this.percent = 0;
         this.gold = 0;
+        this.isRevive = false;
     }
     static createTable({ sequelize }) {
         sequelize.define('healingPotion', {
@@ -43,6 +44,10 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
                 type: sequelize_1.DataTypes.STRING(1000),
                 allowNull: false
             },
+            image: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
+            },
             percent: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false
@@ -50,6 +55,11 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
             gold: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false
+            },
+            isRevive: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             }
         }, { freezeTableName: true });
     }
@@ -111,12 +121,20 @@ __decorate([
 ], HealingPotionItem.prototype, "description", void 0);
 __decorate([
     sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], HealingPotionItem.prototype, "image", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], HealingPotionItem.prototype, "percent", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], HealingPotionItem.prototype, "gold", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], HealingPotionItem.prototype, "isRevive", void 0);
 HealingPotionItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "healingPotion", modelName: "healingPotion" }),
     __metadata("design:paramtypes", [])

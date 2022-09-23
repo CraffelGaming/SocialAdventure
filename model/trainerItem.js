@@ -47,6 +47,10 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
             gold: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false
+            },
+            image: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
             }
         }, { freezeTableName: true });
     }
@@ -110,6 +114,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], TrainerItem.prototype, "gold", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], TrainerItem.prototype, "image", void 0);
 TrainerItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "trainer", modelName: "trainer" }),
     __metadata("design:paramtypes", [])

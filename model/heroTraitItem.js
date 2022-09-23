@@ -28,6 +28,8 @@ let HeroTraitItem = class HeroTraitItem {
         this.stealMultipler = 1;
         this.defenceMultipler = 1;
         this.workMultipler = 1;
+        this.strengthMultipler = 1;
+        this.hitpointMultipler = 1;
         this.heroName = heroName;
     }
     static createTable({ sequelize }) {
@@ -53,6 +55,16 @@ let HeroTraitItem = class HeroTraitItem {
                 defaultValue: 1
             },
             workMultipler: {
+                type: sequelize_1.DataTypes.DOUBLE,
+                allowNull: false,
+                defaultValue: 1
+            },
+            strengthMultipler: {
+                type: sequelize_1.DataTypes.DOUBLE,
+                allowNull: false,
+                defaultValue: 1
+            },
+            hitpointMultipler: {
                 type: sequelize_1.DataTypes.DOUBLE,
                 allowNull: false,
                 defaultValue: 1
@@ -121,6 +133,14 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], HeroTraitItem.prototype, "workMultipler", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroTraitItem.prototype, "strengthMultipler", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroTraitItem.prototype, "hitpointMultipler", void 0);
 HeroTraitItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "heroTrait", modelName: "heroTrait" }),
     __metadata("design:paramtypes", [String])

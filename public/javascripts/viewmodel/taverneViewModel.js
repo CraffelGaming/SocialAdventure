@@ -6,8 +6,12 @@ $(async () => {
     let language = await getTranslation('taverne');
     let languageHealing = await getTranslation('healing');
     let languageTrainer = await getTranslation('trainer');
+    let languageWallet = await getTranslation('wallet');
+    let languageHero = await getTranslation('hero');
+
     let userdata = {};
     let hero = {};
+    let heroWallet = {};
 
     
     await initialize();
@@ -20,6 +24,7 @@ $(async () => {
     async function initialize() {
         userdata = await loadUserData();
         hero = await get('/hero/default/' + userdata.login);
+        heroWallet = await get('/heroWallet/default/hero/' + userdata.login);
         
         $('#responsive-box').dxResponsiveBox({
             rows: [
@@ -42,13 +47,33 @@ $(async () => {
 
     //#region Load
     function loadHealing() {
-        $("#heroHP").dxProgressBar({
-            value: hero.hitpoints,
-            min: 0,
-            max: hero.hitpointsMax,
-            statusFormat: function(){
-                return hero.hitpoints + '/' + hero.hitpointsMax
-            } 
+        $('#heroWallet').dxDataGrid({
+            dataSource: new DevExpress.data.CustomStore({
+                key: ["heroName"],
+                loadMode: "raw",
+                load: async function () {
+                    return [await get(`/herowallet/default/hero/${hero.name}`, language)];
+                }
+            }),
+            allowColumnReordering: true,
+            allowColumnResizing: true,
+            selection: { mode: "single" },
+            columns: [
+                { caption: translate(languageHero, 'hitpoints'), 
+                    cellTemplate: function (container, options) {  
+                        $("<div />").attr({ 'class': 'cls', 'data-key': hero.name }).dxProgressBar({  
+                            min: 0,  
+                            max: hero.hitpointsMax,
+                            value: hero.hitpoints,
+                            statusFormat: function(){
+                                return hero.hitpoints + '/' + hero.hitpointsMax
+                            }  
+                        }).appendTo(container);  
+                    }
+                },
+                { dataField: "gold", caption: translate(languageWallet, 'gold'), width: 200 },
+                { dataField: "diamond", caption: translate(languageWallet, 'diamond'), width: 200 }
+            ]
         });
 
         $("#healingDataGrid").dxDataGrid({
@@ -83,10 +108,33 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
+                {
+                    dataField: 'Picture',
+                    caption: "",
+                    width: 100,
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate(container, options) {
+                    $('<div>')
+                        .append($('<img>', { src: options.data.image != null ?options.data.image : options.row.data.image, width: 64, height: 64 }))
+                        .appendTo(container);
+                    },
+                },
                 { dataField: "value", caption: translate(languageHealing, 'value'), width: 250 },
-                { dataField: "description", caption: translate(languageHealing, 'description') },
+                { dataField: "description", caption: translate(languageHealing, 'description'), editorType: "TextArea" },
+                { dataField: "isRevive", caption: translate(languageHealing, 'isRevive'), width: 200, editorType: "dxCheckBox", width: 120 },
                 { dataField: "percent", caption: translate(languageHealing, 'percent'), width: 150 },
                 { dataField: "gold", caption: translate(languageHealing, 'gold'), width: 150 },
+                {
+                    type: "buttons",
+                    buttons: [{
+                        icon: "check",
+                        hint: translate(language, "checkHint"),
+                        onClick: function (e) {
+                            
+                        }
+                    }]
+                }
             ],
             export: {
                 enabled: true,
@@ -131,9 +179,31 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
+                {
+                    dataField: 'Picture',
+                    caption: "",
+                    width: 100,
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate(container, options) {
+                    $('<div>')
+                        .append($('<img>', { src: options.data.image != null ?options.data.image : options.row.data.image, width: 64, height: 64 }))
+                        .appendTo(container);
+                    },
+                },
                 { dataField: "value", caption: translate(languageTrainer, 'value')},
                 { dataField: "description", caption: translate(languageTrainer, 'description')},
                 { dataField: "gold", caption: translate(languageTrainer, 'gold'), width: 150 },
+                {
+                    type: "buttons",
+                    buttons: [{
+                        icon: "check",
+                        hint: translate(language, "checkHint"),
+                        onClick: function (e) {
+                            
+                        }
+                    }]
+                }
             ],
             export: {
                 enabled: true,

@@ -13,6 +13,8 @@ export class TrainerItem extends Model<TrainerItem>{
     description: string = "";
     @Column
     gold: number = 0;
+    @Column
+    image: string;
 
     constructor(){
         super();
@@ -36,6 +38,10 @@ export class TrainerItem extends Model<TrainerItem>{
             gold: {
                 type: DataTypes.INTEGER,
                 allowNull: false
+            },
+            image: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
           }, {freezeTableName: true});
     }

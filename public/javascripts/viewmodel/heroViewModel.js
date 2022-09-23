@@ -82,10 +82,12 @@ $(async () => {
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name') },
-                { dataField: "level", caption: translate(languageLevel, 'handle') }, 
+                { caption: translate(languageLevel, 'handle'),
+                    calculateCellValue(data) {
+                        return level.handle;
+                }}, 
                 { dataField: "experience", caption: translate(language, 'experience'), width: 250, 
                     cellTemplate: function (container, options) {  
-                        console.log(options);
                         $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
                             min: level.experienceMin,  
                             max: level.experienceMax,
@@ -98,7 +100,6 @@ $(async () => {
                 }, 
                 { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200, 
                     cellTemplate: function (container, options) {  
-                        console.log(options);
                         $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
                             min: 0,  
                             max: options.data.hitpointsMax,
@@ -109,6 +110,7 @@ $(async () => {
                         }).appendTo(container);  
                     }
                 }, 
+                { dataField: 'strength', caption: translate(language, 'strength'), width: 150 },
                 { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date', width: 200 },
@@ -228,7 +230,7 @@ $(async () => {
                         key: ["heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            return await get(`/herowallet/default/hero/${masterDetailData.name}`, language);
+                            return [await get(`/herowallet/default/hero/${masterDetailData.name}`, language)];
                         }
                     }),
                     allowColumnReordering: true,
@@ -244,7 +246,7 @@ $(async () => {
                         { dataField: "gold", caption: translate(languageWallet, 'gold') },
                         { dataField: "diamond", caption: translate(languageWallet, 'diamond') },
                         { dataField: "blood", caption: translate(languageWallet, 'blood') },
-                        { dataField: 'lastBlood', caption: translate(language, 'lastBlood'), dataType: 'date', width: 150 },
+                        { dataField: 'lastBlood', caption: translate(languageWallet, 'lastBlood'), dataType: 'datetime', width: 150 },
                     ]
                 });
             };
@@ -257,7 +259,7 @@ $(async () => {
                         key: ["heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            return await get(`/herotrait/default/hero/${masterDetailData.name}`, language);
+                            return [await get(`/herotrait/default/hero/${masterDetailData.name}`, language)];
                         }
                     }),
                     allowColumnReordering: true,
@@ -273,7 +275,9 @@ $(async () => {
                         { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler') },
                         { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler') },
                         { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler') },
-                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') }
+                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') },
+                        { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler') },
+                        { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler') }
                     ]
                 });
             };

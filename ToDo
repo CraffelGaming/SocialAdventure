@@ -5,26 +5,30 @@ Version 1
 2.  [X] Eigene URL für jeden Streamer
 3.  [X] Itemkategorien einbinden
 4.  [.] Loot neue Logik implementieren.
-        Taverne
-        Give / Steal
-        Automation
-        Tägliche Aufgabe
-        Loottime
-        Experience
-        Verkaufen
-5.  [.] Shoutout im Say Modul
-6.  [.] Counter im Say Modul
+        [.] Taverne
+        [ ] Give
+        [ ] Steal
+        [X] Join
+        [X] Leave
+        [X] Blood
+        [X] Automation
+        [.] Tägliche Aufgabe
+        [X] Loottime
+        [X] Experience
+        [ ] Verkaufen
+5.  [ ] Shoutout im Say Modul
+6.  [ ] Counter im Say Modul
 7.  [X] Twitch API Verbindung mit Chat
 8.  [X] Startseite
 9.  [X] SSL-Zertifikat einbinden (https://)
-10. [.] Datenübernahme vom alten Craffelmat
+10. [ ] Datenübernahme vom alten Craffelmat
 11. [.] Hilfe & Feedback Kontaktformular
 12. [X] Item Kategorien zusenden
         Ente:   Retro
         Morty:  Dungeons and Dragons
         Kazu:   Essen / Pokemon
 13. [X] CopyToClipboard
-17. [.] Release
+17. [ ] Release
 
 Version 2
 A.  [ ] Englische Übersetzung

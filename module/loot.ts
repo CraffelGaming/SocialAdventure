@@ -1,3 +1,5 @@
+import { Mode } from "fs";
+import { Op } from "sequelize";
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
@@ -5,6 +7,7 @@ import { AdventureItem } from "../model/adventureItem";
 import { EnemyItem } from "../model/enemyItem";
 import { HeroInventoryItem } from "../model/heroInventoryItem";
 import { HeroItem } from "../model/heroItem";
+import { HeroWalletItem } from "../model/heroWalletItem";
 import { ItemItem } from "../model/itemItem";
 import { LocationItem } from "../model/locationItem";
 import { LootItem } from "../model/lootItem";
@@ -65,10 +68,19 @@ export class Loot extends Module {
 
                         const exploring = new LootExploring(this);
                         if(await exploring.execute()){
-                            this.channel.puffer.addMessage(exploring.hero.getDataValue("name") + ', ' +
-                                                           exploring.dungeon.getDataValue("name") + ', ' +
-                                                           exploring.item.getDataValue("value") + ', ' +
-                                                           exploring.enemy.getDataValue("name"));
+                            if(!exploring.isWinner){
+                                this.channel.puffer.addMessage(TranslationItem.translate(this.translation, 'heroAdventureLoose')
+                                                   .replace('$1', exploring.hero.getDataValue("name")));
+
+                            } else {
+                                this.channel.puffer.addMessage(TranslationItem.translate(this.translation, 'heroAdventureVictory')
+                                                   .replace('$1', exploring.hero.getDataValue("name"))
+                                                   .replace('$2', exploring.dungeon.getDataValue("name"))
+                                                   .replace('$3', exploring.enemy.getDataValue("name"))
+                                                   .replace('$4', exploring.gold.toString())
+                                                   .replace('$5', exploring.experience.toString())
+                                                   .replace('$6', exploring.item.getDataValue("value")));
+                            }
                             await exploring.save();
                         } else {
                             global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} not executed - missing exploring`);
@@ -120,6 +132,13 @@ export class Loot extends Module {
             if(hero !== undefined){
                 if(hero.getDataValue("isActive") === true){
                     hero.setDataValue("isActive", false)
+
+                    const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: hero.getDataValue("name")}}) as Model<AdventureItem>[];
+                    for(const adventure in adventures){
+                        if(adventures[adventure]){
+                            HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure: adventures[adventure]});
+                        }
+                    }
                     await hero.save();
                     return TranslationItem.translate(this.translation, 'heroLeave').replace('$1', command.source);
                 } else return TranslationItem.translate(this.translation, 'heroNotJoined').replace('$1', command.source);
@@ -175,20 +194,18 @@ export class Loot extends Module {
     //#region Blood
     async blood(command: Command){
         const hero = this.getTargetHero(command);
-        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero);
+        const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero) as Model<HeroWalletItem>;
 
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");
-            const date = new Date();
-            const timeDifference = Math.floor((date.getTime() - new Date(item.getDataValue("lastBlood")).getTime()) / 60000);
 
-            if(timeDifference >= blood.minutes || item.getDataValue("blood") < 1){
+            if(this.isDateTimeoutExpired(new Date(item.getDataValue("lastBlood")), blood.minutes) || item.getDataValue("blood") < 1){
                 const countHeroes = await this.getCountActiveHeroes();
                 item.setDataValue("blood", this.getRandomNumber(1 + countHeroes, 10 + countHeroes));
-                item.setDataValue("lastBlood", date);
+                item.setDataValue("lastBlood", new Date());
                 await item.save();
                 return TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.getDataValue("blood").toString());
-            } else return TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', (blood.minutes - timeDifference).toString()).replace('$3', item.getDataValue("blood").toString());
+            } else return TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString()).replace('$3', item.getDataValue("blood").toString());
         } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
     }
 
@@ -198,14 +215,12 @@ export class Loot extends Module {
 
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");
-            const date = new Date();
-            const timeDifference = Math.floor((date.getTime() - new Date(item.getDataValue("lastBlood")).getTime()) / 60000)
 
-            if(item.getDataValue("blood") > 0 && timeDifference >= blood.minutes){
+            if(item.getDataValue("blood") > 0 && this.isDateTimeoutExpired(new Date(item.getDataValue("lastBlood")), blood.minutes)){
                 item.setDataValue("blood", 0);
                 await item.save();
                 return TranslationItem.translate(this.translation, 'heroNoBloodpoints').replace('$1', hero);
-            } else return TranslationItem.translate(this.translation, 'heroBloodpoints').replace('$1', hero).replace('$2',  item.getDataValue("blood").toString()).replace('$3', (blood.minutes - timeDifference).toString());
+            } else return TranslationItem.translate(this.translation, 'heroBloodpoints').replace('$1', hero).replace('$2',  item.getDataValue("blood").toString()).replace('$3', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString());
         } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
     }
     //#endregion
@@ -246,10 +261,17 @@ export class Loot extends Module {
     //#region Level
     async level(command: Command){
         const hero = this.getTargetHero(command);
-        const item = await this.channel.database.sequelize.models.hero.findByPk(hero);
+        const item = await this.channel.database.sequelize.models.hero.findByPk(hero) as Model<HeroItem>;
 
-        if(item && item.getDataValue("level") > 0){
-            return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', item.getDataValue("level").toString());
+        if(item){
+            const level = await this.channel.database.sequelize.models.level.findOne({
+                where: { experienceMin :{[Op.lte]: item.getDataValue("experience")},
+                experienceMax :{[Op.gte]: item.getDataValue("experience") }
+            }});
+
+            if(level){
+                return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', level.getDataValue("handle").toString());
+            } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
         } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
     }
     //#endregion

@@ -42,11 +42,11 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
 
     if(channel) {
         if(request.query.childs !== "false"){
-            item = await channel.database.sequelize.models.heroWallet.findAll({where: { heroName: request.params.name }, raw: false, include: [{
+            item = await channel.database.sequelize.models.heroWallet.findOne({where: { heroName: request.params.name }, raw: false, include: [{
                 model: channel.database.sequelize.models.hero,
                 as: 'hero',
             }]}) as unknown as HeroWalletItem[];
-        } else item = await channel.database.sequelize.models.heroWallet.findAll({where: { heroName: request.params.name }, raw: false}) as unknown as HeroWalletItem[];
+        } else item = await channel.database.sequelize.models.heroWallet.findOne({where: { heroName: request.params.name }, raw: false}) as unknown as HeroWalletItem[];
 
         if(item) response.status(200).json(item);
         else response.status(404).json();

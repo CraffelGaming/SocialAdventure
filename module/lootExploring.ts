@@ -5,6 +5,7 @@ import { AdventureItem } from "../model/adventureItem";
 import { EnemyItem } from "../model/enemyItem";
 import { HeroInventoryItem } from "../model/heroInventoryItem";
 import { HeroItem } from "../model/heroItem";
+import { HeroWalletItem } from "../model/heroWalletItem";
 import { ItemItem } from "../model/itemItem";
 import { LocationItem } from "../model/locationItem";
 import { LootItem } from "../model/lootItem";
@@ -15,11 +16,14 @@ export class LootExploring {
     dungeon: Model<LocationItem>;
     hero: Model<HeroItem>;
     item: Model<ItemItem>;
+    wallet: Model<HeroWalletItem>;
     adventure: Model<AdventureItem>;
     enemy: Model<EnemyItem>;
     loot: Loot;
-    experience: number;
-    gold: number;
+    experience: number = 0;
+    gold: number = 0;
+    damage: number = 0;
+    isWinner: boolean = true;
 
     //#region Construct
     constructor(loot: Loot){
@@ -33,16 +37,23 @@ export class LootExploring {
 
         if(this.hero){
             this.dungeon = await this.getDungeon();
+            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, hero ${this.hero.getDataValue("name")}`);
 
             if(this.dungeon){
                 this.item = await this.getItem(this.dungeon);
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, dungeon ${this.dungeon.getDataValue("name")}`);
 
                 if(this.item){
                     this.enemy = await this.getEnemy(this.dungeon);
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, item ${this.item.getDataValue("value")}`);
 
                     if(this.enemy){
-                        this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax"));
-                        this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax"));
+                        global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, enemy ${this.enemy.getDataValue("name")}`);
+
+                        this.wallet = await this.getWallet(this.dungeon);
+                        this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax")) + this.wallet.getDataValue("blood");
+                        this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax")) + this.wallet.getDataValue("blood");
+                        this.fight();
                         return true;
                     }
                 }
@@ -53,20 +64,62 @@ export class LootExploring {
     }
     //#endregion
 
-    //#region Save
-    async save(){
-        const adventure = new AdventureItem();
-        adventure.heroName = this.hero.getDataValue("name");
-        adventure.itemHandle = this.item.getDataValue("handle");
-        await this.loot.channel.database.sequelize.models.adventure.create(adventure as any);
-        await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") }});
-        await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") }});
+    //#region Fight
+    async fight(){
+        let enemyHitpoints = this.enemy.getDataValue("hitpoints");
+        const heroHitpoints = this.hero.getDataValue("hitpoints");
+
+        global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
+        global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight heroHitpoints ${heroHitpoints}`);
+
+        while(enemyHitpoints > 0 && heroHitpoints - this.damage > 0){
+            const heroDamage = this.loot.getRandomNumber(Math.round(this.hero.getDataValue("strength") / 2), this.hero.getDataValue("strength"));
+            enemyHitpoints -= heroDamage;
+
+            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight heroDamage ${heroDamage}`);
+            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
+
+            if(enemyHitpoints > 0){
+                const enemyDamage = this.loot.getRandomNumber(Math.round(this.enemy.getDataValue("strength") / 2), this.enemy.getDataValue("strength"));
+                this.damage += enemyDamage;
+
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyDamage ${enemyDamage}`);
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight complete damage ${this.damage}`);
+            }
+        }
+
+        if(this.damage >= heroHitpoints){
+            this.isWinner = false;
+            this.damage = heroHitpoints;
+        } else {
+            this.isWinner = true;
+        }
+
+        global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight isWinner ${this.isWinner}`);
     }
     //#endregion
 
-    //#region Execute
+    //#region Save
+    async save(){
+        if(this.isWinner){
+            const adventure = new AdventureItem();
+            adventure.heroName = this.hero.getDataValue("name");
+            adventure.itemHandle = this.item.getDataValue("handle");
+            await this.loot.channel.database.sequelize.models.adventure.create(adventure as any);
+            await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") }});
+            await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") }});
+            await this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") }});
+            await HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: this.hero.get()});
+        } else {
+            await this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") }});
+        }
+    }
+    //#endregion
+
+    //#region Hero
     async getHero() : Promise<Model<HeroItem, HeroItem>>{
-        const heroes = await this.loot.channel.database.sequelize.models.hero.findAll({where: { isActive: true} }) as Model<HeroItem>[];
+        let heroes = await this.loot.channel.database.sequelize.models.hero.findAll({where: { isActive: true} }) as Model<HeroItem>[];
+        heroes = heroes.filter(x => x.getDataValue("hitpoints") > 0);
 
         if(heroes.length > 0){
             return heroes[this.loot.getRandomNumber(0, heroes.length -1)];
@@ -122,4 +175,18 @@ export class LootExploring {
     }
     //#endregion
 
+    //#region Wallet
+    async getWallet(dungeon: Model<LocationItem>): Promise<Model<HeroWalletItem>>{
+        const wallet = await this.loot.channel.database.sequelize.models.heroWallet.findByPk(this.hero.getDataValue("name")) as Model<HeroWalletItem>;
+        const blood = this.loot.settings.find(x =>x.command === "blood");
+        if(wallet){
+            if(this.loot.isDateTimeoutExpired(new Date(wallet.getDataValue("lastBlood")), blood.minutes)){
+                wallet.setDataValue("blood", 0);
+                wallet.save();
+            }
+            return wallet;
+        }
+        return null;
+    }
+    //#endregion
 }

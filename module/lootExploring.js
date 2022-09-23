@@ -11,9 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LootExploring = void 0;
 const adventureItem_1 = require("../model/adventureItem");
+const heroItem_1 = require("../model/heroItem");
 class LootExploring {
     //#region Construct
     constructor(loot) {
+        this.experience = 0;
+        this.gold = 0;
+        this.damage = 0;
+        this.isWinner = true;
         this.loot = loot;
     }
     //#endregion
@@ -23,13 +28,19 @@ class LootExploring {
             this.hero = yield this.getHero();
             if (this.hero) {
                 this.dungeon = yield this.getDungeon();
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, hero ${this.hero.getDataValue("name")}`);
                 if (this.dungeon) {
                     this.item = yield this.getItem(this.dungeon);
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, dungeon ${this.dungeon.getDataValue("name")}`);
                     if (this.item) {
                         this.enemy = yield this.getEnemy(this.dungeon);
+                        global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, item ${this.item.getDataValue("value")}`);
                         if (this.enemy) {
-                            this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax"));
-                            this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax"));
+                            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, enemy ${this.enemy.getDataValue("name")}`);
+                            this.wallet = yield this.getWallet(this.dungeon);
+                            this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax")) + this.wallet.getDataValue("blood");
+                            this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax")) + this.wallet.getDataValue("blood");
+                            this.fight();
                             return true;
                         }
                     }
@@ -39,22 +50,60 @@ class LootExploring {
         });
     }
     //#endregion
-    //#region Save
-    save() {
+    //#region Fight
+    fight() {
         return __awaiter(this, void 0, void 0, function* () {
-            const adventure = new adventureItem_1.AdventureItem();
-            adventure.heroName = this.hero.getDataValue("name");
-            adventure.itemHandle = this.item.getDataValue("handle");
-            yield this.loot.channel.database.sequelize.models.adventure.create(adventure);
-            yield this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") } });
-            yield this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") } });
+            let enemyHitpoints = this.enemy.getDataValue("hitpoints");
+            const heroHitpoints = this.hero.getDataValue("hitpoints");
+            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
+            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight heroHitpoints ${heroHitpoints}`);
+            while (enemyHitpoints > 0 && heroHitpoints - this.damage > 0) {
+                const heroDamage = this.loot.getRandomNumber(Math.round(this.hero.getDataValue("strength") / 2), this.hero.getDataValue("strength"));
+                enemyHitpoints -= heroDamage;
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight heroDamage ${heroDamage}`);
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
+                if (enemyHitpoints > 0) {
+                    const enemyDamage = this.loot.getRandomNumber(Math.round(this.enemy.getDataValue("strength") / 2), this.enemy.getDataValue("strength"));
+                    this.damage += enemyDamage;
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyDamage ${enemyDamage}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight complete damage ${this.damage}`);
+                }
+            }
+            if (this.damage >= heroHitpoints) {
+                this.isWinner = false;
+                this.damage = heroHitpoints;
+            }
+            else {
+                this.isWinner = true;
+            }
+            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight isWinner ${this.isWinner}`);
         });
     }
     //#endregion
-    //#region Execute
+    //#region Save
+    save() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.isWinner) {
+                const adventure = new adventureItem_1.AdventureItem();
+                adventure.heroName = this.hero.getDataValue("name");
+                adventure.itemHandle = this.item.getDataValue("handle");
+                yield this.loot.channel.database.sequelize.models.adventure.create(adventure);
+                yield this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") } });
+                yield this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") } });
+                yield this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") } });
+                yield heroItem_1.HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: this.hero.get() });
+            }
+            else {
+                yield this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") } });
+            }
+        });
+    }
+    //#endregion
+    //#region Hero
     getHero() {
         return __awaiter(this, void 0, void 0, function* () {
-            const heroes = yield this.loot.channel.database.sequelize.models.hero.findAll({ where: { isActive: true } });
+            let heroes = yield this.loot.channel.database.sequelize.models.hero.findAll({ where: { isActive: true } });
+            heroes = heroes.filter(x => x.getDataValue("hitpoints") > 0);
             if (heroes.length > 0) {
                 return heroes[this.loot.getRandomNumber(0, heroes.length - 1)];
             }
@@ -103,6 +152,22 @@ class LootExploring {
             const enemies = yield this.loot.channel.database.sequelize.models.enemy.findAll({ where: { difficulty: dungeon.getDataValue("difficulty") } });
             if (enemies.length > 0) {
                 return enemies[this.loot.getRandomNumber(0, enemies.length - 1)];
+            }
+            return null;
+        });
+    }
+    //#endregion
+    //#region Wallet
+    getWallet(dungeon) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const wallet = yield this.loot.channel.database.sequelize.models.heroWallet.findByPk(this.hero.getDataValue("name"));
+            const blood = this.loot.settings.find(x => x.command === "blood");
+            if (wallet) {
+                if (this.loot.isDateTimeoutExpired(new Date(wallet.getDataValue("lastBlood")), blood.minutes)) {
+                    wallet.setDataValue("blood", 0);
+                    wallet.save();
+                }
+                return wallet;
             }
             return null;
         });

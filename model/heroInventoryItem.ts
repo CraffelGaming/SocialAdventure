@@ -2,6 +2,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./heroInventoryItem.json');
+import { AdventureItem } from './adventureItem';
 
 @Table({ tableName: "heroInventory", modelName: "heroInventory"})
 export class HeroInventoryItem extends Model<HeroInventoryItem>{
@@ -35,12 +36,7 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
             quantity: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 0
-            },
-            isReload: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: false
+                defaultValue: 1
             }
           }, {freezeTableName: true});
     }
@@ -48,6 +44,18 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
         sequelize.models.heroInventory.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
         sequelize.models.heroInventory.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle'});
+    }
+
+    static async transferAdventureToInventory({ sequelize, adventure }: { sequelize: Sequelize; adventure: Model<AdventureItem> }){
+        const inventory = await sequelize.models.heroInventory.findOne({where: {itemHandle: adventure.getDataValue("itemHandle"), heroName:  adventure.getDataValue("heroName")}}) as Model<HeroInventoryItem>;
+
+        if(inventory){
+            await sequelize.models.heroInventory.increment('quantity', { by: 1, where: {itemHandle: adventure.getDataValue("itemHandle"), heroName:  adventure.getDataValue("heroName")}});
+        } else {
+            await sequelize.models.heroInventory.create({ heroName: adventure.getDataValue("heroName"),
+                                                          itemHandle: adventure.getDataValue("itemHandle")});
+        }
+        adventure.destroy();
     }
 
     static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{

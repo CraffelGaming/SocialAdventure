@@ -14,9 +14,9 @@ export class EnemyItem extends Model<EnemyItem>{
     @Column
     difficulty: number = 1;
     @Column
-    hitpoints: number = 100;
+    hitpoints: number = 10;
     @Column
-    strength: number = 10;
+    strength: number = 5;
     @Column
     isActive: boolean = true;
     @Column

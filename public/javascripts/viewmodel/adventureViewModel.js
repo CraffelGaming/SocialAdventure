@@ -151,7 +151,9 @@ $(async () => {
                     { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler') },
                     { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler') },
                     { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler') },
-                    { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') }
+                    { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') },
+                    { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler') },
+                    { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler') }
                 ]
             });
         };

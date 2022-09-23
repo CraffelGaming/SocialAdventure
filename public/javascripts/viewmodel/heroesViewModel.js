@@ -13,15 +13,16 @@ $(async () => {
     let languageItemCategory = await getTranslation('itemCategory');
 
     let category = await get('/itemcategory/default/', language);
+    let levels = [];
     
     translation();
-    initialize();
+    await initialize();
     load();
     infoPanel();
     
     //#region Initialize
-    function initialize() {
-
+    async function initialize() {
+        levels = await get('/level/default/', language)
     }
     //#endregion
 
@@ -76,8 +77,24 @@ $(async () => {
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name') },
-                { dataField: "level", caption: translate(languageLevel, 'handle'), width: 100  },
-                { dataField: "experience", caption: translate(language, 'experience'), width: 150 }, 
+                { caption: translate(languageLevel, 'handle'),
+                    calculateCellValue(data) {
+                        console.log(levels);
+                        return levels.find(x => x.experienceMax >= data.experience && x.experienceMin <= data.experience).handle;
+                }}, 
+                { dataField: "experience", caption: translate(language, 'experience'), width: 250, 
+                    cellTemplate: function (container, options) {  
+                        let level = levels.find(x => x.experienceMax >= options.data.experience && x.experienceMin <= options.data.experience);
+                        $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
+                            min: level.experienceMin,  
+                            max: level.experienceMax,
+                            value: options.data.experience,
+                            statusFormat: function(){
+                                return options.data.experience + ' / ' + level.experienceMax
+                            }  
+                        }).appendTo(container);  
+                    }
+                },
                 { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200, 
                     cellTemplate: function (container, options) {  
                         $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
@@ -90,6 +107,7 @@ $(async () => {
                         }).appendTo(container);  
                     }  
                 }, 
+                { dataField: 'strength', caption: translate(language, 'strength'), width: 150 },
                 { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime', width: 150 },
                 { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date', width: 200 },
@@ -209,7 +227,7 @@ $(async () => {
                         key: ["heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            return await get(`/herowallet/default/hero/${masterDetailData.name}`, language);
+                            return [await get(`/herowallet/default/hero/${masterDetailData.name}`, language)];
                         }
                     }),
                     allowColumnReordering: true,
@@ -225,7 +243,7 @@ $(async () => {
                         { dataField: "gold", caption: translate(languageWallet, 'gold') },
                         { dataField: "diamond", caption: translate(languageWallet, 'diamond') },
                         { dataField: "blood", caption: translate(languageWallet, 'blood') },
-                        { dataField: 'lastBlood', caption: translate(language, 'lastBlood'), dataType: 'date', width: 150 }
+                        { dataField: 'lastBlood', caption: translate(languageWallet, 'lastBlood'), dataType: 'datetime', width: 150 }
                     ]
                 });
             };
@@ -238,7 +256,7 @@ $(async () => {
                         key: ["heroName"],
                         loadMode: "raw",
                         load: async function () {
-                            return await get(`/herotrait/default/hero/${masterDetailData.name}`, language);
+                            return [await get(`/herotrait/default/hero/${masterDetailData.name}`, language)];
                         }
                     }),
                     allowColumnReordering: true,
@@ -254,7 +272,9 @@ $(async () => {
                         { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler') },
                         { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler') },
                         { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler') },
-                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') }
+                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') },
+                        { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler') },
+                        { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler') }
                     ]
                 });
             };

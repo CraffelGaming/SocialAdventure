@@ -26,8 +26,8 @@ let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.difficulty = 1;
-        this.hitpoints = 100;
-        this.strength = 10;
+        this.hitpoints = 10;
+        this.strength = 5;
         this.isActive = true;
         this.experienceMin = 100;
         this.experienceMax = 200;

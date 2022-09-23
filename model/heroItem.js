@@ -17,6 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var HeroItem_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
@@ -24,7 +25,7 @@ const sequelize_1 = require("sequelize");
 const json = require("./heroItem.json");
 const heroTraitItem_1 = require("./heroTraitItem");
 const heroWalletItem_1 = require("./heroWalletItem");
-let HeroItem = class HeroItem {
+let HeroItem = HeroItem_1 = class HeroItem {
     constructor(name) {
         this.lastSteal = new Date(2020, 1, 1);
         this.lastJoin = new Date(2020, 1, 1);
@@ -36,6 +37,7 @@ let HeroItem = class HeroItem {
         this.isActive = false;
         this.isFounder = false;
         this.level = 1;
+        this.strength = 20;
         this.name = name;
     }
     static createTable({ sequelize }) {
@@ -85,11 +87,6 @@ let HeroItem = class HeroItem {
                 allowNull: false,
                 defaultValue: 100
             },
-            level: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 1
-            },
             isFounder: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
@@ -99,6 +96,11 @@ let HeroItem = class HeroItem {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
+            },
+            strength: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 20
             }
         }, { freezeTableName: true });
     }
@@ -125,44 +127,42 @@ let HeroItem = class HeroItem {
             }
         });
     }
+    static calculateHero({ sequelize, element }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const level = yield sequelize.models.level.findOne({
+                attributes: [[sequelize.fn('max', sequelize.col('experienceMax')), 'max']]
+            });
+            const maxExperience = level.getDataValue("experienceMax");
+            if (element.experience >= maxExperience) {
+                yield sequelize.models.hero.increment('hitpoints', { by: maxExperience * -1, where: { name: element.name } });
+                yield sequelize.models.hero.increment('prestige', { by: 1, where: { name: element.name } });
+            }
+            return true;
+        });
+    }
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
+            let result = 201;
             try {
                 if (element.name !== null && element.name !== "") {
-                    const level = yield sequelize.models.level.findOne({
-                        attributes: [[sequelize.fn('max', sequelize.col('experienceMax')), 'max']]
-                    });
-                    const maxExperience = level.getDataValue("experienceMax");
-                    if (element.experience) {
-                        if (element.experience >= maxExperience) {
-                            element.experience -= maxExperience;
-                            element.prestige += 1;
-                        }
-                    }
-                    const currentLevel = yield sequelize.models.level.findOne({
-                        where: { experienceMin: { [sequelize_1.Op.lte]: element.experience },
-                            experienceMax: { [sequelize_1.Op.gte]: element.experience }
-                        }
-                    });
-                    element.level = currentLevel.getDataValue("handle");
                     if ((yield sequelize.models.hero.count({ where: { name: element.name } })) === 0) {
                         yield sequelize.models.hero.create(element);
                         yield heroTraitItem_1.HeroTraitItem.put({ sequelize, element: new heroTraitItem_1.HeroTraitItem(element.name) });
                         yield heroWalletItem_1.HeroWalletItem.put({ sequelize, element: new heroWalletItem_1.HeroWalletItem(element.name) });
-                        return 201;
                     }
                     else {
                         yield sequelize.models.hero.update(element, { where: { name: element.name } });
-                        return 201;
                     }
+                    HeroItem_1.calculateHero({ sequelize, element });
                 }
                 else
-                    return 406;
+                    result = 406;
             }
             catch (ex) {
                 global.worker.log.error(ex);
-                return 500;
+                result = 500;
             }
+            return result;
         });
     }
 };
@@ -211,7 +211,11 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], HeroItem.prototype, "level", void 0);
-HeroItem = __decorate([
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], HeroItem.prototype, "strength", void 0);
+HeroItem = HeroItem_1 = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "hero", modelName: "hero" }),
     __metadata("design:paramtypes", [String])
 ], HeroItem);

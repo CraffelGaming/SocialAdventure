@@ -43,18 +43,26 @@ let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.M
             quantity: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
-                defaultValue: 0
-            },
-            isReload: {
-                type: sequelize_1.DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: false
+                defaultValue: 1
             }
         }, { freezeTableName: true });
     }
     static setAssociation({ sequelize }) {
         sequelize.models.heroInventory.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
         sequelize.models.heroInventory.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle' });
+    }
+    static transferAdventureToInventory({ sequelize, adventure }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const inventory = yield sequelize.models.heroInventory.findOne({ where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
+            if (inventory) {
+                yield sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
+            }
+            else {
+                yield sequelize.models.heroInventory.create({ heroName: adventure.getDataValue("heroName"),
+                    itemHandle: adventure.getDataValue("itemHandle") });
+            }
+            adventure.destroy();
+        });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -14,6 +14,10 @@ export class HeroTraitItem {
     defenceMultipler: number = 1;
     @Column
     workMultipler: number = 1;
+    @Column
+    strengthMultipler: number = 1;
+    @Column
+    hitpointMultipler: number = 1;
 
     constructor(heroName: string){
         this.heroName = heroName;
@@ -42,6 +46,16 @@ export class HeroTraitItem {
                 defaultValue: 1
             },
             workMultipler: {
+                type: DataTypes.DOUBLE,
+                allowNull: false,
+                defaultValue: 1
+            },
+            strengthMultipler: {
+                type: DataTypes.DOUBLE,
+                allowNull: false,
+                defaultValue: 1
+            },
+            hitpointMultipler: {
                 type: DataTypes.DOUBLE,
                 allowNull: false,
                 defaultValue: 1

@@ -12,9 +12,13 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
     @Column
     description: string;
     @Column
+    image: string;
+    @Column
     percent: number = 0;
     @Column
     gold: number = 0;
+    @Column
+    isRevive: boolean = false;
 
     constructor(){
         super();
@@ -35,6 +39,10 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
                 type: DataTypes.STRING(1000),
                 allowNull: false
             },
+            image: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
             percent: {
                 type: DataTypes.INTEGER,
                 allowNull: false
@@ -42,6 +50,11 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
             gold: {
                 type: DataTypes.INTEGER,
                 allowNull: false
+            },
+            isRevive: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             }
           }, {freezeTableName: true});
     }

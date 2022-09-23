@@ -102,7 +102,7 @@
         "endpoint": "me",
         "name": "me",
         "order": 1300,
-        "authenticationRequired": true ,
+        "authenticationRequired": true,
         "nodeRequired": true
     },
     {

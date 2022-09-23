@@ -30,6 +30,8 @@ export class HeroItem {
     isFounder: boolean = false;
     @Column
     level: number = 1;
+    @Column
+    strength: number = 20;
 
     constructor(name: string){
         this.name = name;
@@ -82,11 +84,6 @@ export class HeroItem {
                 allowNull: false,
                 defaultValue: 100
             },
-            level: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 1
-            },
             isFounder: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
@@ -96,6 +93,11 @@ export class HeroItem {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
+            },
+            strength: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 20
             }
           }, {freezeTableName: true});
     }
@@ -121,43 +123,38 @@ export class HeroItem {
         }
     }
 
+    static async calculateHero({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<boolean>{
+        const level = await sequelize.models.level.findOne({
+            attributes:[[sequelize.fn('max', sequelize.col('experienceMax')),'max']]
+        }) as Model<LevelItem>;
+        const maxExperience = level.getDataValue("experienceMax");
+
+        if(element.experience >= maxExperience){
+            await sequelize.models.hero.increment('hitpoints', { by: maxExperience * -1, where: { name: element.name }});
+            await sequelize.models.hero.increment('prestige', { by: 1, where: { name: element.name }});
+        }
+
+        return true;
+    }
+
     static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<number>{
+        let result = 201;
         try{
             if(element.name !== null && element.name !== ""){
-
-                const level = await sequelize.models.level.findOne({
-                    attributes:[[sequelize.fn('max', sequelize.col('experienceMax')),'max']]
-                }) as Model<LevelItem>;
-                const maxExperience = level.getDataValue("experienceMax");
-
-                if(element.experience){
-                    if(element.experience >= maxExperience){
-                        element.experience -= maxExperience;
-                        element.prestige += 1;
-                    }
-                }
-
-                const currentLevel = await sequelize.models.level.findOne({
-                    where: { experienceMin :{[Op.lte]: element.experience },
-                    experienceMax :{[Op.gte]: element.experience }
-                }});
-
-                element.level = currentLevel.getDataValue("handle");
-
                 if(await sequelize.models.hero.count({where: {name: element.name}}) === 0){
                     await sequelize.models.hero.create(element as any);
                     await HeroTraitItem.put({sequelize, element: new HeroTraitItem(element.name)});
                     await HeroWalletItem.put({sequelize, element: new HeroWalletItem(element.name)});
-                    return 201;
                 } else {
                     await sequelize.models.hero.update(element, {where: {name: element.name}})
-                    return 201;
                 }
-            } else return 406;
+                HeroItem.calculateHero({sequelize, element});
+            } else result = 406;
         } catch(ex){
             global.worker.log.error(ex);
-            return 500;
+            result = 500;
         }
+        return result;
     }
 }
 
