@@ -181,8 +181,7 @@ $(async () => {
                             return await get(`/heroinventory/default/hero/${masterDetailData.name}`, language);
                         },
                         remove: async function (key) {
-                            console.log(key);
-                            await fetch(`./api/heroinventory/default/item/${key.itemHandle}/hero/${key.heroName}`, {
+                            await fetch(`./api/heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}`, {
                                 method: 'post',
                                 headers: {
                                     'Content-type': 'application/json'

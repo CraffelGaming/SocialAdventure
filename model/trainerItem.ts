@@ -98,7 +98,7 @@ export class TrainerItem extends Model<TrainerItem>{
                     await heroWallet.decrement('gold', { by: trainer.getDataValue("gold")});
                     await heroTrait.increment(trait, { by: 1});
 
-                    if(trainer.getDataValue("handle") === "gold"){
+                    if(trainer.getDataValue("handle") === "hitpoint"){
                         await hero.increment('hitpointsMax', { by: 10});
                         await hero.increment('hitpoints', { by: 10});
                     }

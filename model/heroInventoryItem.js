@@ -86,11 +86,12 @@ let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.M
             try {
                 const inventory = yield sequelize.models.heroInventory.findOne({ where: { heroName, itemHandle } });
                 const hero = yield sequelize.models.hero.findByPk(heroName);
-                const item = yield sequelize.models.hero.findByPk(itemHandle);
+                const item = yield sequelize.models.item.findByPk(itemHandle);
                 const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
                 if (inventory && hero && heroWallet && item) {
                     yield heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold") });
                     inventory.destroy();
+                    return 200;
                 }
                 else
                     return 404;

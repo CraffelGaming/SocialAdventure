@@ -15,10 +15,10 @@ Version 1
         [X] Leave
         [X] Blood
         [X] Automation
-        [.] Tägliche Aufgabe
+        [ ] Tägliche Aufgabe
         [X] Loottime
         [X] Experience
-        [ ] Verkaufen
+        [X] Verkaufen
 5.  [ ] Shoutout im Say Modul
 6.  [ ] Counter im Say Modul
 7.  [X] Twitch API Verbindung mit Chat

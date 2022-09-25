@@ -79,12 +79,13 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
         try{
             const inventory = await sequelize.models.heroInventory.findOne({ where: { heroName,  itemHandle} }) as Model<HeroInventoryItem>;
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
-            const item = await sequelize.models.hero.findByPk(itemHandle) as Model<ItemItem>;
+            const item = await sequelize.models.item.findByPk(itemHandle) as Model<ItemItem>;
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
 
             if(inventory && hero && heroWallet && item){
                 await heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold")});
                 inventory.destroy();
+                return 200;
             } else return 404;
         } catch(ex){
             global.worker.log.error(ex);
