@@ -49385,3 +49385,159 @@
 [2022-09-25T13:50:44.914] [INFO] default - node craffelmat, module loot last run Sun Sep 25 2022 13:48:44 GMT+0200 (Mitteleuropäische Sommerzeit)...
 [2022-09-25T13:50:44.933] [INFO] default - node craffelmat, module loot run after 1 Minutes.
 [2022-09-25T13:50:44.935] [INFO] default - node craffelmat, module loot not executed - missing exploring
+[2022-09-25T13:51:15.870] [TRACE] default - twitch chat client initialized
+[2022-09-25T13:51:15.974] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-25T13:51:15.974] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-25T13:51:15.990] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-25T13:51:15.993] [INFO] default - HTTP Server listening on port 80
+[2022-09-25T13:51:19.905] [TRACE] default - add Migration update_001
+[2022-09-25T13:51:20.884] [TRACE] default - {
+  access_token: 'lyvtopbs7r2toma41gal0zgrbx721p',
+  expires_in: 5693930,
+  token_type: 'bearer'
+}
+[2022-09-25T13:51:21.833] [TRACE] default - add Node craffelmat
+[2022-09-25T13:51:24.075] [INFO] default - node craffelmat, say add craffel.
+[2022-09-25T13:51:24.078] [TRACE] default - node connected: craffelmat
+[2022-09-25T13:52:24.088] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-25T13:52:24.089] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-25T13:52:24.089] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-25T13:52:24.090] [INFO] default - node craffelmat, module loot last run Sun Sep 25 2022 13:50:44 GMT+0200 (Mitteleuropäische Sommerzeit)...
+[2022-09-25T13:52:24.091] [INFO] default - node craffelmat, module loot not executed
+[2022-09-25T13:52:24.091] [TRACE] default - node craffelmat, module loot minutes: 1
+[2022-09-25T13:52:24.092] [TRACE] default - node craffelmat, module loot time elapsed: 0
+[2022-09-25T13:53:24.102] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-25T13:53:24.102] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-25T13:53:24.103] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-25T13:53:24.103] [INFO] default - node craffelmat, module loot last run Sun Sep 25 2022 13:50:44 GMT+0200 (Mitteleuropäische Sommerzeit)...
+[2022-09-25T13:53:24.120] [INFO] default - node craffelmat, module loot run after 1 Minutes.
+[2022-09-25T13:53:24.123] [INFO] default - node craffelmat, module loot not executed - missing exploring
+[2022-09-25T13:54:24.110] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-25T13:54:24.111] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-25T13:54:24.111] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-25T13:54:24.112] [INFO] default - node craffelmat, module loot last run Sun Sep 25 2022 13:53:24 GMT+0200 (Mitteleuropäische Sommerzeit)...
+[2022-09-25T13:54:24.112] [INFO] default - node craffelmat, module loot not executed
+[2022-09-25T13:54:24.112] [TRACE] default - node craffelmat, module loot minutes: 1
+[2022-09-25T13:54:24.112] [TRACE] default - node craffelmat, module loot time elapsed: 0
+[2022-09-25T13:55:24.113] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-25T13:55:24.113] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-25T13:55:24.113] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-25T13:55:24.114] [INFO] default - node craffelmat, module loot last run Sun Sep 25 2022 13:53:24 GMT+0200 (Mitteleuropäische Sommerzeit)...
+[2022-09-25T13:55:24.132] [INFO] default - node craffelmat, module loot run after 1 Minutes.
+[2022-09-25T13:55:24.134] [INFO] default - node craffelmat, module loot not executed - missing exploring
+[2022-09-25T13:55:37.489] [TRACE] default - get translation, page navigation
+[2022-09-25T13:55:37.492] [TRACE] default - get translation, page hero
+[2022-09-25T13:55:37.500] [TRACE] default - get menu
+[2022-09-25T13:55:37.503] [TRACE] default - get translation, page item
+[2022-09-25T13:55:37.516] [TRACE] default - get twitch
+[2022-09-25T13:55:37.519] [TRACE] default - get translation, page wallet
+[2022-09-25T13:55:37.521] [TRACE] default - get node, default
+[2022-09-25T13:55:37.528] [TRACE] default - get translation, page trait
+[2022-09-25T13:55:37.544] [TRACE] default - get translation, page adventure
+[2022-09-25T13:55:37.550] [TRACE] default - get translation, page level
+[2022-09-25T13:55:37.555] [TRACE] default - get translation, page inventory
+[2022-09-25T13:55:37.561] [TRACE] default - get translation, page itemCategoryList
+[2022-09-25T13:55:37.568] [TRACE] default - get translation, page itemCategory
+[2022-09-25T13:55:37.574] [TRACE] default - get itemcategory, node default
+[2022-09-25T13:55:37.584] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:39.714] [TRACE] default - get translation, page navigation
+[2022-09-25T13:55:39.716] [TRACE] default - get translation, page streamer
+[2022-09-25T13:55:39.868] [TRACE] default - get translation, page information
+[2022-09-25T13:55:39.871] [TRACE] default - get menu
+[2022-09-25T13:55:39.873] [TRACE] default - get node
+[2022-09-25T13:55:39.875] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:39.886] [TRACE] default - get node, default
+[2022-09-25T13:55:39.889] [TRACE] default - get twitch
+[2022-09-25T13:55:39.995] [TRACE] default - get node, default
+[2022-09-25T13:55:42.168] [TRACE] default - get translation, page navigation
+[2022-09-25T13:55:42.170] [TRACE] default - get translation, page hero
+[2022-09-25T13:55:42.178] [TRACE] default - get menu
+[2022-09-25T13:55:42.179] [TRACE] default - get translation, page item
+[2022-09-25T13:55:42.192] [TRACE] default - get twitch
+[2022-09-25T13:55:42.194] [TRACE] default - get translation, page wallet
+[2022-09-25T13:55:42.196] [TRACE] default - get node, default
+[2022-09-25T13:55:42.221] [TRACE] default - get translation, page trait
+[2022-09-25T13:55:42.228] [TRACE] default - get translation, page adventure
+[2022-09-25T13:55:42.235] [TRACE] default - get translation, page level
+[2022-09-25T13:55:42.243] [TRACE] default - get translation, page itemCategoryList
+[2022-09-25T13:55:42.251] [TRACE] default - get translation, page itemCategory
+[2022-09-25T13:55:42.257] [TRACE] default - get itemcategory, node default
+[2022-09-25T13:55:42.272] [TRACE] default - get level, node default
+[2022-09-25T13:55:42.358] [TRACE] default - get translation, page information
+[2022-09-25T13:55:42.361] [TRACE] default - get hero, node default
+[2022-09-25T13:55:42.364] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:42.370] [TRACE] default - get node, default
+[2022-09-25T13:55:45.399] [TRACE] default - {
+  access_token: 'ahnb9yrytvqyoe1s7r5abgyi9bnrcr',
+  expires_in: 15473,
+  refresh_token: '9wqnavjjhumxja7gnpux6ro4qc5m96txb2w75ijnnpeflmtx4b',
+  scope: [ 'chat:edit', 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-09-25T13:55:45.642] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-09-25T13:55:46.042] [TRACE] default - get translation, page navigation
+[2022-09-25T13:55:46.044] [TRACE] default - get translation, page twitch
+[2022-09-25T13:55:46.057] [TRACE] default - get menu
+[2022-09-25T13:55:46.085] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:46.099] [TRACE] default - get twitch
+[2022-09-25T13:55:46.102] [TRACE] default - get translation, page information
+[2022-09-25T13:55:46.106] [TRACE] default - get node, default
+[2022-09-25T13:55:46.130] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:46.139] [TRACE] default - get node, default
+[2022-09-25T13:55:47.737] [TRACE] default - get translation, page navigation
+[2022-09-25T13:55:47.738] [TRACE] default - get translation, page hero
+[2022-09-25T13:55:47.747] [TRACE] default - get menu
+[2022-09-25T13:55:47.756] [TRACE] default - get translation, page item
+[2022-09-25T13:55:47.770] [TRACE] default - get twitch
+[2022-09-25T13:55:47.773] [TRACE] default - get translation, page wallet
+[2022-09-25T13:55:47.779] [TRACE] default - get node, default
+[2022-09-25T13:55:47.784] [TRACE] default - get translation, page trait
+[2022-09-25T13:55:47.807] [TRACE] default - get translation, page adventure
+[2022-09-25T13:55:47.818] [TRACE] default - get translation, page level
+[2022-09-25T13:55:47.828] [TRACE] default - get translation, page inventory
+[2022-09-25T13:55:47.834] [TRACE] default - get translation, page itemCategoryList
+[2022-09-25T13:55:47.844] [TRACE] default - get translation, page itemCategory
+[2022-09-25T13:55:47.857] [TRACE] default - get itemcategory, node default
+[2022-09-25T13:55:47.875] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:47.885] [TRACE] default - get hero, node default
+[2022-09-25T13:55:47.909] [TRACE] default - get level, node default
+[2022-09-25T13:55:47.996] [TRACE] default - get translation, page information
+[2022-09-25T13:55:48.171] [TRACE] default - get twitch userdata
+[2022-09-25T13:55:48.173] [TRACE] default - get heroinventory, node default, hero craffelmat
+[2022-09-25T13:55:48.185] [TRACE] default - get node, default
+[2022-09-25T13:55:51.262] [TRACE] default - get herowallet, node default, hero craffelmat
+[2022-09-25T13:55:57.373] [TRACE] default - get heroinventory, node default, hero craffelmat
+[2022-09-25T13:55:59.934] [TRACE] default - get translation, page navigation
+[2022-09-25T13:55:59.936] [TRACE] default - get translation, page hero
+[2022-09-25T13:55:59.941] [TRACE] default - get menu
+[2022-09-25T13:55:59.950] [TRACE] default - get translation, page item
+[2022-09-25T13:55:59.952] [TRACE] default - get twitch
+[2022-09-25T13:55:59.956] [TRACE] default - get node, default
+[2022-09-25T13:55:59.958] [TRACE] default - get translation, page wallet
+[2022-09-25T13:55:59.975] [TRACE] default - get translation, page trait
+[2022-09-25T13:55:59.979] [TRACE] default - get translation, page adventure
+[2022-09-25T13:55:59.985] [TRACE] default - get translation, page level
+[2022-09-25T13:55:59.989] [TRACE] default - get translation, page inventory
+[2022-09-25T13:55:59.996] [TRACE] default - get translation, page itemCategoryList
+[2022-09-25T13:56:00.003] [TRACE] default - get translation, page itemCategory
+[2022-09-25T13:56:00.009] [TRACE] default - get itemcategory, node default
+[2022-09-25T13:56:00.019] [TRACE] default - get twitch userdata
+[2022-09-25T13:56:00.024] [TRACE] default - get hero, node default
+[2022-09-25T13:56:00.039] [TRACE] default - get level, node default
+[2022-09-25T13:56:00.141] [TRACE] default - get translation, page information
+[2022-09-25T13:56:00.310] [TRACE] default - get heroinventory, node default, hero craffelmat
+[2022-09-25T13:56:00.311] [TRACE] default - get twitch userdata
+[2022-09-25T13:56:00.319] [TRACE] default - get node, default
+[2022-09-25T13:56:00.750] [TRACE] default - get herowallet, node default, hero craffelmat
