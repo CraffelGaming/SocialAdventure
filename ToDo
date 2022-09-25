@@ -5,9 +5,12 @@ Version 1
 2.  [X] Eigene URL für jeden Streamer
 3.  [X] Itemkategorien einbinden
 4.  [.] Loot neue Logik implementieren.
-        [.] Taverne
+        [X] Taverne
         [ ] Give
         [ ] Steal
+        [X] Start / Stop
+        [X] Rank
+        [X] HP
         [X] Join
         [X] Leave
         [X] Blood

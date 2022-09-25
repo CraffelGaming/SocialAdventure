@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get, loadUserData } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, loadUserData, notify } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -9,6 +9,7 @@ $(async () => {
     let languageTrait = await getTranslation('trait');
     let languageAdventure = await getTranslation('adventure');
     let languageLevel = await getTranslation('level');
+    let languageInventory = await getTranslation('inventory');
     let languageItemCategoryList = await getTranslation('itemCategoryList');
     let languageItemCategory = await getTranslation('itemCategory');
 
@@ -178,6 +179,24 @@ $(async () => {
                         loadMode: "raw",
                         load: async function () {
                             return await get(`/heroinventory/default/hero/${masterDetailData.name}`, language);
+                        },
+                        remove: async function (key) {
+                            console.log(key);
+                            await fetch(`./api/heroinventory/default/item/${key.itemHandle}/hero/${key.heroName}`, {
+                                method: 'post',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                }
+                            }).then(async function (res) {
+                                switch(res.status){
+                                    case 200:
+                                        notify(translate(languageInventory, res.status), "success");
+                                        break;
+                                    default:
+                                        notify(translate(languageInventory, res.status), "error");
+                                        break;
+                                }
+                            });
                         }
                     }),
                     allowColumnReordering: true,
@@ -186,7 +205,7 @@ $(async () => {
                     editing: {
                         mode: "row",
                         allowUpdating: false,
-                        allowDeleting: false,
+                        allowDeleting: true,
                         allowAdding: false
                     },
                     columns: [
@@ -217,6 +236,14 @@ $(async () => {
                             calculateCellValue(data) {
                               return data.quantity * data.item.gold;
                             }
+                        },
+                        {
+                            type: "buttons",
+                            buttons: [{
+                                name: "delete",
+                                icon: "check",
+                                hint: translate(languageInventory, "checkSell"),
+                            }]
                         }
                     ]
                 });

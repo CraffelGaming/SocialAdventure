@@ -898,6 +898,45 @@ const router = express.Router();
  *         description: no data
  */
  router.delete("/healingPotion/:node/:handle", healingPotion);
+
+/**
+ * @swagger
+ * /healingPotion/{node}/heal/{handle}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Heilt oder Belebt einen Helden wieder.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID der Heiltranks"
+ *       required: true
+ *       type: "number"
+ *       default: 1
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.post("/healingPotion/:node/heal/:handle/hero/:name", healingPotion);
 //#endregion
 
 //#region Hero
@@ -1258,6 +1297,45 @@ const router = express.Router();
  *         description: no data
  */
  router.get("/heroinventory/:node/hero/:name", heroinventory);
+
+/**
+ * @swagger
+ * /heroinventory/{node}/sell/item/{handle}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - Hero Inventory
+ *     summary: Inventar der Helden
+ *     description: Verkauf einen Gegenstand.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+  router.post("/heroinventory/:node/sell/item/:handle/hero/:name", heroinventory);
 //#endregion
 
 //#region Hero Trait
@@ -1959,7 +2037,7 @@ const router = express.Router();
  * /itemCategory/{node}:
  *   put:
  *     tags:
- *     - Ctem Category
+ *     - Item Category
  *     summary: Category
  *     description: Anlage einer neuen Gegenstandskategorie.
  *     consumes:
@@ -3206,6 +3284,45 @@ const router = express.Router();
  *         description: no data
  */
  router.delete("/trainer/:node/:handle", trainer);
+
+/**
+ * @swagger
+ * /trainer/{node}/training/{handle}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Erhöht den Trait, wenn genügend Gold vorhanden ist.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Trainers"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+  router.post("/trainer/:node/training/:handle/hero/:name", trainer);
 //#endregion
 
 //#region Translation

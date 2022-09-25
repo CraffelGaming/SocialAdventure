@@ -908,6 +908,44 @@ router.put("/healingPotion/:node", api_healingPotion_1.default);
  *         description: no data
  */
 router.delete("/healingPotion/:node/:handle", api_healingPotion_1.default);
+/**
+ * @swagger
+ * /healingPotion/{node}/heal/{handle}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - HealingPotion
+ *     summary: Heiltrank
+ *     description: Heilt oder Belebt einen Helden wieder.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID der Heiltranks"
+ *       required: true
+ *       type: "number"
+ *       default: 1
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.post("/healingPotion/:node/heal/:handle/hero/:name", api_healingPotion_1.default);
 //#endregion
 //#region Hero
 /**
@@ -1262,6 +1300,44 @@ router.get("/heroinventory/:node", api_heroInventory_1.default);
  *         description: no data
  */
 router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
+/**
+ * @swagger
+ * /heroinventory/{node}/sell/item/{handle}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - Hero Inventory
+ *     summary: Inventar der Helden
+ *     description: Verkauf einen Gegenstand.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.post("/heroinventory/:node/sell/item/:handle/hero/:name", api_heroInventory_1.default);
 //#endregion
 //#region Hero Trait
 /**
@@ -1951,7 +2027,7 @@ router.post("/itemcategory/:node/transfer/:handle", api_itemCategory_1.default);
  * /itemCategory/{node}:
  *   put:
  *     tags:
- *     - Ctem Category
+ *     - Item Category
  *     summary: Category
  *     description: Anlage einer neuen Gegenstandskategorie.
  *     consumes:
@@ -3176,6 +3252,44 @@ router.put("/trainer/:node", api_trainer_1.default);
  *         description: no data
  */
 router.delete("/trainer/:node/:handle", api_trainer_1.default);
+/**
+ * @swagger
+ * /trainer/{node}/training/{handle}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - Trainer
+ *     summary: Trainer
+ *     description: Erhöht den Trait, wenn genügend Gold vorhanden ist.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Trainers"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.post("/trainer/:node/training/:handle/hero/:name", api_trainer_1.default);
 //#endregion
 //#region Translation
 /**

@@ -4,5 +4,5 @@
     {"handle": "defence",   "value": "Adlerauge",           "description": "Steigert den Bonus für Verteidigung.",  "gold": 2500,   "image": "/images/trait/defence.png"},
     {"handle": "work",      "value": "Harter Arbeiter",     "description": "Steigert den Bonus für Arbeit.",        "gold": 5000,   "image": "/images/trait/work.png"},
     {"handle": "strength",  "value": "Starker Bursche",     "description": "Steigert den Bonus für Stärke.",        "gold": 5000,   "image": "/images/trait/strength.png"},
-    {"handle": "hp",        "value": "Überlebenskünstler",  "description": "Steigert den Bonus für HP.",            "gold": 5000,   "image": "/images/trait/hp.png"}
+    {"handle": "hitpoint",  "value": "Überlebenskünstler",  "description": "Steigert den Bonus für HP.",            "gold": 5000,   "image": "/images/trait/hp.png"}
 ]

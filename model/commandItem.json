@@ -22,6 +22,8 @@
     {"module": "loot",      "command": "bloodpoints",   "isMaster": false,      "translation": "bloodpoints"},
     {"module": "loot",      "command": "rank",          "isMaster": false,      "translation": "rank"},
     {"module": "loot",      "command": "loot",          "isMaster": false,      "translation": "loot"},
+    {"module": "loot",      "command": "hitpoints",     "isMaster": false,      "translation": "hitpoints"},
+    {"module": "loot",      "command": "hp",            "isMaster": false,      "translation": "hitpoints"},
     {"module": "loot",      "command": "lootstart",     "isMaster": true,       "translation": "start"},
     {"module": "loot",      "command": "lootstop",      "isMaster": true,       "translation": "stop"},
     {"module": "loot",      "command": "lootclear",     "isMaster": true,       "translation": "clear"},

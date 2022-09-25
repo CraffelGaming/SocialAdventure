@@ -70,23 +70,18 @@ router.post('/' + endpoint + '/:node/heal/:handle/hero/:name', async (request: e
     let node: NodeItem;
 
     if(request.params.node === 'default')
-        node = global.defaultNode(request, response);
+        node = await global.defaultNode(request, response);
     else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
         if(global.isHero(request, response, request.params.name)){
-            const potion = channel.database.sequelize.models.healingPotion.findByPk(request.params.handle);
-            const hero = channel.database.sequelize.models.hero.findByPk(request.params.name);
-            const heroWallet = channel.database.sequelize.models.hero.findByPk(request.params.name);
-
-
-
-            response.status(await HealingPotionItem.put({ sequelize: channel.database.sequelize, element: request.body})).json(request.body);
+            response.status(await HealingPotionItem.heal({sequelize: channel.database.sequelize, healingPotionHandle: request.params.handle, heroName: request.params.name})).json();
         } else {
             response.status(403).json();
         }
     } else response.status(404).json();
 });
+
 export default router;

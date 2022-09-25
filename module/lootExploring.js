@@ -37,9 +37,11 @@ class LootExploring {
                         global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, item ${this.item.getDataValue("value")}`);
                         if (this.enemy) {
                             global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, enemy ${this.enemy.getDataValue("name")}`);
-                            this.wallet = yield this.getWallet(this.dungeon);
+                            this.wallet = yield this.getWallet();
+                            this.trait = yield this.getTrait();
                             this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax")) + this.wallet.getDataValue("blood");
                             this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax")) + this.wallet.getDataValue("blood");
+                            this.gold = Math.round(this.gold * ((this.trait.getDataValue("goldMultipler") / 10) + 1));
                             this.fight();
                             return true;
                         }
@@ -90,11 +92,11 @@ class LootExploring {
                 yield this.loot.channel.database.sequelize.models.adventure.create(adventure);
                 yield this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") } });
                 yield this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") } });
-                yield this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") } });
+                yield this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: this.damage, where: { name: this.hero.getDataValue("name") } });
                 yield heroItem_1.HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: this.hero.get() });
             }
             else {
-                yield this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") } });
+                yield this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: this.damage, where: { name: this.hero.getDataValue("name") } });
             }
         });
     }
@@ -158,7 +160,7 @@ class LootExploring {
     }
     //#endregion
     //#region Wallet
-    getWallet(dungeon) {
+    getWallet() {
         return __awaiter(this, void 0, void 0, function* () {
             const wallet = yield this.loot.channel.database.sequelize.models.heroWallet.findByPk(this.hero.getDataValue("name"));
             const blood = this.loot.settings.find(x => x.command === "blood");
@@ -168,6 +170,17 @@ class LootExploring {
                     wallet.save();
                 }
                 return wallet;
+            }
+            return null;
+        });
+    }
+    //#endregion
+    //#region Trait
+    getTrait() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const trait = yield this.loot.channel.database.sequelize.models.heroTrait.findByPk(this.hero.getDataValue("name"));
+            if (trait) {
+                return trait;
             }
             return null;
         });

@@ -56,8 +56,8 @@ class Loot extends module_1.Module {
     //#endregion
     //#region Automation
     automation() {
-        const loot = this.settings.find(x => x.command === "loot");
         this.timer = setInterval(() => __awaiter(this, void 0, void 0, function* () {
+            const loot = this.settings.find(x => x.command === "loot");
             if (loot.isActive) {
                 global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun)}...`);
                 if (this.isDateTimeoutExpired(new Date(loot.lastRun), loot.minutes)) {
@@ -112,6 +112,9 @@ class Loot extends module_1.Module {
                     if (!value.getDataValue("isActive")) {
                         value.setDataValue("isActive", true);
                         value.setDataValue("lastJoin", new Date());
+                        if (value.getDataValue("hitpoints") === 0) {
+                            value.setDataValue("hitpoints", value.getDataValue("hitpointsMax") / 2);
+                        }
                         yield value.save();
                         if (isNew) {
                             return translationItem_1.TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
@@ -158,6 +161,119 @@ class Loot extends module_1.Module {
         });
     }
     //#endregion
+    //#region Commands
+    steal(command) {
+        return 'steal';
+    }
+    give(command) {
+        return 'give';
+    }
+    find(command) {
+        return 'find';
+    }
+    //#endregion
+    //#region Rank
+    rank(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const hero = this.getTargetHero(command);
+            const gold = (yield this.channel.database.sequelize.query(this.getRankStatement(hero, "heroName", "heroWallet", "gold")))[0][0];
+            const experience = (yield this.channel.database.sequelize.query(this.getRankStatement(hero, "name", "hero", "experience")))[0][0];
+            return translationItem_1.TranslationItem.translate(this.translation, 'heroRank')
+                .replace('$1', hero)
+                .replace('$2', gold.rank)
+                .replace('$3', gold.gold)
+                .replace('$4', experience.rank)
+                .replace('$5', experience.experience);
+        });
+    }
+    getRankStatement(hero, heroColumn, table, column) {
+        return "SELECT rank, " + column + ", " + heroColumn + " FROM (" +
+            "    SELECT" +
+            "        ROW_NUMBER () OVER ( " +
+            "            ORDER BY " + column + " DESC" +
+            "        ) rank," + column + ", " + heroColumn +
+            "    FROM " + table +
+            " ) t" +
+            " WHERE " + heroColumn + " = '" + hero + "'";
+    }
+    //#endregion
+    //#region Clear
+    lootclear(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const heroes = yield this.channel.database.sequelize.models.hero.findAll({ where: { isActive: true } });
+                for (const hero in heroes) {
+                    if (heroes[hero] !== undefined) {
+                        heroes[hero].setDataValue("isActive", false);
+                        const adventures = yield this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: heroes[hero].getDataValue("name") } });
+                        for (const adventure in adventures) {
+                            if (adventures[adventure]) {
+                                heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure: adventures[adventure] });
+                            }
+                        }
+                        yield heroes[hero].save();
+                    }
+                }
+                return translationItem_1.TranslationItem.translate(this.translation, "cleared");
+            }
+            catch (ex) {
+                global.worker.log.error(`loot error - function leave - ${ex.message}`);
+            }
+        });
+    }
+    //#endregion
+    //#region Start
+    lootstart(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const loot = this.settings.find(x => x.command === "loot");
+            if (!loot.isActive) {
+                loot.isActive = true;
+                yield this.channel.database.sequelize.models.say.update(loot, { where: { command: loot.command } });
+                global.worker.log.trace(`module ${loot.command} set active: ${loot.isActive}`);
+                return translationItem_1.TranslationItem.translate(this.basicTranslation, "start");
+            }
+            else {
+                global.worker.log.trace(`module ${loot.command} already started.`);
+                return translationItem_1.TranslationItem.translate(this.basicTranslation, "alreadyStarted");
+            }
+        });
+    }
+    //#endregion
+    //#region Stop
+    lootstop(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const loot = this.settings.find(x => x.command === "loot");
+            if (loot.isActive) {
+                loot.isActive = false;
+                yield this.channel.database.sequelize.models.say.update(loot, { where: { command: loot.command } });
+                global.worker.log.trace(`module lootstop set active: ${loot.isActive}`);
+                return translationItem_1.TranslationItem.translate(this.basicTranslation, "stop");
+            }
+            else {
+                global.worker.log.trace(`module ${loot.command} already stopped.`);
+                return translationItem_1.TranslationItem.translate(this.basicTranslation, "alreadyStopped");
+            }
+        });
+    }
+    //#endregion
+    //#region Hitpoints
+    hitpoints(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const hero = this.getTargetHero(command);
+                const item = yield this.channel.database.sequelize.models.hero.findByPk(hero);
+                if (item) {
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroHitpoints').replace('$1', hero).replace('$2', item.getDataValue("hitpoints").toString()).replace('$3', item.getDataValue("hitpointsMax").toString());
+                }
+                else
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
+            }
+            catch (ex) {
+                global.worker.log.error(`loot error - function hitpoints - ${ex.message}`);
+            }
+        });
+    }
+    //#endregion
     //#region Adventure
     adventure(command) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -170,29 +286,6 @@ class Loot extends module_1.Module {
                 global.worker.log.error(`loot error - function adventure - ${ex.message}`);
             }
         });
-    }
-    //#endregion
-    //#region Commands
-    steal(command) {
-        return 'steal';
-    }
-    give(command) {
-        return 'give';
-    }
-    find(command) {
-        return 'find';
-    }
-    rank(command) {
-        return 'rank';
-    }
-    lootstart(command) {
-        return 'lootstart';
-    }
-    lootstop(command) {
-        return 'lootstop';
-    }
-    lootclear(command) {
-        return 'lootclear';
     }
     //#endregion
     //#region Blood
@@ -319,6 +412,11 @@ class Loot extends module_1.Module {
     }
     //#endregion
     //#region Shortcuts
+    hp(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.hitpoints(command);
+        });
+    }
     inv(command) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.inventory(command);

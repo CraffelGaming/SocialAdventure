@@ -59,7 +59,7 @@ $(async () => {
     //#region Load
     async function load() {
         userData = await get(`/twitch/userdata`, language);
-        document.getElementById("welcome").textContent = translate(language, 'welcome').replace('$1', userData.display_name);
+        document.getElementById("welcome").textContent = translate(language, 'welcome').replace('$1', userData != null ? userData.display_name : "");
     }
     //#endregion
 

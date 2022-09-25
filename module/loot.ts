@@ -1,19 +1,16 @@
-import { Mode } from "fs";
 import { Op } from "sequelize";
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
 import { AdventureItem } from "../model/adventureItem";
-import { EnemyItem } from "../model/enemyItem";
 import { HeroInventoryItem } from "../model/heroInventoryItem";
 import { HeroItem } from "../model/heroItem";
 import { HeroWalletItem } from "../model/heroWalletItem";
-import { ItemItem } from "../model/itemItem";
-import { LocationItem } from "../model/locationItem";
 import { LootItem } from "../model/lootItem";
 import { TranslationItem } from "../model/translationItem";
 import { LootExploring } from "./lootExploring";
 import { Module } from "./module";
+
 export class Loot extends Module {
     timer: NodeJS.Timer;
     settings: LootItem[];
@@ -53,10 +50,9 @@ export class Loot extends Module {
 
     //#region Automation
     automation(){
-        const loot = this.settings.find(x =>x.command === "loot");
-
         this.timer = setInterval(
             async () => {
+                const loot = this.settings.find(x =>x.command === "loot");
                 if(loot.isActive){
                     global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun)}...`);
 
@@ -113,6 +109,11 @@ export class Loot extends Module {
                 if(!value.getDataValue("isActive")){
                     value.setDataValue("isActive",true);
                     value.setDataValue("lastJoin",new Date());
+
+                    if(value.getDataValue("hitpoints") === 0){
+                        value.setDataValue("hitpoints", value.getDataValue("hitpointsMax") / 2);
+                    }
+
                     await value.save();
 
                     if(isNew) {
@@ -149,18 +150,6 @@ export class Loot extends Module {
     }
     //#endregion
 
-    //#region Adventure
-    async adventure(command: Command){
-        try{
-            const count = await this.channel.database.sequelize.models.hero.count({where: {isActive: true}});
-            global.worker.log.trace(`loot adventure - count - ${count}`);
-            return TranslationItem.translate(this.translation, 'heroCount').replace('$1', count.toString());
-        } catch (ex){
-            global.worker.log.error(`loot error - function adventure - ${ex.message}`);
-        }
-    }
-    //#endregion
-
     //#region Commands
     steal(command: Command){
         return 'steal';
@@ -173,21 +162,115 @@ export class Loot extends Module {
     find(command: Command){
         return 'find';
     }
+    //#endregion
 
-    rank(command: Command){
-        return 'rank';
+    //#region Rank
+    async rank(command: Command){
+        const hero = this.getTargetHero(command);
+        const gold = (await this.channel.database.sequelize.query(this.getRankStatement(hero,"heroName", "heroWallet", "gold")))[0][0] as any
+        const experience = (await this.channel.database.sequelize.query(this.getRankStatement(hero,"name", "hero", "experience")))[0][0] as any;
+
+        return TranslationItem.translate(this.translation, 'heroRank')
+                              .replace('$1', hero)
+                              .replace('$2', gold.rank)
+                              .replace('$3', gold.gold)
+                              .replace('$4', experience.rank)
+                              .replace('$5', experience.experience);
     }
 
-    lootstart(command: Command){
-        return 'lootstart';
+    getRankStatement(hero: string, heroColumn: string, table: string, column: string){
+        return "SELECT rank, " + column + ", " + heroColumn + " FROM (" +
+               "    SELECT" +
+               "        ROW_NUMBER () OVER ( " +
+               "            ORDER BY " + column + " DESC" +
+               "        ) rank," + column + ", " + heroColumn +
+               "    FROM " + table +
+               " ) t" +
+               " WHERE " + heroColumn + " = '" + hero + "'";
     }
+    //#endregion
 
-    lootstop(command: Command){
-        return 'lootstop';
+    //#region Clear
+    async lootclear(command: Command){
+        try{
+            const heroes = await this.channel.database.sequelize.models.hero.findAll({where: {isActive: true}}) as Model<HeroItem>[];
+            for(const hero in heroes){
+                if(heroes[hero] !== undefined){
+                    heroes[hero].setDataValue("isActive", false)
+
+                    const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: heroes[hero].getDataValue("name")}}) as Model<AdventureItem>[];
+                    for(const adventure in adventures){
+                        if(adventures[adventure]){
+                            HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure: adventures[adventure]});
+                        }
+                    }
+                    await heroes[hero].save();
+                }
+            }
+            return TranslationItem.translate(this.translation, "cleared");
+        } catch (ex){
+            global.worker.log.error(`loot error - function leave - ${ex.message}`);
+        }
     }
+    //#endregion
 
-    lootclear(command: Command){
-        return 'lootclear';
+    //#region Start
+    async lootstart(command: Command){
+        const loot = this.settings.find(x =>x.command === "loot");
+
+        if(!loot.isActive){
+            loot.isActive = true;
+            await this.channel.database.sequelize.models.say.update(loot, {where: {command: loot.command}});
+            global.worker.log.trace(`module ${loot.command} set active: ${loot.isActive}`);
+            return TranslationItem.translate(this.basicTranslation, "start");
+        }
+        else {
+            global.worker.log.trace(`module ${loot.command} already started.`);
+            return TranslationItem.translate(this.basicTranslation, "alreadyStarted");
+        }
+    }
+    //#endregion
+
+    //#region Stop
+    async lootstop(command: Command){
+        const loot = this.settings.find(x =>x.command === "loot");
+        if(loot.isActive){
+            loot.isActive = false;
+            await this.channel.database.sequelize.models.say.update(loot, {where: {command: loot.command}});
+            global.worker.log.trace(`module lootstop set active: ${loot.isActive}`);
+            return TranslationItem.translate(this.basicTranslation, "stop");
+        }
+        else {
+            global.worker.log.trace(`module ${loot.command} already stopped.`);
+            return TranslationItem.translate(this.basicTranslation, "alreadyStopped");
+        }
+    }
+    //#endregion
+
+    //#region Hitpoints
+    async hitpoints(command: Command){
+        try{
+            const hero = this.getTargetHero(command);
+            const item = await this.channel.database.sequelize.models.hero.findByPk(hero) as Model<HeroItem>;
+
+            if(item){
+                return TranslationItem.translate(this.translation, 'heroHitpoints').replace('$1', hero).replace('$2', item.getDataValue("hitpoints").toString()).replace('$3', item.getDataValue("hitpointsMax").toString());
+            } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
+        } catch (ex){
+            global.worker.log.error(`loot error - function hitpoints - ${ex.message}`);
+        }
+    }
+    //#endregion
+
+    //#region Adventure
+    async adventure(command: Command){
+        try{
+            const count = await this.channel.database.sequelize.models.hero.count({where: {isActive: true}});
+            global.worker.log.trace(`loot adventure - count - ${count}`);
+            return TranslationItem.translate(this.translation, 'heroCount').replace('$1', count.toString());
+        } catch (ex){
+            global.worker.log.error(`loot error - function adventure - ${ex.message}`);
+        }
     }
     //#endregion
 
@@ -299,6 +382,10 @@ export class Loot extends Module {
     //#endregion
 
     //#region Shortcuts
+    async hp(command: Command){
+        return await this.hitpoints(command);
+    }
+
     async inv(command: Command){
         return await this.inventory(command);
     }

@@ -130,7 +130,7 @@ export class HeroItem {
         const maxExperience = level.getDataValue("experienceMax");
 
         if(element.experience >= maxExperience){
-            await sequelize.models.hero.increment('hitpoints', { by: maxExperience * -1, where: { name: element.name }});
+            await sequelize.models.hero.decrement('hitpoints', { by: maxExperience, where: { name: element.name }});
             await sequelize.models.hero.increment('prestige', { by: 1, where: { name: element.name }});
         }
 

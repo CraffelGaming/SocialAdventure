@@ -33,6 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const heroInventoryItem_1 = require("../../model/heroInventoryItem");
 const router = express.Router();
 const endpoint = 'heroinventory';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -86,6 +87,25 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
             response.status(200).json(item);
         else
             response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}, item ${request.params.handle}, hero ${request.params.name}`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (global.isHero(request, response, request.params.name)) {
+            response.status(yield heroInventoryItem_1.HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name })).json();
+        }
+        else {
+            response.status(403).json();
+        }
     }
     else
         response.status(404).json();

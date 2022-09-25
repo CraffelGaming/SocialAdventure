@@ -1,15 +1,11 @@
 import { Model } from "sequelize-typescript";
-import { Channel } from "../controller/channel";
-import { Command } from "../controller/command";
 import { AdventureItem } from "../model/adventureItem";
 import { EnemyItem } from "../model/enemyItem";
-import { HeroInventoryItem } from "../model/heroInventoryItem";
 import { HeroItem } from "../model/heroItem";
+import { HeroTraitItem } from "../model/heroTraitItem";
 import { HeroWalletItem } from "../model/heroWalletItem";
 import { ItemItem } from "../model/itemItem";
 import { LocationItem } from "../model/locationItem";
-import { LootItem } from "../model/lootItem";
-import { TranslationItem } from "../model/translationItem";
 import { Loot } from "./loot";
 
 export class LootExploring {
@@ -17,6 +13,7 @@ export class LootExploring {
     hero: Model<HeroItem>;
     item: Model<ItemItem>;
     wallet: Model<HeroWalletItem>;
+    trait: Model<HeroTraitItem>;
     adventure: Model<AdventureItem>;
     enemy: Model<EnemyItem>;
     loot: Loot;
@@ -50,9 +47,11 @@ export class LootExploring {
                     if(this.enemy){
                         global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, enemy ${this.enemy.getDataValue("name")}`);
 
-                        this.wallet = await this.getWallet(this.dungeon);
+                        this.wallet = await this.getWallet();
+                        this.trait = await this.getTrait();
                         this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax")) + this.wallet.getDataValue("blood");
                         this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax")) + this.wallet.getDataValue("blood");
+                        this.gold = Math.round(this.gold * ((this.trait.getDataValue("goldMultipler") / 10) + 1));
                         this.fight();
                         return true;
                     }
@@ -108,10 +107,10 @@ export class LootExploring {
             await this.loot.channel.database.sequelize.models.adventure.create(adventure as any);
             await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") }});
             await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") }});
-            await this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") }});
+            await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: this.damage, where: { name: this.hero.getDataValue("name") }});
             await HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: this.hero.get()});
         } else {
-            await this.loot.channel.database.sequelize.models.hero.increment('hitpoints', { by: this.damage * -1, where: { name: this.hero.getDataValue("name") }});
+            await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: this.damage, where: { name: this.hero.getDataValue("name") }});
         }
     }
     //#endregion
@@ -176,7 +175,7 @@ export class LootExploring {
     //#endregion
 
     //#region Wallet
-    async getWallet(dungeon: Model<LocationItem>): Promise<Model<HeroWalletItem>>{
+    async getWallet(): Promise<Model<HeroWalletItem>>{
         const wallet = await this.loot.channel.database.sequelize.models.heroWallet.findByPk(this.hero.getDataValue("name")) as Model<HeroWalletItem>;
         const blood = this.loot.settings.find(x =>x.command === "blood");
         if(wallet){
@@ -185,6 +184,16 @@ export class LootExploring {
                 wallet.save();
             }
             return wallet;
+        }
+        return null;
+    }
+    //#endregion
+
+    //#region Trait
+    async getTrait(): Promise<Model<HeroTraitItem>>{
+        const trait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(this.hero.getDataValue("name")) as Model<HeroTraitItem>;
+        if(trait){
+            return trait;
         }
         return null;
     }

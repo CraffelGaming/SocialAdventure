@@ -100,5 +100,24 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
     else
         response.status(404).json();
 }));
+router.post('/' + endpoint + '/:node/training/:handle/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}, training ${request.params.handle}, hero ${request.params.name}`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (global.isHero(request, response, request.params.name)) {
+            response.status(yield trainerItem_1.TrainerItem.training({ sequelize: channel.database.sequelize, trainerHandle: request.params.handle, heroName: request.params.name })).json();
+        }
+        else {
+            response.status(403).json();
+        }
+    }
+    else
+        response.status(404).json();
+}));
 exports.default = router;
 //# sourceMappingURL=api.trainer.js.map

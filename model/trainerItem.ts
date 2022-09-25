@@ -1,6 +1,9 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./trainerItem.json');
+import { HeroItem } from './heroItem';
+import { HeroTraitItem } from './heroTraitItem';
+import { HeroWalletItem } from './heroWalletItem';
 
 @Table({ tableName: "trainer", modelName: "trainer"})
 export class TrainerItem extends Model<TrainerItem>{
@@ -74,6 +77,35 @@ export class TrainerItem extends Model<TrainerItem>{
                     return 201;
                 } else return 406;
             }
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
+        }
+    }
+
+    static async training({ sequelize, trainerHandle, heroName }: { sequelize: Sequelize, trainerHandle: string, heroName: string }): Promise<number>{
+        try{
+            const trainer = await sequelize.models.trainer.findByPk(trainerHandle) as Model<TrainerItem>;
+            const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
+            const heroTrait = await sequelize.models.heroTrait.findByPk(heroName) as Model<HeroTraitItem>;
+            const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
+
+            if(trainer && hero && heroWallet && heroTrait){
+                const trait = (trainer.getDataValue("handle") + "Multipler") as keyof HeroTraitItem;
+                const value = heroTrait.getDataValue(trait) as number;
+                const price =  value * trainer.getDataValue("gold");
+                if(heroWallet.getDataValue("gold") >= price){
+                    await heroWallet.decrement('gold', { by: trainer.getDataValue("gold")});
+                    await heroTrait.increment(trait, { by: 1});
+
+                    if(trainer.getDataValue("handle") === "gold"){
+                        await hero.increment('hitpointsMax', { by: 10});
+                        await hero.increment('hitpoints', { by: 10});
+                    }
+
+                    return 200;
+                } else return 402;
+            } else return 404;
         } catch(ex){
             global.worker.log.error(ex);
             return 500;

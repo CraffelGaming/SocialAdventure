@@ -87,7 +87,7 @@ export class HeroTraitItem {
                 if(await sequelize.models.heroTrait.count({where: {heroName: element.heroName}}) === 0){
                     await sequelize.models.heroTrait.create(element as any);
                 } else await sequelize.models.heroTrait.update(element, {where: {heroName: element.heroName}});
-                return 201;
+                return 200;
             } else return 406;
 
         } catch(ex){

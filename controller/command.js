@@ -13,7 +13,7 @@ class Command {
             if (parts[part].trim().startsWith("!"))
                 this.name = parts[part].trim().toLowerCase().replaceAll('!', '');
             else if (parts[part].startsWith("@"))
-                this.target = parts[part].trim().toLowerCase();
+                this.target = parts[part].trim().toLowerCase().replace('@', '');
             else
                 this.parameters.push(parts[part].replaceAll('"', '').trim());
         }

@@ -1,4 +1,3 @@
-import { NaptrRecord } from "dns";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
 import { CommandItem } from "../model/commandItem";

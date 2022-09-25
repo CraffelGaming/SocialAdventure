@@ -100,7 +100,7 @@ let HeroTraitItem = class HeroTraitItem {
                     }
                     else
                         yield sequelize.models.heroTrait.update(element, { where: { heroName: element.heroName } });
-                    return 201;
+                    return 200;
                 }
                 else
                     return 406;

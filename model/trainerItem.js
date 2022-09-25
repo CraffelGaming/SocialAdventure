@@ -96,6 +96,38 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
             }
         });
     }
+    static training({ sequelize, trainerHandle, heroName }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const trainer = yield sequelize.models.trainer.findByPk(trainerHandle);
+                const hero = yield sequelize.models.hero.findByPk(heroName);
+                const heroTrait = yield sequelize.models.heroTrait.findByPk(heroName);
+                const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
+                if (trainer && hero && heroWallet && heroTrait) {
+                    const trait = (trainer.getDataValue("handle") + "Multipler");
+                    const value = heroTrait.getDataValue(trait);
+                    const price = value * trainer.getDataValue("gold");
+                    if (heroWallet.getDataValue("gold") >= price) {
+                        yield heroWallet.decrement('gold', { by: trainer.getDataValue("gold") });
+                        yield heroTrait.increment(trait, { by: 1 });
+                        if (trainer.getDataValue("handle") === "gold") {
+                            yield hero.increment('hitpointsMax', { by: 10 });
+                            yield hero.increment('hitpoints', { by: 10 });
+                        }
+                        return 200;
+                    }
+                    else
+                        return 402;
+                }
+                else
+                    return 404;
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

@@ -1,6 +1,8 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./healingPotionItem.json');
+import { HeroItem } from './heroItem';
+import { HeroWalletItem } from './heroWalletItem';
 
 @Table({ tableName: "healingPotion", modelName: "healingPotion"})
 export class HealingPotionItem extends Model<HealingPotionItem>{
@@ -93,11 +95,26 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
         }
     }
 
-    static async heal({ sequelize, healingPotionHandle, heroName }: { sequelize: Sequelize, healingPotionHandle: number, heroName: string }): Promise<number>{
+    static async heal({ sequelize, healingPotionHandle, heroName }: { sequelize: Sequelize, healingPotionHandle: string, heroName: string }): Promise<number>{
         try{
-            const potion = sequelize.models.healingPotion.findByPk(healingPotionHandle);
-            const hero = sequelize.models.hero.findByPk(heroName);
-            const heroWallet = sequelize.models.hero.findByPk(heroName);
+            const potion = await sequelize.models.healingPotion.findByPk(healingPotionHandle) as Model<HealingPotionItem>;
+            const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
+            const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
+
+            if(potion && hero && heroWallet){
+                if(heroWallet.getDataValue("gold") >= potion.getDataValue("gold")){
+                    if(hero.getDataValue("hitpoints") === 0 && potion.getDataValue("isRevive") === true || hero.getDataValue("hitpoints") > 0 && potion.getDataValue("isRevive") === false){
+                        hero.setDataValue("hitpoints", hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent")));
+
+                        if(hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
+                            hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
+
+                        await heroWallet.decrement('gold', { by: potion.getDataValue("gold")});
+                        await hero.save({ fields: ['hitpoints'] });
+                        return 200;
+                    } else return 406
+                } else return 402;
+            } else return 404;
         } catch(ex){
             global.worker.log.error(ex);
             return 500;

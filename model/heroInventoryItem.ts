@@ -3,6 +3,9 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import json = require('./heroInventoryItem.json');
 import { AdventureItem } from './adventureItem';
+import { HeroItem } from './heroItem';
+import { HeroWalletItem } from './heroWalletItem';
+import { ItemItem } from './itemItem';
 
 @Table({ tableName: "heroInventory", modelName: "heroInventory"})
 export class HeroInventoryItem extends Model<HeroInventoryItem>{
@@ -69,6 +72,23 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
             }
         } catch(ex){
             global.worker.log.error(ex);
+        }
+    }
+
+    static async sell({ sequelize, itemHandle, heroName }: { sequelize: Sequelize, itemHandle: string, heroName: string }): Promise<number>{
+        try{
+            const inventory = await sequelize.models.heroInventory.findOne({ where: { heroName,  itemHandle} }) as Model<HeroInventoryItem>;
+            const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
+            const item = await sequelize.models.hero.findByPk(itemHandle) as Model<ItemItem>;
+            const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
+
+            if(inventory && hero && heroWallet && item){
+                await heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold")});
+                inventory.destroy();
+            } else return 404;
+        } catch(ex){
+            global.worker.log.error(ex);
+            return 500;
         }
     }
 }
