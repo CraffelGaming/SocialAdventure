@@ -56,7 +56,7 @@ export class Loot extends Module {
                 if(loot.isActive){
                     global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun)}...`);
 
-                    if(this.isDateTimeoutExpired(new Date(loot.lastRun),  loot.minutes)){
+                    if(this.isDateTimeoutExpiredMinutes(new Date(loot.lastRun),  loot.minutes)){
                         loot.lastRun = new Date();
                         loot.countRuns += 1;
                         await this.channel.database.sequelize.models.loot.update(loot, {where: {command: loot.command}});
@@ -105,7 +105,7 @@ export class Loot extends Module {
                 value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
                 isNew = true;
             }
-            if(this.isDateTimeoutExpired(value.getDataValue("lastJoin"), loot.minutes)){
+            if(this.isDateTimeoutExpiredMinutes(value.getDataValue("lastJoin"), loot.minutes)){
                 if(!value.getDataValue("isActive")){
                     value.setDataValue("isActive",true);
                     value.setDataValue("lastJoin",new Date());
@@ -282,7 +282,7 @@ export class Loot extends Module {
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");
 
-            if(this.isDateTimeoutExpired(new Date(item.getDataValue("lastBlood")), blood.minutes) || item.getDataValue("blood") < 1){
+            if(this.isDateTimeoutExpiredMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes) || item.getDataValue("blood") < 1){
                 const countHeroes = await this.getCountActiveHeroes();
                 item.setDataValue("blood", this.getRandomNumber(1 + countHeroes, 10 + countHeroes));
                 item.setDataValue("lastBlood", new Date());
@@ -299,7 +299,7 @@ export class Loot extends Module {
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");
 
-            if(item.getDataValue("blood") > 0 && this.isDateTimeoutExpired(new Date(item.getDataValue("lastBlood")), blood.minutes)){
+            if(item.getDataValue("blood") > 0 && this.isDateTimeoutExpiredMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes)){
                 item.setDataValue("blood", 0);
                 await item.save();
                 return TranslationItem.translate(this.translation, 'heroNoBloodpoints').replace('$1', hero);
@@ -411,29 +411,6 @@ export class Loot extends Module {
 
     async getCountActiveHeroes(){
         return await this.channel.database.sequelize.models.hero.count({where: { isActive: true }});;
-    }
-    //#endregion
-
-    //#region Random
-    getRandomNumber(min: number, max: number): number {
-        const random = Math.floor(Math.random() * (max - min + 1) + min);
-        global.worker.log.trace(`node ${this.channel.node.name}, new random number ${random} between ${min} and ${max}`);
-        return random;
-    }
-    //#endregion
-
-    //#region Date
-    getDateDifferenceMinutes(date: Date): number {
-        return Math.floor((Date.now() - date.getTime()) / 1000 / 60);
-    }
-
-    isDateTimeoutExpired(date: Date, timeout: number): boolean {
-        return this.getDateDifferenceMinutes(date) > timeout;
-    }
-
-    getDateTimeoutRemainingMinutes(date: Date, timeout: number): number {
-        const diff = this.getDateDifferenceMinutes(date);
-        return diff >= timeout ? 0 : timeout - diff;
     }
     //#endregion
 }

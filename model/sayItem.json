@@ -6,5 +6,23 @@
         "help": "",
         "text": "Schau dir deinen Helden auf craffel.de an.",
         "isActive": true
+    },
+    {
+        "command": "death",
+        "minutes": 0,
+        "delay": 0,
+        "help": "",
+        "text": "$streamer ist schon $counter mal gestorben.",
+        "isActive": true,
+        "isCounter": true
+    },
+    {
+        "command": "so",
+        "minutes": 0,
+        "delay": 0,
+        "help": "",
+        "text": "Schau doch mal bei $raider vorbei. Dort gab es zuletzt $raiderGame. $raiderUrl",
+        "isActive": true,
+        "isShoutout": true
     }
 ]

@@ -93,7 +93,8 @@ export function notify(message, type) {
 
 //#region Editing
 export async function getEditing(allowUpdating = true, allowAdding = true, allowDeleting = true, mode = "popup") {
-    let master = isMaster();  
+    let master = await isMaster();  
+    
     if(master){
         return {
             mode: mode,

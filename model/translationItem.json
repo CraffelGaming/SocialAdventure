@@ -3,6 +3,7 @@
     { "page": "information", "handle": "noLogin", "language": "de-DE", "translation": "Nicht angemeldet" },
     { "page": "information", "handle": "streamer", "language": "de-DE", "translation": "Streamer $1 ausgewählt." },
     { "page": "information", "handle": "login", "language": "de-DE", "translation": "Angemeldet als $1." },
+    
     { "page": "navigation", "handle": "streamer", "language": "de-DE", "translation": "Streamer" },
     { "page": "navigation", "handle": "twitch", "language": "de-DE", "translation": "Twitch" },
     { "page": "navigation", "handle": "login", "language": "de-DE", "translation": "Anmelden" },
@@ -28,6 +29,7 @@
     { "page": "navigation", "handle": "level", "language": "de-DE", "translation": "Level"},
     { "page": "navigation", "handle": "say", "language": "de-DE", "translation": "Befehle"},
     { "page": "navigation", "handle": "loginAs", "language": "de-DE", "translation": "Angemeldet als $1"},
+    
     { "page": "streamer", "handle": "title", "language": "de-DE", "translation": "Streamer"},
     { "page": "streamer", "handle": "name", "language": "de-DE", "translation": "Streamer"},
     { "page": "streamer", "handle": "displayName", "language": "de-DE", "translation": "Streamer"},
@@ -36,12 +38,14 @@
     { "page": "streamer", "handle": "endpoint", "language": "de-DE", "translation": "Webseite"},
     { "page": "streamer", "handle": "checkHint", "language": "de-DE", "translation": "Alles von diesem Streamer anzeigen."},  
     { "page": "streamer", "handle": "checkTwitch", "language": "de-DE", "translation": "Streamer auf Twitch anzeigen."},  
+    
     { "page": "help", "handle": "title", "language": "de-DE", "translation": "Hilfe & Feedback"},
     { "page": "help", "handle": "information", "language": "de-DE", "translation": "Hier kannst du Fragen stellen oder ein Feedback dalassen."},
     { "page": "help", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "help", "handle": "mail", "language": "de-DE", "translation": "E-Mail"},
     { "page": "help", "handle": "content", "language": "de-DE", "translation": "Frage & Feedback"},
     { "page": "help", "handle": "send", "language": "de-DE", "translation": "Senden"},
+    
     { "page": "index", "handle": "title", "language": "de-DE", "translation": "Herzlich Willkommen"},
     { "page": "index", "handle": "information", "language": "de-DE", "translation": "Willkommen auf den spannenden Twitch-Abenteuer."},
     { "page": "index", "handle": "node", "language": "de-DE", "translation": "Willkommen auf den Abenteuer von $1."},
@@ -52,6 +56,7 @@
     { "page": "index", "handle": "rightInformation", "language": "de-DE", "translation": "Schau doch mal hier, bei welchen Streamer du auf Abenteuer gehen kannst. Klicke einfach auf '$1'"},
     { "page": "index", "handle": "rightButton", "language": "de-DE", "translation": "Wo kann ich zocken?"},
     { "page": "index", "handle": "start", "language": "de-DE", "translation": "Social Adventure ist eine kostenlose Twitch-Bot alternative zu Streamlabs, Nightbot, Moobot und co. Neben den Standard Features wie automatische und manuelle Nachrichten, Death-Counter und Shoutouts bietet Social Adventure ein komplettes Browser und Chat basiertes Spiel, bei den du deinen Helden verbessern und deine Unterstützung zum Streamer zeigen kannst. Social Adventure wurde von Craffel entwickelt und wird immer wieder mit neuen Features ausgestattet."},
+    
     { "page": "twitch", "handle": "title", "language": "de-DE", "translation": "Twitch"},
     { "page": "twitch", "handle": "welcome", "language": "de-DE", "translation": "Hey $1, schön das du da bist. Bevor du loslegst, haben wir das wichtigste für dich zusammengefasst."},
     { "page": "twitch", "handle": "streamerInformation", "language": "de-DE", "translation": "Du bist leidenschaftlicher Streamer und willst einen Chatbot und ein geiles Community Game. Dann bist du hier richtig, denn hier gibt es eine kostenlose alternative. Klicke auf '$1' und du bist dabei."},
@@ -60,7 +65,9 @@
     { "page": "twitch", "handle": "streamerButton", "language": "de-DE", "translation": "Aktiviere meinen Channel!"},
     { "page": "twitch", "handle": "viewerButton", "language": "de-DE", "translation": "Los gehts!"},
     { "page": "twitch", "handle": "viewer", "language": "de-DE", "translation": "Zuschauer"},
+    
     { "page": "command", "handle": "title", "language": "de-DE", "translation": "Befehle"},
+    
     { "page": "daily", "handle": "title", "language": "de-DE", "translation": "Tägliche Aufgaben"},
     { "page": "daily", "handle": "value", "language": "de-DE", "translation": "Aufgabe"},
     { "page": "daily", "handle": "description", "language": "de-DE", "translation": "Aufgabenbeschreibung"},
@@ -72,10 +79,12 @@
     { "page": "daily", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "daily", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "daily", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    
     { "page": "wallet", "handle": "gold", "language": "de-DE", "translation": "Gold"},
     { "page": "wallet", "handle": "diamond", "language": "de-DE", "translation": "Diamanten"},
     { "page": "wallet", "handle": "blood", "language": "de-DE", "translation": "Blutpunkte"},
     { "page": "wallet", "handle": "lastBlood", "language": "de-DE", "translation": "Letzte Blutpunkte"},
+    
     { "page": "trait", "handle": "trait", "language": "de-DE", "translation": "Xantir der Lehrreiche"},
     { "page": "trait", "handle": "goldMultipler", "language": "de-DE", "translation": "Goldfundbonus"},
     { "page": "trait", "handle": "stealMultipler", "language": "de-DE", "translation": "Diebstahl"},
@@ -87,10 +96,12 @@
     { "page": "trait", "handle": "402", "language": "de-DE", "translation": "Dir fehlt das nötige Kleingeld."},
     { "page": "trait", "handle": "404", "language": "de-DE", "translation": "Der Händler hat keine Waren mehr."},
     { "page": "trait", "handle": "500", "language": "de-DE", "translation": "Der Händler war ein betrüger ist und abgehauen."},
-    { "page": "item", "handle": "title", "language": "de-DE", "translation": "Gegenstände"},
+    
     { "page": "statistic", "handle": "title", "language": "de-DE", "translation": "Statistiken"},
+    
     { "page": "taverne", "handle": "title", "language": "de-DE", "translation": "Taverne zum Sumpftopf"},
     { "page": "taverne", "handle": "description", "language": "de-DE", "translation": "Willkommen $1, brauchst du Arbeit oder Heilung? Die Taverne zum Sumpftopf wurde 548nE gegründet und bietet bis heute Unterschlupf für Helden und Bürger. Hier kannst du Heiltränke kaufen, tägliche Aufgaben erfüllen und dein Wissen steigern."},
+    
     { "page": "healing", "handle": "healing", "language": "de-DE", "translation": "Fahrender Händler"},
     { "page": "healing", "handle": "title", "language": "de-DE", "translation": "Heiltränke"},
     { "page": "healing", "handle": "handle", "language": "de-DE", "translation": "ID"},
@@ -104,40 +115,51 @@
     { "page": "healing", "handle": "404", "language": "de-DE", "translation": "Der Händler hat keine Waren mehr."},
     { "page": "healing", "handle": "406", "language": "de-DE", "translation": "Beleber können nur bei 0 HP eingesetzt werden."},
     { "page": "healing", "handle": "500", "language": "de-DE", "translation": "Der Händler war ein betrüger ist und abgehauen."},
+    
     { "page": "trainer", "handle": "title", "language": "de-DE", "translation": "Trainingsstube"},
     { "page": "trainer", "handle": "handle", "language": "de-DE", "translation": "ID"},
     { "page": "trainer", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},
     { "page": "trainer", "handle": "value", "language": "de-DE", "translation": "Trainer"},
     { "page": "trainer", "handle": "gold", "language": "de-DE", "translation": "Preis"},
+    
     { "page": "level", "handle": "title", "language": "de-DE", "translation": "Level"},
     { "page": "level", "handle": "handle", "language": "de-DE", "translation": "Level"},
     { "page": "level", "handle": "experienceMin", "language": "de-DE", "translation": "Erfahrung von"},
     { "page": "level", "handle": "experienceMax", "language": "de-DE", "translation": "Erfahrung bis"},
+    
     { "page": "say", "handle": "title", "language": "de-DE", "translation": "Befehle"},
     { "page": "say", "handle": "command", "language": "de-DE", "translation": "Befehl"},
     { "page": "say", "handle": "text", "language": "de-DE", "translation": "Text"},
     { "page": "say", "handle": "minutes", "language": "de-DE", "translation": "Minuten"},
     { "page": "say", "handle": "help", "language": "de-DE", "translation": "Hilfe"},
     { "page": "say", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
-    { "page": "say", "handle": "delay", "language": "de-DE", "translation": "Verzögerung"},
+    { "page": "say", "handle": "isShoutout", "language": "de-DE", "translation": "Shoutout?"},
+    { "page": "say", "handle": "count", "language": "de-DE", "translation": "Counter"},
+    { "page": "say", "handle": "timeout", "language": "de-DE", "translation": "Timeout (Sekunden)"},
+    { "page": "say", "handle": "isCounter", "language": "de-DE", "translation": "Counter?"},
+    { "page": "say", "handle": "delay", "language": "de-DE", "translation": "Verzögerung (Minuten)"},
     { "page": "say", "handle": "lastRun", "language": "de-DE", "translation": "Letzte Ausführung"},
     { "page": "say", "handle": "overview", "language": "de-DE", "translation": "Übersicht"},
     { "page": "say", "handle": "statistic", "language": "de-DE", "translation": "Statistiken"},
     { "page": "say", "handle": "countUses", "language": "de-DE", "translation": "Anzahl Verwendung"},
     { "page": "say", "handle": "countRuns", "language": "de-DE", "translation": "Anzahl Trigger"},
+    { "page": "say", "handle": "copyToClipboard", "language": "de-DE", "translation": "Befehl in die Zwischenablage kopieren."}, 
     { "page": "say", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "say", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
     { "page": "say", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},
     { "page": "say", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "say", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
-    { "page": "say", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
-    { "page": "say", "handle": "copyToClipboard", "language": "de-DE", "translation": "Befehl in die Zwischenablage kopieren."},  
+    { "page": "say", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."}, 
+    
+    { "page": "item", "handle": "title", "language": "de-DE", "translation": "Gegenstände"},
     { "page": "item", "handle": "handle", "language": "de-DE", "translation": "Nummer"},
     { "page": "item", "handle": "value", "language": "de-DE", "translation": "Name"},
     { "page": "item", "handle": "gold", "language": "de-DE", "translation": "Wert"},
     { "page": "item", "handle": "type", "language": "de-DE", "translation": "Typ"},
+    
     { "page": "inventory", "handle": "checkSell", "language": "de-DE", "translation": "Gegenstand verkaufen"},
     { "page": "inventory", "handle": "200", "language": "de-DE", "translation": "Gegenstand verkauft."},
+    
     { "page": "hero", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "hero", "handle": "lastSteal", "language": "de-DE", "translation": "letzter Diebstahl"},
     { "page": "hero", "handle": "lastJoin", "language": "de-DE", "translation": "letztes Abenteuer"},
@@ -159,6 +181,7 @@
     { "page": "hero", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "hero", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "hero", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    
     { "page": "module", "handle": "stop", "language": "de-DE", "translation": "Modul wurde beendet."},
     { "page": "module", "handle": "start", "language": "de-DE", "translation": "Modul wurde gestartet."},
     { "page": "module", "handle": "change", "language": "de-DE", "translation": "Modul wurde geändert."},
@@ -175,6 +198,7 @@
     { "page": "module", "handle": "noInterval", "language": "de-DE", "translation": "Intervall ist keine positive Ganzzahl."},
     { "page": "module", "handle": "noDelay", "language": "de-DE", "translation": "Delay ist keine positive Ganzzahl."},
     { "page": "module", "handle": "nothingToSay", "language": "de-DE", "translation": "Dieser Command ist leer. Der Streamer muss mit !<module>text:Beispiel einen Text festlagen."},
+    
     { "page": "command", "handle": "shout", "language": "de-DE", "translation": "Der Text des Befehls wird angezeigt."},
     { "page": "command", "handle": "text", "language": "de-DE", "translation": "Der Text des Befehls wird neu festgelegt. Für Links muss der Bot Moderator sein. Für Emotes muss der Bot die Emotes freigeschaltet haben."},
     { "page": "command", "handle": "interval", "language": "de-DE", "translation": "Der automatische Interval in Minuten wird festgelegt. 0 = Keine automatische Ausgabe"},
@@ -196,11 +220,14 @@
     { "page": "command", "handle": "rank", "language": "de-DE", "translation": "Zeigt deine aktuelle Platzierung an."},
     { "page": "command", "handle": "clear", "language": "de-DE", "translation": "Beendet das bestehende Abenteuer und startet ein neues."},
     { "page": "command", "handle": "loot", "language": "de-DE", "translation": "Tritt dem Abenteuer bei."},
+    { "page": "command", "handle": "counterMinus", "language": "de-DE", "translation": "Counter wird um 1 erhöht."},
+    { "page": "command", "handle": "counterPlus", "language": "de-DE", "translation": "Counter wird um 1 reduziert."},
     { "page": "command", "handle": "hitpoints", "language": "de-DE", "translation": "Zeigt deine aktuellen und maximalen Lebenspunkte an."},
     { "page": "command", "handle": "isMaster", "language": "de-DE", "translation": "Nur Streamer?"},
     { "page": "command", "handle": "command", "language": "de-DE", "translation": "Befehl"},
     { "page": "command", "handle": "description", "language": "de-DE", "translation": "Erklärung"},
     { "page": "command", "handle": "copyToClipboard", "language": "de-DE", "translation": "Befehl in die Zwischenablage kopieren."},  
+    
     { "page": "itemCategory", "handle": "title", "language": "de-DE", "translation": "Gegenstandskategorie"},
     { "page": "itemCategory", "handle": "shop", "language": "de-DE", "translation": "Shop"},
     { "page": "itemCategory", "handle": "default", "language": "de-DE", "translation": "Standard"},
@@ -214,6 +241,7 @@
     { "page": "itemCategory", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "itemCategory", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "itemCategory", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    
     { "page": "loot", "handle": "heroAlreadyJoined", "language": "de-DE", "translation": "$1 ist bereits auf Abenteuer."}, 
     { "page": "loot", "handle": "heroJoined", "language": "de-DE", "translation": "$1 ist dem Abenteuer beigetreten."},
     { "page": "loot", "handle": "heroNewJoined", "language": "de-DE", "translation": "$1 bestreitet sein erstes Abenteuer."},
@@ -241,6 +269,7 @@
     { "page": "loot", "handle": "heroHitpoints", "language": "de-DE", "translation": "$1 hat $2 / $3 Lebenspunkte."},
     { "page": "loot", "handle": "heroRank", "language": "de-DE", "translation": "$1 Rangliste: Platz $2 mit $3 Gold. Platz $4 mit $5 Erfahrung"},
     { "page": "loot", "handle": "cleared", "language": "de-DE", "translation": "Abenteuer zurückgesetzt."},
+   
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},
     { "page": "location", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},
@@ -252,6 +281,7 @@
     { "page": "location", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "location", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "location", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    
     { "page": "enemy", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "enemy", "handle": "title", "language": "de-DE", "translation": "Gegner"},
     { "page": "enemy", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},
@@ -269,12 +299,14 @@
     { "page": "enemy", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "enemy", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "enemy", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    
     { "page": "adventure", "handle": "adventure", "language": "de-DE", "translation": "Abenteuer"},
     { "page": "adventure", "handle": "title", "language": "de-DE", "translation": "Aktuelles Abenteuer"},
     { "page": "adventure", "handle": "owner", "language": "de-DE", "translation": "Aktueller Besitzer"},
     { "page": "adventure", "handle": "item", "language": "de-DE", "translation": "Gefundener Gegenstand"},
     { "page": "adventure", "handle": "trait", "language": "de-DE", "translation": "Eigenschaften des Besitzers"},
     { "page": "adventure", "handle": "informationDungeon", "language": "de-DE", "translation": "Dungeon $1 von $2: Swipe nach links oder rechts um alle Dungeons zu sehen."},  
+    
     { "page": "setting", "handle": "title", "language": "de-DE", "translation": "Einstellungen"},    
     { "page": "setting", "handle": "command", "language": "de-DE", "translation": "Abenteuer Funktionen"},
     { "page": "setting", "handle": "minutes", "language": "de-DE", "translation": "Timeout"},

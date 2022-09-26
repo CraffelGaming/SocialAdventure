@@ -20,7 +20,11 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(!global.isMaster(request, response)) {
             item = item.filter(x => x.isMaster === false)
-            }
+        }
+
+        if(request.query.counter !== "1") {
+            item = item.filter(x => x.isCounter === false)
+        }
 
         if(item) response.status(200).json(item);
         else response.status(404).json();
@@ -43,6 +47,10 @@ router.get('/' + endpoint + '/:node/:module', async (request: express.Request, r
 
         if(!global.isMaster(request, response, node)) {
             item = item.filter(x => x.isMaster === false)
+        }
+
+        if(request.query.counter !== "1") {
+            item = item.filter(x => x.isCounter === false)
         }
 
         if(item) response.status(200).json(item);

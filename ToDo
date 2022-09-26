@@ -1,5 +1,4 @@
 Version 1
-
 1.  [X] Logo des Streamers in der Navigation
 2.  [X] Prestige level für Helden
 2.  [X] Eigene URL für jeden Streamer
@@ -19,8 +18,8 @@ Version 1
         [X] Loottime
         [X] Experience
         [X] Verkaufen
-5.  [ ] Shoutout im Say Modul
-6.  [ ] Counter im Say Modul
+5.  [.] Shoutout im Say Modul
+6.  [X] Counter im Say Modul
 7.  [X] Twitch API Verbindung mit Chat
 8.  [X] Startseite
 9.  [X] SSL-Zertifikat einbinden (https://)

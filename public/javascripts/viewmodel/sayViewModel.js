@@ -114,7 +114,24 @@ $(async () => {
                 { dataField: "text", caption: translate(language, 'text'), validationRules: [{ type: "required" }]  },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 120 },
-                { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'datetime', width: 150 },
+                { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
+                    calculateCellValue(data) {
+                        if(data.isShoutout != null){
+                            return data.isShoutout == 1 ? true : false;
+                        } else {
+                            return false;
+                        } 
+                    } 
+                },
+                { dataField: "isCounter", caption: translate(language, 'isCounter'), editorType: "dxCheckBox", width: 120,
+                    calculateCellValue(data) {
+                        if(data.isCounter != null){
+                            return data.isCounter == 1 ? true : false;
+                        } else {
+                            return false;
+                        } 
+                    } 
+                },
                 { dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
                         if(data.isActive != null){
@@ -169,7 +186,9 @@ $(async () => {
                     selection: { mode: "single" },
                     columns: [
                         { dataField: "countUses", caption: translate(language, 'countUses') },
-                        { dataField: "countRuns", caption: translate(language, 'countRuns') }
+                        { dataField: "countRuns", caption: translate(language, 'countRuns') },
+                        { dataField: 'lastRun', caption: translate(language, 'lastRun')},
+                        { dataField: 'count', caption: translate(language, 'count')}
                     ]
                 });
             };
@@ -182,7 +201,8 @@ $(async () => {
                         key: ["module", "command"],
                         loadMode: "raw",
                         load: async function () {
-                            return await get(`/command/default/say`, language);
+                            console.log(masterDetailData);
+                            return await get(`/command/default/say?counter=${masterDetailData.isCounter}`, language);
                         }
                     }),
                     allowColumnReordering: true,

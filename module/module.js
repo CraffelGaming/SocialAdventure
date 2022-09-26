@@ -11,23 +11,63 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Module = void 0;
 class Module {
+    //#region Construct
     constructor(translation, channel, name) {
         this.translation = translation;
         this.channel = channel;
         this.name = name;
     }
+    //#endregion
+    //#region Initialize
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
             this.basicTranslation = (yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.language }, order: [['handle', 'ASC']], raw: true }));
             this.commands = (yield this.channel.database.sequelize.models.command.findAll({ where: { module: this.name }, order: [['command', 'ASC']], raw: true }));
         });
     }
+    //#endregion
+    //#region Owner
     isOwner(command) {
         let result = false;
         if (this.channel.node.name === command.source)
             result = true;
         global.worker.log.trace(`is owner: ${result}`);
         return result;
+    }
+    //#endregion
+    //#region Placeholder
+    replacePlaceholder(text) {
+        text = text.replace('$streamer', this.channel.node.name);
+        return text;
+    }
+    //#endregion
+    //#region Date
+    getDateDifferenceSeconds(date) {
+        return Math.floor((Date.now() - date.getTime()) / 1000);
+    }
+    getDateDifferenceMinutes(date) {
+        return Math.floor((Date.now() - date.getTime()) / 1000 / 60);
+    }
+    isDateTimeoutExpiredMinutes(date, timeout) {
+        return this.getDateDifferenceMinutes(date) > timeout;
+    }
+    isDateTimeoutExpiredSeconds(date, timeout) {
+        return this.getDateDifferenceSeconds(date) > timeout;
+    }
+    getDateTimeoutRemainingMinutes(date, timeout) {
+        const diff = this.getDateDifferenceMinutes(date);
+        return diff >= timeout ? 0 : timeout - diff;
+    }
+    getDateTimeoutRemainingSeconds(date, timeout) {
+        const diff = this.getDateDifferenceMinutes(date);
+        return diff >= timeout ? 0 : timeout - diff;
+    }
+    //#endregion
+    //#region Random
+    getRandomNumber(min, max) {
+        const random = Math.floor(Math.random() * (max - min + 1) + min);
+        global.worker.log.trace(`node ${this.channel.node.name}, new random number ${random} between ${min} and ${max}`);
+        return random;
     }
 }
 exports.Module = Module;

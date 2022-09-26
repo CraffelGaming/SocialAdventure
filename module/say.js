@@ -17,6 +17,7 @@ class Say extends module_1.Module {
     constructor(translation, channel, item) {
         super(translation, channel, 'say');
         this.countMessages = 0;
+        this.lastCount = new Date();
         this.item = item;
         this.automation();
     }
@@ -40,6 +41,8 @@ class Say extends module_1.Module {
                         if (!allowedCommand.isMaster || this.isOwner(command)) {
                             if (command.name.length === 0)
                                 command.name = "shout";
+                            command.name = command.name.replace("+", "plus");
+                            command.name = command.name.replace("-", "minus");
                             return yield this[command.name](command);
                         }
                         else
@@ -62,17 +65,15 @@ class Say extends module_1.Module {
             if (this.item.isActive && this.item.minutes > 0) {
                 const delayDifference = this.channel.countMessages - this.countMessages;
                 if (delayDifference >= this.item.delay) {
-                    const date = new Date();
                     global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} last run ${new Date(this.item.lastRun)}...`);
-                    const timeDifference = Math.floor((date.getTime() - new Date(this.item.lastRun).getTime()) / 60000);
-                    if (timeDifference >= this.item.minutes) {
+                    if (this.isDateTimeoutExpiredMinutes(new Date(this.item.lastRun), this.item.minutes)) {
                         try {
-                            this.item.lastRun = date;
+                            this.item.lastRun = new Date();
                             this.item.countRuns += 1;
                             this.countMessages = this.channel.countMessages;
                             yield this.channel.database.sequelize.models.say.update(this.item, { where: { command: this.item.command } });
                             global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
-                            this.channel.puffer.addMessage(this.item.text);
+                            this.channel.puffer.addMessage(this.replacePlaceholder(this.item.text));
                         }
                         catch (ex) {
                             global.worker.log.error(`node ${this.channel.node.name}, module ${this.item.command} automation error.`);
@@ -82,7 +83,7 @@ class Say extends module_1.Module {
                     else {
                         global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
                         global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} time elapsed: ${timeDifference}`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
                     }
                 }
                 else {
@@ -101,10 +102,33 @@ class Say extends module_1.Module {
     }
     //#endregion
     //#region Commands
+    plus(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.item.text.includes('$counter') && this.item.isCounter && this.isDateTimeoutExpiredSeconds(this.lastCount, this.item.timeout)) {
+                this.lastCount = new Date();
+                ++this.item.count;
+                yield this.channel.database.sequelize.models.say.increment('count', { by: 1, where: { command: this.item.command } });
+                return this.replacePlaceholder(this.item.text.replace('$counter', this.item.count.toString()));
+            }
+            return '';
+        });
+    }
+    minus(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.item.text.includes('$counter') && this.item.isCounter && this.isDateTimeoutExpiredSeconds(this.lastCount, this.item.timeout)) {
+                this.lastCount = new Date();
+                --this.item.count;
+                yield this.channel.database.sequelize.models.say.decrement('count', { by: 1, where: { command: this.item.command } });
+                return this.replacePlaceholder(this.item.text.replace('$counter', this.item.count.toString()));
+            }
+            return '';
+        });
+    }
     start(command) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.item.isActive) {
                 this.item.isActive = true;
+                this.item.count = 0;
                 yield this.channel.database.sequelize.models.say.update(this.item, { where: { command: this.item.command } });
                 global.worker.log.trace(`module ${this.item.command} set active: ${this.item.isActive}`);
                 return translationItem_1.TranslationItem.translate(this.basicTranslation, "start");
@@ -189,7 +213,7 @@ class Say extends module_1.Module {
                 if (this.item.text && this.item.text.length !== 0) {
                     yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                     global.worker.log.trace(`module ${this.item.command} shout executed`);
-                    return this.item.text;
+                    return this.replacePlaceholder(this.item.text);
                 }
                 else {
                     global.worker.log.trace(`module ${this.item.command} shout nothign to say`);

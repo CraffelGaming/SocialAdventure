@@ -26,6 +26,7 @@ let CommandItem = class CommandItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.isMaster = false;
+        this.isCounter = false;
     }
     static createTable({ sequelize }) {
         sequelize.define('command', {
@@ -38,6 +39,11 @@ let CommandItem = class CommandItem extends sequelize_typescript_1.Model {
                 type: sequelize_1.DataTypes.STRING,
                 primaryKey: true,
                 allowNull: false
+            },
+            isCounter: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             isMaster: {
                 type: sequelize_1.DataTypes.BOOLEAN,
@@ -81,6 +87,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], CommandItem.prototype, "isMaster", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], CommandItem.prototype, "isCounter", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)

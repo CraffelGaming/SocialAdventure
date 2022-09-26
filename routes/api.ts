@@ -254,6 +254,12 @@ const router = express.Router();
  *       required: false
  *       type: "boolean"
  *       default: true
+ *     - name: "counter"
+ *       in: "query"
+ *       description: "Gibt an, ob die Commands für einen Counter angezeigt werden sollen."
+ *       required: false
+ *       type: "boolean"
+ *       default: false
  *     responses:
  *       200:
  *         description: successful operation
@@ -320,6 +326,12 @@ const router = express.Router();
  *       required: false
  *       type: "boolean"
  *       default: true
+ *     - name: "counter"
+ *       in: "query"
+ *       description: "Gibt an, ob die Commands für einen Counter angezeigt werden sollen."
+ *       required: false
+ *       type: "boolean"
+ *       default: false
  *     responses:
  *       200:
  *         description: successful operation

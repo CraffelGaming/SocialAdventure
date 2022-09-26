@@ -23,9 +23,13 @@ export class SayItem extends Model<SayItem>{
     @Column
     countRuns: number = 0;
     @Column
-    isCounter : boolean = true;
+    isCounter : boolean = false;
     @Column
-    isShoutout : boolean = true;
+    isShoutout : boolean = false;
+    @Column
+    timeout: number = 10;
+    @Column
+    count: number = 0;
 
     constructor(){
         super();
@@ -51,9 +55,20 @@ export class SayItem extends Model<SayItem>{
                 type: DataTypes.STRING,
                 allowNull: true
             },
+            isCounter: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            },
             isActive: {
                 type: DataTypes.BOOLEAN,
-                allowNull: true
+                allowNull: false,
+                defaultValue: true
+            },
+            isShoutout: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             lastRun: {
                 type: DataTypes.DATE,
@@ -71,6 +86,16 @@ export class SayItem extends Model<SayItem>{
                 defaultValue: 0
             },
             countRuns: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            timeout: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 10
+            },
+            count: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0

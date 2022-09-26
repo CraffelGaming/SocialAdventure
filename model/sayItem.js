@@ -31,8 +31,10 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
         this.delay = 5;
         this.countUses = 0;
         this.countRuns = 0;
-        this.isCounter = true;
-        this.isShoutout = true;
+        this.isCounter = false;
+        this.isShoutout = false;
+        this.timeout = 10;
+        this.count = 0;
     }
     static createTable({ sequelize }) {
         sequelize.define('say', {
@@ -54,9 +56,20 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: true
             },
+            isCounter: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            },
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
-                allowNull: true
+                allowNull: false,
+                defaultValue: true
+            },
+            isShoutout: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             lastRun: {
                 type: sequelize_1.DataTypes.DATE,
@@ -74,6 +87,16 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
                 defaultValue: 0
             },
             countRuns: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            timeout: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 10
+            },
+            count: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
@@ -143,6 +166,14 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], SayItem.prototype, "isShoutout", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], SayItem.prototype, "timeout", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], SayItem.prototype, "count", void 0);
 SayItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "say", modelName: "say" }),
     __metadata("design:paramtypes", [])

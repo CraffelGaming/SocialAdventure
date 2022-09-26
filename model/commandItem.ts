@@ -13,6 +13,8 @@ export class CommandItem extends Model<CommandItem>{
     @Column
     isMaster: boolean = false;
     @Column
+    isCounter: boolean = false;
+    @Column
     translation: string;
 
     constructor(){
@@ -30,6 +32,11 @@ export class CommandItem extends Model<CommandItem>{
                 type: DataTypes.STRING,
                 primaryKey: true,
                 allowNull: false
+            },
+            isCounter: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
             },
             isMaster: {
                 type: DataTypes.BOOLEAN,
