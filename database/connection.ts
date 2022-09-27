@@ -28,6 +28,7 @@ import { LootItem } from '../model/lootItem';
 import { HealingPotionItem } from '../model/healingPotionItem';
 import { TrainerItem } from '../model/trainerItem';
 import { DailyItem } from '../model/dailyItem';
+import { PromotionItem } from '../model/promotionItem';
 
 export class Connection {
     databaseName: string;
@@ -103,6 +104,7 @@ export class Connection {
             HealingPotionItem.createTable({ sequelize: this.sequelize });
             TrainerItem.createTable({ sequelize: this.sequelize });
             DailyItem.createTable({ sequelize: this.sequelize });
+            PromotionItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -124,6 +126,7 @@ export class Connection {
             await HealingPotionItem.updateTable({ sequelize: this.sequelize });
             await TrainerItem.updateTable({ sequelize: this.sequelize });
             await DailyItem.updateTable({ sequelize: this.sequelize });
+            await PromotionItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });

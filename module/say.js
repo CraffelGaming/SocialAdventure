@@ -108,6 +108,7 @@ class Say extends module_1.Module {
                 this.lastCount = new Date();
                 ++this.item.count;
                 yield this.channel.database.sequelize.models.say.increment('count', { by: 1, where: { command: this.item.command } });
+                yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                 return this.replacePlaceholder(this.item.text.replace('$counter', this.item.count.toString()));
             }
             return '';
@@ -119,6 +120,7 @@ class Say extends module_1.Module {
                 this.lastCount = new Date();
                 --this.item.count;
                 yield this.channel.database.sequelize.models.say.decrement('count', { by: 1, where: { command: this.item.command } });
+                yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                 return this.replacePlaceholder(this.item.text.replace('$counter', this.item.count.toString()));
             }
             return '';

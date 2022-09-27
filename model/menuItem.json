@@ -122,6 +122,14 @@
         "nodeRequired": true
     },
     {
+        "endpoint": "promotion",
+        "name": "promotion",
+        "order": 1330,
+        "authenticationRequired": true,
+        "parentEndpoint": "me",
+        "nodeRequired": true
+    },
+    {
         "endpoint": "say",
         "name": "say",
         "order": 1400,

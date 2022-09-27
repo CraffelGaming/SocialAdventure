@@ -29,7 +29,14 @@
     { "page": "navigation", "handle": "level", "language": "de-DE", "translation": "Level"},
     { "page": "navigation", "handle": "say", "language": "de-DE", "translation": "Befehle"},
     { "page": "navigation", "handle": "loginAs", "language": "de-DE", "translation": "Angemeldet als $1"},
-    
+    { "page": "navigation", "handle": "promotion", "language": "de-DE", "translation": "Promo-Codes"},
+
+    { "page": "promotion", "handle": "title", "language": "de-DE", "translation": "Promo-Codes"},
+    { "page": "promotion", "handle": "recipient", "language": "de-DE", "translation": "Empfänger"},
+    { "page": "promotion", "handle": "code", "language": "de-DE", "translation": "Code"},
+    { "page": "promotion", "handle": "redeem", "language": "de-DE", "translation": "Einlösen"},
+    { "page": "promotion", "handle": "information", "language": "de-DE", "translation": "Hier kannst als Zuschauer Codes für deinen Helden einlösen oder als Streamer deinen Zuschauern etwas schenken."},
+
     { "page": "streamer", "handle": "title", "language": "de-DE", "translation": "Streamer"},
     { "page": "streamer", "handle": "name", "language": "de-DE", "translation": "Streamer"},
     { "page": "streamer", "handle": "displayName", "language": "de-DE", "translation": "Streamer"},

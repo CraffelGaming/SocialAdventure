@@ -1,0 +1,4 @@
+[
+    { "handle": "NewStart",                 "gold": 5000,   "diamond": 100,     "item": 1,      "experience": 22500 },
+    { "handle": "BluescreenCommunity",      "gold": 1000,   "diamond": 0,       "item": 0,      "experience": 1000  }
+]

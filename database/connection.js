@@ -61,6 +61,7 @@ const lootItem_1 = require("../model/lootItem");
 const healingPotionItem_1 = require("../model/healingPotionItem");
 const trainerItem_1 = require("../model/trainerItem");
 const dailyItem_1 = require("../model/dailyItem");
+const promotionItem_1 = require("../model/promotionItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -124,6 +125,7 @@ class Connection {
                 healingPotionItem_1.HealingPotionItem.createTable({ sequelize: this.sequelize });
                 trainerItem_1.TrainerItem.createTable({ sequelize: this.sequelize });
                 dailyItem_1.DailyItem.createTable({ sequelize: this.sequelize });
+                promotionItem_1.PromotionItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
@@ -143,6 +145,7 @@ class Connection {
                 yield healingPotionItem_1.HealingPotionItem.updateTable({ sequelize: this.sequelize });
                 yield trainerItem_1.TrainerItem.updateTable({ sequelize: this.sequelize });
                 yield dailyItem_1.DailyItem.updateTable({ sequelize: this.sequelize });
+                yield promotionItem_1.PromotionItem.updateTable({ sequelize: this.sequelize });
                 heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
                 heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
                 heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });

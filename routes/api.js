@@ -51,7 +51,203 @@ const api_adventure_1 = __importDefault(require("./api/api.adventure"));
 const api_trainer_1 = __importDefault(require("./api/api.trainer"));
 const api_healingPotion_1 = __importDefault(require("./api/api.healingPotion"));
 const api_daily_1 = __importDefault(require("./api/api.daily"));
+const api_promotion_1 = __importDefault(require("./api/api.promotion"));
 const router = express.Router();
+//#region Promotion
+/**
+ * @swagger
+ * /promotion/{node}:
+ *   get:
+ *     tags:
+ *     - Promotion
+ *     summary: Promo-Codes
+ *     description: Rückgabe aller Promo-Codes Aufgaben.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "NewStart"
+ *                 descrition: ID des Promo-Codes
+ *               gold:
+ *                 type: integer
+ *                 example: "1000"
+ *                 descrition: Anzahl der Goldbelohnung
+ *               diamond:
+ *                 type: integer
+ *                 example: "100"
+ *                 descrition: Anzahl der Diamantbelohnung
+ *               experience:
+ *                 type: integer
+ *                 example: "1000"
+ *                 descrition: Anzahl der Erfahrungsbelohnung
+ *               item:
+ *                 type: integer
+ *                 example: "1"
+ *                 descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *               validFrom:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Gültigkeit Startdatum
+ *               validTo:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Gültigkeit Enddatum
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/promotion/:node", api_promotion_1.default);
+/**
+ * @swagger
+ * /promotion/{node}:
+ *   put:
+ *     tags:
+ *     - Promotion
+ *     summary: Promotion Aufgabe
+ *     description: Anlage eines neuen Promo-Codes
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "NewStart"
+ *             descrition: ID des Promo-Codes
+ *           gold:
+ *             type: integer
+ *             example: "1000"
+ *             descrition: Anzahl der Goldbelohnung
+ *           diamond:
+ *             type: integer
+ *             example: "100"
+ *             descrition: Anzahl der Diamantbelohnung
+ *           experience:
+ *             type: integer
+ *             example: "1000"
+ *             descrition: Anzahl der Erfahrungsbelohnung
+ *           item:
+ *             type: integer
+ *             example: "1"
+ *             descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *           validFrom:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Gültigkeit Startdatum
+ *           validTo:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Gültigkeit Enddatum
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "NewStart"
+ *               descrition: ID des Promo-Codes
+ *             gold:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Goldbelohnung
+ *             diamond:
+ *               type: integer
+ *               example: "100"
+ *               descrition: Anzahl der Diamantbelohnung
+ *             experience:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Erfahrungsbelohnung
+ *             item:
+ *               type: integer
+ *               example: "1"
+ *               descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *             validFrom:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Startdatum
+ *             validTo:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Enddatum
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/promotion/:node", api_promotion_1.default);
+/**
+ * @swagger
+ * /promotion/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Promotion
+ *     summary: Promotion
+ *     description: Löscht einen bestimmten Promo-Code
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Promo-Codes"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/promotion/:node/:handle", api_promotion_1.default);
+//#endregion
 //#region Adventure
 /**
  * @swagger

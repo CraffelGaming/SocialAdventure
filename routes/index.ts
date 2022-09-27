@@ -19,11 +19,15 @@ import location from "./location";
 import enemy from "./enemy";
 import adventure from "./adventure";
 import setting from "./setting";
+import promotion from "./promotion";
 
 const endpoint = 'index';
 const type = 'app';
 
 const router = express.Router();
+
+// Promotion
+router.get('/promotion', promotion);
 
 // Setting
 router.get('/setting', setting);
