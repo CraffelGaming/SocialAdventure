@@ -66,7 +66,7 @@ router.delete('/' + endpoint + '/:node/:handle', async (request: express.Request
 });
 
 router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', async (request: express.Request, response: express.Response) => {
-    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
+    global.worker.log.trace(`post ${endpoint}, node ${request.params.node} redeem ${request.params.promotionHandle} ${request.params.heroName}`);
     let node: NodeItem;
 
     if(request.params.node === 'default')
@@ -77,10 +77,10 @@ router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', async (
 
     if(channel) {
         if(global.isMaster(request, response, node)){
-            var promotion = await channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle) as PromotionItem;
+            const promotion = await channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle) as PromotionItem;
             if(promotion){
-                response.status(await PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion: promotion, heroName: request.params.heroName})).json(promotion);
-            } else response.status(404).json();
+                response.status(await PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName})).json(promotion);
+            } else response.status(406).json();
         } else {
             response.status(403).json();
         }

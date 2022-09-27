@@ -80,9 +80,9 @@ export function notify(message, type) {
             message: message,
             width: 300,
             position: {
-                my: "bottom",
+                my: "top",
                 at: "center",
-                of: "#sticky-footer"
+                of: "#menu"
             }
         },
         type,

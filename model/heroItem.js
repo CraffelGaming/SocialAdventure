@@ -109,6 +109,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
         sequelize.models.hero.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'heroName' });
         sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName' });
         sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName' });
+        sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName' });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -134,7 +135,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
             });
             const maxExperience = level.getDataValue("experienceMax");
             if (element.experience >= maxExperience) {
-                yield sequelize.models.hero.decrement('hitpoints', { by: maxExperience, where: { name: element.name } });
+                yield sequelize.models.hero.decrement('experience', { by: maxExperience, where: { name: element.name } });
                 yield sequelize.models.hero.increment('prestige', { by: 1, where: { name: element.name } });
             }
             return true;

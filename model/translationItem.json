@@ -36,6 +36,12 @@
     { "page": "promotion", "handle": "code", "language": "de-DE", "translation": "Code"},
     { "page": "promotion", "handle": "redeem", "language": "de-DE", "translation": "Einlösen"},
     { "page": "promotion", "handle": "information", "language": "de-DE", "translation": "Hier kannst als Zuschauer Codes für deinen Helden einlösen oder als Streamer deinen Zuschauern etwas schenken."},
+    { "page": "promotion", "handle": "200", "language": "de-DE", "translation": "Promo-Code erfolgreich eingelöst."},
+    { "page": "promotion", "handle": "201", "language": "de-DE", "translation": "Promo-Code abgelaufen."},
+    { "page": "promotion", "handle": "204", "language": "de-DE", "translation": "Promo-Code bereits eingelöst."},
+    { "page": "promotion", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
+    { "page": "promotion", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
+    { "page": "promotion", "handle": "406", "language": "de-DE", "translation": "Promo-Code existiert nicht."},
 
     { "page": "streamer", "handle": "title", "language": "de-DE", "translation": "Streamer"},
     { "page": "streamer", "handle": "name", "language": "de-DE", "translation": "Streamer"},

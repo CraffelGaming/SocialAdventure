@@ -64,6 +64,18 @@ let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.M
             adventure.destroy();
         });
     }
+    static transferItemToInventory({ sequelize, item, heroName }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const inventory = yield sequelize.models.heroInventory.findOne({ where: { itemHandle: item.getDataValue("handle"), heroName } });
+            if (inventory) {
+                yield sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: item.getDataValue("handle"), heroName } });
+            }
+            else {
+                yield sequelize.models.heroInventory.create({ heroName,
+                    itemHandle: item.getDataValue("handle") });
+            }
+        });
+    }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

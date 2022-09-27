@@ -14,7 +14,7 @@ Version 1
         [X] Leave
         [X] Blood
         [X] Automation
-        [ ] Tägliche Aufgabe
+        [.] Tägliche Aufgabe
         [X] Loottime
         [X] Experience
         [X] Verkaufen
@@ -23,7 +23,7 @@ Version 1
 7.  [X] Twitch API Verbindung mit Chat
 8.  [X] Startseite
 9.  [X] SSL-Zertifikat einbinden (https://)
-10. [ ] Datenübernahme vom alten Craffelmat
+10. [.] Datenübernahme vom alten Craffelmat
 11. [.] Hilfe & Feedback Kontaktformular
 12. [X] Item Kategorien zusenden
         Ente:   Retro

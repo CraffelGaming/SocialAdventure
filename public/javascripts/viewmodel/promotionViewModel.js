@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get, isMaster } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, isMaster, notify } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -20,7 +20,7 @@ $(async () => {
             },
             items: [{
                     dataField: "recipient",
-                    isRequired: "true",
+                    isRequired: true,
                     disabled: !await isMaster(),
                     label: {
                         text: translate(language, 'recipient')
@@ -30,7 +30,7 @@ $(async () => {
                 },
                 {
                     dataField: "code",
-                    isRequired: "true",
+                    isRequired: true,
                     label: {
                         text: translate(language, 'code')
                     },
@@ -41,7 +41,27 @@ $(async () => {
                 itemType: "button",
                 buttonOptions: {
                     text: translate(language, 'redeem'),
-                    useSubmitBehavior: true
+                    useSubmitBehavior: true,
+                    onClick: async function(e){
+                        let formData = $("#form").dxForm('instance').option("formData");
+
+                        await fetch(`./api/promotion/default/redeem/${formData.code}/${formData.recipient}`, {
+                            method: 'post',
+                            headers: {
+                                'Content-type': 'application/json'
+                            }
+                        }).then(async function (res) {
+                            switch(res.status){
+                                case 200:
+                                    notify(translate(language, res.status), "success");
+                                    break;
+                                default:
+                                    notify(translate(language, res.status), "error");
+                                    break;
+                                break;
+                            }
+                        });
+                    }
                 }
             }]
         });

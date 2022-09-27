@@ -217,6 +217,75 @@ router.get("/promotion/:node", api_promotion_1.default);
 router.put("/promotion/:node", api_promotion_1.default);
 /**
  * @swagger
+ * /promotion/{node}/redeem/{promotionHandle}/{heroName}:
+ *   post:
+ *     tags:
+ *     - Promotion
+ *     summary: Promotion Aufgabe
+ *     description: Anlage eines neuen Promo-Codes
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "promotionHandle"
+ *       in: "path"
+ *       description: "ID des Promo-Codes"
+ *       required: true
+ *       type: "string"
+ *       default: "BluescreenCommunity"
+ *     - name: "heroName"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "NewStart"
+ *               descrition: ID des Promo-Codes
+ *             gold:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Goldbelohnung
+ *             diamond:
+ *               type: integer
+ *               example: "100"
+ *               descrition: Anzahl der Diamantbelohnung
+ *             experience:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Erfahrungsbelohnung
+ *             item:
+ *               type: integer
+ *               example: "1"
+ *               descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *             validFrom:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Startdatum
+ *             validTo:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Enddatum
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.post("/promotion/:node/redeem/:promotionHandle/:heroName", api_promotion_1.default);
+/**
+ * @swagger
  * /promotion/{node}/{handle}:
  *   delete:
  *     tags:

@@ -5,6 +5,7 @@ import { HeroItem } from './heroItem';
 import { HeroWalletItem } from './heroWalletItem';
 import { ItemItem } from './itemItem';
 import { HeroInventoryItem } from './heroInventoryItem';
+import { HeroPromotionItem } from './heroPromotionItem';
 
 @Table({ tableName: "promotion", modelName: "promotion"})
 export class PromotionItem extends Model<PromotionItem>{
@@ -67,6 +68,10 @@ export class PromotionItem extends Model<PromotionItem>{
           }, {freezeTableName: true});
     }
 
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
+        sequelize.models.promotion.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'promotionHandle'});
+    }
+
     static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
         try{
             const items = JSON.parse(JSON.stringify(json)) as PromotionItem[];
@@ -109,29 +114,39 @@ export class PromotionItem extends Model<PromotionItem>{
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
             const item = await sequelize.models.item.findByPk(promotion.item) as Model<ItemItem>;
+            const heroPromotion = await sequelize.models.heroPromotion.findOne({where: { promotionHandle: promotion.handle, heroName}}) as Model<HeroPromotionItem>;
 
-            if(promotion){
-                if(promotion.gold > 0){
-                    await heroWallet.increment('gold', { by: promotion.gold});
-                }
-
-                if(promotion.diamond > 0){
-                    await heroWallet.increment('diamond', { by: promotion.diamond});
-                }
-
-                if(promotion.experience > 0){
-                    await hero.increment('experience', { by: promotion.experience});
-                    hero.setDataValue("experience", hero.getDataValue("experience") + promotion.experience);
-                    HeroItem.calculateHero({sequelize: sequelize, element: hero.get()});
-                }
-
-                if(promotion.item > 0){
-                    if(item){
-                        HeroInventoryItem.transferItemToInventory({sequelize: sequelize, item: item, heroName: heroName });
+            if(promotion.validFrom.getTime() <= Date.now() && promotion.validTo.getTime() >= Date.now()){
+                if(!heroPromotion){
+                    if(promotion.gold > 0){
+                        await heroWallet.increment('gold', { by: promotion.gold});
                     }
+
+                    if(promotion.diamond > 0){
+                        await heroWallet.increment('diamond', { by: promotion.diamond});
+                    }
+
+                    if(promotion.experience > 0){
+                        await hero.increment('experience', { by: promotion.experience});
+                        hero.setDataValue("experience", hero.getDataValue("experience") + promotion.experience);
+                        HeroItem.calculateHero({sequelize, element: hero.get()});
+                    }
+
+                    if(promotion.item > 0){
+                        if(item){
+                            HeroInventoryItem.transferItemToInventory({sequelize, item, heroName });
+                        }
+                    }
+
+                    const element = new HeroPromotionItem();
+                    element.heroName = heroName;
+                    element.promotionHandle = promotion.handle;
+                    HeroPromotionItem.put({sequelize, element});
+
+                    return 200;
                 }
-                return 200;
-            } else return 404;
+                return 204;
+            } else return 201;
         } catch(ex){
             global.worker.log.error(ex);
             return 500;

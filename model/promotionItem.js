@@ -22,6 +22,9 @@ exports.PromotionItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./promotionItem.json");
+const heroItem_1 = require("./heroItem");
+const heroInventoryItem_1 = require("./heroInventoryItem");
+const heroPromotionItem_1 = require("./heroPromotionItem");
 let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
@@ -29,6 +32,7 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
         this.diamond = 0;
         this.experience = 0;
         this.item = 0;
+        this.validFrom = new Date(2020, 1, 1);
     }
     static createTable({ sequelize }) {
         sequelize.define('promotion', {
@@ -56,8 +60,20 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
+            },
+            validFrom: {
+                type: sequelize_1.DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
+            validTo: {
+                type: sequelize_1.DataTypes.DATE,
+                allowNull: true
             }
         }, { freezeTableName: true });
+    }
+    static setAssociation({ sequelize }) {
+        sequelize.models.promotion.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'promotionHandle' });
     }
     static updateTable({ sequelize }) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -104,6 +120,48 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
             }
         });
     }
+    static redeem({ sequelize, promotion, heroName }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const hero = yield sequelize.models.hero.findByPk(heroName);
+                const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
+                const item = yield sequelize.models.item.findByPk(promotion.item);
+                const heroPromotion = yield sequelize.models.heroPromotion.findOne({ where: { promotionHandle: promotion.handle, heroName } });
+                if (promotion) {
+                    if (!heroPromotion) {
+                        if (promotion.gold > 0) {
+                            yield heroWallet.increment('gold', { by: promotion.gold });
+                        }
+                        if (promotion.diamond > 0) {
+                            yield heroWallet.increment('diamond', { by: promotion.diamond });
+                        }
+                        if (promotion.experience > 0) {
+                            yield hero.increment('experience', { by: promotion.experience });
+                            hero.setDataValue("experience", hero.getDataValue("experience") + promotion.experience);
+                            heroItem_1.HeroItem.calculateHero({ sequelize, element: hero.get() });
+                        }
+                        if (promotion.item > 0) {
+                            if (item) {
+                                heroInventoryItem_1.HeroInventoryItem.transferItemToInventory({ sequelize, item, heroName });
+                            }
+                        }
+                        const element = new heroPromotionItem_1.HeroPromotionItem();
+                        element.heroName = heroName;
+                        element.promotionHandle = promotion.handle;
+                        heroPromotionItem_1.HeroPromotionItem.put({ sequelize, element });
+                        return 200;
+                    }
+                    return 201;
+                }
+                else
+                    return 406;
+            }
+            catch (ex) {
+                global.worker.log.error(ex);
+                return 500;
+            }
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
@@ -126,6 +184,14 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], PromotionItem.prototype, "item", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], PromotionItem.prototype, "validFrom", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], PromotionItem.prototype, "validTo", void 0);
 PromotionItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "promotion", modelName: "promotion" }),
     __metadata("design:paramtypes", [])

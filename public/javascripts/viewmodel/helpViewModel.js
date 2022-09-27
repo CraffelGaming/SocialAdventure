@@ -21,7 +21,7 @@ $(async () => {
             },
             items: [{
                     dataField: "name",
-                    isRequired: "true",
+                    isRequired: true,
                     label: {
                         text: translate(language, 'name')
                         },
@@ -29,7 +29,7 @@ $(async () => {
                     }            
                 }, {     
                     dataField: "mail",
-                    isRequired: "true",
+                    isRequired: true,
                     label: {
                         text: translate(language, 'mail')
                         },
@@ -38,7 +38,7 @@ $(async () => {
                     }   
                 }, {
                 dataField: "content",
-                isRequired: "true",
+                isRequired: true,
                 editorType: "dxTextArea",
                 label: {
                     text: translate(language, 'content')

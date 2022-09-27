@@ -62,12 +62,12 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
     }
 
     static async transferItemToInventory({ sequelize, item, heroName }: { sequelize: Sequelize; item: Model<ItemItem>, heroName: string }){
-        const inventory = await sequelize.models.heroInventory.findOne({where: {itemHandle: item.getDataValue("handle"), heroName: heroName}}) as Model<HeroInventoryItem>;
+        const inventory = await sequelize.models.heroInventory.findOne({where: {itemHandle: item.getDataValue("handle"), heroName}}) as Model<HeroInventoryItem>;
 
         if(inventory){
-            await sequelize.models.heroInventory.increment('quantity', { by: 1, where: {itemHandle: item.getDataValue("handle"), heroName: heroName}});
+            await sequelize.models.heroInventory.increment('quantity', { by: 1, where: {itemHandle: item.getDataValue("handle"), heroName}});
         } else {
-            await sequelize.models.heroInventory.create({ heroName: heroName,
+            await sequelize.models.heroInventory.create({ heroName,
                                                           itemHandle: item.getDataValue("handle")});
         }
     }
