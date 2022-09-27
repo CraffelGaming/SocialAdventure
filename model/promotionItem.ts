@@ -23,7 +23,7 @@ export class PromotionItem extends Model<PromotionItem>{
     @Column
     validFrom: Date = new Date(2020, 1, 1);
     @Column
-    validTo: Date;
+    validTo: Date = new Date(2099, 12, 31);
 
     constructor(){
         super();
@@ -63,7 +63,8 @@ export class PromotionItem extends Model<PromotionItem>{
             },
             validTo: {
                 type: DataTypes.DATE,
-                allowNull: true
+                allowNull: false,
+                defaultValue: Date.UTC(2099, 12, 31)
             }
           }, {freezeTableName: true});
     }
@@ -97,8 +98,7 @@ export class PromotionItem extends Model<PromotionItem>{
             } else {
                 if(element.gold != null && element.gold > 0 ||
                    element.diamond != null && element.diamond > 0 ||
-                   element.experience != null && element.experience > 0 ||
-                   element.item != null && element.item > 0){
+                   element.experience != null && element.experience > 0){
                     await sequelize.models.promotion.create(element as any);
                     return 201;
                 } else return 406;

@@ -2017,6 +2017,80 @@ router.get("/item", api_item_1.default);
 router.get("/item/:node", api_item_1.default);
 /**
  * @swagger
+ * /item/{node}/{handle}:
+ *   get:
+ *     tags:
+ *     - Item
+ *     summary: Gegenstände
+ *     description: Rückgabe eines Gegenständs.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Gegenstands"
+ *       required: true
+ *       type: "integer"
+ *       default: 1
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Gegenstands
+ *             value:
+ *               type: string
+ *               example: "Schwert"
+ *               descrition: Nabe des Gegenstandes
+ *             gold:
+ *               type: integer
+ *               example: 150
+ *               descrition: Wert des Gegenstandes in Gold
+ *             type:
+ *               type: number
+ *               example: 1
+ *               descrition: Typ des Gegenstandes
+ *             category:
+ *               type: object
+ *               properties:
+ *                 handle:
+ *                   type: intener
+ *                   example: 1
+ *                   descrition: ID der Item Kategorie.
+ *                 value:
+ *                   type: string
+ *                   example: "default"
+ *                   descrition: Name  für die Übersetzung der Item Kategorie.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/item/:node/:handle", api_item_1.default);
+/**
+ * @swagger
  * /item/{node}:
  *   put:
  *     tags:

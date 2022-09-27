@@ -76,7 +76,7 @@ router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', async (
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
-        if(global.isMaster(request, response, node)){
+        if(global.isMaster(request, response, node) || global.isHero(request, response, request.params.heroName) && request.params.promotionHandle !== "NewStart"){
             const promotion = await channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle) as PromotionItem;
             if(promotion){
                 response.status(await PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName})).json(promotion);

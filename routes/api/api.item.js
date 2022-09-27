@@ -68,6 +68,27 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     else
         response.status(404).json();
 }));
+router.get('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        const item = yield channel.database.sequelize.models.item.findByPk(request.params.handle, { raw: false, include: [{
+                    model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                    as: 'category',
+                }] });
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
 router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
     let node;

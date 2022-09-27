@@ -33,6 +33,7 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
         this.experience = 0;
         this.item = 0;
         this.validFrom = new Date(2020, 1, 1);
+        this.validTo = new Date(2099, 12, 31);
     }
     static createTable({ sequelize }) {
         sequelize.define('promotion', {
@@ -68,7 +69,8 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
             },
             validTo: {
                 type: sequelize_1.DataTypes.DATE,
-                allowNull: true
+                allowNull: false,
+                defaultValue: Date.UTC(2099, 12, 31)
             }
         }, { freezeTableName: true });
     }
@@ -127,7 +129,7 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
                 const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
                 const item = yield sequelize.models.item.findByPk(promotion.item);
                 const heroPromotion = yield sequelize.models.heroPromotion.findOne({ where: { promotionHandle: promotion.handle, heroName } });
-                if (promotion) {
+                if (promotion.validFrom.getTime() <= Date.now() && promotion.validTo.getTime() >= Date.now()) {
                     if (!heroPromotion) {
                         if (promotion.gold > 0) {
                             yield heroWallet.increment('gold', { by: promotion.gold });
@@ -151,10 +153,10 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
                         heroPromotionItem_1.HeroPromotionItem.put({ sequelize, element });
                         return 200;
                     }
-                    return 201;
+                    return 204;
                 }
                 else
-                    return 406;
+                    return 201;
             }
             catch (ex) {
                 global.worker.log.error(ex);
