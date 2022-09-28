@@ -5,6 +5,7 @@ $(async () => {
 
     let language = await getTranslation('say');
     let languageCommand = await getTranslation('command');
+    let languagePlaceholder = await getTranslation('placeholder');
 
     translation();
     initialize();
@@ -111,7 +112,7 @@ $(async () => {
             },
             columns: [
                 { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
-                { dataField: "text", caption: translate(language, 'text'), validationRules: [{ type: "required" }]  },
+                { dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: {autoResizeEnabled: true}, validationRules: [{ type: "required" }]  },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
@@ -169,10 +170,13 @@ $(async () => {
             return $('<div>').dxTabPanel({
                 items: [{
                     title: translate(language, 'overview'),
-                    template: createOverviewTabTemplate(masterDetailOptions.data, 1),
+                    template: createOverviewTabTemplate(masterDetailOptions.data),
                 }, {
                     title: translate(language, 'statistic'),
-                    template: createStatisticTabTemplate(masterDetailOptions.data, 1),
+                    template: createStatisticTabTemplate(masterDetailOptions.data),
+                }, {
+                    title: translate(language, 'placeholder'),
+                    template: createPlaceholderTabTemplate(masterDetailOptions.data),
                 }],
             });
         }
@@ -201,7 +205,6 @@ $(async () => {
                         key: ["module", "command"],
                         loadMode: "raw",
                         load: async function () {
-                            console.log(masterDetailData);
                             return await get(`/command/default/say?counter=${masterDetailData.isCounter}`, language);
                         }
                     }),
@@ -236,6 +239,56 @@ $(async () => {
                             caption: translate(languageCommand, 'description'),
                             calculateCellValue(data) {
                               return translate(languageCommand, data.translation)
+                            }
+                        }
+                    ]
+                });
+            };
+        }
+        
+        function createPlaceholderTabTemplate(masterDetailData) {
+            return function () {
+                return $('<div>').dxDataGrid({
+                    dataSource: new DevExpress.data.CustomStore({
+                        key: "handle",
+                        loadMode: "raw",
+                        load: async function () {
+                            let items = await get(`/placeholder`, languagePlaceholder);
+
+                            if(!masterDetailData.isCounter){
+                                items = items.filter(x => !x.isCounter)
+                            }
+                            if(!masterDetailData.isShoutout){
+                                items = items.filter(x => !x.isShoutout)
+                            } 
+                            return items;
+                        }
+                    }),
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    selection: { mode: "single" },
+                    editing: {
+                        mode: "row",
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        allowAdding: false
+                    },
+                    columns: [
+                        {
+                            type: "buttons",
+                            buttons: [{
+                                icon: "link",
+                                hint: translate(language, "copyToClipboard"),
+                                onClick: function (e) {
+                                    copyToClipboard(e.row.values[1]);
+                                }
+                            }]
+                        },
+                        { dataField: "handle", caption: translate(languagePlaceholder, 'title'), width: 200 },
+                        {
+                            caption: translate(languagePlaceholder, 'description'),
+                            calculateCellValue(data) {
+                              return translate(languagePlaceholder, data.translation)
                             }
                         }
                     ]

@@ -73,7 +73,7 @@ class Say extends module_1.Module {
                             this.countMessages = this.channel.countMessages;
                             yield this.channel.database.sequelize.models.say.update(this.item, { where: { command: this.item.command } });
                             global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
-                            this.channel.puffer.addMessage(this.replacePlaceholder(this.item.text));
+                            this.channel.puffer.addMessage(this.replacePlaceholder(null, this.item.text));
                         }
                         catch (ex) {
                             global.worker.log.error(`node ${this.channel.node.name}, module ${this.item.command} automation error.`);
@@ -109,7 +109,7 @@ class Say extends module_1.Module {
                 ++this.item.count;
                 yield this.channel.database.sequelize.models.say.increment('count', { by: 1, where: { command: this.item.command } });
                 yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
-                return this.replacePlaceholder(this.item.text.replace('$counter', this.item.count.toString()));
+                return this.replacePlaceholder(command, this.item.text.replace('$counter', this.item.count.toString()));
             }
             return '';
         });
@@ -121,7 +121,7 @@ class Say extends module_1.Module {
                 --this.item.count;
                 yield this.channel.database.sequelize.models.say.decrement('count', { by: 1, where: { command: this.item.command } });
                 yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
-                return this.replacePlaceholder(this.item.text.replace('$counter', this.item.count.toString()));
+                return this.replacePlaceholder(command, this.item.text.replace('$counter', this.item.count.toString()));
             }
             return '';
         });
@@ -215,7 +215,10 @@ class Say extends module_1.Module {
                 if (this.item.text && this.item.text.length !== 0) {
                     yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                     global.worker.log.trace(`module ${this.item.command} shout executed`);
-                    return this.replacePlaceholder(this.item.text);
+                    if (this.item.isCounter) {
+                        this.item.text = this.item.text.replace('$counter', this.item.count.toString());
+                    }
+                    return this.replacePlaceholder(command, this.item.text);
                 }
                 else {
                     global.worker.log.trace(`module ${this.item.command} shout nothign to say`);

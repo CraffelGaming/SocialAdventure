@@ -34,14 +34,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Connection = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const versionItem_1 = require("../model/versionItem");
-const nodeItem_1 = require("../model/nodeItem");
-const migrationItem_1 = require("../model/migrationItem");
-const menuItem_1 = require("../model/menuItem");
-const translationItem_1 = require("../model/translationItem");
-const twitchItem_1 = require("../model/twitchItem");
-const twitchUserItem_1 = require("../model/twitchUserItem");
-const levelItem_1 = require("../model/levelItem");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const jsonMigration = require("../model/migrationItem.json");
@@ -63,6 +55,16 @@ const trainerItem_1 = require("../model/trainerItem");
 const dailyItem_1 = require("../model/dailyItem");
 const promotionItem_1 = require("../model/promotionItem");
 const heroPromotionItem_1 = require("../model/heroPromotionItem");
+const helpItem_1 = require("../model/helpItem");
+const versionItem_1 = require("../model/versionItem");
+const nodeItem_1 = require("../model/nodeItem");
+const migrationItem_1 = require("../model/migrationItem");
+const menuItem_1 = require("../model/menuItem");
+const translationItem_1 = require("../model/translationItem");
+const twitchItem_1 = require("../model/twitchItem");
+const twitchUserItem_1 = require("../model/twitchUserItem");
+const levelItem_1 = require("../model/levelItem");
+const placeholderItem_1 = require("../model/placeholderItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -83,6 +85,8 @@ class Connection {
                 twitchUserItem_1.TwitchUserItem.createTable({ sequelize: this.sequelize });
                 itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
+                helpItem_1.HelpItem.createTable({ sequelize: this.sequelize });
+                placeholderItem_1.PlaceholderItem.createTable({ sequelize: this.sequelize });
                 menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
                 nodeItem_1.NodeItem.setAssociation({ sequelize: this.sequelize });
                 twitchItem_1.TwitchItem.setAssociation({ sequelize: this.sequelize });
@@ -94,6 +98,7 @@ class Connection {
                 yield translationItem_1.TranslationItem.updateTable({ sequelize: this.sequelize });
                 yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
                 yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
+                yield placeholderItem_1.PlaceholderItem.updateTable({ sequelize: this.sequelize });
                 itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
                 yield this.updater("migrations/global");

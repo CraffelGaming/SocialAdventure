@@ -16,8 +16,8 @@ $(async () => {
     let heroTrait = {};
     
     await initialize();
-    translation();
     await refreshHero();
+    translation();
     await loadWallet();
     await loadTrait();
     loadHealing();
@@ -245,7 +245,7 @@ $(async () => {
     //#region Translation
     function translation() {
         document.getElementById("labelTitle").textContent = translate(language, 'title');
-        document.getElementById("description").textContent = translate(language, 'description');
+        document.getElementById("description").textContent = translate(language, 'description').replace('$1',hero?.name);
         document.getElementById("healingTitle").textContent = translate(languageHealing, 'healing');
         document.getElementById("trainerTitle").textContent = translate(languageTrait, 'trait');
     }

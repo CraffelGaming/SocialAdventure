@@ -104,7 +104,7 @@ class Loot extends module_1.Module {
                 const loot = this.settings.find(x => x.command === "loot");
                 let value = yield this.channel.database.sequelize.models.hero.findByPk(command.source);
                 if (!value) {
-                    yield heroItem_1.HeroItem.put({ sequelize: this.channel.database.sequelize, element: new heroItem_1.HeroItem(command.source) });
+                    yield heroItem_1.HeroItem.put({ sequelize: this.channel.database.sequelize, element: new heroItem_1.HeroItem(command.source), onlyCreate: true });
                     value = (yield this.channel.database.sequelize.models.hero.findByPk(command.source));
                     isNew = true;
                 }

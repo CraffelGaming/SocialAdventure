@@ -52,7 +52,132 @@ const api_trainer_1 = __importDefault(require("./api/api.trainer"));
 const api_healingPotion_1 = __importDefault(require("./api/api.healingPotion"));
 const api_daily_1 = __importDefault(require("./api/api.daily"));
 const api_promotion_1 = __importDefault(require("./api/api.promotion"));
+const api_help_1 = __importDefault(require("./api/api.help"));
+const api_placeholder_1 = __importDefault(require("./api/api.placeholder"));
 const router = express.Router();
+//#region Placeholder
+/**
+ * @swagger
+ * /placeholder:
+ *   get:
+ *     tags:
+ *     - Placeholder
+ *     summary: Platzhalter
+ *     description: Rückgabe aller Platzhalter.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "$source"
+ *                 descrition: Platzhalter
+ *               translation:
+ *                 type: string
+ *                 example: "source"
+ *                 descrition: Übersetzungsschlüssel des Platzhalters.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               isCounter:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob der Platzhalter nur für Counter existiert.
+ *               isShoutout:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob der Platzhalter nur für ShoutOut-Funktionen existiert.
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/placeholder", api_placeholder_1.default);
+//#endregion
+//#region Daily
+/**
+ * @swagger
+ * /help/{node}:
+ *   put:
+ *     tags:
+ *     - Hilfe
+ *     summary: Hilfe
+ *     description: Senden einer neuen Anfrage
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "gold"
+ *             descrition: ID der Anfrage
+ *           name:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Login-Name des Fragestellers
+ *           mail:
+ *             type: string
+ *             example: "craffel@craffel.de"
+ *             descrition: E-Mail des Fragestellers
+ *           content:
+ *             type: string
+ *             example: "Ich bin UI Designer und würde gerne Helfen! Ist noch Platz im Team?"
+ *             descrition: Frage des Fragestellers
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "gold"
+ *               descrition: ID der Anfrage
+ *             name:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Login-Name des Fragestellers
+ *             mail:
+ *               type: string
+ *               example: "craffel@craffel.de"
+ *               descrition: E-Mail des Fragestellers
+ *             content:
+ *               type: string
+ *               example: "Ich bin UI Designer und würde gerne Helfen! Ist noch Platz im Team?"
+ *               descrition: Frage des Fragestellers
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/help/:node", api_help_1.default);
+//#endregion
 //#region Promotion
 /**
  * @swagger
@@ -105,6 +230,10 @@ const router = express.Router();
  *                 type: integer
  *                 example: "1"
  *                 descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *               isMaster:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob nur der Streamer den Code auslösen darf
  *               validFrom:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
@@ -167,6 +296,10 @@ router.get("/promotion/:node", api_promotion_1.default);
  *             type: integer
  *             example: "1"
  *             descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *           isMaster:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob nur der Streamer den Code auslösen darf
  *           validFrom:
  *             type: string
  *             example: "2022-05-12 10:11:35.027 +00:00"
@@ -201,6 +334,10 @@ router.get("/promotion/:node", api_promotion_1.default);
  *               type: integer
  *               example: "1"
  *               descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *             isMaster:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob nur der Streamer den Code auslösen darf
  *             validFrom:
  *               type: string
  *               example: "2022-05-12 10:11:35.027 +00:00"
@@ -270,6 +407,10 @@ router.put("/promotion/:node", api_promotion_1.default);
  *               type: integer
  *               example: "1"
  *               descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *             isMaster:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob nur der Streamer den Code auslösen darf
  *             validFrom:
  *               type: string
  *               example: "2022-05-12 10:11:35.027 +00:00"
@@ -3304,6 +3445,14 @@ router.post("/node/default", api_node_1.default);
  *                 type: boolean
  *                 example: true
  *                 descrition: Gibt an, ob der Command aktiviert ist.
+ *               isCounter:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob der Command einen Counter besitzt.
+ *               isShoutout:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob der Command ShoutOut-Funktionen besitzt.
  *               lastRun:
  *                 type: boolean
  *                 example: "2022-05-12 10:11:35.027 +00:00"
@@ -3374,6 +3523,14 @@ router.get("/say/:node", api_say_1.default);
  *             type: boolean
  *             example: true
  *             descrition: Gibt an, ob der Command aktiviert ist.
+ *           isCounter:
+ *             type: boolean
+ *             example: false
+ *             descrition: Gibt an, ob der Command einen Counter besitzt.
+ *           isShoutout:
+ *             type: boolean
+ *             example: false
+ *             descrition: Gibt an, ob der Command ShoutOut-Funktionen besitzt.
  *           delay:
  *             type: number
  *             example: 5
@@ -3404,6 +3561,14 @@ router.get("/say/:node", api_say_1.default);
  *               type: boolean
  *               example: true
  *               descrition: Gibt an, ob der Command aktiviert ist.
+ *             isCounter:
+ *               type: boolean
+ *               example: false
+ *               descrition: Gibt an, ob der Command einen Counter besitzt.
+ *             isShoutout:
+ *               type: boolean
+ *               example: false
+ *               descrition: Gibt an, ob der Command ShoutOut-Funktionen besitzt.
  *             delay:
  *               type: number
  *               example: 5

@@ -50,10 +50,10 @@ let ItemCategoryItem = class ItemCategoryItem extends sequelize_typescript_1.Mod
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
                     if ((yield sequelize.models.itemCategory.count({ where: { handle: item.handle } })) === 0) {
-                        if (isGlobal === true && item.handle !== 1) {
+                        if (isGlobal === true && item.handle > 1) {
                             yield sequelize.models.itemCategory.create(item);
                         }
-                        else if (isGlobal === false && item.handle === 1) {
+                        else if (isGlobal === false && item.handle <= 1) {
                             yield sequelize.models.itemCategory.create(item);
                         }
                     }

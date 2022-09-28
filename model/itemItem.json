@@ -1,5 +1,5 @@
 [
-    {"categoryHandle": 1,       "type": 0,      "gold": 10,           "value":"Einfaches Schwert"},
+    {"categoryHandle": 0,       "type": 0,      "gold": 1000,         "value":"Mystische Erinnerung an vergangene Zeiten"},
     {"categoryHandle": 1,       "type": 0,      "gold": 10,           "value":"Messingrüstung"},
     {"categoryHandle": 1,       "type": 0,      "gold": 1,            "value":"Zerissenes Flugblatt"},
     {"categoryHandle": 1,       "type": 0,      "gold": 75,           "value":"Zauberstab aus Ebenholz"},

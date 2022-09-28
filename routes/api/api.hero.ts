@@ -70,7 +70,7 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
 
     if(channel) {
         if(global.isMaster(request, response, node)){
-            response.status(await HeroItem.put({ sequelize: channel.database.sequelize, element: request.body})).json(request.body);
+            response.status(await HeroItem.put({ sequelize: channel.database.sequelize, element: request.body, onlyCreate: false})).json(request.body);
         } else {
             response.status(403).json();
         }

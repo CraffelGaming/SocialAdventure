@@ -43,9 +43,9 @@ export class ItemCategoryItem extends Model<ItemCategoryItem>{
 
             for(const item of items){
                 if(await sequelize.models.itemCategory.count({where: {handle: item.handle}}) === 0){
-                    if(isGlobal === true && item.handle !== 1){
+                    if(isGlobal === true && item.handle > 1){
                         await sequelize.models.itemCategory.create(item as any);
-                    } else if(isGlobal === false && item.handle === 1){
+                    } else if(isGlobal === false && item.handle <= 1){
                         await sequelize.models.itemCategory.create(item as any);
                     }
                 } else await sequelize.models.itemCategory.update(item, {where: {handle: item.handle}});

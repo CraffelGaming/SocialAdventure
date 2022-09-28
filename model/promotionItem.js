@@ -31,9 +31,9 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
         this.gold = 0;
         this.diamond = 0;
         this.experience = 0;
-        this.item = 0;
         this.validFrom = new Date(2020, 1, 1);
         this.validTo = new Date(2099, 12, 31);
+        this.isMaster = false;
     }
     static createTable({ sequelize }) {
         sequelize.define('promotion', {
@@ -59,8 +59,12 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
             },
             item: {
                 type: sequelize_1.DataTypes.INTEGER,
+                allowNull: true
+            },
+            isMaster: {
+                type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: false
             },
             validFrom: {
                 type: sequelize_1.DataTypes.DATE,
@@ -97,18 +101,15 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (element.handle != null && element.handle.length > 0) {
-                    const item = yield sequelize.models.promotion.findByPk(element.handle);
-                    if (item) {
-                        yield sequelize.models.promotion.update(element, { where: { handle: element.handle } });
-                        return 201;
-                    }
+                const item = yield sequelize.models.promotion.findByPk(element.handle);
+                if (item) {
+                    yield sequelize.models.promotion.update(element, { where: { handle: element.handle } });
+                    return 201;
                 }
                 else {
                     if (element.gold != null && element.gold > 0 ||
                         element.diamond != null && element.diamond > 0 ||
-                        element.experience != null && element.experience > 0 ||
-                        element.item != null && element.item > 0) {
+                        element.experience != null && element.experience > 0) {
                         yield sequelize.models.promotion.create(element);
                         return 201;
                     }
@@ -138,15 +139,18 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
                             yield heroWallet.increment('diamond', { by: promotion.diamond });
                         }
                         if (promotion.experience > 0) {
-                            yield hero.increment('experience', { by: promotion.experience });
                             hero.setDataValue("experience", hero.getDataValue("experience") + promotion.experience);
-                            heroItem_1.HeroItem.calculateHero({ sequelize, element: hero.get() });
                         }
                         if (promotion.item > 0) {
                             if (item) {
                                 heroInventoryItem_1.HeroInventoryItem.transferItemToInventory({ sequelize, item, heroName });
                             }
                         }
+                        if (promotion.handle === 'NewStart') {
+                            hero.setDataValue("isFounder", true);
+                        }
+                        hero.save();
+                        heroItem_1.HeroItem.calculateHero({ sequelize, element: hero.get() });
                         const element = new heroPromotionItem_1.HeroPromotionItem();
                         element.heroName = heroName;
                         element.promotionHandle = promotion.handle;
@@ -194,6 +198,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)
 ], PromotionItem.prototype, "validTo", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], PromotionItem.prototype, "isMaster", void 0);
 PromotionItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "promotion", modelName: "promotion" }),
     __metadata("design:paramtypes", [])

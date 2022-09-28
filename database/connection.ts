@@ -1,18 +1,11 @@
 import { Sequelize } from 'sequelize-typescript'
-import { VersionItem } from '../model/versionItem';
-import { NodeItem } from '../model/nodeItem';
-import { MigrationItem } from '../model/migrationItem';
-import { MenuItem } from '../model/menuItem';
-import { TranslationItem } from '../model/translationItem';
-import { TwitchItem } from '../model/twitchItem';
-import { TwitchUserItem } from '../model/twitchUserItem';
-import { LevelItem } from '../model/levelItem';
 
 import * as fs from 'fs';
 import * as path from 'path';
 
 import jsonMigration = require('../model/migrationItem.json');
 import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
+
 import { SayItem } from '../model/sayItem';
 import { HeroItem } from '../model/heroItem';
 import { HeroTraitItem } from '../model/heroTraitItem';
@@ -30,7 +23,16 @@ import { TrainerItem } from '../model/trainerItem';
 import { DailyItem } from '../model/dailyItem';
 import { PromotionItem } from '../model/promotionItem';
 import { HeroPromotionItem } from '../model/heroPromotionItem';
-
+import { HelpItem } from '../model/helpItem';
+import { VersionItem } from '../model/versionItem';
+import { NodeItem } from '../model/nodeItem';
+import { MigrationItem } from '../model/migrationItem';
+import { MenuItem } from '../model/menuItem';
+import { TranslationItem } from '../model/translationItem';
+import { TwitchItem } from '../model/twitchItem';
+import { TwitchUserItem } from '../model/twitchUserItem';
+import { LevelItem } from '../model/levelItem';
+import { PlaceholderItem } from '../model/placeholderItem';
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -57,6 +59,8 @@ export class Connection {
             TwitchUserItem.createTable({ sequelize: this.sequelize });
             ItemCategoryItem.createTable({ sequelize: this.sequelize });
             ItemItem.createTable({ sequelize: this.sequelize });
+            HelpItem.createTable({ sequelize: this.sequelize });
+            PlaceholderItem.createTable({ sequelize: this.sequelize });
 
             MenuItem.setAssociation({ sequelize: this.sequelize });
             NodeItem.setAssociation({ sequelize: this.sequelize });
@@ -71,6 +75,7 @@ export class Connection {
             await TranslationItem.updateTable({ sequelize: this.sequelize });
             await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
             await ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
+            await PlaceholderItem.updateTable({ sequelize: this.sequelize });
 
             ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });

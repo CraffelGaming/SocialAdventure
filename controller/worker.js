@@ -60,6 +60,7 @@ class Worker {
             else {
                 this.log.trace('Node already added ' + node.name);
             }
+            return channel;
         });
     }
     //#region Twitch API

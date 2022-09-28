@@ -19,11 +19,13 @@ export class PromotionItem extends Model<PromotionItem>{
     @Column
     experience: number = 0;
     @Column
-    item: number = 0;
+    item: number;
     @Column
     validFrom: Date = new Date(2020, 1, 1);
     @Column
     validTo: Date = new Date(2099, 12, 31);
+    @Column
+    isMaster: boolean = false;
 
     constructor(){
         super();
@@ -53,8 +55,12 @@ export class PromotionItem extends Model<PromotionItem>{
             },
             item: {
                 type: DataTypes.INTEGER,
+                allowNull: true
+            },
+            isMaster: {
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: false
             },
             validFrom: {
                 type: DataTypes.DATE,
@@ -89,12 +95,10 @@ export class PromotionItem extends Model<PromotionItem>{
 
     static async put({ sequelize, element }: { sequelize: Sequelize, element: PromotionItem }): Promise<number>{
         try{
-            if(element.handle != null && element.handle.length > 0){
-                const item = await sequelize.models.promotion.findByPk(element.handle);
-                if(item){
-                    await sequelize.models.promotion.update(element, {where: {handle: element.handle}});
-                    return 201;
-                }
+            const item = await sequelize.models.promotion.findByPk(element.handle);
+            if(item){
+                await sequelize.models.promotion.update(element, {where: {handle: element.handle}});
+                return 201;
             } else {
                 if(element.gold != null && element.gold > 0 ||
                    element.diamond != null && element.diamond > 0 ||
@@ -127,9 +131,7 @@ export class PromotionItem extends Model<PromotionItem>{
                     }
 
                     if(promotion.experience > 0){
-                        await hero.increment('experience', { by: promotion.experience});
                         hero.setDataValue("experience", hero.getDataValue("experience") + promotion.experience);
-                        HeroItem.calculateHero({sequelize, element: hero.get()});
                     }
 
                     if(promotion.item > 0){
@@ -137,6 +139,12 @@ export class PromotionItem extends Model<PromotionItem>{
                             HeroInventoryItem.transferItemToInventory({sequelize, item, heroName });
                         }
                     }
+
+                    if(promotion.handle === 'NewStart'){
+                        hero.setDataValue("isFounder", true);
+                    }
+                    hero.save();
+                    HeroItem.calculateHero({sequelize, element: hero.get()});
 
                     const element = new HeroPromotionItem();
                     element.heroName = heroName;

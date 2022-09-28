@@ -9,7 +9,8 @@ $(async () => {
     let languageHero = await getTranslation('hero');
     let userdata = await get(`/twitch/userdata`);
     let item = await get('/item/default');
-    
+    let master = await isMaster();
+
     translation();
     await initialize();
     load();
@@ -25,7 +26,7 @@ $(async () => {
             items: [{
                     dataField: "recipient",
                     isRequired: true,
-                    disabled: !await isMaster(),
+                    disabled: !master,
                     label: {
                         text: translate(language, 'recipient')
                     },
@@ -57,20 +58,19 @@ $(async () => {
                         }).then(async function (res) {
                             switch(res.status){
                                 case 200:
-                                    var reward = await res.json();
+                                    var data = await res.json();
                                     var item;
 
-                                    if(reward?.item > 0){
-                                        item = await get(`/item/default/${reward?.item}`, language);
+                                    if(data?.item > 0){
+                                        item = await get(`/item/default/${data?.item}`, language);
                                     }
 
-                                    reward(reward, item);
+                                    reward(data, item);
                                     notify(translate(language, res.status + '_redeem'), "success");
                                     break;
                                 default:
                                     notify(translate(language, res.status + '_redeem'), "error");
                                     break;
-                                break;
                             }
                         });
                     }
@@ -82,135 +82,148 @@ $(async () => {
 
     //#region Load
     async function load() {
-        $("#dataGrid").dxDataGrid({
-            dataSource: new DevExpress.data.CustomStore({
-                key: "handle",
-                loadMode: "raw",
-                load: async function (loadOptions) {
-                    return await get('/promotion/default', language);
-                },
-                insert: async function (values) {
-                    await fetch('./api/promotion/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(values)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                            break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
-                },
-                update: async function (key, values) {
-                    var item = values;
-                    item.handle = key;
-
-                    await fetch('./api/promotion/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(item)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
-                },
-                remove: async function (key) {
-                    await fetch('./api/promotion/default/' + key, {
-                        method: 'delete',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 204:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
-                }
-            }),
-            filterRow: { visible: true },
-            filterPanel: { visible: true },
-            searchPanel: { visible: true },
-            allowColumnReordering: true,
-            allowColumnResizing: true,
-            groupPanel: { visible: true },
-            selection: { mode: "single" },
-            paging: {
-                pageSize: 10
-            },
-            pager: {
-                visible: true,
-                allowedPageSizes: [10, 25, 50, 100, 'all'],
-                showPageSizeSelector: true,
-                showInfo: true,
-                showNavigationButtons: true,
-            },
-            columnChooser: {
-                enabled: true,
-                allowSearch: true,
-            },
-            showRowLines: true,
-            showBorders: true,
-            columns: [
-                { dataField: "handle", caption: translate(language, 'title'), validationRules: [{ type: "required" }]},
-                { dataField: "gold", caption: translate(languageWallet, 'gold'), validationRules: [{ type: "required" }], width: 150},
-                { dataField: "diamond", caption: translate(languageWallet, 'diamond'), validationRules: [{ type: "required" }], width: 150},
-                { dataField: "experience", caption: translate(languageHero, 'experience'), validationRules: [{ type: "required" }], width: 150},
-                {
-                    dataField: 'item',
-                    caption: translate(languageItem , 'value'), width: 150, 
-                    editorOptions: {  
-                        showClearButton: true  
+        if(master){
+            $("#dataGrid").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: "handle",
+                    loadMode: "raw",
+                    load: async function (loadOptions) {
+                        return await get('/promotion/default', language);
                     },
-                    lookup: {
-                      dataSource(options) {
-                        return {
-                          store: {  
-                              type: 'array',  
-                              data: item,
-                              key: "handle"
+                    insert: async function (values) {
+                        await fetch('./api/promotion/default', {
+                            method: 'put',
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            body: JSON.stringify(values)
+                        }).then(async function (res) {
+                            switch(res.status){
+                                case 201:
+                                    notify(translate(language, res.status), "success");
+                                break;
+                                default:
+                                    notify(translate(language, res.status), "error");
+                                break;
                             }
-                        };
-                      },
-                      valueExpr: 'handle',
-                      displayExpr: function(item) {
-                          return item && item.value;
-                      }
+                        });
                     },
-                  }
-            ],
-            editing: await getEditing(),
-            export: {
-                enabled: true,
-                formats: ['xlsx', 'pdf']
-            },
-            onExporting(e) {
-                tableExport(e, translate(language, 'title'))
-            }
-        });
+                    update: async function (key, values) {
+                        var item = values;
+                        item.handle = key;
+    
+                        await fetch('./api/promotion/default', {
+                            method: 'put',
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            body: JSON.stringify(item)
+                        }).then(async function (res) {
+                            switch(res.status){
+                                case 201:
+                                    notify(translate(language, res.status), "success");
+                                    break;
+                                default:
+                                    notify(translate(language, res.status), "error");
+                                break;
+                            }
+                        });
+                    },
+                    remove: async function (key) {
+                        await fetch('./api/promotion/default/' + key, {
+                            method: 'delete',
+                            headers: {
+                                'Content-type': 'application/json'
+                            }
+                        }).then(async function (res) {
+                            switch(res.status){
+                                case 204:
+                                    notify(translate(language, res.status), "success");
+                                    break;
+                                default:
+                                    notify(translate(language, res.status), "error");
+                                break;
+                            }
+                        });
+                    }
+                }),
+                filterRow: { visible: true },
+                filterPanel: { visible: true },
+                searchPanel: { visible: true },
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                groupPanel: { visible: true },
+                selection: { mode: "single" },
+                paging: {
+                    pageSize: 10
+                },
+                pager: {
+                    visible: true,
+                    allowedPageSizes: [10, 25, 50, 100, 'all'],
+                    showPageSizeSelector: true,
+                    showInfo: true,
+                    showNavigationButtons: true,
+                },
+                columnChooser: {
+                    enabled: true,
+                    allowSearch: true,
+                },
+                showRowLines: true,
+                showBorders: true,
+                columns: [
+                    { dataField: "handle", caption: translate(language, 'title'), validationRules: [{ type: "required" }]},
+                    { dataField: "gold", caption: translate(languageWallet, 'gold'), validationRules: [{ type: "required" }], width: 150},
+                    { dataField: "diamond", caption: translate(languageWallet, 'diamond'), validationRules: [{ type: "required" }], width: 150},
+                    { dataField: "experience", caption: translate(languageHero, 'experience'), validationRules: [{ type: "required" }], width: 150},
+                    { dataField: "validFrom", caption: translate(language, 'validFrom'), dataType: 'date', editorType: "dxDateBox", validationRules: [{ type: "required" }], width: 150},
+                    { dataField: "validTo", caption: translate(language, 'validTo'), dataType: 'date', editorType: "dxDateBox", validationRules: [{ type: "required" }], width: 150},
+                    { dataField: "isMaster", caption: translate(language, 'isMaster'), editorType: "dxCheckBox", width: 150},
+                    {
+                        dataField: 'item',
+                        caption: translate(languageItem , 'item'), width: 150, 
+                        editorOptions: {  
+                            showClearButton: true  
+                        },
+                        lookup: {
+                            dataSource(options) {
+                                return {
+                                store: {  
+                                    type: 'array',  
+                                    data: item,
+                                    key: "handle"
+                                    }
+                                };
+                            },
+                            valueExpr: 'handle',
+                            displayExpr: function(item) {
+                                return item && item.value;
+                            }
+                        },
+                    }
+                ],
+                editing: await getEditing(),
+                onInitNewRow(e) {
+                    e.data.isMaster = false;
+                    e.data.gold = 0;
+                    e.data.diamond = 0;
+                    e.data.experience = 0;
+                    e.data.validFrom = new Date();
+                    e.data.validTo = new Date();
+                },
+                export: {
+                    enabled: true,
+                    formats: ['xlsx', 'pdf']
+                },
+                onExporting(e) {
+                    tableExport(e, translate(language, 'title'))
+                }
+            });
+        }
     }
     //#endregion
 
     //#region Reward
-    function reward(reward, item) {
+    function reward(data, item) {
         $('#popup').dxPopup({
             visible: false,
             hideOnOutsideClick: true,
@@ -223,16 +236,16 @@ $(async () => {
             contentTemplate: () => {
                 let content =  $("<div/>");
 
-                if(reward?.gold > 0){
-                    content.append($(`<div>${translate(languageWallet, "gold")}: ${reward?.gold}</div>`));
+                if(data?.gold > 0){
+                    content.append($(`<div>${translate(languageWallet, "gold")}: ${data?.gold}</div>`));
                 }
 
-                if(reward?.diamond > 0){
-                    content.append($(`<div>${translate(languageWallet, "diamond")}: ${reward?.diamond}</div>`));
+                if(data?.diamond > 0){
+                    content.append($(`<div>${translate(languageWallet, "diamond")}: ${data?.diamond}</div>`));
                 }
 
-                if(reward?.experience > 0){
-                    content.append($(`<div>${translate(languageHero, "experience")}: ${reward?.experience}</div>`));
+                if(data?.experience > 0){
+                    content.append($(`<div>${translate(languageHero, "experience")}: ${data?.experience}</div>`));
                 }
 
                 if(item){

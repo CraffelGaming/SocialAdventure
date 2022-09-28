@@ -101,7 +101,7 @@ export class Loot extends Module {
             let value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
 
             if(!value){
-                await HeroItem.put({sequelize: this.channel.database.sequelize, element: new HeroItem(command.source)})
+                await HeroItem.put({sequelize: this.channel.database.sequelize, element: new HeroItem(command.source), onlyCreate: true});
                 value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
                 isNew = true;
             }

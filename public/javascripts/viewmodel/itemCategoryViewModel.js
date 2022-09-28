@@ -28,7 +28,6 @@ $(async () => {
                     return await get(`/itemCategory/default`, language);
                 },
                 insert: async function (values) {
-                    console.log(values);
                     await fetch('./api/itemCategory/default', {
                         method: 'put',
                         headers: {

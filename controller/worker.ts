@@ -48,8 +48,7 @@ export class Worker {
         }
     }
 
-    async startNode(node: NodeItem){
-
+    async startNode(node: NodeItem) : Promise<Channel>{
         let channel = global.worker.channels.find(x => x.node.name === node.name);
 
         if(channel == null){
@@ -66,6 +65,8 @@ export class Worker {
         } else {
             this.log.trace('Node already added ' + node.name);
         }
+
+        return channel;
     }
 
     //#region Twitch API

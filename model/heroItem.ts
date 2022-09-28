@@ -138,7 +138,7 @@ export class HeroItem {
         return true;
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<number>{
+    static async put({ sequelize, element, onlyCreate }: { sequelize: Sequelize, element: HeroItem, onlyCreate: boolean }): Promise<number>{
         let result = 201;
         try{
             if(element.name !== null && element.name !== ""){
@@ -146,7 +146,7 @@ export class HeroItem {
                     await sequelize.models.hero.create(element as any);
                     await HeroTraitItem.put({sequelize, element: new HeroTraitItem(element.name)});
                     await HeroWalletItem.put({sequelize, element: new HeroWalletItem(element.name)});
-                } else {
+                } else if(!onlyCreate) {
                     await sequelize.models.hero.update(element, {where: {name: element.name}})
                 }
                 HeroItem.calculateHero({sequelize, element});

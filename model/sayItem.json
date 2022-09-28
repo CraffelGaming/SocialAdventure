@@ -24,5 +24,41 @@
         "text": "Schau doch mal bei $raider vorbei. Dort gab es zuletzt $raiderGame. $raiderUrl",
         "isActive": true,
         "isShoutout": true
+    },
+    {
+        "command": "dice",
+        "minutes": 0,
+        "delay": 0,
+        "help": "",
+        "text": "$source hat eine $dice gewürfelt.",
+        "isActive": true,
+        "isShoutout": false
+    },
+    {
+        "command": "lurk",
+        "minutes": 0,
+        "delay": 0,
+        "help": "",
+        "text": "$source, vielen Dank für deine Unterstützung.",
+        "isActive": true,
+        "isShoutout": false
+    },
+    {
+        "command": "unlurk",
+        "minutes": 0,
+        "delay": 0,
+        "help": "",
+        "text": "Willkommen zurück $source",
+        "isActive": true,
+        "isShoutout": false
+    },
+    {
+        "command": "verwarnung",
+        "minutes": 0,
+        "delay": 0,
+        "help": "",
+        "text": "$source ermahnt $target! Ab in die Stille Ecke!",
+        "isActive": true,
+        "isShoutout": false
     }
 ]

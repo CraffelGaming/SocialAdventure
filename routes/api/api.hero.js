@@ -104,7 +104,7 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
         if (global.isMaster(request, response, node)) {
-            response.status(yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
+            response.status(yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: request.body, onlyCreate: false })).json(request.body);
         }
         else {
             response.status(403).json();

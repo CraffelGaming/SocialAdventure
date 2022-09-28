@@ -1,5 +1,6 @@
 import * as express from 'express';
 import uniqid = require('uniqid');
+import { HeroItem } from '../../model/heroItem';
 import { NodeItem } from '../../model/nodeItem';
 import twitchData from '../../twitch.json';
 
@@ -47,7 +48,8 @@ router.post('/' + endpoint + '/', async (request: express.Request, response: exp
         }))[0] as any as NodeItem;
 
         await global.worker.globalDatabase.sequelize.models.node.update(node, {where: { name: request.session.userData.login }});
-        await global.worker.startNode(node);
+        const channel = await global.worker.startNode(node);
+        await HeroItem.put({sequelize: channel.database.sequelize, element: new HeroItem(channel.node.name), onlyCreate: true});
         response.status(200).json();
     } else response.status(404).json();
 });

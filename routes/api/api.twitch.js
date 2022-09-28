@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const uniqid = require("uniqid");
+const heroItem_1 = require("../../model/heroItem");
 const twitch_json_1 = __importDefault(require("../../twitch.json"));
 const router = express.Router();
 const endpoint = 'twitch';
@@ -75,7 +76,8 @@ router.post('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 
             where: { name: request.session.userData.login }
         }))[0];
         yield global.worker.globalDatabase.sequelize.models.node.update(node, { where: { name: request.session.userData.login } });
-        yield global.worker.startNode(node);
+        const channel = yield global.worker.startNode(node);
+        yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: new heroItem_1.HeroItem(channel.node.name), onlyCreate: true });
         response.status(200).json();
     }
     else

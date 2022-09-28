@@ -11,6 +11,7 @@ export class Module {
     channel: Channel;
     lastRun: Date;
     name: string;
+
     //#region Construct
     constructor(translation : TranslationItem[], channel: Channel, name: string){
         this.translation = translation;
@@ -39,8 +40,26 @@ export class Module {
     //#endregion
 
     //#region Placeholder
-    replacePlaceholder(text: string) : string{
+    replacePlaceholder(command: Command, text: string) : string{
         text = text.replace('$streamer', this.channel.node.name);
+
+        if(command != null){
+            text = text.replace('$source', command.source);
+            text = text.replace('$target', command.target.length > 0 ? command.target : command.source);
+            text = text.replace('$command', command.name);
+
+
+            if(text.includes('$dice')){
+                if(command.parameters.length === 2){
+                    const min = Number(command.parameters[0]);
+                    const max = Number(command.parameters[1]);
+                    if(!isNaN(min) && !isNaN(max))
+                        text = text.replace('$dice', this.getRandomNumber(min, max).toString());
+                    else text = text.replace('$dice', this.getRandomNumber(1, 6).toString());
+                } else text = text.replace('$dice', this.getRandomNumber(1, 6).toString());
+            }
+        }
+
         return text;
     }
     //#endregion

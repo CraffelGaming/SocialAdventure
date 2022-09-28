@@ -33,6 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const heroItem_1 = require("../../model/heroItem");
 const router = express.Router();
 const endpoint = 'node';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -57,11 +58,14 @@ router.get('/' + endpoint + '/default', (request, response) => __awaiter(void 0,
     response.status(200).json(request.session.node);
 }));
 router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     global.worker.log.trace(`post ${endpoint}, default`);
     const channel = global.worker.channels.find(x => x.node.name === request.query.node);
     global.worker.log.trace(request.session);
     if (channel) {
         request.session.node = channel.node;
+        if (global.isRegistered(request, response))
+            yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: new heroItem_1.HeroItem((_a = request.session.userData) === null || _a === void 0 ? void 0 : _a.login), onlyCreate: true });
         response.status(200).json({ node: request.session.node });
     }
     else

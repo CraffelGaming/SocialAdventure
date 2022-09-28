@@ -1,4 +1,4 @@
-Version 1
+Version 1 - 2022
 1.  [X] Logo des Streamers in der Navigation
 2.  [X] Prestige level für Helden
 2.  [X] Eigene URL für jeden Streamer
@@ -21,11 +21,14 @@ Version 1
         [X] Verkaufen
 5.  [.] Shoutout im Say Modul
 6.  [X] Counter im Say Modul
+6.  [X] Dice im Say Modul
+6.  [X] Lurk im Say Modul
+6.  [X] Placeholder im Say Modul
 7.  [X] Twitch API Verbindung mit Chat
 8.  [X] Startseite
 9.  [X] SSL-Zertifikat einbinden (https://)
 10. [X] Datenübernahme vom alten Craffelmat
-11. [.] Hilfe & Feedback Kontaktformular
+11. [X] Hilfe & Feedback Kontaktformular
 12. [X] Item Kategorien zusenden
         Ente:   Retro
         Morty:  Dungeons and Dragons
@@ -33,8 +36,11 @@ Version 1
 13. [X] CopyToClipboard
 17. [ ] Release
 
-Version 2
-A.  [ ] Englische Übersetzung
+Version 2 - 2023
+A.  [ ] Englisch
 B.  [ ] API aufräumen
 C.  [ ] Datenspeicher für Say-Module
-D   [ ] UI Design überarbeiten
+        [ ] Keyschleuder
+D.  [ ] UI Design überarbeiten
+        [ ] Profi suchen
+E.  [ ] Diamanten

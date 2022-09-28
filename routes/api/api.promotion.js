@@ -109,17 +109,17 @@ router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', (reques
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        if (global.isMaster(request, response, node) || global.isHero(request, response, request.params.heroName) && request.params.promotionHandle !== "NewStart") {
-            const promotion = yield channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle);
-            if (promotion) {
+        const promotion = yield channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle);
+        if (promotion) {
+            if (global.isMaster(request, response, node) || global.isHero(request, response, request.params.heroName) && !promotion.isMaster) {
                 response.status(yield promotionItem_1.PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName })).json(promotion);
             }
-            else
-                response.status(406).json();
+            else {
+                response.status(403).json();
+            }
         }
-        else {
-            response.status(403).json();
-        }
+        else
+            response.status(406).json();
     }
     else
         response.status(404).json();

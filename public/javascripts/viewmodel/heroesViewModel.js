@@ -67,19 +67,20 @@ $(async () => {
                 {
                     dataField: 'Picture',
                     caption: "",
-                    width: 100,
+                    width: 125,
                     allowFiltering: false,
                     allowSorting: false,
                     cellTemplate(container, options) {
-                      $('<div>')
-                        .append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/prestige/' + options.row.data.prestige + '.png', width: 64, height: 64 }))
-                        .appendTo(container);
+                        var template =  $('<div>');
+                        template.append($('<img>', { src: options.data.profileImageUrl != null ?options.data.profileImageUrl : '/images/prestige/' + options.row.data.prestige + '.png', width: 64, height: 64 }))
+                        if(options.data.isFounder)
+                            template.append($('<img>', { src: '/images/hero/founder.png', width: 32, height: 32 }))
+                        template.appendTo(container);
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name') },
                 { caption: translate(languageLevel, 'handle'),
                     calculateCellValue(data) {
-                        console.log(levels);
                         return levels.find(x => x.experienceMax >= data.experience && x.experienceMin <= data.experience).handle;
                 }}, 
                 { dataField: "experience", caption: translate(language, 'experience'), width: 250, 

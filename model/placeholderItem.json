@@ -1,0 +1,11 @@
+[
+    { "handle": "$source",      "translation" : "source"},
+    { "handle": "$target",      "translation" : "target"},
+    { "handle": "$command",     "translation" : "command"},
+    { "handle": "$dice",        "translation" : "dice"},
+    { "handle": "$streamer",    "translation" : "streamer"},
+    { "handle": "$counter",     "translation" : "counter",      "isCounter": true},
+    { "handle": "$raider",      "translation" : "raider",       "isShoutout": true},
+    { "handle": "$raiderGame",  "translation" : "raiderGame",   "isShoutout": true},
+    { "handle": "$raiderUrl",   "translation" : "raiderUrl",    "isShoutout": true}
+]

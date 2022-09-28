@@ -141,7 +141,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
             return true;
         });
     }
-    static put({ sequelize, element }) {
+    static put({ sequelize, element, onlyCreate }) {
         return __awaiter(this, void 0, void 0, function* () {
             let result = 201;
             try {
@@ -151,7 +151,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
                         yield heroTraitItem_1.HeroTraitItem.put({ sequelize, element: new heroTraitItem_1.HeroTraitItem(element.name) });
                         yield heroWalletItem_1.HeroWalletItem.put({ sequelize, element: new heroWalletItem_1.HeroWalletItem(element.name) });
                     }
-                    else {
+                    else if (!onlyCreate) {
                         yield sequelize.models.hero.update(element, { where: { name: element.name } });
                     }
                     HeroItem_1.calculateHero({ sequelize, element });

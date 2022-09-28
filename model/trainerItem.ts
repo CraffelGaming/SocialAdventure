@@ -103,6 +103,9 @@ export class TrainerItem extends Model<TrainerItem>{
                         await hero.increment('hitpoints', { by: 10});
                     }
 
+                    if(trainer.getDataValue("handle") === "strength"){
+                        await hero.increment('strength', { by: 1});
+                    }
                     return 200;
                 } else return 402;
             } else return 404;

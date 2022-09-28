@@ -46,7 +46,6 @@ $(async () => {
                 update: async function (key, values) {
                     var item = values;
                     item.handle = key;
-                    console.log(item);
                     await fetch('./api/daily/default', {
                         method: 'put',
                         headers: {

@@ -185,7 +185,6 @@ export async function get(endpoint, language = undefined) {
 
 //#region Clipboard
 export function copyToClipboard(text) {
-    console.log(text);
     navigator.clipboard.writeText(text);
 }
 //#endregion

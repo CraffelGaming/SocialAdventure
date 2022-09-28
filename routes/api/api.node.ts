@@ -1,4 +1,5 @@
 import * as express from 'express';
+import { HeroItem } from '../../model/heroItem';
 import { NodeItem } from '../../model/nodeItem';
 
 const router = express.Router();
@@ -33,6 +34,10 @@ router.post('/' + endpoint + '/default', async (request: express.Request, respon
     global.worker.log.trace(request.session);
     if(channel) {
         request.session.node = channel.node;
+
+        if(global.isRegistered(request,response ))
+            await HeroItem.put({sequelize: channel.database.sequelize, element: new HeroItem(request.session.userData?.login), onlyCreate: true});
+
         response.status(200).json({ node: request.session.node});
     } else response.status(404).json();
 });

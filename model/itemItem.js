@@ -72,18 +72,18 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
                 const items = JSON.parse(JSON.stringify(json));
                 for (const item of items) {
                     if ((yield sequelize.models.item.count({ where: { handle } })) === 0) {
-                        if (isGlobal === true && item.categoryHandle !== 1) {
+                        if (isGlobal === true && item.categoryHandle > 1) {
                             yield sequelize.models.item.create(item);
                         }
-                        else if (isGlobal === false && item.categoryHandle === 1) {
+                        else if (isGlobal === false && item.categoryHandle <= 1) {
                             yield sequelize.models.item.create(item);
                         }
                     }
                     else {
-                        if (isGlobal === true && item.categoryHandle !== 1) {
+                        if (isGlobal === true && item.categoryHandle > 1) {
                             yield sequelize.models.item.update(item, { where: { handle } });
                         }
-                        else if (isGlobal === false && item.categoryHandle === 1) {
+                        else if (isGlobal === false && item.categoryHandle <= 1) {
                             yield sequelize.models.item.update(item, { where: { handle } });
                         }
                     }
