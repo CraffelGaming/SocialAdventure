@@ -58,7 +58,6 @@ export class LootExploring {
                 }
             }
         }
-
         return false;
     }
     //#endregion

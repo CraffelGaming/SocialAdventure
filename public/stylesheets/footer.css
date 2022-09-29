@@ -10,6 +10,7 @@ body {
     flex-shrink: unset;
     grid-area: footer_section;
     background: #35383c !important;
+    box-shadow: 0px 3px 15px rgb(0 0 0 / 30%);
 }
 
 footer {

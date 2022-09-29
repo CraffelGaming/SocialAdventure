@@ -5,8 +5,8 @@ Version 1 - 2022
 3.  [X] Itemkategorien einbinden
 4.  [.] Loot neue Logik implementieren.
         [X] Taverne
-        [ ] Give
-        [ ] Steal
+        [X] Give
+        [X] Steal
         [X] Find
         [X] Start / Stop
         [X] Rank
@@ -16,7 +16,7 @@ Version 1 - 2022
         [X] Blood
         [X] Automation
         [.] Tägliche Aufgabe
-        [ ] Statistiken
+        [.] Statistiken
         [X] Loottime
         [X] Experience
         [X] Verkaufen
@@ -50,3 +50,4 @@ G.  [ ] Flüsternachrichten anstelle Chatnachrichten
 H.  [ ] Einzelne Elemente vom CHat auf der Seite aktuallisieren
 I.  [ ] Item-Datei hochladen
 J.  [ ] Validierung (Min / Max / etc.) in Datenbank speichern
+K.  [ ] Kampf / Steal LOG

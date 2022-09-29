@@ -9,7 +9,9 @@ import { HeroWalletItem } from "../model/heroWalletItem";
 import { LootItem } from "../model/lootItem";
 import { TranslationItem } from "../model/translationItem";
 import { LootExploring } from "./lootExploring";
+import { LootGive } from "./lootGive";
 import { LootSearch } from "./lootSearch";
+import { LootSteal } from "./lootSteal";
 import { Module } from "./module";
 
 export class Loot extends Module {
@@ -76,7 +78,8 @@ export class Loot extends Module {
                                                    .replace('$3', exploring.enemy.getDataValue("name"))
                                                    .replace('$4', exploring.gold.toString())
                                                    .replace('$5', exploring.experience.toString())
-                                                   .replace('$6', exploring.item.getDataValue("value")));
+                                                   .replace('$6', exploring.item.getDataValue("value"))
+                                                   .replace('$7', exploring.item.getDataValue("handle").toString()));
                             }
                             await exploring.save();
                         } else {
@@ -151,13 +154,95 @@ export class Loot extends Module {
     }
     //#endregion
 
-    //#region Commands
-    steal(command: Command){
-        return 'steal';
-    }
+    //#region Steal
+    async steal(command: Command){
+        let steal : LootSteal;
+        const setting = this.settings.find(x =>x.command === "steal");
 
-    give(command: Command){
-        return 'give';
+        if(command.parameters.length >= 1){
+            const itemHandle = Number(command.parameters[0]);
+            if(!isNaN(itemHandle)){
+                steal = new LootSteal(this, command.source, null, itemHandle);
+            } else return TranslationItem.translate(this.translation, 'stealParameterNumber').replace('$1', command.source);
+        } else if (command.target.length > 0) {
+            steal = new LootSteal(this, command.source, command.target, null);
+        }else {
+            steal = new LootSteal(this, command.source);
+        }
+
+        if(await steal.execute(setting)){
+            return TranslationItem.translate(this.translation, 'stealItem')
+                                  .replace('$1', command.source)
+                                  .replace('$2', command.target)
+                                  .replace('$3', steal.item.getDataValue("value"))
+                                  .replace('$4', steal.item.getDataValue("handle").toString())
+
+        } else if(!steal.isSteal) {
+            return TranslationItem.translate(this.translation, 'stealItemFailed')
+                                  .replace('$1', command.source)
+                                  .replace('$2', steal.targetHero.getDataValue("name"))
+        } else if(!steal.isItem) {
+            return TranslationItem.translate(this.translation, 'stealItemNoItem')
+                                  .replace('$1', command.source)
+                                  .replace('$2', command.parameters[0])
+        } else if(!steal.isSource) {
+            return TranslationItem.translate(this.translation, 'stealItemNoSource')
+                                  .replace('$1', command.source)
+        } else if(!steal.isTimeout) {
+            return TranslationItem.translate(this.translation, 'stealItemTimeout')
+                                  .replace('$1', command.source)
+                                  .replace('$2', this.getDateTimeoutRemainingMinutes(steal.sourceHero.getDataValue("lastSteal"), setting.minutes).toString())
+        } else if(!steal.isTarget) {
+            return TranslationItem.translate(this.translation, 'stealItemNoTarget')
+                                  .replace('$1', command.source)
+                                  .replace('$2', command.target)
+        } else if(!steal.isAdventure) {
+            return TranslationItem.translate(this.translation, 'stealItemNoAdventure')
+                                  .replace('$1', command.source)
+                                  .replace('$2', steal.item.getDataValue("value"))
+                                  .replace('$3', steal.item.getDataValue("handle").toString())
+        }
+    }
+    //#endregion
+
+    //#region Give
+    async give(command: Command){
+        if(command.parameters.length >= 1){
+            const itemHandle = Number(command.parameters[0]);
+            if(!isNaN(itemHandle)){
+                if(command.target.length > 0){
+                    const give = new LootGive(this, command.source, command.target, itemHandle);
+                    const setting = this.settings.find(x =>x.command === "give");
+                    if(await give.execute(setting)){
+                        return TranslationItem.translate(this.translation, 'giveItem')
+                                              .replace('$1', command.source)
+                                              .replace('$2', command.target)
+                                              .replace('$3', give.item.getDataValue("value"))
+                                              .replace('$4', give.item.getDataValue("handle").toString())
+                    } else if(!give.isItem) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoItem')
+                                              .replace('$1', command.source)
+                                              .replace('$2', command.parameters[0])
+                    } else if(!give.isSource) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoSource')
+                                              .replace('$1', command.source)
+                    } else if(!give.isTimeout) {
+                        return TranslationItem.translate(this.translation, 'giveItemTimeout')
+                                              .replace('$1', command.source)
+                                              .replace('$2', this.getDateTimeoutRemainingMinutes(give.sourceHero.getDataValue("lastGive"), setting.minutes).toString())
+                    } else if(!give.isTarget) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoTarget')
+                                              .replace('$1', command.source)
+                                              .replace('$2', command.target)
+                    } else if(!give.isAdventure) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoAdventure')
+                                              .replace('$1', command.source)
+                                              .replace('$2', give.item.getDataValue("value"))
+                                              .replace('$3', give.item.getDataValue("handle").toString())
+                    }
+                } else return TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
+            } else return TranslationItem.translate(this.translation, 'giveParameterNumber').replace('$1', command.source);
+        } else return TranslationItem.translate(this.translation, 'giveParameterNeeded').replace('$1', command.source);
     }
     //#endregion
 
@@ -167,7 +252,7 @@ export class Loot extends Module {
             const itemHandle = Number(command.parameters[0]);
             if(!isNaN(itemHandle)){
                 const search = new LootSearch(this, itemHandle);
-                if(await search.find()){
+                if(await search.execute()){
                     return TranslationItem.translate(this.translation, 'searchIsFound')
                                           .replace('$1', command.source)
                                           .replace('$2', search.item.getDataValue("value"))
@@ -368,7 +453,7 @@ export class Loot extends Module {
         }] });
 
         if (items && items.length > 0){
-            return TranslationItem.translate(this.translation, 'heroItem').replace('$1', hero).replace('$2', items.map(a => a.getDataValue("item").getDataValue("value")).toString());
+            return TranslationItem.translate(this.translation, 'heroItem').replace('$1', hero).replace('$2', items.map(a => a.getDataValue("item").getDataValue("value") + ' [' + a.getDataValue("item").getDataValue("handle") + ']').toString());
         } else return TranslationItem.translate(this.translation, 'heroNoItem').replace('$1', hero);
     }
     //#endregion

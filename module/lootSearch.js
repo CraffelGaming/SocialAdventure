@@ -20,21 +20,25 @@ class LootSearch {
         this.loot = loot;
     }
     //#endregion
-    //#region Find
-    find() {
+    //#region Execute
+    execute() {
         return __awaiter(this, void 0, void 0, function* () {
             this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.itemHandle));
             if (this.item) {
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module search, item ${this.item.getDataValue("value")}`);
                 this.adventure = (yield this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.itemHandle } }));
                 this.dungeons = (yield this.loot.channel.database.sequelize.models.location.findAll({ where: { isActive: true, categoryHandle: this.item.getDataValue("categoryHandle") } }));
                 if (this.adventure) {
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module search, adventure`);
                     this.hero = (yield this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: this.adventure.getDataValue("heroName") } }));
                     if (this.hero) {
+                        global.worker.log.info(`node ${this.loot.channel.node.name}, module search, hero ${this.hero.getDataValue("name")}`);
                         this.isFound = true;
                         return true;
                     }
                 }
                 else if (this.dungeons && this.dungeons.length > 0) {
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module search, dungeons`);
                     this.isFoundable = true;
                 }
             }

@@ -15,7 +15,9 @@ const heroInventoryItem_1 = require("../model/heroInventoryItem");
 const heroItem_1 = require("../model/heroItem");
 const translationItem_1 = require("../model/translationItem");
 const lootExploring_1 = require("./lootExploring");
+const lootGive_1 = require("./lootGive");
 const lootSearch_1 = require("./lootSearch");
+const lootSteal_1 = require("./lootSteal");
 const module_1 = require("./module");
 class Loot extends module_1.Module {
     //#region Construct
@@ -80,7 +82,8 @@ class Loot extends module_1.Module {
                                 .replace('$3', exploring.enemy.getDataValue("name"))
                                 .replace('$4', exploring.gold.toString())
                                 .replace('$5', exploring.experience.toString())
-                                .replace('$6', exploring.item.getDataValue("value")));
+                                .replace('$6', exploring.item.getDataValue("value"))
+                                .replace('$7', exploring.item.getDataValue("handle").toString()));
                         }
                         yield exploring.save();
                     }
@@ -163,12 +166,116 @@ class Loot extends module_1.Module {
         });
     }
     //#endregion
-    //#region Commands
+    //#region Steal
     steal(command) {
-        return 'steal';
+        return __awaiter(this, void 0, void 0, function* () {
+            let steal;
+            const setting = this.settings.find(x => x.command === "steal");
+            if (command.parameters.length >= 1) {
+                const itemHandle = Number(command.parameters[0]);
+                if (!isNaN(itemHandle)) {
+                    steal = new lootSteal_1.LootSteal(this, command.source, null, itemHandle);
+                }
+                else
+                    return translationItem_1.TranslationItem.translate(this.translation, 'stealParameterNumber').replace('$1', command.source);
+            }
+            else if (command.target.length > 0) {
+                steal = new lootSteal_1.LootSteal(this, command.source, command.target, null);
+            }
+            else {
+                steal = new lootSteal_1.LootSteal(this, command.source);
+            }
+            if (yield steal.execute(setting)) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItem')
+                    .replace('$1', command.source)
+                    .replace('$2', command.target)
+                    .replace('$3', steal.item.getDataValue("value"))
+                    .replace('$4', steal.item.getDataValue("handle").toString());
+            }
+            else if (!steal.isSteal) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemFailed')
+                    .replace('$1', command.source)
+                    .replace('$2', steal.targetHero.getDataValue("name"));
+            }
+            else if (!steal.isItem) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoItem')
+                    .replace('$1', command.source)
+                    .replace('$2', command.parameters[0]);
+            }
+            else if (!steal.isSource) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoSource')
+                    .replace('$1', command.source);
+            }
+            else if (!steal.isTimeout) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemTimeout')
+                    .replace('$1', command.source)
+                    .replace('$2', this.getDateTimeoutRemainingMinutes(steal.sourceHero.getDataValue("lastSteal"), setting.minutes).toString());
+            }
+            else if (!steal.isTarget) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoTarget')
+                    .replace('$1', command.source)
+                    .replace('$2', command.target);
+            }
+            else if (!steal.isAdventure) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoAdventure')
+                    .replace('$1', command.source)
+                    .replace('$2', steal.item.getDataValue("value"))
+                    .replace('$3', steal.item.getDataValue("handle").toString());
+            }
+        });
     }
+    //#endregion
+    //#region Give
     give(command) {
-        return 'give';
+        return __awaiter(this, void 0, void 0, function* () {
+            if (command.parameters.length >= 1) {
+                const itemHandle = Number(command.parameters[0]);
+                if (!isNaN(itemHandle)) {
+                    if (command.target.length > 0) {
+                        const give = new lootGive_1.LootGive(this, command.source, command.target, itemHandle);
+                        const setting = this.settings.find(x => x.command === "give");
+                        if (yield give.execute(setting)) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItem')
+                                .replace('$1', command.source)
+                                .replace('$2', command.target)
+                                .replace('$3', give.item.getDataValue("value"))
+                                .replace('$4', give.item.getDataValue("handle").toString());
+                        }
+                        else if (!give.isItem) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoItem')
+                                .replace('$1', command.source)
+                                .replace('$2', command.parameters[0]);
+                        }
+                        else if (!give.isSource) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoSource')
+                                .replace('$1', command.source);
+                        }
+                        else if (!give.isTimeout) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemTimeout')
+                                .replace('$1', command.source)
+                                .replace('$2', this.getDateTimeoutRemainingMinutes(give.sourceHero.getDataValue("lastGive"), setting.minutes).toString());
+                        }
+                        else if (!give.isTarget) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoTarget')
+                                .replace('$1', command.source)
+                                .replace('$2', command.target);
+                        }
+                        else if (!give.isAdventure) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoAdventure')
+                                .replace('$1', command.source)
+                                .replace('$2', give.item.getDataValue("value"))
+                                .replace('$3', give.item.getDataValue("handle").toString());
+                        }
+                    }
+                    else
+                        return translationItem_1.TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
+                }
+                else
+                    return translationItem_1.TranslationItem.translate(this.translation, 'giveParameterNumber').replace('$1', command.source);
+            }
+            else
+                return translationItem_1.TranslationItem.translate(this.translation, 'giveParameterNeeded').replace('$1', command.source);
+        });
     }
     //#endregion
     //#region Find
@@ -178,7 +285,7 @@ class Loot extends module_1.Module {
                 const itemHandle = Number(command.parameters[0]);
                 if (!isNaN(itemHandle)) {
                     const search = new lootSearch_1.LootSearch(this, itemHandle);
-                    if (yield search.find()) {
+                    if (yield search.execute()) {
                         return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFound')
                             .replace('$1', command.source)
                             .replace('$2', search.item.getDataValue("value"))
@@ -398,7 +505,7 @@ class Loot extends module_1.Module {
                         as: 'item',
                     }] });
             if (items && items.length > 0) {
-                return translationItem_1.TranslationItem.translate(this.translation, 'heroItem').replace('$1', hero).replace('$2', items.map(a => a.getDataValue("item").getDataValue("value")).toString());
+                return translationItem_1.TranslationItem.translate(this.translation, 'heroItem').replace('$1', hero).replace('$2', items.map(a => a.getDataValue("item").getDataValue("value") + ' [' + a.getDataValue("item").getDataValue("handle") + ']').toString());
             }
             else
                 return translationItem_1.TranslationItem.translate(this.translation, 'heroNoItem').replace('$1', hero);

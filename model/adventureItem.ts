@@ -15,6 +15,11 @@ export class AdventureItem{
     hero: HeroItem;
     item: ItemItem;
 
+    constructor(itemHandle: number, heroName: string){
+        this.itemHandle = itemHandle;
+        this.heroName = heroName;
+    }
+
     static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('adventure', {
             itemHandle: {
