@@ -149,6 +149,7 @@ export class HeroItem {
         let result = 201;
         try{
             if(element.name !== null && element.name !== ""){
+                element.name.toLowerCase();
                 if(await sequelize.models.hero.count({where: {name: element.name}}) === 0){
                     await sequelize.models.hero.create(element as any);
                     await HeroTraitItem.put({sequelize, element: new HeroTraitItem(element.name)});

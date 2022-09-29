@@ -9,7 +9,7 @@ export class  Command {
         this.name = "";
         this.message =  message;
         this.target = "";
-        this.source =  context.username;
+        this.source =  context.username.toLowerCase();
         this.parameters = [];
 
         const parts = message.match(/(?:[^\s:"]+|"[^"]*")+/g)
