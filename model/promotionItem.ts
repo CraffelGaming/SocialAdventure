@@ -96,7 +96,7 @@ export class PromotionItem extends Model<PromotionItem>{
     static async put({ sequelize, element }: { sequelize: Sequelize, element: PromotionItem }): Promise<number>{
         try{
             const item = await sequelize.models.promotion.findByPk(element.handle);
-            if(await PromotionItem.validate({ sequelize: sequelize, element: element, isUpdate: item ? true : false })){
+            if(await PromotionItem.validate({ sequelize, element, isUpdate: item ? true : false })){
                 if(item){
                     await sequelize.models.promotion.update(element, {where: {handle: element.handle}});
                     return 201;

@@ -12186,3 +12186,23 @@
 [2022-09-29T10:29:33.351] [INFO] default - node craffelmat, module loot last run Thu Sep 29 2022 10:27:33 GMT+0200 (Mitteleuropäische Sommerzeit)...
 [2022-09-29T10:29:33.370] [INFO] default - node craffelmat, module loot run after 1 Minutes.
 [2022-09-29T10:29:33.371] [INFO] default - node craffelmat, module loot not executed - missing exploring
+[2022-09-29T10:42:49.485] [TRACE] default - twitch chat client initialized
+[2022-09-29T10:42:49.584] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-09-29T10:42:49.584] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-09-29T10:42:49.601] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-09-29T10:42:49.603] [INFO] default - HTTP Server listening on port 80
+[2022-09-29T10:42:55.176] [TRACE] default - add Migration update_001
+[2022-09-29T10:42:56.156] [TRACE] default - {
+  access_token: '23vv43fre65vnda1el9t97rzcfigmc',
+  expires_in: 5035007,
+  token_type: 'bearer'
+}
+[2022-09-29T10:42:57.133] [TRACE] default - add Node craffelmat
+[2022-09-29T10:42:58.533] [INFO] default - node craffelmat, say add craffel.
+[2022-09-29T10:42:58.536] [INFO] default - node craffelmat, say add death.
+[2022-09-29T10:42:58.538] [INFO] default - node craffelmat, say add dice.
+[2022-09-29T10:42:58.540] [INFO] default - node craffelmat, say add lurk.
+[2022-09-29T10:42:58.543] [INFO] default - node craffelmat, say add so.
+[2022-09-29T10:42:58.545] [INFO] default - node craffelmat, say add unlurk.
+[2022-09-29T10:42:58.547] [INFO] default - node craffelmat, say add verwarnung.
+[2022-09-29T10:42:58.552] [TRACE] default - node connected: craffelmat

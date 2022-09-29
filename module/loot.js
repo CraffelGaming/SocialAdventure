@@ -70,7 +70,8 @@ class Loot extends module_1.Module {
                     if (yield exploring.execute()) {
                         if (!exploring.isWinner) {
                             this.channel.puffer.addMessage(translationItem_1.TranslationItem.translate(this.translation, 'heroAdventureLoose')
-                                .replace('$1', exploring.hero.getDataValue("name")));
+                                .replace('$1', exploring.hero.getDataValue("name"))
+                                .replace('$2', exploring.enemy.getDataValue("name")));
                         }
                         else {
                             this.channel.puffer.addMessage(translationItem_1.TranslationItem.translate(this.translation, 'heroAdventureVictory')

@@ -102,8 +102,8 @@ let PromotionItem = PromotionItem_1 = class PromotionItem extends sequelize_type
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (yield PromotionItem_1.validate({ sequelize, element })) {
-                    const item = yield sequelize.models.promotion.findByPk(element.handle);
+                const item = yield sequelize.models.promotion.findByPk(element.handle);
+                if (yield PromotionItem_1.validate({ sequelize, element, isUpdate: item ? true : false })) {
                     if (item) {
                         yield sequelize.models.promotion.update(element, { where: { handle: element.handle } });
                         return 201;
@@ -122,14 +122,14 @@ let PromotionItem = PromotionItem_1 = class PromotionItem extends sequelize_type
             }
         });
     }
-    static validate({ sequelize, element }) {
+    static validate({ sequelize, element, isUpdate }) {
         return __awaiter(this, void 0, void 0, function* () {
             let isValid = true;
             if (!(!element.gold || element.gold && element.gold >= 0 && element.gold <= 5000))
                 isValid = false;
             if (!(!element.diamond || element.diamond && element.diamond >= 0 && element.diamond <= 100))
                 isValid = false;
-            if (!(!element.experience || element.experience && element.experience >= 0 && element.gold <= 50000))
+            if (!(!element.experience || element.experience && element.experience >= 0 && element.experience <= 50000))
                 isValid = false;
             if (!(!element.item || element.item && (yield sequelize.models.item.findByPk(element.item))))
                 isValid = false;
