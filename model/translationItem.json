@@ -315,7 +315,7 @@
     { "page": "loot", "handle": "heroBlood", "language": "de-DE", "translation": "$1 verfällt für $2 Minuten in einen Blutrausch, Stärke: $3"},
     { "page": "loot", "handle": "heroNoBlood", "language": "de-DE", "translation": "$1 kann erst wieder in $2 Minuten einen Blutrausch starten, Stärke: $3."},
     { "page": "loot", "handle": "heroTimeoutJoined", "language": "de-DE", "translation": "$1 ist noch erschöpft und kann erst wieder in $2 Minuten dem Abenteuer beitreten."},
-    { "page": "loot", "handle": "heroAdventureLoose", "language": "de-DE", "translation": "$1 hat den Kampf verloren und wurde besiegt."},
+    { "page": "loot", "handle": "heroAdventureLoose", "language": "de-DE", "translation": "$1 hat den Kampf gegen '$2' verloren und wurde besiegt."},
     { "page": "loot", "handle": "heroAdventureVictory", "language": "de-DE", "translation": "$1 erkunde das Dungeon '$2' und besiegt den Gegner '$3'. Beute: $4 Gold, $5 Erfahrung und den Gegenstand '$6 [$7]'"},
     { "page": "loot", "handle": "heroHitpoints", "language": "de-DE", "translation": "$1 hat $2 / $3 Lebenspunkte."},
     { "page": "loot", "handle": "heroRank", "language": "de-DE", "translation": "$1 Rangliste: Platz $2 mit $3 Gold. Platz $4 mit $5 Erfahrung"},
