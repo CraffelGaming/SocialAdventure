@@ -12206,3 +12206,228 @@
 [2022-09-29T10:42:58.545] [INFO] default - node craffelmat, say add unlurk.
 [2022-09-29T10:42:58.547] [INFO] default - node craffelmat, say add verwarnung.
 [2022-09-29T10:42:58.552] [TRACE] default - node connected: craffelmat
+[2022-09-29T10:43:30.853] [TRACE] default - twitch chat client initialized
+[2022-09-29T10:43:30.936] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-09-29T10:43:30.936] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-09-29T10:43:30.951] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-09-29T10:43:30.954] [INFO] default - HTTP Server listening on port 80
+[2022-09-29T10:43:36.031] [TRACE] default - add Migration update_001
+[2022-09-29T10:43:36.982] [TRACE] default - {
+  access_token: 'sc3rffsltkue511tjtop3vx2l4s197',
+  expires_in: 5055254,
+  token_type: 'bearer'
+}
+[2022-09-29T10:43:37.944] [TRACE] default - add Node craffelmat
+[2022-09-29T10:43:39.260] [INFO] default - node craffelmat, say add craffel.
+[2022-09-29T10:43:39.262] [INFO] default - node craffelmat, say add death.
+[2022-09-29T10:43:39.264] [INFO] default - node craffelmat, say add dice.
+[2022-09-29T10:43:39.266] [INFO] default - node craffelmat, say add lurk.
+[2022-09-29T10:43:39.268] [INFO] default - node craffelmat, say add so.
+[2022-09-29T10:43:39.270] [INFO] default - node craffelmat, say add unlurk.
+[2022-09-29T10:43:39.272] [INFO] default - node craffelmat, say add verwarnung.
+[2022-09-29T10:43:39.276] [TRACE] default - node connected: craffelmat
+[2022-09-29T10:43:40.547] [TRACE] default - get translation, page navigation
+[2022-09-29T10:43:40.551] [TRACE] default - get translation, page index
+[2022-09-29T10:43:40.576] [TRACE] default - get menu
+[2022-09-29T10:43:40.580] [TRACE] default - get twitch
+[2022-09-29T10:43:40.623] [TRACE] default - get translation, page information
+[2022-09-29T10:43:40.625] [TRACE] default - get twitch
+[2022-09-29T10:43:40.632] [TRACE] default - get node, default
+[2022-09-29T10:43:40.635] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:40.640] [TRACE] default - get node, default
+[2022-09-29T10:43:43.821] [TRACE] default - get translation, page navigation
+[2022-09-29T10:43:43.823] [TRACE] default - get translation, page twitch
+[2022-09-29T10:43:43.830] [TRACE] default - get menu
+[2022-09-29T10:43:43.863] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:43.867] [TRACE] default - get twitch
+[2022-09-29T10:43:43.878] [TRACE] default - get translation, page information
+[2022-09-29T10:43:43.881] [TRACE] default - get node, default
+[2022-09-29T10:43:43.899] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:43.901] [TRACE] default - get node, default
+[2022-09-29T10:43:46.312] [TRACE] default - get translation, page navigation
+[2022-09-29T10:43:46.313] [TRACE] default - get translation, page twitch
+[2022-09-29T10:43:46.323] [TRACE] default - get menu
+[2022-09-29T10:43:46.374] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:46.379] [TRACE] default - get twitch
+[2022-09-29T10:43:46.405] [TRACE] default - get translation, page information
+[2022-09-29T10:43:46.407] [TRACE] default - get node, default
+[2022-09-29T10:43:46.456] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:46.463] [TRACE] default - get node, default
+[2022-09-29T10:43:49.767] [TRACE] default - {
+  access_token: 'w1w7qmaymh543430w9r0s95e23xq0s',
+  expires_in: 14100,
+  refresh_token: 'hv3wm966u3yhwxik36mrcxhnjlgls31ync4pog66uv4m0ll46z',
+  scope: [ 'chat:edit', 'chat:read', 'user:read:email' ],
+  token_type: 'bearer'
+}
+[2022-09-29T10:43:49.988] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-09-29T10:43:50.518] [TRACE] default - get translation, page navigation
+[2022-09-29T10:43:50.519] [TRACE] default - get translation, page twitch
+[2022-09-29T10:43:50.527] [TRACE] default - get menu
+[2022-09-29T10:43:50.560] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:50.564] [TRACE] default - get twitch
+[2022-09-29T10:43:50.567] [TRACE] default - get translation, page information
+[2022-09-29T10:43:50.569] [TRACE] default - get node, default
+[2022-09-29T10:43:50.586] [TRACE] default - get twitch userdata
+[2022-09-29T10:43:50.590] [TRACE] default - get node, default
+[2022-09-29T10:43:57.471] [TRACE] default - get placeholder
+[2022-09-29T10:44:04.002] [TRACE] default - get translation, page navigation
+[2022-09-29T10:44:04.004] [TRACE] default - get translation, page index
+[2022-09-29T10:44:04.074] [TRACE] default - get menu
+[2022-09-29T10:44:04.076] [TRACE] default - get twitch
+[2022-09-29T10:44:04.116] [TRACE] default - get translation, page information
+[2022-09-29T10:44:04.119] [TRACE] default - get twitch
+[2022-09-29T10:44:04.142] [TRACE] default - get node, default
+[2022-09-29T10:44:04.146] [TRACE] default - get twitch userdata
+[2022-09-29T10:44:04.161] [TRACE] default - get node, default
+[2022-09-29T10:44:06.090] [TRACE] default - get translation, page navigation
+[2022-09-29T10:44:06.092] [TRACE] default - get translation, page promotion
+[2022-09-29T10:44:06.099] [TRACE] default - get menu
+[2022-09-29T10:44:06.101] [TRACE] default - get translation, page item
+[2022-09-29T10:44:06.112] [TRACE] default - get twitch
+[2022-09-29T10:44:06.115] [TRACE] default - get translation, page wallet
+[2022-09-29T10:44:06.118] [TRACE] default - get node, default
+[2022-09-29T10:44:06.139] [TRACE] default - get translation, page hero
+[2022-09-29T10:44:06.150] [TRACE] default - get twitch userdata
+[2022-09-29T10:44:06.157] [TRACE] default - get item, node default
+[2022-09-29T10:44:06.171] [TRACE] default - get twitch userdata
+[2022-09-29T10:44:06.176] [TRACE] default - get node, default
+[2022-09-29T10:44:06.182] [TRACE] default - get hero, node default
+[2022-09-29T10:44:06.236] [TRACE] default - get twitch userdata
+[2022-09-29T10:44:06.238] [TRACE] default - get translation, page information
+[2022-09-29T10:44:06.241] [TRACE] default - get node, default
+[2022-09-29T10:44:06.246] [TRACE] default - get twitch userdata
+[2022-09-29T10:44:06.317] [TRACE] default - get promotion, node default
+[2022-09-29T10:44:06.319] [TRACE] default - get node, default
+[2022-09-29T10:44:11.375] [TRACE] default - put promotion, node default
+[2022-09-29T10:44:11.415] [TRACE] default - get promotion, node default
+[2022-09-29T10:44:16.252] [TRACE] default - put promotion, node default
+[2022-09-29T10:44:16.306] [TRACE] default - get promotion, node default
+[2022-09-29T10:44:21.154] [TRACE] default - put promotion, node default
+[2022-09-29T10:44:21.206] [TRACE] default - get promotion, node default
+[2022-09-29T10:44:30.519] [TRACE] default - incomming message self: false
+[2022-09-29T10:44:30.520] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-29T10:44:30.520] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-29T10:44:30.520] [TRACE] default - incomming message message: !find:27
+[2022-09-29T10:44:30.521] [TRACE] default - loot execute
+[2022-09-29T10:44:30.526] [TRACE] default - module craffel say execute
+[2022-09-29T10:44:30.526] [TRACE] default - module death say execute
+[2022-09-29T10:44:30.526] [TRACE] default - module dice say execute
+[2022-09-29T10:44:30.527] [TRACE] default - module lurk say execute
+[2022-09-29T10:44:30.527] [TRACE] default - module so say execute
+[2022-09-29T10:44:30.527] [TRACE] default - module unlurk say execute
+[2022-09-29T10:44:30.527] [TRACE] default - module verwarnung say execute
+[2022-09-29T10:44:30.527] [TRACE] default - Command {
+  name: 'find',
+  message: '!find:27',
+  target: '',
+  source: 'craffelmat',
+  parameters: [ '27' ]
+}
+[2022-09-29T10:44:30.528] [TRACE] default - craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:44:30.528] [TRACE] default - message push craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:44:30.528] [TRACE] default - 
+[2022-09-29T10:44:30.529] [TRACE] default - 
+[2022-09-29T10:44:30.529] [TRACE] default - 
+[2022-09-29T10:44:30.529] [TRACE] default - 
+[2022-09-29T10:44:30.529] [TRACE] default - 
+[2022-09-29T10:44:30.529] [TRACE] default - 
+[2022-09-29T10:44:30.529] [TRACE] default - 
+[2022-09-29T10:44:31.390] [TRACE] default - message shift craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:44:31.392] [TRACE] default - incomming message self: true
+[2022-09-29T10:44:39.260] [INFO] default - node craffelmat, module craffel not executed
+[2022-09-29T10:44:39.261] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-09-29T10:44:39.261] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-09-29T10:44:39.262] [INFO] default - node craffelmat, module death not executed
+[2022-09-29T10:44:39.262] [TRACE] default - node craffelmat, module death active: 1
+[2022-09-29T10:44:39.262] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-09-29T10:44:39.276] [INFO] default - node craffelmat, module dice not executed
+[2022-09-29T10:44:39.276] [TRACE] default - node craffelmat, module dice active: 1
+[2022-09-29T10:44:39.276] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-09-29T10:44:39.277] [INFO] default - node craffelmat, module lurk not executed
+[2022-09-29T10:44:39.277] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-09-29T10:44:39.277] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-09-29T10:44:39.277] [INFO] default - node craffelmat, module so not executed
+[2022-09-29T10:44:39.278] [TRACE] default - node craffelmat, module so active: 1
+[2022-09-29T10:44:39.278] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-09-29T10:44:39.278] [INFO] default - node craffelmat, module unlurk not executed
+[2022-09-29T10:44:39.278] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-09-29T10:44:39.278] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-09-29T10:44:39.279] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-09-29T10:44:39.279] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-09-29T10:44:39.279] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-09-29T10:44:39.280] [INFO] default - node craffelmat, module loot last run Thu Sep 29 2022 10:29:33 GMT+0200 (Mitteleuropäische Sommerzeit)...
+[2022-09-29T10:44:39.298] [INFO] default - node craffelmat, module loot run after 1 Minutes.
+[2022-09-29T10:44:39.300] [INFO] default - node craffelmat, module loot not executed - missing exploring
+[2022-09-29T10:44:59.191] [TRACE] default - incomming message self: false
+[2022-09-29T10:44:59.191] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-29T10:44:59.192] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-29T10:44:59.192] [TRACE] default - incomming message message: !find:27
+[2022-09-29T10:44:59.192] [TRACE] default - loot execute
+[2022-09-29T10:44:59.196] [TRACE] default - module craffel say execute
+[2022-09-29T10:44:59.196] [TRACE] default - module death say execute
+[2022-09-29T10:44:59.196] [TRACE] default - module dice say execute
+[2022-09-29T10:44:59.197] [TRACE] default - module lurk say execute
+[2022-09-29T10:44:59.197] [TRACE] default - module so say execute
+[2022-09-29T10:44:59.197] [TRACE] default - module unlurk say execute
+[2022-09-29T10:44:59.197] [TRACE] default - module verwarnung say execute
+[2022-09-29T10:44:59.197] [TRACE] default - Command {
+  name: 'find',
+  message: '!find:27',
+  target: '',
+  source: 'craffelmat',
+  parameters: [ '27' ]
+}
+[2022-09-29T10:44:59.198] [TRACE] default - craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:44:59.199] [TRACE] default - message push craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:44:59.199] [TRACE] default - 
+[2022-09-29T10:44:59.199] [TRACE] default - 
+[2022-09-29T10:44:59.199] [TRACE] default - 
+[2022-09-29T10:44:59.199] [TRACE] default - 
+[2022-09-29T10:44:59.200] [TRACE] default - 
+[2022-09-29T10:44:59.200] [TRACE] default - 
+[2022-09-29T10:44:59.201] [TRACE] default - 
+[2022-09-29T10:44:59.547] [TRACE] default - message shift craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:44:59.548] [TRACE] default - incomming message self: true
+[2022-09-29T10:45:13.692] [TRACE] default - incomming message self: false
+[2022-09-29T10:45:13.692] [TRACE] default - incomming message channel: craffelmat)
+[2022-09-29T10:45:13.692] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-09-29T10:45:13.693] [TRACE] default - incomming message message: !find 27
+[2022-09-29T10:45:13.693] [TRACE] default - loot execute
+[2022-09-29T10:45:13.697] [TRACE] default - module craffel say execute
+[2022-09-29T10:45:13.697] [TRACE] default - module death say execute
+[2022-09-29T10:45:13.698] [TRACE] default - module dice say execute
+[2022-09-29T10:45:13.698] [TRACE] default - module lurk say execute
+[2022-09-29T10:45:13.698] [TRACE] default - module so say execute
+[2022-09-29T10:45:13.698] [TRACE] default - module unlurk say execute
+[2022-09-29T10:45:13.699] [TRACE] default - module verwarnung say execute
+[2022-09-29T10:45:13.699] [TRACE] default - Command {
+  name: 'find',
+  message: '!find 27',
+  target: '',
+  source: 'craffelmat',
+  parameters: [ '27' ]
+}
+[2022-09-29T10:45:13.700] [TRACE] default - craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:45:13.700] [TRACE] default - message push craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:45:13.700] [TRACE] default - 
+[2022-09-29T10:45:13.700] [TRACE] default - 
+[2022-09-29T10:45:13.701] [TRACE] default - 
+[2022-09-29T10:45:13.701] [TRACE] default - 
+[2022-09-29T10:45:13.701] [TRACE] default - 
+[2022-09-29T10:45:13.701] [TRACE] default - 
+[2022-09-29T10:45:13.701] [TRACE] default - 
+[2022-09-29T10:45:15.023] [TRACE] default - message shift craffelmat, der Gegenstand 'Angel [27]' gehört craffelmat
+[2022-09-29T10:45:15.024] [TRACE] default - incomming message self: true
