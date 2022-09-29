@@ -118,6 +118,7 @@ $(async () => {
                         allowColumnReordering: true,
                         allowColumnResizing: true,
                         columns: [
+                            { dataField: "handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
                             { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }]  },
                             { dataField: "gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 200}
                         ]
@@ -190,6 +191,7 @@ $(async () => {
                         allowColumnReordering: true,
                         allowColumnResizing: true,
                         columns: [
+                            { dataField: "handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
                             { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }]  },
                             { dataField: "gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 200 }
                         ]
@@ -224,6 +226,7 @@ $(async () => {
                                 switch(res.status){
                                     case 201:
                                         notify(translate(language, res.status), "success");
+                                        $("#dataGridStreamer").dxDataGrid('instance').refresh();
                                         infoPanel();
                                         break;
                                     default:

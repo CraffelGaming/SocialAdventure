@@ -114,7 +114,7 @@ $(async () => {
                 { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
                 { dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: {autoResizeEnabled: true}, validationRules: [{ type: "required" }]  },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
-                { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 120 },
+                { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 160 },
                 { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
                         if(data.isShoutout != null){

@@ -114,6 +114,9 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
                             yield hero.increment('hitpointsMax', { by: 10 });
                             yield hero.increment('hitpoints', { by: 10 });
                         }
+                        if (trainer.getDataValue("handle") === "strength") {
+                            yield hero.increment('strength', { by: 1 });
+                        }
                         return 200;
                     }
                     else

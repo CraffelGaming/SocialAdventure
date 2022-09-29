@@ -58,29 +58,6 @@ $(async () => {
                     return await get('/adventure/default', language);
                 },
             }),
-            filterRow: { visible: true },
-            filterPanel: { visible: true },
-            searchPanel: { visible: true },
-            allowColumnReordering: true,
-            allowColumnResizing: true,
-            groupPanel: { visible: true },
-            selection: { mode: "single" },
-            paging: {
-                pageSize: 10
-            },
-            pager: {
-                visible: true,
-                allowedPageSizes: [10, 25, 50, 100, 'all'],
-                showPageSizeSelector: true,
-                showInfo: true,
-                showNavigationButtons: true,
-            },
-            columnChooser: {
-                enabled: true,
-                allowSearch: true,
-            },
-            showRowLines: true,
-            showBorders: true,
             masterDetail: {
                 enabled: true,
                 template: masterDetailTemplate
@@ -135,18 +112,9 @@ $(async () => {
                     key: ["heroName"],
                     loadMode: "raw",
                     load: async function () {
-                        return await get(`/herotrait/default/hero/${masterDetailData.hero.name}`, language);
+                        return [await get(`/herotrait/default/hero/${masterDetailData.hero.name}`, language)];
                     }
                 }),
-                allowColumnReordering: true,
-                allowColumnResizing: true,
-                selection: { mode: "single" },
-                editing: {
-                    mode: "row",
-                    allowUpdating: false,
-                    allowDeleting: false,
-                    allowAdding: false
-                },
                 columns: [
                     { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler') },
                     { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler') },

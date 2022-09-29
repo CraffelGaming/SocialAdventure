@@ -96,21 +96,30 @@ export class PromotionItem extends Model<PromotionItem>{
     static async put({ sequelize, element }: { sequelize: Sequelize, element: PromotionItem }): Promise<number>{
         try{
             const item = await sequelize.models.promotion.findByPk(element.handle);
-            if(item){
-                await sequelize.models.promotion.update(element, {where: {handle: element.handle}});
-                return 201;
-            } else {
-                if(element.gold != null && element.gold > 0 ||
-                   element.diamond != null && element.diamond > 0 ||
-                   element.experience != null && element.experience > 0){
+            if(await PromotionItem.validate({ sequelize: sequelize, element: element, isUpdate: item ? true : false })){
+                if(item){
+                    await sequelize.models.promotion.update(element, {where: {handle: element.handle}});
+                    return 201;
+                } else {
                     await sequelize.models.promotion.create(element as any);
                     return 201;
-                } else return 406;
-            }
+                }
+            } else return 406;
         } catch(ex){
             global.worker.log.error(ex);
             return 500;
         }
+    }
+
+    static async validate({ sequelize, element, isUpdate }: { sequelize: Sequelize, element: PromotionItem, isUpdate: boolean }) : Promise<boolean>{
+        let isValid = true;
+
+        if(!(!element.gold       || element.gold        && element.gold >= 0        && element.gold <= 5000))        isValid = false;
+        if(!(!element.diamond    || element.diamond     && element.diamond >= 0     && element.diamond <= 100))      isValid = false;
+        if(!(!element.experience || element.experience  && element.experience >= 0  && element.experience <= 50000)) isValid = false;
+        if(!(!element.item       || element.item        && await sequelize.models.item.findByPk(element.item)))      isValid = false;
+
+        return isValid;
     }
 
     static async redeem({ sequelize, promotion, heroName }: { sequelize: Sequelize, promotion: PromotionItem, heroName: string }): Promise<number>{

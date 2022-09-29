@@ -43,7 +43,7 @@ class Module {
             text = text.replace('$target', command.target.length > 0 ? command.target : command.source);
             text = text.replace('$command', command.name);
             if (text.includes('$dice')) {
-                if (command.parameters.length === 2) {
+                if (command.parameters.length >= 2) {
                     const min = Number(command.parameters[0]);
                     const max = Number(command.parameters[1]);
                     if (!isNaN(min) && !isNaN(max))

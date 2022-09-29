@@ -7,6 +7,7 @@ Version 1 - 2022
         [X] Taverne
         [ ] Give
         [ ] Steal
+        [X] Find
         [X] Start / Stop
         [X] Rank
         [X] HP
@@ -44,3 +45,8 @@ C.  [ ] Datenspeicher für Say-Module
 D.  [ ] UI Design überarbeiten
         [ ] Profi suchen
 E.  [ ] Diamanten
+F.  [ ] GitHub Readme.md
+G.  [ ] Flüsternachrichten anstelle Chatnachrichten
+H.  [ ] Einzelne Elemente vom CHat auf der Seite aktuallisieren
+I.  [ ] Item-Datei hochladen
+J.  [ ] Validierung (Min / Max / etc.) in Datenbank speichern

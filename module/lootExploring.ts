@@ -128,7 +128,7 @@ export class LootExploring {
     //#endregion
 
     //#region Dungeon
-    async getDungeon(): Promise<Model<LocationItem>>{
+    async getDungeons(): Promise<Model<LocationItem>[]>{
         const dungeons = await this.loot.channel.database.sequelize.models.location.findAll({where: { isActive: true} }) as Model<LocationItem>[];
         const found: Model<LocationItem>[] = [];
 
@@ -138,6 +138,11 @@ export class LootExploring {
             }
         }
 
+        return found;
+    }
+
+    async getDungeon(): Promise<Model<LocationItem>>{
+        const found = await this.getDungeons();
         return found[this.loot.getRandomNumber(0, found.length -1)];;
     }
     //#endregion

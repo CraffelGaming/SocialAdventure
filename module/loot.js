@@ -15,6 +15,7 @@ const heroInventoryItem_1 = require("../model/heroInventoryItem");
 const heroItem_1 = require("../model/heroItem");
 const translationItem_1 = require("../model/translationItem");
 const lootExploring_1 = require("./lootExploring");
+const lootSearch_1 = require("./lootSearch");
 const module_1 = require("./module");
 class Loot extends module_1.Module {
     //#region Construct
@@ -168,8 +169,48 @@ class Loot extends module_1.Module {
     give(command) {
         return 'give';
     }
+    //#endregion
+    //#region Find
     find(command) {
-        return 'find';
+        return __awaiter(this, void 0, void 0, function* () {
+            if (command.parameters.length >= 1) {
+                const itemHandle = Number(command.parameters[0]);
+                if (!isNaN(itemHandle)) {
+                    const search = new lootSearch_1.LootSearch(this, itemHandle);
+                    if (yield search.find()) {
+                        return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFound')
+                            .replace('$1', command.source)
+                            .replace('$2', search.item.getDataValue("value"))
+                            .replace('$3', search.item.getDataValue("handle").toString())
+                            .replace('$4', search.hero.getDataValue("name"));
+                    }
+                    else {
+                        if (search.isFoundable) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFoundable')
+                                .replace('$1', command.source)
+                                .replace('$2', search.item.getDataValue("value"))
+                                .replace('$3', search.item.getDataValue("handle").toString())
+                                .replace('$4', search.dungeons.map(a => a.getDataValue("name")).toString());
+                        }
+                        else if (search.isExists) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'searchNotFoundable')
+                                .replace('$1', command.source)
+                                .replace('$2', search.item.getDataValue("value"))
+                                .replace('$3', search.item.getDataValue("handle").toString());
+                        }
+                        else {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'searchNotExists')
+                                .replace('$1', command.source)
+                                .replace('$2', itemHandle.toString());
+                        }
+                    }
+                }
+                else
+                    return translationItem_1.TranslationItem.translate(this.translation, 'searchParameterNumber').replace('$1', command.source);
+            }
+            else
+                return translationItem_1.TranslationItem.translate(this.translation, 'searchParameterNeeded').replace('$1', command.source);
+        });
     }
     //#endregion
     //#region Rank

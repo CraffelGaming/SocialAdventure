@@ -114,7 +114,7 @@ class LootExploring {
     }
     //#endregion
     //#region Dungeon
-    getDungeon() {
+    getDungeons() {
         return __awaiter(this, void 0, void 0, function* () {
             const dungeons = yield this.loot.channel.database.sequelize.models.location.findAll({ where: { isActive: true } });
             const found = [];
@@ -123,6 +123,12 @@ class LootExploring {
                     found.push(dungeons[dungeon]);
                 }
             }
+            return found;
+        });
+    }
+    getDungeon() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const found = yield this.getDungeons();
             return found[this.loot.getRandomNumber(0, found.length - 1)];
             ;
         });

@@ -113,6 +113,7 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
+                { dataField: "handle", caption: translate(language, 'handle'), allowEditing: false, width: 100  },
                 { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }]  },
                 { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200 },
                 {

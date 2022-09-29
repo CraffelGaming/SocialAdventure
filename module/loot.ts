@@ -9,6 +9,7 @@ import { HeroWalletItem } from "../model/heroWalletItem";
 import { LootItem } from "../model/lootItem";
 import { TranslationItem } from "../model/translationItem";
 import { LootExploring } from "./lootExploring";
+import { LootSearch } from "./lootSearch";
 import { Module } from "./module";
 
 export class Loot extends Module {
@@ -158,9 +159,40 @@ export class Loot extends Module {
     give(command: Command){
         return 'give';
     }
+    //#endregion
 
-    find(command: Command){
-        return 'find';
+    //#region Find
+    async find(command: Command){
+        if(command.parameters.length >= 1){
+            const itemHandle = Number(command.parameters[0]);
+            if(!isNaN(itemHandle)){
+                const search = new LootSearch(this, itemHandle);
+                if(await search.find()){
+                    return TranslationItem.translate(this.translation, 'searchIsFound')
+                                          .replace('$1', command.source)
+                                          .replace('$2', search.item.getDataValue("value"))
+                                          .replace('$3', search.item.getDataValue("handle").toString())
+                                          .replace('$4', search.hero.getDataValue("name"));
+                } else {
+                    if(search.isFoundable){
+                        return TranslationItem.translate(this.translation, 'searchIsFoundable')
+                        .replace('$1', command.source)
+                        .replace('$2', search.item.getDataValue("value"))
+                        .replace('$3', search.item.getDataValue("handle").toString())
+                        .replace('$4', search.dungeons.map(a => a.getDataValue("name")).toString());
+                    } else if (search.isExists){
+                        return TranslationItem.translate(this.translation, 'searchNotFoundable')
+                                              .replace('$1', command.source)
+                                              .replace('$2', search.item.getDataValue("value"))
+                                              .replace('$3', search.item.getDataValue("handle").toString());
+                    } else {
+                        return TranslationItem.translate(this.translation, 'searchNotExists')
+                                              .replace('$1', command.source)
+                                              .replace('$2', itemHandle.toString());
+                    }
+                }
+            } else return TranslationItem.translate(this.translation, 'searchParameterNumber').replace('$1', command.source);
+        } else return TranslationItem.translate(this.translation, 'searchParameterNeeded').replace('$1', command.source);
     }
     //#endregion
 

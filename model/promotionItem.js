@@ -17,6 +17,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var PromotionItem_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PromotionItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
@@ -25,7 +26,7 @@ const json = require("./promotionItem.json");
 const heroItem_1 = require("./heroItem");
 const heroInventoryItem_1 = require("./heroInventoryItem");
 const heroPromotionItem_1 = require("./heroPromotionItem");
-let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
+let PromotionItem = PromotionItem_1 = class PromotionItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.gold = 0;
@@ -101,26 +102,38 @@ let PromotionItem = class PromotionItem extends sequelize_typescript_1.Model {
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const item = yield sequelize.models.promotion.findByPk(element.handle);
-                if (item) {
-                    yield sequelize.models.promotion.update(element, { where: { handle: element.handle } });
-                    return 201;
-                }
-                else {
-                    if (element.gold != null && element.gold > 0 ||
-                        element.diamond != null && element.diamond > 0 ||
-                        element.experience != null && element.experience > 0) {
+                if (yield PromotionItem_1.validate({ sequelize, element })) {
+                    const item = yield sequelize.models.promotion.findByPk(element.handle);
+                    if (item) {
+                        yield sequelize.models.promotion.update(element, { where: { handle: element.handle } });
+                        return 201;
+                    }
+                    else {
                         yield sequelize.models.promotion.create(element);
                         return 201;
                     }
-                    else
-                        return 406;
                 }
+                else
+                    return 406;
             }
             catch (ex) {
                 global.worker.log.error(ex);
                 return 500;
             }
+        });
+    }
+    static validate({ sequelize, element }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let isValid = true;
+            if (!(!element.gold || element.gold && element.gold >= 0 && element.gold <= 5000))
+                isValid = false;
+            if (!(!element.diamond || element.diamond && element.diamond >= 0 && element.diamond <= 100))
+                isValid = false;
+            if (!(!element.experience || element.experience && element.experience >= 0 && element.gold <= 50000))
+                isValid = false;
+            if (!(!element.item || element.item && (yield sequelize.models.item.findByPk(element.item))))
+                isValid = false;
+            return isValid;
         });
     }
     static redeem({ sequelize, promotion, heroName }) {
@@ -202,7 +215,7 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], PromotionItem.prototype, "isMaster", void 0);
-PromotionItem = __decorate([
+PromotionItem = PromotionItem_1 = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "promotion", modelName: "promotion" }),
     __metadata("design:paramtypes", [])
 ], PromotionItem);
