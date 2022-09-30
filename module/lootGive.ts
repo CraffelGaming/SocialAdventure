@@ -21,6 +21,7 @@ export class LootGive {
     isItem: boolean = true;
     isAdventure: boolean = true;
     isTimeout: boolean = true;
+    isSelf: boolean = true;
 
     //#region Construct
     constructor(loot: Loot, sourceHeroName: string, targetHeroName: string, itemHandle: number){
@@ -45,16 +46,18 @@ export class LootGive {
                     global.worker.log.info(`node ${this.loot.channel.node.name}, module give, timeout expired`);
                     if(this.targetHero){
                         global.worker.log.info(`node ${this.loot.channel.node.name}, module give, targetHero ${this.targetHero.getDataValue("name")}`);
-                        this.adventure = await this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") }}) as Model<AdventureItem>;
-                        if(this.adventure){
-                            global.worker.log.info(`node ${this.loot.channel.node.name}, module give, adventure `);
-                            await this.adventure.destroy();
-                            let adventure = new AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
-                            await this.loot.channel.database.sequelize.models.adventure.create(adventure as any);
-                            this.sourceHero.setDataValue("lastGive", new Date());
-                            await this.sourceHero.save();
-                            return true;
-                        } else this.isAdventure = false;
+                        if(this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")){
+                            this.adventure = await this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") }}) as Model<AdventureItem>;
+                            if(this.adventure){
+                                global.worker.log.info(`node ${this.loot.channel.node.name}, module give, adventure `);
+                                await this.adventure.destroy();
+                                const adventure = new AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
+                                await AdventureItem.put({sequelize: this.loot.channel.database.sequelize, element: adventure});
+                                this.sourceHero.setDataValue("lastGive", new Date());
+                                await this.sourceHero.save();
+                                return true;
+                            } else this.isAdventure = false;
+                        } else this.isSelf = false;
                     } else this.isTarget = false;
                 } else this.isTimeout = false;
             } else this.isSource = false;

@@ -173,10 +173,16 @@ export class Loot extends Module {
         if(await steal.execute(setting)){
             return TranslationItem.translate(this.translation, 'stealItem')
                                   .replace('$1', command.source)
-                                  .replace('$2', command.target)
+                                  .replace('$2', steal.targetHero.getDataValue("name"))
                                   .replace('$3', steal.item.getDataValue("value"))
                                   .replace('$4', steal.item.getDataValue("handle").toString())
 
+        } else if(!steal.isLoose) {
+            return TranslationItem.translate(this.translation, 'stealItemFailed')
+                                  .replace('$1', command.source)
+                                  .replace('$2', steal.targetHero.getDataValue("name"))
+                                  .replace('$3', steal.item.getDataValue("value"))
+                                  .replace('$4', steal.item.getDataValue("handle").toString())
         } else if(!steal.isSteal) {
             return TranslationItem.translate(this.translation, 'stealItemFailed')
                                   .replace('$1', command.source)
@@ -201,6 +207,9 @@ export class Loot extends Module {
                                   .replace('$1', command.source)
                                   .replace('$2', steal.item.getDataValue("value"))
                                   .replace('$3', steal.item.getDataValue("handle").toString())
+        } else if(!steal.isSelf) {
+            return TranslationItem.translate(this.translation, 'stealSelf')
+                                  .replace('$1', command.source)
         }
     }
     //#endregion
@@ -239,6 +248,9 @@ export class Loot extends Module {
                                               .replace('$1', command.source)
                                               .replace('$2', give.item.getDataValue("value"))
                                               .replace('$3', give.item.getDataValue("handle").toString())
+                    } else if(!give.isSelf) {
+                        return TranslationItem.translate(this.translation, 'giveSelf')
+                                              .replace('$1', command.source)
                     }
                 } else return TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
             } else return TranslationItem.translate(this.translation, 'giveParameterNumber').replace('$1', command.source);

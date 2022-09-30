@@ -100,9 +100,7 @@ export class LootExploring {
     //#region Save
     async save(){
         if(this.isWinner){
-            const adventure = new AdventureItem();
-            adventure.heroName = this.hero.getDataValue("name");
-            adventure.itemHandle = this.item.getDataValue("handle");
+            const adventure = new AdventureItem(this.item.getDataValue("handle"), this.hero.getDataValue("name"));
             await this.loot.channel.database.sequelize.models.adventure.create(adventure as any);
             await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") }});
             await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") }});

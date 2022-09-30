@@ -86,9 +86,7 @@ class LootExploring {
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.isWinner) {
-                const adventure = new adventureItem_1.AdventureItem();
-                adventure.heroName = this.hero.getDataValue("name");
-                adventure.itemHandle = this.item.getDataValue("handle");
+                const adventure = new adventureItem_1.AdventureItem(this.item.getDataValue("handle"), this.hero.getDataValue("name"));
                 yield this.loot.channel.database.sequelize.models.adventure.create(adventure);
                 yield this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") } });
                 yield this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") } });

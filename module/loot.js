@@ -188,7 +188,7 @@ class Loot extends module_1.Module {
             if (yield steal.execute(setting)) {
                 return translationItem_1.TranslationItem.translate(this.translation, 'stealItem')
                     .replace('$1', command.source)
-                    .replace('$2', command.target)
+                    .replace('$2', steal.targetHero.getDataValue("name"))
                     .replace('$3', steal.item.getDataValue("value"))
                     .replace('$4', steal.item.getDataValue("handle").toString());
             }
@@ -221,6 +221,10 @@ class Loot extends module_1.Module {
                     .replace('$1', command.source)
                     .replace('$2', steal.item.getDataValue("value"))
                     .replace('$3', steal.item.getDataValue("handle").toString());
+            }
+            else if (!steal.isSelf) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealSelf')
+                    .replace('$1', command.source);
             }
         });
     }
@@ -265,6 +269,10 @@ class Loot extends module_1.Module {
                                 .replace('$1', command.source)
                                 .replace('$2', give.item.getDataValue("value"))
                                 .replace('$3', give.item.getDataValue("handle").toString());
+                        }
+                        else if (!give.isSelf) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveSelf')
+                                .replace('$1', command.source);
                         }
                     }
                     else

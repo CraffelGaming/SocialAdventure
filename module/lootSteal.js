@@ -8,8 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LootSteal = void 0;
+const sequelize_1 = __importDefault(require("sequelize"));
+const adventureItem_1 = require("../model/adventureItem");
 class LootSteal {
     //#region Construct
     constructor(loot, sourceHeroName, targetHeroName = null, itemHandle = null) {
@@ -19,6 +24,7 @@ class LootSteal {
         this.isAdventure = true;
         this.isTimeout = true;
         this.isSteal = true;
+        this.isSelf = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
         this.itemHandle = itemHandle;
@@ -37,22 +43,24 @@ class LootSteal {
                         global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, timeout expired`);
                         if (this.targetHero) {
                             global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
-                            if (this.adventure) {
-                                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
-                                if (yield this.isStealSuccess()) {
-                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
-                                    yield this.adventure.destroy();
-                                    this.adventure.setDataValue("heroName", this.targetHero.getDataValue("name"));
-                                    yield this.adventure.save();
-                                    this.sourceHero.setDataValue("lastSteal", new Date());
-                                    yield this.sourceHero.save();
-                                    return true;
+                            if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
+                                if (this.adventure) {
+                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                    if (yield this.isStealSuccess()) {
+                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
+                                        yield this.adventure.destroy();
+                                        const adventure = new adventureItem_1.AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
+                                        yield adventureItem_1.AdventureItem.put({ sequelize: this.loot.channel.database.sequelize, element: adventure });
+                                        this.sourceHero.setDataValue("lastSteal", new Date());
+                                        yield this.sourceHero.save();
+                                        return true;
+                                    }
+                                    else
+                                        this.isSteal = false;
                                 }
                                 else
-                                    this.isSteal = false;
+                                    this.isAdventure = false;
                             }
-                            else
-                                this.isAdventure = false;
                         }
                         else
                             this.isTarget = false;
@@ -137,24 +145,6 @@ class LootSteal {
         });
     }
     //#endregion
-    //#region Hero
-    getHero() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let heroes = yield this.loot.channel.database.sequelize.models.hero.findAll({ where: { isActive: true } });
-            const found = [];
-            heroes = heroes.filter(x => x.getDataValue("hitpoints") > 0);
-            for (const hero in heroes) {
-                if ((yield this.getAdventures(heroes[hero])).length > 0) {
-                    found.push(heroes[hero]);
-                }
-            }
-            if (found.length > 0) {
-                return found[this.loot.getRandomNumber(0, found.length - 1)];
-            }
-            return null;
-        });
-    }
-    //#endregion
     //#region Adventure
     getAdventures(hero = null) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -162,7 +152,7 @@ class LootSteal {
                 return yield this.loot.channel.database.sequelize.models.adventure.findAll({ where: { heroName: hero.getDataValue("name") } });
             }
             else {
-                return yield this.loot.channel.database.sequelize.models.adventure.findAll();
+                return yield this.loot.channel.database.sequelize.models.adventure.findAll({ where: { heroName: { [sequelize_1.default.Op.not]: this.sourceHero.getDataValue("name") } } });
             }
         });
     }

@@ -335,7 +335,7 @@
     { "page": "loot", "handle": "giveItemNoTarget", "language": "de-DE", "translation": "$1, der Held '$2' nimmt nicht am Abenteuer teil."},
     { "page": "loot", "handle": "giveItemTimeout", "language": "de-DE", "translation": "$1, ist noch zu erschöpft vom letzten Diebstahl und wartet noch $2 Minuten."},
     { "page": "loot", "handle": "giveItem", "language": "de-DE", "translation": "$1 hat '$2' den Gegenstand '$3 [$4]' geschenkt"},
-  
+    { "page": "loot", "handle": "giveSelf", "language": "de-DE", "translation": "$1 hat sich selber eine Freude gemacht und beschenkt."},
     { "page": "loot", "handle": "stealParameterNumber", "language": "de-DE", "translation": "$1, das ist kein gültige Gegenstandsnummer, nur Zahlen erlaubt."},
     { "page": "loot", "handle": "stealItemNoItem", "language": "de-DE", "translation": "$1, der Gegenstand mit der Nummer $2 existiert nicht."},
     { "page": "loot", "handle": "stealItemNoAdventure", "language": "de-DE", "translation": "$1, du besitzt den Gegenstand '$2 [$3]' nicht."},
@@ -343,7 +343,9 @@
     { "page": "loot", "handle": "stealItemNoTarget", "language": "de-DE", "translation": "$1, der Held '$2' nimmt nicht am Abenteuer teil."},
     { "page": "loot", "handle": "stealItemTimeout", "language": "de-DE", "translation": "$1, ist noch zu erschöpft vom letzten Diebstahl und wartet noch $2 Minuten."},
     { "page": "loot", "handle": "stealItem", "language": "de-DE", "translation": "$1 hat $2 heimlich bestohlen und den Gegenstand '$3 [$4]' ergattert."},
-    { "page": "loot", "handle": "stealItemFailed", "language": "de-DE", "translation": "$1 wurden beim stehlen von $2 erwischt."},
+    { "page": "loot", "handle": "stealItemFailed", "language": "de-DE", "translation": "$1 wurden beim stehlen von $2 erwischt, hat jedoch keinen Gegenstand verloren."},
+    { "page": "loot", "handle": "stealItemFailedLoose", "language": "de-DE", "translation": "$1 wurden beim stehlen von $2 erwischt und hat den Gegenstand '$3 [$4]' verloren."},
+    { "page": "loot", "handle": "stealSelf", "language": "de-DE", "translation": "$1 hat sich selbst bestohlen. "},
 
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},

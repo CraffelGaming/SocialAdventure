@@ -19,7 +19,6 @@ export class Puffer {
 
         for(const key in messages){
             if (messages.hasOwnProperty(key)) {
-                global.worker.log.trace(messages[key]);
                 if(messages[key] && messages[key].length > 0){
                     global.worker.log.trace(`message push ${messages[key]}`);
                     this.messages.push(messages[key]);

@@ -23,6 +23,10 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./adventureItem.json");
 let AdventureItem = class AdventureItem {
+    constructor(itemHandle, heroName) {
+        this.itemHandle = itemHandle;
+        this.heroName = heroName;
+    }
     static createTable({ sequelize }) {
         sequelize.define('adventure', {
             itemHandle: {
@@ -87,7 +91,8 @@ __decorate([
     __metadata("design:type", String)
 ], AdventureItem.prototype, "heroName", void 0);
 AdventureItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "adventure", modelName: "adventure" })
+    (0, sequelize_typescript_1.Table)({ tableName: "adventure", modelName: "adventure" }),
+    __metadata("design:paramtypes", [Number, String])
 ], AdventureItem);
 exports.AdventureItem = AdventureItem;
 module.exports.default = AdventureItem;

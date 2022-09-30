@@ -152,6 +152,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
             let result = 201;
             try {
                 if (element.name !== null && element.name !== "") {
+                    element.name.toLowerCase();
                     if ((yield sequelize.models.hero.count({ where: { name: element.name } })) === 0) {
                         yield sequelize.models.hero.create(element);
                         yield heroTraitItem_1.HeroTraitItem.put({ sequelize, element: new heroTraitItem_1.HeroTraitItem(element.name) });

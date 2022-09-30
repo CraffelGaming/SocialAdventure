@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LootGive = void 0;
+const adventureItem_1 = require("../model/adventureItem");
 class LootGive {
     //#region Construct
     constructor(loot, sourceHeroName, targetHeroName, itemHandle) {
@@ -18,6 +19,7 @@ class LootGive {
         this.isItem = true;
         this.isAdventure = true;
         this.isTimeout = true;
+        this.isSelf = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
         this.itemHandle = itemHandle;
@@ -38,18 +40,22 @@ class LootGive {
                         global.worker.log.info(`node ${this.loot.channel.node.name}, module give, timeout expired`);
                         if (this.targetHero) {
                             global.worker.log.info(`node ${this.loot.channel.node.name}, module give, targetHero ${this.targetHero.getDataValue("name")}`);
-                            this.adventure = (yield this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") } }));
-                            if (this.adventure) {
-                                global.worker.log.info(`node ${this.loot.channel.node.name}, module give, adventure `);
-                                yield this.adventure.destroy();
-                                this.adventure.setDataValue("heroName", this.targetHero.getDataValue("name"));
-                                yield this.adventure.save();
-                                this.sourceHero.setDataValue("lastGive", new Date());
-                                yield this.sourceHero.save();
-                                return true;
+                            if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
+                                this.adventure = (yield this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") } }));
+                                if (this.adventure) {
+                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module give, adventure `);
+                                    yield this.adventure.destroy();
+                                    const adventure = new adventureItem_1.AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
+                                    yield adventureItem_1.AdventureItem.put({ sequelize: this.loot.channel.database.sequelize, element: adventure });
+                                    this.sourceHero.setDataValue("lastGive", new Date());
+                                    yield this.sourceHero.save();
+                                    return true;
+                                }
+                                else
+                                    this.isAdventure = false;
                             }
                             else
-                                this.isAdventure = false;
+                                this.isSelf = false;
                         }
                         else
                             this.isTarget = false;
