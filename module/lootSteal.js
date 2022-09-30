@@ -24,6 +24,7 @@ class LootSteal {
         this.isAdventure = true;
         this.isTimeout = true;
         this.isSteal = true;
+        this.isLoose = true;
         this.isSelf = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
@@ -48,15 +49,22 @@ class LootSteal {
                                     global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
                                     if (yield this.isStealSuccess()) {
                                         global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
-                                        yield this.adventure.destroy();
-                                        const adventure = new adventureItem_1.AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
-                                        yield adventureItem_1.AdventureItem.put({ sequelize: this.loot.channel.database.sequelize, element: adventure });
-                                        this.sourceHero.setDataValue("lastSteal", new Date());
-                                        yield this.sourceHero.save();
+                                        yield this.save(this.sourceHero, this.sourceHero);
                                         return true;
                                     }
-                                    else
+                                    else {
+                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, failed`);
                                         this.isSteal = false;
+                                        this.adventure = yield this.getAdventure(this.sourceHero);
+                                        if (this.adventure) {
+                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                            this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")));
+                                            if (this.isItem) {
+                                                this.isLoose = false;
+                                                yield this.save(this.sourceHero, this.targetHero);
+                                            }
+                                        }
+                                    }
                                 }
                                 else
                                     this.isAdventure = false;
@@ -74,6 +82,15 @@ class LootSteal {
             else
                 this.isItem = false;
             return false;
+        });
+    }
+    save(source, target) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.adventure.destroy();
+            const adventure = new adventureItem_1.AdventureItem(this.item.getDataValue("handle"), target.getDataValue("name"));
+            yield adventureItem_1.AdventureItem.put({ sequelize: this.loot.channel.database.sequelize, element: adventure });
+            source.setDataValue("lastSteal", new Date());
+            yield source.save();
         });
     }
     loadElements() {

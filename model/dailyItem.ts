@@ -15,6 +15,13 @@ export class DailyItem extends Model<DailyItem>{
     goldMin: number = 100;
     @Column
     goldMax: number = 500;
+    @Column
+    experienceMin: number = 100;
+    @Column
+    experienceMax: number = 500;
+
+    gold: number = 0;
+    experience: number = 0;
 
     constructor(){
         super();
@@ -42,6 +49,16 @@ export class DailyItem extends Model<DailyItem>{
                 defaultValue: 100
             },
             goldMax: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 500
+            },
+            experienceMin: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            experienceMax: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 500

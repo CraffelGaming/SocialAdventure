@@ -1,7 +1,7 @@
 [
     {
         "command": "loot",
-        "minutes": 1,
+        "minutes": 10,
         "delay": 0,
         "isActive": true
     },

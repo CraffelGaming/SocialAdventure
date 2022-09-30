@@ -114,7 +114,16 @@ $(async () => {
             showBorders: true,
             columns: [
                 { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 250 },
-                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }]},
+                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }],
+                    cellTemplate: function(element, info) {
+                        $("<div>")
+                            .appendTo(element)
+                            .text(info.value)
+                            .css("width", info.column.width - 20)
+                            .css("height", 40)
+                            .css("white-space", "normal")
+                            .css("overflow-wrap", 'break-word'); 
+                }},
                 { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 120},
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 120, editorType: "dxCheckBox" },
                 {

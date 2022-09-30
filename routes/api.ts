@@ -87,7 +87,7 @@ const router = express.Router();
  router.get("/placeholder", placeholder);
 //#endregion
 
-//#region Daily
+//#region Help
 /**
  * @swagger
  * /help/{node}:
@@ -829,11 +829,19 @@ const router = express.Router();
  *               goldMin:
  *                 type: integer
  *                 example: 100
- *                 descrition: Minimaler Verdienst
+ *                 descrition: Minimaler Verdienst an Gold
  *               goldMax:
  *                 type: integer
  *                 example: 500
- *                 descrition: Maximaler Verdienst
+ *                 descrition: Maximaler Verdienst an Gold
+ *               experienceMin:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Minimaler Verdienst an Erfahrung
+ *               experienceMax:
+ *                 type: integer
+ *                 example: 500
+ *                 descrition: Maximaler Verdienst an Erfahrung
  *               createdAt:
  *                 type: string
  *                 example: "2022-05-12 10:11:35.027 +00:00"
@@ -846,6 +854,76 @@ const router = express.Router();
  *         description: no data
  */
  router.get("/daily/:node", daily);
+
+/**
+ * @swagger
+ * /daily/{node}/random/{count}:
+ *   get:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Rückgabe Täglicher Aufgaben, die jeden Tag neu durchgemischt werden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "count"
+ *       in: "path"
+ *       description: "Anzahl der zufälligen Täglichen Aufgaben"
+ *       required: true
+ *       type: "string"
+ *       default: 3
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID der Täglichen Aufgabe
+ *               value:
+ *                 type: string
+ *                 example: "Minenarbeit"
+ *                 descrition: Name der Täglichen Aufgabe
+ *               description:
+ *                 type: string
+ *                 example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *                 descrition: Beschreibung der Täglichen Aufgabe
+ *               gold:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verdienst an Gold
+ *               experience:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verdienst an Erfahrung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+  router.get("/daily/:node/random/:count", daily);
 
 /**
  * @swagger
@@ -884,11 +962,19 @@ const router = express.Router();
  *           goldMin:
  *             type: integer
  *             example: 100
- *             descrition: Minimaler Verdienst
+ *             descrition: Minimaler Verdienst an Gold
  *           goldMax:
  *             type: integer
  *             example: 500
- *             descrition: Maximaler Verdienst
+ *             descrition: Maximaler Verdienst an Gold
+ *           experienceMin:
+ *             type: integer
+ *             example: 100
+ *             descrition: Minimaler Verdienst an Erfahrung
+ *           experienceMax:
+ *             type: integer
+ *             example: 500
+ *             descrition: Maximaler Verdienst an Erfahrung
  *     responses:
  *       201:
  *         description: successful operation
@@ -898,7 +984,7 @@ const router = express.Router();
  *             handle:
  *               type: string
  *               example: "gold"
- *               descrition: ID des Gegenstands
+ *               descrition: ID der Täglichen Aufgabe
  *             value:
  *               type: string
  *               example: "Minenarbeit"
@@ -907,10 +993,22 @@ const router = express.Router();
  *               type: string
  *               example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
  *               descrition: Beschreibung der Täglichen Aufgabe
- *             gold:
+ *             goldMin:
  *               type: integer
- *               example: 150
- *               descrition: Wert des Gegenstandes in Gold
+ *               example: 100
+ *               descrition: Minimaler Verdienst an Gold
+ *             goldMax:
+ *               type: integer
+ *               example: 500
+ *               descrition: Maximaler Verdienst an Gold
+ *             experienceMin:
+ *               type: integer
+ *               example: 100
+ *               descrition: Minimaler Verdienst an Erfahrung
+ *             experienceMax:
+ *               type: integer
+ *               example: 500
+ *               descrition: Maximaler Verdienst an Erfahrung
  *       403:
  *         description: no permission
  *       404:

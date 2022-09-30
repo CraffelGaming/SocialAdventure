@@ -112,7 +112,16 @@ $(async () => {
             },
             columns: [
                 { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
-                { dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: {autoResizeEnabled: true}, validationRules: [{ type: "required" }]  },
+                { dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: {autoResizeEnabled: true}, validationRules: [{ type: "required" }],
+                    cellTemplate: function(element, info) {
+                        $("<div>")
+                            .appendTo(element)
+                            .text(info.value)
+                            .css("width", info.column.width - 20)
+                            .css("height", 40)
+                            .css("white-space", "normal")
+                            .css("overflow-wrap", 'break-word'); 
+                    }},
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 160 },
                 { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,

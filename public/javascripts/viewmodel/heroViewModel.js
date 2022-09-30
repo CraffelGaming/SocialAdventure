@@ -85,7 +85,7 @@ $(async () => {
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name') },
-                { caption: translate(languageLevel, 'handle'),
+                { caption: translate(languageLevel, 'handle'), width: 100,
                     calculateCellValue(data) {
                         return level.handle;
                 }}, 
@@ -101,7 +101,7 @@ $(async () => {
                         }).appendTo(container);  
                     }
                 }, 
-                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 200, 
+                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 250, 
                     cellTemplate: function (container, options) {  
                         $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
                             min: 0,  
@@ -114,9 +114,6 @@ $(async () => {
                     }
                 }, 
                 { dataField: 'strength', caption: translate(language, 'strength'), width: 150 },
-                { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime', width: 150 },
-                { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime', width: 150 },
-                { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date', width: 200 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox" }
             ],
             export: {
@@ -142,6 +139,9 @@ $(async () => {
                 }, {
                     title: translate(languageAdventure, 'adventure'),
                     template: createAdventureTabTemplate(masterDetailOptions.data, 1),
+                }, {
+                    title: translate(language, 'time'),
+                    template: createTimeTabTemplate(masterDetailOptions.data, 1),
                 }],
             });
         }
@@ -306,6 +306,21 @@ $(async () => {
                         { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') },
                         { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler') },
                         { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler') }
+                    ]
+                });
+            };
+        }
+        
+        function createTimeTabTemplate(masterDetailData) {
+            return function () {
+                return $("<div>").dxDataGrid({
+                    dataSource: [masterDetailData],
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    columns: [
+                        { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime'},
+                        { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime' },
+                        { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date' },
                     ]
                 });
             };

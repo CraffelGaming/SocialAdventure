@@ -71,6 +71,15 @@ $(async () => {
                     caption: translate(language, 'description'),
                     calculateCellValue(data) {
                       return translate(language, data.translation)
+                    },
+                    cellTemplate: function(element, info) {
+                        $("<div>")
+                            .appendTo(element)
+                            .text(info.value)
+                            .css("width", info.column.width - 20)
+                            .css("height", 40)
+                            .css("white-space", "normal")
+                            .css("overflow-wrap", 'break-word'); 
                     }
                 }
             ],

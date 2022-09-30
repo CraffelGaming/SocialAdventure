@@ -6,13 +6,13 @@ $(async () => {
     let language = await getTranslation('daily');
 
     translation();
-    initialize()
+    await initialize()
     load();
     infoPanel();
 
     //#region Initialize
-    function initialize() {
-
+    async function initialize() {
+        
     }
     //#endregion
 
@@ -105,8 +105,19 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }], width: 120 },
-                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }] },
+                { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }], width: 200 },
+                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }],
+                    cellTemplate: function(element, info) {
+                        $("<div>")
+                            .appendTo(element)
+                            .text(info.value)
+                            .css("width", info.column.width - 20)
+                            .css("height", 40)
+                            .css("white-space", "normal")
+                            .css("overflow-wrap", 'break-word'); 
+                }},
+                { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], width: 150 },
+                { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], width: 150 },
                 { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }], width: 150 },
                 { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }], width: 150 },
               

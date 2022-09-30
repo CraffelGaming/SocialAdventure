@@ -27,6 +27,10 @@ let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
         super();
         this.goldMin = 100;
         this.goldMax = 500;
+        this.experienceMin = 100;
+        this.experienceMax = 500;
+        this.gold = 0;
+        this.experience = 0;
     }
     static createTable({ sequelize }) {
         sequelize.define('daily', {
@@ -50,6 +54,16 @@ let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
                 defaultValue: 100
             },
             goldMax: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 500
+            },
+            experienceMin: {
+                type: sequelize_1.DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 100
+            },
+            experienceMax: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 500
@@ -120,6 +134,14 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], DailyItem.prototype, "goldMax", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], DailyItem.prototype, "experienceMin", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], DailyItem.prototype, "experienceMax", void 0);
 DailyItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "daily", modelName: "daily" }),
     __metadata("design:paramtypes", [])

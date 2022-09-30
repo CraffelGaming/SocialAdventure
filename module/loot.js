@@ -192,6 +192,13 @@ class Loot extends module_1.Module {
                     .replace('$3', steal.item.getDataValue("value"))
                     .replace('$4', steal.item.getDataValue("handle").toString());
             }
+            else if (!steal.isLoose) {
+                return translationItem_1.TranslationItem.translate(this.translation, 'stealItemFailed')
+                    .replace('$1', command.source)
+                    .replace('$2', steal.targetHero.getDataValue("name"))
+                    .replace('$3', steal.item.getDataValue("value"))
+                    .replace('$4', steal.item.getDataValue("handle").toString());
+            }
             else if (!steal.isSteal) {
                 return translationItem_1.TranslationItem.translate(this.translation, 'stealItemFailed')
                     .replace('$1', command.source)

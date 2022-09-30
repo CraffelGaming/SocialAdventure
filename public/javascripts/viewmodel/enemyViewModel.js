@@ -123,7 +123,16 @@ $(async () => {
             },
             columns: [
                 { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 150 },
-                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }]},
+                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }],
+                    cellTemplate: function(element, info) {
+                        $("<div>")
+                            .appendTo(element)
+                            .text(info.value)
+                            .css("width", info.column.width - 20)
+                            .css("height", 40)
+                            .css("white-space", "normal")
+                            .css("overflow-wrap", 'break-word'); 
+                }},
                 { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 150},
                 { dataField: "hitpoints", caption: translate(language, 'hitpoints'), validationRules: [{ type: "required" }], width: 150},
                 { dataField: "strength", caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 150},

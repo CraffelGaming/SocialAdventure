@@ -9,12 +9,14 @@ $(async () => {
     let languageWallet = await getTranslation('wallet');
     let languageTrait = await getTranslation('trait');
     let languageHero = await getTranslation('hero');
+    let languageDaily = await getTranslation('daily');
 
     let userdata = {};
     let hero = {};
     let heroWallet = {};
     let heroTrait = {};
-    
+    let dailies = [];
+
     await initialize();
     await refreshHero();
     translation();
@@ -27,6 +29,7 @@ $(async () => {
     //#region Initialize
     async function initialize() {
         userdata = await loadUserData();
+        dailies = await get(`/daily/default/random/3`, languageDaily);
 
         $('#responsive-box').dxResponsiveBox({
             rows: [
@@ -44,6 +47,20 @@ $(async () => {
                 return (width < 1080) ? 'sm' : 'lg';
             },
         });
+
+        for(let i = 0; i < 3; i++){
+            document.getElementById(`daily${i}Title`).textContent = dailies[i].value;
+            document.getElementById(`daily${i}Information`).textContent = dailies[i].description;
+            document.getElementById(`daily${i}gold`).textContent = translate(languageWallet, 'gold') + ': ' + dailies[i].gold;
+            document.getElementById(`daily${i}xp`).textContent = translate(languageHero, 'experience') + ': ' + dailies[i].experience;
+            
+            $(`#daily${i}`).dxButton({
+                text: translate(languageDaily, 'work'),
+                onClick: function(e) {
+                   console.log(e);
+                } 
+            });
+        }
     }
 
     async function refreshHero(){
@@ -51,6 +68,7 @@ $(async () => {
         heroWallet = await get('/heroWallet/default/hero/' + userdata.login);
         heroTrait = await get('/heroTrait/default/hero/' + userdata.login);
     }
+
     //#endregion
 
     //#region Load
@@ -138,13 +156,13 @@ $(async () => {
                 { dataField: "value", caption: translate(languageHealing, 'value'), width: 250 },
                 { dataField: "description", caption: translate(languageHealing, 'description'),
                     cellTemplate: function(element, info) {
-                    $("<div>")
-                        .appendTo(element)
-                        .text(info.value)
-                        .css("width", info.column.width - 20)
-                        .css("height", 100)
-                        .css("white-space", "normal")
-                        .css("overflow-wrap", 'break-word'); 
+                        $("<div>")
+                            .appendTo(element)
+                            .text(info.value)
+                            .css("width", info.column.width - 20)
+                            .css("height", 100)
+                            .css("white-space", "normal")
+                            .css("overflow-wrap", 'break-word'); 
                 }},
                 { dataField: "isRevive", caption: translate(languageHealing, 'isRevive'), width: 200, editorType: "dxCheckBox", width: 120 },
                 { dataField: "percent", caption: translate(languageHealing, 'percent'), width: 150 },
@@ -231,7 +249,7 @@ $(async () => {
                                         break;
                                     default:
                                         notify(translate(languageTrainer, res.status), "error");
-                                        break;
+                                        break;v
                                 }
                             });
                         }
@@ -248,6 +266,7 @@ $(async () => {
         document.getElementById("description").textContent = translate(language, 'description').replace('$1',hero?.name);
         document.getElementById("healingTitle").textContent = translate(languageHealing, 'healing');
         document.getElementById("trainerTitle").textContent = translate(languageTrait, 'trait');
+        document.getElementById("dailyTitle").textContent = translate(languageDaily, 'title');
     }
     //#endregion
 });
