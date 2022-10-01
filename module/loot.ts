@@ -101,7 +101,7 @@ export class Loot extends Module {
     async loot(command: Command){
         try{
             let isNew = false;
-            const loot = this.settings.find(x =>x.command === "loot");
+            const join = this.settings.find(x =>x.command === "join");
             let value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
 
             if(!value){
@@ -109,7 +109,7 @@ export class Loot extends Module {
                 value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
                 isNew = true;
             }
-            if(this.isDateTimeoutExpiredMinutes(value.getDataValue("lastJoin"), loot.minutes)){
+            if(this.isDateTimeoutExpiredMinutes(value.getDataValue("lastJoin"), join.minutes) || join.isActive === false){
                 if(!value.getDataValue("isActive")){
                     value.setDataValue("isActive",true);
                     value.setDataValue("lastJoin",new Date());
@@ -125,7 +125,7 @@ export class Loot extends Module {
                     } else return TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
 
                 } else return TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
-            } else return TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(value.getDataValue("lastJoin"), loot.minutes).toString());
+            } else return TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(value.getDataValue("lastJoin"), join.minutes).toString());
         } catch (ex){
             global.worker.log.error(`loot error - function loot - ${ex.message}`);
         }
@@ -177,6 +177,9 @@ export class Loot extends Module {
                                   .replace('$3', steal.item.getDataValue("value"))
                                   .replace('$4', steal.item.getDataValue("handle").toString())
 
+        } else if(!steal.isActive) {
+            return TranslationItem.translate(this.translation, 'stealNotActive')
+                                  .replace('$1', command.source)
         } else if(!steal.isLoose) {
             return TranslationItem.translate(this.translation, 'stealItemFailed')
                                   .replace('$1', command.source)
@@ -228,6 +231,9 @@ export class Loot extends Module {
                                               .replace('$2', command.target)
                                               .replace('$3', give.item.getDataValue("value"))
                                               .replace('$4', give.item.getDataValue("handle").toString())
+                    } else if(!give.isActive) {
+                        return TranslationItem.translate(this.translation, 'giveNotActive')
+                                              .replace('$1', command.source)
                     } else if(!give.isItem) {
                         return TranslationItem.translate(this.translation, 'giveItemNoItem')
                                               .replace('$1', command.source)
@@ -411,13 +417,16 @@ export class Loot extends Module {
         if(item){
             const blood = this.settings.find(x =>x.command === "blood");
 
-            if(this.isDateTimeoutExpiredMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes) || item.getDataValue("blood") < 1){
-                const countHeroes = await this.getCountActiveHeroes();
-                item.setDataValue("blood", this.getRandomNumber(1 + countHeroes, 10 + countHeroes));
-                item.setDataValue("lastBlood", new Date());
-                await item.save();
-                return TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.getDataValue("blood").toString());
-            } else return TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString()).replace('$3', item.getDataValue("blood").toString());
+            if(blood.isActive){
+                if(this.isDateTimeoutExpiredMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes) || item.getDataValue("blood") < 1){
+                    const countHeroes = await this.getCountActiveHeroes();
+                    item.setDataValue("blood", this.getRandomNumber(1 + countHeroes, 10 + countHeroes));
+                    item.setDataValue("lastBlood", new Date());
+                    await item.save();
+                    return TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.getDataValue("blood").toString());
+                } else return TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString()).replace('$3', item.getDataValue("blood").toString());
+            } return TranslationItem.translate(this.translation, 'heroBloodNotActive').replace('$1', hero)
+
         } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
     }
 

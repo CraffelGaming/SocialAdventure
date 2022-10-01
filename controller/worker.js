@@ -124,10 +124,14 @@ class Worker {
         });
     }
     onConnectedHandler(address, port) {
-        this.log.info(`bot connected to ${address}:${port}`);
+        this.log.info(`connected to ${address}:${port}`);
     }
     onDisconnectedHandler() {
-        this.tmi.connect();
+        return __awaiter(this, void 0, void 0, function* () {
+            this.tmi = new tmi.client(tmiSettings);
+            this.channels = [];
+            yield this.initialize();
+        });
     }
 }
 exports.Worker = Worker;

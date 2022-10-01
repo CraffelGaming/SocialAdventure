@@ -1,6 +1,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./dailyItem.json');
+import seedrandom from 'seedrandom';
 
 @Table({ tableName: "daily", modelName: "daily"})
 export class DailyItem extends Model<DailyItem>{
@@ -22,6 +23,7 @@ export class DailyItem extends Model<DailyItem>{
 
     gold: number = 0;
     experience: number = 0;
+    date: Date  = new Date(2020, 1, 1);
 
     constructor(){
         super();
@@ -98,6 +100,24 @@ export class DailyItem extends Model<DailyItem>{
             global.worker.log.error(ex);
             return 500;
         }
+    }
+
+    static async getCurrentDaily({ sequelize, count }: { sequelize: Sequelize, count: number }) : Promise<DailyItem[]>{
+        const item = await sequelize.models.daily.findAll({order: [ [ 'handle', 'ASC' ]], raw: false }) as Model<DailyItem>[];
+        const today = new Date();
+        const found: DailyItem[] = [];
+        const generatorDaily = seedrandom(today.toDateString());
+        const generatorReward = seedrandom(today.toDateString());
+
+        for(let i = 1; i <= count; i++){
+            const rand = Math.floor(generatorDaily() * (item.length - 0) + 0);
+            const element = item.splice(rand, 1)[0].get();
+            element.gold = Math.floor(generatorReward() * (element.goldMax - element.goldMin + 1) + element.goldMin);
+            element.experience = Math.floor(generatorReward() * (element.experienceMax - element.experienceMin + 1) + element.experienceMin);
+            element.date = today;
+            found.push(element);
+        }
+        return found;
     }
 }
 module.exports.default = DailyItem;

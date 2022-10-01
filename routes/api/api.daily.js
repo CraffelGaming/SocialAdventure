@@ -31,12 +31,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const seedrandom_1 = __importDefault(require("seedrandom"));
 const dailyItem_1 = require("../../model/dailyItem");
 const router = express.Router();
 const endpoint = 'daily';
@@ -58,7 +54,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     else
         response.status(404).json();
 }));
-router.get('/' + endpoint + '/:node/random/:count', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/' + endpoint + '/:node/current/:count', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, node ${request.params.node} random`);
     let node;
     if (request.params.node === 'default')
@@ -66,26 +62,53 @@ router.get('/' + endpoint + '/:node/random/:count', (request, response) => __awa
     else
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
+    let found;
     if (channel) {
-        const item = yield channel.database.sequelize.models.daily.findAll({ order: [['handle', 'ASC']], raw: false });
-        const generatorDaily = (0, seedrandom_1.default)(new Date().toDateString());
-        const generatorReward = (0, seedrandom_1.default)(new Date().toDateString());
-        const found = [];
         const count = Number(request.params.count);
         if (!isNaN(count)) {
-            for (let i = 1; i <= count; i++) {
-                const rand = Math.floor(generatorDaily() * (item.length - 0 + 1) + 0);
-                global.worker.log.trace(`get ${endpoint}, node ${request.params.node} new random number ${rand}`);
-                const element = item[rand].get();
-                element.gold = Math.floor(generatorReward() * (element.goldMax - element.goldMin + 1) + element.goldMin);
-                element.experience = Math.floor(generatorReward() * (element.experienceMax - element.experienceMin + 1) + element.experienceMin);
-                found.push(element);
-            }
+            found = yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count });
         }
         if (found)
             response.status(200).json(found);
         else
             response.status(404).json();
+    }
+    else
+        response.status(404).json();
+}));
+router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`post ${endpoint}, node ${request.params.node} random`);
+    let node;
+    if (request.params.node === 'default')
+        node = yield global.defaultNode(request, response);
+    else
+        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+    const channel = global.worker.channels.find(x => x.node.name === node.name);
+    if (channel) {
+        if (global.isHero(request, response, request.params.name)) {
+            let found;
+            const count = Number(request.params.number);
+            if (!isNaN(count)) {
+                found = (yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count }))[count - 1];
+            }
+            if (found) {
+                const hero = yield channel.database.sequelize.models.hero.findByPk(request.params.name);
+                if (hero.getDataValue("lastDaily").setHours(0, 0, 0, 0) < found.date.setHours(0, 0, 0, 0)) {
+                    hero.setDataValue("lastDaily", found.date);
+                    hero.save();
+                    yield channel.database.sequelize.models.heroWallet.increment('gold', { by: found.gold, where: { heroName: request.params.name } });
+                    yield channel.database.sequelize.models.hero.increment('experience', { by: found.experience, where: { name: request.params.name } });
+                }
+                else
+                    found = null;
+            }
+            if (found)
+                response.status(200).json(found);
+            else
+                response.status(404).json();
+        }
+        else
+            response.status(403).json();
     }
     else
         response.status(404).json();

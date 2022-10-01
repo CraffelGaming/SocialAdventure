@@ -4,7 +4,6 @@ $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
     let language = await getTranslation('setting');
-    let languageCommand = await getTranslation('command');
 
     translation();
     initialize();

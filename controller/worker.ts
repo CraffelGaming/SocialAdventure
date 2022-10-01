@@ -134,11 +134,13 @@ export class Worker {
     }
 
     onConnectedHandler (address: string, port: number) {
-        this.log.info(`bot connected to ${address}:${port}`);
+        this.log.info(`connected to ${address}:${port}`);
     }
 
-    onDisconnectedHandler() {
-        this.tmi.connect();
+    async onDisconnectedHandler() {
+        this.tmi = new tmi.client(tmiSettings);
+        this.channels = [];
+        await this.initialize();
     }
     //#endregion
 }

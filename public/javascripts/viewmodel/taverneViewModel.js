@@ -29,11 +29,11 @@ $(async () => {
     //#region Initialize
     async function initialize() {
         userdata = await loadUserData();
-        dailies = await get(`/daily/default/random/3`, languageDaily);
+        dailies = await get(`/daily/default/current/3`, languageDaily);
 
         $('#responsive-box').dxResponsiveBox({
             rows: [
-                { ratio: 1 },
+                { ratio: 1},
                 { ratio: 1 },
                 { ratio: 1 },
             ],
@@ -56,6 +56,7 @@ $(async () => {
             
             $(`#daily${i}`).dxButton({
                 text: translate(languageDaily, 'work'),
+                type:"success",
                 onClick: function(e) {
                    console.log(e);
                 } 

@@ -78,9 +78,7 @@ router.post('/' + endpoint + '/:node/training/:handle/hero/:name', async (reques
     if(channel) {
         if(global.isHero(request, response, request.params.name)){
             response.status(await TrainerItem.training({sequelize: channel.database.sequelize, trainerHandle: request.params.handle, heroName: request.params.name})).json();
-        } else {
-            response.status(403).json();
-        }
+        } else response.status(403).json();
     } else response.status(404).json();
 });
 

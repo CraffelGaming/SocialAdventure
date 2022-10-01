@@ -26,6 +26,7 @@ class LootSteal {
         this.isSteal = true;
         this.isLoose = true;
         this.isSelf = true;
+        this.isActive = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
         this.itemHandle = itemHandle;
@@ -36,51 +37,55 @@ class LootSteal {
     execute(settings) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.loadElements();
-            if (this.item) {
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, item ${this.item.getDataValue("value")}`);
-                if (this.sourceHero) {
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
-                    if (this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.minutes)) {
-                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, timeout expired`);
-                        if (this.targetHero) {
-                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
-                            if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
-                                if (this.adventure) {
-                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
-                                    if (yield this.isStealSuccess()) {
-                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
-                                        yield this.save(this.sourceHero, this.sourceHero);
-                                        return true;
-                                    }
-                                    else {
-                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, failed`);
-                                        this.isSteal = false;
-                                        this.adventure = yield this.getAdventure(this.sourceHero);
-                                        if (this.adventure) {
-                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
-                                            this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")));
-                                            if (this.isItem) {
-                                                this.isLoose = false;
-                                                yield this.save(this.sourceHero, this.targetHero);
+            if (settings.isActive) {
+                if (this.item) {
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, item ${this.item.getDataValue("value")}`);
+                    if (this.sourceHero) {
+                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
+                        if (this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.minutes)) {
+                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, timeout expired`);
+                            if (this.targetHero) {
+                                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
+                                if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
+                                    if (this.adventure) {
+                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                        if (yield this.isStealSuccess()) {
+                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
+                                            yield this.save(this.sourceHero, this.sourceHero);
+                                            return true;
+                                        }
+                                        else {
+                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, failed`);
+                                            this.isSteal = false;
+                                            this.adventure = yield this.getAdventure(this.sourceHero);
+                                            if (this.adventure) {
+                                                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                                this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")));
+                                                if (this.isItem) {
+                                                    this.isLoose = false;
+                                                    yield this.save(this.sourceHero, this.targetHero);
+                                                }
                                             }
                                         }
                                     }
+                                    else
+                                        this.isAdventure = false;
                                 }
-                                else
-                                    this.isAdventure = false;
                             }
+                            else
+                                this.isTarget = false;
                         }
                         else
-                            this.isTarget = false;
+                            this.isTimeout = false;
                     }
                     else
-                        this.isTimeout = false;
+                        this.isSource = false;
                 }
                 else
-                    this.isSource = false;
+                    this.isItem = false;
             }
             else
-                this.isItem = false;
+                this.isActive = false;
             return false;
         });
     }

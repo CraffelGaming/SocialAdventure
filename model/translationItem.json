@@ -318,6 +318,7 @@
     { "page": "loot", "handle": "heroNoBloodpoints", "language": "de-DE", "translation": "$1 hat keine Blutpunkte. Tippe !blood um einen Blutrausch zu starten."},
     { "page": "loot", "handle": "heroBlood", "language": "de-DE", "translation": "$1 verfällt für $2 Minuten in einen Blutrausch, Stärke: $3"},
     { "page": "loot", "handle": "heroNoBlood", "language": "de-DE", "translation": "$1 kann erst wieder in $2 Minuten einen Blutrausch starten, Stärke: $3."},
+    { "page": "loot", "handle": "heroBloodNotActive", "language": "de-DE", "translation": "$1, Butrausch ist aktuell nicht möglich."},
     { "page": "loot", "handle": "heroTimeoutJoined", "language": "de-DE", "translation": "$1 ist noch erschöpft und kann erst wieder in $2 Minuten dem Abenteuer beitreten."},
     { "page": "loot", "handle": "heroAdventureLoose", "language": "de-DE", "translation": "$1 hat den Kampf gegen '$2' verloren und wurde besiegt."},
     { "page": "loot", "handle": "heroAdventureVictory", "language": "de-DE", "translation": "$1 erkunde das Dungeon '$2' und besiegt den Gegner '$3'. Beute: $4 Gold, $5 Erfahrung und den Gegenstand '$6 [$7]'"},
@@ -340,6 +341,7 @@
     { "page": "loot", "handle": "giveItemTimeout", "language": "de-DE", "translation": "$1, ist noch zu erschöpft vom letzten Diebstahl und wartet noch $2 Minuten."},
     { "page": "loot", "handle": "giveItem", "language": "de-DE", "translation": "$1 hat '$2' den Gegenstand '$3 [$4]' geschenkt"},
     { "page": "loot", "handle": "giveSelf", "language": "de-DE", "translation": "$1 hat sich selber eine Freude gemacht und beschenkt."},
+    { "page": "loot", "handle": "giveNotActive", "language": "de-DE", "translation": "$1, auf diesen Abenteuer ist das Verschenken von Gegenständen verboten."},
     { "page": "loot", "handle": "stealParameterNumber", "language": "de-DE", "translation": "$1, das ist kein gültige Gegenstandsnummer, nur Zahlen erlaubt."},
     { "page": "loot", "handle": "stealItemNoItem", "language": "de-DE", "translation": "$1, der Gegenstand mit der Nummer $2 existiert nicht."},
     { "page": "loot", "handle": "stealItemNoAdventure", "language": "de-DE", "translation": "$1, du besitzt den Gegenstand '$2 [$3]' nicht."},
@@ -349,7 +351,8 @@
     { "page": "loot", "handle": "stealItem", "language": "de-DE", "translation": "$1 hat $2 heimlich bestohlen und den Gegenstand '$3 [$4]' ergattert."},
     { "page": "loot", "handle": "stealItemFailed", "language": "de-DE", "translation": "$1 wurden beim stehlen von $2 erwischt, hat jedoch keinen Gegenstand verloren."},
     { "page": "loot", "handle": "stealItemFailedLoose", "language": "de-DE", "translation": "$1 wurden beim stehlen von $2 erwischt und hat den Gegenstand '$3 [$4]' verloren."},
-    { "page": "loot", "handle": "stealSelf", "language": "de-DE", "translation": "$1 hat sich selbst bestohlen. "},
+    { "page": "loot", "handle": "stealSelf", "language": "de-DE", "translation": "$1 hat sich selbst bestohlen."},
+    { "page": "loot", "handle": "stealNotActive", "language": "de-DE", "translation": "$1, auf diesen Abenteuer ist Diebstahl verboten."},
 
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},
@@ -402,7 +405,7 @@
     { "page": "setting", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
     { "page": "setting", "handle": "blood", "language": "de-DE", "translation": "Blutrausch"},
     { "page": "setting", "handle": "give", "language": "de-DE", "translation": "Gegenstand verschenken"},
-    { "page": "setting", "handle": "loot", "language": "de-DE", "translation": "Abenteuer"},
+    { "page": "setting", "handle": "loot", "language": "de-DE", "translation": "Abenteuer interval"},
     { "page": "setting", "handle": "steal", "language": "de-DE", "translation": "Gegenstand stehlen"},
-    { "page": "setting", "handle": "work", "language": "de-DE", "translation": "Arbeit"}
+    { "page": "setting", "handle": "join", "language": "de-DE", "translation": "Abenteuer Teilnahme Timeout"}
 ]

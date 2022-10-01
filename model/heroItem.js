@@ -30,6 +30,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
         this.lastSteal = new Date(2020, 1, 1);
         this.lastJoin = new Date(2020, 1, 1);
         this.lastGive = new Date(2020, 1, 1);
+        this.lastDaily = new Date(2020, 1, 1);
         this.startIndex = 0;
         this.experience = 0;
         this.prestige = 0;
@@ -191,6 +192,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)
 ], HeroItem.prototype, "lastGive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], HeroItem.prototype, "lastDaily", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)

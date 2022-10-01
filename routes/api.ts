@@ -857,7 +857,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /daily/{node}/random/{count}:
+ * /daily/{node}/current/{count}:
  *   get:
  *     tags:
  *     - Daily
@@ -923,7 +923,83 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.get("/daily/:node/random/:count", daily);
+ router.get("/daily/:node/current/:count", daily);
+
+/**
+ * @swagger
+ * /daily/{node}/redeem/{number}/hero/{name}:
+ *   post:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Erfüllen einer täglichen Aufgabe.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "number"
+ *       in: "path"
+ *       description: "Nummer der zufälligen Täglichen Aufgaben"
+ *       required: true
+ *       type: "string"
+ *       default: 1
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Hhelden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffelmat"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID der Täglichen Aufgabe
+ *               value:
+ *                 type: string
+ *                 example: "Minenarbeit"
+ *                 descrition: Name der Täglichen Aufgabe
+ *               description:
+ *                 type: string
+ *                 example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *                 descrition: Beschreibung der Täglichen Aufgabe
+ *               gold:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verdienst an Gold
+ *               experience:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verdienst an Erfahrung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.post("/daily/:node/redeem/:number/hero/:name", daily);
 
 /**
  * @swagger
@@ -1248,7 +1324,7 @@ const router = express.Router();
  router.delete("/enemy/:node/:handle", enemy);
 //#endregion
 
-//#region HealingPotion
+//#region Healing Potion
 /**
  * @swagger
  * /healingPotion/{node}:

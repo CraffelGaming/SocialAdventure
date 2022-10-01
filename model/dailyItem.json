@@ -3,6 +3,6 @@
     {"handle": 2, "value": "Holzfällen",            "goldMin": 250, "goldMax": 500,  "experienceMin": 100, "experienceMax": 500, "description": "Alle brauchen Brennholz von den tiefen Wäldern, die Brennen besonders lang und warm."},
     {"handle": 3, "value": "Gartenarbeit",          "goldMin": 250, "goldMax": 500,  "experienceMin": 100, "experienceMax": 500, "description": "Der Königliche Hofgarten muss Tag ein Tag aus gepflegt werden."},
     {"handle": 4, "value": "Stadtwache",            "goldMin": 100, "goldMax": 750,  "experienceMin": 100, "experienceMax": 500, "description": "Die Stadt muss rum um die Uhr verteidigt werden, dafür werdne immer Helden gesucht."},
-    {"handle": 5, "value": "Königlicher Kurier",    "goldMin": 200, "goldMax": 400,  "experienceMin": 100, "experienceMax": 500, "description": "Das Paket muss schnell an sein Ziel gebraucht werden, ohne es zu beschädigen."},
+    {"handle": 5, "value": "Königlicher Kurier",    "goldMin": 200, "goldMax": 400,  "experienceMin": 100, "experienceMax": 500, "description": "Das Paket muss schnell an sein Ziel gebracht werden, ohne es zu beschädigen."},
     {"handle": 6, "value": "Schutzgeld eintreiben", "goldMin": 0,   "goldMax": 1000, "experienceMin": 100, "experienceMax": 500, "description": "Schon wieder will ein Händler nicht zahlen, dabei bieten wir doch viel 'Schutz'. 'Rede' doch mal mit den Händler, damit er pünktlich zahlt."}
 ]

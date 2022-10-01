@@ -24,8 +24,8 @@
         "isActive": true
     },
     {
-        "command": "work",
-        "minutes": 60,
+        "command": "join",
+        "minutes": 30,
         "delay": 0,
         "isActive": true
     }

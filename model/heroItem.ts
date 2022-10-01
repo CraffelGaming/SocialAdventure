@@ -17,6 +17,8 @@ export class HeroItem {
     @Column
     lastGive: Date = new Date(2020, 1, 1);
     @Column
+    lastDaily: Date = new Date(2020, 1, 1);
+    @Column
     startIndex: number = 0;
     @Column
     experience: number = 0;

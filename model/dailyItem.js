@@ -17,11 +17,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DailyItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./dailyItem.json");
+const seedrandom_1 = __importDefault(require("seedrandom"));
 let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
@@ -31,6 +35,7 @@ let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
         this.experienceMax = 500;
         this.gold = 0;
         this.experience = 0;
+        this.date = new Date(2020, 1, 1);
     }
     static createTable({ sequelize }) {
         sequelize.define('daily', {
@@ -110,6 +115,24 @@ let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
                 global.worker.log.error(ex);
                 return 500;
             }
+        });
+    }
+    static getCurrentDaily({ sequelize, count }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const item = yield sequelize.models.daily.findAll({ order: [['handle', 'ASC']], raw: false });
+            const today = new Date();
+            const found = [];
+            const generatorDaily = (0, seedrandom_1.default)(today.toDateString());
+            const generatorReward = (0, seedrandom_1.default)(today.toDateString());
+            for (let i = 1; i <= count; i++) {
+                const rand = Math.floor(generatorDaily() * (item.length - 0) + 0);
+                const element = item.splice(rand, 1)[0].get();
+                element.gold = Math.floor(generatorReward() * (element.goldMax - element.goldMin + 1) + element.goldMin);
+                element.experience = Math.floor(generatorReward() * (element.experienceMax - element.experienceMin + 1) + element.experienceMin);
+                element.date = today;
+                found.push(element);
+            }
+            return found;
         });
     }
 };

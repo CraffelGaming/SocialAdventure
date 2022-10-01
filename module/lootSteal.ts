@@ -1,3 +1,4 @@
+import { setMaxListeners } from "events";
 import sequelize from "sequelize";
 import { Model } from "sequelize-typescript";
 import { AdventureItem } from "../model/adventureItem";
@@ -25,6 +26,7 @@ export class LootSteal {
     isSteal: boolean = true;
     isLoose: boolean = true;
     isSelf: boolean = true;
+    isActive: boolean = true;
 
     //#region Construct
     constructor(loot: Loot, sourceHeroName: string, targetHeroName: string = null, itemHandle: number = null){
@@ -39,41 +41,43 @@ export class LootSteal {
     async execute(settings: LootItem) : Promise<boolean>{
         await this.loadElements();
 
-        if(this.item){
-            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, item ${this.item.getDataValue("value")}`);
-            if(this.sourceHero){
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
-                if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.minutes)){
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, timeout expired`);
-                    if(this.targetHero){
-                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
-                        if(this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")){
-                            if(this.adventure){
-                                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
-                                if(await this.isStealSuccess()){
-                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
-                                    await this.save(this.sourceHero, this.sourceHero);
-                                    return true;
-                                } else {
-                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, failed`);
-                                    this.isSteal = false
-                                    this.adventure = await this.getAdventure(this.sourceHero);
+        if(settings.isActive){
+            if(this.item){
+                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, item ${this.item.getDataValue("value")}`);
+                if(this.sourceHero){
+                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
+                    if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.minutes)){
+                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, timeout expired`);
+                        if(this.targetHero){
+                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
+                            if(this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")){
+                                if(this.adventure){
+                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                    if(await this.isStealSuccess()){
+                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
+                                        await this.save(this.sourceHero, this.sourceHero);
+                                        return true;
+                                    } else {
+                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, failed`);
+                                        this.isSteal = false
+                                        this.adventure = await this.getAdventure(this.sourceHero);
 
-                                    if(this.adventure){
-                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
-                                        this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")) as Model<ItemItem>;
-                                        if(this.isItem){
-                                            this.isLoose = false;
-                                            await this.save(this.sourceHero, this.targetHero);
+                                        if(this.adventure){
+                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                            this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")) as Model<ItemItem>;
+                                            if(this.isItem){
+                                                this.isLoose = false;
+                                                await this.save(this.sourceHero, this.targetHero);
+                                            }
                                         }
                                     }
-                                }
-                            } else this.isAdventure = false;
-                        }
-                    } else this.isTarget = false;
-                } else this.isTimeout = false;
-            } else this.isSource = false;
-        } else this.isItem = false;
+                                } else this.isAdventure = false;
+                            }
+                        } else this.isTarget = false;
+                    } else this.isTimeout = false;
+                } else this.isSource = false;
+            } else this.isItem = false;
+        } else this.isActive = false;
 
         return false;
     }
