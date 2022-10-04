@@ -108,7 +108,7 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
                     const value = heroTrait.getDataValue(trait);
                     const price = value * trainer.getDataValue("gold");
                     if (heroWallet.getDataValue("gold") >= price) {
-                        yield heroWallet.decrement('gold', { by: trainer.getDataValue("gold") });
+                        yield heroWallet.decrement('gold', { by: price });
                         yield heroTrait.increment(trait, { by: 1 });
                         if (trainer.getDataValue("handle") === "hitpoint") {
                             yield hero.increment('hitpointsMax', { by: 10 });

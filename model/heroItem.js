@@ -140,7 +140,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
             const level = yield sequelize.models.level.findOne({
                 attributes: [[sequelize.fn('max', sequelize.col('experienceMax')), 'max']]
             });
-            const maxExperience = level.getDataValue("experienceMax");
+            const maxExperience = level.getDataValue("max");
             if (element.experience >= maxExperience) {
                 yield sequelize.models.hero.decrement('experience', { by: maxExperience, where: { name: element.name } });
                 yield sequelize.models.hero.increment('prestige', { by: 1, where: { name: element.name } });

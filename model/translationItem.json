@@ -103,6 +103,7 @@
     { "page": "daily", "handle": "goldMax", "language": "de-DE", "translation": "Maximaler Lohn"},
     { "page": "daily", "handle": "experienceMin", "language": "de-DE", "translation": "Minimale XP"},
     { "page": "daily", "handle": "experienceMax", "language": "de-DE", "translation": "Maximale XP"},
+    { "page": "daily", "handle": "lastDaily", "language": "de-DE", "translation": "Tägliche Aufgabe wurde zuletzt am $1 abgeschlossen."},
     { "page": "daily", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "daily", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
     { "page": "daily", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},

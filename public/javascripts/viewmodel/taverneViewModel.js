@@ -19,18 +19,30 @@ $(async () => {
 
     await initialize();
     await refreshHero();
+    loadDaily();
     translation();
     await loadWallet();
     await loadTrait();
     loadHealing();
     loadTrainer();
     infoPanel();
-
+    
     //#region Initialize
     async function initialize() {
         userdata = await loadUserData();
-        dailies = await get(`/daily/default/current/3`, languageDaily);
+        dailies = await get(`/daily/default/current/3`, languageDaily);  
+    }
 
+    async function refreshHero(){
+        hero = await get('/hero/default/' + userdata.login);
+        heroWallet = await get('/heroWallet/default/hero/' + userdata.login);
+        heroTrait = await get('/heroTrait/default/hero/' + userdata.login);
+    }
+
+    //#endregion
+    
+    //#region Daily
+    async function loadDaily() {
         $('#responsive-box').dxResponsiveBox({
             rows: [
                 { ratio: 1},
@@ -57,21 +69,49 @@ $(async () => {
             $(`#daily${i}`).dxButton({
                 text: translate(languageDaily, 'work'),
                 type:"success",
+                disabled: new Date(hero?.lastDaily).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0),
                 onClick: function(e) {
-                   console.log(e);
+                    let handle = 0;
+
+                    switch(e.element[0].id){
+                        case "daily0":
+                            handle = 1;
+                            break;
+                        case "daily1":
+                            handle = 1;
+                            break;
+                        case "daily2":
+                            handle = 1;
+                            break;
+                    }
+
+                    fetch(`./api/daily/default/redeem/${handle}/hero/${hero.name}/`, {
+                        method: 'post',
+                        headers: {
+                            'Content-type': 'application/json'
+                        }
+                    }).then(async function (res) {
+                        switch(res.status){
+                            case 200:
+                                for(let i = 0; i < 3; i++){
+                                    $(`#daily${i}`).dxButton('instance').option("disabled", true);
+                                }
+
+                                await refreshHero();
+                                await loadWallet();
+                                notify(translate(languageHealing, res.status), "success");
+                                break;
+                            default:
+                                notify(translate(languageHealing, res.status), "error");
+                                break;
+                        }
+                    });
                 } 
             });
         }
     }
-
-    async function refreshHero(){
-        hero = await get('/hero/default/' + userdata.login);
-        heroWallet = await get('/heroWallet/default/hero/' + userdata.login);
-        heroTrait = await get('/heroTrait/default/hero/' + userdata.login);
-    }
-
     //#endregion
-
+    
     //#region Load
     async function loadWallet() {
 
@@ -263,11 +303,9 @@ $(async () => {
 
     //#region Translation
     function translation() {
-        document.getElementById("labelTitle").textContent = translate(language, 'title');
         document.getElementById("description").textContent = translate(language, 'description').replace('$1',hero?.name);
-        document.getElementById("healingTitle").textContent = translate(languageHealing, 'healing');
         document.getElementById("trainerTitle").textContent = translate(languageTrait, 'trait');
-        document.getElementById("dailyTitle").textContent = translate(languageDaily, 'title');
+        document.getElementById("lastDaily").textContent = translate(languageDaily, 'lastDaily').replace('$1',new Date(hero?.lastDaily).toLocaleDateString());
     }
     //#endregion
 });

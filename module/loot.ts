@@ -57,7 +57,7 @@ export class Loot extends Module {
             async () => {
                 const loot = this.settings.find(x =>x.command === "loot");
                 if(loot.isActive){
-                    global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun)}...`);
+                    global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun).toLocaleDateString()} - ${new Date(loot.lastRun).toLocaleTimeString()}...`);
 
                     if(this.isDateTimeoutExpiredMinutes(new Date(loot.lastRun),  loot.minutes)){
                         loot.lastRun = new Date();

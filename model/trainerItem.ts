@@ -95,7 +95,7 @@ export class TrainerItem extends Model<TrainerItem>{
                 const value = heroTrait.getDataValue(trait) as number;
                 const price =  value * trainer.getDataValue("gold");
                 if(heroWallet.getDataValue("gold") >= price){
-                    await heroWallet.decrement('gold', { by: trainer.getDataValue("gold")});
+                    await heroWallet.decrement('gold', { by: price});
                     await heroTrait.increment(trait, { by: 1});
 
                     if(trainer.getDataValue("handle") === "hitpoint"){

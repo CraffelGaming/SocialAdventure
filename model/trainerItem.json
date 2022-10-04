@@ -1,8 +1,8 @@
 [
     {"handle": "gold",      "value": "Goldenes Händchen",   "description": "Steigert den Bonus für Goldfund.",      "gold": 10000,  "image": "/images/trait/gold.png"},
-    {"handle": "steal",     "value": "Schatten der Nacht",  "description": "Steigert den Bonus für Diebstahl.",     "gold": 2500,   "image": "/images/trait/steal.png"},
-    {"handle": "defence",   "value": "Adlerauge",           "description": "Steigert den Bonus für Verteidigung.",  "gold": 2500,   "image": "/images/trait/defence.png"},
-    {"handle": "work",      "value": "Harter Arbeiter",     "description": "Steigert den Bonus für Arbeit.",        "gold": 5000,   "image": "/images/trait/work.png"},
+    {"handle": "steal",     "value": "Schatten der Nacht",  "description": "Steigert den Bonus für Diebstahl.",     "gold": 5000,   "image": "/images/trait/steal.png"},
+    {"handle": "defence",   "value": "Adlerauge",           "description": "Steigert den Bonus für Verteidigung.",  "gold": 5000,   "image": "/images/trait/defence.png"},
+    {"handle": "work",      "value": "Harter Arbeiter",     "description": "Steigert den Bonus für Arbeit.",        "gold": 2500,   "image": "/images/trait/work.png"},
     {"handle": "strength",  "value": "Starker Bursche",     "description": "Steigert den Bonus für Stärke.",        "gold": 5000,   "image": "/images/trait/strength.png"},
     {"handle": "hitpoint",  "value": "Überlebenskünstler",  "description": "Steigert den Bonus für HP.",            "gold": 5000,   "image": "/images/trait/hp.png"}
 ]

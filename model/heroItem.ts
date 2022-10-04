@@ -136,8 +136,8 @@ export class HeroItem {
     static async calculateHero({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<boolean>{
         const level = await sequelize.models.level.findOne({
             attributes:[[sequelize.fn('max', sequelize.col('experienceMax')),'max']]
-        }) as Model<LevelItem>;
-        const maxExperience = level.getDataValue("experienceMax");
+        });
+        const maxExperience = level.getDataValue("max");
 
         if(element.experience >= maxExperience){
             await sequelize.models.hero.decrement('experience', { by: maxExperience, where: { name: element.name }});
