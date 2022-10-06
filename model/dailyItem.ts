@@ -2,6 +2,7 @@ import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } 
 import { DataTypes } from 'sequelize';
 import json = require('./dailyItem.json');
 import seedrandom from 'seedrandom';
+import { ValidationItem } from './validationItem';
 
 @Table({ tableName: "daily", modelName: "daily"})
 export class DailyItem extends Model<DailyItem>{
@@ -82,24 +83,43 @@ export class DailyItem extends Model<DailyItem>{
         }
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: DailyItem }): Promise<number>{
+    static async put({ sequelize,globalSequelize, element }: { sequelize: Sequelize,globalSequelize: Sequelize, element: DailyItem }): Promise<number>{
         try{
-            if(element.handle != null && element.handle > 0){
-                const item = await sequelize.models.daily.findByPk(element.handle);
+            const item = await sequelize.models.daily.findByPk(element.handle);
+            if(await DailyItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){
                 if(item){
                     await sequelize.models.daily.update(element, {where: {handle: element.handle}});
                     return 201;
                 }
-            } else {
-                if(element.value != null && element.value.length > 0 && element.description != null && element.description.length > 0 && element.goldMin != null && element.goldMin > 0&& element.goldMax != null && element.goldMax > 0){
+                else {
                     await sequelize.models.daily.create(element as any);
                     return 201;
-                } else return 406;
-            }
+                }
+            } else return 406;
         } catch(ex){
             global.worker.log.error(ex);
             return 500;
         }
+    }
+
+    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: DailyItem, isUpdate: boolean }) : Promise<boolean>{
+        let isValid = true;
+
+        const validations = await globalSequelize.models.validation.findAll({where: { page: 'daily'}}) as Model<ValidationItem>[];
+
+        if(!(!element.experienceMin       || element.experienceMin        && element.experienceMin >= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('min')   && element.experienceMin <= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('max')))   isValid = false;
+        if(!(!element.experienceMax       || element.experienceMax        && element.experienceMax >= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('min')   && element.experienceMax <= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('max')))   isValid = false;
+        if(!(!element.goldMin             || element.goldMin              && element.goldMin >= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('min')               && element.goldMin <= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('max')))               isValid = false;
+        if(!(!element.goldMax             || element.goldMax              && element.goldMax >= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('min')               && element.goldMax <= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('max')))               isValid = false;
+
+        if(!isUpdate){
+            if(!(element.value != null && element.value.length > 0))                isValid = false;
+            if(!(element.description != null && element.description.length > 0))    isValid = false;
+            if(!(element.goldMin != null && element.goldMin > 0))                   isValid = false;
+            if(!(element.goldMax != null && element.goldMax > 0))                   isValid = false;
+        }
+
+        return isValid;
     }
 
     static async getCurrentDaily({ sequelize, count }: { sequelize: Sequelize, count: number }) : Promise<DailyItem[]>{

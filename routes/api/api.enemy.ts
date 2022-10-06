@@ -33,7 +33,7 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
 
     if(channel) {
         if(global.isMaster(request, response, node)){
-            response.status(await EnemyItem.put({ sequelize: channel.database.sequelize, element: request.body})).json(request.body);
+            response.status(await EnemyItem.put({ sequelize: channel.database.sequelize, globalSequelize: global.worker.globalDatabase.sequelize, element: request.body})).json(request.body);
         } else {
             response.status(403).json();
         }

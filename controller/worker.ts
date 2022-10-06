@@ -34,6 +34,12 @@ export class Worker {
         this.log.trace('basic migration path: ' + this.pathMigration);
     }
 
+    async restart(){
+        global.worker.tmi = new tmi.client(tmiSettings);
+        global.worker.channels = [];
+        await global.worker.initialize();    
+    }
+
     async initialize(){
         await this.globalDatabase.initializeGlobal();
 
@@ -138,9 +144,7 @@ export class Worker {
     }
 
     async onDisconnectedHandler() {
-        this.tmi = new tmi.client(tmiSettings);
-        this.channels = [];
-        await this.initialize();
+        await global.worker.restart();
     }
     //#endregion
 }

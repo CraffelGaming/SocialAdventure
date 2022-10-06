@@ -20,13 +20,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var DailyItem_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DailyItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./dailyItem.json");
 const seedrandom_1 = __importDefault(require("seedrandom"));
-let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
+let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.goldMin = 100;
@@ -92,29 +93,52 @@ let DailyItem = class DailyItem extends sequelize_typescript_1.Model {
             }
         });
     }
-    static put({ sequelize, element }) {
+    static put({ sequelize, globalSequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (element.handle != null && element.handle > 0) {
-                    const item = yield sequelize.models.daily.findByPk(element.handle);
+                const item = yield sequelize.models.daily.findByPk(element.handle);
+                if (yield DailyItem_1.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })) {
                     if (item) {
                         yield sequelize.models.daily.update(element, { where: { handle: element.handle } });
                         return 201;
                     }
-                }
-                else {
-                    if (element.value != null && element.value.length > 0 && element.description != null && element.description.length > 0 && element.goldMin != null && element.goldMin > 0 && element.goldMax != null && element.goldMax > 0) {
+                    else {
                         yield sequelize.models.daily.create(element);
                         return 201;
                     }
-                    else
-                        return 406;
                 }
+                else
+                    return 406;
             }
             catch (ex) {
                 global.worker.log.error(ex);
                 return 500;
             }
+        });
+    }
+    static validate({ sequelize, globalSequelize, element, isUpdate }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let isValid = true;
+            const validations = yield globalSequelize.models.validation.findAll({ where: { page: 'daily' } });
+            if (!(!element.experienceMin || element.experienceMin && element.experienceMin >= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('min') && element.experienceMin <= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('max')))
+                isValid = false;
+            if (!(!element.experienceMax || element.experienceMax && element.experienceMax >= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('min') && element.experienceMax <= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('max')))
+                isValid = false;
+            if (!(!element.goldMin || element.goldMin && element.goldMin >= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('min') && element.goldMin <= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('max')))
+                isValid = false;
+            if (!(!element.goldMax || element.goldMax && element.goldMax >= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('min') && element.goldMax <= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('max')))
+                isValid = false;
+            if (!isUpdate) {
+                if (!(element.value != null && element.value.length > 0))
+                    isValid = false;
+                if (!(element.description != null && element.description.length > 0))
+                    isValid = false;
+                if (!(element.goldMin != null && element.goldMin > 0))
+                    isValid = false;
+                if (!(element.goldMax != null && element.goldMax > 0))
+                    isValid = false;
+            }
+            return isValid;
         });
     }
     static getCurrentDaily({ sequelize, count }) {
@@ -165,7 +189,7 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], DailyItem.prototype, "experienceMax", void 0);
-DailyItem = __decorate([
+DailyItem = DailyItem_1 = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "daily", modelName: "daily" }),
     __metadata("design:paramtypes", [])
 ], DailyItem);

@@ -33,6 +33,7 @@ import { TwitchItem } from '../model/twitchItem';
 import { TwitchUserItem } from '../model/twitchUserItem';
 import { LevelItem } from '../model/levelItem';
 import { PlaceholderItem } from '../model/placeholderItem';
+import { ValidationItem } from '../model/validationItem';
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -61,6 +62,7 @@ export class Connection {
             ItemItem.createTable({ sequelize: this.sequelize });
             HelpItem.createTable({ sequelize: this.sequelize });
             PlaceholderItem.createTable({ sequelize: this.sequelize });
+            ValidationItem.createTable({ sequelize: this.sequelize });
 
             MenuItem.setAssociation({ sequelize: this.sequelize });
             NodeItem.setAssociation({ sequelize: this.sequelize });
@@ -76,6 +78,7 @@ export class Connection {
             await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
             await ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
             await PlaceholderItem.updateTable({ sequelize: this.sequelize });
+            await ValidationItem.updateTable({ sequelize: this.sequelize });
 
             ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });

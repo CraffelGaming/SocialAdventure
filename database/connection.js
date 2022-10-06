@@ -65,6 +65,7 @@ const twitchItem_1 = require("../model/twitchItem");
 const twitchUserItem_1 = require("../model/twitchUserItem");
 const levelItem_1 = require("../model/levelItem");
 const placeholderItem_1 = require("../model/placeholderItem");
+const validationItem_1 = require("../model/validationItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -87,6 +88,7 @@ class Connection {
                 itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
                 helpItem_1.HelpItem.createTable({ sequelize: this.sequelize });
                 placeholderItem_1.PlaceholderItem.createTable({ sequelize: this.sequelize });
+                validationItem_1.ValidationItem.createTable({ sequelize: this.sequelize });
                 menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
                 nodeItem_1.NodeItem.setAssociation({ sequelize: this.sequelize });
                 twitchItem_1.TwitchItem.setAssociation({ sequelize: this.sequelize });
@@ -99,6 +101,7 @@ class Connection {
                 yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
                 yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
                 yield placeholderItem_1.PlaceholderItem.updateTable({ sequelize: this.sequelize });
+                yield validationItem_1.ValidationItem.updateTable({ sequelize: this.sequelize });
                 itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
                 yield this.updater("migrations/global");

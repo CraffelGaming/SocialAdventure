@@ -6,7 +6,7 @@ import json = require('./validationItem.json');
 export class ValidationItem extends Model<ValidationItem>{
     @PrimaryKey
     @Column
-    table: string;
+    page: string;
     @PrimaryKey
     @Column
     handle: string;
@@ -21,7 +21,7 @@ export class ValidationItem extends Model<ValidationItem>{
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('validation', {
-            table: {
+            page: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
@@ -49,9 +49,9 @@ export class ValidationItem extends Model<ValidationItem>{
             const items = JSON.parse(JSON.stringify(json)) as ValidationItem[];
 
             for(const item of items){
-                if(await sequelize.models.validation.count({where: {handle: item.handle, table: item.table}}) === 0){
+                if(await sequelize.models.validation.count({where: {handle: item.handle, page: item.page}}) === 0){
                     await sequelize.models.validation.create(item as any);
-                } else await sequelize.models.validation.update(item, {where: {handle: item.handle, table: item.table}});
+                } else await sequelize.models.validation.update(item, {where: {handle: item.handle, page: item.page}});
             }
         } catch(ex){
             global.worker.log.error(ex);

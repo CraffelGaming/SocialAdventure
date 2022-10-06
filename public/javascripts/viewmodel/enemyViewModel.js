@@ -138,8 +138,8 @@ $(async () => {
                 { dataField: "strength", caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 150},
                 { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], visible: false},
                 { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], visible: false},
-                { dataField: "GoldMin", caption: translate(language, 'GoldMin'), validationRules: [{ type: "required" }], visible: false},
-                { dataField: "GoldMax", caption: translate(language, 'GoldMax'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }], visible: false},
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox", width: 120 }
             ],
             editing: await getEditing(),

@@ -89,6 +89,7 @@ class Worker {
             this.tmi.on('connected', this.onConnectedHandler);
             this.tmi.on('disconnected', this.onDisconnectedHandler);
             yield this.tmi.connect();
+            yield this.onDisconnectedHandler();
         });
     }
     register(channel) {

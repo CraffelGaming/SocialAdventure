@@ -99,11 +99,11 @@ let PromotionItem = PromotionItem_1 = class PromotionItem extends sequelize_type
             }
         });
     }
-    static put({ sequelize, element }) {
+    static put({ sequelize, globalSequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const item = yield sequelize.models.promotion.findByPk(element.handle);
-                if (yield PromotionItem_1.validate({ sequelize, element, isUpdate: item ? true : false })) {
+                if (yield PromotionItem_1.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })) {
                     if (item) {
                         yield sequelize.models.promotion.update(element, { where: { handle: element.handle } });
                         return 201;
@@ -122,14 +122,15 @@ let PromotionItem = PromotionItem_1 = class PromotionItem extends sequelize_type
             }
         });
     }
-    static validate({ sequelize, element, isUpdate }) {
+    static validate({ sequelize, globalSequelize, element, isUpdate }) {
         return __awaiter(this, void 0, void 0, function* () {
             let isValid = true;
-            if (!(!element.gold || element.gold && element.gold >= 0 && element.gold <= 5000))
+            const validations = yield globalSequelize.models.validation.findAll({ where: { page: 'promotion' } });
+            if (!(!element.gold || element.gold && element.gold >= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('min') && element.gold <= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('max')))
                 isValid = false;
-            if (!(!element.diamond || element.diamond && element.diamond >= 0 && element.diamond <= 100))
+            if (!(!element.diamond || element.diamond && element.diamond >= validations.find(x => x.getDataValue('handle') === 'diamond').getDataValue('min') && element.diamond <= validations.find(x => x.getDataValue('handle') === 'diamond').getDataValue('max')))
                 isValid = false;
-            if (!(!element.experience || element.experience && element.experience >= 0 && element.experience <= 50000))
+            if (!(!element.experience || element.experience && element.experience >= validations.find(x => x.getDataValue('handle') === 'experience').getDataValue('min') && element.experience <= validations.find(x => x.getDataValue('handle') === 'experience').getDataValue('max')))
                 isValid = false;
             if (!(!element.item || element.item && (yield sequelize.models.item.findByPk(element.item))))
                 isValid = false;

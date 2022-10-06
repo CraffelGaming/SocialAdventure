@@ -304,7 +304,6 @@ $(async () => {
     //#region Translation
     function translation() {
         document.getElementById("description").textContent = translate(language, 'description').replace('$1',hero?.name);
-        document.getElementById("trainerTitle").textContent = translate(languageTrait, 'trait');
         document.getElementById("lastDaily").textContent = translate(languageDaily, 'lastDaily').replace('$1',new Date(hero?.lastDaily).toLocaleDateString());
     }
     //#endregion

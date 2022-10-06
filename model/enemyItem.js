@@ -17,12 +17,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var EnemyItem_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnemyItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./enemyItem.json");
-let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
+let EnemyItem = EnemyItem_1 = class EnemyItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.difficulty = 1;
@@ -31,8 +32,8 @@ let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
         this.isActive = true;
         this.experienceMin = 100;
         this.experienceMax = 200;
-        this.GoldMin = 100;
-        this.GoldMax = 200;
+        this.goldMin = 100;
+        this.goldMax = 200;
     }
     static createTable({ sequelize }) {
         sequelize.define('enemy', {
@@ -75,12 +76,12 @@ let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
                 allowNull: false,
                 defaultValue: 200
             },
-            GoldMin: {
+            goldMin: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 100
             },
-            GoldMax: {
+            goldMax: {
                 type: sequelize_1.DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 200
@@ -109,29 +110,51 @@ let EnemyItem = class EnemyItem extends sequelize_typescript_1.Model {
             }
         });
     }
-    static put({ sequelize, element }) {
+    static put({ sequelize, globalSequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (element.handle != null && element.handle > 0) {
-                    const item = yield sequelize.models.enemy.findByPk(element.handle);
+                const item = yield sequelize.models.enemy.findByPk(element.handle);
+                if (yield EnemyItem_1.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })) {
                     if (item) {
                         yield sequelize.models.enemy.update(element, { where: { handle: element.handle } });
                         return 201;
                     }
-                }
-                else {
-                    if (element.name != null && element.name.length > 0) {
+                    else {
                         yield sequelize.models.enemy.create(element);
                         return 201;
                     }
-                    else
-                        return 406;
                 }
+                else
+                    return 406;
             }
             catch (ex) {
                 global.worker.log.error(ex);
                 return 500;
             }
+        });
+    }
+    static validate({ sequelize, globalSequelize, element, isUpdate }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let isValid = true;
+            const validations = yield globalSequelize.models.validation.findAll({ where: { page: 'enemy' } });
+            if (!(!element.experienceMin || element.experienceMin && element.experienceMin >= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('min') && element.experienceMin <= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('max')))
+                isValid = false;
+            if (!(!element.experienceMax || element.experienceMax && element.experienceMax >= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('min') && element.experienceMax <= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('max')))
+                isValid = false;
+            if (!(!element.goldMin || element.goldMin && element.goldMin >= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('min') && element.goldMin <= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('max')))
+                isValid = false;
+            if (!(!element.goldMax || element.goldMax && element.goldMax >= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('min') && element.goldMax <= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('max')))
+                isValid = false;
+            if (!(!element.strength || element.strength && element.strength >= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('min') && element.strength <= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('max')))
+                isValid = false;
+            if (!(!element.hitpoints || element.hitpoints && element.hitpoints >= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('min') && element.hitpoints <= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('max')))
+                isValid = false;
+            if (!isUpdate) {
+                if (!(element.name != null && element.name.length > 0)) {
+                    isValid = false;
+                }
+            }
+            return isValid;
         });
     }
 };
@@ -175,12 +198,12 @@ __decorate([
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], EnemyItem.prototype, "GoldMin", void 0);
+], EnemyItem.prototype, "goldMin", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], EnemyItem.prototype, "GoldMax", void 0);
-EnemyItem = __decorate([
+], EnemyItem.prototype, "goldMax", void 0);
+EnemyItem = EnemyItem_1 = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "enemy", modelName: "enemy" }),
     __metadata("design:paramtypes", [])
 ], EnemyItem);

@@ -40,7 +40,7 @@ class LootExploring {
                             this.wallet = yield this.getWallet();
                             this.trait = yield this.getTrait();
                             this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax")) + this.wallet.getDataValue("blood");
-                            this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("GoldMin"), this.enemy.getDataValue("GoldMax")) + this.wallet.getDataValue("blood");
+                            this.gold = this.loot.getRandomNumber(this.enemy.getDataValue("goldMin"), this.enemy.getDataValue("goldMax")) + this.wallet.getDataValue("blood");
                             this.gold = Math.round(this.gold * ((this.trait.getDataValue("goldMultipler") / 10) + 1));
                             this.fight();
                             return true;

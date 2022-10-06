@@ -2,6 +2,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./itemItem.json');
+import { ValidationItem } from './validationItem';
 @Table({ tableName: "item", modelName: "item"})
 export class ItemItem extends Model<ItemItem>{
     @PrimaryKey
@@ -84,24 +85,39 @@ export class ItemItem extends Model<ItemItem>{
         }
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: ItemItem }): Promise<number>{
+    static async put({ sequelize,globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem }): Promise<number>{
         try{
-            if(element.handle != null && element.handle > 0){
                 const item = await sequelize.models.item.findByPk(element.handle);
-                if(item){
-                    await sequelize.models.item.update(element, {where: {handle: element.handle}});
-                    return 201;
-                }
-            } else {
-                if(element.value != null && element.value.length > 0){
-                    await sequelize.models.item.create(element as any);
-                    return 201;
+                if(await ItemItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){
+                    if(item){
+                        await sequelize.models.item.update(element, {where: {handle: element.handle}});
+                        return 201;
+                    }
+                    else {
+                        await sequelize.models.item.create(element as any);
+                        return 201;
+                    }
                 } else return 406;
-            }
         } catch(ex){
             global.worker.log.error(ex);
             return 500;
         }
+    }
+
+    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem, isUpdate: boolean }) : Promise<boolean>{
+        let isValid = true;
+
+        const validations = await globalSequelize.models.validation.findAll({where: { page: 'item'}}) as Model<ValidationItem>[];
+
+        if(!(!element.gold       || element.gold        && element.gold >= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('min')                && element.gold <= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('max')))              isValid = false;
+
+        if(!isUpdate){
+            if(!(element.value != null && element.value.length > 0)){
+                isValid = false;
+            }
+        }
+
+        return isValid;
     }
 }
 

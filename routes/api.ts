@@ -28,8 +28,123 @@ import daily from "./api/api.daily";
 import promotion from "./api/api.promotion";
 import help from "./api/api.help";
 import placeholder from "./api/api.placeholder";
+import validation from "./api/api.validation";
 
 const router = express.Router();
+
+//#region Validation
+/**
+ * @swagger
+ * /validation:
+ *   get:
+ *     tags:
+ *     - Validation
+ *     summary: Validierungen
+ *     description: Rückgabe aller Validierungen.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               page:
+ *                 type: string
+ *                 example: "promotion"
+ *                 descrition: Name der Seite
+ *               handle:
+ *                 type: string
+ *                 example: "navigtion"
+ *                 descrition: ID der Validation
+ *               min:
+ *                 type: integer
+ *                 example: 0
+ *                 descrition: Erlaubter Minimalwert
+ *               max:
+ *                 type: integer
+ *                 example: 1000
+ *                 descrition: Erlaubter Minimalwert
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/validation", validation);
+
+/**
+ * @swagger
+ * /validation/{page}:
+ *   get:
+ *     tags:
+ *     - Validation
+ *     summary: Validierungen
+ *     description: Rückgabe aller Validierungen einer Seite
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "page"
+ *       in: "path"
+ *       description: "Name der Seite"
+ *       required: true
+ *       default: "navigation"
+ *     - name: "language"
+ *       in: "path"
+ *       description: "Sprache für die Übersetzung."
+ *       required: true
+ *       default: "de-DE"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               page:
+ *                 type: string
+ *                 example: "promotion"
+ *                 descrition: Name der Seite
+ *               handle:
+ *                 type: string
+ *                 example: "navigtion"
+ *                 descrition: ID der Validation
+ *               min:
+ *                 type: integer
+ *                 example: 0
+ *                 descrition: Erlaubter Minimalwert
+ *               max:
+ *                 type: integer
+ *                 example: 1000
+ *                 descrition: Erlaubter Minimalwert
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/validation/:page", validation);
+//#endregion
 
 //#region Placeholder
 /**

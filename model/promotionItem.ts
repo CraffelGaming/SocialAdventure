@@ -6,6 +6,7 @@ import { HeroWalletItem } from './heroWalletItem';
 import { ItemItem } from './itemItem';
 import { HeroInventoryItem } from './heroInventoryItem';
 import { HeroPromotionItem } from './heroPromotionItem';
+import { ValidationItem } from './validationItem';
 
 @Table({ tableName: "promotion", modelName: "promotion"})
 export class PromotionItem extends Model<PromotionItem>{
@@ -93,10 +94,10 @@ export class PromotionItem extends Model<PromotionItem>{
         }
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: PromotionItem }): Promise<number>{
+    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: PromotionItem }): Promise<number>{
         try{
             const item = await sequelize.models.promotion.findByPk(element.handle);
-            if(await PromotionItem.validate({ sequelize, element, isUpdate: item ? true : false })){
+            if(await PromotionItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){
                 if(item){
                     await sequelize.models.promotion.update(element, {where: {handle: element.handle}});
                     return 201;
@@ -111,12 +112,14 @@ export class PromotionItem extends Model<PromotionItem>{
         }
     }
 
-    static async validate({ sequelize, element, isUpdate }: { sequelize: Sequelize, element: PromotionItem, isUpdate: boolean }) : Promise<boolean>{
+    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: PromotionItem, isUpdate: boolean }) : Promise<boolean>{
         let isValid = true;
 
-        if(!(!element.gold       || element.gold        && element.gold >= 0        && element.gold <= 5000))        isValid = false;
-        if(!(!element.diamond    || element.diamond     && element.diamond >= 0     && element.diamond <= 100))      isValid = false;
-        if(!(!element.experience || element.experience  && element.experience >= 0  && element.experience <= 50000)) isValid = false;
+        const validations = await globalSequelize.models.validation.findAll({where: { page: 'promotion'}}) as Model<ValidationItem>[];
+
+        if(!(!element.gold       || element.gold        && element.gold >= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('min')                && element.gold <= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('max')))              isValid = false;
+        if(!(!element.diamond    || element.diamond     && element.diamond >= validations.find(x => x.getDataValue('handle') === 'diamond').getDataValue('min')          && element.diamond <= validations.find(x => x.getDataValue('handle') === 'diamond').getDataValue('max')))        isValid = false;
+        if(!(!element.experience || element.experience  && element.experience >= validations.find(x => x.getDataValue('handle') === 'experience').getDataValue('min')    && element.experience <= validations.find(x => x.getDataValue('handle') === 'experience').getDataValue('max')))  isValid = false;
         if(!(!element.item       || element.item        && await sequelize.models.item.findByPk(element.item)))      isValid = false;
 
         return isValid;

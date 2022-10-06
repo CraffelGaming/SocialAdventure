@@ -17,12 +17,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var ItemItem_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const json = require("./itemItem.json");
-let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
+let ItemItem = ItemItem_1 = class ItemItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
         this.gold = 50;
@@ -95,29 +96,41 @@ let ItemItem = class ItemItem extends sequelize_typescript_1.Model {
             }
         });
     }
-    static put({ sequelize, element }) {
+    static put({ sequelize, globalSequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                if (element.handle != null && element.handle > 0) {
-                    const item = yield sequelize.models.item.findByPk(element.handle);
+                const item = yield sequelize.models.item.findByPk(element.handle);
+                if (yield ItemItem_1.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })) {
                     if (item) {
                         yield sequelize.models.item.update(element, { where: { handle: element.handle } });
                         return 201;
                     }
-                }
-                else {
-                    if (element.value != null && element.value.length > 0) {
+                    else {
                         yield sequelize.models.item.create(element);
                         return 201;
                     }
-                    else
-                        return 406;
                 }
+                else
+                    return 406;
             }
             catch (ex) {
                 global.worker.log.error(ex);
                 return 500;
             }
+        });
+    }
+    static validate({ sequelize, globalSequelize, element, isUpdate }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let isValid = true;
+            const validations = yield globalSequelize.models.validation.findAll({ where: { page: 'item' } });
+            if (!(!element.gold || element.gold && element.gold >= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('min') && element.gold <= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('max')))
+                isValid = false;
+            if (!isUpdate) {
+                if (!(element.value != null && element.value.length > 0)) {
+                    isValid = false;
+                }
+            }
+            return isValid;
         });
     }
 };
@@ -142,7 +155,7 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], ItemItem.prototype, "categoryHandle", void 0);
-ItemItem = __decorate([
+ItemItem = ItemItem_1 = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "item", modelName: "item" }),
     __metadata("design:paramtypes", [])
 ], ItemItem);

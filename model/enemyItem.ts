@@ -1,6 +1,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./enemyItem.json');
+import { ValidationItem } from './validationItem';
 
 @Table({ tableName: "enemy", modelName: "enemy"})
 export class EnemyItem extends Model<EnemyItem>{
@@ -24,9 +25,9 @@ export class EnemyItem extends Model<EnemyItem>{
     @Column
     experienceMax: number = 200;
     @Column
-    GoldMin: number = 100;
+    goldMin: number = 100;
     @Column
-    GoldMax: number = 200;
+    goldMax: number = 200;
 
     constructor(){
         super();
@@ -73,12 +74,12 @@ export class EnemyItem extends Model<EnemyItem>{
                 allowNull: false,
                 defaultValue: 200
             },
-            GoldMin: {
+            goldMin: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 100
             },
-            GoldMax: {
+            goldMax: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 200
@@ -105,24 +106,43 @@ export class EnemyItem extends Model<EnemyItem>{
         }
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: EnemyItem }): Promise<number>{
+    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize:Sequelize,  element: EnemyItem }): Promise<number>{
         try{
-            if(element.handle != null && element.handle > 0){
-                const item = await sequelize.models.enemy.findByPk(element.handle);
+            const item = await sequelize.models.enemy.findByPk(element.handle);
+            if(await EnemyItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){
                 if(item){
                     await sequelize.models.enemy.update(element, {where: {handle: element.handle}});
                     return 201;
                 }
-            } else {
-                if(element.name != null && element.name.length > 0){
+                else {
                     await sequelize.models.enemy.create(element as any);
                     return 201;
-                } else return 406;
-            }
+                }
+            } else return 406;
         } catch(ex){
             global.worker.log.error(ex);
             return 500;
         }
+    }
+
+    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: EnemyItem, isUpdate: boolean }) : Promise<boolean>{
+        let isValid = true;
+
+        const validations = await globalSequelize.models.validation.findAll({where: { page: 'enemy'}}) as Model<ValidationItem>[];
+
+        if(!(!element.experienceMin       || element.experienceMin        && element.experienceMin >= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('min')   && element.experienceMin <= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('max')))   isValid = false;
+        if(!(!element.experienceMax       || element.experienceMax        && element.experienceMax >= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('min')   && element.experienceMax <= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('max')))   isValid = false;
+        if(!(!element.goldMin             || element.goldMin              && element.goldMin >= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('min')               && element.goldMin <= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('max')))               isValid = false;
+        if(!(!element.goldMax             || element.goldMax              && element.goldMax >= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('min')               && element.goldMax <= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('max')))               isValid = false;
+        if(!(!element.strength            || element.strength             && element.strength >= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('min')             && element.strength <= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('max')))             isValid = false;
+        if(!(!element.hitpoints           || element.hitpoints            && element.hitpoints >= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('min')           && element.hitpoints <= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('max')))           isValid = false;
+
+        if(!isUpdate){
+            if(!(element.name != null && element.name.length > 0)){
+                isValid = false;
+            }
+        }
+        return isValid;
     }
 }
 module.exports.default = EnemyItem;
