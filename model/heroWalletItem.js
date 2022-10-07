@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroWalletItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-const json = require("./heroWalletItem.json");
 let HeroWalletItem = class HeroWalletItem {
     constructor(heroName) {
         this.gold = 1000;
@@ -61,23 +60,6 @@ let HeroWalletItem = class HeroWalletItem {
     }
     static setAssociation({ sequelize }) {
         sequelize.models.heroWallet.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
-    }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.heroWallet.count({ where: { heroName: item.heroName } })) === 0) {
-                        yield sequelize.models.heroWallet.create(item);
-                    }
-                    else
-                        yield sequelize.models.heroWallet.update(item, { where: { heroName: item.heroName } });
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
     }
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {

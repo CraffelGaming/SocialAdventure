@@ -76,7 +76,7 @@ export class DailyItem extends Model<DailyItem>{
             for(const item of items){
                 if(await sequelize.models.daily.count({where: {handle: item.handle}}) === 0){
                     await sequelize.models.daily.create(item as any);
-                } //else await sequelize.models.daily.update(item, {where: {handle: item.handle}});
+                } // else await sequelize.models.daily.update(item, {where: {handle: item.handle}});
             }
         } catch(ex){
             global.worker.log.error(ex);

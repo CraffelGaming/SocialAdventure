@@ -110,7 +110,7 @@ export class SayItem extends Model<SayItem>{
             for(const item of items){
                 if(await sequelize.models.say.count({where: {command: item.command}}) === 0){
                     await sequelize.models.say.create(item as any);
-                } //else await sequelize.models.say.update(item, {where: {command: item.command}});
+                } // else await sequelize.models.say.update(item, {where: {command: item.command}});
             }
         } catch(ex){
             global.worker.log.error(ex);

@@ -22,7 +22,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-const json = require("./heroItem.json");
 const heroTraitItem_1 = require("./heroTraitItem");
 const heroWalletItem_1 = require("./heroWalletItem");
 let HeroItem = HeroItem_1 = class HeroItem {
@@ -117,23 +116,6 @@ let HeroItem = HeroItem_1 = class HeroItem {
         sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName' });
         sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName' });
         sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName' });
-    }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.hero.count({ where: { name: item.name } })) === 0) {
-                        yield sequelize.models.hero.create(item);
-                    }
-                    else
-                        yield sequelize.models.hero.update(item, { where: { name: item.name } });
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
     }
     static calculateHero({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {

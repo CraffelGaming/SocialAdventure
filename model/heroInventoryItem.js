@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroInventoryItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-const json = require("./heroInventoryItem.json");
 let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.Model {
     constructor() {
         super();
@@ -73,23 +72,6 @@ let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.M
             else {
                 yield sequelize.models.heroInventory.create({ heroName,
                     itemHandle: item.getDataValue("handle") });
-            }
-        });
-    }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.heroInventory.count({ where: { itemHandle: item.itemHandle, heroName: item.heroName } })) === 0) {
-                        yield sequelize.models.heroInventory.create(item);
-                    }
-                    else
-                        yield sequelize.models.heroInventory.update(item, { where: { itemHandle: item.itemHandle, heroName: item.heroName } });
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
             }
         });
     }

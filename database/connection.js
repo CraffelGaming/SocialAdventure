@@ -144,16 +144,11 @@ class Connection {
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
                 yield levelItem_1.LevelItem.updateTable({ sequelize: this.sequelize });
                 yield sayItem_1.SayItem.updateTable({ sequelize: this.sequelize });
-                yield heroItem_1.HeroItem.updateTable({ sequelize: this.sequelize });
-                yield heroTraitItem_1.HeroTraitItem.updateTable({ sequelize: this.sequelize });
-                yield heroWalletItem_1.HeroWalletItem.updateTable({ sequelize: this.sequelize });
-                yield heroInventoryItem_1.HeroInventoryItem.updateTable({ sequelize: this.sequelize });
                 yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
                 yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
                 yield locationItem_1.LocationItem.updateTable({ sequelize: this.sequelize });
                 yield enemyItem_1.EnemyItem.updateTable({ sequelize: this.sequelize });
                 yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
-                yield adventureItem_1.AdventureItem.updateTable({ sequelize: this.sequelize });
                 yield lootItem_1.LootItem.updateTable({ sequelize: this.sequelize });
                 yield healingPotionItem_1.HealingPotionItem.updateTable({ sequelize: this.sequelize });
                 yield trainerItem_1.TrainerItem.updateTable({ sequelize: this.sequelize });

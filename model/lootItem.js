@@ -71,8 +71,7 @@ let LootItem = class LootItem extends sequelize_typescript_1.Model {
                 for (const item of items) {
                     if ((yield sequelize.models.loot.count({ where: { command: item.command } })) === 0) {
                         yield sequelize.models.loot.create(item);
-                    }
-                    // else await sequelize.models.loot.update(item, {where: {command: item.command}});
+                    } // else await sequelize.models.loot.update(item, {where: {command: item.command}});
                 }
             }
             catch (ex) {

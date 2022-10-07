@@ -89,9 +89,7 @@ let PromotionItem = PromotionItem_1 = class PromotionItem extends sequelize_type
                 for (const item of items) {
                     if ((yield sequelize.models.promotion.count({ where: { handle: item.handle } })) === 0) {
                         yield sequelize.models.promotion.create(item);
-                    }
-                    else
-                        yield sequelize.models.promotion.update(item, { where: { handle: item.handle } });
+                    } // else await sequelize.models.promotion.update(item, {where: {handle: item.handle}});
                 }
             }
             catch (ex) {

@@ -72,9 +72,7 @@ let LocationItem = class LocationItem extends sequelize_typescript_1.Model {
                 for (const item of items) {
                     if ((yield sequelize.models.location.count({ where: { handle: item.handle } })) === 0) {
                         yield sequelize.models.location.create(item);
-                    }
-                    else
-                        yield sequelize.models.location.update(item, { where: { handle: item.handle } });
+                    } // else await sequelize.models.location.update(item, {where: {handle: item.handle}});
                 }
             }
             catch (ex) {

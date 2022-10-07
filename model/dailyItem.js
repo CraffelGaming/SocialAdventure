@@ -83,9 +83,7 @@ let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Mod
                 for (const item of items) {
                     if ((yield sequelize.models.daily.count({ where: { handle: item.handle } })) === 0) {
                         yield sequelize.models.daily.create(item);
-                    }
-                    else
-                        yield sequelize.models.daily.update(item, { where: { handle: item.handle } });
+                    } // else await sequelize.models.daily.update(item, {where: {handle: item.handle}});
                 }
             }
             catch (ex) {

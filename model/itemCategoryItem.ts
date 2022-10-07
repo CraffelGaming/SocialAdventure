@@ -48,7 +48,7 @@ export class ItemCategoryItem extends Model<ItemCategoryItem>{
                     } else if(isGlobal === false && item.handle <= 1){
                         await sequelize.models.itemCategory.create(item as any);
                     }
-                } //else await sequelize.models.itemCategory.update(item, {where: {handle: item.handle}});
+                } // else await sequelize.models.itemCategory.update(item, {where: {handle: item.handle}});
             }
         } catch(ex){
             global.worker.log.error(ex);

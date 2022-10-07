@@ -99,7 +99,7 @@ export class EnemyItem extends Model<EnemyItem>{
             for(const item of items){
                 if(await sequelize.models.enemy.count({where: {handle: item.handle}}) === 0){
                     await sequelize.models.enemy.create(item as any);
-                } //else await sequelize.models.enemy.update(item, {where: {handle: item.handle}});
+                } // else await sequelize.models.enemy.update(item, {where: {handle: item.handle}});
             }
         } catch(ex){
             global.worker.log.error(ex);

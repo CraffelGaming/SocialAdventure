@@ -100,9 +100,7 @@ let EnemyItem = EnemyItem_1 = class EnemyItem extends sequelize_typescript_1.Mod
                 for (const item of items) {
                     if ((yield sequelize.models.enemy.count({ where: { handle: item.handle } })) === 0) {
                         yield sequelize.models.enemy.create(item);
-                    }
-                    else
-                        yield sequelize.models.enemy.update(item, { where: { handle: item.handle } });
+                    } // else await sequelize.models.enemy.update(item, {where: {handle: item.handle}});
                 }
             }
             catch (ex) {

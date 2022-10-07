@@ -56,9 +56,7 @@ let ItemCategoryItem = class ItemCategoryItem extends sequelize_typescript_1.Mod
                         else if (isGlobal === false && item.handle <= 1) {
                             yield sequelize.models.itemCategory.create(item);
                         }
-                    }
-                    else
-                        yield sequelize.models.itemCategory.update(item, { where: { handle: item.handle } });
+                    } // else await sequelize.models.itemCategory.update(item, {where: {handle: item.handle}});
                 }
             }
             catch (ex) {

@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroPromotionItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-const json = require("./promotionItem.json");
 let HeroPromotionItem = class HeroPromotionItem {
     static createTable({ sequelize }) {
         sequelize.define('heroPromotion', {
@@ -40,23 +39,6 @@ let HeroPromotionItem = class HeroPromotionItem {
     static setAssociation({ sequelize }) {
         sequelize.models.heroPromotion.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
         sequelize.models.heroPromotion.belongsTo(sequelize.models.promotion, { as: 'promotion', foreignKey: 'promotionHandle' });
-    }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.heroPromotion.count({ where: { heroName: item.heroName, promotionHandle: item.promotionHandle } })) === 0) {
-                        yield sequelize.models.heroPromotion.create(item);
-                    }
-                    else
-                        yield sequelize.models.heroPromotion.update(item, { where: { heroName: item.heroName, promotionHandle: item.promotionHandle } });
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
     }
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {

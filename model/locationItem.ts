@@ -67,7 +67,7 @@ export class LocationItem extends Model<LocationItem>{
             for(const item of items){
                 if(await sequelize.models.location.count({where: {handle: item.handle}}) === 0){
                     await sequelize.models.location.create(item as any);
-                } //else await sequelize.models.location.update(item, {where: {handle: item.handle}});
+                } // else await sequelize.models.location.update(item, {where: {handle: item.handle}});
             }
         } catch(ex){
             global.worker.log.error(ex);

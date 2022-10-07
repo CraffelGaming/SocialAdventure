@@ -21,7 +21,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroTraitItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-const json = require("./heroTraitItem.json");
 let HeroTraitItem = class HeroTraitItem {
     constructor(heroName) {
         this.goldMultipler = 1;
@@ -73,23 +72,6 @@ let HeroTraitItem = class HeroTraitItem {
     }
     static setAssociation({ sequelize }) {
         sequelize.models.heroTrait.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
-    }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.heroTrait.count({ where: { heroName: item.heroName } })) === 0) {
-                        yield sequelize.models.heroTrait.create(item);
-                    }
-                    else
-                        yield sequelize.models.heroTrait.update(item, { where: { heroName: item.heroName } });
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
     }
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {

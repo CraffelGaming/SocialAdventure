@@ -110,9 +110,7 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
                 for (const item of items) {
                     if ((yield sequelize.models.say.count({ where: { command: item.command } })) === 0) {
                         yield sequelize.models.say.create(item);
-                    }
-                    else
-                        yield sequelize.models.say.update(item, { where: { command: item.command } });
+                    } // else await sequelize.models.say.update(item, {where: {command: item.command}});
                 }
             }
             catch (ex) {
