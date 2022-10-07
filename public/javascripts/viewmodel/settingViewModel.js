@@ -1,9 +1,10 @@
-import { getTranslation, translate, infoPanel, getEditing, notify, get, copyToClipboard } from './globalData.js';
+import { getTranslation, translate, infoPanel, getEditing, notify, get, copyToClipboard, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('setting');
+    let module = 'setting';
+    let language = await getTranslation(module);
 
     translation();
     initialize();
@@ -130,6 +131,26 @@ $(async () => {
             },
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
+            },
+            stateStoring: {
+                enabled: true,
+                type: "custom",
+                customLoad: async function () {
+                    var state = (await get(`/stateStorage/${module}`))?.storage;
+                    if (state)
+                        return JSON.parse(state);
+                    return null;
+                },
+                customSave: async function (state) {
+                    await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                }
+            },
+            toolbar: {
+                items: ["groupPanel", "addRowButton", "columnChooserButton", {
+                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
+                }, { 
+                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
+                    }, "searchPanel", "exportButton"]
             }
         });
     }

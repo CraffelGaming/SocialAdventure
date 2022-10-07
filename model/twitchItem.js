@@ -47,6 +47,7 @@ let TwitchItem = class TwitchItem extends sequelize_typescript_1.Model {
     }
     static setAssociation({ sequelize }) {
         sequelize.models.twitch.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name' });
+        sequelize.models.twitch.hasMany(sequelize.models.stateStorage, { as: 'storage', foreignKey: 'channelName' });
     }
 };
 __decorate([

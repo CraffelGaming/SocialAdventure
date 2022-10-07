@@ -1,9 +1,10 @@
-import { getTranslation, translate, infoPanel, get, notify } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, notify, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('help');
+    let module = 'help';
+    let language = await getTranslation(module);
     let userdata = await get(`/twitch/userdata`);
     let node = await get(`/node/default`);
 

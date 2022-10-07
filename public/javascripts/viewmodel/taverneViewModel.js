@@ -1,10 +1,11 @@
-import { getTranslations, translate, infoPanel, get, loadUserData, notify } from './globalData.js';
+import { getTranslations, translate, infoPanel, get, loadUserData, notify, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let languageStorage = await getTranslations(['taverne', 'healing', 'trainer', 'wallet', 'trait', 'hero', 'daily']);
-    let language = languageStorage.filter(x => x.page == 'taverne');
+    let module = 'taverne';
+    let languageStorage = await getTranslations([module, 'healing', 'trainer', 'wallet', 'trait', 'hero', 'daily']);
+    let language = languageStorage.filter(x => x.page == module);
     let languageHealing = languageStorage.filter(x => x.page == 'healing');
     let languageTrainer = languageStorage.filter(x => x.page == 'trainer');
     let languageWallet = languageStorage.filter(x => x.page == 'wallet');
@@ -115,7 +116,6 @@ $(async () => {
     
     //#region Load
     async function loadWallet() {
-
         $('#heroWallet').dxDataGrid({
             dataSource: new DevExpress.data.CustomStore({
                 key: ["heroName"],

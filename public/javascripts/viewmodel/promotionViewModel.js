@@ -1,10 +1,11 @@
-import { getTranslations, translate, infoPanel, get, isMaster, notify, getEditing } from './globalData.js';
+import { getTranslations, translate, infoPanel, get, isMaster, notify, getEditing, put} from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
+    let module = 'promotion';
 
-    let languageStorage = await getTranslations(['promotion', 'item', 'wallet', 'hero']);
-    let language = languageStorage.filter(x => x.page == 'promotion');
+    let languageStorage = await getTranslations([module, 'item', 'wallet', 'hero']);
+    let language = languageStorage.filter(x => x.page == module);
     let languageItem = languageStorage.filter(x => x.page == 'item');
     let languageWallet = languageStorage.filter(x => x.page == 'wallet');
     let languageHero = languageStorage.filter(x => x.page == 'hero');
@@ -218,6 +219,26 @@ $(async () => {
                 },
                 onExporting(e) {
                     tableExport(e, translate(language, 'title'))
+                },
+                stateStoring: {
+                    enabled: true,
+                    type: "custom",
+                    customLoad: async function () {
+                        var state = (await get(`/stateStorage/${module}`))?.storage;
+                        if (state)
+                            return JSON.parse(state);
+                        return null;
+                    },
+                    customSave: async function (state) {
+                        await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                    }
+                },
+                toolbar: {
+                    items: ["groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
+                    }, { 
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
+                        }, "searchPanel", "exportButton"]
                 }
             });
         }

@@ -1,5 +1,5 @@
 
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./itemItem.json');
 import { ValidationItem } from './validationItem';
@@ -71,13 +71,16 @@ export class ItemItem extends Model<ItemItem>{
                     } else if(isGlobal === false && item.categoryHandle <= 1){
                         await sequelize.models.item.create(item as any);
                     }
-                } else {
+                } 
+                /* 
+                else {
                     if(isGlobal === true && item.categoryHandle > 1){
                         await sequelize.models.item.update(item, {where: {handle}});
                     } else if(isGlobal === false && item.categoryHandle <= 1){
                         await sequelize.models.item.update(item, {where: {handle}});
                     }
-                }
+                } 
+                */
                 handle++;
             }
         } catch(ex){

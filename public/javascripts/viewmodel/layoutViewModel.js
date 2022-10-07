@@ -1,7 +1,8 @@
 import { getTranslation, translate, get } from './globalData.js';
 
 $(async () => {
-    let language = await getTranslation('navigation');
+    let module = 'navigation';
+    let language = await getTranslation(module);
     let menus = await get(`/menu`, language);
     let twitch = await get(`/twitch`, language);
     let node = await get(`/node/default`, language);

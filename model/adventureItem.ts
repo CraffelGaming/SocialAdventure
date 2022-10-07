@@ -1,6 +1,5 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./adventureItem.json');
 import { ItemItem } from './itemItem';
 import { HeroItem } from './heroItem';
 
@@ -38,20 +37,6 @@ export class AdventureItem{
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
         sequelize.models.adventure.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
         sequelize.models.adventure.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle'});
-    }
-
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
-            const items = JSON.parse(JSON.stringify(json)) as AdventureItem[];
-
-            for(const item of items){
-                if(await sequelize.models.adventure.count({where: {itemHandle: item.itemHandle, heroName: item.heroName}}) === 0){
-                    await sequelize.models.adventure.create(item as any);
-                }
-            }
-        } catch(ex){
-            global.worker.log.error(ex);
-        }
     }
 
     static async put({ sequelize, element }: { sequelize: Sequelize, element: AdventureItem }): Promise<number>{

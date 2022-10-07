@@ -1,10 +1,11 @@
-import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let languageStorage = await getTranslations(['location', 'itemCategory']);
-    let language = languageStorage.filter(x => x.page == 'location');
+    let module = 'location';
+    let languageStorage = await getTranslations([module, 'itemCategory']);
+    let language = languageStorage.filter(x => x.page == module);
     let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
     let category = await get('/itemCategory/default?childs=false');
 
@@ -154,6 +155,26 @@ $(async () => {
             },
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
+            },
+            stateStoring: {
+                enabled: true,
+                type: "custom",
+                customLoad: async function () {
+                    var state = (await get(`/stateStorage/${module}`))?.storage;
+                    if (state)
+                        return JSON.parse(state);
+                    return null;
+                },
+                customSave: async function (state) {
+                    await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                }
+            },
+            toolbar: {
+                items: ["groupPanel", "addRowButton", "columnChooserButton", {
+                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
+                }, { 
+                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
+                    }, "searchPanel", "exportButton"]
             }
         });
     }

@@ -69,9 +69,9 @@ global.isMaster = function isMaster(request, response, node) {
     }
     return false;
 };
-global.isHero = function isHero(request, response, heroName) {
+global.isChannel = function isChannel(request, response, channelName) {
     if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
-        if (request.session.userData.login === heroName) {
+        if (request.session.userData.login === channelName) {
             return true;
         }
     }

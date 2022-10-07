@@ -55,7 +55,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', async (request:
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
-        if(global.isHero(request, response, request.params.name)){
+        if(global.isChannel(request, response, request.params.name)){
             let found: DailyItem;
             const count: number = Number(request.params.number);
 

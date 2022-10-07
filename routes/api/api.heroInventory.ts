@@ -66,7 +66,7 @@ router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', async (reque
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
-        if(global.isHero(request, response, request.params.name)){
+        if(global.isChannel(request, response, request.params.name)){
             response.status(await HeroInventoryItem.sell({sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name})).json();
         } else {
             response.status(403).json();

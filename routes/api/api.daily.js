@@ -85,7 +85,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, respo
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        if (global.isHero(request, response, request.params.name)) {
+        if (global.isChannel(request, response, request.params.name)) {
             let found;
             const count = Number(request.params.number);
             if (!isNaN(count)) {

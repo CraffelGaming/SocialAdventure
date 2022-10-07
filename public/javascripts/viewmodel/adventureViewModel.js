@@ -1,10 +1,11 @@
-import { getTranslations, translate, infoPanel, tableExport, get } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, get, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let languageStorage = await getTranslations(['adventure', 'item', 'trait', 'itemCategory', 'location']);
-    let language = languageStorage.filter(x => x.page == 'adventure');
+    let module = 'adventure';
+    let languageStorage = await getTranslations([module, 'item', 'trait', 'itemCategory', 'location']);
+    let language = languageStorage.filter(x => x.page == module);
     let languageItem = languageStorage.filter(x => x.page == 'item');
     let languageTrait = languageStorage.filter(x => x.page == 'trait');
     let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
@@ -93,6 +94,26 @@ $(async () => {
             },
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
+            },
+            stateStoring: {
+                enabled: true,
+                type: "custom",
+                customLoad: async function () {
+                    var state = (await get(`/stateStorage/${module}`))?.storage;
+                    if (state)
+                        return JSON.parse(state);
+                    return null;
+                },
+                customSave: async function (state) {
+                    await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                }
+            },
+            toolbar: {
+                items: ["groupPanel", "addRowButton", "columnChooserButton", {
+                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
+                }, { 
+                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
+                    }, "searchPanel", "exportButton"]
             }
         });
     }

@@ -1,7 +1,6 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import jsonMigration = require('./migrationItem.json');
-import jsonMigrationGlobal = require('./migrationGlobalItem.json');
+
 @Table({ tableName: "migration", modelName: "migration"})
 export class MigrationItem extends Model<MigrationItem>{
     @PrimaryKey

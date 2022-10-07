@@ -100,7 +100,7 @@ router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', (request, re
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        if (global.isHero(request, response, request.params.name)) {
+        if (global.isChannel(request, response, request.params.name)) {
             response.status(yield heroInventoryItem_1.HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name })).json();
         }
         else {

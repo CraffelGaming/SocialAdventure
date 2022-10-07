@@ -1,4 +1,4 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./enemyItem.json');
 import { ValidationItem } from './validationItem';
@@ -99,7 +99,7 @@ export class EnemyItem extends Model<EnemyItem>{
             for(const item of items){
                 if(await sequelize.models.enemy.count({where: {handle: item.handle}}) === 0){
                     await sequelize.models.enemy.create(item as any);
-                } else await sequelize.models.enemy.update(item, {where: {handle: item.handle}});
+                } //else await sequelize.models.enemy.update(item, {where: {handle: item.handle}});
             }
         } catch(ex){
             global.worker.log.error(ex);

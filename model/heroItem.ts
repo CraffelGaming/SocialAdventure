@@ -1,10 +1,7 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
-import { DataTypes, Op } from 'sequelize';
-import json = require('./heroItem.json');
+import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
 import { HeroTraitItem } from './heroTraitItem';
 import { HeroWalletItem } from './heroWalletItem';
-import { LevelItem } from './levelItem';
-
 @Table({ tableName: "hero", modelName: "hero" })
 export class HeroItem {
     @PrimaryKey
@@ -117,20 +114,6 @@ export class HeroItem {
             sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName'});
             sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName'});
             sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName'});
-    }
-
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
-            const items = JSON.parse(JSON.stringify(json)) as HeroItem[];
-
-            for(const item of items){
-                if(await sequelize.models.hero.count({where: {name: item.name}}) === 0){
-                    await sequelize.models.hero.create(item as any);
-                } else await sequelize.models.hero.update(item, {where: {name: item.name}});
-            }
-        } catch(ex){
-            global.worker.log.error(ex);
-        }
     }
 
     static async calculateHero({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<boolean>{

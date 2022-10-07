@@ -109,7 +109,7 @@ router.post('/' + endpoint + '/:node/heal/:handle/hero/:name', (request, respons
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        if (global.isHero(request, response, request.params.name)) {
+        if (global.isChannel(request, response, request.params.name)) {
             response.status(yield healingPotionItem_1.HealingPotionItem.heal({ sequelize: channel.database.sequelize, healingPotionHandle: request.params.handle, heroName: request.params.name })).json();
         }
         else {

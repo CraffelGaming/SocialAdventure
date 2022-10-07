@@ -1,7 +1,6 @@
 
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./heroInventoryItem.json');
 import { AdventureItem } from './adventureItem';
 import { HeroItem } from './heroItem';
 import { HeroWalletItem } from './heroWalletItem';
@@ -69,20 +68,6 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
         } else {
             await sequelize.models.heroInventory.create({ heroName,
                                                           itemHandle: item.getDataValue("handle")});
-        }
-    }
-
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
-            const items = JSON.parse(JSON.stringify(json)) as HeroInventoryItem[];
-
-            for(const item of items){
-                if(await sequelize.models.heroInventory.count({where: {itemHandle: item.itemHandle, heroName: item.heroName}}) === 0){
-                    await sequelize.models.heroInventory.create(item as any);
-                } else await sequelize.models.heroInventory.update(item, {where: {itemHandle: item.itemHandle, heroName: item.heroName}});
-            }
-        } catch(ex){
-            global.worker.log.error(ex);
         }
     }
 

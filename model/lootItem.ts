@@ -1,4 +1,4 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./lootItem.json');
 
@@ -63,8 +63,7 @@ export class LootItem extends Model<LootItem>{
             for(const item of items){
                 if(await sequelize.models.loot.count({where: {command: item.command}}) === 0){
                     await sequelize.models.loot.create(item as any);
-                }
-                // else await sequelize.models.loot.update(item, {where: {command: item.command}});
+                } //else await sequelize.models.loot.update(item, {where: {command: item.command}});
             }
         } catch(ex){
             global.worker.log.error(ex);

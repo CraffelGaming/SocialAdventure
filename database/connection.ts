@@ -34,6 +34,7 @@ import { TwitchUserItem } from '../model/twitchUserItem';
 import { LevelItem } from '../model/levelItem';
 import { PlaceholderItem } from '../model/placeholderItem';
 import { ValidationItem } from '../model/validationItem';
+import { StateStorageItem } from '../model/stateStorageItem';
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -63,11 +64,13 @@ export class Connection {
             HelpItem.createTable({ sequelize: this.sequelize });
             PlaceholderItem.createTable({ sequelize: this.sequelize });
             ValidationItem.createTable({ sequelize: this.sequelize });
+            StateStorageItem.createTable({ sequelize: this.sequelize });
 
             MenuItem.setAssociation({ sequelize: this.sequelize });
             NodeItem.setAssociation({ sequelize: this.sequelize });
             TwitchItem.setAssociation({ sequelize: this.sequelize });
             TwitchUserItem.setAssociation({ sequelize: this.sequelize });
+            StateStorageItem.setAssociation({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -122,16 +125,11 @@ export class Connection {
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await LevelItem.updateTable({ sequelize: this.sequelize });
             await SayItem.updateTable({ sequelize: this.sequelize });
-            await HeroItem.updateTable({ sequelize: this.sequelize });
-            await HeroTraitItem.updateTable({ sequelize: this.sequelize });
-            await HeroWalletItem.updateTable({ sequelize: this.sequelize });
-            await HeroInventoryItem.updateTable({ sequelize: this.sequelize });
             await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
             await ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
             await LocationItem.updateTable({ sequelize: this.sequelize });
             await EnemyItem.updateTable({ sequelize: this.sequelize });
             await CommandItem.updateTable({ sequelize: this.sequelize });
-            await AdventureItem.updateTable({ sequelize: this.sequelize });
             await LootItem.updateTable({ sequelize: this.sequelize });
             await HealingPotionItem.updateTable({ sequelize: this.sequelize });
             await TrainerItem.updateTable({ sequelize: this.sequelize });

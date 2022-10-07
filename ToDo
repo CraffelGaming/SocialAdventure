@@ -37,8 +37,10 @@ Version 1 - 2022
 13. [X] CopyToClipboard
 14. [X] Auto / Start / Stop
 15. [.] Validation-Engine
-15. [.] Performance
-15. [ ] Release
+16. [X] Performance
+17. [X] Refresh Button
+18. [X] Save Settings
+19. [ ] Release
 
 Version 2 - 2023
 A.  [ ] Englisch

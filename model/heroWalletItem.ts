@@ -1,7 +1,6 @@
 
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./heroWalletItem.json');
 @Table({ tableName: "heroWallet", modelName: "heroWallet"})
 export class HeroWalletItem {
     @PrimaryKey
@@ -52,20 +51,6 @@ export class HeroWalletItem {
 
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
         sequelize.models.heroWallet.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
-    }
-
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
-            const items = JSON.parse(JSON.stringify(json)) as HeroWalletItem[];
-
-            for(const item of items){
-                if(await sequelize.models.heroWallet.count({where: {heroName: item.heroName}}) === 0){
-                    await sequelize.models.heroWallet.create(item as any);
-                } else await sequelize.models.heroWallet.update(item, {where: {heroName: item.heroName}});
-            }
-        } catch(ex){
-            global.worker.log.error(ex);
-        }
     }
 
     static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroWalletItem }): Promise<number>{

@@ -1,4 +1,4 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
 @Table({ tableName: "twitch", modelName: "twitch"})
@@ -53,6 +53,7 @@ export class TwitchItem extends Model<TwitchItem>{
 
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
         sequelize.models.twitch.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name'});
+        sequelize.models.twitch.hasMany(sequelize.models.stateStorage, { as: 'storage', foreignKey: 'channelName'});
     }
 }
 

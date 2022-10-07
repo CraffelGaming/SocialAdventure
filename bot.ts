@@ -63,9 +63,9 @@ global.isMaster = function isMaster(request: express.Request, response: express.
     }
     return false;
 }
-global.isHero = function isHero(request: express.Request, response: express.Response, heroName: string) : boolean{
+global.isChannel = function isChannel(request: express.Request, response: express.Response, channelName: string) : boolean{
     if(request.session != null && request.session.userData != null && request.session.userData.login != null){
-        if(request.session.userData.login === heroName){
+        if(request.session.userData.login === channelName){
             return true;
         }
     }

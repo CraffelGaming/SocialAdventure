@@ -1,4 +1,4 @@
-import { Column, Table, Model, Sequelize, PrimaryKey, DataType, AutoIncrement } from 'sequelize-typescript';
+import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import json = require('./promotionItem.json');
 import { HeroItem } from './heroItem';
@@ -87,7 +87,7 @@ export class PromotionItem extends Model<PromotionItem>{
             for(const item of items){
                 if(await sequelize.models.promotion.count({where: {handle: item.handle}}) === 0){
                     await sequelize.models.promotion.create(item as any);
-                } else await sequelize.models.promotion.update(item, {where: {handle: item.handle}});
+                } //else await sequelize.models.promotion.update(item, {where: {handle: item.handle}});
             }
         } catch(ex){
             global.worker.log.error(ex);

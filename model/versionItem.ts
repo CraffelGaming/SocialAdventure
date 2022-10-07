@@ -1,5 +1,6 @@
 import { Column, Table, PrimaryKey, Sequelize, Model } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
+
 @Table({ tableName: "version", modelName: "version"})
 export class VersionItem extends Model<VersionItem>{
     @PrimaryKey

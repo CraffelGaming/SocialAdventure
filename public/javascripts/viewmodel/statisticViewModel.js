@@ -1,9 +1,10 @@
-import { getTranslation, translate, infoPanel } from './globalData.js';
+import { getTranslation, translate, infoPanel, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
-
-    let language = await getTranslation('statistic');
+    
+    let module = 'statistic';
+    let language = await getTranslation(module);
     
     translation();
     initialize();

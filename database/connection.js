@@ -66,6 +66,7 @@ const twitchUserItem_1 = require("../model/twitchUserItem");
 const levelItem_1 = require("../model/levelItem");
 const placeholderItem_1 = require("../model/placeholderItem");
 const validationItem_1 = require("../model/validationItem");
+const stateStorageItem_1 = require("../model/stateStorageItem");
 class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
@@ -89,10 +90,12 @@ class Connection {
                 helpItem_1.HelpItem.createTable({ sequelize: this.sequelize });
                 placeholderItem_1.PlaceholderItem.createTable({ sequelize: this.sequelize });
                 validationItem_1.ValidationItem.createTable({ sequelize: this.sequelize });
+                stateStorageItem_1.StateStorageItem.createTable({ sequelize: this.sequelize });
                 menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
                 nodeItem_1.NodeItem.setAssociation({ sequelize: this.sequelize });
                 twitchItem_1.TwitchItem.setAssociation({ sequelize: this.sequelize });
                 twitchUserItem_1.TwitchUserItem.setAssociation({ sequelize: this.sequelize });
+                stateStorageItem_1.StateStorageItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });

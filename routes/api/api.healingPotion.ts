@@ -76,7 +76,7 @@ router.post('/' + endpoint + '/:node/heal/:handle/hero/:name', async (request: e
     const channel = global.worker.channels.find(x => x.node.name === node.name)
 
     if(channel) {
-        if(global.isHero(request, response, request.params.name)){
+        if(global.isChannel(request, response, request.params.name)){
             response.status(await HealingPotionItem.heal({sequelize: channel.database.sequelize, healingPotionHandle: request.params.handle, heroName: request.params.name})).json();
         } else {
             response.status(403).json();

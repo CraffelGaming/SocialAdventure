@@ -29,8 +29,184 @@ import promotion from "./api/api.promotion";
 import help from "./api/api.help";
 import placeholder from "./api/api.placeholder";
 import validation from "./api/api.validation";
+import stateStorage from "./api/api.stateStorage";
 
 const router = express.Router();
+
+//#region State Storage
+/**
+ * @swagger
+ * /stateStorage:
+ *   get:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Rückgabe aller Tabellenkonfiguarationen des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: 'heroes'
+ *               name:
+ *                 type: string
+ *                 example: 'Aktive Helden'
+ *               storage:
+ *                 type: string
+ *                 example: ''
+ *               channelName:
+ *                 type: string
+ *                 example: 'craffel'
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/stateStorage", stateStorage);
+
+/**
+ * @swagger
+ * /stateStorage/{name}:
+ *   get:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Rückgabe der Tabellenkonfiguaration einer Tabelle des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Seite für die Übersetzungen."
+ *       required: true
+ *       default: "heroes"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: 'heroes'
+ *               name:
+ *                 type: string
+ *                 example: 'Aktive Helden'
+ *               storage:
+ *                 type: string
+ *                 example: ''
+ *               channelName:
+ *                 type: string
+ *                 example: 'craffel'
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/stateStorage/:name", stateStorage);
+
+/**
+ * @swagger
+ * /stateStorage/:
+ *   put:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Anlage einer neuen Tabellenkonfiguaration des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: 'heroes'
+ *           name:
+ *             type: string
+ *             example: 'Aktive Helden'
+ *           storage:
+ *             type: string
+ *             example: ''
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: 'heroes'
+ *             name:
+ *               type: string
+ *               example: 'Aktive Helden'
+ *             storage:
+ *               type: string
+ *               example: ''
+ *             channelName:
+ *               type: string
+ *               example: 'craffel'
+ *       404:
+ *         description: no data
+ */
+ router.put("/stateStorage", stateStorage);
+
+/**
+ * @swagger
+ * /stateStorage/{name}:
+ *   delete:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Löschen der Tabellenkonfiguaration einer Tabelle des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Seite für die Übersetzungen."
+ *       required: true
+ *       default: "heroes"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/stateStorage/:name", stateStorage);
+//#endregion
 
 //#region Validation
 /**
@@ -664,7 +840,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.get("/adventure/:node/hero/:name", adventure);
+ router.get("/adventure/:node/hero/:name", adventure);
 
 /**
  * @swagger

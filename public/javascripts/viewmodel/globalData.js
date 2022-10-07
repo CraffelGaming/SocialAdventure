@@ -217,6 +217,35 @@ export async function put(endpoint, body, type = 'put', language = undefined) {
 }
 //#endregion
 
+//#region Delete
+export async function remove(endpoint, language = undefined) {
+    let result = false;
+
+    if (endpoint) {
+        await fetch('./api' + endpoint, {
+            method: 'delete',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(async function (res) {
+            console.log(res);
+            switch (res.status) {
+                case 204:
+                    result = true;
+                    break;
+                default:
+                    if (language != undefined)
+                        notify(translate(language, res.status), 'error');
+                    break;
+            }
+            return result;
+        });
+    }
+
+    return result;
+}
+//#endregion
+
 //#region Clipboard
 export function copyToClipboard(text) {
     navigator.clipboard.writeText(text);
