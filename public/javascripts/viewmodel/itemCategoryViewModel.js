@@ -1,10 +1,11 @@
-import { getTranslation, translate, infoPanel, tableExport, getEditing, notify, isMaster, get } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, isMaster, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('itemCategory');
-    let languageItem = await getTranslation('item');
+    let languageStorage = await getTranslations(['itemCategory', 'item']);
+    let language = languageStorage.filter(x => x.page == 'itemCategory');
+    let languageItem = languageStorage.filter(x => x.page == 'item');
 
     translation();
     initialize();

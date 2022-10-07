@@ -33,6 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const sequelize_1 = require("sequelize");
 const router = express.Router();
 const endpoint = 'translation';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,6 +47,14 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
 router.get('/' + endpoint + '/:page', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint}, page ${request.params.page}`);
     const item = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: request.params.page, language: request.query.language }, order: [['handle', 'ASC']], raw: true });
+    if (item)
+        response.status(200).json(item);
+    else
+        response.status(404).json();
+}));
+router.post('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`get ${endpoint}, page ${request.body.pages}`);
+    const item = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: { [sequelize_1.Op.in]: request.body.pages }, language: request.query.language }, order: [['handle', 'ASC']], raw: true });
     if (item)
         response.status(200).json(item);
     else

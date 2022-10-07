@@ -1,13 +1,14 @@
-import { getTranslation, translate, infoPanel, tableExport, getEditing, get } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('adventure');
-    let languageItem = await getTranslation('item');
-    let languageTrait = await getTranslation('trait');
-    let languageItemCategory = await getTranslation('itemCategory');
-    let languageLocation = await getTranslation('location');
+    let languageStorage = await getTranslations(['adventure', 'item', 'trait', 'itemCategory', 'location']);
+    let language = languageStorage.filter(x => x.page == 'adventure');
+    let languageItem = languageStorage.filter(x => x.page == 'item');
+    let languageTrait = languageStorage.filter(x => x.page == 'trait');
+    let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
+    let languageLocation = languageStorage.filter(x => x.page == 'location');
 
     let dungeons = await get('/location/default/active', language);
     let category = await get('/itemcategory/default/', language);

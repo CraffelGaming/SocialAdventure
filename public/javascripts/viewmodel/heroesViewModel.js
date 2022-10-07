@@ -1,16 +1,17 @@
-import { getTranslation, translate, infoPanel, get } from './globalData.js';
+import { getTranslations, translate, infoPanel, get } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('hero');
-    let languageItem = await getTranslation('item');
-    let languageWallet = await getTranslation('wallet');
-    let languageTrait = await getTranslation('trait');
-    let languageAdventure = await getTranslation('adventure');
-    let languageLevel = await getTranslation('level');
-    let languageItemCategoryList = await getTranslation('itemCategoryList');
-    let languageItemCategory = await getTranslation('itemCategory');
+    let languageStorage = await getTranslations(['hero', 'item', 'wallet', 'trait', 'adventure', 'level', 'itemCategoryList', 'itemCategory']);
+    let language = languageStorage.filter(x => x.page == 'hero');
+    let languageItem = languageStorage.filter(x => x.page == 'item');
+    let languageWallet = languageStorage.filter(x => x.page == 'wallet');
+    let languageTrait = languageStorage.filter(x => x.page == 'trait');
+    let languageAdventure = languageStorage.filter(x => x.page == 'adventure');
+    let languageLevel = languageStorage.filter(x => x.page == 'level');
+    let languageItemCategoryList = languageStorage.filter(x => x.page == 'itemCategoryList');
+    let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
 
     let category = await get('/itemcategory/default/', language);
     let levels = [];

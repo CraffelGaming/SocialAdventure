@@ -1,11 +1,12 @@
-import { getTranslation, translate, infoPanel, getEditing, notify, get, copyToClipboard } from './globalData.js';
+import { getTranslations, translate, infoPanel, getEditing, notify, get, copyToClipboard } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('say');
-    let languageCommand = await getTranslation('command');
-    let languagePlaceholder = await getTranslation('placeholder');
+    let languageStorage = await getTranslations(['say', 'command', 'placeholder']);
+    let language = languageStorage.filter(x => x.page == 'say');
+    let languageCommand = languageStorage.filter(x => x.page == 'command');
+    let languagePlaceholder = languageStorage.filter(x => x.page == 'placeholder');
 
     translation();
     initialize();

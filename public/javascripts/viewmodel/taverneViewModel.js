@@ -1,15 +1,16 @@
-import { getTranslation, translate, infoPanel, get, loadUserData, notify } from './globalData.js';
+import { getTranslations, translate, infoPanel, get, loadUserData, notify } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('taverne');
-    let languageHealing = await getTranslation('healing');
-    let languageTrainer = await getTranslation('trainer');
-    let languageWallet = await getTranslation('wallet');
-    let languageTrait = await getTranslation('trait');
-    let languageHero = await getTranslation('hero');
-    let languageDaily = await getTranslation('daily');
+    let languageStorage = await getTranslations(['taverne', 'healing', 'trainer', 'wallet', 'trait', 'hero', 'daily']);
+    let language = languageStorage.filter(x => x.page == 'taverne');
+    let languageHealing = languageStorage.filter(x => x.page == 'healing');
+    let languageTrainer = languageStorage.filter(x => x.page == 'trainer');
+    let languageWallet = languageStorage.filter(x => x.page == 'wallet');
+    let languageTrait = languageStorage.filter(x => x.page == 'trait');
+    let languageHero = languageStorage.filter(x => x.page == 'hero');
+    let languageDaily = languageStorage.filter(x => x.page == 'daily');
 
     let userdata = {};
     let hero = {};

@@ -1,12 +1,14 @@
-import { getTranslation, translate, infoPanel, get, isMaster, notify, getEditing } from './globalData.js';
+import { getTranslations, translate, infoPanel, get, isMaster, notify, getEditing } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let language = await getTranslation('promotion');
-    let languageItem = await getTranslation('item');
-    let languageWallet = await getTranslation('wallet');
-    let languageHero = await getTranslation('hero');
+    let languageStorage = await getTranslations(['promotion', 'item', 'wallet', 'hero']);
+    let language = languageStorage.filter(x => x.page == 'promotion');
+    let languageItem = languageStorage.filter(x => x.page == 'item');
+    let languageWallet = languageStorage.filter(x => x.page == 'wallet');
+    let languageHero = languageStorage.filter(x => x.page == 'hero');
+
     let userdata = await get(`/twitch/userdata`);
     let item = await get('/item/default');
     let master = await isMaster();

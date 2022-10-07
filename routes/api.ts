@@ -4254,7 +4254,77 @@ const router = express.Router();
  *         description: no data
  */
  router.get("/translation/:page", translation);
-//#endregion
+
+/**
+ * @swagger
+ * /translation?language={language}:
+ *   post:
+ *     tags:
+ *     - Translation
+ *     summary: Übersetzungen
+ *     description: Rückgabe aller Übersetzungen.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "language"
+ *       in: "path"
+ *       description: "Sprache für die Übersetzung."
+ *       required: true
+ *       default: "de-DE"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     - name: 'Body'
+ *       in: 'body'
+ *       required: true
+ *       schema:
+ *         type: object
+ *         properties:
+ *           pages:
+ *             type: array
+ *             items:
+ *               type: string
+ *               example: 'hero'
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "navigation"
+ *                 descrition: ID der Übersetzung
+ *               page:
+ *                 type: string
+ *                 example: "navigtion"
+ *                 descrition: Seite der Übersetzung
+ *               language:
+ *                 type: string
+ *                 example: "de-De"
+ *                 descrition: Sprache der Übersetzung
+ *               translation:
+ *                 type: integer
+ *                 example: 1000
+ *                 descrition: Übersetzung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.post("/translation", translation);
+ //#endregion
 
 //#region Twitch
 /**

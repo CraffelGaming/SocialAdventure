@@ -1,4 +1,5 @@
 import * as express from 'express';
+import { Op } from 'sequelize';
 
 const router = express.Router();
 const endpoint = 'translation';
@@ -13,6 +14,13 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 router.get('/' + endpoint + '/:page', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, page ${request.params.page}`);
     const item = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: request.params.page, language: request.query.language }, order: [ [ 'handle', 'ASC' ]], raw: true});
+    if(item) response.status(200).json(item);
+    else response.status(404).json();
+});
+
+router.post('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
+    global.worker.log.trace(`get ${endpoint}, page ${request.body.pages}`);
+    const item = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: {[Op.in]: request.body.pages}, language: request.query.language }, order: [ [ 'handle', 'ASC' ]], raw: true});
     if(item) response.status(200).json(item);
     else response.status(404).json();
 });

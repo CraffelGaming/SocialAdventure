@@ -37,7 +37,7 @@ export class Worker {
     async restart(){
         global.worker.tmi = new tmi.client(tmiSettings);
         global.worker.channels = [];
-        await global.worker.initialize();    
+        await global.worker.initialize();
     }
 
     async initialize(){

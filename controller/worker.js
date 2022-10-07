@@ -31,6 +31,13 @@ class Worker {
         this.log.trace('basic model path: ' + this.pathModel);
         this.log.trace('basic migration path: ' + this.pathMigration);
     }
+    restart() {
+        return __awaiter(this, void 0, void 0, function* () {
+            global.worker.tmi = new tmi.client(tmiSettings);
+            global.worker.channels = [];
+            yield global.worker.initialize();
+        });
+    }
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.globalDatabase.initializeGlobal();
@@ -89,7 +96,6 @@ class Worker {
             this.tmi.on('connected', this.onConnectedHandler);
             this.tmi.on('disconnected', this.onDisconnectedHandler);
             yield this.tmi.connect();
-            yield this.onDisconnectedHandler();
         });
     }
     register(channel) {
@@ -129,9 +135,7 @@ class Worker {
     }
     onDisconnectedHandler() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.tmi = new tmi.client(tmiSettings);
-            this.channels = [];
-            yield this.initialize();
+            yield global.worker.restart();
         });
     }
 }

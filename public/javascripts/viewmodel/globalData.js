@@ -3,6 +3,10 @@ export async function getTranslation(page, language = 'de-DE') {
     return await get(`/translation/${page.replace('/', '').replace('\\', '')}?language=${language}`);
 }
 
+export async function getTranslations(pages, language = 'de-DE') {
+    return await put(`/translation?language=${language}`, { 'pages': pages }, 'post');
+}
+
 export function translate(language, handle) {
     if (language && handle) {
         var value = language.find(x => x.handle == handle)
@@ -163,6 +167,36 @@ export async function get(endpoint, language = undefined) {
             headers: {
                 'Content-type': 'application/json'
             }
+        }).then(async function (res) {
+            console.log(res);
+            switch (res.status) {
+                case 200:
+                case 201:
+                    items = await res.json();
+                    break;
+                default:
+                    if (language != undefined)
+                        notify(translate(language, res.status), 'error');
+                    break;
+            }
+            return items;
+        });
+    }
+
+    return items;
+}
+//#endregion
+
+//#region Put
+export async function put(endpoint, body, type = 'put', language = undefined) {
+    let items;
+
+    if (endpoint) {
+        await fetch('./api' + endpoint, {
+            method: type,
+            headers: {
+                'Content-type': 'application/json'
+            }, body: JSON.stringify(body)
         }).then(async function (res) {
             console.log(res);
             switch (res.status) {
