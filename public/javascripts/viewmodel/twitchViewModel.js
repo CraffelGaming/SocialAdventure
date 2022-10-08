@@ -34,6 +34,7 @@ $(async () => {
         $("#streamer").dxButton({
             text: translate(language, 'streamerButton'),
             onClick: async function() {
+                $("#streamer").dxButton('instance').option('disabled', true);
                 await fetch('./api/twitch/', {
                     method: 'post',
                     headers: {
@@ -41,6 +42,7 @@ $(async () => {
                     }
                 }).then(async function (res) {
                     if (res.status == 200) {
+                        $("#streamer").dxButton('instance').option('disabled', false);
                         window.location = "/streamer"
                     }
                 });

@@ -1,9 +1,9 @@
 Version 1 - 2022
 1.  [X] Logo des Streamers in der Navigation
 2.  [X] Prestige level für Helden
-2.  [X] Eigene URL für jeden Streamer
-3.  [X] Itemkategorien einbinden
-4.  [.] Loot neue Logik implementieren.
+3.  [X] Eigene URL für jeden Streamer
+4.  [X] Itemkategorien einbinden
+5.  [X] Loot neue Logik implementieren.
         [X] Taverne
         [X] Give
         [X] Steal
@@ -16,31 +16,33 @@ Version 1 - 2022
         [X] Blood
         [X] Automation
         [X] Tägliche Aufgabe
-        [.] Statistiken
+        [X] Statistiken
         [X] Loottime
         [X] Experience
         [X] Verkaufen
-5.  [.] Shoutout im Say Modul
 6.  [X] Counter im Say Modul
-6.  [X] Dice im Say Modul
-6.  [X] Lurk im Say Modul
-6.  [X] Placeholder im Say Modul
-7.  [X] Twitch API Verbindung mit Chat
-8.  [X] Startseite
-9.  [X] SSL-Zertifikat einbinden (https://)
-10. [X] Datenübernahme vom alten Craffelmat
-11. [X] Hilfe & Feedback Kontaktformular
-12. [X] Item Kategorien zusenden
+7.  [X] Dice im Say Modul
+8.  [X] Lurk im Say Modul
+9.  [X] Placeholder im Say Modul
+10. [X] Twitch API Verbindung mit Chat
+11. [X] Startseite
+12. [X] SSL-Zertifikat einbinden (https://)
+13. [X] Datenübernahme vom alten Craffelmat
+14. [X] Hilfe & Feedback Kontaktformular
+15. [X] Item Kategorien zusenden
         Ente:   Retro
         Morty:  Dungeons and Dragons
         Kazu:   Essen / Pokemon
-13. [X] CopyToClipboard
-14. [X] Auto / Start / Stop
-15. [.] Validation-Engine
-16. [X] Performance
-17. [X] Refresh Button
-18. [X] Save Settings
-19. [ ] Release
+        
+16. [X] CopyToClipboard
+17. [X] Auto / Start / Stop
+18. [X] Validation-Engine
+19. [X] Performance
+20. [X] Refresh Button
+21. [X] Save Settings
+22. [.] Shoutout im Say Modul
+23. [.] Start / Stop automation
+24. [ ] Release
 
 Version 2 - 2023
 A.  [ ] Englisch

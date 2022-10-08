@@ -2,7 +2,7 @@ import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescrip
 import { DataTypes } from 'sequelize';
 
 @Table({ tableName: "stateStorage", modelName: "stateStorage"})
-export class StateStorageItem extends Model<StateStorageItem>{
+export class StateStorageItem{
     @PrimaryKey
     @Column
     handle: string;
@@ -13,8 +13,10 @@ export class StateStorageItem extends Model<StateStorageItem>{
     @Column
     channelName: string;
 
-    constructor(){
-        super();
+    constructor(handle: string, name: string, channelName: string){
+        this.handle = handle;
+        this.name = name;
+        this.channelName = channelName;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -30,7 +32,7 @@ export class StateStorageItem extends Model<StateStorageItem>{
             },
             storage: {
                 type: DataTypes.STRING(8000),
-                allowNull: false
+                allowNull: true
             },
             channelName: {
                 type: DataTypes.STRING,
@@ -46,9 +48,9 @@ export class StateStorageItem extends Model<StateStorageItem>{
 
     static async put({ sequelize, element }: { sequelize: Sequelize, element: StateStorageItem }): Promise<number>{
         try{
-            const item = await sequelize.models.stateStorage.findByPk(element.handle);
+            const item = await sequelize.models.stateStorage.findOne({where: { handle: element.handle, channelName: element.channelName }});
             if(item){
-                await sequelize.models.stateStorage.update(element, {where: {handle: element.handle}});
+                await sequelize.models.stateStorage.update(element, ({where: { handle: element.handle, channelName: element.channelName }}));
                 return 201;
             } else {
                 await sequelize.models.stateStorage.create(element as any);

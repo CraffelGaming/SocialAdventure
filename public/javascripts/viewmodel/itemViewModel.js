@@ -8,6 +8,7 @@ $(async () => {
     let language = languageStorage.filter(x => x.page == module);
     let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
 
+    let validation = await get(`/validation/${module}`);
     let category = await get('/itemCategory/default?childs=false');
 
     translation();
@@ -100,7 +101,7 @@ $(async () => {
             groupPanel: { visible: true },
             selection: { mode: "single" },
             paging: {
-                pageSize: 10
+                pageSize: 25
             },
             pager: {
                 visible: true,
@@ -118,7 +119,7 @@ $(async () => {
             columns: [
                 { dataField: "handle", caption: translate(language, 'handle'), allowEditing: false, width: 100  },
                 { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }]  },
-                { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200 },
+                { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200, editorOptions: { min: validation.find(x => x.handle == 'gold').min, max: validation.find(x => x.handle == 'gold').max }},
                 {
                   dataField: 'category.handle',
                   caption: translate(languageItemCategory , 'value'), width: 300,

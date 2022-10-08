@@ -1,4 +1,5 @@
 [
-    { "handle": "NewStart",             "gold": 10000,    "diamond": 100,  "item": 1,  "experience": 1464999, "isMaster":true },
-    { "handle": "BluescreenCommunity",  "gold": 1000,     "diamond": 0,    "item": 0,  "experience": 1000 }
+    { "handle": "NewStart",             "gold": 10000,    "diamond": 100,       "item": 1,  "experience": 1464999, "isMaster":true },
+    { "handle": "BluescreenCommunity",  "gold": 1000,     "diamond": 0,         "item": 0,  "experience": 1000 },
+    { "handle": "debug",                "gold": 2000000,  "diamond": 2000000,   "item": 1,  "experience": 2000000 }
 ]

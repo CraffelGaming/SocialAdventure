@@ -50,9 +50,13 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
     }
 }));
 router.get('/' + endpoint + '/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, name ${request.params.page}`);
+    global.worker.log.trace(`get ${endpoint}, name ${request.params.name}`);
     if (global.isRegistered(request, response)) {
-        const item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+        let item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+        if (!item) {
+            yield stateStorageItem_1.StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: new stateStorageItem_1.StateStorageItem(request.params.name, "Standard", request.session.userData.login) });
+            item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+        }
         if (item)
             response.status(200).json(item);
         else

@@ -14,6 +14,8 @@ export class MenuItem extends Model<MenuItem>{
     authenticationRequired: boolean = false;
     @Column
     nodeRequired: boolean = false;
+    @Column
+    isActive: boolean = true;
 
     constructor(endpoint? : string, name? : string, order? : number){
         super();
@@ -22,6 +24,7 @@ export class MenuItem extends Model<MenuItem>{
         this.order = order;
         this.authenticationRequired = false;
         this.nodeRequired = false;
+        this.isActive = true;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
@@ -48,6 +51,11 @@ export class MenuItem extends Model<MenuItem>{
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
+            },
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
             }
           }, {freezeTableName: true});
     }

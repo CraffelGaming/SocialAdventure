@@ -86,7 +86,7 @@ export function notify(message, type) {
             position: {
                 my: "top",
                 at: "center",
-                of: "#menu"
+                of: "#notification"
             }
         },
         type,
@@ -168,7 +168,7 @@ export async function get(endpoint, language = undefined) {
                 'Content-type': 'application/json'
             }
         }).then(async function (res) {
-            console.log(res);
+            //console.log(res);
             switch (res.status) {
                 case 200:
                 case 201:
@@ -198,7 +198,7 @@ export async function put(endpoint, body, type = 'put', language = undefined) {
                 'Content-type': 'application/json'
             }, body: JSON.stringify(body)
         }).then(async function (res) {
-            console.log(res);
+            //console.log(res);
             switch (res.status) {
                 case 200:
                 case 201:
@@ -228,7 +228,7 @@ export async function remove(endpoint, language = undefined) {
                 'Content-type': 'application/json'
             }
         }).then(async function (res) {
-            console.log(res);
+            //console.log(res);
             switch (res.status) {
                 case 204:
                     result = true;

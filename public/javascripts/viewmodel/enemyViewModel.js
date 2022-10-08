@@ -5,7 +5,8 @@ $(async () => {
 
     let module = 'enemy';
     let language = await getTranslation(module);
-
+    let validation = await get(`/validation/${module}`);
+    
     translation();
     initialize();
     await load();
@@ -91,7 +92,7 @@ $(async () => {
             groupPanel: { visible: true },
             selection: { mode: "single" },
             paging: {
-                pageSize: 10
+                pageSize: 25
             },
             pager: {
                 visible: true,
@@ -135,12 +136,12 @@ $(async () => {
                             .css("overflow-wrap", 'break-word'); 
                 }},
                 { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 150},
-                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), validationRules: [{ type: "required" }], width: 150},
-                { dataField: "strength", caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 150},
-                { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], visible: false},
-                { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], visible: false},
-                { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }], visible: false},
-                { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }], visible: false},
+                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'hitpoints').min, max: validation.find(x => x.handle == 'hitpoints').max }},
+                { dataField: "strength", caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'strength').min, max: validation.find(x => x.handle == 'strength').max }},
+                { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], visible: false, editorOptions: { min: validation.find(x => x.handle == 'experienceMin').min, max: validation.find(x => x.handle == 'experienceMin').max }},
+                { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], visible: false, editorOptions: { min: validation.find(x => x.handle == 'experienceMax').min, max: validation.find(x => x.handle == 'experienceMax').max }},
+                { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }], visible: false, editorOptions: { min: validation.find(x => x.handle == 'goldMin').min, max: validation.find(x => x.handle == 'goldMin').max }},
+                { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }], visible: false, editorOptions: { min: validation.find(x => x.handle == 'goldMax').min, max: validation.find(x => x.handle == 'goldMax').max }},
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox", width: 120 }
             ],
             editing: await getEditing(),

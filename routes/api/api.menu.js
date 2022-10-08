@@ -39,7 +39,7 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
     global.worker.log.trace(`get ${endpoint}`);
     let item;
     if (request.query.childs !== "false") {
-        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false, include: [{
+        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], raw: false, include: [{
                     model: global.worker.globalDatabase.sequelize.models.menu,
                     as: 'childs',
                 }, {
@@ -48,7 +48,7 @@ router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0
                 }] }));
     }
     else
-        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ order: [['order', 'ASC']], raw: false }));
+        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], raw: false }));
     if (!global.isRegistered(request, response)) {
         item = item.filter(x => x.authenticationRequired === false);
     }

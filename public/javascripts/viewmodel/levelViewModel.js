@@ -35,7 +35,7 @@ $(async () => {
             groupPanel: { visible: true },
             selection: { mode: "single" },
             paging: {
-                pageSize: 10
+                pageSize: 25
             },
             pager: {
                 visible: true,

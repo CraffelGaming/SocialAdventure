@@ -21,9 +21,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StateStorageItem = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
-let StateStorageItem = class StateStorageItem extends sequelize_typescript_1.Model {
-    constructor() {
-        super();
+let StateStorageItem = class StateStorageItem {
+    constructor(handle, name, channelName) {
+        this.handle = handle;
+        this.name = name;
+        this.channelName = channelName;
     }
     static createTable({ sequelize }) {
         sequelize.define('stateStorage', {
@@ -38,7 +40,7 @@ let StateStorageItem = class StateStorageItem extends sequelize_typescript_1.Mod
             },
             storage: {
                 type: sequelize_1.DataTypes.STRING(8000),
-                allowNull: false
+                allowNull: true
             },
             channelName: {
                 type: sequelize_1.DataTypes.STRING,
@@ -53,9 +55,9 @@ let StateStorageItem = class StateStorageItem extends sequelize_typescript_1.Mod
     static put({ sequelize, element }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const item = yield sequelize.models.stateStorage.findByPk(element.handle);
+                const item = yield sequelize.models.stateStorage.findOne({ where: { handle: element.handle, channelName: element.channelName } });
                 if (item) {
-                    yield sequelize.models.stateStorage.update(element, { where: { handle: element.handle } });
+                    yield sequelize.models.stateStorage.update(element, ({ where: { handle: element.handle, channelName: element.channelName } }));
                     return 201;
                 }
                 else {
@@ -89,7 +91,7 @@ __decorate([
 ], StateStorageItem.prototype, "channelName", void 0);
 StateStorageItem = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: "stateStorage", modelName: "stateStorage" }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [String, String, String])
 ], StateStorageItem);
 exports.StateStorageItem = StateStorageItem;
 module.exports.default = StateStorageItem;

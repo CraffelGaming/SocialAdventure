@@ -10,6 +10,7 @@ $(async () => {
     let languageWallet = languageStorage.filter(x => x.page == 'wallet');
     let languageHero = languageStorage.filter(x => x.page == 'hero');
 
+    let validation = await get(`/validation/${module}`);
     let userdata = await get(`/twitch/userdata`);
     let item = await get('/item/default');
     let master = await isMaster();
@@ -158,7 +159,7 @@ $(async () => {
                 groupPanel: { visible: true },
                 selection: { mode: "single" },
                 paging: {
-                    pageSize: 10
+                    pageSize: 25
                 },
                 pager: {
                     visible: true,
@@ -175,9 +176,9 @@ $(async () => {
                 showBorders: true,
                 columns: [
                     { dataField: "handle", caption: translate(language, 'title'), validationRules: [{ type: "required" }]},
-                    { dataField: "gold", caption: translate(languageWallet, 'gold'), validationRules: [{ type: "required" }], width: 150},
-                    { dataField: "diamond", caption: translate(languageWallet, 'diamond'), validationRules: [{ type: "required" }], width: 150},
-                    { dataField: "experience", caption: translate(languageHero, 'experience'), validationRules: [{ type: "required" }], width: 150},
+                    { dataField: "gold", caption: translate(languageWallet, 'gold'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'gold').min, max: validation.find(x => x.handle == 'gold').max }},
+                    { dataField: "diamond", caption: translate(languageWallet, 'diamond'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'diamond').min, max: validation.find(x => x.handle == 'diamond').max }},
+                    { dataField: "experience", caption: translate(languageHero, 'experience'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'experience').min, max: validation.find(x => x.handle == 'experience').max }},
                     { dataField: "validFrom", caption: translate(language, 'validFrom'), dataType: 'date', editorType: "dxDateBox", validationRules: [{ type: "required" }], width: 150},
                     { dataField: "validTo", caption: translate(language, 'validTo'), dataType: 'date', editorType: "dxDateBox", validationRules: [{ type: "required" }], width: 150},
                     { dataField: "isMaster", caption: translate(language, 'isMaster'), editorType: "dxCheckBox", width: 150},

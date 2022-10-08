@@ -14,6 +14,7 @@ $(async () => {
     let languageItemCategoryList = languageStorage.filter(x => x.page == 'itemCategoryList');
     let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
 
+    let validation = await get(`/validation/${module}`);
     let category = await get('/itemcategory/default/', language);
     let levels = [];
     
@@ -263,8 +264,8 @@ $(async () => {
                         allowAdding: false
                     },
                     columns: [
-                        { dataField: "gold", caption: translate(languageWallet, 'gold') },
-                        { dataField: "diamond", caption: translate(languageWallet, 'diamond') },
+                        { dataField: "gold", caption: translate(languageWallet, 'gold')},
+                        { dataField: "diamond", caption: translate(languageWallet, 'diamond')},
                         { dataField: "blood", caption: translate(languageWallet, 'blood') },
                         { dataField: 'lastBlood', caption: translate(languageWallet, 'lastBlood'), dataType: 'datetime', width: 150 }
                     ]
@@ -292,12 +293,30 @@ $(async () => {
                         allowAdding: false
                     },
                     columns: [
-                        { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler') },
-                        { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler') },
-                        { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler') },
-                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler') },
-                        { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler') },
-                        { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler') }
+                        { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'), 
+                            calculateCellValue(data) {
+                                return `${data.goldMultipler} / ${validation.find(x => x.handle == 'goldMultipler').max}`
+                        }},
+                        { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'), 
+                            calculateCellValue(data) {
+                                return `${data.stealMultipler} / ${validation.find(x => x.handle == 'stealMultipler').max}`
+                        }},
+                        { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'), 
+                            calculateCellValue(data) {
+                                return `${data.defenceMultipler} / ${validation.find(x => x.handle == 'defenceMultipler').max}`
+                        }},
+                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'), 
+                            calculateCellValue(data) {
+                                return `${data.workMultipler} / ${validation.find(x => x.handle == 'workMultipler').max}`
+                        }},
+                        { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'), 
+                            calculateCellValue(data) {
+                                return `${data.hitpointMultipler} / ${validation.find(x => x.handle == 'hitpointMultipler').max}`
+                        }},
+                        { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'), 
+                            calculateCellValue(data) {
+                                return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
+                        }}
                     ]
                 });
             };

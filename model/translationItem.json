@@ -171,6 +171,7 @@
     { "page": "trainer", "handle": "value", "language": "de-DE", "translation": "Trainer"},
     { "page": "trainer", "handle": "gold", "language": "de-DE", "translation": "Preis (Gold)"},
     { "page": "trainer", "handle": "200", "language": "de-DE", "translation": "Du hast dein Wissen gesteigert."},
+    { "page": "trainer", "handle": "401", "language": "de-DE", "translation": "Maximaler Wert erreicht."},
     { "page": "trainer", "handle": "402", "language": "de-DE", "translation": "Dir fehlt das nötige Kleingeld."},
     { "page": "trainer", "handle": "404", "language": "de-DE", "translation": "Der Händler hat keine Waren mehr."},
     { "page": "trainer", "handle": "500", "language": "de-DE", "translation": "Der Händler war ein Betrüger ist und abgehauen."},

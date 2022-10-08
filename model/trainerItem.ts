@@ -4,6 +4,7 @@ import json = require('./trainerItem.json');
 import { HeroItem } from './heroItem';
 import { HeroTraitItem } from './heroTraitItem';
 import { HeroWalletItem } from './heroWalletItem';
+import { ValidationItem } from './validationItem';
 
 @Table({ tableName: "trainer", modelName: "trainer"})
 export class TrainerItem extends Model<TrainerItem>{
@@ -89,24 +90,28 @@ export class TrainerItem extends Model<TrainerItem>{
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
             const heroTrait = await sequelize.models.heroTrait.findByPk(heroName) as Model<HeroTraitItem>;
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
+            const validation = await sequelize.models.validation.findAll({ where: { handle: 'hero' }}) as Model<ValidationItem>[];
 
             if(trainer && hero && heroWallet && heroTrait){
                 const trait = (trainer.getDataValue("handle") + "Multipler") as keyof HeroTraitItem;
                 const value = heroTrait.getDataValue(trait) as number;
                 const price =  value * trainer.getDataValue("gold");
+
                 if(heroWallet.getDataValue("gold") >= price){
-                    await heroWallet.decrement('gold', { by: price});
-                    await heroTrait.increment(trait, { by: 1});
+                    if(value < validation.find(x => x.getDataValue("handle") === trait).getDataValue("max")){
+                        await heroWallet.decrement('gold', { by: price});
+                        await heroTrait.increment(trait, { by: 1});
 
-                    if(trainer.getDataValue("handle") === "hitpoint"){
-                        await hero.increment('hitpointsMax', { by: 10});
-                        await hero.increment('hitpoints', { by: 10});
-                    }
+                        if(trainer.getDataValue("handle") === "hitpoint"){
+                            await hero.increment('hitpointsMax', { by: 10});
+                            await hero.increment('hitpoints', { by: 10});
+                        }
 
-                    if(trainer.getDataValue("handle") === "strength"){
-                        await hero.increment('strength', { by: 1});
-                    }
-                    return 200;
+                        if(trainer.getDataValue("handle") === "strength"){
+                            await hero.increment('strength', { by: 1});
+                        }
+                        return 200;
+                    } else return 401;
                 } else return 402;
             } else return 404;
         } catch(ex){

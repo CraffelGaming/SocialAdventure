@@ -103,21 +103,26 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
                 const hero = yield sequelize.models.hero.findByPk(heroName);
                 const heroTrait = yield sequelize.models.heroTrait.findByPk(heroName);
                 const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
+                const validation = yield sequelize.models.validation.findAll({ where: { handle: 'hero' } });
                 if (trainer && hero && heroWallet && heroTrait) {
                     const trait = (trainer.getDataValue("handle") + "Multipler");
                     const value = heroTrait.getDataValue(trait);
                     const price = value * trainer.getDataValue("gold");
                     if (heroWallet.getDataValue("gold") >= price) {
-                        yield heroWallet.decrement('gold', { by: price });
-                        yield heroTrait.increment(trait, { by: 1 });
-                        if (trainer.getDataValue("handle") === "hitpoint") {
-                            yield hero.increment('hitpointsMax', { by: 10 });
-                            yield hero.increment('hitpoints', { by: 10 });
+                        if (value < validation.find(x => x.getDataValue("handle") === trait).getDataValue("max")) {
+                            yield heroWallet.decrement('gold', { by: price });
+                            yield heroTrait.increment(trait, { by: 1 });
+                            if (trainer.getDataValue("handle") === "hitpoint") {
+                                yield hero.increment('hitpointsMax', { by: 10 });
+                                yield hero.increment('hitpoints', { by: 10 });
+                            }
+                            if (trainer.getDataValue("handle") === "strength") {
+                                yield hero.increment('strength', { by: 1 });
+                            }
+                            return 200;
                         }
-                        if (trainer.getDataValue("handle") === "strength") {
-                            yield hero.increment('strength', { by: 1 });
-                        }
-                        return 200;
+                        else
+                            return 401;
                     }
                     else
                         return 402;

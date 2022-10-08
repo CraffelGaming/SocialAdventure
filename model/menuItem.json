@@ -82,7 +82,8 @@
         "name": "statistic",
         "order": 1280,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": false
     },
     {
         "endpoint": "command",

@@ -5,6 +5,7 @@ $(async () => {
 
     let module = 'daily';
     let language = await getTranslation(module);
+    let validation = await get(`/validation/${module}`);
 
     translation();
     await initialize()
@@ -117,11 +118,10 @@ $(async () => {
                             .css("white-space", "normal")
                             .css("overflow-wrap", 'break-word'); 
                 }},
-                { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], width: 150 },
-                { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], width: 150 },
-                { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }], width: 150 },
-                { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }], width: 150 },
-              
+                { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'experienceMin').min, max: validation.find(x => x.handle == 'experienceMin').max }},
+                { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'experienceMax').min, max: validation.find(x => x.handle == 'experienceMax').max }},
+                { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'goldMin').min, max: validation.find(x => x.handle == 'goldMin').max }},
+                { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'goldMax').min, max: validation.find(x => x.handle == 'goldMax').max }}
             ],
             editing: await getEditing(),
             export: {
