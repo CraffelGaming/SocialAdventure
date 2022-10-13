@@ -237,7 +237,7 @@ $(async () => {
                     columns: [
                         { dataField: "countUses", caption: translate(language, 'countUses') },
                         { dataField: "countRuns", caption: translate(language, 'countRuns') },
-                        { dataField: 'lastRun', caption: translate(language, 'lastRun')},
+                        { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'datetime', width: 200 },
                         { dataField: 'count', caption: translate(language, 'count')}
                     ]
                 });

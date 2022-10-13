@@ -17,8 +17,6 @@ export class Channel {
     loot: Loot;
     twitch: Twitch;
     stream: streamItem;
-    isLive: boolean;
-    isNodeStarted: boolean;
 
     //#region Construct
     constructor(node: NodeItem){
@@ -27,8 +25,6 @@ export class Channel {
         this.twitch = new Twitch();
         this.twitch.load(this.node.getDataValue("name"));
         this.stream = null;
-        this.isLive = false;
-        this.isNodeStarted = true;
         this.database = new Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new Puffer(node),
         this.puffer.interval();
@@ -49,21 +45,22 @@ export class Channel {
                         const stream = await this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
 
                         if(stream && stream.type === 'live') {
-                            if(!this.isLive || this.isNodeStarted){
+                            if(!this.node.isLive){
                                 global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
-                                this.isLive = true;
+                                this.node.isLive = true;
+                                await this.database.sequelize.models.node.update(this.node, { where: {name: this.node.name}});
                                 this.startSays();
                                 this.startLoot();
                             }
-                        } else if (this.isLive || this.isNodeStarted) {
+                        } else if (this.node.isLive) {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
-                            this.isLive = false;
+                            this.node.isLive = false;
+                            await this.database.sequelize.models.node.update(this.node, { where: {name: this.node.name}});
                             this.stopSays();
                             this.stopLoot();
                         } else {
-                            global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.isLive}`);
+                            global.worker.log.trace(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.node.isLive}`);
                         }
-                        this.isNodeStarted = false;
                    }
                 } catch (ex){
                     global.worker.log.error(`channel error - function streamWatcher - ${ex.message}`);
@@ -101,7 +98,6 @@ export class Channel {
         } catch(ex) {
             global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
         }
-
     }
 
     async startSays(){

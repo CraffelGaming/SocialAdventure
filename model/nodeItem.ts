@@ -12,6 +12,8 @@ export class NodeItem extends Model<NodeItem>{
     @Column
     isActive: boolean = true;
     @Column
+    isLive: boolean = true;
+    @Column
     endpoint : string = '/';
 
     constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
@@ -42,6 +44,11 @@ export class NodeItem extends Model<NodeItem>{
                type: DataTypes.BOOLEAN,
                allowNull: false,
                defaultValue: true,
+            },
+            isLive: {
+               type: DataTypes.BOOLEAN,
+               allowNull: false,
+               defaultValue: false,
             },
             endpoint: {
                type: DataTypes.STRING,

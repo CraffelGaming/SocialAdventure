@@ -23,8 +23,6 @@ class Channel {
         this.twitch = new twitch_1.Twitch();
         this.twitch.load(this.node.getDataValue("name"));
         this.stream = null;
-        this.isLive = false;
-        this.isNodeStarted = true;
         this.database = new connection_1.Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new puffer_1.Puffer(node),
             this.puffer.interval();
@@ -41,23 +39,24 @@ class Channel {
                 if (this.twitch) {
                     const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
                     if (stream && stream.type === 'live') {
-                        if (!this.isLive || this.isNodeStarted) {
+                        if (!this.node.isLive) {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
-                            this.isLive = true;
+                            this.node.isLive = true;
+                            yield this.database.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
                             this.startSays();
                             this.startLoot();
                         }
                     }
-                    else if (this.isLive || this.isNodeStarted) {
+                    else if (this.node.isLive) {
                         global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
-                        this.isLive = false;
+                        this.node.isLive = false;
+                        yield this.database.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
                         this.stopSays();
                         this.stopLoot();
                     }
                     else {
-                        global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.isLive}`);
+                        global.worker.log.trace(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.node.isLive}`);
                     }
-                    this.isNodeStarted = false;
                 }
             }
             catch (ex) {

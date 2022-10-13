@@ -3991,3 +3991,510 @@
 [2022-10-13T22:23:49.997] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
 [2022-10-13T22:23:49.997] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
 [2022-10-13T22:23:49.998] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:25:36.201] [TRACE] default - twitch chat client initialized
+[2022-10-13T22:25:36.287] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T22:25:36.287] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T22:25:36.305] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T22:25:36.308] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T22:25:40.546] [TRACE] default - add Migration update_001
+[2022-10-13T22:25:41.538] [TRACE] default - {
+  access_token: 'en2hfit044mftylnmlibvqui3uq6np',
+  expires_in: 4696836,
+  token_type: 'bearer'
+}
+[2022-10-13T22:25:42.505] [TRACE] default - add Node craffelmat
+[2022-10-13T22:25:42.506] [TRACE] default - api connect with node craffelmat
+[2022-10-13T22:25:42.507] [INFO] default - node craffelmat, add streamWatcher
+[2022-10-13T22:25:42.520] [TRACE] default - api connected accessToken jeldtu0zs4c3a6dtzzcesvjubydozl, refreshToken jc9ui0ofe7hc26vr0zgh5tf8fmft85i4jl2odq75xbo2qzxwck
+[2022-10-13T22:25:42.521] [TRACE] default - api connected broadcasterType , displayName craffelmat
+[2022-10-13T22:25:45.860] [INFO] default - node craffelmat, say add craffel.
+[2022-10-13T22:25:45.862] [INFO] default - node craffelmat, say add death.
+[2022-10-13T22:25:45.864] [INFO] default - node craffelmat, say add dice.
+[2022-10-13T22:25:45.866] [INFO] default - node craffelmat, say add lurk.
+[2022-10-13T22:25:45.869] [INFO] default - node craffelmat, say add so.
+[2022-10-13T22:25:45.871] [INFO] default - node craffelmat, say add unlurk.
+[2022-10-13T22:25:45.875] [INFO] default - node craffelmat, say add verwarnung.
+[2022-10-13T22:25:45.881] [TRACE] default - node connected: craffelmat
+[2022-10-13T22:25:45.882] [INFO] default - --------------------------------------
+[2022-10-13T22:25:45.882] [INFO] default - ---------- ALL NODES LOADED ----------
+[2022-10-13T22:25:45.883] [INFO] default - ----------- 100% COMPLETED -----------
+[2022-10-13T22:25:45.883] [INFO] default - --------------------------------------
+[2022-10-13T22:26:21.873] [TRACE] default - get translation, page navigation
+[2022-10-13T22:26:21.877] [TRACE] default - get translation, page help
+[2022-10-13T22:26:21.886] [TRACE] default - get menu
+[2022-10-13T22:26:21.889] [TRACE] default - get twitch userdata
+[2022-10-13T22:26:21.901] [TRACE] default - get node, default
+[2022-10-13T22:26:21.918] [TRACE] default - get twitch
+[2022-10-13T22:26:21.985] [TRACE] default - get translation, page information
+[2022-10-13T22:26:21.988] [TRACE] default - get node, default
+[2022-10-13T22:26:22.018] [TRACE] default - get twitch userdata
+[2022-10-13T22:26:22.031] [TRACE] default - get node, default
+[2022-10-13T22:26:23.763] [TRACE] default - get translation, page navigation
+[2022-10-13T22:26:23.768] [TRACE] default - get translation, page index
+[2022-10-13T22:26:23.781] [TRACE] default - get twitch
+[2022-10-13T22:26:23.784] [TRACE] default - get menu
+[2022-10-13T22:26:23.824] [TRACE] default - get translation, page information
+[2022-10-13T22:26:23.826] [TRACE] default - get twitch
+[2022-10-13T22:26:23.843] [TRACE] default - get node, default
+[2022-10-13T22:26:23.845] [TRACE] default - get twitch userdata
+[2022-10-13T22:26:23.853] [TRACE] default - get node, default
+[2022-10-13T22:26:24.936] [TRACE] default - get translation, page say,command,placeholder
+[2022-10-13T22:26:24.939] [TRACE] default - get translation, page navigation
+[2022-10-13T22:26:24.946] [TRACE] default - get twitch userdata
+[2022-10-13T22:26:24.950] [TRACE] default - get menu
+[2022-10-13T22:26:24.953] [TRACE] default - get node, default
+[2022-10-13T22:26:25.051] [TRACE] default - get translation, page information
+[2022-10-13T22:26:25.055] [TRACE] default - get stateStorage, name say
+[2022-10-13T22:26:25.057] [TRACE] default - get twitch
+[2022-10-13T22:26:25.062] [TRACE] default - get twitch userdata
+[2022-10-13T22:26:25.079] [TRACE] default - get node, default
+[2022-10-13T22:26:25.081] [TRACE] default - get say, node default
+[2022-10-13T22:26:25.084] [TRACE] default - get node, default
+[2022-10-13T22:26:42.511] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:26:42.769] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:26:42.770] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:26:42.772] [INFO] default - node craffelmat, streamWatcher is not longer live
+[2022-10-13T22:26:42.772] [TRACE] default - module craffel already stopped.
+[2022-10-13T22:26:42.773] [INFO] default - node craffelmat, stop module craffel.
+[2022-10-13T22:26:42.773] [TRACE] default - module death already stopped.
+[2022-10-13T22:26:42.774] [INFO] default - node craffelmat, stop module death.
+[2022-10-13T22:26:42.774] [TRACE] default - module so already stopped.
+[2022-10-13T22:26:42.775] [INFO] default - node craffelmat, stop module so.
+[2022-10-13T22:26:42.780] [TRACE] default - module loot already stopped.
+[2022-10-13T22:26:45.858] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:26:45.858] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:26:45.873] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:26:45.874] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:26:45.874] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:26:45.875] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:26:45.875] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:26:45.875] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:26:45.875] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:26:45.876] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:26:45.876] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:26:45.876] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:26:45.877] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:26:45.877] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:26:45.889] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:27:42.511] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:27:42.763] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:27:42.763] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:27:42.763] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:27:45.859] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:27:45.859] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:27:45.889] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:27:45.890] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:27:45.890] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:27:45.891] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:27:45.891] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:27:45.891] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:27:45.891] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:27:45.892] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:27:45.892] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:27:45.892] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:27:45.893] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:27:45.893] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:27:45.893] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:28:42.526] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:28:42.769] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:28:42.770] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:28:42.770] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:28:45.859] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:28:45.859] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:28:45.905] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:28:45.905] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:28:45.906] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:28:45.906] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:28:45.907] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:28:45.907] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:28:45.907] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:28:45.908] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:28:45.908] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:28:45.908] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:28:45.908] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:28:45.909] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:28:45.909] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:29:37.757] [TRACE] default - get command, node default
+[2022-10-13T22:29:39.960] [TRACE] default - get placeholder
+[2022-10-13T22:29:42.527] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:29:42.769] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:29:42.769] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:29:42.770] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:29:45.859] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:29:45.859] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:29:45.905] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:29:45.906] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:29:45.906] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:29:45.906] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:29:45.907] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:29:45.907] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:29:45.907] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:29:45.908] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:29:45.908] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:29:45.908] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:29:45.908] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:29:45.909] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:29:45.909] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:30:42.527] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:30:42.779] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:30:42.780] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:30:42.780] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:30:45.875] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:30:45.876] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:30:45.906] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:30:45.907] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:30:45.907] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:30:45.907] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:30:45.908] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:30:45.908] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:30:45.908] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:30:45.908] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:30:45.909] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:30:45.909] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:30:45.909] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:30:45.909] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:30:45.910] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:31:13.028] [TRACE] default - get command, node default
+[2022-10-13T22:31:14.484] [TRACE] default - get placeholder
+[2022-10-13T22:31:42.528] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:31:42.792] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:31:42.792] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:31:42.793] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:31:45.876] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:31:45.876] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:31:45.907] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:31:45.908] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:31:45.908] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:31:45.909] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:31:45.909] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:31:45.909] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:31:45.910] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:31:45.910] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:31:45.910] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:31:45.911] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:31:45.911] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:31:45.911] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:31:45.911] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:32:13.137] [TRACE] default - get translation, page say,command,placeholder
+[2022-10-13T22:32:13.139] [TRACE] default - get translation, page navigation
+[2022-10-13T22:32:13.150] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:13.152] [TRACE] default - get menu
+[2022-10-13T22:32:13.155] [TRACE] default - get node, default
+[2022-10-13T22:32:13.256] [TRACE] default - get translation, page information
+[2022-10-13T22:32:13.257] [TRACE] default - get twitch
+[2022-10-13T22:32:13.261] [TRACE] default - get node, default
+[2022-10-13T22:32:13.263] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:13.287] [TRACE] default - get node, default
+[2022-10-13T22:32:14.061] [TRACE] default - get stateStorage, name say
+[2022-10-13T22:32:14.072] [TRACE] default - get say, node default
+[2022-10-13T22:32:16.031] [TRACE] default - get command, node default
+[2022-10-13T22:32:16.866] [TRACE] default - get placeholder
+[2022-10-13T22:32:27.576] [TRACE] default - get translation, page hero,item,wallet,trait,adventure,level,itemCategoryList,itemCategory
+[2022-10-13T22:32:27.578] [TRACE] default - get translation, page navigation
+[2022-10-13T22:32:27.588] [TRACE] default - get validation, page hero
+[2022-10-13T22:32:27.592] [TRACE] default - get menu
+[2022-10-13T22:32:27.597] [TRACE] default - get itemcategory, node default
+[2022-10-13T22:32:27.613] [TRACE] default - get twitch
+[2022-10-13T22:32:27.616] [TRACE] default - get level, node default
+[2022-10-13T22:32:27.618] [TRACE] default - get node, default
+[2022-10-13T22:32:27.745] [TRACE] default - get translation, page information
+[2022-10-13T22:32:27.756] [TRACE] default - get stateStorage, name hero
+[2022-10-13T22:32:27.796] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:27.811] [TRACE] default - get hero, node default
+[2022-10-13T22:32:27.831] [TRACE] default - get node, default
+[2022-10-13T22:32:30.148] [TRACE] default - get heroinventory, node default, hero craffelmat
+[2022-10-13T22:32:30.769] [TRACE] default - get herowallet, node default, hero craffelmat
+[2022-10-13T22:32:31.092] [TRACE] default - get herotrait, node default, hero craffelmat
+[2022-10-13T22:32:31.782] [TRACE] default - get adventure, node default
+[2022-10-13T22:32:42.529] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:32:42.768] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:32:42.768] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:32:42.769] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:32:43.783] [TRACE] default - get translation, page item,itemCategory
+[2022-10-13T22:32:43.785] [TRACE] default - get translation, page navigation
+[2022-10-13T22:32:43.794] [TRACE] default - get menu
+[2022-10-13T22:32:43.796] [TRACE] default - get validation, page item
+[2022-10-13T22:32:43.810] [TRACE] default - get twitch
+[2022-10-13T22:32:43.813] [TRACE] default - get itemcategory, node default
+[2022-10-13T22:32:43.816] [TRACE] default - get node, default
+[2022-10-13T22:32:43.819] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:43.840] [TRACE] default - get node, default
+[2022-10-13T22:32:43.929] [TRACE] default - get translation, page information
+[2022-10-13T22:32:43.931] [TRACE] default - get stateStorage, name item
+[2022-10-13T22:32:43.943] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:43.945] [TRACE] default - get item, node default
+[2022-10-13T22:32:43.948] [TRACE] default - get node, default
+[2022-10-13T22:32:45.891] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:32:45.892] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:32:45.907] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:32:45.907] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:32:45.908] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:32:45.909] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:32:45.909] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:32:45.909] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:32:45.910] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:32:45.910] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:32:45.910] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:32:45.911] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:32:45.911] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:32:45.911] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:32:45.912] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:32:46.751] [TRACE] default - get translation, page navigation
+[2022-10-13T22:32:46.753] [TRACE] default - get translation, page setting
+[2022-10-13T22:32:46.864] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:46.866] [TRACE] default - get menu
+[2022-10-13T22:32:46.869] [TRACE] default - get node, default
+[2022-10-13T22:32:46.954] [TRACE] default - get translation, page information
+[2022-10-13T22:32:46.956] [TRACE] default - get stateStorage, name setting
+[2022-10-13T22:32:46.958] [TRACE] default - get twitch
+[2022-10-13T22:32:46.968] [TRACE] default - get loot, node default
+[2022-10-13T22:32:46.970] [TRACE] default - get node, default
+[2022-10-13T22:32:46.972] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:46.986] [TRACE] default - get node, default
+[2022-10-13T22:32:48.066] [TRACE] default - get translation, page say,command,placeholder
+[2022-10-13T22:32:48.067] [TRACE] default - get translation, page navigation
+[2022-10-13T22:32:48.075] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:48.077] [TRACE] default - get menu
+[2022-10-13T22:32:48.079] [TRACE] default - get node, default
+[2022-10-13T22:32:48.167] [TRACE] default - get translation, page information
+[2022-10-13T22:32:48.169] [TRACE] default - get stateStorage, name say
+[2022-10-13T22:32:48.169] [TRACE] default - get twitch
+[2022-10-13T22:32:48.180] [TRACE] default - get say, node default
+[2022-10-13T22:32:48.182] [TRACE] default - get node, default
+[2022-10-13T22:32:48.183] [TRACE] default - get twitch userdata
+[2022-10-13T22:32:48.213] [TRACE] default - get node, default
+[2022-10-13T22:32:50.685] [TRACE] default - get command, node default
+[2022-10-13T22:32:54.281] [TRACE] default - get placeholder
+[2022-10-13T22:33:31.905] [TRACE] default - get translation, page say,command,placeholder
+[2022-10-13T22:33:31.907] [TRACE] default - get translation, page navigation
+[2022-10-13T22:33:31.917] [TRACE] default - get twitch userdata
+[2022-10-13T22:33:31.919] [TRACE] default - get menu
+[2022-10-13T22:33:31.923] [TRACE] default - get node, default
+[2022-10-13T22:33:32.033] [TRACE] default - get translation, page information
+[2022-10-13T22:33:32.036] [TRACE] default - get stateStorage, name say
+[2022-10-13T22:33:32.038] [TRACE] default - get twitch
+[2022-10-13T22:33:32.052] [TRACE] default - get say, node default
+[2022-10-13T22:33:32.055] [TRACE] default - get twitch userdata
+[2022-10-13T22:33:32.057] [TRACE] default - get node, default
+[2022-10-13T22:33:32.061] [TRACE] default - get node, default
+[2022-10-13T22:33:33.367] [TRACE] default - get command, node default
+[2022-10-13T22:33:36.675] [TRACE] default - get placeholder
+[2022-10-13T22:33:38.707] [TRACE] default - get command, node default
+[2022-10-13T22:33:42.529] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:33:42.773] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:33:42.773] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:33:42.774] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:33:45.892] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:33:45.893] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:33:45.908] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:33:45.908] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:33:45.909] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:33:45.909] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:33:45.910] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:33:45.910] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:33:45.910] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:33:45.911] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:33:45.911] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:33:45.911] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:33:45.912] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:33:45.912] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:33:45.912] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:33:53.643] [TRACE] default - get translation, page navigation
+[2022-10-13T22:33:53.645] [TRACE] default - get translation, page streamer
+[2022-10-13T22:33:53.651] [TRACE] default - get menu
+[2022-10-13T22:33:53.739] [TRACE] default - get translation, page information
+[2022-10-13T22:33:53.740] [TRACE] default - get stateStorage, name streamer
+[2022-10-13T22:33:53.743] [TRACE] default - get twitch
+[2022-10-13T22:33:53.757] [TRACE] default - get node
+[2022-10-13T22:33:53.758] [TRACE] default - get node, default
+[2022-10-13T22:33:53.760] [TRACE] default - get twitch userdata
+[2022-10-13T22:33:53.789] [TRACE] default - get node, default
+[2022-10-13T22:33:57.748] [TRACE] default - get translation, page say,command,placeholder
+[2022-10-13T22:33:57.750] [TRACE] default - get translation, page navigation
+[2022-10-13T22:33:57.760] [TRACE] default - get twitch userdata
+[2022-10-13T22:33:57.762] [TRACE] default - get menu
+[2022-10-13T22:33:57.773] [TRACE] default - get node, default
+[2022-10-13T22:33:57.776] [TRACE] default - get twitch
+[2022-10-13T22:33:57.873] [TRACE] default - get translation, page information
+[2022-10-13T22:33:57.883] [TRACE] default - get stateStorage, name say
+[2022-10-13T22:33:57.885] [TRACE] default - get node, default
+[2022-10-13T22:33:57.911] [TRACE] default - get twitch userdata
+[2022-10-13T22:33:57.934] [TRACE] default - get node, default
+[2022-10-13T22:33:57.936] [TRACE] default - get say, node default
+[2022-10-13T22:34:00.563] [TRACE] default - {
+  access_token: 'c1g7egw812haholkolgo49zkhhrg5q',
+  expires_in: 14218,
+  refresh_token: 'd2fmursogacch6wbq3foijzadye2l6oe7xfv4nimtxuqus4qk8',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T22:34:00.797] [TRACE] default - {
+  data: [
+    {
+      id: '664649274',
+      login: 'craffelmat',
+      display_name: 'craffelmat',
+      type: '',
+      broadcaster_type: '',
+      description: '',
+      profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+      offline_image_url: '',
+      view_count: 137,
+      email: 'craffel.gaming@gmail.com',
+      created_at: '2021-03-20T10:24:18Z'
+    }
+  ]
+}
+[2022-10-13T22:34:01.378] [TRACE] default - get translation, page navigation
+[2022-10-13T22:34:01.380] [TRACE] default - get translation, page twitch
+[2022-10-13T22:34:01.501] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:01.502] [TRACE] default - get menu
+[2022-10-13T22:34:01.515] [TRACE] default - get translation, page information
+[2022-10-13T22:34:01.517] [TRACE] default - get twitch
+[2022-10-13T22:34:01.522] [TRACE] default - get node, default
+[2022-10-13T22:34:01.526] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:01.541] [TRACE] default - get node, default
+[2022-10-13T22:34:04.885] [TRACE] default - get translation, page navigation
+[2022-10-13T22:34:04.887] [TRACE] default - get translation, page streamer
+[2022-10-13T22:34:04.990] [TRACE] default - get translation, page information
+[2022-10-13T22:34:04.994] [TRACE] default - get menu
+[2022-10-13T22:34:04.996] [TRACE] default - get stateStorage, name streamer
+[2022-10-13T22:34:04.998] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:05.016] [TRACE] default - get node, default
+[2022-10-13T22:34:05.018] [TRACE] default - get twitch
+[2022-10-13T22:34:05.054] [TRACE] default - get node
+[2022-10-13T22:34:05.055] [TRACE] default - get node, default
+[2022-10-13T22:34:07.424] [TRACE] default - get translation, page hero,item,wallet,trait,adventure,level,itemCategoryList,itemCategory,inventory
+[2022-10-13T22:34:07.425] [TRACE] default - get translation, page navigation
+[2022-10-13T22:34:07.433] [TRACE] default - get validation, page hero
+[2022-10-13T22:34:07.435] [TRACE] default - get menu
+[2022-10-13T22:34:07.444] [TRACE] default - get itemcategory, node default
+[2022-10-13T22:34:07.453] [TRACE] default - get twitch
+[2022-10-13T22:34:07.456] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:07.458] [TRACE] default - get node, default
+[2022-10-13T22:34:07.460] [TRACE] default - get hero, node default
+[2022-10-13T22:34:07.482] [TRACE] default - get level, node default
+[2022-10-13T22:34:07.572] [TRACE] default - get translation, page information
+[2022-10-13T22:34:07.575] [TRACE] default - get stateStorage, name hero
+[2022-10-13T22:34:07.586] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:07.593] [TRACE] default - get node, default
+[2022-10-13T22:34:07.767] [TRACE] default - get heroinventory, node default, hero craffelmat
+[2022-10-13T22:34:10.724] [TRACE] default - get translation, page taverne,healing,trainer,wallet,trait,hero,daily
+[2022-10-13T22:34:10.726] [TRACE] default - get translation, page navigation
+[2022-10-13T22:34:10.765] [TRACE] default - get menu
+[2022-10-13T22:34:10.768] [TRACE] default - get validation, page hero
+[2022-10-13T22:34:10.815] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:10.817] [TRACE] default - get twitch
+[2022-10-13T22:34:10.820] [TRACE] default - get daily, node default random
+[2022-10-13T22:34:10.866] [TRACE] default - get node, default
+[2022-10-13T22:34:10.868] [TRACE] default - get hero, node default
+[2022-10-13T22:34:10.892] [TRACE] default - get herowallet, node default, hero craffelmat
+[2022-10-13T22:34:10.912] [TRACE] default - get herotrait, node default, hero craffelmat
+[2022-10-13T22:34:11.146] [TRACE] default - get translation, page information
+[2022-10-13T22:34:11.150] [TRACE] default - get herowallet, node default, hero craffelmat
+[2022-10-13T22:34:11.151] [TRACE] default - get herotrait, node default, hero craffelmat
+[2022-10-13T22:34:11.155] [TRACE] default - get healingPotion, node default
+[2022-10-13T22:34:11.156] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:11.158] [TRACE] default - get trainer, node default
+[2022-10-13T22:34:11.165] [TRACE] default - get node, default
+[2022-10-13T22:34:33.887] [TRACE] default - get translation, page hero,item,wallet,trait,adventure,level,itemCategoryList,itemCategory
+[2022-10-13T22:34:33.888] [TRACE] default - get translation, page navigation
+[2022-10-13T22:34:33.899] [TRACE] default - get validation, page hero
+[2022-10-13T22:34:33.901] [TRACE] default - get menu
+[2022-10-13T22:34:33.912] [TRACE] default - get itemcategory, node default
+[2022-10-13T22:34:33.915] [TRACE] default - get twitch
+[2022-10-13T22:34:33.922] [TRACE] default - get node, default
+[2022-10-13T22:34:33.924] [TRACE] default - get level, node default
+[2022-10-13T22:34:34.048] [TRACE] default - get translation, page information
+[2022-10-13T22:34:34.050] [TRACE] default - get stateStorage, name hero
+[2022-10-13T22:34:34.102] [TRACE] default - get hero, node default
+[2022-10-13T22:34:34.109] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:34.263] [TRACE] default - get node, default
+[2022-10-13T22:34:36.200] [TRACE] default - get heroinventory, node default, hero craffelmat
+[2022-10-13T22:34:37.029] [TRACE] default - get herowallet, node default, hero craffelmat
+[2022-10-13T22:34:37.697] [TRACE] default - get herotrait, node default, hero craffelmat
+[2022-10-13T22:34:42.529] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:34:42.771] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:34:42.771] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:34:42.772] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:34:44.917] [TRACE] default - get adventure, node default
+[2022-10-13T22:34:45.893] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:34:45.893] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:34:45.924] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:34:45.924] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:34:45.925] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:34:45.925] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:34:45.925] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:34:45.926] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:34:45.926] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:34:45.926] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:34:45.927] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:34:45.927] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:34:45.927] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:34:45.927] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:34:45.927] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:34:54.174] [TRACE] default - get translation, page navigation
+[2022-10-13T22:34:54.176] [TRACE] default - get translation, page streamer
+[2022-10-13T22:34:54.209] [TRACE] default - get menu
+[2022-10-13T22:34:54.315] [TRACE] default - get translation, page information
+[2022-10-13T22:34:54.318] [TRACE] default - get stateStorage, name streamer
+[2022-10-13T22:34:54.341] [TRACE] default - get twitch
+[2022-10-13T22:34:54.382] [TRACE] default - get node
+[2022-10-13T22:34:54.386] [TRACE] default - get twitch userdata
+[2022-10-13T22:34:54.388] [TRACE] default - get node, default
+[2022-10-13T22:34:54.394] [TRACE] default - get node, default
+[2022-10-13T22:35:16.418] [TRACE] default - get translation, page navigation
+[2022-10-13T22:35:16.419] [TRACE] default - get translation, page index
+[2022-10-13T22:35:16.430] [TRACE] default - get menu
+[2022-10-13T22:35:16.432] [TRACE] default - get twitch
+[2022-10-13T22:35:16.488] [TRACE] default - get translation, page information
+[2022-10-13T22:35:16.490] [TRACE] default - get twitch
+[2022-10-13T22:35:16.494] [TRACE] default - get node, default
+[2022-10-13T22:35:16.496] [TRACE] default - get twitch userdata
+[2022-10-13T22:35:16.514] [TRACE] default - get node, default
+[2022-10-13T22:35:20.243] [TRACE] default - get translation, page navigation
+[2022-10-13T22:35:20.244] [TRACE] default - get translation, page streamer
+[2022-10-13T22:35:20.254] [TRACE] default - get menu
+[2022-10-13T22:35:20.338] [TRACE] default - get translation, page information
+[2022-10-13T22:35:20.341] [TRACE] default - get stateStorage, name streamer
+[2022-10-13T22:35:20.342] [TRACE] default - get twitch
+[2022-10-13T22:35:20.346] [TRACE] default - get node, default
+[2022-10-13T22:35:20.348] [TRACE] default - get twitch userdata
+[2022-10-13T22:35:20.371] [TRACE] default - get node
+[2022-10-13T22:35:20.373] [TRACE] default - get node, default
+[2022-10-13T22:35:42.530] [INFO] default - node craffelmat, streamWatcher run
+[2022-10-13T22:35:42.805] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/streams?user_id=664649274 OK
+[2022-10-13T22:35:42.805] [TRACE] default - { data: [], pagination: {} }
+[2022-10-13T22:35:42.806] [INFO] default - node craffelmat, streamWatcher nothing changed, live: false
+[2022-10-13T22:35:45.893] [TRACE] default - node craffelmat, module craffel not executed active: 0
+[2022-10-13T22:35:45.894] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-10-13T22:35:45.924] [TRACE] default - node craffelmat, module death not executed active: 0
+[2022-10-13T22:35:45.924] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-10-13T22:35:45.925] [TRACE] default - node craffelmat, module dice not executed active: 0
+[2022-10-13T22:35:45.925] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-10-13T22:35:45.926] [TRACE] default - node craffelmat, module lurk not executed active: 0
+[2022-10-13T22:35:45.926] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-10-13T22:35:45.940] [TRACE] default - node craffelmat, module so not executed active: 0
+[2022-10-13T22:35:45.940] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-10-13T22:35:45.941] [TRACE] default - node craffelmat, module unlurk not executed active: 0
+[2022-10-13T22:35:45.941] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-10-13T22:35:45.942] [TRACE] default - node craffelmat, module verwarnung not executed active: 0
+[2022-10-13T22:35:45.942] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-10-13T22:35:45.942] [INFO] default - node craffelmat, module loot not executed not active
+[2022-10-13T22:47:45.065] [TRACE] default - twitch chat client initialized
+[2022-10-13T22:47:45.153] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T22:47:45.154] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T22:47:45.170] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T22:47:45.174] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T22:47:50.910] [TRACE] default - add Migration update_001
+[2022-10-13T22:47:51.904] [TRACE] default - {
+  access_token: '7b7557p1dfdk0v7hj1k0qucc32jhs1',
+  expires_in: 5278722,
+  token_type: 'bearer'
+}
+[2022-10-13T22:47:52.883] [ERROR] default - worker error - function initialize - SQLITE_ERROR: no such column: node.isLive

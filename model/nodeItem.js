@@ -17,6 +17,7 @@ let NodeItem = class NodeItem extends sequelize_typescript_1.Model {
         super();
         this.language = "DE-de";
         this.isActive = true;
+        this.isLive = true;
         this.endpoint = '/';
         this.name = name;
         this.displayName = displayName;
@@ -43,6 +44,11 @@ let NodeItem = class NodeItem extends sequelize_typescript_1.Model {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: true,
+            },
+            isLive: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false,
             },
             endpoint: {
                 type: sequelize_1.DataTypes.STRING,
@@ -73,6 +79,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], NodeItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], NodeItem.prototype, "isLive", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
