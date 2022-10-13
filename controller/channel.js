@@ -14,10 +14,13 @@ const connection_1 = require("../database/connection");
 const say_1 = require("../module/say");
 const loot_1 = require("../module/loot");
 const puffer_1 = require("./puffer");
+const twitch_1 = require("./twitch");
 class Channel {
     constructor(node) {
         this.node = node;
         this.countMessages = 0;
+        this.twitch = new twitch_1.Twitch();
+        this.twitch.load(this.node.getDataValue("name"));
         this.database = new connection_1.Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new puffer_1.Puffer(node),
             this.puffer.interval();

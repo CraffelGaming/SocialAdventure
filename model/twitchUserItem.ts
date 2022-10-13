@@ -9,6 +9,8 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
     @Column
     displayName: string;
     @Column
+    id : string;
+    @Column
     type: string;
     @Column
     broadcasterType: string;
@@ -35,6 +37,10 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
             displayName: {
                 type: DataTypes.STRING,
                 allowNull: true
+            },
+            id: {
+             type: DataTypes.STRING,
+             allowNull: true
             },
             type: {
                 type: DataTypes.STRING,

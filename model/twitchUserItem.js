@@ -28,6 +28,10 @@ let TwitchUserItem = class TwitchUserItem extends sequelize_typescript_1.Model {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: true
             },
+            id: {
+                type: sequelize_1.DataTypes.STRING,
+                allowNull: true
+            },
             type: {
                 type: sequelize_1.DataTypes.STRING,
                 allowNull: true
@@ -68,6 +72,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "displayName", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", String)
+], TwitchUserItem.prototype, "id", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)

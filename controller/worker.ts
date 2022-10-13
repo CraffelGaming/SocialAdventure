@@ -7,8 +7,8 @@ import { Channel } from './channel';
 import tmi = require('tmi.js');
 import tmiSettings = require('../bot.json');
 import twitchData = require('../twitch.json');
-import { Twitch } from './twitch';
 import { Command } from './command';
+import { Twitch } from './twitch';
 
 export class Worker {
     pathModel: string;
@@ -78,16 +78,10 @@ export class Worker {
     //#region Twitch API
     async login(request: express.Request, response: express.Response, callback: any){
         const twitch = new Twitch();
-        const credentials = await twitch.twitchAuthentification(request, response);
 
-        if(credentials){
-            const userData = await twitch.TwitchPush(request, response,"GET", "/users?client_id=" + twitchData.client_id);
-
-            if(userData){
-                await twitch.saveTwitch(request, response, userData);
-                await twitch.saveTwitchUser(request, response, userData);
-                request.session.userData = userData;
-            }
+        if(await twitch.login(request.session.state, request.query.code.toString())){
+            request.session.twitch =  twitch.credential;
+            request.session.userData = twitch.credentialUser;
         }
         callback(request, response);
     }
@@ -95,8 +89,7 @@ export class Worker {
 
     //#region Chatbot
     async connect(){
-        const twitch = new Twitch();
-        this.botCredential = await twitch.twitchBotAuthentification();
+        this.botCredential = await Twitch.botAuthentification();
 
         this.tmi.on('message', this.onMessageHandler);
         this.tmi.on('connected', this.onConnectedHandler);

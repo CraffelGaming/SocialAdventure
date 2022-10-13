@@ -6,6 +6,7 @@ import { Puffer } from './puffer';
 import { SayItem } from '../model/sayItem';
 import { Command } from './command';
 import { TranslationItem } from '../model/translationItem';
+import { Twitch } from './twitch';
 
 export class Channel {
     countMessages: number;
@@ -14,10 +15,14 @@ export class Channel {
     puffer: Puffer;
     say: Say[];
     loot: Loot;
+    streamID: number;
+    twitch: Twitch;
 
     constructor(node: NodeItem){
         this.node = node;
         this.countMessages = 0;
+        this.twitch = new Twitch();
+        this.twitch.load(this.node.getDataValue("name"));
         this.database = new Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new Puffer(node),
         this.puffer.interval();

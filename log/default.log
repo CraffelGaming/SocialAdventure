@@ -1,0 +1,881 @@
+[2022-10-13T12:59:39.392] [TRACE] default - twitch chat client initialized
+[2022-10-13T12:59:39.521] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T12:59:39.521] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T12:59:39.538] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T12:59:39.541] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T12:59:46.292] [TRACE] default - add Migration update_001
+[2022-10-13T12:59:47.285] [TRACE] default - {
+  access_token: '4dce8gjl2gg4mnb0ne4xv3qfmarhle',
+  expires_in: 5232735,
+  token_type: 'bearer'
+}
+[2022-10-13T12:59:59.717] [TRACE] default - get translation, page navigation
+[2022-10-13T12:59:59.721] [TRACE] default - get translation, page index
+[2022-10-13T12:59:59.752] [TRACE] default - get menu
+[2022-10-13T12:59:59.755] [TRACE] default - get twitch
+[2022-10-13T12:59:59.801] [TRACE] default - get twitch
+[2022-10-13T12:59:59.804] [TRACE] default - get translation, page information
+[2022-10-13T12:59:59.818] [TRACE] default - get node, default
+[2022-10-13T12:59:59.822] [TRACE] default - get twitch userdata
+[2022-10-13T12:59:59.832] [TRACE] default - get node, default
+[2022-10-13T13:00:06.740] [TRACE] default - get translation, page navigation
+[2022-10-13T13:00:06.749] [TRACE] default - get menu
+[2022-10-13T13:00:06.752] [TRACE] default - get translation, page twitch
+[2022-10-13T13:00:06.763] [TRACE] default - get twitch
+[2022-10-13T13:00:06.795] [TRACE] default - get twitch userdata
+[2022-10-13T13:00:06.798] [TRACE] default - get node, default
+[2022-10-13T13:00:06.808] [TRACE] default - get translation, page information
+[2022-10-13T13:00:06.820] [TRACE] default - get twitch userdata
+[2022-10-13T13:00:06.823] [TRACE] default - get node, default
+[2022-10-13T13:00:10.547] [TRACE] default - {
+  access_token: 'nj26aqm7r76dsypanpvtych6v5hkj3',
+  expires_in: 13778,
+  refresh_token: 'anxhth7kh2u8o7faq6arxa5f617b9fvz4sp883klncuh4r06a4',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:01:31.521] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:01:31.595] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T13:01:31.595] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:01:31.610] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T13:01:31.613] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:01:36.272] [TRACE] default - add Migration update_001
+[2022-10-13T13:01:37.256] [TRACE] default - {
+  access_token: 'fsmoe8zszec9ubfhp3hpdkonkm77i7',
+  expires_in: 4918887,
+  token_type: 'bearer'
+}
+[2022-10-13T13:01:41.020] [TRACE] default - get translation, page navigation
+[2022-10-13T13:01:41.024] [TRACE] default - get translation, page twitch
+[2022-10-13T13:01:41.032] [TRACE] default - get menu
+[2022-10-13T13:01:41.080] [TRACE] default - get twitch userdata
+[2022-10-13T13:01:41.083] [TRACE] default - get twitch
+[2022-10-13T13:01:41.097] [TRACE] default - get translation, page information
+[2022-10-13T13:01:41.099] [TRACE] default - get node, default
+[2022-10-13T13:01:41.109] [TRACE] default - get twitch userdata
+[2022-10-13T13:01:41.121] [TRACE] default - get node, default
+[2022-10-13T13:01:42.301] [TRACE] default - get translation, page navigation
+[2022-10-13T13:01:42.303] [TRACE] default - get translation, page index
+[2022-10-13T13:01:42.309] [TRACE] default - get menu
+[2022-10-13T13:01:42.311] [TRACE] default - get twitch
+[2022-10-13T13:01:42.343] [TRACE] default - get translation, page information
+[2022-10-13T13:01:42.345] [TRACE] default - get twitch
+[2022-10-13T13:01:42.350] [TRACE] default - get node, default
+[2022-10-13T13:01:42.352] [TRACE] default - get twitch userdata
+[2022-10-13T13:01:42.357] [TRACE] default - get node, default
+[2022-10-13T13:01:44.504] [TRACE] default - get translation, page navigation
+[2022-10-13T13:01:44.505] [TRACE] default - get translation, page twitch
+[2022-10-13T13:01:44.510] [TRACE] default - get menu
+[2022-10-13T13:01:44.544] [TRACE] default - get twitch userdata
+[2022-10-13T13:01:44.547] [TRACE] default - get twitch
+[2022-10-13T13:01:44.558] [TRACE] default - get translation, page information
+[2022-10-13T13:01:44.560] [TRACE] default - get node, default
+[2022-10-13T13:01:44.565] [TRACE] default - get twitch userdata
+[2022-10-13T13:01:44.577] [TRACE] default - get node, default
+[2022-10-13T13:01:48.655] [TRACE] default - {
+  access_token: 'zene35l0ggg1w714tcb5abvzkk7t9q',
+  expires_in: 13149,
+  refresh_token: '09zipyaw7g2wbmnt1alsy50q3u5k3dxp05oyg2d4zw63qi519t',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:02:46.512] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:02:46.615] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-10-13T13:02:46.616] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:02:46.632] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-10-13T13:02:46.634] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:02:51.623] [TRACE] default - add Migration update_001
+[2022-10-13T13:02:52.609] [TRACE] default - {
+  access_token: 'fh9gnnmiudy30yhqnf85n6vtdfawk4',
+  expires_in: 5292078,
+  token_type: 'bearer'
+}
+[2022-10-13T13:02:54.273] [TRACE] default - get translation, page navigation
+[2022-10-13T13:02:54.278] [TRACE] default - get translation, page index
+[2022-10-13T13:02:54.293] [TRACE] default - get menu
+[2022-10-13T13:02:54.297] [TRACE] default - get twitch
+[2022-10-13T13:02:54.333] [TRACE] default - get translation, page information
+[2022-10-13T13:02:54.338] [TRACE] default - get twitch
+[2022-10-13T13:02:54.346] [TRACE] default - get node, default
+[2022-10-13T13:02:54.352] [TRACE] default - get twitch userdata
+[2022-10-13T13:02:54.358] [TRACE] default - get node, default
+[2022-10-13T13:02:58.905] [TRACE] default - get translation, page navigation
+[2022-10-13T13:02:58.908] [TRACE] default - get translation, page twitch
+[2022-10-13T13:02:58.915] [TRACE] default - get menu
+[2022-10-13T13:02:58.943] [TRACE] default - get twitch userdata
+[2022-10-13T13:02:58.947] [TRACE] default - get twitch
+[2022-10-13T13:02:58.958] [TRACE] default - get translation, page information
+[2022-10-13T13:02:58.961] [TRACE] default - get node, default
+[2022-10-13T13:02:58.969] [TRACE] default - get twitch userdata
+[2022-10-13T13:02:58.981] [TRACE] default - get node, default
+[2022-10-13T13:03:23.963] [TRACE] default - {
+  access_token: '63fu55bpf2apnek474k501yjmnfdo9',
+  expires_in: 14563,
+  refresh_token: 'grh5c7h2ik15o1yzwb2wigeyr2ei9f0xmerbgh7464qum39l8m',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:03:35.343] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:03:35.448] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-10-13T13:03:35.449] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:03:35.465] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-10-13T13:03:35.468] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:03:39.627] [TRACE] default - add Migration update_001
+[2022-10-13T13:03:40.584] [TRACE] default - {
+  access_token: 'u9jiw1ntudzl7mywi5bgs0h5shmv44',
+  expires_in: 5372672,
+  token_type: 'bearer'
+}
+[2022-10-13T13:03:43.139] [TRACE] default - get translation, page navigation
+[2022-10-13T13:03:43.145] [TRACE] default - get translation, page twitch
+[2022-10-13T13:03:43.152] [TRACE] default - get menu
+[2022-10-13T13:03:43.232] [TRACE] default - get twitch userdata
+[2022-10-13T13:03:43.237] [TRACE] default - get twitch
+[2022-10-13T13:03:43.251] [TRACE] default - get translation, page information
+[2022-10-13T13:03:43.254] [TRACE] default - get node, default
+[2022-10-13T13:03:43.263] [TRACE] default - get twitch userdata
+[2022-10-13T13:03:43.275] [TRACE] default - get node, default
+[2022-10-13T13:03:46.306] [TRACE] default - get translation, page navigation
+[2022-10-13T13:03:46.309] [TRACE] default - get translation, page twitch
+[2022-10-13T13:03:46.317] [TRACE] default - get menu
+[2022-10-13T13:03:46.355] [TRACE] default - get twitch userdata
+[2022-10-13T13:03:46.359] [TRACE] default - get twitch
+[2022-10-13T13:03:46.370] [TRACE] default - get translation, page information
+[2022-10-13T13:03:46.373] [TRACE] default - get node, default
+[2022-10-13T13:03:46.380] [TRACE] default - get twitch userdata
+[2022-10-13T13:03:46.391] [TRACE] default - get node, default
+[2022-10-13T13:03:48.339] [TRACE] default - get translation, page navigation
+[2022-10-13T13:03:48.342] [TRACE] default - get translation, page index
+[2022-10-13T13:03:48.355] [TRACE] default - get menu
+[2022-10-13T13:03:48.359] [TRACE] default - get twitch
+[2022-10-13T13:03:48.425] [TRACE] default - get translation, page information
+[2022-10-13T13:03:48.429] [TRACE] default - get twitch
+[2022-10-13T13:03:48.440] [TRACE] default - get node, default
+[2022-10-13T13:03:48.443] [TRACE] default - get twitch userdata
+[2022-10-13T13:03:48.458] [TRACE] default - get node, default
+[2022-10-13T13:03:49.663] [TRACE] default - get translation, page navigation
+[2022-10-13T13:03:49.665] [TRACE] default - get translation, page index
+[2022-10-13T13:03:49.673] [TRACE] default - get menu
+[2022-10-13T13:03:49.677] [TRACE] default - get twitch
+[2022-10-13T13:03:49.710] [TRACE] default - get translation, page information
+[2022-10-13T13:03:49.715] [TRACE] default - get twitch
+[2022-10-13T13:03:49.722] [TRACE] default - get node, default
+[2022-10-13T13:03:49.725] [TRACE] default - get twitch userdata
+[2022-10-13T13:03:49.731] [TRACE] default - get node, default
+[2022-10-13T13:04:09.047] [TRACE] default - {
+  access_token: 'sxteof5rdjmhh36ak6u6zvth3py8a8',
+  expires_in: 14259,
+  refresh_token: '2ly7heoy19s8o9reo3wwmb3zdp2aa2vtxdtsrt2q1bo15mm06o',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:04:52.745] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:04:52.824] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T13:04:52.825] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:04:52.840] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T13:04:52.844] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:04:56.958] [TRACE] default - add Migration update_001
+[2022-10-13T13:04:57.373] [TRACE] default - get translation, page navigation
+[2022-10-13T13:04:57.376] [TRACE] default - get translation, page twitch
+[2022-10-13T13:04:57.384] [TRACE] default - get menu
+[2022-10-13T13:04:57.416] [TRACE] default - get twitch userdata
+[2022-10-13T13:04:57.420] [TRACE] default - get twitch
+[2022-10-13T13:04:57.431] [TRACE] default - get translation, page information
+[2022-10-13T13:04:57.433] [TRACE] default - get node, default
+[2022-10-13T13:04:57.447] [TRACE] default - get twitch userdata
+[2022-10-13T13:04:57.459] [TRACE] default - get node, default
+[2022-10-13T13:04:57.918] [TRACE] default - {
+  access_token: 'e6tymxgw0sz9v36h43icjbd2nk89ys',
+  expires_in: 4848529,
+  token_type: 'bearer'
+}
+[2022-10-13T13:04:59.357] [TRACE] default - get translation, page navigation
+[2022-10-13T13:04:59.358] [TRACE] default - get translation, page index
+[2022-10-13T13:04:59.364] [TRACE] default - get menu
+[2022-10-13T13:04:59.366] [TRACE] default - get twitch
+[2022-10-13T13:04:59.407] [TRACE] default - get translation, page information
+[2022-10-13T13:04:59.409] [TRACE] default - get twitch
+[2022-10-13T13:04:59.413] [TRACE] default - get node, default
+[2022-10-13T13:04:59.415] [TRACE] default - get twitch userdata
+[2022-10-13T13:04:59.418] [TRACE] default - get node, default
+[2022-10-13T13:05:00.155] [TRACE] default - get translation, page navigation
+[2022-10-13T13:05:00.157] [TRACE] default - get translation, page index
+[2022-10-13T13:05:00.243] [TRACE] default - get menu
+[2022-10-13T13:05:00.244] [TRACE] default - get twitch
+[2022-10-13T13:05:00.277] [TRACE] default - get translation, page information
+[2022-10-13T13:05:00.278] [TRACE] default - get twitch
+[2022-10-13T13:05:00.283] [TRACE] default - get node, default
+[2022-10-13T13:05:00.285] [TRACE] default - get twitch userdata
+[2022-10-13T13:05:00.288] [TRACE] default - get node, default
+[2022-10-13T13:05:00.776] [TRACE] default - get translation, page navigation
+[2022-10-13T13:05:00.777] [TRACE] default - get translation, page index
+[2022-10-13T13:05:00.784] [TRACE] default - get menu
+[2022-10-13T13:05:00.786] [TRACE] default - get twitch
+[2022-10-13T13:05:00.819] [TRACE] default - get translation, page information
+[2022-10-13T13:05:00.821] [TRACE] default - get twitch
+[2022-10-13T13:05:00.826] [TRACE] default - get node, default
+[2022-10-13T13:05:00.827] [TRACE] default - get twitch userdata
+[2022-10-13T13:05:00.832] [TRACE] default - get node, default
+[2022-10-13T13:16:59.113] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:16:59.184] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T13:16:59.185] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:16:59.200] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T13:16:59.202] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:17:06.016] [TRACE] default - add Migration update_001
+[2022-10-13T13:17:06.980] [TRACE] default - {
+  access_token: 'ysm1nwxxxez80b0ykiyw90i9p23an6',
+  expires_in: 4712176,
+  token_type: 'bearer'
+}
+[2022-10-13T13:17:13.386] [TRACE] default - get translation, page navigation
+[2022-10-13T13:17:13.390] [TRACE] default - get translation, page index
+[2022-10-13T13:17:13.405] [TRACE] default - get menu
+[2022-10-13T13:17:13.408] [TRACE] default - get twitch
+[2022-10-13T13:17:13.445] [TRACE] default - get translation, page information
+[2022-10-13T13:17:13.447] [TRACE] default - get twitch
+[2022-10-13T13:17:13.456] [TRACE] default - get node, default
+[2022-10-13T13:17:13.459] [TRACE] default - get twitch userdata
+[2022-10-13T13:17:13.468] [TRACE] default - get node, default
+[2022-10-13T13:17:15.038] [TRACE] default - get translation, page navigation
+[2022-10-13T13:17:15.040] [TRACE] default - get translation, page index
+[2022-10-13T13:17:15.049] [TRACE] default - get menu
+[2022-10-13T13:17:15.051] [TRACE] default - get twitch
+[2022-10-13T13:17:15.081] [TRACE] default - get translation, page information
+[2022-10-13T13:17:15.082] [TRACE] default - get twitch
+[2022-10-13T13:17:15.086] [TRACE] default - get node, default
+[2022-10-13T13:17:15.088] [TRACE] default - get twitch userdata
+[2022-10-13T13:17:15.092] [TRACE] default - get node, default
+[2022-10-13T13:17:17.322] [TRACE] default - get translation, page navigation
+[2022-10-13T13:17:17.323] [TRACE] default - get translation, page twitch
+[2022-10-13T13:17:17.331] [TRACE] default - get menu
+[2022-10-13T13:17:17.358] [TRACE] default - get twitch userdata
+[2022-10-13T13:17:17.362] [TRACE] default - get twitch
+[2022-10-13T13:17:17.373] [TRACE] default - get translation, page information
+[2022-10-13T13:17:17.375] [TRACE] default - get node, default
+[2022-10-13T13:17:17.381] [TRACE] default - get twitch userdata
+[2022-10-13T13:17:17.393] [TRACE] default - get node, default
+[2022-10-13T13:17:20.170] [TRACE] default - {
+  access_token: '0qbuh140qm95sdqrwfw7knm8uimcmr',
+  expires_in: 13997,
+  refresh_token: 'f7frvjluqgcw1l6nnn5llc7wge80mjdrq89ek5kuif8ohzrkay',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:17:20.408] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-10-13T13:19:08.045] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:19:08.116] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T13:19:08.116] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:19:08.131] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T13:19:08.134] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:19:12.165] [TRACE] default - add Migration update_001
+[2022-10-13T13:19:13.132] [TRACE] default - {
+  access_token: 'p0h2q6z5kywyjg6a71wfjnuf2ug1hz',
+  expires_in: 4740331,
+  token_type: 'bearer'
+}
+[2022-10-13T13:19:22.101] [TRACE] default - get translation, page navigation
+[2022-10-13T13:19:22.107] [TRACE] default - get translation, page twitch
+[2022-10-13T13:19:22.118] [TRACE] default - get menu
+[2022-10-13T13:19:22.144] [TRACE] default - get twitch userdata
+[2022-10-13T13:19:22.147] [TRACE] default - get twitch
+[2022-10-13T13:19:22.159] [TRACE] default - get translation, page information
+[2022-10-13T13:19:22.161] [TRACE] default - get node, default
+[2022-10-13T13:19:22.176] [TRACE] default - get twitch userdata
+[2022-10-13T13:19:22.191] [TRACE] default - get node, default
+[2022-10-13T13:19:23.483] [TRACE] default - get translation, page navigation
+[2022-10-13T13:19:23.484] [TRACE] default - get translation, page index
+[2022-10-13T13:19:23.490] [TRACE] default - get menu
+[2022-10-13T13:19:23.492] [TRACE] default - get twitch
+[2022-10-13T13:19:23.531] [TRACE] default - get translation, page information
+[2022-10-13T13:19:23.533] [TRACE] default - get twitch
+[2022-10-13T13:19:23.537] [TRACE] default - get node, default
+[2022-10-13T13:19:23.539] [TRACE] default - get twitch userdata
+[2022-10-13T13:19:23.542] [TRACE] default - get node, default
+[2022-10-13T13:19:24.504] [TRACE] default - get translation, page navigation
+[2022-10-13T13:19:24.508] [TRACE] default - get translation, page index
+[2022-10-13T13:19:24.515] [TRACE] default - get menu
+[2022-10-13T13:19:24.518] [TRACE] default - get twitch
+[2022-10-13T13:19:24.548] [TRACE] default - get translation, page information
+[2022-10-13T13:19:24.550] [TRACE] default - get twitch
+[2022-10-13T13:19:24.555] [TRACE] default - get node, default
+[2022-10-13T13:19:24.556] [TRACE] default - get twitch userdata
+[2022-10-13T13:19:24.560] [TRACE] default - get node, default
+[2022-10-13T13:19:29.744] [TRACE] default - {
+  access_token: '3adieimq23o7rh67goc2clwsi156pb',
+  expires_in: 13751,
+  refresh_token: 'bem1qtv5sgf040iscraqofqfd167iapz0t36ccf1oedr04hmih',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:19:29.971] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-10-13T13:20:13.369] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:20:13.466] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-10-13T13:20:13.466] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:20:13.482] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-10-13T13:20:13.485] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:20:17.693] [TRACE] default - add Migration update_001
+[2022-10-13T13:20:18.665] [TRACE] default - {
+  access_token: 'tiagd514co0o3ebpmdd1udnkw48c7s',
+  expires_in: 5344063,
+  token_type: 'bearer'
+}
+[2022-10-13T13:20:31.363] [TRACE] default - get translation, page navigation
+[2022-10-13T13:20:31.368] [TRACE] default - get translation, page index
+[2022-10-13T13:20:31.378] [TRACE] default - get menu
+[2022-10-13T13:20:31.382] [TRACE] default - get twitch
+[2022-10-13T13:20:31.419] [TRACE] default - get translation, page information
+[2022-10-13T13:20:31.424] [TRACE] default - get twitch
+[2022-10-13T13:20:31.431] [TRACE] default - get node, default
+[2022-10-13T13:20:31.434] [TRACE] default - get twitch userdata
+[2022-10-13T13:20:31.441] [TRACE] default - get node, default
+[2022-10-13T13:20:33.450] [TRACE] default - get translation, page navigation
+[2022-10-13T13:20:33.453] [TRACE] default - get translation, page twitch
+[2022-10-13T13:20:33.460] [TRACE] default - get menu
+[2022-10-13T13:20:33.491] [TRACE] default - get twitch userdata
+[2022-10-13T13:20:33.496] [TRACE] default - get twitch
+[2022-10-13T13:20:33.506] [TRACE] default - get translation, page information
+[2022-10-13T13:20:33.508] [TRACE] default - get node, default
+[2022-10-13T13:20:33.515] [TRACE] default - get twitch userdata
+[2022-10-13T13:20:33.527] [TRACE] default - get node, default
+[2022-10-13T13:20:43.389] [TRACE] default - {
+  access_token: 'im4kit46htg3akd9fah5f2t7gon1ck',
+  expires_in: 14656,
+  refresh_token: 'gi67zxcxjixdga64k1l1jnz6dhgaq7hb84638uzvhnmglz7f81',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:20:52.285] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-10-13T13:21:56.254] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:21:56.358] [TRACE] default - basic model path: c:\Projects\SocialAdventure\model
+[2022-10-13T13:21:56.359] [TRACE] default - basic migration path: c:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:21:56.375] [TRACE] default - Execution Path: c:\Projects\SocialAdventure
+[2022-10-13T13:21:56.377] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:22:01.368] [TRACE] default - add Migration update_001
+[2022-10-13T13:22:02.336] [TRACE] default - {
+  access_token: 'tghx7v8m4vcxtv93hpcf0t6wmgequh',
+  expires_in: 5555707,
+  token_type: 'bearer'
+}
+[2022-10-13T13:22:47.264] [TRACE] default - get translation, page navigation
+[2022-10-13T13:22:47.272] [TRACE] default - get translation, page index
+[2022-10-13T13:22:47.351] [TRACE] default - get twitch
+[2022-10-13T13:22:47.354] [TRACE] default - get menu
+[2022-10-13T13:22:47.384] [TRACE] default - get translation, page information
+[2022-10-13T13:22:47.388] [TRACE] default - get twitch
+[2022-10-13T13:22:47.395] [TRACE] default - get node, default
+[2022-10-13T13:22:47.398] [TRACE] default - get twitch userdata
+[2022-10-13T13:22:47.405] [TRACE] default - get node, default
+[2022-10-13T13:22:49.360] [TRACE] default - get translation, page navigation
+[2022-10-13T13:22:49.364] [TRACE] default - get translation, page twitch
+[2022-10-13T13:22:49.370] [TRACE] default - get menu
+[2022-10-13T13:22:49.400] [TRACE] default - get twitch userdata
+[2022-10-13T13:22:49.406] [TRACE] default - get twitch
+[2022-10-13T13:22:49.416] [TRACE] default - get translation, page information
+[2022-10-13T13:22:49.419] [TRACE] default - get node, default
+[2022-10-13T13:22:49.427] [TRACE] default - get twitch userdata
+[2022-10-13T13:22:49.438] [TRACE] default - get node, default
+[2022-10-13T13:22:51.846] [TRACE] default - get translation, page navigation
+[2022-10-13T13:22:51.849] [TRACE] default - get translation, page twitch
+[2022-10-13T13:22:51.855] [TRACE] default - get menu
+[2022-10-13T13:22:51.885] [TRACE] default - get twitch userdata
+[2022-10-13T13:22:51.889] [TRACE] default - get twitch
+[2022-10-13T13:22:51.899] [TRACE] default - get translation, page information
+[2022-10-13T13:22:51.902] [TRACE] default - get node, default
+[2022-10-13T13:22:51.910] [TRACE] default - get twitch userdata
+[2022-10-13T13:22:51.922] [TRACE] default - get node, default
+[2022-10-13T13:23:12.850] [TRACE] default - {
+  access_token: '8d93eyg2sfay3ts7rx8hj3eye1xk3n',
+  expires_in: 13467,
+  refresh_token: '4u4gyetq432toe5mmh19kfdvo9n5z4vug7mlyzy08yt9vnuu7m',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:23:19.276] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-10-13T13:24:11.513] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:24:11.594] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T13:24:11.594] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:24:11.609] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T13:24:11.613] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:24:14.653] [TRACE] default - get translation, page navigation
+[2022-10-13T13:24:14.657] [TRACE] default - get translation, page index
+[2022-10-13T13:24:15.217] [TRACE] default - get menu
+[2022-10-13T13:24:15.229] [TRACE] default - get twitch
+[2022-10-13T13:24:15.278] [TRACE] default - get translation, page information
+[2022-10-13T13:24:15.283] [TRACE] default - get twitch
+[2022-10-13T13:24:15.293] [TRACE] default - get node, default
+[2022-10-13T13:24:15.299] [TRACE] default - get twitch userdata
+[2022-10-13T13:24:15.308] [TRACE] default - get node, default
+[2022-10-13T13:24:19.897] [TRACE] default - get translation, page navigation
+[2022-10-13T13:24:19.899] [TRACE] default - get translation, page index
+[2022-10-13T13:24:20.179] [TRACE] default - get menu
+[2022-10-13T13:24:20.181] [TRACE] default - get twitch
+[2022-10-13T13:24:20.210] [TRACE] default - get translation, page information
+[2022-10-13T13:24:20.739] [TRACE] default - get twitch
+[2022-10-13T13:24:20.741] [TRACE] default - get twitch userdata
+[2022-10-13T13:24:20.747] [TRACE] default - get node, default
+[2022-10-13T13:24:20.752] [TRACE] default - get node, default
+[2022-10-13T13:24:21.213] [TRACE] default - add Migration update_001
+[2022-10-13T13:24:22.211] [TRACE] default - {
+  access_token: 'jresku4rmttov87b0o7edn2mfng4bo',
+  expires_in: 4904003,
+  token_type: 'bearer'
+}
+[2022-10-13T13:24:23.139] [TRACE] default - {
+  access_token: 'egdqkbazn1fadu4y64rjn4hzqmoq33',
+  expires_in: 14785,
+  refresh_token: '8wpqbpygdb8j6xwof0rlelssj2wbxe91yx5rz8026b7v5ibown',
+  scope: [
+    'channel:read:stream_key',
+    'chat:edit',
+    'chat:read',
+    'user:read:email'
+  ],
+  token_type: 'bearer'
+}
+[2022-10-13T13:24:23.401] [TRACE] default - {
+  id: '664649274',
+  login: 'craffelmat',
+  display_name: 'craffelmat',
+  type: '',
+  broadcaster_type: '',
+  description: '',
+  profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+  offline_image_url: '',
+  view_count: 137,
+  email: 'craffel.gaming@gmail.com',
+  created_at: '2021-03-20T10:24:18Z'
+}
+[2022-10-13T13:24:23.791] [TRACE] default - get translation, page navigation
+[2022-10-13T13:24:23.793] [TRACE] default - get translation, page twitch
+[2022-10-13T13:24:23.799] [TRACE] default - get menu
+[2022-10-13T13:24:23.835] [TRACE] default - get twitch userdata
+[2022-10-13T13:24:23.837] [TRACE] default - get twitch
+[2022-10-13T13:24:23.845] [TRACE] default - get translation, page information
+[2022-10-13T13:24:23.847] [TRACE] default - get node, default
+[2022-10-13T13:24:23.856] [TRACE] default - get twitch userdata
+[2022-10-13T13:24:23.869] [TRACE] default - get node, default
+[2022-10-13T13:24:51.478] [TRACE] default - post twitch
+[2022-10-13T13:24:51.489] [TRACE] default - add Node craffelmat
+[2022-10-13T13:24:53.051] [INFO] default - node craffelmat, say add craffel.
+[2022-10-13T13:24:53.053] [INFO] default - node craffelmat, say add death.
+[2022-10-13T13:24:53.054] [INFO] default - node craffelmat, say add dice.
+[2022-10-13T13:24:53.056] [INFO] default - node craffelmat, say add lurk.
+[2022-10-13T13:24:53.058] [INFO] default - node craffelmat, say add so.
+[2022-10-13T13:24:53.059] [INFO] default - node craffelmat, say add unlurk.
+[2022-10-13T13:24:53.061] [INFO] default - node craffelmat, say add verwarnung.
+[2022-10-13T13:24:53.066] [TRACE] default - node connected: craffelmat
+[2022-10-13T13:24:53.404] [TRACE] default - get translation, page navigation
+[2022-10-13T13:24:53.412] [TRACE] default - get menu
+[2022-10-13T13:24:53.414] [TRACE] default - get translation, page streamer
+[2022-10-13T13:24:53.424] [TRACE] default - get twitch
+[2022-10-13T13:24:53.497] [TRACE] default - get translation, page information
+[2022-10-13T13:24:53.500] [TRACE] default - get stateStorage, name streamer
+[2022-10-13T13:24:53.501] [TRACE] default - get node, default
+[2022-10-13T13:24:53.507] [TRACE] default - get twitch userdata
+[2022-10-13T13:24:53.522] [TRACE] default - get node, default
+[2022-10-13T13:24:53.530] [TRACE] default - get node
+[2022-10-13T13:25:04.389] [TRACE] default - incomming message self: false
+[2022-10-13T13:25:04.389] [TRACE] default - incomming message channel: craffelmat)
+[2022-10-13T13:25:04.389] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-10-13T13:25:04.389] [TRACE] default - incomming message message: !loot
+[2022-10-13T13:25:04.390] [TRACE] default - loot execute
+[2022-10-13T13:25:04.402] [TRACE] default - module craffel say execute
+[2022-10-13T13:25:04.403] [TRACE] default - module death say execute
+[2022-10-13T13:25:04.403] [TRACE] default - module dice say execute
+[2022-10-13T13:25:04.404] [TRACE] default - module lurk say execute
+[2022-10-13T13:25:04.404] [TRACE] default - module so say execute
+[2022-10-13T13:25:04.404] [TRACE] default - module unlurk say execute
+[2022-10-13T13:25:04.404] [TRACE] default - module verwarnung say execute
+[2022-10-13T13:25:04.404] [TRACE] default - Command {
+  name: 'loot',
+  message: '!loot',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-10-13T13:25:04.405] [TRACE] default - message push craffelmat ist dem Abenteuer beigetreten.
+[2022-10-13T13:25:05.559] [TRACE] default - message shift craffelmat ist dem Abenteuer beigetreten.
+[2022-10-13T13:25:05.560] [TRACE] default - incomming message self: true
+[2022-10-13T13:25:53.059] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:25:53.059] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:25:53.060] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:25:53.060] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:25:53.060] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:25:53.060] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:25:53.061] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:25:53.061] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:25:53.061] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:25:53.061] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:25:53.062] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:25:53.062] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:25:53.062] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:25:53.062] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:25:53.062] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:25:53.062] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:25:53.063] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:25:53.063] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:25:53.063] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:25:53.063] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:25:53.063] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:25:53.075] [INFO] default - node craffelmat, module loot last run 1.2.2020 00:00:00
+[2022-10-13T13:25:53.090] [INFO] default - node craffelmat, module loot run after 10 Minutes.
+[2022-10-13T13:25:53.092] [TRACE] default - node craffelmat, new random number 0 between 0 and 0
+[2022-10-13T13:25:53.097] [TRACE] default - node craffelmat, new random number 0 between 0 and 0
+[2022-10-13T13:25:53.097] [INFO] default - node craffelmat, module exploring, hero craffelmat
+[2022-10-13T13:25:53.101] [TRACE] default - node craffelmat, new random number 0 between 0 and 22
+[2022-10-13T13:25:53.102] [INFO] default - node craffelmat, module exploring, dungeon Verlassene Höhle
+[2022-10-13T13:25:53.103] [TRACE] default - node craffelmat, new random number 0 between 0 and 8
+[2022-10-13T13:25:53.104] [INFO] default - node craffelmat, module exploring, item Messingrüstung
+[2022-10-13T13:25:53.104] [INFO] default - node craffelmat, module exploring, enemy Skelett
+[2022-10-13T13:25:53.108] [TRACE] default - node craffelmat, new random number 183 between 100 and 200
+[2022-10-13T13:25:53.108] [TRACE] default - node craffelmat, new random number 183 between 100 and 200
+[2022-10-13T13:25:53.108] [INFO] default - node craffelmat, module exploring, fight enemyHitpoints 25
+[2022-10-13T13:25:53.109] [INFO] default - node craffelmat, module exploring, fight heroHitpoints 100
+[2022-10-13T13:25:53.109] [TRACE] default - node craffelmat, new random number 17 between 10 and 20
+[2022-10-13T13:25:53.109] [INFO] default - node craffelmat, module exploring, fight heroDamage 17
+[2022-10-13T13:25:53.109] [INFO] default - node craffelmat, module exploring, fight enemyHitpoints 8
+[2022-10-13T13:25:53.109] [TRACE] default - node craffelmat, new random number 5 between 3 and 5
+[2022-10-13T13:25:53.110] [INFO] default - node craffelmat, module exploring, fight enemyDamage 5
+[2022-10-13T13:25:53.110] [INFO] default - node craffelmat, module exploring, fight complete damage 5
+[2022-10-13T13:25:53.110] [TRACE] default - node craffelmat, new random number 12 between 10 and 20
+[2022-10-13T13:25:53.110] [INFO] default - node craffelmat, module exploring, fight heroDamage 12
+[2022-10-13T13:25:53.110] [INFO] default - node craffelmat, module exploring, fight enemyHitpoints -4
+[2022-10-13T13:25:53.111] [INFO] default - node craffelmat, module exploring, fight isWinner true
+[2022-10-13T13:25:53.111] [TRACE] default - message push craffelmat erkundet den Dungeon 'Verlassene Höhle' und besiegt den Gegner 'Skelett'. Beute: 201 Gold, 183 Erfahrung und den Gegenstand 'Messingrüstung [2]'
+[2022-10-13T13:25:53.353] [TRACE] default - message shift craffelmat erkundet den Dungeon 'Verlassene Höhle' und besiegt den Gegner 'Skelett'. Beute: 201 Gold, 183 Erfahrung und den Gegenstand 'Messingrüstung [2]'
+[2022-10-13T13:25:53.354] [TRACE] default - incomming message self: true
+[2022-10-13T13:26:53.061] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:26:53.061] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:26:53.061] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:26:53.062] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:26:53.062] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:26:53.062] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:26:53.063] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:26:53.063] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:26:53.063] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:26:53.063] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:26:53.064] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:26:53.064] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:26:53.064] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:26:53.064] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:26:53.065] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:26:53.065] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:26:53.065] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:26:53.065] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:26:53.066] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:26:53.066] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:26:53.066] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:26:53.076] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:26:53.077] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:26:53.077] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:26:53.077] [TRACE] default - node craffelmat, module loot time elapsed: 9
+[2022-10-13T13:27:53.075] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:27:53.075] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:27:53.076] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:27:53.076] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:27:53.076] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:27:53.076] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:27:53.077] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:27:53.077] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:27:53.077] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:27:53.077] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:27:53.077] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:27:53.078] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:27:53.078] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:27:53.078] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:27:53.078] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:27:53.078] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:27:53.078] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:27:53.079] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:27:53.079] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:27:53.079] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:27:53.079] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:27:53.079] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:27:53.080] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:27:53.080] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:27:53.080] [TRACE] default - node craffelmat, module loot time elapsed: 8
+[2022-10-13T13:28:53.084] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:28:53.084] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:28:53.085] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:28:53.085] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:28:53.085] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:28:53.085] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:28:53.086] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:28:53.086] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:28:53.086] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:28:53.086] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:28:53.086] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:28:53.087] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:28:53.087] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:28:53.087] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:28:53.087] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:28:53.087] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:28:53.088] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:28:53.088] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:28:53.088] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:28:53.088] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:28:53.088] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:28:53.089] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:28:53.090] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:28:53.090] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:28:53.090] [TRACE] default - node craffelmat, module loot time elapsed: 7
+[2022-10-13T13:29:53.085] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:29:53.086] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:29:53.086] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:29:53.087] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:29:53.087] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:29:53.087] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:29:53.087] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:29:53.087] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:29:53.088] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:29:53.088] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:29:53.088] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:29:53.088] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:29:53.089] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:29:53.089] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:29:53.089] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:29:53.089] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:29:53.090] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:29:53.090] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:29:53.090] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:29:53.090] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:29:53.090] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:29:53.090] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:29:53.091] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:29:53.091] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:29:53.091] [TRACE] default - node craffelmat, module loot time elapsed: 6
+[2022-10-13T13:30:53.098] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:30:53.098] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:30:53.098] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:30:53.099] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:30:53.099] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:30:53.099] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:30:53.099] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:30:53.100] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:30:53.100] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:30:53.100] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:30:53.100] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:30:53.101] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:30:53.101] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:30:53.101] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:30:53.101] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:30:53.101] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:30:53.102] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:30:53.102] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:30:53.102] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:30:53.102] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:30:53.102] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:30:53.103] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:30:53.103] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:30:53.103] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:30:53.104] [TRACE] default - node craffelmat, module loot time elapsed: 5
+[2022-10-13T13:31:53.105] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:31:53.105] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:31:53.105] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:31:53.106] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:31:53.106] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:31:53.106] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:31:53.106] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:31:53.107] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:31:53.107] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:31:53.107] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:31:53.107] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:31:53.107] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:31:53.108] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:31:53.108] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:31:53.108] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:31:53.108] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:31:53.108] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:31:53.109] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:31:53.109] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:31:53.109] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:31:53.109] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:31:53.110] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:31:53.110] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:31:53.110] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:31:53.110] [TRACE] default - node craffelmat, module loot time elapsed: 4
+[2022-10-13T13:32:53.115] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:32:53.116] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:32:53.116] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:32:53.116] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:32:53.116] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:32:53.117] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:32:53.117] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:32:53.117] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:32:53.117] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:32:53.117] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:32:53.118] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:32:53.118] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:32:53.118] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:32:53.118] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:32:53.118] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:32:53.119] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:32:53.119] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:32:53.119] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:32:53.119] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:32:53.120] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:32:53.120] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:32:53.120] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:32:53.120] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:32:53.120] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:32:53.121] [TRACE] default - node craffelmat, module loot time elapsed: 3
+[2022-10-13T13:33:53.130] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:33:53.131] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:33:53.131] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:33:53.131] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:33:53.131] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:33:53.132] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:33:53.132] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:33:53.132] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:33:53.132] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:33:53.133] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:33:53.133] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:33:53.133] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:33:53.134] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:33:53.134] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:33:53.134] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:33:53.134] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:33:53.135] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:33:53.135] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:33:53.135] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:33:53.135] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:33:53.135] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:33:53.136] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:33:53.136] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:33:53.136] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:33:53.136] [TRACE] default - node craffelmat, module loot time elapsed: 2
+[2022-10-13T13:34:53.143] [INFO] default - node craffelmat, module craffel not executed
+[2022-10-13T13:34:53.144] [TRACE] default - node craffelmat, module craffel delay: 5
+[2022-10-13T13:34:53.144] [TRACE] default - node craffelmat, module craffel delay diference: 0
+[2022-10-13T13:34:53.144] [INFO] default - node craffelmat, module death not executed
+[2022-10-13T13:34:53.145] [TRACE] default - node craffelmat, module death active: 1
+[2022-10-13T13:34:53.145] [TRACE] default - node craffelmat, module death minutes: 0
+[2022-10-13T13:34:53.145] [INFO] default - node craffelmat, module dice not executed
+[2022-10-13T13:34:53.145] [TRACE] default - node craffelmat, module dice active: 1
+[2022-10-13T13:34:53.146] [TRACE] default - node craffelmat, module dice minutes: 0
+[2022-10-13T13:34:53.146] [INFO] default - node craffelmat, module lurk not executed
+[2022-10-13T13:34:53.146] [TRACE] default - node craffelmat, module lurk active: 1
+[2022-10-13T13:34:53.146] [TRACE] default - node craffelmat, module lurk minutes: 0
+[2022-10-13T13:34:53.146] [INFO] default - node craffelmat, module so not executed
+[2022-10-13T13:34:53.147] [TRACE] default - node craffelmat, module so active: 1
+[2022-10-13T13:34:53.147] [TRACE] default - node craffelmat, module so minutes: 0
+[2022-10-13T13:34:53.147] [INFO] default - node craffelmat, module unlurk not executed
+[2022-10-13T13:34:53.147] [TRACE] default - node craffelmat, module unlurk active: 1
+[2022-10-13T13:34:53.147] [TRACE] default - node craffelmat, module unlurk minutes: 0
+[2022-10-13T13:34:53.148] [INFO] default - node craffelmat, module verwarnung not executed
+[2022-10-13T13:34:53.148] [TRACE] default - node craffelmat, module verwarnung active: 1
+[2022-10-13T13:34:53.148] [TRACE] default - node craffelmat, module verwarnung minutes: 0
+[2022-10-13T13:34:53.148] [INFO] default - node craffelmat, module loot last run 13.10.2022 13:25:53
+[2022-10-13T13:34:53.148] [INFO] default - node craffelmat, module loot not executed
+[2022-10-13T13:34:53.149] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-10-13T13:34:53.149] [TRACE] default - node craffelmat, module loot time elapsed: 1
+[2022-10-13T13:35:39.305] [TRACE] default - twitch chat client initialized
+[2022-10-13T13:35:39.395] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-10-13T13:35:39.395] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-10-13T13:35:39.410] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-10-13T13:35:39.413] [INFO] default - HTTP Server listening on port 80
+[2022-10-13T13:35:44.735] [TRACE] default - add Migration update_001
+[2022-10-13T13:35:45.711] [TRACE] default - {
+  access_token: 'lfs7wxzq3i6t5w277hmaxellg2gt8d',
+  expires_in: 5610192,
+  token_type: 'bearer'
+}
+[2022-10-13T13:35:46.682] [TRACE] default - add Node craffelmat
+[2022-10-13T13:35:46.682] [TRACE] default - api connect with node craffelmat
+[2022-10-13T13:35:46.694] [TRACE] default - api connected accessToken egdqkbazn1fadu4y64rjn4hzqmoq33, refreshToken 8wpqbpygdb8j6xwof0rlelssj2wbxe91yx5rz8026b7v5ibown
+[2022-10-13T13:35:47.656] [INFO] default - node craffelmat, say add craffel.
+[2022-10-13T13:35:47.658] [INFO] default - node craffelmat, say add death.
+[2022-10-13T13:35:47.659] [INFO] default - node craffelmat, say add dice.
+[2022-10-13T13:35:47.661] [INFO] default - node craffelmat, say add lurk.
+[2022-10-13T13:35:47.665] [INFO] default - node craffelmat, say add so.
+[2022-10-13T13:35:47.667] [INFO] default - node craffelmat, say add unlurk.
+[2022-10-13T13:35:47.669] [INFO] default - node craffelmat, say add verwarnung.
+[2022-10-13T13:35:47.673] [TRACE] default - node connected: craffelmat
