@@ -18,6 +18,7 @@ export class Channel {
     twitch: Twitch;
     stream: streamItem;
     isLive: boolean;
+    isNodeStarted: boolean;
 
     //#region Construct
     constructor(node: NodeItem){
@@ -27,6 +28,7 @@ export class Channel {
         this.twitch.load(this.node.getDataValue("name"));
         this.stream = null;
         this.isLive = false;
+        this.isNodeStarted = true;
         this.database = new Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new Puffer(node),
         this.puffer.interval();
@@ -46,17 +48,22 @@ export class Channel {
                    if(this.twitch){
                         const stream = await this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
 
-                        if(stream && stream.type === 'live'){
-                            if(!this.isLive){
+                        if(stream && stream.type === 'live') {
+                            if(!this.isLive || this.isNodeStarted){
                                 global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
                                 this.isLive = true;
+                                this.startSays();
+                                this.startLoot();
                             }
-                        } else if (this.isLive){
+                        } else if (this.isLive || this.isNodeStarted) {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
                             this.isLive = false;
+                            this.stopSays();
+                            this.stopLoot();
                         } else {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.isLive}`);
                         }
+                        this.isNodeStarted = false;
                    }
                 } catch (ex){
                     global.worker.log.error(`channel error - function streamWatcher - ${ex.message}`);
@@ -122,7 +129,7 @@ export class Channel {
         }
     }
 
-    async removeSay(command: string){     
+    async removeSay(command: string){
         try {
             const index = this.say.findIndex(d => d.item.command === command);
 
@@ -187,7 +194,7 @@ export class Channel {
         } catch(ex) {
             global.worker.log.error(`channel error - function execute - ${ex.message}`);
         }
-    
+
         return messages;
     }
     //#endregion

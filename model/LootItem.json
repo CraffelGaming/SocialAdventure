@@ -3,7 +3,7 @@
         "command": "loot",
         "minutes": 10,
         "delay": 0,
-        "isActive": true,
+        "isActive": false,
         "isLiveAutoControl": true
     },
     {

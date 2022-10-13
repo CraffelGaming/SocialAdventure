@@ -51,13 +51,17 @@ export class Worker {
 
             // Twitch API bot login automation
             await this.connect();
-    
+
             for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({include: [{
                 model: global.worker.globalDatabase.sequelize.models.twitchUser,
                 as: 'twitchUser',
             }]})) as unknown as NodeItem[]){
-                this.startNode(node);
+                await this.startNode(node);
             }
+            global.worker.log.info(`--------------------------------------`);
+            global.worker.log.info(`---------- ALL NODES LOADED ----------`);
+            global.worker.log.info(`----------- 100% COMPLETED -----------`);
+            global.worker.log.info(`--------------------------------------`);
         } catch(ex) {
             global.worker.log.error(`worker error - function initialize - ${ex.message}`);
         }
@@ -72,11 +76,11 @@ export class Worker {
             if(channel == null){
                 this.log.trace('add Node ' + node.name);
                 channel = new Channel(node);
-    
+
                 await channel.database.initialize();
                 await channel.addSays();
                 await channel.addLoot();
-    
+
                 // Register Channel to twitch
                 this.register(channel);
                 this.channels.push(channel);
@@ -119,7 +123,7 @@ export class Worker {
             this.tmi.on('message', this.onMessageHandler);
             this.tmi.on('connected', this.onConnectedHandler);
             this.tmi.on('disconnected', this.onDisconnectedHandler);
-    
+
             await this.tmi.connect();
         } catch(ex) {
             global.worker.log.error(`worker error - function connect - ${ex.message}`);
@@ -129,7 +133,7 @@ export class Worker {
     register(channel: Channel){
         try {
             this.log.trace('node connected: ' + channel.node.name);
-            this.tmi.join(channel.node.name.replace('#', '')); 
+            this.tmi.join(channel.node.name.replace('#', ''));
         } catch(ex) {
             global.worker.log.error(`worker error - function register - ${ex.message}`);
         }
@@ -170,7 +174,7 @@ export class Worker {
         } catch(ex) {
             global.worker.log.error(`worker error - function onConnectedHandler - ${ex.message}`);
         }
-      
+
     }
 
     async onDisconnectedHandler() {

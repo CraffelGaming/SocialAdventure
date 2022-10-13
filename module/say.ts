@@ -36,22 +36,23 @@ export class Say extends Module {
         try{
             global.worker.log.trace(`module ${this.item.command} say execute`);
 
-            if(this.item.isActive || command.source === this.channel.node.getDataValue("name")) {
-                if(command.name.startsWith(this.item.command)){
-                    command.name = command.name.replace(this.item.command, "");
+            if(command.name.startsWith(this.item.command)){
+                command.name = command.name.replace(this.item.command, "");
 
-                    const allowedCommand = this.commands.find(x => x.command === command.name);
-                    if(allowedCommand){
-                        if(!allowedCommand.isMaster || this.isOwner(command)){
+                const allowedCommand = this.commands.find(x => x.command === command.name);
+                if(allowedCommand){
+                    if(!allowedCommand.isMaster || this.isOwner(command)){
+                        if(this.item.isActive || allowedCommand.isMaster && this.isOwner(command)) {
                             if(command.name.length === 0) command.name = "shout";
                             command.name = command.name.replace("+", "plus");
                             command.name = command.name.replace("-", "minus");
                             return await this[command.name](command);
-                        } else global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
-                    } else global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
-                }
-            } else {
-                global.worker.log.trace(`module ${this.item.command} not active`);
+                        } else {
+                            global.worker.log.trace(`module loot not active`);
+                        }
+
+                    } else global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                } else global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
             }
         } catch(ex){
             global.worker.log.error(`module ${this.item.command} error ${ex.message}`);
@@ -152,7 +153,7 @@ export class Say extends Module {
         }
     }
 
-    async stop(command: Command = null){       
+    async stop(command: Command = null){
         try {
             if(this.item.isActive){
                 this.item.isActive = false;
@@ -237,11 +238,11 @@ export class Say extends Module {
                 if(this.item.text && this.item.text.length !== 0){
                     await this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: {command: this.item.command}});
                     global.worker.log.trace(`module ${this.item.command} shout executed`);
-    
+
                     if(this.item.isCounter){
                         this.item.text = this.item.text.replace('$counter', this.item.count.toString());
                     }
-    
+
                     return this.replacePlaceholder(command, this.item.text);
                  }
                  else {

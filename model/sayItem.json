@@ -5,7 +5,7 @@
         "delay": 5,
         "help": "",
         "text": "Schau dir deinen Helden auf craffel.de an.",
-        "isActive": true,
+        "isActive": false,
         "isLiveAutoControl": true
     },
     {
@@ -14,7 +14,7 @@
         "delay": 0,
         "help": "",
         "text": "$streamer ist schon $counter mal gestorben.",
-        "isActive": true,
+        "isActive": false,
         "isCounter": true,
         "isLiveAutoControl": true
     },
@@ -24,7 +24,7 @@
         "delay": 0,
         "help": "",
         "text": "Schau doch mal bei $raider vorbei. Dort gab es zuletzt $raiderGame. $raiderUrl",
-        "isActive": true,
+        "isActive": false,
         "isShoutout": true,
         "isLiveAutoControl": true
     },

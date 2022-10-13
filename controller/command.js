@@ -10,13 +10,18 @@ class Command {
         this.source = context.username.toLowerCase();
         this.parameters = [];
         const parts = message.match(/(?:[^\s:"]+|"[^"]*")+/g);
-        for (const part in parts) {
-            if (parts[part].trim().startsWith("!"))
-                this.name = parts[part].trim().toLowerCase().replaceAll('!', '');
-            else if (parts[part].startsWith("@"))
-                this.target = parts[part].trim().toLowerCase().replace('@', '');
-            else
-                this.parameters.push(parts[part].replaceAll('"', '').trim());
+        try {
+            for (const part in parts) {
+                if (parts[part].trim().startsWith("!"))
+                    this.name = parts[part].trim().toLowerCase().replaceAll('!', '');
+                else if (parts[part].startsWith("@"))
+                    this.target = parts[part].trim().toLowerCase().replace('@', '');
+                else
+                    this.parameters.push(parts[part].replaceAll('"', '').trim());
+            }
+        }
+        catch (ex) {
+            global.worker.log.error(`command error - function constructor - ${ex.message}`);
         }
     }
 }

@@ -44,14 +44,23 @@ class Worker {
     //#region Initialize
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.globalDatabase.initializeGlobal();
-            // Twitch API bot login automation
-            yield this.connect();
-            for (const node of Object.values(yield this.globalDatabase.sequelize.models.node.findAll({ include: [{
-                        model: global.worker.globalDatabase.sequelize.models.twitchUser,
-                        as: 'twitchUser',
-                    }] }))) {
-                this.startNode(node);
+            try {
+                yield this.globalDatabase.initializeGlobal();
+                // Twitch API bot login automation
+                yield this.connect();
+                for (const node of Object.values(yield this.globalDatabase.sequelize.models.node.findAll({ include: [{
+                            model: global.worker.globalDatabase.sequelize.models.twitchUser,
+                            as: 'twitchUser',
+                        }] }))) {
+                    yield this.startNode(node);
+                }
+                global.worker.log.info(`--------------------------------------`);
+                global.worker.log.info(`---------- ALL NODES LOADED ----------`);
+                global.worker.log.info(`----------- 100% COMPLETED -----------`);
+                global.worker.log.info(`--------------------------------------`);
+            }
+            catch (ex) {
+                global.worker.log.error(`worker error - function initialize - ${ex.message}`);
             }
         });
     }
@@ -59,49 +68,71 @@ class Worker {
     //#region Node
     startNode(node) {
         return __awaiter(this, void 0, void 0, function* () {
-            let channel = global.worker.channels.find(x => x.node.name === node.name);
-            if (channel == null) {
-                this.log.trace('add Node ' + node.name);
-                channel = new channel_1.Channel(node);
-                yield channel.database.initialize();
-                yield channel.addSays();
-                yield channel.addLoot();
-                // Register Channel to twitch
-                this.register(channel);
-                this.channels.push(channel);
+            try {
+                let channel = global.worker.channels.find(x => x.node.name === node.name);
+                if (channel == null) {
+                    this.log.trace('add Node ' + node.name);
+                    channel = new channel_1.Channel(node);
+                    yield channel.database.initialize();
+                    yield channel.addSays();
+                    yield channel.addLoot();
+                    // Register Channel to twitch
+                    this.register(channel);
+                    this.channels.push(channel);
+                }
+                else {
+                    this.log.trace('Node already added ' + node.name);
+                }
+                return channel;
             }
-            else {
-                this.log.trace('Node already added ' + node.name);
+            catch (ex) {
+                global.worker.log.error(`worker error - function startNode - ${ex.message}`);
             }
-            return channel;
+            return null;
         });
     }
     //#endregion
     //#region Twitch API client login on Webpage
     login(request, response, callback) {
         return __awaiter(this, void 0, void 0, function* () {
-            const twitch = new twitch_1.Twitch();
-            if (yield twitch.login(request.session.state, request.query.code.toString())) {
-                request.session.twitch = twitch.credential;
-                request.session.userData = twitch.credentialUser;
+            try {
+                const twitch = new twitch_1.Twitch();
+                if (yield twitch.login(request.session.state, request.query.code.toString())) {
+                    request.session.twitch = twitch.credential;
+                    request.session.userData = twitch.credentialUser;
+                }
             }
-            callback(request, response);
+            catch (ex) {
+                global.worker.log.error(`worker error - function login - ${ex.message}`);
+            }
+            if (callback != null)
+                callback(request, response);
         });
     }
     //#endregion
     //#region Chatbot
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.botCredential = yield twitch_1.Twitch.botAuthentification();
-            this.tmi.on('message', this.onMessageHandler);
-            this.tmi.on('connected', this.onConnectedHandler);
-            this.tmi.on('disconnected', this.onDisconnectedHandler);
-            yield this.tmi.connect();
+            try {
+                this.botCredential = yield twitch_1.Twitch.botAuthentification();
+                this.tmi.on('message', this.onMessageHandler);
+                this.tmi.on('connected', this.onConnectedHandler);
+                this.tmi.on('disconnected', this.onDisconnectedHandler);
+                yield this.tmi.connect();
+            }
+            catch (ex) {
+                global.worker.log.error(`worker error - function connect - ${ex.message}`);
+            }
         });
     }
     register(channel) {
-        this.log.trace('node connected: ' + channel.node.name);
-        this.tmi.join(channel.node.name.replace('#', ''));
+        try {
+            this.log.trace('node connected: ' + channel.node.name);
+            this.tmi.join(channel.node.name.replace('#', ''));
+        }
+        catch (ex) {
+            global.worker.log.error(`worker error - function register - ${ex.message}`);
+        }
     }
     onMessageHandler(target, context, message, self) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -127,16 +158,26 @@ class Worker {
                 }
             }
             catch (ex) {
-                global.worker.log.error(`exception ${ex.message}`);
+                global.worker.log.error(`worker error - function onMessageHandler - ${ex.message}`);
             }
         });
     }
     onConnectedHandler(address, port) {
-        this.log.info(`connected to ${address}:${port}`);
+        try {
+            this.log.info(`connected to ${address}:${port}`);
+        }
+        catch (ex) {
+            global.worker.log.error(`worker error - function onConnectedHandler - ${ex.message}`);
+        }
     }
     onDisconnectedHandler() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield global.worker.restart();
+            try {
+                yield global.worker.restart();
+            }
+            catch (ex) {
+                global.worker.log.error(`worker error - function onDisconnectedHandler - ${ex.message}`);
+            }
         });
     }
 }

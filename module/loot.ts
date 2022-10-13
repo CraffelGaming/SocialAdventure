@@ -41,19 +41,18 @@ export class Loot extends Module {
         try{
             global.worker.log.trace('loot execute');
             const loot = this.settings.find(x =>x.command === "loot");
+            const allowedCommand = this.commands.find(x => x.command === command.name);
 
-            if(loot.isActive || command.source === this.channel.node.getDataValue("name")) {
-                const allowedCommand = this.commands.find(x => x.command === command.name);
-
-                if(allowedCommand){
-                    if(!allowedCommand.isMaster || this.isOwner(command)){
+            if(allowedCommand){
+                if(!allowedCommand.isMaster || this.isOwner(command)){
+                    if(loot.isActive || allowedCommand.isMaster && this.isOwner(command)) {
                         return await this[command.name](command);
-                    } else global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
-                } else {
-                    global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
-                }
+                    } else {
+                        global.worker.log.trace(`module loot not active`);
+                    }
+                } else global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
             } else {
-                global.worker.log.trace(`module loot not active`);
+                global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
             }
         } catch(ex){
             global.worker.log.error(`module loot error - function InitializeLoot - ${ex.message}`);
@@ -77,7 +76,7 @@ export class Loot extends Module {
                             loot.countRuns += 1;
                             await this.channel.database.sequelize.models.loot.update(loot, {where: {command: loot.command}});
                             global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} run after ${loot.minutes} Minutes.`);
-    
+
                             const exploring = new LootExploring(this);
                             if(await exploring.execute()){
                                 if(!exploring.isWinner){
@@ -169,7 +168,7 @@ export class Loot extends Module {
                 } else return TranslationItem.translate(this.translation, 'heroNotJoined').replace('$1', command.source);
             } else return TranslationItem.translate(this.translation, 'heroNotExists').replace('$1', command.source);
         } catch (ex){
-            
+
             global.worker.log.error(`module loot error - function leave - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20002');
 
@@ -182,7 +181,7 @@ export class Loot extends Module {
         try {
             let steal : LootSteal;
             const setting = this.settings.find(x =>x.command === "steal");
-    
+
             if(command.parameters.length >= 1){
                 const itemHandle = Number(command.parameters[0]);
                 if(!isNaN(itemHandle)){
@@ -193,14 +192,14 @@ export class Loot extends Module {
             }else {
                 steal = new LootSteal(this, command.source);
             }
-    
+
             if(await steal.execute(setting)){
                 return TranslationItem.translate(this.translation, 'stealItem')
                                       .replace('$1', command.source)
                                       .replace('$2', steal.targetHero.getDataValue("name"))
                                       .replace('$3', steal.item.getDataValue("value"))
                                       .replace('$4', steal.item.getDataValue("handle").toString())
-    
+
             } else if(!steal.isActive) {
                 return TranslationItem.translate(this.translation, 'stealNotActive')
                                       .replace('$1', command.source)
@@ -289,7 +288,7 @@ export class Loot extends Module {
                         }
                     } else return TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
                 } else return TranslationItem.translate(this.translation, 'giveParameterNumber').replace('$1', command.source);
-            } else return TranslationItem.translate(this.translation, 'giveParameterNeeded').replace('$1', command.source); 
+            } else return TranslationItem.translate(this.translation, 'giveParameterNeeded').replace('$1', command.source);
         } catch(ex) {
             global.worker.log.error(`module loot error - function give - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20004');
@@ -343,7 +342,7 @@ export class Loot extends Module {
             const hero = this.getTargetHero(command);
             const gold = (await this.channel.database.sequelize.query(this.getRankStatement(hero,"heroName", "heroWallet", "gold")))[0][0] as any
             const experience = (await this.channel.database.sequelize.query(this.getRankStatement(hero,"name", "hero", "experience")))[0][0] as any;
-    
+
             return TranslationItem.translate(this.translation, 'heroRank')
                                   .replace('$1', hero)
                                   .replace('$2', gold.rank)
@@ -400,7 +399,7 @@ export class Loot extends Module {
 
             if(!loot.isActive){
                 loot.isActive = true;
-                await this.channel.database.sequelize.models.say.update(loot, {where: {command: loot.command}});
+                await this.channel.database.sequelize.models.loot.update(loot, {where: {command: loot.command}});
                 global.worker.log.trace(`module ${loot.command} set active: ${loot.isActive}`);
                 return TranslationItem.translate(this.basicTranslation, "start");
             }
@@ -421,7 +420,7 @@ export class Loot extends Module {
             const loot = this.settings.find(x =>x.command === "loot");
             if(loot.isActive){
                 loot.isActive = false;
-                await this.channel.database.sequelize.models.say.update(loot, {where: {command: loot.command}});
+                await this.channel.database.sequelize.models.loot.update(loot, {where: {command: loot.command}});
                 global.worker.log.trace(`module lootstop set active: ${loot.isActive}`);
                 return TranslationItem.translate(this.basicTranslation, "stop");
             }
@@ -466,14 +465,14 @@ export class Loot extends Module {
     //#endregion
 
     //#region Blood
-    async blood(command: Command){     
+    async blood(command: Command){
         try {
             const hero = this.getTargetHero(command);
             const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero) as Model<HeroWalletItem>;
-    
+
             if(item){
                 const blood = this.settings.find(x =>x.command === "blood");
-    
+
                 if(blood.isActive){
                     if(this.isDateTimeoutExpiredMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes) || item.getDataValue("blood") < 1){
                         const countHeroes = await this.getCountActiveHeroes();
@@ -483,7 +482,7 @@ export class Loot extends Module {
                         return TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.getDataValue("blood").toString());
                     } else return TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString()).replace('$3', item.getDataValue("blood").toString());
                 } return TranslationItem.translate(this.translation, 'heroBloodNotActive').replace('$1', hero)
-    
+
             } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
         } catch(ex) {
             global.worker.log.error(`module loot error - function blood - ${ex.message}`);
@@ -495,16 +494,16 @@ export class Loot extends Module {
         try {
             const hero = this.getTargetHero(command);
             const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero);
-    
+
             if(item){
                 const blood = this.settings.find(x =>x.command === "blood");
-    
+
                 if(item.getDataValue("blood") > 0 && this.isDateTimeoutExpiredMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes)){
                     item.setDataValue("blood", 0);
                     await item.save();
                     return TranslationItem.translate(this.translation, 'heroNoBloodpoints').replace('$1', hero);
                 } else return TranslationItem.translate(this.translation, 'heroBloodpoints').replace('$1', hero).replace('$2',  item.getDataValue("blood").toString()).replace('$3', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString());
-            } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero); 
+            } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
         } catch(ex) {
             global.worker.log.error(`module loot error - function bloodpoints - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20013');
@@ -517,11 +516,11 @@ export class Loot extends Module {
         try {
             const hero = this.getTargetHero(command);
             let count = 0;
-    
+
             for(const item of Object.values(await this.channel.database.sequelize.models.heroInventory.findAll({where: {heroName: hero}, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]] })) as unknown as HeroInventoryItem[]){
                 count += item.quantity;
             }
-    
+
             if (count > 0){
                 return TranslationItem.translate(this.translation, 'heroChest').replace('$1', hero).replace('$2', count.toString());
             } else return TranslationItem.translate(this.translation, 'heroNoChest').replace('$1', hero);
@@ -544,7 +543,7 @@ export class Loot extends Module {
                 model: this.channel.database.sequelize.models.item,
                 as: 'item',
             }] });
-    
+
             if (items && items.length > 0){
                 return TranslationItem.translate(this.translation, 'heroItem').replace('$1', hero).replace('$2', items.map(a => a.getDataValue("item").getDataValue("value") + ' [' + a.getDataValue("item").getDataValue("handle") + ']').toString());
             } else return TranslationItem.translate(this.translation, 'heroNoItem').replace('$1', hero);
@@ -560,13 +559,13 @@ export class Loot extends Module {
         try {
             const hero = this.getTargetHero(command);
             const item = await this.channel.database.sequelize.models.hero.findByPk(hero) as Model<HeroItem>;
-    
+
             if(item){
                 const level = await this.channel.database.sequelize.models.level.findOne({
                     where: { experienceMin :{[Op.lte]: item.getDataValue("experience")},
                     experienceMax :{[Op.gte]: item.getDataValue("experience") }
                 }});
-    
+
                 if(level){
                     return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', level.getDataValue("handle").toString());
                 } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
@@ -583,7 +582,7 @@ export class Loot extends Module {
         try {
             const hero = this.getTargetHero(command);
             const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero);
-    
+
             if(item && item.getDataValue("gold") > 0){
                 return TranslationItem.translate(this.translation, 'heroGold').replace('$1', hero).replace('$2', item.getDataValue("gold").toString());
             } else return TranslationItem.translate(this.translation, 'heroNoGold').replace('$1', hero);
@@ -599,7 +598,7 @@ export class Loot extends Module {
         try {
             const hero = this.getTargetHero(command);
             const item = await this.channel.database.sequelize.models.heroWallet.findByPk(hero);
-    
+
             if(item && item.getDataValue("diamond") > 0){
                 return TranslationItem.translate(this.translation, 'heroDiamond').replace('$1', hero).replace('$2', item.getDataValue("diamond").toString());
             } else return TranslationItem.translate(this.translation, 'heroNoDiamond').replace('$1', hero);

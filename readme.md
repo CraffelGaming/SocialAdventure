@@ -16,6 +16,7 @@ Release Date: 29.10.200
 [x] Startseite
 [x] SSL-Zertifikat einbinden (https://)
 [x] Datenübernahme vom alten Craffelmat
+[x] Validierung (Min / Max / etc.) in Datenbank speichern
 [x] Hilfe & Feedback Kontaktformular
 [x] Item Kategorien zusenden    
 [x] CopyToClipboard
@@ -24,27 +25,24 @@ Release Date: 29.10.200
 [x] Performance
 [x] Refresh Button
 [x] Save Settings
-[] Shoutout im Say Modul
 [x] Start / Stop automation 
 [x] Live Auto Control
 [x] Full qualified API Connection
+[ ] Shoutout
 
 ### Release 2
 ## Error Collection
 Release: 2023
-[] Englisch
-[] API aufräumen
-[] Datenspeicher für Say-Module
-[] Keyschleuder
-[] UI Design überarbeiten
-[] Profi suchen
-[] Diamanten
-[] GitHub Readme.md
-[] Flüsternachrichten anstelle Chatnachrichten
-[] Einzelne Elemente vom CHat auf der Seite aktuallisieren
-[] Item-Datei hochladen
-[] Validierung (Min / Max / etc.) in Datenbank speichern
-[] Kampf / Steal LOG
+[ ] Englisch
+[ ] API aufräumen
+[ ] Datenspeicher für Say-Module
+[ ] Keyschleuder
+[ ] UI Design überarbeiten -> Profi suchen
+[ ] Diamanten
+[ ] GitHub Readme.md überarbeiten
+[ ] Item-Datei hochladen
+[ ] Kampf / Steal LOG
+[ ] Mehr Parameter
 
 ### Say
 * E-10000 execute

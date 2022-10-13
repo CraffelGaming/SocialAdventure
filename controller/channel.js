@@ -24,6 +24,7 @@ class Channel {
         this.twitch.load(this.node.getDataValue("name"));
         this.stream = null;
         this.isLive = false;
+        this.isNodeStarted = true;
         this.database = new connection_1.Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new puffer_1.Puffer(node),
             this.puffer.interval();
@@ -40,22 +41,27 @@ class Channel {
                 if (this.twitch) {
                     const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
                     if (stream && stream.type === 'live') {
-                        if (!this.isLive) {
+                        if (!this.isLive || this.isNodeStarted) {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
                             this.isLive = true;
+                            this.startSays();
+                            this.startLoot();
                         }
                     }
-                    else if (this.isLive) {
+                    else if (this.isLive || this.isNodeStarted) {
                         global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
                         this.isLive = false;
+                        this.stopSays();
+                        this.stopLoot();
                     }
                     else {
-                        global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed`);
+                        global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.isLive}`);
                     }
+                    this.isNodeStarted = false;
                 }
             }
             catch (ex) {
-                global.worker.log.error(`message error ${ex}`);
+                global.worker.log.error(`channel error - function streamWatcher - ${ex.message}`);
             }
         }), 1000 * 60 // 1 Minute(n)
         );
@@ -64,51 +70,76 @@ class Channel {
     //#region Say
     addSays() {
         return __awaiter(this, void 0, void 0, function* () {
-            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
-            for (const item of Object.values(yield this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: true }))) {
-                const element = new say_1.Say(translation, this, item);
-                yield element.initialize();
-                this.say.push(element);
-                global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+            try {
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
+                for (const item of Object.values(yield this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: true }))) {
+                    const element = new say_1.Say(translation, this, item);
+                    yield element.initialize();
+                    this.say.push(element);
+                    global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function addSays - ${ex.message}`);
             }
         });
     }
     stopSays() {
         return __awaiter(this, void 0, void 0, function* () {
-            for (const item of this.say) {
-                if (item.item.isLiveAutoControl) {
-                    yield item.stop();
-                    global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+            try {
+                for (const item of this.say) {
+                    if (item.item.isLiveAutoControl) {
+                        yield item.stop();
+                        global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                    }
                 }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
             }
         });
     }
     startSays() {
         return __awaiter(this, void 0, void 0, function* () {
-            for (const item of this.say) {
-                if (item.item.isLiveAutoControl) {
-                    yield item.start();
-                    global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+            try {
+                for (const item of this.say) {
+                    if (item.item.isLiveAutoControl) {
+                        yield item.start();
+                        global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                    }
                 }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function startSays - ${ex.message}`);
             }
         });
     }
     addSay(item) {
         return __awaiter(this, void 0, void 0, function* () {
-            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
-            const element = new say_1.Say(translation, this, item);
-            yield element.initialize();
-            this.say.push(element);
-            global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+            try {
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
+                const element = new say_1.Say(translation, this, item);
+                yield element.initialize();
+                this.say.push(element);
+                global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function addSay - ${ex.message}`);
+            }
         });
     }
     removeSay(command) {
         return __awaiter(this, void 0, void 0, function* () {
-            const index = this.say.findIndex(d => d.item.command === command);
-            if (index > -1) {
-                global.worker.log.info(`node ${this.node.name}, say remove ${this.say[index].item.command}.`);
-                this.say[index].remove();
-                this.say.splice(index, 1);
+            try {
+                const index = this.say.findIndex(d => d.item.command === command);
+                if (index > -1) {
+                    global.worker.log.info(`node ${this.node.name}, say remove ${this.say[index].item.command}.`);
+                    this.say[index].remove();
+                    this.say.splice(index, 1);
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function removeSay - ${ex.message}`);
             }
         });
     }
@@ -116,24 +147,39 @@ class Channel {
     //#region Loot
     addLoot() {
         return __awaiter(this, void 0, void 0, function* () {
-            const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
-            this.loot = new loot_1.Loot(translation, this);
-            yield this.loot.initialize();
-            yield this.loot.InitializeLoot();
+            try {
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
+                this.loot = new loot_1.Loot(translation, this);
+                yield this.loot.initialize();
+                yield this.loot.InitializeLoot();
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function addLoot - ${ex.message}`);
+            }
         });
     }
     stopLoot() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.loot.settings.find(x => x.command === "loot").isLiveAutoControl) {
-                yield this.loot.lootclear();
-                yield this.loot.lootstop();
+            try {
+                if (this.loot.settings.find(x => x.command === "loot").isLiveAutoControl) {
+                    yield this.loot.lootclear();
+                    yield this.loot.lootstop();
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);
             }
         });
     }
     startLoot() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.loot.settings.find(x => x.command === "loot").isLiveAutoControl) {
-                yield this.loot.lootstart();
+            try {
+                if (this.loot.settings.find(x => x.command === "loot").isLiveAutoControl) {
+                    yield this.loot.lootstart();
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function startLoot - ${ex.message}`);
             }
         });
     }
@@ -142,11 +188,16 @@ class Channel {
     execute(command) {
         return __awaiter(this, void 0, void 0, function* () {
             const messages = [];
-            messages.push(yield this.loot.execute(command));
-            for (const key in Object.keys(this.say)) {
-                if (this.say.hasOwnProperty(key)) {
-                    messages.push(yield this.say[key].execute(command));
+            try {
+                messages.push(yield this.loot.execute(command));
+                for (const key in Object.keys(this.say)) {
+                    if (this.say.hasOwnProperty(key)) {
+                        messages.push(yield this.say[key].execute(command));
+                    }
                 }
+            }
+            catch (ex) {
+                global.worker.log.error(`channel error - function execute - ${ex.message}`);
             }
             return messages;
         });

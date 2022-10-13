@@ -19,7 +19,7 @@ export class Twitch {
             this.channelName = channelName;
             this.twitch = await global.worker.globalDatabase.sequelize.models.twitch.findByPk(this.channelName) as Model<TwitchItem>;
             this.twitchUser = await global.worker.globalDatabase.sequelize.models.twitchUser.findByPk(this.channelName) as Model<TwitchUserItem>;
-    
+
             if(this.twitch && this.twitchUser) {
                 global.worker.log.trace(`api connected accessToken ${this.twitch.getDataValue("accessToken")}, refreshToken ${this.twitch.getDataValue("refreshToken")}`);
                 global.worker.log.trace(`api connected broadcasterType ${this.twitchUser.getDataValue("broadcasterType")}, displayName ${this.twitchUser.getDataValue("displayName")}`);
@@ -60,7 +60,7 @@ export class Twitch {
                 }
             } else {
                 global.worker.log.error(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint}`);
-            } 
+            }
         } catch(ex) {
             global.worker.log.error(`twitch error - function push - ${ex.message}`);
         }
@@ -110,7 +110,7 @@ export class Twitch {
     //#region Authentification
     async authentification(code: string) {
         try {
-            const twitch = await fetch(twitchData.url_token + 
+            const twitch = await fetch(twitchData.url_token +
                 '?client_id=' + twitchData.client_id +
                 '&client_secret=' + twitchData.client_secret +
                 '&code=' + code +
@@ -121,12 +121,12 @@ export class Twitch {
                         Accept: 'application/json',
                     },
                 });
-    
+
             if (twitch.ok) {
                 const result = (await twitch.json()) as globalThis.credentialItem;
                 global.worker.log.trace(result);
                 return result;
-            } 
+            }
         } catch(ex) {
             global.worker.log.error(`twitch error - function authentification - ${ex.message}`);
         }
@@ -137,7 +137,7 @@ export class Twitch {
     async authentificationRefresh() {
         try {
             global.worker.log.trace(`api request, node ${this.channelName}, authentificationRefresh`);
-            const twitch = await fetch(twitchData.url_token + 
+            const twitch = await fetch(twitchData.url_token +
                 '?client_id=' + twitchData.client_id +
                 '&client_secret=' + twitchData.client_secret +
                 '&refresh_token=' + this.twitch.getDataValue("refreshToken") +
@@ -148,7 +148,7 @@ export class Twitch {
                         Accept: 'application/json',
                     },
                 });
-    
+
             if (twitch.ok) {
                 const result = (await twitch.json()) as globalThis.credentialItem;
                 global.worker.log.trace(result);
@@ -169,7 +169,7 @@ export class Twitch {
 
             if(this.credential){
                 this.credentialUser = await this.getCurrentUser(this.credential);
-    
+
                 if(this.credentialUser){
                     await this.saveTwitch(state, this.credential, this.credentialUser);
                     await this.saveTwitchUser(this.credentialUser);
@@ -188,13 +188,13 @@ export class Twitch {
                 defaults: { state },
                 where: { channelName: user.login }
             }))[0] as Model<TwitchItem>;
-    
+
             this.twitch.setDataValue('accessToken', credential.access_token);
             this.twitch.setDataValue('refreshToken', credential.refresh_token);
             this.twitch.setDataValue('scope', credential.scope.join(' '));
             this.twitch.setDataValue('tokenType', credential.token_type);
             this.twitch.setDataValue('state', state);
-    
+
             return await this.twitch.save() as Model<TwitchItem>;
         } catch(ex) {
             global.worker.log.error(`twitch error - function saveTwitch - ${ex.message}`);
@@ -211,7 +211,7 @@ export class Twitch {
             this.twitch.setDataValue('refreshToken', credential.refresh_token);
             this.twitch.setDataValue('scope', credential.scope.join(' '));
             this.twitch.setDataValue('tokenType', credential.token_type);
-    
+
             return await this.twitch.save() as Model<TwitchItem>;
         } catch(ex) {
             global.worker.log.error(`twitch error - function updateTwitch - ${ex.message}`);
@@ -226,7 +226,7 @@ export class Twitch {
                 defaults: { viewCount: 0 },
                 where: { channelName: user.login }
             }))[0] as Model<TwitchUserItem>;
-    
+
             this.twitchUser.setDataValue('displayName', user.display_name);
             this.twitchUser.setDataValue('type', user.type);
             this.twitchUser.setDataValue('broadcasterType', user.broadcaster_type);
@@ -235,7 +235,7 @@ export class Twitch {
             this.twitchUser.setDataValue('viewCount', user.view_count);
             this.twitchUser.setDataValue('eMail', user.email);
             this.twitchUser.setDataValue('id', user.id);
-    
+
             return await this.twitchUser.save() as Model<TwitchUserItem>;
         } catch(ex) {
             global.worker.log.error(`twitch error - function saveTwitchUser - ${ex.message}`);
@@ -261,7 +261,7 @@ export class Twitch {
                 const result = (await twitch.json()) as globalThis.credentialItem;
                 global.worker.log.trace(result);
                 return result;
-            }    
+            }
         } catch(ex) {
             global.worker.log.error(`twitch error - function botAuthentification - ${ex.message}`);
         }
