@@ -13,20 +13,28 @@ export class Puffer {
 
     //#region Message
     addMessage(message : string){
-        if(message && message.length > 0){
-            global.worker.log.trace(`message push ${message}`);
-            this.messages.push(message);
+        try {
+            if(message && message.length > 0){
+                global.worker.log.trace(`message push ${message}`);
+                this.messages.push(message);
+            }
+        } catch(ex) {
+            global.worker.log.error(`puffer error - function addMessage - ${ex.message}`);
         }
     }
-    addMessages(messages : string[]){
 
-        for(const key in messages){
-            if (messages.hasOwnProperty(key)) {
-                if(messages[key] && messages[key].length > 0){
-                    global.worker.log.trace(`message push ${messages[key]}`);
-                    this.messages.push(messages[key]);
+    addMessages(messages : string[]){
+        try {
+            for(const key in messages){
+                if (messages.hasOwnProperty(key)) {
+                    if(messages[key] && messages[key].length > 0){
+                        global.worker.log.trace(`message push ${messages[key]}`);
+                        this.messages.push(messages[key]);
+                    }
                 }
             }
+        } catch(ex) {
+            global.worker.log.error(`puffer error - function addMessages - ${ex.message}`);
         }
     }
     //#endregion
@@ -42,7 +50,7 @@ export class Puffer {
                         global.worker.tmi.say(this.node.name, message);
                     }
                 } catch (ex){
-                    global.worker.log.error(`message error ${ex}`);
+                    global.worker.log.error(`puffer error - function interval - ${ex.message}`);
                 }
             },
             1000 * 1.4 // 1.4 Sekunde(n)

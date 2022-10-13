@@ -40,17 +40,24 @@ class Channel {
                 if (this.twitch) {
                     const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
                     if (stream && stream.type === 'live') {
-                        this.isLive = true;
+                        if (!this.isLive) {
+                            global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
+                            this.isLive = true;
+                        }
                     }
-                    else
+                    else if (this.isLive) {
+                        global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
                         this.isLive = false;
-                    global.worker.log.info(`node ${this.node.name}, streamWatcher isLive ${this.isLive}`);
+                    }
+                    else {
+                        global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed`);
+                    }
                 }
             }
             catch (ex) {
                 global.worker.log.error(`message error ${ex}`);
             }
-        }), 1000 * 10 // 1 Minute(n)
+        }), 1000 * 60 // 1 Minute(n)
         );
     }
     //#endregion
@@ -63,6 +70,26 @@ class Channel {
                 yield element.initialize();
                 this.say.push(element);
                 global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+            }
+        });
+    }
+    stopSays() {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const item of this.say) {
+                if (item.item.isLiveAutoControl) {
+                    yield item.stop();
+                    global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                }
+            }
+        });
+    }
+    startSays() {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const item of this.say) {
+                if (item.item.isLiveAutoControl) {
+                    yield item.start();
+                    global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                }
             }
         });
     }
@@ -93,6 +120,21 @@ class Channel {
             this.loot = new loot_1.Loot(translation, this);
             yield this.loot.initialize();
             yield this.loot.InitializeLoot();
+        });
+    }
+    stopLoot() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.loot.settings.find(x => x.command === "loot").isLiveAutoControl) {
+                yield this.loot.lootclear();
+                yield this.loot.lootstop();
+            }
+        });
+    }
+    startLoot() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.loot.settings.find(x => x.command === "loot").isLiveAutoControl) {
+                yield this.loot.lootstart();
+            }
         });
     }
     //#endregion

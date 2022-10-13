@@ -46,69 +46,93 @@ export class Worker {
 
     //#region Initialize
     async initialize(){
-        await this.globalDatabase.initializeGlobal();
+        try {
+            await this.globalDatabase.initializeGlobal();
 
-        // Twitch API bot login automation
-        await this.connect();
-
-        for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({include: [{
-            model: global.worker.globalDatabase.sequelize.models.twitchUser,
-            as: 'twitchUser',
-        }]})) as unknown as NodeItem[]){
-            this.startNode(node);
+            // Twitch API bot login automation
+            await this.connect();
+    
+            for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({include: [{
+                model: global.worker.globalDatabase.sequelize.models.twitchUser,
+                as: 'twitchUser',
+            }]})) as unknown as NodeItem[]){
+                this.startNode(node);
+            }
+        } catch(ex) {
+            global.worker.log.error(`worker error - function initialize - ${ex.message}`);
         }
     }
     //#endregion
 
     //#region Node
     async startNode(node: NodeItem) : Promise<Channel>{
-        let channel = global.worker.channels.find(x => x.node.name === node.name);
+        try {
+            let channel = global.worker.channels.find(x => x.node.name === node.name);
 
-        if(channel == null){
-            this.log.trace('add Node ' + node.name);
-            channel = new Channel(node);
+            if(channel == null){
+                this.log.trace('add Node ' + node.name);
+                channel = new Channel(node);
+    
+                await channel.database.initialize();
+                await channel.addSays();
+                await channel.addLoot();
+    
+                // Register Channel to twitch
+                this.register(channel);
+                this.channels.push(channel);
+            } else {
+                this.log.trace('Node already added ' + node.name);
+            }
 
-            await channel.database.initialize();
-            await channel.addSays();
-            await channel.addLoot();
+            return channel;
 
-            // Register Channel to twitch
-            this.register(channel);
-            this.channels.push(channel);
-        } else {
-            this.log.trace('Node already added ' + node.name);
+        } catch(ex) {
+            global.worker.log.error(`worker error - function startNode - ${ex.message}`);
         }
 
-        return channel;
+        return null;
     }
     //#endregion
 
     //#region Twitch API client login on Webpage
     async login(request: express.Request, response: express.Response, callback: any){
-        const twitch = new Twitch();
-
-        if(await twitch.login(request.session.state, request.query.code.toString())){
-            request.session.twitch =  twitch.credential;
-            request.session.userData = twitch.credentialUser;
+        try {
+            const twitch = new Twitch();
+            if(await twitch.login(request.session.state, request.query.code.toString())){
+                request.session.twitch =  twitch.credential;
+                request.session.userData = twitch.credentialUser;
+            }
+        } catch(ex) {
+            global.worker.log.error(`worker error - function login - ${ex.message}`);
         }
-        callback(request, response);
+
+        if(callback != null)
+            callback(request, response);
     }
     //#endregion
 
     //#region Chatbot
     async connect(){
-        this.botCredential = await Twitch.botAuthentification();
+        try {
+            this.botCredential = await Twitch.botAuthentification();
 
-        this.tmi.on('message', this.onMessageHandler);
-        this.tmi.on('connected', this.onConnectedHandler);
-        this.tmi.on('disconnected', this.onDisconnectedHandler);
-
-        await this.tmi.connect();
+            this.tmi.on('message', this.onMessageHandler);
+            this.tmi.on('connected', this.onConnectedHandler);
+            this.tmi.on('disconnected', this.onDisconnectedHandler);
+    
+            await this.tmi.connect();
+        } catch(ex) {
+            global.worker.log.error(`worker error - function connect - ${ex.message}`);
+        }
     }
 
     register(channel: Channel){
-        this.log.trace('node connected: ' + channel.node.name);
-        this.tmi.join(channel.node.name.replace('#', ''));
+        try {
+            this.log.trace('node connected: ' + channel.node.name);
+            this.tmi.join(channel.node.name.replace('#', '')); 
+        } catch(ex) {
+            global.worker.log.error(`worker error - function register - ${ex.message}`);
+        }
     }
 
     async onMessageHandler (target : string, context : any, message : string, self: boolean) {
@@ -136,16 +160,25 @@ export class Worker {
                 channel.puffer.addMessages(messages);
             }
         } catch (ex){
-            global.worker.log.error(`exception ${ex.message}`);
+            global.worker.log.error(`worker error - function onMessageHandler - ${ex.message}`);
         }
     }
 
     onConnectedHandler (address: string, port: number) {
-        this.log.info(`connected to ${address}:${port}`);
+        try {
+            this.log.info(`connected to ${address}:${port}`);
+        } catch(ex) {
+            global.worker.log.error(`worker error - function onConnectedHandler - ${ex.message}`);
+        }
+      
     }
 
     async onDisconnectedHandler() {
-        await global.worker.restart();
+        try {
+            await global.worker.restart();
+        } catch(ex) {
+            global.worker.log.error(`worker error - function onDisconnectedHandler - ${ex.message}`);
+        }
     }
     //#endregion
 }

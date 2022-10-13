@@ -38,16 +38,22 @@ class Loot extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 global.worker.log.trace('loot execute');
-                const allowedCommand = this.commands.find(x => x.command === command.name);
-                if (allowedCommand) {
-                    if (!allowedCommand.isMaster || this.isOwner(command)) {
-                        return yield this[command.name](command);
+                const loot = this.settings.find(x => x.command === "loot");
+                if (loot.isActive || command.source === this.channel.node.getDataValue("name")) {
+                    const allowedCommand = this.commands.find(x => x.command === command.name);
+                    if (allowedCommand) {
+                        if (!allowedCommand.isMaster || this.isOwner(command)) {
+                            return yield this[command.name](command);
+                        }
+                        else
+                            global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
                     }
-                    else
-                        global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
+                    else {
+                        global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
+                    }
                 }
                 else {
-                    global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
+                    global.worker.log.trace(`module loot not active`);
                 }
             }
             catch (ex) {
@@ -96,6 +102,9 @@ class Loot extends module_1.Module {
                     global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} minutes: ${loot.minutes}`);
                     global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} time elapsed: ${this.getDateTimeoutRemainingMinutes(new Date(loot.lastRun), loot.minutes)}`);
                 }
+            }
+            else {
+                global.worker.log.info(`node ${this.channel.node.name}, module loot not executed not active`);
             }
         }), 60000 // Alle 60 Sekunden prüfen
         );
@@ -370,7 +379,7 @@ class Loot extends module_1.Module {
     }
     //#endregion
     //#region Clear
-    lootclear(command) {
+    lootclear(command = null) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const heroes = yield this.channel.database.sequelize.models.hero.findAll({ where: { isActive: true } });
@@ -395,7 +404,7 @@ class Loot extends module_1.Module {
     }
     //#endregion
     //#region Start
-    lootstart(command) {
+    lootstart(command = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const loot = this.settings.find(x => x.command === "loot");
             if (!loot.isActive) {
@@ -412,7 +421,7 @@ class Loot extends module_1.Module {
     }
     //#endregion
     //#region Stop
-    lootstop(command) {
+    lootstop(command = null) {
         return __awaiter(this, void 0, void 0, function* () {
             const loot = this.settings.find(x => x.command === "loot");
             if (loot.isActive) {

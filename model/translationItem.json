@@ -257,7 +257,8 @@
     { "page": "module", "handle": "noDelay", "language": "de-DE", "translation": "Delay ist keine positive Ganzzahl."},
     { "page": "module", "handle": "nothingToSay", "language": "de-DE", "translation": "Dieser Command ist leer. Der Streamer muss mit !<module>text:Beispiel einen Text festlegen."},
     { "page": "module", "handle": "streamerNotLive", "language": "de-DE", "translation": "$1 ist offline, keine Befehle möglich."},
-    
+    { "page": "module", "handle": "ohNo", "language": "de-DE", "translation": "Der Bot ist ausgelastet, bitte melde die Fehlernummer '$1' an Craffel."},
+
     { "page": "command", "handle": "shout", "language": "de-DE", "translation": "Der Text des Befehls wird angezeigt."},
     { "page": "command", "handle": "text", "language": "de-DE", "translation": "Der Text des Befehls wird neu festgelegt. Für Links muss der Bot Moderator sein. Für Emotes muss der Bot die Emotes freigeschaltet haben."},
     { "page": "command", "handle": "interval", "language": "de-DE", "translation": "Der automatische Interval in Minuten wird festgelegt. 0 = Keine automatische Ausgabe"},

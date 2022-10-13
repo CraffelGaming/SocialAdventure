@@ -34,22 +34,27 @@ class Say extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 global.worker.log.trace(`module ${this.item.command} say execute`);
-                if (command.name.startsWith(this.item.command)) {
-                    command.name = command.name.replace(this.item.command, "");
-                    const allowedCommand = this.commands.find(x => x.command === command.name);
-                    if (allowedCommand) {
-                        if (!allowedCommand.isMaster || this.isOwner(command)) {
-                            if (command.name.length === 0)
-                                command.name = "shout";
-                            command.name = command.name.replace("+", "plus");
-                            command.name = command.name.replace("-", "minus");
-                            return yield this[command.name](command);
+                if (this.item.isActive || command.source === this.channel.node.getDataValue("name")) {
+                    if (command.name.startsWith(this.item.command)) {
+                        command.name = command.name.replace(this.item.command, "");
+                        const allowedCommand = this.commands.find(x => x.command === command.name);
+                        if (allowedCommand) {
+                            if (!allowedCommand.isMaster || this.isOwner(command)) {
+                                if (command.name.length === 0)
+                                    command.name = "shout";
+                                command.name = command.name.replace("+", "plus");
+                                command.name = command.name.replace("-", "minus");
+                                return yield this[command.name](command);
+                            }
+                            else
+                                global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
                         }
                         else
-                            global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                            global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
                     }
-                    else
-                        global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
+                }
+                else {
+                    global.worker.log.trace(`module ${this.item.command} not active`);
                 }
             }
             catch (ex) {
@@ -81,21 +86,18 @@ class Say extends module_1.Module {
                         }
                     }
                     else {
-                        global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
                     }
                 }
                 else {
-                    global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} delay: ${this.item.delay}`);
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} delay diference: ${delayDifference}`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed delay: ${this.item.delay}`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed delay diference: ${delayDifference}`);
                 }
             }
             else {
-                global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
-                global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} active: ${this.item.isActive}`);
-                global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
+                global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed active: ${this.item.isActive}`);
+                global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
             }
         }), 60000 // Alle 60 Sekunden prüfen
         );
@@ -126,7 +128,7 @@ class Say extends module_1.Module {
             return '';
         });
     }
-    start(command) {
+    start(command = null) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.item.isActive) {
                 this.item.isActive = true;
@@ -141,7 +143,7 @@ class Say extends module_1.Module {
             }
         });
     }
-    stop(command) {
+    stop(command = null) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.item.isActive) {
                 this.item.isActive = false;

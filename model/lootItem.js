@@ -27,6 +27,7 @@ let LootItem = class LootItem extends sequelize_typescript_1.Model {
         super();
         this.minutes = 60;
         this.isActive = true;
+        this.isLiveAutoControl = true;
         this.countUses = 0;
         this.countRuns = 0;
         this.lastRun = new Date(2020, 1, 1);
@@ -50,7 +51,13 @@ let LootItem = class LootItem extends sequelize_typescript_1.Model {
             },
             isActive: {
                 type: sequelize_1.DataTypes.BOOLEAN,
-                allowNull: true
+                allowNull: false,
+                defaultValue: true
+            },
+            isLiveAutoControl: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
             },
             countUses: {
                 type: sequelize_1.DataTypes.INTEGER,
@@ -93,6 +100,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], LootItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], LootItem.prototype, "isLiveAutoControl", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)

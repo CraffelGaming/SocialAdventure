@@ -27,6 +27,7 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
         super();
         this.minutes = 60;
         this.isActive = true;
+        this.isLiveAutoControl = true;
         this.lastRun = new Date(2020, 1, 1);
         this.delay = 5;
         this.countUses = 0;
@@ -62,6 +63,11 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
                 defaultValue: false
             },
             isActive: {
+                type: sequelize_1.DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
+            },
+            isLiveAutoControl: {
                 type: sequelize_1.DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: true
@@ -140,6 +146,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Boolean)
 ], SayItem.prototype, "isActive", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Boolean)
+], SayItem.prototype, "isLiveAutoControl", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)

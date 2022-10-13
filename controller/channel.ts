@@ -55,11 +55,11 @@ export class Channel {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
                             this.isLive = false;
                         } else {
-                            global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed`);
+                            global.worker.log.info(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.isLive}`);
                         }
                    }
                 } catch (ex){
-                    global.worker.log.error(`message error ${ex}`);
+                    global.worker.log.error(`channel error - function streamWatcher - ${ex.message}`);
                 }
             },
             1000 * 60 // 1 Minute(n)
@@ -69,72 +69,106 @@ export class Channel {
 
     //#region Say
     async addSays(){
-        const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+        try {
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
 
-        for(const item of Object.values(await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]], raw: true})) as unknown as SayItem[]){
-            const element = new Say(translation, this, item);
-            await element.initialize();
-            this.say.push(element);
-            global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+            for(const item of Object.values(await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]], raw: true})) as unknown as SayItem[]){
+                const element = new Say(translation, this, item);
+                await element.initialize();
+                this.say.push(element);
+                global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+            }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function addSays - ${ex.message}`);
         }
     }
 
     async stopSays(){
-        for(const item of this.say){
-            if(item.item.isLiveAutoControl){
-                await item.stop();
-                global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+        try {
+            for(const item of this.say){
+                if(item.item.isLiveAutoControl){
+                    await item.stop();
+                    global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                }
             }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
         }
+
     }
 
     async startSays(){
-        for(const item of this.say){
-            if(item.item.isLiveAutoControl){
-                await item.start();
-                global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+        try {
+            for(const item of this.say){
+                if(item.item.isLiveAutoControl){
+                    await item.start();
+                    global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                }
             }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function startSays - ${ex.message}`);
         }
     }
 
     async addSay(item: SayItem){
-        const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
-        const element = new Say(translation, this, item);
-        await element.initialize();
-        this.say.push(element);
-        global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+        try {
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+            const element = new Say(translation, this, item);
+            await element.initialize();
+            this.say.push(element);
+            global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+        } catch(ex) {
+            global.worker.log.error(`channel error - function addSay - ${ex.message}`);
+        }
     }
 
-    async removeSay(command: string){
-        const index = this.say.findIndex(d => d.item.command === command);
+    async removeSay(command: string){     
+        try {
+            const index = this.say.findIndex(d => d.item.command === command);
 
-        if(index > -1){
-            global.worker.log.info(`node ${this.node.name}, say remove ${this.say[index].item.command}.`);
-            this.say[index].remove();
-            this.say.splice(index, 1)
+            if(index > -1){
+                global.worker.log.info(`node ${this.node.name}, say remove ${this.say[index].item.command}.`);
+                this.say[index].remove();
+                this.say.splice(index, 1)
+            }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function removeSay - ${ex.message}`);
         }
     }
     //#endregion
 
     //#region Loot
     async addLoot(){
-        const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'loot', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
-        this.loot = new Loot(translation, this);
-        await this.loot.initialize();
-        await this.loot.InitializeLoot();
+        try {
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'loot', language: this.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+            this.loot = new Loot(translation, this);
+            await this.loot.initialize();
+            await this.loot.InitializeLoot();
+        } catch(ex) {
+            global.worker.log.error(`channel error - function addLoot - ${ex.message}`);
+        }
     }
 
     async stopLoot(){
-        if(this.loot.settings.find(x =>x.command === "loot").isLiveAutoControl){
-            await this.loot.lootclear();
-            await this.loot.lootstop();
+        try {
+            if(this.loot.settings.find(x =>x.command === "loot").isLiveAutoControl){
+                await this.loot.lootclear();
+                await this.loot.lootstop();
+            }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);
         }
-    }    
-    
+    }
+
     async startLoot(){
-        if(this.loot.settings.find(x =>x.command === "loot").isLiveAutoControl){
-            await this.loot.lootstart();
+        try {
+            if(this.loot.settings.find(x =>x.command === "loot").isLiveAutoControl){
+                await this.loot.lootstart();
+            }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function startLoot - ${ex.message}`);
         }
+
     }
     //#endregion
 
@@ -142,13 +176,18 @@ export class Channel {
     async execute(command: Command){
         const messages : string[] = [];
 
-        messages.push(await this.loot.execute(command));
+        try {
+            messages.push(await this.loot.execute(command));
 
-        for(const key in Object.keys(this.say)){
-            if (this.say.hasOwnProperty(key)) {
-                messages.push(await this.say[key].execute(command))
+            for(const key in Object.keys(this.say)){
+                if (this.say.hasOwnProperty(key)) {
+                    messages.push(await this.say[key].execute(command))
+                }
             }
+        } catch(ex) {
+            global.worker.log.error(`channel error - function execute - ${ex.message}`);
         }
+    
         return messages;
     }
     //#endregion
