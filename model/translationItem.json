@@ -187,6 +187,7 @@
     { "page": "say", "handle": "minutes", "language": "de-DE", "translation": "Minuten"},
     { "page": "say", "handle": "help", "language": "de-DE", "translation": "Hilfe"},
     { "page": "say", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "say", "handle": "isLiveAutoControl", "language": "de-DE", "translation": "Live-Auto-Control"},
     { "page": "say", "handle": "isShoutout", "language": "de-DE", "translation": "Shoutout?"},
     { "page": "say", "handle": "count", "language": "de-DE", "translation": "Counter"},
     { "page": "say", "handle": "timeout", "language": "de-DE", "translation": "Timeout (Sekunden)"},
@@ -255,6 +256,7 @@
     { "page": "module", "handle": "noInterval", "language": "de-DE", "translation": "Intervall ist keine positive Ganzzahl."},
     { "page": "module", "handle": "noDelay", "language": "de-DE", "translation": "Delay ist keine positive Ganzzahl."},
     { "page": "module", "handle": "nothingToSay", "language": "de-DE", "translation": "Dieser Command ist leer. Der Streamer muss mit !<module>text:Beispiel einen Text festlegen."},
+    { "page": "module", "handle": "streamerNotLive", "language": "de-DE", "translation": "$1 ist offline, keine Befehle möglich."},
     
     { "page": "command", "handle": "shout", "language": "de-DE", "translation": "Der Text des Befehls wird angezeigt."},
     { "page": "command", "handle": "text", "language": "de-DE", "translation": "Der Text des Befehls wird neu festgelegt. Für Links muss der Bot Moderator sein. Für Emotes muss der Bot die Emotes freigeschaltet haben."},
@@ -397,6 +399,7 @@
     { "page": "setting", "handle": "command", "language": "de-DE", "translation": "Abenteuer Funktionen"},
     { "page": "setting", "handle": "minutes", "language": "de-DE", "translation": "Timeout"},
     { "page": "setting", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "setting", "handle": "isLiveAutoControl", "language": "de-DE", "translation": "Live-Auto-Control"},
     { "page": "setting", "handle": "countUses", "language": "de-DE", "translation": "Anzahl Verwendung"},
     { "page": "setting", "handle": "countRuns", "language": "de-DE", "translation": "Anzahl Trigger"},
     { "page": "setting", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},

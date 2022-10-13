@@ -152,6 +152,15 @@ $(async () => {
                             return false;
                         } 
                     } 
+                },
+                { dataField: "isLiveAutoControl", caption: translate(language, 'isLiveAutoControl'), editorType: "dxCheckBox", width: 160,
+                    calculateCellValue(data) {
+                        if(data.isLiveAutoControl != null){
+                            return data.isLiveAutoControl == 1 ? true : false;
+                        } else {
+                            return false;
+                        } 
+                    } 
                 }
             ],
             editing: await getEditing(),
@@ -170,6 +179,12 @@ $(async () => {
                 }
 
                 if (e.dataField === "isActive" && e.parentType === "dataRow") {
+                    if (e.row.isNewRow) {
+                        e.editorOptions.value = true;
+                    }
+                }
+
+                if (e.dataField === "isLiveAutoControl" && e.parentType === "dataRow") {
                     if (e.row.isNewRow) {
                         e.editorOptions.value = true;
                     }

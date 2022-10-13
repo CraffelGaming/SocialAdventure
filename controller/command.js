@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Command = void 0;
 class Command {
+    //#region Construct
     constructor(message, context) {
         this.name = "";
         this.message = message;

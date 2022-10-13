@@ -15,6 +15,8 @@ export class SayItem extends Model<SayItem>{
     @Column
     isActive : boolean = true;
     @Column
+    isLiveAutoControl : boolean = true;
+    @Column
     lastRun: Date = new Date(2020, 1, 1);
     @Column
     delay: number = 5;
@@ -61,6 +63,11 @@ export class SayItem extends Model<SayItem>{
                 defaultValue: false
             },
             isActive: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
+            },
+            isLiveAutoControl: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: true

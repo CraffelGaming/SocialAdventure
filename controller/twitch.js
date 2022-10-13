@@ -23,8 +23,10 @@ class Twitch {
             this.channelName = channelName;
             this.twitch = (yield global.worker.globalDatabase.sequelize.models.twitch.findByPk(this.channelName));
             this.twitchUser = (yield global.worker.globalDatabase.sequelize.models.twitchUser.findByPk(this.channelName));
-            if (this.twitch)
+            if (this.twitch && this.twitchUser) {
                 global.worker.log.trace(`api connected accessToken ${this.twitch.getDataValue("accessToken")}, refreshToken ${this.twitch.getDataValue("refreshToken")}`);
+                global.worker.log.trace(`api connected broadcasterType ${this.twitchUser.getDataValue("broadcasterType")}, displayName ${this.twitchUser.getDataValue("displayName")}`);
+            }
             else
                 global.worker.log.error(`api connection failed`);
         });
@@ -44,12 +46,19 @@ class Twitch {
                 },
             });
             if (response.ok) {
-                const result = ((yield response.json()).data[0]);
+                const json = yield response.json();
+                global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitch_json_1.default.url_base}${endpoint} OK`);
+                global.worker.log.trace(json);
+                const result = json.data[0];
                 global.worker.log.trace(result);
                 return result;
             }
             else if (response.status === 401) {
+                global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitch_json_1.default.url_base}${endpoint} 401`);
                 global.worker.log.trace('refresh access token');
+            }
+            else {
+                global.worker.log.error(`api request, node ${this.channelName}, ${method} ${twitch_json_1.default.url_base}${endpoint}`);
             }
             return null;
         });
@@ -63,7 +72,8 @@ class Twitch {
     }
     GetStream(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.push('GET', '/streams?user_id=' + id);
+            // return await this.push<streamItem>('GET', '/streams?user_id=' + id);
+            return yield this.push('GET', '/streams?user_login=wespenkoenigin');
         });
     }
     getUser(id) {

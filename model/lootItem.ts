@@ -12,6 +12,8 @@ export class LootItem extends Model<LootItem>{
     @Column
     isActive : boolean = true;
     @Column
+    isLiveAutoControl : boolean = true;
+    @Column
     countUses: number = 0;
     @Column
     countRuns: number = 0;
@@ -41,7 +43,13 @@ export class LootItem extends Model<LootItem>{
             },
             isActive: {
                 type: DataTypes.BOOLEAN,
-                allowNull: true
+                allowNull: false,
+                defaultValue: true
+            },
+            isLiveAutoControl: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true
             },
             countUses: {
                 type: DataTypes.INTEGER,

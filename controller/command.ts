@@ -5,6 +5,7 @@ export class  Command {
     source: string;
     parameters: string[];
 
+    //#region Construct
     constructor(message: string, context : any){
         this.name = "";
         this.message =  message;
@@ -22,4 +23,5 @@ export class  Command {
             else this.parameters.push(parts[part].replaceAll('"', '').trim());
         }
     }
+    //#endregion
 }

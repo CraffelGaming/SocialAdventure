@@ -4,11 +4,14 @@ export class Puffer {
     messages: string[];
     node: NodeItem;
 
+    //#region Construct
     constructor(node: NodeItem){
         this.messages = [];
         this.node = node;
     }
+    //#endregion
 
+    //#region Message
     addMessage(message : string){
         if(message && message.length > 0){
             global.worker.log.trace(`message push ${message}`);
@@ -26,6 +29,9 @@ export class Puffer {
             }
         }
     }
+    //#endregion
+
+    //#region Interval
     interval(){
         setInterval(
             () => {
@@ -42,4 +48,5 @@ export class Puffer {
             1000 * 1.4 // 1.4 Sekunde(n)
         );
     }
+    //#endregion
 }

@@ -122,6 +122,15 @@ $(async () => {
                             return false;
                         } 
                     } 
+                },
+                { dataField: "isLiveAutoControl", caption: translate(language, 'isLiveAutoControl'), editorType: "dxCheckBox", width: 160,
+                    calculateCellValue(data) {
+                        if(data.isLiveAutoControl != null){
+                            return data.isLiveAutoControl == 1 ? true : false;
+                        } else {
+                            return false;
+                        } 
+                    } 
                 }
             ],
             editing: await getEditing(true, false, false),

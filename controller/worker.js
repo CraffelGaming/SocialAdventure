@@ -18,6 +18,7 @@ const tmiSettings = require("../bot.json");
 const command_1 = require("./command");
 const twitch_1 = require("./twitch");
 class Worker {
+    //#region Construct
     constructor(log) {
         this.log = log;
         this.pathModel = path.join(__dirname, '..', 'model');
@@ -30,6 +31,8 @@ class Worker {
         this.log.trace('basic model path: ' + this.pathModel);
         this.log.trace('basic migration path: ' + this.pathMigration);
     }
+    //#endregion
+    //#region Restart
     restart() {
         return __awaiter(this, void 0, void 0, function* () {
             global.worker.tmi = new tmi.client(tmiSettings);
@@ -37,10 +40,12 @@ class Worker {
             yield global.worker.initialize();
         });
     }
+    //#endregion
+    //#region Initialize
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.globalDatabase.initializeGlobal();
-            // Connect client to twitch
+            // Twitch API bot login automation
             yield this.connect();
             for (const node of Object.values(yield this.globalDatabase.sequelize.models.node.findAll({ include: [{
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
@@ -50,6 +55,8 @@ class Worker {
             }
         });
     }
+    //#endregion
+    //#region Node
     startNode(node) {
         return __awaiter(this, void 0, void 0, function* () {
             let channel = global.worker.channels.find(x => x.node.name === node.name);
@@ -69,7 +76,8 @@ class Worker {
             return channel;
         });
     }
-    //#region Twitch API
+    //#endregion
+    //#region Twitch API client login on Webpage
     login(request, response, callback) {
         return __awaiter(this, void 0, void 0, function* () {
             const twitch = new twitch_1.Twitch();

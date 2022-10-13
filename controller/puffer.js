@@ -2,10 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Puffer = void 0;
 class Puffer {
+    //#region Construct
     constructor(node) {
         this.messages = [];
         this.node = node;
     }
+    //#endregion
+    //#region Message
     addMessage(message) {
         if (message && message.length > 0) {
             global.worker.log.trace(`message push ${message}`);
@@ -22,6 +25,8 @@ class Puffer {
             }
         }
     }
+    //#endregion
+    //#region Interval
     interval() {
         setInterval(() => {
             try {

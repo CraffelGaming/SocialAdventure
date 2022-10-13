@@ -3,30 +3,35 @@
         "command": "loot",
         "minutes": 10,
         "delay": 0,
-        "isActive": true
+        "isActive": true,
+        "isLiveAutoControl": true
     },
     {
         "command": "blood",
         "minutes": 60,
         "delay": 0,
-        "isActive": true
+        "isActive": true,
+        "isLiveAutoControl": false
     },
     {
         "command": "steal",
         "minutes": 15,
         "delay": 0,
-        "isActive": true
+        "isActive": true,
+        "isLiveAutoControl": false
     },
     {
         "command": "give",
         "minutes": 15,
         "delay": 0,
-        "isActive": true
+        "isActive": true,
+        "isLiveAutoControl": false
     },
     {
         "command": "join",
         "minutes": 30,
         "delay": 0,
-        "isActive": true
+        "isActive": true,
+        "isLiveAutoControl": false
     }
 ]

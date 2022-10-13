@@ -35,14 +35,20 @@ export class Loot extends Module {
     async execute(command: Command){
         try{
             global.worker.log.trace('loot execute');
-            const allowedCommand = this.commands.find(x => x.command === command.name);
+            const loot = this.settings.find(x =>x.command === "loot");
 
-            if(allowedCommand){
-                if(!allowedCommand.isMaster || this.isOwner(command)){
-                    return await this[command.name](command);
-                } else global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
+            if(loot.isActive || command.source === this.channel.node.getDataValue("name")) {
+                const allowedCommand = this.commands.find(x => x.command === command.name);
+    
+                if(allowedCommand){
+                    if(!allowedCommand.isMaster || this.isOwner(command)){
+                        return await this[command.name](command);
+                    } else global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
+                } else {
+                    global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
+                }
             } else {
-                global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
+                global.worker.log.trace(`module loot not active`);
             }
         } catch(ex){
             global.worker.log.error(`loot error - function execute - ${ex.message}`);
@@ -69,17 +75,17 @@ export class Loot extends Module {
                         if(await exploring.execute()){
                             if(!exploring.isWinner){
                                 this.channel.puffer.addMessage(TranslationItem.translate(this.translation, 'heroAdventureLoose')
-                                                   .replace('$1', exploring.hero.getDataValue("name"))
-                                                   .replace('$2', exploring.enemy.getDataValue("name")));
+                                                    .replace('$1', exploring.hero.getDataValue("name"))
+                                                    .replace('$2', exploring.enemy.getDataValue("name")));
                             } else {
                                 this.channel.puffer.addMessage(TranslationItem.translate(this.translation, 'heroAdventureVictory')
-                                                   .replace('$1', exploring.hero.getDataValue("name"))
-                                                   .replace('$2', exploring.dungeon.getDataValue("name"))
-                                                   .replace('$3', exploring.enemy.getDataValue("name"))
-                                                   .replace('$4', exploring.gold.toString())
-                                                   .replace('$5', exploring.experience.toString())
-                                                   .replace('$6', exploring.item.getDataValue("value"))
-                                                   .replace('$7', exploring.item.getDataValue("handle").toString()));
+                                                    .replace('$1', exploring.hero.getDataValue("name"))
+                                                    .replace('$2', exploring.dungeon.getDataValue("name"))
+                                                    .replace('$3', exploring.enemy.getDataValue("name"))
+                                                    .replace('$4', exploring.gold.toString())
+                                                    .replace('$5', exploring.experience.toString())
+                                                    .replace('$6', exploring.item.getDataValue("value"))
+                                                    .replace('$7', exploring.item.getDataValue("handle").toString()));
                             }
                             await exploring.save();
                         } else {
@@ -90,6 +96,8 @@ export class Loot extends Module {
                         global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} minutes: ${loot.minutes}`);
                         global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} time elapsed: ${this.getDateTimeoutRemainingMinutes(new Date(loot.lastRun),  loot.minutes)}`);
                     }
+                } else {
+                    global.worker.log.info(`node ${this.channel.node.name}, module loot not executed not active`);
                 }
             },
             60000 // Alle 60 Sekunden prüfen
@@ -326,7 +334,7 @@ export class Loot extends Module {
     //#endregion
 
     //#region Clear
-    async lootclear(command: Command){
+    async lootclear(command: Command = null){
         try{
             const heroes = await this.channel.database.sequelize.models.hero.findAll({where: {isActive: true}}) as Model<HeroItem>[];
             for(const hero in heroes){
@@ -350,7 +358,7 @@ export class Loot extends Module {
     //#endregion
 
     //#region Start
-    async lootstart(command: Command){
+    async lootstart(command: Command = null){
         const loot = this.settings.find(x =>x.command === "loot");
 
         if(!loot.isActive){
@@ -367,7 +375,7 @@ export class Loot extends Module {
     //#endregion
 
     //#region Stop
-    async lootstop(command: Command){
+    async lootstop(command: Command = null){
         const loot = this.settings.find(x =>x.command === "loot");
         if(loot.isActive){
             loot.isActive = false;

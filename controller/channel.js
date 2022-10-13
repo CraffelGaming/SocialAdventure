@@ -16,16 +16,45 @@ const loot_1 = require("../module/loot");
 const puffer_1 = require("./puffer");
 const twitch_1 = require("./twitch");
 class Channel {
+    //#region Construct
     constructor(node) {
         this.node = node;
         this.countMessages = 0;
         this.twitch = new twitch_1.Twitch();
         this.twitch.load(this.node.getDataValue("name"));
+        this.stream = null;
+        this.isLive = false;
         this.database = new connection_1.Connection({ databaseName: Buffer.from(node.name).toString('base64') });
         this.puffer = new puffer_1.Puffer(node),
             this.puffer.interval();
         this.say = [];
+        this.streamWatcher();
     }
+    //#endregion
+    //#region Twitch API streamer login by node
+    streamWatcher() {
+        global.worker.log.info(`node ${this.node.name}, add streamWatcher`);
+        setInterval(() => __awaiter(this, void 0, void 0, function* () {
+            global.worker.log.info(`node ${this.node.name}, streamWatcher run`);
+            try {
+                if (this.twitch) {
+                    const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
+                    if (stream && stream.type === 'live') {
+                        this.isLive = true;
+                    }
+                    else
+                        this.isLive = false;
+                    global.worker.log.info(`node ${this.node.name}, streamWatcher isLive ${this.isLive}`);
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(`message error ${ex}`);
+            }
+        }), 1000 * 10 // 1 Minute(n)
+        );
+    }
+    //#endregion
+    //#region Say
     addSays() {
         return __awaiter(this, void 0, void 0, function* () {
             const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
@@ -56,6 +85,8 @@ class Channel {
             }
         });
     }
+    //#endregion
+    //#region Loot
     addLoot() {
         return __awaiter(this, void 0, void 0, function* () {
             const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
@@ -64,6 +95,8 @@ class Channel {
             yield this.loot.InitializeLoot();
         });
     }
+    //#endregion
+    //#region Execute
     execute(command) {
         return __awaiter(this, void 0, void 0, function* () {
             const messages = [];

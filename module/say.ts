@@ -33,18 +33,22 @@ export class Say extends Module {
         try{
             global.worker.log.trace(`module ${this.item.command} say execute`);
 
-            if(command.name.startsWith(this.item.command)){
-                command.name = command.name.replace(this.item.command, "");
-
-                const allowedCommand = this.commands.find(x => x.command === command.name);
-                if(allowedCommand){
-                    if(!allowedCommand.isMaster || this.isOwner(command)){
-                        if(command.name.length === 0) command.name = "shout";
-                        command.name = command.name.replace("+", "plus");
-                        command.name = command.name.replace("-", "minus");
-                        return await this[command.name](command);
-                    } else global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
-                } else global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
+            if(this.item.isActive || command.source === this.channel.node.getDataValue("name")) {
+                if(command.name.startsWith(this.item.command)){
+                    command.name = command.name.replace(this.item.command, "");
+    
+                    const allowedCommand = this.commands.find(x => x.command === command.name);
+                    if(allowedCommand){
+                        if(!allowedCommand.isMaster || this.isOwner(command)){
+                            if(command.name.length === 0) command.name = "shout";
+                            command.name = command.name.replace("+", "plus");
+                            command.name = command.name.replace("-", "minus");
+                            return await this[command.name](command);
+                        } else global.worker.log.warn(`not owner dedection ${this.item.command} ${command.name} blocked`);
+                    } else global.worker.log.warn(`hack dedection ${this.item.command} ${command.name} blocked`);
+                }
+            } else {
+                global.worker.log.trace(`module ${this.item.command} not active`);
             }
         } catch(ex){
             global.worker.log.error(`module ${this.item.command} error ${ex.message}`);
@@ -75,19 +79,16 @@ export class Say extends Module {
                                 global.worker.log.error(`exception ${ex.message}`);
                             }
                         } else {
-                            global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
-                            global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
-                            global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
+                            global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
+                            global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
                         }
                     } else {
-                        global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} delay: ${this.item.delay}`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} delay diference: ${delayDifference}`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed delay: ${this.item.delay}`);
+                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed delay diference: ${delayDifference}`);
                     }
                 } else {
-                    global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} not executed`);
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} active: ${this.item.isActive}`);
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} minutes: ${this.item.minutes}`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed active: ${this.item.isActive}`);
+                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
                 }
             },
             60000 // Alle 60 Sekunden prüfen
@@ -118,7 +119,7 @@ export class Say extends Module {
         return '';
     }
 
-    async start(command: Command){
+    async start(command: Command = null){
         if(!this.item.isActive){
             this.item.isActive = true;
             this.item.count = 0;
@@ -132,7 +133,7 @@ export class Say extends Module {
         }
     }
 
-    async stop(command: Command){
+    async stop(command: Command = null){
         if(this.item.isActive){
             this.item.isActive = false;
             await this.channel.database.sequelize.models.say.update(this.item, {where: {command: this.item.command}});

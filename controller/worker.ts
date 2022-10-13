@@ -20,6 +20,7 @@ export class Worker {
     twitch: Twitch;
     botCredential: credentialItem;
 
+    //#region Construct
     constructor(log: log4js.Logger){
         this.log = log;
         this.pathModel = path.join(__dirname, '..', 'model');
@@ -33,17 +34,21 @@ export class Worker {
         this.log.trace('basic model path: ' + this.pathModel);
         this.log.trace('basic migration path: ' + this.pathMigration);
     }
+    //#endregion
 
+    //#region Restart
     async restart(){
         global.worker.tmi = new tmi.client(tmiSettings);
         global.worker.channels = [];
         await global.worker.initialize();
     }
+    //#endregion
 
+    //#region Initialize
     async initialize(){
         await this.globalDatabase.initializeGlobal();
 
-        // Connect client to twitch
+        // Twitch API bot login automation
         await this.connect();
 
         for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({include: [{
@@ -53,7 +58,9 @@ export class Worker {
             this.startNode(node);
         }
     }
+    //#endregion
 
+    //#region Node
     async startNode(node: NodeItem) : Promise<Channel>{
         let channel = global.worker.channels.find(x => x.node.name === node.name);
 
@@ -74,8 +81,9 @@ export class Worker {
 
         return channel;
     }
+    //#endregion
 
-    //#region Twitch API
+    //#region Twitch API client login on Webpage
     async login(request: express.Request, response: express.Response, callback: any){
         const twitch = new Twitch();
 

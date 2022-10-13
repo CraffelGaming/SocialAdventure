@@ -41,11 +41,17 @@ export class Twitch {
             });
 
         if (response.ok) {
-            const result = ((await response.json()).data[0]) as T;
+            const json = await response.json();
+            global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} OK`);
+            global.worker.log.trace(json);
+            const result = json.data[0] as T;
             global.worker.log.trace(result);
             return result;
         } else if(response.status === 401) {
+            global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401`);
             global.worker.log.trace('refresh access token');
+        } else {
+            global.worker.log.error(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint}`);
         }
 
         return null;
@@ -53,15 +59,15 @@ export class Twitch {
     //#endregion
 
     //#region API
-    async GetChannel(id: number){
-        return await this.push('GET', '/channels?broadcaster_id=' + id)
+    async GetChannel(id: string){
+        return await this.push('GET', '/channels?broadcaster_id=' + id);
     }
 
-    async GetStream(id: number){
-        return await this.push('GET', '/streams?user_id=' + id)
+    async GetStream(id: string) : Promise<streamItem>{
+        return await this.push<streamItem>('GET', '/streams?user_id=' + id);
     }
 
-    async getUser(id: number){
+    async getUser(id: string){
         return await this.push('GET', '/users?id=' + id);
     }
 

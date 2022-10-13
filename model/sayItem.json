@@ -5,7 +5,8 @@
         "delay": 5,
         "help": "",
         "text": "Schau dir deinen Helden auf craffel.de an.",
-        "isActive": true
+        "isActive": true,
+        "isLiveAutoControl": true
     },
     {
         "command": "death",
@@ -14,7 +15,8 @@
         "help": "",
         "text": "$streamer ist schon $counter mal gestorben.",
         "isActive": true,
-        "isCounter": true
+        "isCounter": true,
+        "isLiveAutoControl": true
     },
     {
         "command": "so",
@@ -23,7 +25,8 @@
         "help": "",
         "text": "Schau doch mal bei $raider vorbei. Dort gab es zuletzt $raiderGame. $raiderUrl",
         "isActive": true,
-        "isShoutout": true
+        "isShoutout": true,
+        "isLiveAutoControl": true
     },
     {
         "command": "dice",
@@ -31,8 +34,9 @@
         "delay": 0,
         "help": "",
         "text": "$source hat eine $dice gewürfelt.",
-        "isActive": true,
-        "isShoutout": false
+        "isActive": false,
+        "isShoutout": false,
+        "isLiveAutoControl": false
     },
     {
         "command": "lurk",
@@ -40,8 +44,9 @@
         "delay": 0,
         "help": "",
         "text": "$source, vielen Dank für deine Unterstützung.",
-        "isActive": true,
-        "isShoutout": false
+        "isActive": false,
+        "isShoutout": false,
+        "isLiveAutoControl": false
     },
     {
         "command": "unlurk",
@@ -49,8 +54,9 @@
         "delay": 0,
         "help": "",
         "text": "Willkommen zurück $source",
-        "isActive": true,
-        "isShoutout": false
+        "isActive": false,
+        "isShoutout": false,
+        "isLiveAutoControl": false
     },
     {
         "command": "verwarnung",
@@ -58,7 +64,8 @@
         "delay": 0,
         "help": "",
         "text": "$source ermahnt $target! Ab in die Stille Ecke!",
-        "isActive": true,
-        "isShoutout": false
+        "isActive": false,
+        "isShoutout": false,
+        "isLiveAutoControl": false
     }
 ]
