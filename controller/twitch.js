@@ -93,6 +93,11 @@ class Twitch {
             return yield this.push('GET', '/users?id=' + id);
         });
     }
+    getUserByName(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.push('GET', '/users?login=' + name);
+        });
+    }
     getCurrentUser(credential) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield (0, node_fetch_1.default)(twitch_json_1.default.url_base + '/users', {

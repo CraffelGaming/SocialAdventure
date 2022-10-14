@@ -1,3 +1,4 @@
+import { setMaxListeners } from "events";
 import { Op } from "sequelize";
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
@@ -214,9 +215,18 @@ export class Loot extends Module {
                                       .replace('$1', command.source)
                                       .replace('$2', steal.targetHero.getDataValue("name"))
             } else if(!steal.isItem) {
-                return TranslationItem.translate(this.translation, 'stealItemNoItem')
-                                      .replace('$1', command.source)
-                                      .replace('$2', command.parameters[0])
+                if(!steal.isItemHero){
+                    return TranslationItem.translate(this.translation, 'stealItemNoItemHero')
+                        .replace('$1', command.source)
+                        .replace('$2', command.target)
+                } else if (!steal.isItemHeroes){
+                    return TranslationItem.translate(this.translation, 'stealItemNoItemHeroes')
+                        .replace('$1', command.source)
+                } else {
+                    return TranslationItem.translate(this.translation, 'stealItemNoItem')
+                        .replace('$1', command.source)
+                        .replace('$2', command.parameters[0])
+                }
             } else if(!steal.isSource) {
                 return TranslationItem.translate(this.translation, 'stealItemNoSource')
                                       .replace('$1', command.source)

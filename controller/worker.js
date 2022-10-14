@@ -52,11 +52,10 @@ class Worker {
                             model: global.worker.globalDatabase.sequelize.models.twitchUser,
                             as: 'twitchUser',
                         }] }))) {
-                    yield this.startNode(node);
+                    this.startNode(node); // no await needed
                 }
                 global.worker.log.info(`--------------------------------------`);
-                global.worker.log.info(`---------- ALL NODES LOADED ----------`);
-                global.worker.log.info(`----------- 100% COMPLETED -----------`);
+                global.worker.log.info(`---------- ALL NODES ADDED -----------`);
                 global.worker.log.info(`--------------------------------------`);
             }
             catch (ex) {

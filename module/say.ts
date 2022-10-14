@@ -3,6 +3,7 @@ import { Command } from "../controller/command";
 import { SayItem } from "../model/sayItem";
 import { TranslationItem } from "../model/translationItem";
 import { Module } from "./module";
+import twitchData from '../twitch.json';
 export class Say extends Module {
     item: SayItem;
     countMessages: number;
@@ -243,6 +244,19 @@ export class Say extends Module {
                         this.item.text = this.item.text.replace('$counter', this.item.count.toString());
                     }
 
+                    if(this.item.isShoutout){
+                        const raider = await this.channel.twitch.getUserByName(command.target);
+                        if(raider){
+                            const raiderChannel = await this.channel.twitch.GetChannel(raider.id);
+
+                            if(raiderChannel){
+                                this.item.text = this.item.text.replace('$raider', raider.display_name);
+                                this.item.text = this.item.text.replace('$raiderGame', raiderChannel.game_name);
+                                this.item.text = this.item.text.replace('$raiderTitle', raiderChannel.title);
+                                this.item.text = this.item.text.replace('$raiderUrl', twitchData.url_twitch + raider.login);
+                            }
+                        }
+                    }
                     return this.replacePlaceholder(command, this.item.text);
                  }
                  else {

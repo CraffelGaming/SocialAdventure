@@ -80,7 +80,7 @@ let SayItem = class SayItem extends sequelize_typescript_1.Model {
             lastRun: {
                 type: sequelize_1.DataTypes.DATE,
                 allowNull: false,
-                defaultValue: new Date(2020, 1, 1)
+                defaultValue: Date.UTC(2020, 1, 1)
             },
             delay: {
                 type: sequelize_1.DataTypes.INTEGER,

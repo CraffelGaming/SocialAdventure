@@ -57,692 +57,6 @@ const api_placeholder_1 = __importDefault(require("./api/api.placeholder"));
 const api_validation_1 = __importDefault(require("./api/api.validation"));
 const api_stateStorage_1 = __importDefault(require("./api/api.stateStorage"));
 const router = express.Router();
-//#region State Storage
-/**
- * @swagger
- * /stateStorage:
- *   get:
- *     tags:
- *     - StateStorage
- *     summary: Tabellenkonfiguarationen
- *     description: Rückgabe aller Tabellenkonfiguarationen des angemeldeten Benutzers.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "childs"
- *       in: "query"
- *       description: "Untergeordnete Daten laden, wenn vorhanden"
- *       required: false
- *       type: "boolean"
- *       default: true
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               handle:
- *                 type: string
- *                 example: 'heroes'
- *               name:
- *                 type: string
- *                 example: 'Aktive Helden'
- *               storage:
- *                 type: string
- *                 example: ''
- *               channelName:
- *                 type: string
- *                 example: 'craffel'
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
- *       404:
- *         description: no data
- */
-router.get("/stateStorage", api_stateStorage_1.default);
-/**
- * @swagger
- * /stateStorage/{name}:
- *   get:
- *     tags:
- *     - StateStorage
- *     summary: Tabellenkonfiguarationen
- *     description: Rückgabe der Tabellenkonfiguaration einer Tabelle des angemeldeten Benutzers.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "name"
- *       in: "path"
- *       description: "Seite für die Übersetzungen."
- *       required: true
- *       default: "heroes"
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               handle:
- *                 type: string
- *                 example: 'heroes'
- *               name:
- *                 type: string
- *                 example: 'Aktive Helden'
- *               storage:
- *                 type: string
- *                 example: ''
- *               channelName:
- *                 type: string
- *                 example: 'craffel'
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
- *       404:
- *         description: no data
- */
-router.get("/stateStorage/:name", api_stateStorage_1.default);
-/**
- * @swagger
- * /stateStorage/:
- *   put:
- *     tags:
- *     - StateStorage
- *     summary: Tabellenkonfiguarationen
- *     description: Anlage einer neuen Tabellenkonfiguaration des angemeldeten Benutzers.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "item"
- *       in: "body"
- *       schema:
- *         type: object
- *         properties:
- *           handle:
- *             type: string
- *             example: 'heroes'
- *           name:
- *             type: string
- *             example: 'Aktive Helden'
- *           storage:
- *             type: string
- *             example: ''
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: object
- *           properties:
- *             handle:
- *               type: string
- *               example: 'heroes'
- *             name:
- *               type: string
- *               example: 'Aktive Helden'
- *             storage:
- *               type: string
- *               example: ''
- *             channelName:
- *               type: string
- *               example: 'craffel'
- *       404:
- *         description: no data
- */
-router.put("/stateStorage", api_stateStorage_1.default);
-/**
- * @swagger
- * /stateStorage/{name}:
- *   delete:
- *     tags:
- *     - StateStorage
- *     summary: Tabellenkonfiguarationen
- *     description: Löschen der Tabellenkonfiguaration einer Tabelle des angemeldeten Benutzers.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "name"
- *       in: "path"
- *       description: "Seite für die Übersetzungen."
- *       required: true
- *       default: "heroes"
- *     responses:
- *       204:
- *         description: successful operation
- *       403:
- *         description: no permission
- *       404:
- *         description: no data
- */
-router.delete("/stateStorage/:name", api_stateStorage_1.default);
-//#endregion
-//#region Validation
-/**
- * @swagger
- * /validation:
- *   get:
- *     tags:
- *     - Validation
- *     summary: Validierungen
- *     description: Rückgabe aller Validierungen.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "childs"
- *       in: "query"
- *       description: "Untergeordnete Daten laden, wenn vorhanden"
- *       required: false
- *       type: "boolean"
- *       default: true
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               page:
- *                 type: string
- *                 example: "promotion"
- *                 descrition: Name der Seite
- *               handle:
- *                 type: string
- *                 example: "navigtion"
- *                 descrition: ID der Validation
- *               min:
- *                 type: integer
- *                 example: 0
- *                 descrition: Erlaubter Minimalwert
- *               max:
- *                 type: integer
- *                 example: 1000
- *                 descrition: Erlaubter Minimalwert
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
- *       404:
- *         description: no data
- */
-router.get("/validation", api_validation_1.default);
-/**
- * @swagger
- * /validation/{page}:
- *   get:
- *     tags:
- *     - Validation
- *     summary: Validierungen
- *     description: Rückgabe aller Validierungen einer Seite
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "page"
- *       in: "path"
- *       description: "Name der Seite"
- *       required: true
- *       default: "navigation"
- *     - name: "language"
- *       in: "path"
- *       description: "Sprache für die Übersetzung."
- *       required: true
- *       default: "de-DE"
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               page:
- *                 type: string
- *                 example: "promotion"
- *                 descrition: Name der Seite
- *               handle:
- *                 type: string
- *                 example: "navigtion"
- *                 descrition: ID der Validation
- *               min:
- *                 type: integer
- *                 example: 0
- *                 descrition: Erlaubter Minimalwert
- *               max:
- *                 type: integer
- *                 example: 1000
- *                 descrition: Erlaubter Minimalwert
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
- *       404:
- *         description: no data
- */
-router.get("/validation/:page", api_validation_1.default);
-//#endregion
-//#region Placeholder
-/**
- * @swagger
- * /placeholder:
- *   get:
- *     tags:
- *     - Placeholder
- *     summary: Platzhalter
- *     description: Rückgabe aller Platzhalter.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "childs"
- *       in: "query"
- *       description: "Untergeordnete Daten laden, wenn vorhanden"
- *       required: false
- *       type: "boolean"
- *       default: true
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               handle:
- *                 type: string
- *                 example: "$source"
- *                 descrition: Platzhalter
- *               translation:
- *                 type: string
- *                 example: "source"
- *                 descrition: Übersetzungsschlüssel des Platzhalters.
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               isCounter:
- *                 type: boolean
- *                 example: false
- *                 descrition: Gibt an, ob der Platzhalter nur für Counter existiert.
- *               isShoutout:
- *                 type: boolean
- *                 example: false
- *                 descrition: Gibt an, ob der Platzhalter nur für ShoutOut-Funktionen existiert.
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
- *       404:
- *         description: no data
- */
-router.get("/placeholder", api_placeholder_1.default);
-//#endregion
-//#region Help
-/**
- * @swagger
- * /help/{node}:
- *   put:
- *     tags:
- *     - Hilfe
- *     summary: Hilfe
- *     description: Senden einer neuen Anfrage
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "node"
- *       in: "path"
- *       description: "Node / Channel"
- *       required: true
- *       type: "string"
- *       default: "default"
- *     - name: "item"
- *       in: "body"
- *       schema:
- *         type: object
- *         properties:
- *           handle:
- *             type: string
- *             example: "gold"
- *             descrition: ID der Anfrage
- *           name:
- *             type: string
- *             example: "craffel"
- *             descrition: Login-Name des Fragestellers
- *           mail:
- *             type: string
- *             example: "craffel@craffel.de"
- *             descrition: E-Mail des Fragestellers
- *           content:
- *             type: string
- *             example: "Ich bin UI Designer und würde gerne Helfen! Ist noch Platz im Team?"
- *             descrition: Frage des Fragestellers
- *     responses:
- *       201:
- *         description: successful operation
- *         schema:
- *           type: object
- *           properties:
- *             handle:
- *               type: string
- *               example: "gold"
- *               descrition: ID der Anfrage
- *             name:
- *               type: string
- *               example: "craffel"
- *               descrition: Login-Name des Fragestellers
- *             mail:
- *               type: string
- *               example: "craffel@craffel.de"
- *               descrition: E-Mail des Fragestellers
- *             content:
- *               type: string
- *               example: "Ich bin UI Designer und würde gerne Helfen! Ist noch Platz im Team?"
- *               descrition: Frage des Fragestellers
- *       403:
- *         description: no permission
- *       404:
- *         description: no data
- */
-router.put("/help/:node", api_help_1.default);
-//#endregion
-//#region Promotion
-/**
- * @swagger
- * /promotion/{node}:
- *   get:
- *     tags:
- *     - Promotion
- *     summary: Promo-Codes
- *     description: Rückgabe aller Promo-Codes Aufgaben.
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "node"
- *       in: "path"
- *       description: "Node / Channel"
- *       required: true
- *       type: "string"
- *       default: "default"
- *     - name: "childs"
- *       in: "query"
- *       description: "Untergeordnete Daten laden, wenn vorhanden"
- *       required: false
- *       type: "boolean"
- *       default: true
- *     responses:
- *       200:
- *         description: successful operation
- *         schema:
- *           type: array
- *           items:
- *             type: object
- *             properties:
- *               handle:
- *                 type: string
- *                 example: "NewStart"
- *                 descrition: ID des Promo-Codes
- *               gold:
- *                 type: integer
- *                 example: "1000"
- *                 descrition: Anzahl der Goldbelohnung
- *               diamond:
- *                 type: integer
- *                 example: "100"
- *                 descrition: Anzahl der Diamantbelohnung
- *               experience:
- *                 type: integer
- *                 example: "1000"
- *                 descrition: Anzahl der Erfahrungsbelohnung
- *               item:
- *                 type: integer
- *                 example: "1"
- *                 descrition: ID des Gegenstands der Gegenstandsbelohnung
- *               isMaster:
- *                 type: boolean
- *                 example: false
- *                 descrition: Angabe, ob nur der Streamer den Code auslösen darf
- *               validFrom:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Gültigkeit Startdatum
- *               validTo:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Gültigkeit Enddatum
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
- *       404:
- *         description: no data
- */
-router.get("/promotion/:node", api_promotion_1.default);
-/**
- * @swagger
- * /promotion/{node}:
- *   put:
- *     tags:
- *     - Promotion
- *     summary: Promotion Aufgabe
- *     description: Anlage eines neuen Promo-Codes
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "node"
- *       in: "path"
- *       description: "Node / Channel"
- *       required: true
- *       type: "string"
- *       default: "default"
- *     - name: "item"
- *       in: "body"
- *       schema:
- *         type: object
- *         properties:
- *           handle:
- *             type: string
- *             example: "NewStart"
- *             descrition: ID des Promo-Codes
- *           gold:
- *             type: integer
- *             example: "1000"
- *             descrition: Anzahl der Goldbelohnung
- *           diamond:
- *             type: integer
- *             example: "100"
- *             descrition: Anzahl der Diamantbelohnung
- *           experience:
- *             type: integer
- *             example: "1000"
- *             descrition: Anzahl der Erfahrungsbelohnung
- *           item:
- *             type: integer
- *             example: "1"
- *             descrition: ID des Gegenstands der Gegenstandsbelohnung
- *           isMaster:
- *             type: boolean
- *             example: false
- *             descrition: Angabe, ob nur der Streamer den Code auslösen darf
- *           validFrom:
- *             type: string
- *             example: "2022-05-12 10:11:35.027 +00:00"
- *             descrition: Gültigkeit Startdatum
- *           validTo:
- *             type: string
- *             example: "2022-05-12 10:11:35.027 +00:00"
- *             descrition: Gültigkeit Enddatum
- *     responses:
- *       201:
- *         description: successful operation
- *         schema:
- *           type: object
- *           properties:
- *             handle:
- *               type: string
- *               example: "NewStart"
- *               descrition: ID des Promo-Codes
- *             gold:
- *               type: integer
- *               example: "1000"
- *               descrition: Anzahl der Goldbelohnung
- *             diamond:
- *               type: integer
- *               example: "100"
- *               descrition: Anzahl der Diamantbelohnung
- *             experience:
- *               type: integer
- *               example: "1000"
- *               descrition: Anzahl der Erfahrungsbelohnung
- *             item:
- *               type: integer
- *               example: "1"
- *               descrition: ID des Gegenstands der Gegenstandsbelohnung
- *             isMaster:
- *               type: boolean
- *               example: false
- *               descrition: Angabe, ob nur der Streamer den Code auslösen darf
- *             validFrom:
- *               type: string
- *               example: "2022-05-12 10:11:35.027 +00:00"
- *               descrition: Gültigkeit Startdatum
- *             validTo:
- *               type: string
- *               example: "2022-05-12 10:11:35.027 +00:00"
- *               descrition: Gültigkeit Enddatum
- *       403:
- *         description: no permission
- *       404:
- *         description: no data
- */
-router.put("/promotion/:node", api_promotion_1.default);
-/**
- * @swagger
- * /promotion/{node}/redeem/{promotionHandle}/{heroName}:
- *   post:
- *     tags:
- *     - Promotion
- *     summary: Promotion Aufgabe
- *     description: Anlage eines neuen Promo-Codes
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "node"
- *       in: "path"
- *       description: "Node / Channel"
- *       required: true
- *       type: "string"
- *       default: "default"
- *     - name: "promotionHandle"
- *       in: "path"
- *       description: "ID des Promo-Codes"
- *       required: true
- *       type: "string"
- *       default: "BluescreenCommunity"
- *     - name: "heroName"
- *       in: "path"
- *       description: "Name des Helden"
- *       required: true
- *       type: "string"
- *       default: "craffel"
- *     responses:
- *       201:
- *         description: successful operation
- *         schema:
- *           type: object
- *           properties:
- *             handle:
- *               type: string
- *               example: "NewStart"
- *               descrition: ID des Promo-Codes
- *             gold:
- *               type: integer
- *               example: "1000"
- *               descrition: Anzahl der Goldbelohnung
- *             diamond:
- *               type: integer
- *               example: "100"
- *               descrition: Anzahl der Diamantbelohnung
- *             experience:
- *               type: integer
- *               example: "1000"
- *               descrition: Anzahl der Erfahrungsbelohnung
- *             item:
- *               type: integer
- *               example: "1"
- *               descrition: ID des Gegenstands der Gegenstandsbelohnung
- *             isMaster:
- *               type: boolean
- *               example: false
- *               descrition: Angabe, ob nur der Streamer den Code auslösen darf
- *             validFrom:
- *               type: string
- *               example: "2022-05-12 10:11:35.027 +00:00"
- *               descrition: Gültigkeit Startdatum
- *             validTo:
- *               type: string
- *               example: "2022-05-12 10:11:35.027 +00:00"
- *               descrition: Gültigkeit Enddatum
- *       403:
- *         description: no permission
- *       404:
- *         description: no data
- */
-router.post("/promotion/:node/redeem/:promotionHandle/:heroName", api_promotion_1.default);
-/**
- * @swagger
- * /promotion/{node}/{handle}:
- *   delete:
- *     tags:
- *     - Promotion
- *     summary: Promotion
- *     description: Löscht einen bestimmten Promo-Code
- *     consumes:
- *     - application/json
- *     parameters:
- *     - name: "node"
- *       in: "path"
- *       description: "Node / Channel"
- *       required: true
- *       type: "string"
- *       default: "default"
- *     - name: "handle"
- *       in: "path"
- *       description: "ID des Promo-Codes"
- *       required: true
- *       type: "string"
- *       default: "gold"
- *     responses:
- *       204:
- *         description: successful operation
- *       403:
- *         description: no permission
- *       404:
- *         description: no data
- */
-router.delete("/promotion/:node/:handle", api_promotion_1.default);
-//#endregion
 //#region Adventure
 /**
  * @swagger
@@ -1821,6 +1135,74 @@ router.delete("/healingPotion/:node/:handle", api_healingPotion_1.default);
  *         description: no data
  */
 router.post("/healingPotion/:node/heal/:handle/hero/:name", api_healingPotion_1.default);
+//#endregion
+//#region Help
+/**
+ * @swagger
+ * /help/{node}:
+ *   put:
+ *     tags:
+ *     - Hilfe
+ *     summary: Hilfe
+ *     description: Senden einer neuen Anfrage
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "gold"
+ *             descrition: ID der Anfrage
+ *           name:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Login-Name des Fragestellers
+ *           mail:
+ *             type: string
+ *             example: "craffel@craffel.de"
+ *             descrition: E-Mail des Fragestellers
+ *           content:
+ *             type: string
+ *             example: "Ich bin UI Designer und würde gerne Helfen! Ist noch Platz im Team?"
+ *             descrition: Frage des Fragestellers
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "gold"
+ *               descrition: ID der Anfrage
+ *             name:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Login-Name des Fragestellers
+ *             mail:
+ *               type: string
+ *               example: "craffel@craffel.de"
+ *               descrition: E-Mail des Fragestellers
+ *             content:
+ *               type: string
+ *               example: "Ich bin UI Designer und würde gerne Helfen! Ist noch Platz im Team?"
+ *               descrition: Frage des Fragestellers
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/help/:node", api_help_1.default);
 //#endregion
 //#region Hero
 /**
@@ -3798,6 +3180,106 @@ router.get("/migration", api_migration_1.default);
 router.get("/node", api_node_1.default);
 /**
  * @swagger
+ * /node/live:
+ *   get:
+ *     tags:
+ *     - Node
+ *     summary: Server Node
+ *     description: Rückgabe aller Server Nodes aller Streamer, die gerade live und aktiv sind.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "1.0.0"
+ *                 descrition: Name des Nodes
+ *               displayName:
+ *                 type: string
+ *                 example: "1.0.0"
+ *                 descrition: Anzeigename des Nodes
+ *               language:
+ *                 type: string
+ *                 example: "de-DE"
+ *                 descrition: Standard Sprache des Nodes
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Aktivitätsstatus
+ *               endpoint:
+ *                 type: string
+ *                 example: "/"
+ *                 descrition: Endpunkt
+ *               twitchUser:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     example: "440371621"
+ *                     descrition: Twitch Benutzer-ID
+ *                   login:
+ *                     type: string
+ *                     example: "craffel"
+ *                     descrition: Twitch Loginname
+ *                   display_name:
+ *                     type: string
+ *                     example: "craffel"
+ *                     descrition: Twitch Anzeigename
+ *                   type:
+ *                     type: string
+ *                     example: ""
+ *                     descrition: Twitch Accounttyp
+ *                   broadcaster_type:
+ *                     type: string
+ *                     example: "affiliate"
+ *                     descrition: Twitch Streamer-Typ
+ *                   description:
+ *                     type: string
+ *                     example: "Ich bin ein Streamer"
+ *                     descrition: Twitch Beschreibung
+ *                   profile_image_url:
+ *                     type: string
+ *                     example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
+ *                     descrition: Twitch Profilbild
+ *                   offline_image_url:
+ *                     type: string
+ *                     example: ""
+ *                     descrition: Twitch Offline-Profilbild
+ *                   view_count:
+ *                     type: string
+ *                     example: "21997"
+ *                     descrition: Anzahl einzigartiger Twitch Aufrufe
+ *                   email:
+ *                     type: string
+ *                     example: "max.mustermann@mail.de"
+ *                     descrition: Twitch E-Mail Adresse
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/node/live", api_node_1.default);
+/**
+ * @swagger
  * /node/default:
  *   get:
  *     tags:
@@ -3849,6 +3331,341 @@ router.get("/node/default", api_node_1.default);
  *               descrition: Name des Nodes
  */
 router.post("/node/default", api_node_1.default);
+//#endregion
+//#region Placeholder
+/**
+ * @swagger
+ * /placeholder:
+ *   get:
+ *     tags:
+ *     - Placeholder
+ *     summary: Platzhalter
+ *     description: Rückgabe aller Platzhalter.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "$source"
+ *                 descrition: Platzhalter
+ *               translation:
+ *                 type: string
+ *                 example: "source"
+ *                 descrition: Übersetzungsschlüssel des Platzhalters.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               isCounter:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob der Platzhalter nur für Counter existiert.
+ *               isShoutout:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Gibt an, ob der Platzhalter nur für ShoutOut-Funktionen existiert.
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/placeholder", api_placeholder_1.default);
+//#endregion
+//#region Promotion
+/**
+ * @swagger
+ * /promotion/{node}:
+ *   get:
+ *     tags:
+ *     - Promotion
+ *     summary: Promo-Codes
+ *     description: Rückgabe aller Promo-Codes Aufgaben.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "NewStart"
+ *                 descrition: ID des Promo-Codes
+ *               gold:
+ *                 type: integer
+ *                 example: "1000"
+ *                 descrition: Anzahl der Goldbelohnung
+ *               diamond:
+ *                 type: integer
+ *                 example: "100"
+ *                 descrition: Anzahl der Diamantbelohnung
+ *               experience:
+ *                 type: integer
+ *                 example: "1000"
+ *                 descrition: Anzahl der Erfahrungsbelohnung
+ *               item:
+ *                 type: integer
+ *                 example: "1"
+ *                 descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *               isMaster:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob nur der Streamer den Code auslösen darf
+ *               validFrom:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Gültigkeit Startdatum
+ *               validTo:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Gültigkeit Enddatum
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/promotion/:node", api_promotion_1.default);
+/**
+ * @swagger
+ * /promotion/{node}:
+ *   put:
+ *     tags:
+ *     - Promotion
+ *     summary: Promotion Aufgabe
+ *     description: Anlage eines neuen Promo-Codes
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: "NewStart"
+ *             descrition: ID des Promo-Codes
+ *           gold:
+ *             type: integer
+ *             example: "1000"
+ *             descrition: Anzahl der Goldbelohnung
+ *           diamond:
+ *             type: integer
+ *             example: "100"
+ *             descrition: Anzahl der Diamantbelohnung
+ *           experience:
+ *             type: integer
+ *             example: "1000"
+ *             descrition: Anzahl der Erfahrungsbelohnung
+ *           item:
+ *             type: integer
+ *             example: "1"
+ *             descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *           isMaster:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob nur der Streamer den Code auslösen darf
+ *           validFrom:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Gültigkeit Startdatum
+ *           validTo:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Gültigkeit Enddatum
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "NewStart"
+ *               descrition: ID des Promo-Codes
+ *             gold:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Goldbelohnung
+ *             diamond:
+ *               type: integer
+ *               example: "100"
+ *               descrition: Anzahl der Diamantbelohnung
+ *             experience:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Erfahrungsbelohnung
+ *             item:
+ *               type: integer
+ *               example: "1"
+ *               descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *             isMaster:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob nur der Streamer den Code auslösen darf
+ *             validFrom:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Startdatum
+ *             validTo:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Enddatum
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/promotion/:node", api_promotion_1.default);
+/**
+ * @swagger
+ * /promotion/{node}/redeem/{promotionHandle}/{heroName}:
+ *   post:
+ *     tags:
+ *     - Promotion
+ *     summary: Promotion Aufgabe
+ *     description: Anlage eines neuen Promo-Codes
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "promotionHandle"
+ *       in: "path"
+ *       description: "ID des Promo-Codes"
+ *       required: true
+ *       type: "string"
+ *       default: "BluescreenCommunity"
+ *     - name: "heroName"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: "NewStart"
+ *               descrition: ID des Promo-Codes
+ *             gold:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Goldbelohnung
+ *             diamond:
+ *               type: integer
+ *               example: "100"
+ *               descrition: Anzahl der Diamantbelohnung
+ *             experience:
+ *               type: integer
+ *               example: "1000"
+ *               descrition: Anzahl der Erfahrungsbelohnung
+ *             item:
+ *               type: integer
+ *               example: "1"
+ *               descrition: ID des Gegenstands der Gegenstandsbelohnung
+ *             isMaster:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob nur der Streamer den Code auslösen darf
+ *             validFrom:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Startdatum
+ *             validTo:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Gültigkeit Enddatum
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.post("/promotion/:node/redeem/:promotionHandle/:heroName", api_promotion_1.default);
+/**
+ * @swagger
+ * /promotion/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Promotion
+ *     summary: Promotion
+ *     description: Löscht einen bestimmten Promo-Code
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Promo-Codes"
+ *       required: true
+ *       type: "string"
+ *       default: "gold"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/promotion/:node/:handle", api_promotion_1.default);
 //#endregion
 //#region Say
 /**
@@ -4066,6 +3883,177 @@ router.put("/say/:node", api_say_1.default);
  *         description: no data
  */
 router.delete("/say/:node/:command", api_say_1.default);
+//#endregion
+//#region State Storage
+/**
+ * @swagger
+ * /stateStorage:
+ *   get:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Rückgabe aller Tabellenkonfiguarationen des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: 'heroes'
+ *               name:
+ *                 type: string
+ *                 example: 'Aktive Helden'
+ *               storage:
+ *                 type: string
+ *                 example: ''
+ *               channelName:
+ *                 type: string
+ *                 example: 'craffel'
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/stateStorage", api_stateStorage_1.default);
+/**
+ * @swagger
+ * /stateStorage/{name}:
+ *   get:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Rückgabe der Tabellenkonfiguaration einer Tabelle des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Seite für die Übersetzungen."
+ *       required: true
+ *       default: "heroes"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: 'heroes'
+ *               name:
+ *                 type: string
+ *                 example: 'Aktive Helden'
+ *               storage:
+ *                 type: string
+ *                 example: ''
+ *               channelName:
+ *                 type: string
+ *                 example: 'craffel'
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/stateStorage/:name", api_stateStorage_1.default);
+/**
+ * @swagger
+ * /stateStorage/:
+ *   put:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Anlage einer neuen Tabellenkonfiguaration des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: string
+ *             example: 'heroes'
+ *           name:
+ *             type: string
+ *             example: 'Aktive Helden'
+ *           storage:
+ *             type: string
+ *             example: ''
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: string
+ *               example: 'heroes'
+ *             name:
+ *               type: string
+ *               example: 'Aktive Helden'
+ *             storage:
+ *               type: string
+ *               example: ''
+ *             channelName:
+ *               type: string
+ *               example: 'craffel'
+ *       404:
+ *         description: no data
+ */
+router.put("/stateStorage", api_stateStorage_1.default);
+/**
+ * @swagger
+ * /stateStorage/{name}:
+ *   delete:
+ *     tags:
+ *     - StateStorage
+ *     summary: Tabellenkonfiguarationen
+ *     description: Löschen der Tabellenkonfiguaration einer Tabelle des angemeldeten Benutzers.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Seite für die Übersetzungen."
+ *       required: true
+ *       default: "heroes"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.delete("/stateStorage/:name", api_stateStorage_1.default);
 //#endregion
 //#region Trainer
 /**
@@ -4556,6 +4544,118 @@ router.get("/twitch/userdata", api_twitch_1.default);
  *         description: no data
  */
 router.post("/twitch", api_twitch_1.default);
+//#endregion
+//#region Validation
+/**
+ * @swagger
+ * /validation:
+ *   get:
+ *     tags:
+ *     - Validation
+ *     summary: Validierungen
+ *     description: Rückgabe aller Validierungen.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               page:
+ *                 type: string
+ *                 example: "promotion"
+ *                 descrition: Name der Seite
+ *               handle:
+ *                 type: string
+ *                 example: "navigtion"
+ *                 descrition: ID der Validation
+ *               min:
+ *                 type: integer
+ *                 example: 0
+ *                 descrition: Erlaubter Minimalwert
+ *               max:
+ *                 type: integer
+ *                 example: 1000
+ *                 descrition: Erlaubter Minimalwert
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/validation", api_validation_1.default);
+/**
+ * @swagger
+ * /validation/{page}:
+ *   get:
+ *     tags:
+ *     - Validation
+ *     summary: Validierungen
+ *     description: Rückgabe aller Validierungen einer Seite
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "page"
+ *       in: "path"
+ *       description: "Name der Seite"
+ *       required: true
+ *       default: "navigation"
+ *     - name: "language"
+ *       in: "path"
+ *       description: "Sprache für die Übersetzung."
+ *       required: true
+ *       default: "de-DE"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               page:
+ *                 type: string
+ *                 example: "promotion"
+ *                 descrition: Name der Seite
+ *               handle:
+ *                 type: string
+ *                 example: "navigtion"
+ *                 descrition: ID der Validation
+ *               min:
+ *                 type: integer
+ *                 example: 0
+ *                 descrition: Erlaubter Minimalwert
+ *               max:
+ *                 type: integer
+ *                 example: 1000
+ *                 descrition: Erlaubter Minimalwert
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/validation/:page", api_validation_1.default);
 //#endregion
 //#region Version
 /**

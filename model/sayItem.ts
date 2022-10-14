@@ -80,7 +80,7 @@ export class SayItem extends Model<SayItem>{
             lastRun: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: new Date(2020, 1, 1)
+                defaultValue: Date.UTC(2020, 1, 1)
             },
             delay: {
                 type: DataTypes.INTEGER,

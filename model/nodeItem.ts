@@ -61,7 +61,7 @@ export class NodeItem extends Model<NodeItem>{
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
       sequelize.models.node.belongsTo(sequelize.models.twitch, { as: 'twitch', foreignKey: 'name'});
       sequelize.models.node.belongsTo(sequelize.models.twitchUser, { as: 'twitchUser', foreignKey: 'name'});
-}
+    }
 }
 
 module.exports.default = NodeItem;

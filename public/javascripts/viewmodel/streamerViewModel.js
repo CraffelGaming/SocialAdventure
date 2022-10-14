@@ -64,10 +64,11 @@ $(async () => {
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name'), visible: false },
-                { dataField: "displayName", caption: translate(language, 'displayName'), width: 400, overflow: 'hidden' },
+                { dataField: "displayName", caption: translate(language, 'displayName'), overflow: 'hidden' },
                 { dataField: "language", caption: translate(language, 'language'), width: 120 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), dataType:'boolean', alignment: 'left', width: 120 },
-                { dataField: "endpoint", caption: translate(language, 'endpoint'), editorType: "dxTextBox", editorOptions: { type: 'url' }},
+                { dataField: "isLive", caption: translate(language, 'isLive'), dataType:'boolean', alignment: 'left', width: 120 },
+                { dataField: "endpoint", caption: translate(language, 'endpoint'), width: 400, editorType: "dxTextBox", editorOptions: { type: 'url' }},
                 {
                     type: "buttons",
                     buttons: [{

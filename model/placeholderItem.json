@@ -7,5 +7,6 @@
     { "handle": "$counter",     "translation" : "counter",      "isCounter": true},
     { "handle": "$raider",      "translation" : "raider",       "isShoutout": true},
     { "handle": "$raiderGame",  "translation" : "raiderGame",   "isShoutout": true},
-    { "handle": "$raiderUrl",   "translation" : "raiderUrl",    "isShoutout": true}
+    { "handle": "$raiderUrl",   "translation" : "raiderUrl",    "isShoutout": true},
+    { "handle": "$raiderTitle", "translation" : "raiderTitle",  "isShoutout": true}
 ]

@@ -16,7 +16,7 @@ export class Channel {
     say: Say[];
     loot: Loot;
     twitch: Twitch;
-    stream: streamItem;
+    stream: twitchStreamItem;
 
     //#region Construct
     constructor(node: NodeItem){
@@ -39,7 +39,7 @@ export class Channel {
         global.worker.log.info(`node ${this.node.name}, add streamWatcher`);
         setInterval(
             async () => {
-                global.worker.log.info(`node ${this.node.name}, streamWatcher run`);
+                global.worker.log.trace(`node ${this.node.name}, streamWatcher run`);
                 try{
                    if(this.twitch){
                         const stream = await this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));

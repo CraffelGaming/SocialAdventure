@@ -3,47 +3,52 @@
 ## Roadmap
 ### Release 1 
 Release Date: 29.10.200
-[x] Logo des Streamers in der Navigation
-[x] Prestige level für Helden
-[x] Eigene URL für jeden Streamer
-[x] Itemkategorien einbinden
-[x] Loot neue Logik implementieren.
-[x] Counter im Say Modul
-[x] Dice im Say Modul
-[x] Lurk im Say Modul
-[x] Placeholder im Say Modul
-[x] Twitch API Verbindung mit Chat
-[x] Startseite
-[x] SSL-Zertifikat einbinden (https://)
-[x] Datenübernahme vom alten Craffelmat
-[x] Validierung (Min / Max / etc.) in Datenbank speichern
-[x] Hilfe & Feedback Kontaktformular
-[x] Item Kategorien zusenden    
-[x] CopyToClipboard
-[x] Auto / Start / Stop
-[x] Validation-Engine
-[x] Performance
-[x] Refresh Button
-[x] Save Settings
-[x] Start / Stop automation 
-[x] Live Auto Control
-[x] Full qualified API Connection
-[ ] Shoutout
+- [x] Logo des Streamers in der Navigation
+- [x] Prestige level für Helden
+- [x] Eigene URL für jeden Streamer
+- [x] Itemkategorien einbinden
+- [x] Loot neue Logik implementieren.
+- [x] Counter im Say Modul
+- [x] Dice im Say Modul
+- [x] Lurk im Say Modul
+- [x] Placeholder im Say Modul
+- [x] Twitch API Verbindung mit Chat
+- [x] Startseite
+- [x] SSL-Zertifikat einbinden (https://)
+- [x] Datenübernahme vom alten Craffelmat
+- [x] Validierung (Min / Max / etc.) in Datenbank speichern
+- [x] Hilfe & Feedback Kontaktformular
+- [x] Item Kategorien zusenden    
+- [x] CopyToClipboard
+- [x] Auto / Start / Stop
+- [x] Validation-Engine
+- [x] Performance
+- [x] Refresh Button
+- [x] Save Settings
+- [x] Start / Stop automation 
+- [x] Live Auto Control
+- [x] Full qualified API Connection
+- [x]  Shoutout
+- [x]  Live Highlight auf Webseite
+- [x]  Datum Format bei Befehle (Say)
 
 ### Release 2
-## Error Collection
-Release: 2023
-[ ] Englisch
-[ ] API aufräumen
-[ ] Datenspeicher für Say-Module
-[ ] Keyschleuder
-[ ] UI Design überarbeiten -> Profi suchen
-[ ] Diamanten
-[ ] GitHub Readme.md überarbeiten
-[ ] Item-Datei hochladen
-[ ] Kampf / Steal LOG
-[ ] Mehr Parameter
 
+Release: 2023
+- []  Englisch
+- []  API aufräumen
+- []  Datenspeicher für Say-Module
+- []  Keyschleuder
+- []  UI Design überarbeiten -> Profi suchen
+- []  Diamanten
+- []  GitHub Readme.md überarbeiten
+- []  Item-Datei hochladen
+- []  Kampf / Steal LOG
+- []  Mehr Parameter
+- []  Live Push Notification
+- []  Handbuch
+
+## Error Collection
 ### Say
 * E-10000 execute
 * E-10001 plus

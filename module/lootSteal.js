@@ -21,6 +21,8 @@ class LootSteal {
         this.isSource = true;
         this.isTarget = true;
         this.isItem = true;
+        this.isItemHero = true;
+        this.isItemHeroes = true;
         this.isAdventure = true;
         this.isTimeout = true;
         this.isSteal = true;
@@ -116,6 +118,8 @@ class LootSteal {
                     this.adventure = yield this.getAdventure(this.targetHero);
                     if (this.adventure) {
                         this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")));
+                        if (!this.isItem)
+                            this.isItemHero = false;
                     }
                 }
             }
@@ -124,6 +128,8 @@ class LootSteal {
                 if (this.adventure) {
                     this.targetHero = (yield this.loot.channel.database.sequelize.models.hero.findByPk(this.adventure.getDataValue("heroName")));
                     this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")));
+                    if (!this.isItem)
+                        this.isItemHeroes = false;
                 }
             }
         });

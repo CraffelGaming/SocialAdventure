@@ -8,10 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Say = void 0;
 const translationItem_1 = require("../model/translationItem");
 const module_1 = require("./module");
+const twitch_json_1 = __importDefault(require("../twitch.json"));
 class Say extends module_1.Module {
     //#region Construct
     constructor(translation, channel, item) {
@@ -268,6 +272,18 @@ class Say extends module_1.Module {
                         global.worker.log.trace(`module ${this.item.command} shout executed`);
                         if (this.item.isCounter) {
                             this.item.text = this.item.text.replace('$counter', this.item.count.toString());
+                        }
+                        if (this.item.isShoutout) {
+                            const raider = yield this.channel.twitch.getUserByName(command.target);
+                            if (raider) {
+                                const raiderChannel = yield this.channel.twitch.GetChannel(raider.id);
+                                if (raiderChannel) {
+                                    this.item.text = this.item.text.replace('$raider', raider.display_name);
+                                    this.item.text = this.item.text.replace('$raiderGame', raiderChannel.game_name);
+                                    this.item.text = this.item.text.replace('$raiderTitle', raiderChannel.title);
+                                    this.item.text = this.item.text.replace('$raiderUrl', twitch_json_1.default.url_twitch + raider.login);
+                                }
+                            }
                         }
                         return this.replacePlaceholder(command, this.item.text);
                     }

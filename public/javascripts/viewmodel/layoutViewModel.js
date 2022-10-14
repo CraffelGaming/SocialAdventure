@@ -28,6 +28,7 @@ $(async () => {
         }
 
         $("#menu").dxMenu({
+            adaptivityEnabled: true,
             items: items,
             onItemClick: function (e) {
                 if (e.itemData.href) {

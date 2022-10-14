@@ -234,9 +234,20 @@ class Loot extends module_1.Module {
                         .replace('$2', steal.targetHero.getDataValue("name"));
                 }
                 else if (!steal.isItem) {
-                    return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoItem')
-                        .replace('$1', command.source)
-                        .replace('$2', command.parameters[0]);
+                    if (!steal.isItemHero) {
+                        return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoItemHero')
+                            .replace('$1', command.source)
+                            .replace('$2', command.target);
+                    }
+                    else if (!steal.isItemHeroes) {
+                        return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoItemHeroes')
+                            .replace('$1', command.source);
+                    }
+                    else {
+                        return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoItem')
+                            .replace('$1', command.source)
+                            .replace('$2', command.parameters[0]);
+                    }
                 }
                 else if (!steal.isSource) {
                     return translationItem_1.TranslationItem.translate(this.translation, 'stealItemNoSource')

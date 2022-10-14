@@ -34,7 +34,7 @@ class Channel {
     streamWatcher() {
         global.worker.log.info(`node ${this.node.name}, add streamWatcher`);
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
-            global.worker.log.info(`node ${this.node.name}, streamWatcher run`);
+            global.worker.log.trace(`node ${this.node.name}, streamWatcher run`);
             try {
                 if (this.twitch) {
                     const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));

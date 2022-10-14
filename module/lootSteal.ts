@@ -21,6 +21,8 @@ export class LootSteal {
     isSource: boolean = true;
     isTarget: boolean = true;
     isItem: boolean = true;
+    isItemHero: boolean = true;
+    isItemHeroes: boolean = true;
     isAdventure: boolean = true;
     isTimeout: boolean = true;
     isSteal: boolean = true;
@@ -108,6 +110,9 @@ export class LootSteal {
                 this.adventure = await this.getAdventure(this.targetHero);
                 if(this.adventure){
                     this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")) as Model<ItemItem>;
+
+                    if(!this.isItem)
+                        this.isItemHero = false;
                 }
             }
         } else {
@@ -115,6 +120,9 @@ export class LootSteal {
             if(this.adventure){
                 this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.adventure.getDataValue("heroName")) as Model<HeroItem>;
                 this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")) as Model<ItemItem>;
+
+                if(!this.isItem)
+                    this.isItemHeroes = false;
             }
         }
     }

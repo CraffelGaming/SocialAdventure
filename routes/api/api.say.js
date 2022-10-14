@@ -44,7 +44,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
     const channel = global.worker.channels.find(x => x.node.name === node.name);
     if (channel) {
-        const item = yield channel.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: true });
+        const item = yield channel.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: false });
         if (item)
             response.status(200).json(item);
         else

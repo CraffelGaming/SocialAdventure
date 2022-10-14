@@ -70,16 +70,20 @@ export class Twitch {
     //#endregion
 
     //#region API
-    async GetChannel(id: string){
-        return await this.push('GET', '/channels?broadcaster_id=' + id);
+    async GetChannel(id: string): Promise<twitchChannelItem>{
+        return await this.push<twitchChannelItem>('GET', '/channels?broadcaster_id=' + id);
     }
 
-    async GetStream(id: string) : Promise<streamItem>{
-        return await this.push<streamItem>('GET', '/streams?user_id=' + id);
+    async GetStream(id: string): Promise<twitchStreamItem>{
+        return await this.push<twitchStreamItem>('GET', '/streams?user_id=' + id);
     }
 
-    async getUser(id: string){
-        return await this.push('GET', '/users?id=' + id);
+    async getUser(id: string): Promise<credentialUserItem> {
+        return await this.push<credentialUserItem>('GET', '/users?id=' + id);
+    }
+
+    async getUserByName(name: string): Promise<credentialUserItem> {
+        return await this.push<credentialUserItem>('GET', '/users?login=' + name);
     }
 
     async getCurrentUser(credential: credentialItem) : Promise<credentialUserItem>{

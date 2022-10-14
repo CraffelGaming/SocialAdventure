@@ -21,6 +21,22 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
     else response.status(404).json();
 });
 
+router.get('/' + endpoint + '/live', async (request: express.Request, response: express.Response) => {
+    global.worker.log.trace(`get ${endpoint}`);
+    let item: NodeItem;
+
+    if(request.query.childs !== "false"){
+        item = await global.worker.globalDatabase.sequelize.models.node.findAll({where: { isLive: true, isActive: true }, order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+            model: global.worker.globalDatabase.sequelize.models.twitchUser,
+            as: 'twitchUser',
+        }]}) as undefined as NodeItem;
+    }
+    else item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: false}) as undefined as NodeItem;
+
+    if(item) response.status(200).json(item);
+    else response.status(404).json();
+});
+
 router.get('/' + endpoint + '/default', async (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}, default`);
     await global.defaultNode(request, response);
