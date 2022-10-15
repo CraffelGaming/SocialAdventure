@@ -117,8 +117,9 @@ declare module 'express-session' {
 // session handler
 app.use(session({
     'secret': settings.secret,
-    'resave': true,
-    'saveUninitialized': true
+    'resave': false,
+    'saveUninitialized': true,
+    cookie: { sameSite: 'lax' }
   }))
 
 // security

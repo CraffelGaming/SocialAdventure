@@ -222,7 +222,7 @@ class Loot extends module_1.Module {
                         .replace('$1', command.source);
                 }
                 else if (!steal.isLoose) {
-                    return translationItem_1.TranslationItem.translate(this.translation, 'stealItemFailed')
+                    return translationItem_1.TranslationItem.translate(this.translation, 'stealItemFailedLoose')
                         .replace('$1', command.source)
                         .replace('$2', steal.targetHero.getDataValue("name"))
                         .replace('$3', steal.item.getDataValue("value"))

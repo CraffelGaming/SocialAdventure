@@ -113,8 +113,8 @@ export class LootSteal {
 
                     if(!this.isItem)
                         this.isItemHero = false;
-                }
-            }
+                } else  this.isItemHero = false;
+            } this.isTarget = false;
         } else {
             this.adventure = await this.getAdventure();
             if(this.adventure){
@@ -123,7 +123,7 @@ export class LootSteal {
 
                 if(!this.isItem)
                     this.isItemHeroes = false;
-            }
+            } this.isItemHeroes = false;
         }
     }
 

@@ -121,7 +121,10 @@ class LootSteal {
                         if (!this.isItem)
                             this.isItemHero = false;
                     }
+                    else
+                        this.isItemHero = false;
                 }
+                this.isTarget = false;
             }
             else {
                 this.adventure = yield this.getAdventure();
@@ -131,6 +134,7 @@ class LootSteal {
                     if (!this.isItem)
                         this.isItemHeroes = false;
                 }
+                this.isItemHeroes = false;
             }
         });
     }

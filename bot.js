@@ -86,8 +86,9 @@ global.isRegistered = function isRegistered(request, response) {
 // session handler
 app.use(session({
     'secret': settings_json_1.default.secret,
-    'resave': true,
-    'saveUninitialized': true
+    'resave': false,
+    'saveUninitialized': true,
+    cookie: { sameSite: 'lax' }
 }));
 // security
 app.disable('x-powered-by');

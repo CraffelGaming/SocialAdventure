@@ -41,16 +41,22 @@ const heroItem_1 = require("../../model/heroItem");
 const twitch_json_1 = __importDefault(require("../../twitch.json"));
 const router = express.Router();
 const endpoint = 'twitch';
-router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/' + endpoint + '/', (request, response) => {
     global.worker.log.trace(`get ${endpoint}`);
-    if (!request.session.state)
+    global.worker.log.trace(`twitch - session information ${request.session.id}`);
+    global.worker.log.trace(`twitch - session information ${request.session.state}`);
+    if (!request.session.state) {
         request.session.state = uniqid();
+        global.worker.log.trace(`twitch - set locale state to ${request.session.state}`);
+    }
+    else
+        global.worker.log.trace(`twitch - locale state is ${request.session.state}`);
     response.status(200).json({ url: twitch_json_1.default.url_authorize + '?client_id=' + twitch_json_1.default.client_id +
             '&redirect_uri=' + twitch_json_1.default.redirect_uri +
             '&response_type=' + twitch_json_1.default.response_type +
             '&scope=' + twitch_json_1.default.scope +
             '&state=' + request.session.state });
-}));
+});
 router.get('/' + endpoint + '/userdata', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     global.worker.log.trace(`get ${endpoint} userdata`);
     if (request.session.userData != null) {

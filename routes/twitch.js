@@ -22,21 +22,34 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const endpoint = 'twitch';
 const router = express.Router();
-router.get('/' + endpoint, (request, response) => {
+router.get('/' + endpoint, (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    global.worker.log.trace(`login - twitch state ${request.query.state}`);
+    global.worker.log.trace(`login - locale state ${request.session.state}`);
     if (request.query.state === request.session.state) {
-        global.worker.login(request, response, callback);
+        yield global.worker.login(request, response, callback);
     }
     else {
+        global.worker.log.warn(`login - hack dedection, wrong state`);
         response.render(endpoint, {
             title: 'Social Adventure'
         });
     }
-});
+}));
 function callback(request, response) {
+    global.worker.log.trace(`login - callback ${request.query.state}`);
     response.render(endpoint, {
         title: 'Craffels Abenteuer'
     });

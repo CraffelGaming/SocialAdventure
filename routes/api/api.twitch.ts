@@ -7,11 +7,15 @@ import twitchData from '../../twitch.json';
 const router = express.Router();
 const endpoint = 'twitch';
 
-router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
+router.get('/' + endpoint + '/', (request: express.Request, response: express.Response) => {
     global.worker.log.trace(`get ${endpoint}`);
 
-    if(!request.session.state)
+    global.worker.log.trace(`twitch - session information ${request.session.id}`);
+    global.worker.log.trace(`twitch - session information ${request.session.state}`);
+    if(!request.session.state){
         request.session.state = uniqid();
+        global.worker.log.trace(`twitch - set locale state to ${request.session.state}`);
+    } else   global.worker.log.trace(`twitch - locale state is ${request.session.state}`);
 
     response.status(200).json({ url: twitchData.url_authorize + '?client_id=' + twitchData.client_id +
                                     '&redirect_uri=' + twitchData.redirect_uri +

@@ -64,13 +64,15 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
     if (channel) {
         if (global.isMaster(request, response, node)) {
             if (request.body.command != null && request.body.command.length > 0) {
-                const item = yield channel.database.sequelize.models.loot.findByPk(request.body.command);
+                let item = yield channel.database.sequelize.models.loot.findByPk(request.body.command);
                 if (item) {
                     yield channel.database.sequelize.models.loot.update(request.body, { where: { command: request.body.command } });
                 }
                 else {
                     yield channel.database.sequelize.models.loot.create(request.body);
                 }
+                item = (yield channel.database.sequelize.models.loot.findByPk(request.body.command));
+                channel.loot.settings[channel.loot.settings.findIndex(x => x.command === request.body.command)] = item.get();
                 response.status(201).json(request.body);
             }
             else {

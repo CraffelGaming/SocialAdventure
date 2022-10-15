@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { NodeItem } from '../../model/nodeItem';
 import { LootItem } from '../../model/lootItem';
+import { Model } from 'sequelize';
 const router = express.Router();
 const endpoint = 'loot';
 
@@ -34,12 +35,15 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
     if(channel) {
         if(global.isMaster(request, response, node)){
             if(request.body.command != null && request.body.command.length > 0){
-                const item = await channel.database.sequelize.models.loot.findByPk(request.body.command) as unknown as LootItem;
+                let item = await channel.database.sequelize.models.loot.findByPk(request.body.command) as Model<LootItem>;
                 if(item){
                     await channel.database.sequelize.models.loot.update(request.body, {where: {command: request.body.command}});
                 } else {
                     await channel.database.sequelize.models.loot.create(request.body as any);
                 }
+
+                item = await channel.database.sequelize.models.loot.findByPk(request.body.command) as Model<LootItem>;
+                channel.loot.settings[channel.loot.settings.findIndex(x => x.command === request.body.command)] = item.get();
                 response.status(201).json(request.body);
             } else {
                 response.status(406).json();

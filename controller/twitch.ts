@@ -172,9 +172,11 @@ export class Twitch {
             this.credential = await this.authentification(code);
 
             if(this.credential){
+                global.worker.log.trace(`login - credential valid`);
                 this.credentialUser = await this.getCurrentUser(this.credential);
 
                 if(this.credentialUser){
+                    global.worker.log.trace(`login - credential user valid`);
                     await this.saveTwitch(state, this.credential, this.credentialUser);
                     await this.saveTwitchUser(this.credentialUser);
                     return true;
@@ -187,6 +189,7 @@ export class Twitch {
     }
 
     async saveTwitch(state: string, credential: credentialItem, user: globalThis.credentialUserItem): Promise<Model<TwitchItem>>{
+        global.worker.log.trace(`login - saveTwitch`);
         try {
             this.twitch = (await global.worker.globalDatabase.sequelize.models.twitch.findOrCreate({
                 defaults: { state },
@@ -208,6 +211,7 @@ export class Twitch {
     }
 
     async updateTwitch(credential: credentialItem): Promise<Model<TwitchItem>>{
+        global.worker.log.trace(`login - updateTwitch`);
         try {
             this.twitch = (await global.worker.globalDatabase.sequelize.models.twitch.findByPk(this.channelName)) as Model<TwitchItem>;
 
@@ -225,6 +229,7 @@ export class Twitch {
     }
 
     async saveTwitchUser(user: globalThis.credentialUserItem): Promise<Model<TwitchUserItem>>{
+        global.worker.log.trace(`login - saveTwitchUser`);
         try {
             this.twitchUser = (await global.worker.globalDatabase.sequelize.models.twitchUser.findOrCreate({
                 defaults: { viewCount: 0 },

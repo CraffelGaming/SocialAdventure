@@ -184,8 +184,10 @@ class Twitch {
             try {
                 this.credential = yield this.authentification(code);
                 if (this.credential) {
+                    global.worker.log.trace(`login - credential valid`);
                     this.credentialUser = yield this.getCurrentUser(this.credential);
                     if (this.credentialUser) {
+                        global.worker.log.trace(`login - credential user valid`);
                         yield this.saveTwitch(state, this.credential, this.credentialUser);
                         yield this.saveTwitchUser(this.credentialUser);
                         return true;
@@ -200,6 +202,7 @@ class Twitch {
     }
     saveTwitch(state, credential, user) {
         return __awaiter(this, void 0, void 0, function* () {
+            global.worker.log.trace(`login - saveTwitch`);
             try {
                 this.twitch = (yield global.worker.globalDatabase.sequelize.models.twitch.findOrCreate({
                     defaults: { state },
@@ -220,6 +223,7 @@ class Twitch {
     }
     updateTwitch(credential) {
         return __awaiter(this, void 0, void 0, function* () {
+            global.worker.log.trace(`login - updateTwitch`);
             try {
                 this.twitch = (yield global.worker.globalDatabase.sequelize.models.twitch.findByPk(this.channelName));
                 this.twitch.setDataValue('accessToken', credential.access_token);
@@ -236,6 +240,7 @@ class Twitch {
     }
     saveTwitchUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
+            global.worker.log.trace(`login - saveTwitchUser`);
             try {
                 this.twitchUser = (yield global.worker.globalDatabase.sequelize.models.twitchUser.findOrCreate({
                     defaults: { viewCount: 0 },
