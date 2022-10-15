@@ -37,92 +37,116 @@ const promotionItem_1 = require("../../model/promotionItem");
 const router = express.Router();
 const endpoint = 'promotion';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        const item = yield channel.database.sequelize.models.promotion.findAll({ order: [['handle', 'ASC']], raw: false });
-        if (item)
-            response.status(200).json(item);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
         else
-            response.status(404).json();
-    }
-    else
-        response.status(404).json();
-}));
-router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (global.isMaster(request, response, node)) {
-            response.status(yield promotionItem_1.PromotionItem.put({ sequelize: channel.database.sequelize, globalSequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
-        }
-        else {
-            response.status(403).json();
-        }
-    }
-    else
-        response.status(404).json();
-}));
-router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (global.isMaster(request, response, node)) {
-            if (request.params.handle != null) {
-                const item = yield channel.database.sequelize.models.promotion.findByPk(request.params.handle);
-                if (item) {
-                    yield channel.database.sequelize.models.promotion.destroy({ where: { handle: request.params.handle } });
-                }
-                response.status(204).json();
-            }
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            const item = yield channel.database.sequelize.models.promotion.findAll({ order: [['handle', 'ASC']], raw: false });
+            if (item)
+                response.status(200).json(item);
             else
                 response.status(404).json();
         }
-        else {
-            response.status(403).json();
-        }
+        else
+            response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
-router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`post ${endpoint}, node ${request.params.node} redeem ${request.params.promotionHandle} ${request.params.heroName}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        const promotion = yield channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle);
-        if (promotion) {
-            if (global.isMaster(request, response, node) || global.isHero(request, response, request.params.heroName) && !promotion.isMaster) {
-                response.status(yield promotionItem_1.PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName })).json(promotion);
+router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (global.isMaster(request, response, node)) {
+                response.status(yield promotionItem_1.PromotionItem.put({ sequelize: channel.database.sequelize, globalSequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
             }
             else {
                 response.status(403).json();
             }
         }
         else
-            response.status(406).json();
+            response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+}));
+router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (global.isMaster(request, response, node)) {
+                if (request.params.handle != null) {
+                    const item = yield channel.database.sequelize.models.promotion.findByPk(request.params.handle);
+                    if (item) {
+                        yield channel.database.sequelize.models.promotion.destroy({ where: { handle: request.params.handle } });
+                    }
+                    response.status(204).json();
+                }
+                else
+                    response.status(404).json();
+            }
+            else {
+                response.status(403).json();
+            }
+        }
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+}));
+router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`post ${endpoint}, node ${request.params.node} redeem ${request.params.promotionHandle} ${request.params.heroName}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            const promotion = yield channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle);
+            if (promotion) {
+                if (global.isMaster(request, response, node) || global.isHero(request, response, request.params.heroName) && !promotion.isMaster) {
+                    response.status(yield promotionItem_1.PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName })).json(promotion);
+                }
+                else {
+                    response.status(403).json();
+                }
+            }
+            else
+                response.status(406).json();
+        }
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.promotion.js.map

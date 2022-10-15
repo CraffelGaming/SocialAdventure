@@ -37,18 +37,24 @@ const helpItem_1 = require("../../model/helpItem");
 const router = express.Router();
 const endpoint = 'help';
 router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        response.status(yield helpItem_1.HelpItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
+    try {
+        global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            response.status(yield helpItem_1.HelpItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
+        }
+        else
+            response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.help.js.map

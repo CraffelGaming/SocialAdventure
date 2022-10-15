@@ -88,7 +88,7 @@ export class ItemItem extends Model<ItemItem>{
         }
     }
 
-    static async put({ sequelize,globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem }): Promise<number>{
+    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem }): Promise<number>{
         try{
                 const item = await sequelize.models.item.findByPk(element.handle);
                 if(await ItemItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){

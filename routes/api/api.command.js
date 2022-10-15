@@ -36,52 +36,64 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'command';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        let item = yield channel.database.sequelize.models.command.findAll({ order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
-        if (!global.isMaster(request, response)) {
-            item = item.filter(x => x.isMaster === false);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            let item = yield channel.database.sequelize.models.command.findAll({ order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
+            if (!global.isMaster(request, response)) {
+                item = item.filter(x => x.isMaster === false);
+            }
+            if (request.query.counter !== "1") {
+                item = item.filter(x => x.isCounter === false);
+            }
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
         }
-        if (request.query.counter !== "1") {
-            item = item.filter(x => x.isCounter === false);
-        }
-        if (item)
-            response.status(200).json(item);
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 router.get('/' + endpoint + '/:node/:module', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        let item = yield channel.database.sequelize.models.command.findAll({ where: { module: request.params.module }, order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
-        if (!global.isMaster(request, response, node)) {
-            item = item.filter(x => x.isMaster === false);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            let item = yield channel.database.sequelize.models.command.findAll({ where: { module: request.params.module }, order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
+            if (!global.isMaster(request, response, node)) {
+                item = item.filter(x => x.isMaster === false);
+            }
+            if (request.query.counter !== "1") {
+                item = item.filter(x => x.isCounter === false);
+            }
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
         }
-        if (request.query.counter !== "1") {
-            item = item.filter(x => x.isCounter === false);
-        }
-        if (item)
-            response.status(200).json(item);
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.command.js.map

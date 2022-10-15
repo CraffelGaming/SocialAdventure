@@ -36,20 +36,32 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'validation';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}`);
-    const item = yield global.worker.globalDatabase.sequelize.models.validation.findAll();
-    if (item)
-        response.status(200).json(item);
-    else
-        response.status(404).json();
+    try {
+        global.worker.log.trace(`get ${endpoint}`);
+        const item = yield global.worker.globalDatabase.sequelize.models.validation.findAll();
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 router.get('/' + endpoint + '/:page', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, page ${request.params.page}`);
-    const item = yield global.worker.globalDatabase.sequelize.models.validation.findAll({ where: { page: request.params.page }, raw: true });
-    if (item)
-        response.status(200).json(item);
-    else
-        response.status(404).json();
+    try {
+        global.worker.log.trace(`get ${endpoint}, page ${request.params.page}`);
+        const item = yield global.worker.globalDatabase.sequelize.models.validation.findAll({ where: { page: request.params.page }, raw: true });
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.validation.js.map

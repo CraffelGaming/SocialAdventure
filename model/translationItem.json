@@ -43,12 +43,14 @@
     { "page": "promotion", "handle": "201_redeem", "language": "de-DE", "translation": "Promo-Code abgelaufen."},
     { "page": "promotion", "handle": "204_redeem", "language": "de-DE", "translation": "Promo-Code bereits eingelöst."},
     { "page": "promotion", "handle": "403_redeem", "language": "de-DE", "translation": "Promo-Code nicht erlaubt."},
+    { "page": "promotion", "handle": "500_redeem", "language": "de-DE", "translation": "Interner Fehler."},
     { "page": "promotion", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "promotion", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
     { "page": "promotion", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},
     { "page": "promotion", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "promotion", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "promotion", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "promotion", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
 
     { "page": "streamer", "handle": "title", "language": "de-DE", "translation": "Streamer"},
     { "page": "streamer", "handle": "name", "language": "de-DE", "translation": "Streamer"},
@@ -74,6 +76,7 @@
     { "page": "help", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "help", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "help", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "help", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
 
     { "page": "index", "handle": "title", "language": "de-DE", "translation": "Herzlich Willkommen"},
     { "page": "index", "handle": "information", "language": "de-DE", "translation": "Willkommen auf den spannenden Twitch-Abenteuer."},
@@ -112,6 +115,7 @@
     { "page": "daily", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesem Kanal verboten."},
     { "page": "daily", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "daily", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "daily", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
     
     { "page": "placeholder", "handle": "title", "language": "de-DE", "translation": "Platzhalter"},
     { "page": "placeholder", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},
@@ -131,6 +135,7 @@
     { "page": "placeholder", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesem Kanal verboten."},
     { "page": "placeholder", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "placeholder", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "placeholder", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
 
     { "page": "wallet", "handle": "gold", "language": "de-DE", "translation": "Gold"},
     { "page": "wallet", "handle": "diamond", "language": "de-DE", "translation": "Diamanten"},
@@ -209,6 +214,7 @@
     { "page": "say", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesem Kanal verboten."},
     { "page": "say", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "say", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."}, 
+    { "page": "say", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
     
     { "page": "item", "handle": "title", "language": "de-DE", "translation": "Gegenstände"},
     { "page": "item", "handle": "item", "language": "de-DE", "translation": "Gegenstand"},
@@ -242,6 +248,7 @@
     { "page": "hero", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesem Kanal verboten."},
     { "page": "hero", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "hero", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "hero", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
     
     { "page": "module", "handle": "stop", "language": "de-DE", "translation": "Modul wurde beendet."},
     { "page": "module", "handle": "start", "language": "de-DE", "translation": "Modul wurde gestartet."},
@@ -304,6 +311,7 @@
     { "page": "itemCategory", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesem Kanal verboten."},
     { "page": "itemCategory", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "itemCategory", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "itemCategory", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
     
     { "page": "loot", "handle": "heroAlreadyJoined", "language": "de-DE", "translation": "$1 ist bereits auf Abenteuer."}, 
     { "page": "loot", "handle": "heroJoined", "language": "de-DE", "translation": "$1 ist dem Abenteuer beigetreten."},
@@ -375,6 +383,7 @@
     { "page": "location", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesem Kanal verboten."},
     { "page": "location", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "location", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "location", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
     
     { "page": "enemy", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "enemy", "handle": "title", "language": "de-DE", "translation": "Gegner"},
@@ -393,6 +402,7 @@
     { "page": "enemy", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "enemy", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "enemy", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
+    { "page": "enemy", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
     
     { "page": "adventure", "handle": "adventure", "language": "de-DE", "translation": "Abenteuer"},
     { "page": "adventure", "handle": "title", "language": "de-DE", "translation": "Aktuelles Abenteuer"},
@@ -408,15 +418,16 @@
     { "page": "setting", "handle": "isLiveAutoControl", "language": "de-DE", "translation": "Live-Auto-Control"},
     { "page": "setting", "handle": "countUses", "language": "de-DE", "translation": "Anzahl Verwendung"},
     { "page": "setting", "handle": "countRuns", "language": "de-DE", "translation": "Anzahl Trigger"},
+    { "page": "setting", "handle": "blood", "language": "de-DE", "translation": "Blutrausch"},
+    { "page": "setting", "handle": "give", "language": "de-DE", "translation": "Gegenstand verschenken"},
+    { "page": "setting", "handle": "loot", "language": "de-DE", "translation": "Abenteuer interval"},
+    { "page": "setting", "handle": "steal", "language": "de-DE", "translation": "Gegenstand stehlen"},
+    { "page": "setting", "handle": "join", "language": "de-DE", "translation": "Abenteuer Teilnahme Timeout"},
     { "page": "setting", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "setting", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
     { "page": "setting", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},
     { "page": "setting", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "setting", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "setting", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
-    { "page": "setting", "handle": "blood", "language": "de-DE", "translation": "Blutrausch"},
-    { "page": "setting", "handle": "give", "language": "de-DE", "translation": "Gegenstand verschenken"},
-    { "page": "setting", "handle": "loot", "language": "de-DE", "translation": "Abenteuer interval"},
-    { "page": "setting", "handle": "steal", "language": "de-DE", "translation": "Gegenstand stehlen"},
-    { "page": "setting", "handle": "join", "language": "de-DE", "translation": "Abenteuer Teilnahme Timeout"}
+    { "page": "setting", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."}
 ]

@@ -37,44 +37,56 @@ const sequelize_1 = require("sequelize");
 const router = express.Router();
 const endpoint = 'level';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        const item = yield channel.database.sequelize.models.level.findAll({ order: [['handle', 'ASC']], raw: true });
-        if (item)
-            response.status(200).json(item);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            const item = yield channel.database.sequelize.models.level.findAll({ order: [['handle', 'ASC']], raw: true });
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
+        }
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 router.get('/' + endpoint + '/:node/:experience', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        const item = yield channel.database.sequelize.models.level.findOne({
-            where: { experienceMin: { [sequelize_1.Op.lte]: request.params.experience },
-                experienceMax: { [sequelize_1.Op.gte]: request.params.experience }
-            }
-        });
-        if (item)
-            response.status(200).json(item);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            const item = yield channel.database.sequelize.models.level.findOne({
+                where: { experienceMin: { [sequelize_1.Op.lte]: request.params.experience },
+                    experienceMax: { [sequelize_1.Op.gte]: request.params.experience }
+                }
+            });
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
+        }
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.level.js.map

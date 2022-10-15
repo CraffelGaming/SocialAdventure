@@ -37,70 +37,43 @@ const dailyItem_1 = require("../../model/dailyItem");
 const router = express.Router();
 const endpoint = 'daily';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        const item = yield channel.database.sequelize.models.daily.findAll({ order: [['handle', 'ASC']], raw: false });
-        if (item)
-            response.status(200).json(item);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            const item = yield channel.database.sequelize.models.daily.findAll({ order: [['handle', 'ASC']], raw: false });
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
+        }
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 router.get('/' + endpoint + '/:node/current/:count', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node} random`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    let found;
-    if (channel) {
-        const count = Number(request.params.count);
-        if (!isNaN(count)) {
-            found = yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count });
-        }
-        if (found)
-            response.status(200).json(found);
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node} random`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
         else
-            response.status(404).json();
-    }
-    else
-        response.status(404).json();
-}));
-router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`post ${endpoint}, node ${request.params.node} random`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (global.isChannel(request, response, request.params.name)) {
-            let found;
-            const count = Number(request.params.number);
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        let found;
+        if (channel) {
+            const count = Number(request.params.count);
             if (!isNaN(count)) {
-                found = (yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count }))[count - 1];
-            }
-            if (found) {
-                const hero = yield channel.database.sequelize.models.hero.findByPk(request.params.name);
-                if (hero.getDataValue("lastDaily").setHours(0, 0, 0, 0) < found.date.setHours(0, 0, 0, 0)) {
-                    hero.setDataValue("lastDaily", found.date);
-                    hero.save();
-                    yield channel.database.sequelize.models.heroWallet.increment('gold', { by: found.gold, where: { heroName: request.params.name } });
-                    yield channel.database.sequelize.models.hero.increment('experience', { by: found.experience, where: { name: request.params.name } });
-                }
-                else
-                    found = null;
+                found = yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count });
             }
             if (found)
                 response.status(200).json(found);
@@ -108,56 +81,113 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, respo
                 response.status(404).json();
         }
         else
-            response.status(403).json();
+            response.status(404).json();
     }
-    else
-        response.status(404).json();
-}));
-router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (global.isMaster(request, response, node)) {
-            response.status(yield dailyItem_1.DailyItem.put({ sequelize: channel.database.sequelize, globalSequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
-        }
-        else {
-            response.status(403).json();
-        }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
     }
-    else
-        response.status(404).json();
 }));
-router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (global.isMaster(request, response, node)) {
-            if (request.params.handle != null) {
-                const item = yield channel.database.sequelize.models.daily.findByPk(request.params.handle);
-                if (item) {
-                    yield channel.database.sequelize.models.daily.destroy({ where: { handle: request.params.handle } });
+router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`post ${endpoint}, node ${request.params.node} random`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (global.isChannel(request, response, request.params.name)) {
+                let found;
+                const count = Number(request.params.number);
+                if (!isNaN(count)) {
+                    found = (yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count }))[count - 1];
                 }
-                response.status(204).json();
+                if (found) {
+                    const hero = yield channel.database.sequelize.models.hero.findByPk(request.params.name);
+                    if (hero.getDataValue("lastDaily").setHours(0, 0, 0, 0) < found.date.setHours(0, 0, 0, 0)) {
+                        hero.setDataValue("lastDaily", found.date);
+                        hero.save();
+                        yield channel.database.sequelize.models.heroWallet.increment('gold', { by: found.gold, where: { heroName: request.params.name } });
+                        yield channel.database.sequelize.models.hero.increment('experience', { by: found.experience, where: { name: request.params.name } });
+                    }
+                    else
+                        found = null;
+                }
+                if (found)
+                    response.status(200).json(found);
+                else
+                    response.status(404).json();
             }
             else
-                response.status(404).json();
+                response.status(403).json();
         }
-        else {
-            response.status(403).json();
-        }
+        else
+            response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+}));
+router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (global.isMaster(request, response, node)) {
+                response.status(yield dailyItem_1.DailyItem.put({ sequelize: channel.database.sequelize, globalSequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
+            }
+            else {
+                response.status(403).json();
+            }
+        }
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+}));
+router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, handle ${request.params.handle}`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (global.isMaster(request, response, node)) {
+                if (request.params.handle != null) {
+                    const item = yield channel.database.sequelize.models.daily.findByPk(request.params.handle);
+                    if (item) {
+                        yield channel.database.sequelize.models.daily.destroy({ where: { handle: request.params.handle } });
+                    }
+                    response.status(204).json();
+                }
+                else
+                    response.status(404).json();
+            }
+            else {
+                response.status(403).json();
+            }
+        }
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.daily.js.map

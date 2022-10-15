@@ -36,56 +36,68 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'herotrait';
 router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-    let item;
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (request.query.childs !== "false") {
-            item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
-                        model: channel.database.sequelize.models.hero,
-                        as: 'hero',
-                    }] }));
-        }
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
+        let item;
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
         else
-            item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false }));
-        if (item)
-            response.status(200).json(item);
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (request.query.childs !== "false") {
+                item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
+                            model: channel.database.sequelize.models.hero,
+                            as: 'hero',
+                        }] }));
+            }
+            else
+                item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false }));
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
+        }
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-    let item;
-    let node;
-    if (request.params.node === 'default')
-        node = yield global.defaultNode(request, response);
-    else
-        node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-    const channel = global.worker.channels.find(x => x.node.name === node.name);
-    if (channel) {
-        if (request.query.childs !== "false") {
-            item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false, include: [{
-                        model: channel.database.sequelize.models.hero,
-                        as: 'hero',
-                    }] }));
-        }
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
+        let item;
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
         else
-            item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false }));
-        if (item)
-            response.status(200).json(item);
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        if (channel) {
+            if (request.query.childs !== "false") {
+                item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false, include: [{
+                            model: channel.database.sequelize.models.hero,
+                            as: 'hero',
+                        }] }));
+            }
+            else
+                item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false }));
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
+        }
         else
             response.status(404).json();
     }
-    else
-        response.status(404).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
 }));
 exports.default = router;
 //# sourceMappingURL=api.heroTrait.js.map

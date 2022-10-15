@@ -84,15 +84,15 @@ export class TrainerItem extends Model<TrainerItem>{
         }
     }
 
-    static async training({ sequelize, trainerHandle, heroName }: { sequelize: Sequelize, trainerHandle: string, heroName: string }): Promise<number>{
+    static async training({ sequelize, globalSequelize, trainerHandle, heroName }: { sequelize: Sequelize, globalSequelize: Sequelize, trainerHandle: string, heroName: string }): Promise<number>{
         try{
             const trainer = await sequelize.models.trainer.findByPk(trainerHandle) as Model<TrainerItem>;
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
             const heroTrait = await sequelize.models.heroTrait.findByPk(heroName) as Model<HeroTraitItem>;
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
-            const validation = await sequelize.models.validation.findAll({ where: { handle: 'hero' }}) as Model<ValidationItem>[];
+            const validation = await globalSequelize.models.validation.findAll({ where: { page: 'hero' }}) as Model<ValidationItem>[];
 
-            if(trainer && hero && heroWallet && heroTrait){
+            if(trainer && hero && heroWallet && heroTrait && validation){
                 const trait = (trainer.getDataValue("handle") + "Multipler") as keyof HeroTraitItem;
                 const value = heroTrait.getDataValue(trait) as number;
                 const price =  value * trainer.getDataValue("gold");

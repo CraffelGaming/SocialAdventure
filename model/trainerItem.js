@@ -96,15 +96,15 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
             }
         });
     }
-    static training({ sequelize, trainerHandle, heroName }) {
+    static training({ sequelize, globalSequelize, trainerHandle, heroName }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const trainer = yield sequelize.models.trainer.findByPk(trainerHandle);
                 const hero = yield sequelize.models.hero.findByPk(heroName);
                 const heroTrait = yield sequelize.models.heroTrait.findByPk(heroName);
                 const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
-                const validation = yield sequelize.models.validation.findAll({ where: { handle: 'hero' } });
-                if (trainer && hero && heroWallet && heroTrait) {
+                const validation = yield globalSequelize.models.validation.findAll({ where: { page: 'hero' } });
+                if (trainer && hero && heroWallet && heroTrait && validation) {
                     const trait = (trainer.getDataValue("handle") + "Multipler");
                     const value = heroTrait.getDataValue(trait);
                     const price = value * trainer.getDataValue("gold");

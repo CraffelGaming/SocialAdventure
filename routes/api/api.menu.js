@@ -36,29 +36,35 @@ const express = __importStar(require("express"));
 const router = express.Router();
 const endpoint = 'menu';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}`);
-    let item;
-    if (request.query.childs !== "false") {
-        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], raw: false, include: [{
-                    model: global.worker.globalDatabase.sequelize.models.menu,
-                    as: 'childs',
-                }, {
-                    model: global.worker.globalDatabase.sequelize.models.menu,
-                    as: 'parent',
-                }] }));
+    try {
+        global.worker.log.trace(`get ${endpoint}`);
+        let item;
+        if (request.query.childs !== "false") {
+            item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], raw: false, include: [{
+                        model: global.worker.globalDatabase.sequelize.models.menu,
+                        as: 'childs',
+                    }, {
+                        model: global.worker.globalDatabase.sequelize.models.menu,
+                        as: 'parent',
+                    }] }));
+        }
+        else
+            item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], raw: false }));
+        if (!global.isRegistered(request, response)) {
+            item = item.filter(x => x.authenticationRequired === false);
+        }
+        // if(!request.session.node) {
+        //    item = item.filter(x => x.nodeRequired === false)
+        // }
+        if (item)
+            response.status(200).json(item);
+        else
+            response.status(404).json();
     }
-    else
-        item = (yield global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], raw: false }));
-    if (!global.isRegistered(request, response)) {
-        item = item.filter(x => x.authenticationRequired === false);
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
     }
-    // if(!request.session.node) {
-    //    item = item.filter(x => x.nodeRequired === false)
-    // }
-    if (item)
-        response.status(200).json(item);
-    else
-        response.status(404).json();
 }));
 exports.default = router;
 //# sourceMappingURL=api.menu.js.map

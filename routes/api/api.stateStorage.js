@@ -37,57 +37,81 @@ const stateStorageItem_1 = require("../../model/stateStorageItem");
 const router = express.Router();
 const endpoint = 'stateStorage';
 router.get('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}`);
-    if (global.isRegistered(request, response)) {
-        const item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findAll({ where: { channelName: request.session.userData.login }, raw: true });
-        if (item)
-            response.status(200).json(item);
-        else
-            response.status(404).json();
+    try {
+        global.worker.log.trace(`get ${endpoint}`);
+        if (global.isRegistered(request, response)) {
+            const item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findAll({ where: { channelName: request.session.userData.login }, raw: true });
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
+        }
+        else {
+            response.status(403).json();
+        }
     }
-    else {
-        response.status(403).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
     }
 }));
 router.get('/' + endpoint + '/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`get ${endpoint}, name ${request.params.name}`);
-    if (global.isRegistered(request, response)) {
-        let item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
-        if (!item) {
-            yield stateStorageItem_1.StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: new stateStorageItem_1.StateStorageItem(request.params.name, "Standard", request.session.userData.login) });
-            item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+    try {
+        global.worker.log.trace(`get ${endpoint}, name ${request.params.name}`);
+        if (global.isRegistered(request, response)) {
+            let item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+            if (!item) {
+                yield stateStorageItem_1.StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: new stateStorageItem_1.StateStorageItem(request.params.name, "Standard", request.session.userData.login) });
+                item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+            }
+            if (item)
+                response.status(200).json(item);
+            else
+                response.status(404).json();
         }
-        if (item)
-            response.status(200).json(item);
-        else
-            response.status(404).json();
+        else {
+            response.status(403).json();
+        }
     }
-    else {
-        response.status(403).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
     }
 }));
 router.put('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    if (global.isRegistered(request, response)) {
-        request.body.channelName = request.session.userData.login;
-        response.status(yield stateStorageItem_1.StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
+    try {
+        if (global.isRegistered(request, response)) {
+            request.body.channelName = request.session.userData.login;
+            response.status(yield stateStorageItem_1.StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
+        }
+        else {
+            response.status(403).json();
+        }
     }
-    else {
-        response.status(403).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
     }
 }));
 router.delete('/' + endpoint + '/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    global.worker.log.trace(`delete ${endpoint}, name ${request.params.name}`);
-    if (global.isRegistered(request, response)) {
-        const item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login } });
-        if (item) {
-            yield global.worker.globalDatabase.sequelize.models.stateStorage.destroy({ where: { handle: request.params.name, channelName: request.session.userData.login } });
-            response.status(204).json();
+    try {
+        global.worker.log.trace(`delete ${endpoint}, name ${request.params.name}`);
+        if (global.isRegistered(request, response)) {
+            const item = yield global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login } });
+            if (item) {
+                yield global.worker.globalDatabase.sequelize.models.stateStorage.destroy({ where: { handle: request.params.name, channelName: request.session.userData.login } });
+                response.status(204).json();
+            }
+            else
+                response.status(404).json();
         }
-        else
-            response.status(404).json();
+        else {
+            response.status(403).json();
+        }
     }
-    else {
-        response.status(403).json();
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
     }
 }));
 exports.default = router;
