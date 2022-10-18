@@ -43,7 +43,33 @@ router.get('/' + endpoint + '/:node/current/:count', async (request: express.Req
         if(channel) {
             const count: number = Number(request.params.count);
             if(!isNaN(count)){
-                found = await DailyItem.getCurrentDaily({sequelize: channel.database.sequelize, count});
+                found = await DailyItem.getCurrentDaily({sequelize: channel.database.sequelize, count });
+            }
+            if(found) response.status(200).json(found);
+            else response.status(404).json();
+        } else response.status(404).json();
+    } catch(ex){
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+});
+
+router.get('/' + endpoint + '/:node/current/:count/hero/:name', async (request: express.Request, response: express.Response) => {
+    try{
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node} random`);
+        let node: NodeItem;
+
+        if(request.params.node === 'default')
+            node = await global.defaultNode(request, response);
+        else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
+
+        const channel = global.worker.channels.find(x => x.node.name === node.name)
+        let found: DailyItem[];
+
+        if(channel) {
+            const count: number = Number(request.params.count);
+            if(!isNaN(count)){
+                found = await DailyItem.getCurrentDailyByHero({sequelize: channel.database.sequelize, count, heroName: request.params.name});
             }
             if(found) response.status(200).json(found);
             else response.status(404).json();
@@ -71,7 +97,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', async (request:
                 const count: number = Number(request.params.number);
 
                 if(!isNaN(count)){
-                    found = (await DailyItem.getCurrentDaily({sequelize: channel.database.sequelize, count}))[count - 1];
+                    found = (await DailyItem.getCurrentDailyByHero({sequelize: channel.database.sequelize, count, heroName: request.params.name}))[count - 1];
                 }
 
                 if(found){

@@ -66,10 +66,10 @@ class Module {
         return Math.floor((Date.now() - date.getTime()) / 1000 / 60);
     }
     isDateTimeoutExpiredMinutes(date, timeout) {
-        return this.getDateDifferenceMinutes(date) > timeout;
+        return this.getDateDifferenceMinutes(date) >= timeout;
     }
     isDateTimeoutExpiredSeconds(date, timeout) {
-        return this.getDateDifferenceSeconds(date) > timeout;
+        return this.getDateDifferenceSeconds(date) >= timeout;
     }
     getDateTimeoutRemainingMinutes(date, timeout) {
         const diff = this.getDateDifferenceMinutes(date);

@@ -520,6 +520,82 @@ const router = express.Router();
 
 /**
  * @swagger
+ * /daily/{node}/current/{count}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - Daily
+ *     summary: Tägliche Aufgabe
+ *     description: Rückgabe Täglicher Aufgaben, die jeden Tag neu durchgemischt werden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "count"
+ *       in: "path"
+ *       description: "Anzahl der zufälligen Täglichen Aufgaben"
+ *       required: true
+ *       type: "string"
+ *       default: 3
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffelmat"
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: string
+ *                 example: "gold"
+ *                 descrition: ID der Täglichen Aufgabe
+ *               value:
+ *                 type: string
+ *                 example: "Minenarbeit"
+ *                 descrition: Name der Täglichen Aufgabe
+ *               description:
+ *                 type: string
+ *                 example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *                 descrition: Beschreibung der Täglichen Aufgabe
+ *               gold:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verdienst an Gold
+ *               experience:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verdienst an Erfahrung
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/daily/:node/current/:count/hero/:name", daily);
+
+/**
+ * @swagger
  * /daily/{node}/redeem/{number}/hero/{name}:
  *   post:
  *     tags:
@@ -543,7 +619,7 @@ const router = express.Router();
  *       default: 1
  *     - name: "name"
  *       in: "path"
- *       description: "Name des Hhelden"
+ *       description: "Name des Helden"
  *       required: true
  *       type: "string"
  *       default: "craffelmat"

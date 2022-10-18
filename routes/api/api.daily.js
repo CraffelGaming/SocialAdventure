@@ -88,6 +88,34 @@ router.get('/' + endpoint + '/:node/current/:count', (request, response) => __aw
         response.status(500).json();
     }
 }));
+router.get('/' + endpoint + '/:node/current/:count/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        global.worker.log.trace(`get ${endpoint}, node ${request.params.node} random`);
+        let node;
+        if (request.params.node === 'default')
+            node = yield global.defaultNode(request, response);
+        else
+            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        let found;
+        if (channel) {
+            const count = Number(request.params.count);
+            if (!isNaN(count)) {
+                found = yield dailyItem_1.DailyItem.getCurrentDailyByHero({ sequelize: channel.database.sequelize, count, heroName: request.params.name });
+            }
+            if (found)
+                response.status(200).json(found);
+            else
+                response.status(404).json();
+        }
+        else
+            response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+}));
 router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         global.worker.log.trace(`post ${endpoint}, node ${request.params.node} random`);
@@ -102,7 +130,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, respo
                 let found;
                 const count = Number(request.params.number);
                 if (!isNaN(count)) {
-                    found = (yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count }))[count - 1];
+                    found = (yield dailyItem_1.DailyItem.getCurrentDailyByHero({ sequelize: channel.database.sequelize, count, heroName: request.params.name }))[count - 1];
                 }
                 if (found) {
                     const hero = yield channel.database.sequelize.models.hero.findByPk(request.params.name);

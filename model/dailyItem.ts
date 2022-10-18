@@ -3,6 +3,7 @@ import { DataTypes } from 'sequelize';
 import json = require('./dailyItem.json');
 import seedrandom from 'seedrandom';
 import { ValidationItem } from './validationItem';
+import { HeroTraitItem } from './heroTraitItem';
 
 @Table({ tableName: "daily", modelName: "daily"})
 export class DailyItem extends Model<DailyItem>{
@@ -136,6 +137,15 @@ export class DailyItem extends Model<DailyItem>{
             element.experience = Math.floor(generatorReward() * (element.experienceMax - element.experienceMin + 1) + element.experienceMin);
             element.date = today;
             found.push(element);
+        }
+        return found;
+    }
+
+    static async getCurrentDailyByHero({ sequelize, count, heroName }: { sequelize: Sequelize, count: number, heroName: string }) : Promise<DailyItem[]>{
+        const found: DailyItem[] = await DailyItem.getCurrentDaily({sequelize, count})
+        const trait = await sequelize.models.heroTrait.findByPk(heroName) as Model<HeroTraitItem>;
+        for(const item of found){
+            item.gold = Math.round(item.gold * ((trait.getDataValue("goldMultipler") / 10) + 1));
         }
         return found;
     }

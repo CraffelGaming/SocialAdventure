@@ -157,6 +157,16 @@ let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Mod
             return found;
         });
     }
+    static getCurrentDailyByHero({ sequelize, count, heroName }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const found = yield DailyItem_1.getCurrentDaily({ sequelize, count });
+            const trait = yield sequelize.models.heroTrait.findByPk(heroName);
+            for (const item of found) {
+                item.gold = Math.round(item.gold * ((trait.getDataValue("goldMultipler") / 10) + 1));
+            }
+            return found;
+        });
+    }
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,

@@ -32,14 +32,14 @@ $(async () => {
     
     //#region Initialize
     async function initialize() {
-        userdata = await loadUserData();
-        dailies = await get(`/daily/default/current/3`, languageDaily);  
+        userdata = await loadUserData();       
     }
 
     async function refreshHero(){
-        hero = await get('/hero/default/' + userdata.login);
-        heroWallet = await get('/heroWallet/default/hero/' + userdata.login);
-        heroTrait = await get('/heroTrait/default/hero/' + userdata.login);
+        dailies = await get(`/daily/default/current/3/hero/${userdata.login}`, languageDaily); 
+        hero = await get(`/hero/default/${userdata.login}`);
+        heroWallet = await get(`/heroWallet/default/hero/${userdata.login}`);
+        heroTrait = await get(`/heroTrait/default/hero/${userdata.login}`);
     }
 
     //#endregion
