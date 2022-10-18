@@ -10,9 +10,9 @@ export class NodeItem extends Model<NodeItem>{
     @Column
     language: string = "DE-de"
     @Column
-    isActive: boolean = true;
+    isActive: boolean = false;
     @Column
-    isLive: boolean = true;
+    isLive: boolean = false;
     @Column
     endpoint : string = '/';
 
