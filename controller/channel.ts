@@ -44,7 +44,7 @@ export class Channel {
                    if(this.twitch){
                         const stream = await this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
                         global.worker.log.warn(stream);
-                        if(stream) {
+                        if(stream && stream.type === 'live') {
                             if(!this.node.isLive){
                                 global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
                                 this.node.isLive = true;

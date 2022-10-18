@@ -38,11 +38,12 @@ class Channel {
             try {
                 if (this.twitch) {
                     const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
+                    global.worker.log.warn(stream);
                     if (stream && stream.type === 'live') {
                         if (!this.node.isLive) {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
                             this.node.isLive = true;
-                            yield this.database.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
+                            yield global.worker.globalDatabase.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
                             this.startSays();
                             this.startLoot();
                         }
@@ -50,7 +51,7 @@ class Channel {
                     else if (this.node.isLive) {
                         global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
                         this.node.isLive = false;
-                        yield this.database.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
+                        yield global.worker.globalDatabase.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
                         this.stopSays();
                         this.stopLoot();
                     }
