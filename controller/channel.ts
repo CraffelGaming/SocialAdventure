@@ -48,14 +48,14 @@ export class Channel {
                             if(!this.node.isLive){
                                 global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
                                 this.node.isLive = true;
-                                await this.database.sequelize.models.node.update(this.node, { where: {name: this.node.name}});
+                                await global.worker.globalDatabase.sequelize.models.node.update(this.node, { where: {name: this.node.name}});
                                 this.startSays();
                                 this.startLoot();
                             }
                         } else if (this.node.isLive) {
                             global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
                             this.node.isLive = false;
-                            await this.database.sequelize.models.node.update(this.node, { where: {name: this.node.name}});
+                            await global.worker.globalDatabase.sequelize.models.node.update(this.node, { where: {name: this.node.name}});
                             this.stopSays();
                             this.stopLoot();
                         } else {
