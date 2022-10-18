@@ -1,0 +1,23 @@
+[
+    {"categoryHandle": 2,       "type": 0,      "gold": 1,            "value": "Blutsteinstaub"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 1,            "value": "Aufsteigende Fragmente"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 1,            "value": "Dragoniterz"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 10,           "value": "Orichalkum-Erz"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 10,           "value": "Omnombeere"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 10,           "value": "Antike Holzblöcke"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 10,           "value": "Fortsetungsmünze"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 10,           "value": "Erinnerung des Otters"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 25,           "value": "Steine der Mystischen Schmiede"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 25,           "value": "Wiederbelebungskugel"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 25,           "value": "Schwarzlöwen-Truhenschlüssel"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 50,           "value": "Goldene Fraktal-Relikte"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 50,           "value": "Legendäre Essenz des Glücks"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 50,           "value": "Schuppensplitter der Altdrachen"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 100,          "value": "Jade-Bot"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 100,          "value": "Angel"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 100,          "value": "Passierschein zum Pavillon der tausend Meere"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 100,          "value": "Aurora"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 100,          "value": "Vision"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 250,          "value": "Ornat des Prismatischen Champions"},
+    {"categoryHandle": 2,       "type": 0,      "gold": 500,          "value": "Nimmermehr"}
+]

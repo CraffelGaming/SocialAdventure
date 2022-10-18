@@ -1,9 +1,0 @@
-[2022-10-15T16:08:19.401] [ERROR] default - twitch error - function push - request to https://api.twitch.tv/helix/streams?user_id=664649274 failed, reason: connect ETIMEDOUT 199.232.138.214:443
-[2022-10-15T16:41:05.615] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'findAll')
-    at Function.<anonymous> (C:\Projects\SocialAdventure\model\trainerItem.js:106:70)
-    at Generator.next (<anonymous>)
-    at fulfilled (C:\Projects\SocialAdventure\model\trainerItem.js:14:58)
-[2022-10-15T16:46:33.932] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'getDataValue')
-    at Function.<anonymous> (C:\Projects\SocialAdventure\model\trainerItem.js:112:93)
-    at Generator.next (<anonymous>)
-    at fulfilled (C:\Projects\SocialAdventure\model\trainerItem.js:14:58)

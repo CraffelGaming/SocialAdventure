@@ -21,7 +21,7 @@ import { NodeItem } from "./model/nodeItem";
 
 const app = express();
 
-// Global Database
+// Global
 declare global {
     var worker: Worker;
 
@@ -148,7 +148,7 @@ app.use(morgan('dev'));
 
 // setup debug
 log4js.configure({
-    appenders: { file: { type: "file", filename: settings.logOutputPath }, console: { type: "console" } },
+    appenders: { file: { type: "dateFile", filename: settings.logOutputPath, compress: true }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
 });
 

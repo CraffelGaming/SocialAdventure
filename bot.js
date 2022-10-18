@@ -111,7 +111,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 // setup debug
 log4js.configure({
-    appenders: { file: { type: "file", filename: settings_json_1.default.logOutputPath }, console: { type: "console" } },
+    appenders: { file: { type: "dateFile", filename: settings_json_1.default.logOutputPath, compress: true }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings_json_1.default.logLevel } }
 });
 // set routes

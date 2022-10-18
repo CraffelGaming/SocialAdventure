@@ -1,22 +1,14 @@
 [
     {"handle": 0,   "value": "Legendary"},
     {"handle": 1,   "value": "Standard"},
-    {"handle": 2,   "value": "Among Us"},
-    {"handle": 3,   "value": "Kunst"},
+    {"handle": 2,   "value": "Guild Wars 2"},
+    {"handle": 3,   "value": "Pokemon"},
     {"handle": 4,   "value": "Dead by Daylight"},
-    {"handle": 5,   "value": "Don't Starve Together"},
-    {"handle": 6,   "value": "Guild Wars 2"},
+    {"handle": 5,   "value": "Hollow Knight"},
+    {"handle": 6,   "value": "Stardew Valley"},
     {"handle": 7,   "value": "Minecraft"},
     {"handle": 8,   "value": "Oxygen Not Included"},
     {"handle": 9,   "value": "Phasmophobia"},
     {"handle": 10,  "value": "Rocket League"},
-    {"handle": 11,  "value": "Satisfactory"},
-    {"handle": 12,  "value": "Stardew Valley"},
-    {"handle": 13,  "value": "7 Days to Die"},
-    {"handle": 14,  "value": "Dungeons and Dragons"},
-    {"handle": 15,  "value": "Essen"},
-    {"handle": 16,  "value": "Retro"},
-    {"handle": 17,  "value": "Pokemon"},
-    {"handle": 18,  "value": "Hollow Knight"},
-    {"handle": 19,  "value": "Monster Hunter"}
+    {"handle": 11,  "value": "Essen"}
 ]

@@ -74,11 +74,11 @@ export class Module {
     }
 
     isDateTimeoutExpiredMinutes(date: Date, timeout: number): boolean {
-        return this.getDateDifferenceMinutes(date) > timeout;
+        return this.getDateDifferenceMinutes(date) >= timeout;
     }
 
     isDateTimeoutExpiredSeconds(date: Date, timeout: number): boolean {
-        return this.getDateDifferenceSeconds(date) > timeout;
+        return this.getDateDifferenceSeconds(date) >= timeout;
     }
 
     getDateTimeoutRemainingMinutes(date: Date, timeout: number): number {

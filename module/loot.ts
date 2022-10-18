@@ -1,4 +1,3 @@
-import { setMaxListeners } from "events";
 import { Op } from "sequelize";
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";

@@ -2,7 +2,6 @@ import { Model } from "sequelize-typescript";
 import { AdventureItem } from "../model/adventureItem";
 import { HeroItem } from "../model/heroItem";
 import { ItemItem } from "../model/itemItem";
-import { LocationItem } from "../model/locationItem";
 import { LootItem } from "../model/lootItem";
 import { Loot } from "./loot";
 

@@ -1,4 +1,3 @@
-import { setMaxListeners } from "events";
 import sequelize from "sequelize";
 import { Model } from "sequelize-typescript";
 import { AdventureItem } from "../model/adventureItem";

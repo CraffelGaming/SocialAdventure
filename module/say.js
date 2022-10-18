@@ -119,7 +119,16 @@ class Say extends module_1.Module {
             try {
                 if (this.item.text.includes('$counter') && this.item.isCounter && this.isDateTimeoutExpiredSeconds(this.lastCount, this.item.timeout)) {
                     this.lastCount = new Date();
-                    ++this.item.count;
+                    if (command.parameters.length > 0) {
+                        const amount = Number(command.parameters[0]);
+                        if (!isNaN(amount)) {
+                            this.item.count += amount;
+                        }
+                        else
+                            ++this.item.count;
+                    }
+                    else
+                        ++this.item.count;
                     yield this.channel.database.sequelize.models.say.increment('count', { by: 1, where: { command: this.item.command } });
                     yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                     return this.replacePlaceholder(command, this.item.text.replace('$counter', this.item.count.toString()));
@@ -137,7 +146,18 @@ class Say extends module_1.Module {
             try {
                 if (this.item.text.includes('$counter') && this.item.isCounter && this.isDateTimeoutExpiredSeconds(this.lastCount, this.item.timeout)) {
                     this.lastCount = new Date();
-                    --this.item.count;
+                    if (command.parameters.length > 0) {
+                        const amount = Number(command.parameters[0]);
+                        if (!isNaN(amount)) {
+                            this.item.count -= amount;
+                        }
+                        else
+                            --this.item.count;
+                    }
+                    else
+                        --this.item.count;
+                    if (this.item.count < 0)
+                        this.item.count = 0;
                     yield this.channel.database.sequelize.models.say.decrement('count', { by: 1, where: { command: this.item.command } });
                     yield this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: { command: this.item.command } });
                     return this.replacePlaceholder(command, this.item.text.replace('$counter', this.item.count.toString()));
