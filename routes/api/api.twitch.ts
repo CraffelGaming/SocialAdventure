@@ -59,7 +59,7 @@ router.post('/' + endpoint + '/', async (request: express.Request, response: exp
 
             await global.worker.globalDatabase.sequelize.models.node.update(node, {where: { name: request.session.userData.login }});
             const channel = await global.worker.startNode(node);
-            await HeroItem.put({sequelize: channel.database.sequelize, element: new HeroItem(channel.node.name), onlyCreate: true});
+            await HeroItem.put({sequelize: channel.database.sequelize, element: new HeroItem(channel.node.getDataValue('name')), onlyCreate: true});
             response.status(200).json();
         } else response.status(404).json();
     } catch(ex){

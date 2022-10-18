@@ -45,7 +45,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.hero.findAll({ order: [['name', 'ASC']], raw: false, include: [{
@@ -80,7 +80,7 @@ router.get('/' + endpoint + '/:node/:name', (request, response) => __awaiter(voi
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.hero.findByPk(request.params.name, { raw: false, include: [{
@@ -114,7 +114,7 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 response.status(yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: request.body, onlyCreate: false })).json(request.body);

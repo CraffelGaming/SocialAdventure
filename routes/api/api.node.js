@@ -95,10 +95,10 @@ router.post('/' + endpoint + '/default', (request, response) => __awaiter(void 0
     var _a;
     try {
         global.worker.log.trace(`post ${endpoint}, default`);
-        const channel = global.worker.channels.find(x => x.node.name === request.query.node);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === request.query.node);
         global.worker.log.trace(request.session);
         if (channel) {
-            request.session.node = channel.node;
+            request.session.node = channel.node.get();
             if (global.isRegistered(request, response))
                 yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: new heroItem_1.HeroItem((_a = request.session.userData) === null || _a === void 0 ? void 0 : _a.login), onlyCreate: true });
             response.status(200).json({ node: request.session.node });

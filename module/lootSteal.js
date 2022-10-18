@@ -41,27 +41,27 @@ class LootSteal {
             yield this.loadElements();
             if (settings.isActive) {
                 if (this.item) {
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, item ${this.item.getDataValue("value")}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, item ${this.item.getDataValue("value")}`);
                     if (this.sourceHero) {
-                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
+                        global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
                         if (this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.minutes)) {
-                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, timeout expired`);
+                            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, timeout expired`);
                             if (this.targetHero) {
-                                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
+                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
                                 if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
                                     if (this.adventure) {
-                                        global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                        global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, adventure`);
                                         if (yield this.isStealSuccess()) {
-                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, succsess`);
+                                            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, succsess`);
                                             yield this.save(this.sourceHero, this.sourceHero);
                                             return true;
                                         }
                                         else {
-                                            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, failed`);
+                                            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, failed`);
                                             this.isSteal = false;
                                             this.adventure = yield this.getAdventure(this.sourceHero);
                                             if (this.adventure) {
-                                                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, adventure`);
+                                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, adventure`);
                                                 this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")));
                                                 if (this.isItem) {
                                                     this.isLoose = false;
@@ -147,32 +147,32 @@ class LootSteal {
             if (sourceTrait && targetTrait) {
                 const sourceTrys = targetTrait.getDataValue("stealMultipler");
                 const targetTrys = targetTrait.getDataValue("defenceMultipler");
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence sourceTrys ${sourceTrys}`);
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence targetTrys ${targetTrys}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence sourceTrys ${sourceTrys}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence targetTrys ${targetTrys}`);
                 for (let i = 1; i <= sourceTrys; i++) {
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence source try ${i}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source try ${i}`);
                     const sourceDice = this.loot.getRandomNumber(0, 100);
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence source dice ${sourceDice}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source dice ${sourceDice}`);
                     if (sourceDice > sourceResult) {
                         sourceResult = sourceDice;
                     }
                 }
                 for (let i = 1; i <= targetTrys; i++) {
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence target try ${i}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target try ${i}`);
                     const targetDice = this.loot.getRandomNumber(0, 100);
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence target dice ${targetDice}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target dice ${targetDice}`);
                     if (targetDice > targetResult) {
                         targetResult = targetDice;
                     }
                 }
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence source result ${sourceResult}`);
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence target result ${targetResult}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source result ${sourceResult}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target result ${targetResult}`);
                 if (sourceResult >= targetResult) {
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence source win`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source win`);
                     return true;
                 }
             }
-            global.worker.log.info(`node ${this.loot.channel.node.name}, module steal, silence target win`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target win`);
             return false;
         });
     }

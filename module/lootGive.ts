@@ -40,17 +40,17 @@ export class LootGive {
 
         if(settings.isActive){
             if(this.item){
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module give, item ${this.item.getDataValue("value")}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, item ${this.item.getDataValue("value")}`);
                 if(this.sourceHero){
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module give, sourceHero ${this.sourceHero.getDataValue("name")}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, sourceHero ${this.sourceHero.getDataValue("name")}`);
                     if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastGive")), settings.minutes)){
-                        global.worker.log.info(`node ${this.loot.channel.node.name}, module give, timeout expired`);
+                        global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, timeout expired`);
                         if(this.targetHero){
-                            global.worker.log.info(`node ${this.loot.channel.node.name}, module give, targetHero ${this.targetHero.getDataValue("name")}`);
+                            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, targetHero ${this.targetHero.getDataValue("name")}`);
                             if(this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")){
                                 this.adventure = await this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") }}) as Model<AdventureItem>;
                                 if(this.adventure){
-                                    global.worker.log.info(`node ${this.loot.channel.node.name}, module give, adventure `);
+                                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, adventure `);
                                     await this.adventure.destroy();
                                     const adventure = new AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
                                     await AdventureItem.put({sequelize: this.loot.channel.database.sequelize, element: adventure});

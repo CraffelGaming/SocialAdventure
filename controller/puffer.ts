@@ -1,11 +1,12 @@
+import { Model } from "sequelize";
 import { NodeItem } from "../model/nodeItem";
 
 export class Puffer {
     messages: string[];
-    node: NodeItem;
+    node: Model<NodeItem>;
 
     //#region Construct
-    constructor(node: NodeItem){
+    constructor(node: Model<NodeItem>){
         this.messages = [];
         this.node = node;
     }
@@ -47,7 +48,7 @@ export class Puffer {
                     if(this.messages.length > 0){
                         const message = this.messages.shift();
                         global.worker.log.trace(`message shift ${message}`);
-                        global.worker.tmi.say(this.node.name, message);
+                        global.worker.tmi.say(this.node.getDataValue('name'), message);
                     }
                 } catch (ex){
                     global.worker.log.error(`puffer error - function interval - ${ex.message}`);

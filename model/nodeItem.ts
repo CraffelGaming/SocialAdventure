@@ -10,7 +10,7 @@ export class NodeItem extends Model<NodeItem>{
     @Column
     language: string = "DE-de"
     @Column
-    isActive: boolean = false;
+    isActive: boolean = true;
     @Column
     isLive: boolean = false;
     @Column

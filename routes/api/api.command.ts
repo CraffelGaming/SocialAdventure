@@ -14,7 +14,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
             node = await global.defaultNode(request, response);
         else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-        const channel = global.worker.channels.find(x => x.node.name === node.name)
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
             let item = await channel.database.sequelize.models.command.findAll({order: [ [ 'module', 'ASC' ], [ 'command', 'ASC' ]], raw: false }) as unknown as CommandItem[];
@@ -46,7 +46,7 @@ router.get('/' + endpoint + '/:node/:module', async (request: express.Request, r
             node = await global.defaultNode(request, response);
         else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-        const channel = global.worker.channels.find(x => x.node.name === node.name)
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
             let item = await channel.database.sequelize.models.command.findAll({where: { module: request.params.module}, order: [ [ 'module', 'ASC' ], [ 'command', 'ASC' ]], raw: false }) as unknown as CommandItem[];

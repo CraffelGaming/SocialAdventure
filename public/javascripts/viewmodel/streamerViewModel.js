@@ -68,7 +68,7 @@ $(async () => {
                 { dataField: "language", caption: translate(language, 'language'), width: 120 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), dataType:'boolean', alignment: 'left', width: 120 },
                 { dataField: "isLive", caption: translate(language, 'isLive'), dataType:'boolean', alignment: 'left', width: 120 },
-                { dataField: "endpoint", caption: translate(language, 'endpoint'), width: 400, editorType: "dxTextBox", editorOptions: { type: 'url' }},
+                { dataField: "endpoint", caption: translate(language, 'endpoint'), width: 250, editorType: "dxTextBox", editorOptions: { type: 'url' }},
                 {
                     type: "buttons",
                     buttons: [{

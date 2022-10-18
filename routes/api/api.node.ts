@@ -62,10 +62,10 @@ router.post('/' + endpoint + '/default', async (request: express.Request, respon
     try{
         global.worker.log.trace(`post ${endpoint}, default`);
 
-        const channel = global.worker.channels.find(x => x.node.name === request.query.node);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === request.query.node);
         global.worker.log.trace(request.session);
         if(channel) {
-            request.session.node = channel.node;
+            request.session.node = channel.node.get();
 
             if(global.isRegistered(request,response ))
                 await HeroItem.put({sequelize: channel.database.sequelize, element: new HeroItem(request.session.userData?.login), onlyCreate: true});

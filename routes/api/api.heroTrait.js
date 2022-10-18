@@ -44,7 +44,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
@@ -76,7 +76,7 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false, include: [{

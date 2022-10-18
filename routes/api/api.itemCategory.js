@@ -67,7 +67,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
@@ -98,7 +98,7 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 response.status(yield itemCategoryItem_1.ItemCategoryItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
@@ -123,7 +123,7 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 if (request.params.handle != null) {
@@ -163,7 +163,7 @@ router.post('/' + endpoint + '/:node/transfer/:handle', (request, response) => _
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 const globalCategory = yield global.worker.globalDatabase.sequelize.models.itemCategory.findByPk(request.params.handle, { raw: true });

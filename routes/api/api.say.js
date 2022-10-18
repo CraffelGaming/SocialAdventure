@@ -43,7 +43,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             const item = yield channel.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: false });
             if (item)
@@ -67,7 +67,7 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 if (request.body.command != null && request.body.command.length > 0) {
@@ -109,7 +109,7 @@ router.delete('/' + endpoint + '/:node/:command', (request, response) => __await
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 if (request.params.command != null) {

@@ -97,9 +97,9 @@ router.get('/level', level_1.default);
 // index
 router.get('/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     if (request.query.node) {
-        const channel = global.worker.channels.find(x => x.node.name === request.query.node);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === request.query.node);
         if (channel) {
-            request.session.node = channel.node;
+            request.session.node = channel.node.get();
         }
     }
     response.render(endpoint, {

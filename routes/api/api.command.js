@@ -43,7 +43,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             let item = yield channel.database.sequelize.models.command.findAll({ order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
             if (!global.isMaster(request, response)) {
@@ -73,7 +73,7 @@ router.get('/' + endpoint + '/:node/:module', (request, response) => __awaiter(v
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             let item = yield channel.database.sequelize.models.command.findAll({ where: { module: request.params.module }, order: [['module', 'ASC'], ['command', 'ASC']], raw: false });
             if (!global.isMaster(request, response, node)) {

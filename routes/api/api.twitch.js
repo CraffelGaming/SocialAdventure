@@ -91,7 +91,7 @@ router.post('/' + endpoint + '/', (request, response) => __awaiter(void 0, void 
             }))[0];
             yield global.worker.globalDatabase.sequelize.models.node.update(node, { where: { name: request.session.userData.login } });
             const channel = yield global.worker.startNode(node);
-            yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: new heroItem_1.HeroItem(channel.node.name), onlyCreate: true });
+            yield heroItem_1.HeroItem.put({ sequelize: channel.database.sequelize, element: new heroItem_1.HeroItem(channel.node.getDataValue('name')), onlyCreate: true });
             response.status(200).json();
         }
         else

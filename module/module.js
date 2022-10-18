@@ -21,7 +21,7 @@ class Module {
     //#region Initialize
     initialize() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.basicTranslation = (yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.language }, order: [['handle', 'ASC']], raw: true }));
+            this.basicTranslation = (yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [['handle', 'ASC']], raw: true }));
             this.commands = (yield this.channel.database.sequelize.models.command.findAll({ where: { module: this.name }, order: [['command', 'ASC']], raw: true }));
         });
     }
@@ -29,7 +29,7 @@ class Module {
     //#region Owner
     isOwner(command) {
         let result = false;
-        if (this.channel.node.name === command.source)
+        if (this.channel.node.getDataValue('name') === command.source)
             result = true;
         global.worker.log.trace(`is owner: ${result}`);
         return result;
@@ -37,7 +37,7 @@ class Module {
     //#endregion
     //#region Placeholder
     replacePlaceholder(command, text) {
-        text = text.replace('$streamer', this.channel.node.name);
+        text = text.replace('$streamer', this.channel.node.getDataValue('name'));
         if (command != null) {
             text = text.replace('$source', command.source);
             text = text.replace('$target', command.target.length > 0 ? command.target : command.source);
@@ -83,7 +83,7 @@ class Module {
     //#region Random
     getRandomNumber(min, max) {
         const random = Math.floor(Math.random() * (max - min + 1) + min);
-        global.worker.log.trace(`node ${this.channel.node.name}, new random number ${random} between ${min} and ${max}`);
+        global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, new random number ${random} between ${min} and ${max}`);
         return random;
     }
 }

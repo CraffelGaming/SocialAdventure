@@ -85,7 +85,8 @@ class Twitch {
     }
     GetStream(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.push('GET', '/streams?user_id=' + id);
+            return yield this.push('GET', '/streams?user_login=' + 'clym');
+            // return await this.push<twitchStreamItem>('GET', '/streams?user_id=' + id);
         });
     }
     getUser(id) {

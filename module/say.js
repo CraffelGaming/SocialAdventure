@@ -81,32 +81,32 @@ class Say extends module_1.Module {
                 if (this.item.isActive && this.item.minutes > 0) {
                     const delayDifference = this.channel.countMessages - this.countMessages;
                     if (delayDifference >= this.item.delay) {
-                        global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} last run ${new Date(this.item.lastRun)}...`);
+                        global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} last run ${new Date(this.item.lastRun)}...`);
                         if (this.isDateTimeoutExpiredMinutes(new Date(this.item.lastRun), this.item.minutes)) {
                             this.item.lastRun = new Date();
                             this.item.countRuns += 1;
                             this.countMessages = this.channel.countMessages;
                             yield this.channel.database.sequelize.models.say.update(this.item, { where: { command: this.item.command } });
-                            global.worker.log.info(`node ${this.channel.node.name}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
+                            global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} run after ${this.item.minutes} Minutes.`);
                             this.channel.puffer.addMessage(this.replacePlaceholder(null, this.item.text));
                         }
                         else {
-                            global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
-                            global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
+                            global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
+                            global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} not executed time elapsed: ${this.getDateDifferenceMinutes(new Date(this.item.lastRun))}`);
                         }
                     }
                     else {
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed delay: ${this.item.delay}`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed delay diference: ${delayDifference}`);
+                        global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} not executed delay: ${this.item.delay}`);
+                        global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} not executed delay diference: ${delayDifference}`);
                     }
                 }
                 else {
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed active: ${this.item.isActive}`);
-                    global.worker.log.trace(`node ${this.channel.node.name}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
+                    global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} not executed active: ${this.item.isActive}`);
+                    global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} not executed minutes: ${this.item.minutes}`);
                 }
             }
             catch (ex) {
-                global.worker.log.error(`node ${this.channel.node.name}, module ${this.item.command} automation error.`);
+                global.worker.log.error(`node ${this.channel.node.getDataValue('name')}, module ${this.item.command} automation error.`);
                 global.worker.log.error(`exception ${ex.message}`);
             }
         }), 60000 // Alle 60 Sekunden prüfen

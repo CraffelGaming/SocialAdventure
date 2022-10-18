@@ -13,7 +13,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
             node = await global.defaultNode(request, response);
         else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-        const channel = global.worker.channels.find(x => x.node.name === node.name)
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
             const item = await channel.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]], raw: false}) as unknown as SayItem[];
@@ -36,7 +36,7 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
             node = await global.defaultNode(request, response);
         else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-        const channel = global.worker.channels.find(x => x.node.name === node.name)
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
             if(global.isMaster(request, response, node)){
@@ -75,7 +75,7 @@ router.delete('/' + endpoint + '/:node/:command', async (request: express.Reques
             node = await global.defaultNode(request, response);
         else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
 
-        const channel = global.worker.channels.find(x => x.node.name === node.name)
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
             if(global.isMaster(request, response, node)){

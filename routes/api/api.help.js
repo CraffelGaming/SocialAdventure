@@ -44,7 +44,7 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             response.status(yield helpItem_1.HelpItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
         }

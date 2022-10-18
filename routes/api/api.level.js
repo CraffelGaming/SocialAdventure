@@ -44,7 +44,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             const item = yield channel.database.sequelize.models.level.findAll({ order: [['handle', 'ASC']], raw: true });
             if (item)
@@ -68,7 +68,7 @@ router.get('/' + endpoint + '/:node/:experience', (request, response) => __await
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             const item = yield channel.database.sequelize.models.level.findOne({
                 where: { experienceMin: { [sequelize_1.Op.lte]: request.params.experience },

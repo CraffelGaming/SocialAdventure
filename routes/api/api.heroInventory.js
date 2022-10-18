@@ -45,7 +45,7 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.heroInventory.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
@@ -80,7 +80,7 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.heroInventory.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
@@ -111,7 +111,7 @@ router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', (request, re
             node = yield global.defaultNode(request, response);
         else
             node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
-        const channel = global.worker.channels.find(x => x.node.name === node.name);
+        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isChannel(request, response, request.params.name)) {
                 response.status(yield heroInventoryItem_1.HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name })).json();

@@ -23,7 +23,7 @@ class Channel {
         this.twitch = new twitch_1.Twitch();
         this.twitch.load(this.node.getDataValue("name"));
         this.stream = null;
-        this.database = new connection_1.Connection({ databaseName: Buffer.from(node.name).toString('base64') });
+        this.database = new connection_1.Connection({ databaseName: Buffer.from(node.getDataValue("name")).toString('base64') });
         this.puffer = new puffer_1.Puffer(node),
             this.puffer.interval();
         this.say = [];
@@ -32,33 +32,33 @@ class Channel {
     //#endregion
     //#region Twitch API streamer login by node
     streamWatcher() {
-        global.worker.log.info(`node ${this.node.name}, add streamWatcher`);
+        global.worker.log.info(`node ${this.node.getDataValue("name")}, add streamWatcher`);
         setInterval(() => __awaiter(this, void 0, void 0, function* () {
-            global.worker.log.trace(`node ${this.node.name}, streamWatcher run`);
+            global.worker.log.trace(`node ${this.node.getDataValue("name")}, streamWatcher run`);
             try {
                 if (this.twitch) {
                     const stream = yield this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
                     if (stream && stream.type === 'live') {
-                        if (!this.node.isLive) {
-                            global.worker.log.info(`node ${this.node.name}, streamWatcher is now live`);
-                            this.node.isLive = true;
-                            yield global.worker.globalDatabase.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
+                        if (!this.node.getDataValue("isLive")) {
+                            global.worker.log.info(`node ${this.node.getDataValue("name")}, streamWatcher is now live`);
+                            this.node.setDataValue("isLive", true);
+                            yield this.node.save();
                             this.startSays();
                             this.startLoot();
                         }
                         else {
-                            global.worker.log.trace(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.node.isLive}`);
+                            global.worker.log.trace(`node ${this.node.getDataValue("name")}, streamWatcher nothing changed, live: ${this.node.getDataValue("isLive")}`);
                         }
                     }
-                    else if (this.node.isLive) {
-                        global.worker.log.info(`node ${this.node.name}, streamWatcher is not longer live`);
-                        this.node.isLive = false;
-                        yield global.worker.globalDatabase.sequelize.models.node.update(this.node, { where: { name: this.node.name } });
+                    else if (this.node.getDataValue("isLive")) {
+                        global.worker.log.info(`node ${this.node.getDataValue("name")}, streamWatcher is not longer live`);
+                        this.node.setDataValue("isLive", false);
+                        yield this.node.save();
                         this.stopSays();
                         this.stopLoot();
                     }
                     else {
-                        global.worker.log.trace(`node ${this.node.name}, streamWatcher nothing changed, live: ${this.node.isLive}`);
+                        global.worker.log.trace(`node ${this.node.getDataValue("name")}, streamWatcher nothing changed, live: ${this.node.getDataValue("isLive")}`);
                     }
                 }
             }
@@ -73,12 +73,12 @@ class Channel {
     addSays() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue("language") }, order: [['handle', 'ASC']], raw: true });
                 for (const item of Object.values(yield this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: true }))) {
                     const element = new say_1.Say(translation, this, item);
                     yield element.initialize();
                     this.say.push(element);
-                    global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+                    global.worker.log.info(`node ${this.node.getDataValue("name")}, say add ${element.item.command}.`);
                 }
             }
             catch (ex) {
@@ -92,7 +92,7 @@ class Channel {
                 for (const item of this.say) {
                     if (item.item.isLiveAutoControl) {
                         yield item.stop();
-                        global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                        global.worker.log.info(`node ${this.node.getDataValue("name")}, stop module ${item.item.command}.`);
                     }
                 }
             }
@@ -107,7 +107,7 @@ class Channel {
                 for (const item of this.say) {
                     if (item.item.isLiveAutoControl) {
                         yield item.start();
-                        global.worker.log.info(`node ${this.node.name}, stop module ${item.item.command}.`);
+                        global.worker.log.info(`node ${this.node.getDataValue("name")}, stop module ${item.item.command}.`);
                     }
                 }
             }
@@ -119,11 +119,11 @@ class Channel {
     addSay(item) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue("language") }, order: [['handle', 'ASC']], raw: true });
                 const element = new say_1.Say(translation, this, item);
                 yield element.initialize();
                 this.say.push(element);
-                global.worker.log.info(`node ${this.node.name}, say add ${element.item.command}.`);
+                global.worker.log.info(`node ${this.node.getDataValue("name")}, say add ${element.item.command}.`);
             }
             catch (ex) {
                 global.worker.log.error(`channel error - function addSay - ${ex.message}`);
@@ -135,7 +135,7 @@ class Channel {
             try {
                 const index = this.say.findIndex(d => d.item.command === command);
                 if (index > -1) {
-                    global.worker.log.info(`node ${this.node.name}, say remove ${this.say[index].item.command}.`);
+                    global.worker.log.info(`node ${this.node.getDataValue("name")}, say remove ${this.say[index].item.command}.`);
                     this.say[index].remove();
                     this.say.splice(index, 1);
                 }
@@ -150,7 +150,7 @@ class Channel {
     addLoot() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.language }, order: [['handle', 'ASC']], raw: true });
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.getDataValue("language") }, order: [['handle', 'ASC']], raw: true });
                 this.loot = new loot_1.Loot(translation, this);
                 yield this.loot.initialize();
                 yield this.loot.InitializeLoot();

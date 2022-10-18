@@ -28,15 +28,15 @@ class LootExploring {
             this.hero = yield this.getHero();
             if (this.hero) {
                 this.dungeon = yield this.getDungeon();
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, hero ${this.hero.getDataValue("name")}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, hero ${this.hero.getDataValue("name")}`);
                 if (this.dungeon) {
                     this.item = yield this.getItem(this.dungeon);
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, dungeon ${this.dungeon.getDataValue("name")}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, dungeon ${this.dungeon.getDataValue("name")}`);
                     if (this.item) {
                         this.enemy = yield this.getEnemy(this.dungeon);
-                        global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, item ${this.item.getDataValue("value")}`);
+                        global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, item ${this.item.getDataValue("value")}`);
                         if (this.enemy) {
-                            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, enemy ${this.enemy.getDataValue("name")}`);
+                            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, enemy ${this.enemy.getDataValue("name")}`);
                             this.wallet = yield this.getWallet();
                             this.trait = yield this.getTrait();
                             this.experience = this.loot.getRandomNumber(this.enemy.getDataValue("experienceMin"), this.enemy.getDataValue("experienceMax")) + this.wallet.getDataValue("blood");
@@ -57,18 +57,18 @@ class LootExploring {
         return __awaiter(this, void 0, void 0, function* () {
             let enemyHitpoints = this.enemy.getDataValue("hitpoints");
             const heroHitpoints = this.hero.getDataValue("hitpoints");
-            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
-            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight heroHitpoints ${heroHitpoints}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight heroHitpoints ${heroHitpoints}`);
             while (enemyHitpoints > 0 && heroHitpoints - this.damage > 0) {
                 const heroDamage = this.loot.getRandomNumber(Math.round(this.hero.getDataValue("strength") / 2), this.hero.getDataValue("strength"));
                 enemyHitpoints -= heroDamage;
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight heroDamage ${heroDamage}`);
-                global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight heroDamage ${heroDamage}`);
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
                 if (enemyHitpoints > 0) {
                     const enemyDamage = this.loot.getRandomNumber(Math.round(this.enemy.getDataValue("strength") / 2), this.enemy.getDataValue("strength"));
                     this.damage += enemyDamage;
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight enemyDamage ${enemyDamage}`);
-                    global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight complete damage ${this.damage}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyDamage ${enemyDamage}`);
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight complete damage ${this.damage}`);
                 }
             }
             if (this.damage >= heroHitpoints) {
@@ -78,7 +78,7 @@ class LootExploring {
             else {
                 this.isWinner = true;
             }
-            global.worker.log.info(`node ${this.loot.channel.node.name}, module exploring, fight isWinner ${this.isWinner}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight isWinner ${this.isWinner}`);
         });
     }
     //#endregion

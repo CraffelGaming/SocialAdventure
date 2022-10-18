@@ -16,7 +16,7 @@ let NodeItem = class NodeItem extends sequelize_typescript_1.Model {
     constructor(name, displayName, language, isActive) {
         super();
         this.language = "DE-de";
-        this.isActive = false;
+        this.isActive = true;
         this.isLive = false;
         this.endpoint = '/';
         this.name = name;

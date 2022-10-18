@@ -22,7 +22,7 @@ export class Module {
 
     //#region Initialize
     async initialize(){
-        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.language }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[];
+        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[];
         this.commands = await this.channel.database.sequelize.models.command.findAll({where: { module: this.name }, order: [ [ 'command', 'ASC' ]], raw: true}) as unknown as CommandItem[];
     }
     //#endregion
@@ -31,7 +31,7 @@ export class Module {
     isOwner(command : Command){
         let result = false;
 
-        if(this.channel.node.name === command.source)
+        if(this.channel.node.getDataValue('name') === command.source)
             result = true;
 
         global.worker.log.trace(`is owner: ${result}`);
@@ -41,7 +41,7 @@ export class Module {
 
     //#region Placeholder
     replacePlaceholder(command: Command, text: string) : string{
-        text = text.replace('$streamer', this.channel.node.name);
+        text = text.replace('$streamer', this.channel.node.getDataValue('name'));
 
         if(command != null){
             text = text.replace('$source', command.source);
@@ -95,7 +95,7 @@ export class Module {
     //#region Random
     getRandomNumber(min: number, max: number): number {
         const random = Math.floor(Math.random() * (max - min + 1) + min);
-        global.worker.log.trace(`node ${this.channel.node.name}, new random number ${random} between ${min} and ${max}`);
+        global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, new random number ${random} between ${min} and ${max}`);
         return random;
     }
     //#endregion

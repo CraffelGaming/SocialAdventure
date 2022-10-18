@@ -43,7 +43,7 @@ class Puffer {
                 if (this.messages.length > 0) {
                     const message = this.messages.shift();
                     global.worker.log.trace(`message shift ${message}`);
-                    global.worker.tmi.say(this.node.name, message);
+                    global.worker.tmi.say(this.node.getDataValue('name'), message);
                 }
             }
             catch (ex) {

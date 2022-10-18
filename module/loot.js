@@ -76,12 +76,12 @@ class Loot extends module_1.Module {
             try {
                 const loot = this.settings.find(x => x.command === "loot");
                 if (loot.isActive) {
-                    global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} last run ${new Date(loot.lastRun).toLocaleDateString()} ${new Date(loot.lastRun).toLocaleTimeString()}`);
+                    global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module ${loot.command} last run ${new Date(loot.lastRun).toLocaleDateString()} ${new Date(loot.lastRun).toLocaleTimeString()}`);
                     if (this.isDateTimeoutExpiredMinutes(new Date(loot.lastRun), loot.minutes)) {
                         loot.lastRun = new Date();
                         loot.countRuns += 1;
                         yield this.channel.database.sequelize.models.loot.update(loot, { where: { command: loot.command } });
-                        global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} run after ${loot.minutes} Minutes.`);
+                        global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module ${loot.command} run after ${loot.minutes} Minutes.`);
                         const exploring = new lootExploring_1.LootExploring(this);
                         if (yield exploring.execute()) {
                             if (!exploring.isWinner) {
@@ -102,21 +102,21 @@ class Loot extends module_1.Module {
                             yield exploring.save();
                         }
                         else {
-                            global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} not executed - missing exploring`);
+                            global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module ${loot.command} not executed - missing exploring`);
                         }
                     }
                     else {
-                        global.worker.log.info(`node ${this.channel.node.name}, module ${loot.command} not executed`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} minutes: ${loot.minutes}`);
-                        global.worker.log.trace(`node ${this.channel.node.name}, module ${loot.command} time elapsed: ${this.getDateTimeoutRemainingMinutes(new Date(loot.lastRun), loot.minutes)}`);
+                        global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module ${loot.command} not executed`);
+                        global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${loot.command} minutes: ${loot.minutes}`);
+                        global.worker.log.trace(`node ${this.channel.node.getDataValue('name')}, module ${loot.command} time elapsed: ${this.getDateTimeoutRemainingMinutes(new Date(loot.lastRun), loot.minutes)}`);
                     }
                 }
                 else {
-                    global.worker.log.info(`node ${this.channel.node.name}, module loot not executed not active`);
+                    global.worker.log.info(`node ${this.channel.node.getDataValue('name')}, module loot not executed not active`);
                 }
             }
             catch (ex) {
-                global.worker.log.error(`node ${this.channel.node.name}, module loot automation error.`);
+                global.worker.log.error(`node ${this.channel.node.getDataValue('name')}, module loot automation error.`);
                 global.worker.log.error(`exception ${ex.message}`);
             }
         }), 60000 // Alle 60 Sekunden prüfen
@@ -720,7 +720,7 @@ class Loot extends module_1.Module {
     }
     blut(command) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.level(command);
+            return yield this.blood(command);
         });
     }
     //#endregion
