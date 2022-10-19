@@ -145,7 +145,8 @@ export class DailyItem extends Model<DailyItem>{
         const found: DailyItem[] = await DailyItem.getCurrentDaily({sequelize, count})
         const trait = await sequelize.models.heroTrait.findByPk(heroName) as Model<HeroTraitItem>;
         for(const item of found){
-            item.gold = Math.round(item.gold * ((trait.getDataValue("goldMultipler") / 10) + 1));
+            item.gold = Math.round(item.gold * ((trait.getDataValue("workMultipler") / 10) + 1));
+            item.experience = Math.round(item.experience * ((trait.getDataValue("workMultipler") / 10) + 1));
         }
         return found;
     }

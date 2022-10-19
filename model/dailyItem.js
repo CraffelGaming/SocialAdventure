@@ -162,7 +162,8 @@ let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Mod
             const found = yield DailyItem_1.getCurrentDaily({ sequelize, count });
             const trait = yield sequelize.models.heroTrait.findByPk(heroName);
             for (const item of found) {
-                item.gold = Math.round(item.gold * ((trait.getDataValue("goldMultipler") / 10) + 1));
+                item.gold = Math.round(item.gold * ((trait.getDataValue("workMultipler") / 10) + 1));
+                item.experience = Math.round(item.experience * ((trait.getDataValue("workMultipler") / 10) + 1));
             }
             return found;
         });
