@@ -51,8 +51,6 @@ export class Loot extends Module {
                         global.worker.log.trace(`module loot not active`);
                     }
                 } else global.worker.log.warn(`not owner dedection loot ${command.name} blocked`);
-            } else {
-                global.worker.log.warn(`hack dedection loot ${command.name} blocked`);
             }
         } catch(ex){
             global.worker.log.error(`module loot error - function InitializeLoot - ${ex.message}`);

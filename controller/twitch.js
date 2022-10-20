@@ -55,7 +55,7 @@ class Twitch {
                     const json = yield response.json();
                     global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitch_json_1.default.url_base}${endpoint} OK`);
                     global.worker.log.trace(json);
-                    const result = json.data[0];
+                    const result = json.data;
                     return result;
                 }
                 else if (response.status === 401) {
@@ -80,22 +80,27 @@ class Twitch {
     //#region API
     GetChannel(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.push('GET', '/channels?broadcaster_id=' + id);
+            return (yield this.push('GET', '/channels?broadcaster_id=' + id))[0];
+        });
+    }
+    GetModerators(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (yield this.push('GET', '/moderation/moderators?broadcaster_id=' + id));
         });
     }
     GetStream(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.push('GET', '/streams?user_id=' + id);
+            return (yield this.push('GET', '/streams?user_id=' + id))[0];
         });
     }
     getUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.push('GET', '/users?id=' + id);
+            return (yield this.push('GET', '/users?id=' + id))[0];
         });
     }
     getUserByName(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.push('GET', '/users?login=' + name);
+            return (yield this.push('GET', '/users?login=' + name))[0];
         });
     }
     getCurrentUser(credential) {

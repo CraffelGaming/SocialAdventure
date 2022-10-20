@@ -97,6 +97,7 @@ class Connection {
                 twitchUserItem_1.TwitchUserItem.setAssociation({ sequelize: this.sequelize });
                 stateStorageItem_1.StateStorageItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
+                yield this.updater("migrations/global");
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
                 yield menuItem_1.MenuItem.updateTable({ sequelize: this.sequelize });
@@ -107,7 +108,6 @@ class Connection {
                 yield validationItem_1.ValidationItem.updateTable({ sequelize: this.sequelize });
                 itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
                 itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
-                yield this.updater("migrations/global");
                 return true;
             }
             catch (ex) {
@@ -141,6 +141,7 @@ class Connection {
                 heroPromotionItem_1.HeroPromotionItem.createTable({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
+                yield this.updater("migrations/general");
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
                 yield levelItem_1.LevelItem.updateTable({ sequelize: this.sequelize });
                 yield sayItem_1.SayItem.updateTable({ sequelize: this.sequelize });
@@ -164,7 +165,6 @@ class Connection {
                 adventureItem_1.AdventureItem.setAssociation({ sequelize: this.sequelize });
                 promotionItem_1.PromotionItem.setAssociation({ sequelize: this.sequelize });
                 heroPromotionItem_1.HeroPromotionItem.setAssociation({ sequelize: this.sequelize });
-                yield this.updater("migrations/general");
                 return true;
             }
             catch (ex) {

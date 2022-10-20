@@ -252,13 +252,15 @@ export class Say extends Module {
 
     async shout(command: Command){
         try {
+            let text = '';
             if(this.item.isActive){
                 if(this.item.text && this.item.text.length !== 0){
+                    text += this.item.text;
                     await this.channel.database.sequelize.models.say.increment('countUses', { by: 1, where: {command: this.item.command}});
                     global.worker.log.trace(`module ${this.item.command} shout executed`);
 
                     if(this.item.isCounter){
-                        this.item.text = this.item.text.replace('$counter', this.item.count.toString());
+                        text = text.replace('$counter', this.item.count.toString());
                     }
 
                     if(this.item.isShoutout){
@@ -267,14 +269,14 @@ export class Say extends Module {
                             const raiderChannel = await this.channel.twitch.GetChannel(raider.id);
 
                             if(raiderChannel){
-                                this.item.text = this.item.text.replace('$raider', raider.display_name);
-                                this.item.text = this.item.text.replace('$raiderGame', raiderChannel.game_name);
-                                this.item.text = this.item.text.replace('$raiderTitle', raiderChannel.title);
-                                this.item.text = this.item.text.replace('$raiderUrl', twitchData.url_twitch + raider.login);
+                                text = text.replace('$raider', raider.display_name);
+                                text = text.replace('$raiderGame', raiderChannel.game_name);
+                                text = text.replace('$raiderTitle', raiderChannel.title);
+                                text = text.replace('$raiderUrl', twitchData.url_twitch + raider.login);
                             }
                         }
                     }
-                    return this.replacePlaceholder(command, this.item.text);
+                    return this.replacePlaceholder(command, text);
                  }
                  else {
                     global.worker.log.trace(`module ${this.item.command} shout nothign to say`);

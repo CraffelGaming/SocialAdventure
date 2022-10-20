@@ -32,7 +32,7 @@ export class Twitch {
     //#endregion
 
     //#region Push
-    async push<T>(method: string, endpoint: string, refresh: boolean = true) {
+    async push<T>(method: string, endpoint: string, refresh: boolean = true) : Promise<T> {
         try {
             const response = await fetch(twitchData.url_base + endpoint, {
                 method,
@@ -49,7 +49,7 @@ export class Twitch {
                 const json = await response.json();
                 global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} OK`);
                 global.worker.log.trace(json);
-                const result = json.data[0] as T;
+                const result = json.data as T;
                 return result;
             } else if(response.status === 401) {
                 global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401`);
@@ -71,19 +71,23 @@ export class Twitch {
 
     //#region API
     async GetChannel(id: string): Promise<twitchChannelItem>{
-        return await this.push<twitchChannelItem>('GET', '/channels?broadcaster_id=' + id);
+        return (await this.push<twitchChannelItem[]>('GET', '/channels?broadcaster_id=' + id))[0];
+    }
+
+    async GetModerators(id: string): Promise<twitchModeratorItem[]>{
+        return (await this.push<twitchModeratorItem[]>('GET', '/moderation/moderators?broadcaster_id=' + id));
     }
 
     async GetStream(id: string): Promise<twitchStreamItem>{
-        return await this.push<twitchStreamItem>('GET', '/streams?user_id=' + id);
+        return (await this.push<twitchStreamItem[]>('GET', '/streams?user_id=' + id))[0];
     }
 
     async getUser(id: string): Promise<credentialUserItem> {
-        return await this.push<credentialUserItem>('GET', '/users?id=' + id);
+        return (await this.push<credentialUserItem[]>('GET', '/users?id=' + id))[0];
     }
 
     async getUserByName(name: string): Promise<credentialUserItem> {
-        return await this.push<credentialUserItem>('GET', '/users?login=' + name);
+        return (await this.push<credentialUserItem[]>('GET', '/users?login=' + name))[0];
     }
 
     async getCurrentUser(credential: credentialItem) : Promise<credentialUserItem>{

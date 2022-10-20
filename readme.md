@@ -35,6 +35,9 @@ Release Date: 29.10.200
 ### Release 2
 
 Release: 2023
+- []  !heal im Chat
+- []  !find / steal / give auch mit Itemname
+- []  !raid gegen große bosse
 - []  Englisch
 - []  API aufräumen
 - []  Datenspeicher für Say-Module
@@ -42,11 +45,14 @@ Release: 2023
 - []  UI Design überarbeiten -> Profi suchen
 - []  Diamanten
 - []  GitHub Readme.md überarbeiten
-- []  Item-Datei hochladen
+- []  Dungeons / Enemy / Item / Category export / import
+- []  Duell
 - []  Kampf / Steal LOG
-- []  Mehr Parameter
+- []  Mehr Traits
+- []  Item Verwendungen
 - []  Live Push Notification
 - []  Handbuch
+- []  Validation Engine A < > != B
 
 ## Error Collection
 ### Say

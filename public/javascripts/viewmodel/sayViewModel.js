@@ -281,6 +281,7 @@ $(async () => {
                             }
                         },
                         { dataField: "isMaster", caption: translate(languageCommand, 'isMaster'), width: 200 },
+                        { dataField: "isModerator", caption: translate(languageCommand, 'isModerator'), width: 200 },
                         {
                             caption: translate(languageCommand, 'description'),
                             calculateCellValue(data) {

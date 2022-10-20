@@ -117,8 +117,8 @@ $(async () => {
                         columns: [
                             { dataField: "experienceMin", caption: translate(language, 'experienceMin'), validationRules: [{ type: "required" }]},
                             { dataField: "experienceMax", caption: translate(language, 'experienceMax'), validationRules: [{ type: "required" }]},
-                            { dataField: "GoldMin", caption: translate(language, 'GoldMin'), validationRules: [{ type: "required" }]},
-                            { dataField: "GoldMax", caption: translate(language, 'GoldMax'), validationRules: [{ type: "required" }]},
+                            { dataField: "goldMin", caption: translate(language, 'goldMin'), validationRules: [{ type: "required" }]},
+                            { dataField: "goldMax", caption: translate(language, 'goldMax'), validationRules: [{ type: "required" }]},
                         ]
                     }));
                 }

@@ -48,6 +48,8 @@ class Worker {
                 yield this.globalDatabase.initializeGlobal();
                 // Twitch API bot login automation
                 yield this.connect();
+                // Load default Translation
+                this.translation = (yield this.globalDatabase.sequelize.models.translation.findAll({ where: { language: 'default' }, order: [['handle', 'ASC']] }));
                 for (const node of Object.values(yield this.globalDatabase.sequelize.models.node.findAll({ include: [{
                             model: global.worker.globalDatabase.sequelize.models.twitchUser,
                             as: 'twitchUser',
@@ -71,10 +73,8 @@ class Worker {
                 let channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
                 if (channel == null) {
                     this.log.trace('add Node ' + node.name);
-                    channel = new channel_1.Channel(node);
-                    yield channel.database.initialize();
-                    yield channel.addSays();
-                    yield channel.addLoot();
+                    channel = new channel_1.Channel(node, this.translation);
+                    yield channel.initialize();
                     // Register Channel to twitch
                     this.register(channel);
                     this.channels.push(channel);

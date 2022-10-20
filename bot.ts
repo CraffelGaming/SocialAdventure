@@ -72,6 +72,12 @@ declare global {
         title: string;
         delay: string;
       };
+
+      type twitchModeratorItem = {
+        user_id: string;
+        user_login: string;
+        user_name: string;
+      };
 }
 
 global.defaultNode = async function defaultNode(request: express.Request, response: express.Response) : Promise<NodeItem> {

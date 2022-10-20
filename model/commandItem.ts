@@ -13,6 +13,8 @@ export class CommandItem extends Model<CommandItem>{
     @Column
     isMaster: boolean = false;
     @Column
+    isModerator: boolean = false;
+    @Column
     isCounter: boolean = false;
     @Column
     translation: string;
@@ -39,6 +41,11 @@ export class CommandItem extends Model<CommandItem>{
                 defaultValue: false
             },
             isMaster: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            },
+            isModerator: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false

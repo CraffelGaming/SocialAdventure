@@ -44,23 +44,9 @@ $(async () => {
                     return [hero];
                 }
             }),
-            filterRow: { visible: true },
-            filterPanel: { visible: true },
-            searchPanel: { visible: true },
             allowColumnReordering: true,
             allowColumnResizing: true,
-            groupPanel: { visible: true },
             selection: { mode: "single" },
-            paging: {
-                pageSize: 10
-            },
-            pager: {
-                visible: true,
-                allowedPageSizes: [10, 25, 50, 100, 'all'],
-                showPageSizeSelector: true,
-                showInfo: true,
-                showNavigationButtons: true,
-            },
             columnChooser: {
                 enabled: true,
                 allowSearch: true,

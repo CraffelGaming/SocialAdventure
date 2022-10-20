@@ -74,6 +74,8 @@ export class Connection {
 
             await this.sequelize.sync();
 
+            await this.updater("migrations/global");
+
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await MenuItem.updateTable({ sequelize: this.sequelize });
@@ -85,8 +87,6 @@ export class Connection {
 
             ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
-
-            await this.updater("migrations/global");
 
             return true;
         }  catch (ex){
@@ -122,6 +122,8 @@ export class Connection {
             await this.sequelize.sync();
 
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) as MigrationItem[] });
+            await this.updater("migrations/general");
+
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await LevelItem.updateTable({ sequelize: this.sequelize });
             await SayItem.updateTable({ sequelize: this.sequelize });
@@ -146,8 +148,6 @@ export class Connection {
             AdventureItem.setAssociation({ sequelize: this.sequelize});
             PromotionItem.setAssociation({ sequelize: this.sequelize});
             HeroPromotionItem.setAssociation({ sequelize: this.sequelize});
-
-            await this.updater("migrations/general");
 
             return true;
         }  catch (ex){

@@ -99,13 +99,12 @@ $(async () => {
                                 for(let i = 0; i < 3; i++){
                                     $(`#daily${i}`).dxButton('instance').option("disabled", true);
                                 }
-
                                 await refreshHero();
                                 await loadWallet();
-                                notify(translate(languageHealing, res.status), "success");
+                                notify(translate(`${languageDaily}_redeem`, res.status), "success");
                                 break;
                             default:
-                                notify(translate(languageHealing, res.status), "error");
+                                notify(translate(`${languageDaily}_redeem`, res.status), "error");
                                 break;
                         }
                     });

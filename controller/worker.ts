@@ -9,7 +9,8 @@ import tmiSettings = require('../bot.json');
 import twitchData = require('../twitch.json');
 import { Command } from './command';
 import { Twitch } from './twitch';
-
+import { TranslationItem } from '../model/translationItem';
+import { Model } from 'sequelize';
 export class Worker {
     pathModel: string;
     pathMigration: string
@@ -19,6 +20,7 @@ export class Worker {
     tmi: any;
     twitch: Twitch;
     botCredential: credentialItem;
+    translation: Model<TranslationItem>[];
 
     //#region Construct
     constructor(log: log4js.Logger){
@@ -52,6 +54,9 @@ export class Worker {
             // Twitch API bot login automation
             await this.connect();
 
+            // Load default Translation
+            this.translation = await this.globalDatabase.sequelize.models.translation.findAll({where: { language: 'default' }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[];
+
             for(const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({include: [{
                 model: global.worker.globalDatabase.sequelize.models.twitchUser,
                 as: 'twitchUser',
@@ -74,11 +79,8 @@ export class Worker {
 
             if(channel == null){
                 this.log.trace('add Node ' + node.name);
-                channel = new Channel(node);
-
-                await channel.database.initialize();
-                await channel.addSays();
-                await channel.addLoot();
+                channel = new Channel(node, this.translation);
+                await channel.initialize();
 
                 // Register Channel to twitch
                 this.register(channel);
