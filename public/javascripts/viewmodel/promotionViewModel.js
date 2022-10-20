@@ -3,15 +3,18 @@ import { getTranslations, translate, infoPanel, get, isMaster, notify, getEditin
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
     let module = 'promotion';
+    let userdata = await get(`/twitch/userdata`);
+
+    if(!userdata){
+        window.location = (await get('/twitch?redirect=promotion')).url;
+    }
 
     let languageStorage = await getTranslations([module, 'item', 'wallet', 'hero']);
     let language = languageStorage.filter(x => x.page == module);
     let languageItem = languageStorage.filter(x => x.page == 'item');
     let languageWallet = languageStorage.filter(x => x.page == 'wallet');
     let languageHero = languageStorage.filter(x => x.page == 'hero');
-
-    let validation = await get(`/validation/${module}`);
-    let userdata = await get(`/twitch/userdata`);
+    let validation = await get(`/validation/${module}`);  
     let item = await get('/item/default');
     let master = await isMaster();
 

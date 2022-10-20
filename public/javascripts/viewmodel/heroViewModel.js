@@ -4,6 +4,12 @@ $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
     let module = 'hero';
+    let userdata = await loadUserData();
+
+    if(!userdata){
+        window.location =  (await get('/twitch?redirect=hero')).url;
+    }
+    
     let languageStorage = await getTranslations([module, 'item', 'wallet', 'trait', 'adventure', 'level', 'itemCategoryList', 'itemCategory', 'inventory']);
     let language = languageStorage.filter(x => x.page == module);
     let languageItem = languageStorage.filter(x => x.page == 'item');
@@ -17,7 +23,6 @@ $(async () => {
 
     let validation = await get(`/validation/${module}`);
     let category = await get('/itemcategory/default/', language);
-    let userdata = {};
     let hero = {};
     let level = {};
 

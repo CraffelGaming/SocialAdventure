@@ -116,7 +116,8 @@ declare module 'express-session' {
         state: string,
         twitch: globalThis.credentialItem,
         node: NodeItem,
-        userData: credentialUserItem
+        userData: credentialUserItem,
+        redirect: string
     }
 }
 

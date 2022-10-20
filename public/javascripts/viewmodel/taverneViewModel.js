@@ -2,6 +2,11 @@ import { getTranslations, translate, infoPanel, get, loadUserData, notify, put }
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
+    let userdata = await loadUserData();
+
+    if(!userdata){
+        window.location = (await get('/twitch?redirect=taverne')).url;
+    }
 
     let module = 'taverne';
     let languageStorage = await getTranslations([module, 'healing', 'trainer', 'wallet', 'trait', 'hero', 'daily']);
@@ -14,7 +19,6 @@ $(async () => {
     let languageDaily = languageStorage.filter(x => x.page == 'daily');
 
     let validation = await get(`/validation/hero`);
-    let userdata = {};
     let hero = {};
     let heroWallet = {};
     let heroTrait = {};

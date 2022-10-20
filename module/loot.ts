@@ -3,9 +3,11 @@ import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel";
 import { Command } from "../controller/command";
 import { AdventureItem } from "../model/adventureItem";
+import { HealingPotionItem } from "../model/healingPotionItem";
 import { HeroInventoryItem } from "../model/heroInventoryItem";
 import { HeroItem } from "../model/heroItem";
 import { HeroWalletItem } from "../model/heroWalletItem";
+import { LevelItem } from "../model/levelItem";
 import { LootItem } from "../model/lootItem";
 import { TranslationItem } from "../model/translationItem";
 import { LootExploring } from "./lootExploring";
@@ -571,10 +573,12 @@ export class Loot extends Module {
                 const level = await this.channel.database.sequelize.models.level.findOne({
                     where: { experienceMin :{[Op.lte]: item.getDataValue("experience")},
                     experienceMax :{[Op.gte]: item.getDataValue("experience") }
-                }});
+                }}) as Model<LevelItem>;
 
                 if(level){
-                    return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', level.getDataValue("handle").toString());
+                    return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero)
+                                          .replace('$2', level.getDataValue("handle").toString()
+                                          .replace('$3', item.getDataValue("prestige").toString()));
                 } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
             } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
         } catch(ex) {
@@ -596,6 +600,40 @@ export class Loot extends Module {
         } catch(ex) {
             global.worker.log.error(`module loot error - function gold - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20017');
+        }
+    }
+    //#endregion
+
+    //#region Heal
+    async heal(command: Command){
+        try {
+            const hero = this.getTargetHero(command);
+            const item = await this.channel.database.sequelize.models.hero.findByPk(hero) as Model<HeroItem>;
+            const wallet = await this.channel.database.sequelize.models.heroWallet.findByPk(hero) as Model<HeroWalletItem>;
+            const potions = await this.channel.database.sequelize.models.healingPotion.findAll() as Model<HealingPotionItem>[];
+
+            let percent = 100 / item.getDataValue("hitpointsMax") * item.getDataValue("hitpoints")
+
+            if(percent > 80){
+                TranslationItem.translate(this.translation, 'healNo').replace('$1', hero);
+            } else if(percent <= 80 && percent > 60 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 25 && x.getDataValue("isRevive") === false).getDataValue("gold")){
+                TranslationItem.translate(this.translation, 'heal25').replace('$1', hero);
+            } else if(percent <= 60 && percent > 40 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 50 && x.getDataValue("isRevive") === false).getDataValue("gold")){
+                TranslationItem.translate(this.translation, 'heal50').replace('$1', hero);
+            } else if(percent <= 40 && percent > 20 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 75 && x.getDataValue("isRevive") === false).getDataValue("gold")){
+                TranslationItem.translate(this.translation, 'heal75').replace('$1', hero);
+            } else if(percent <= 20 && percent >  0 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 10 && x.getDataValue("isRevive") === false).getDataValue("gold")){
+                TranslationItem.translate(this.translation, 'heal100').replace('$1', hero);
+            } else if(percent === 0){
+                if(wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 100 && x.getDataValue("isRevive") === true).getDataValue("gold")){
+                    TranslationItem.translate(this.translation, 'healRevive100').replace('$1', hero);
+                } else {
+                    TranslationItem.translate(this.translation, 'healRevive10').replace('$1', hero);
+                }
+            }
+        } catch(ex) {
+            global.worker.log.error(`module loot error - function heal - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20019');
         }
     }
     //#endregion

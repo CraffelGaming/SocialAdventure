@@ -49,8 +49,14 @@ router.get('/' + endpoint, (request, response) => __awaiter(void 0, void 0, void
     }
 }));
 function callback(request, response) {
+    let url = endpoint;
+    if (request.session && request.session.redirect && request.session.redirect.length > 0) {
+        global.worker.log.trace(`login - callback redirect ${request.session.redirect}`);
+        url = request.session.redirect;
+        request.session.redirect = null;
+    }
     global.worker.log.trace(`login - callback ${request.query.state}`);
-    response.render(endpoint, {
+    response.render(url, {
         title: 'Craffels Abenteuer'
     });
 }

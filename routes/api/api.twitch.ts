@@ -13,6 +13,10 @@ router.get('/' + endpoint + '/', (request: express.Request, response: express.Re
 
         global.worker.log.trace(`twitch - session information ${request.session.id}`);
         global.worker.log.trace(`twitch - session information ${request.session.state}`);
+
+        if(request.query.redirect)
+            request.session.redirect = request.query.redirect as string;
+
         if(!request.session.state){
             request.session.state = uniqid();
             global.worker.log.trace(`twitch - set locale state to ${request.session.state}`);

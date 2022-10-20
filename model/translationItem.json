@@ -328,7 +328,7 @@
     { "page": "loot", "handle": "heroNotJoined", "language": "de-DE", "translation": "$1 ist nicht auf Abenteuer. Tippe !loot um teilzunehmen."},
     { "page": "loot", "handle": "heroNotExists", "language": "de-DE", "translation": "$1 ist kein Held. Tippe !loot um auch ein Held zu werden."},
     { "page": "loot", "handle": "heroLeave", "language": "de-DE", "translation": "$1 hat das Abenteuer verlassen."},
-    { "page": "loot", "handle": "heroLevel", "language": "de-DE", "translation": "$1 ist Level $2."},
+    { "page": "loot", "handle": "heroLevel", "language": "de-DE", "translation": "$1 ist Level $2 und hat Prestige-Level $3"},
     { "page": "loot", "handle": "heroItem", "language": "de-DE", "translation": "$1 hat folgende Gegenstände: $2."},
     { "page": "loot", "handle": "heroNoItem", "language": "de-DE", "translation": "$1 hat keine Items im Inventar."},
     { "page": "loot", "handle": "heroJoin", "language": "de-DE", "translation": "$1, du warst noch nie auf Abenteuer. Tippe !loot um teilzunehmen."},
