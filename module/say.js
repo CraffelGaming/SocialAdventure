@@ -43,11 +43,17 @@ class Say extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 global.worker.log.trace(`module ${this.item.command} say execute`);
+                // START Verbessern...
+                if (this.item.isShoutout) {
+                    global.worker.log.trace(`module ${this.item.command} isShoutout ${this.item.isShoutout}`);
+                    this.commands.find(x => x.command === '').isModerator = true;
+                }
+                // ENDE
                 if (command.name.startsWith(this.item.command)) {
                     command.name = command.name.replace(this.item.command, "");
                     const allowedCommand = this.commands.find(x => x.command === command.name);
                     if (allowedCommand) {
-                        if (!allowedCommand.isMaster || this.isOwner(command)) {
+                        if (!allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command)) {
                             if (this.item.isActive || allowedCommand.isMaster && this.isOwner(command)) {
                                 if (command.name.length === 0)
                                     command.name = "shout";

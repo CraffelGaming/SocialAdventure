@@ -6,7 +6,6 @@ import { NodeItem } from '../model/nodeItem';
 import { Channel } from './channel';
 import tmi = require('tmi.js');
 import tmiSettings = require('../bot.json');
-import twitchData = require('../twitch.json');
 import { Command } from './command';
 import { Twitch } from './twitch';
 import { TranslationItem } from '../model/translationItem';

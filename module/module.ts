@@ -39,6 +39,20 @@ export class Module {
     }
     //#endregion
 
+    //#region Moderator
+    isModerator(command : Command){
+        let result = false;
+
+        if(this.channel.moderators && this.channel.moderators.length > 0){
+            if(this.channel.moderators.some(x => x.user_name === command.source))
+            result = true;
+        }
+
+        global.worker.log.trace(`is moderator: ${result}`);
+        return result;
+    }
+    //#endregion
+
     //#region Placeholder
     replacePlaceholder(command: Command, text: string) : string{
         text = text.replace('$streamer', this.channel.node.getDataValue('name'));

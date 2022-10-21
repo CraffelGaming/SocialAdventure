@@ -110,6 +110,15 @@ global.isRegistered = function isRegistered(request: express.Request, response: 
     }
     return false;
 }
+
+global.isModerator = function isRegistered(request: express.Request, response: express.Response, moderators: twitchModeratorItem[]) : boolean{
+    if(moderators?.length > 0 && request.session != null && request.session.userData != null && request.session.userData.login != null){
+        if(moderators.some(x => x.user_login === request.session.userData.login)){
+            return true;
+        }
+    }
+    return false;
+}
 // extend session
 declare module 'express-session' {
     interface SessionData {

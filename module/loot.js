@@ -646,7 +646,9 @@ class Loot extends module_1.Module {
                         }
                     });
                     if (level) {
-                        return translationItem_1.TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero).replace('$2', level.getDataValue("handle").toString());
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero)
+                            .replace('$2', level.getDataValue("handle").toString()
+                            .replace('$3', item.getDataValue("prestige").toString()));
                     }
                     else
                         return translationItem_1.TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
@@ -676,6 +678,46 @@ class Loot extends module_1.Module {
             catch (ex) {
                 global.worker.log.error(`module loot error - function gold - ${ex.message}`);
                 return translationItem_1.TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20017');
+            }
+        });
+    }
+    //#endregion
+    //#region Heal
+    heal(command) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const hero = this.getTargetHero(command);
+                const item = yield this.channel.database.sequelize.models.hero.findByPk(hero);
+                const wallet = yield this.channel.database.sequelize.models.heroWallet.findByPk(hero);
+                const potions = yield this.channel.database.sequelize.models.healingPotion.findAll();
+                const percent = 100 / item.getDataValue("hitpointsMax") * item.getDataValue("hitpoints");
+                if (percent > 80) {
+                    translationItem_1.TranslationItem.translate(this.translation, 'healNo').replace('$1', hero);
+                }
+                else if (percent <= 80 && percent > 60 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 25 && x.getDataValue("isRevive") === false).getDataValue("gold")) {
+                    translationItem_1.TranslationItem.translate(this.translation, 'heal25').replace('$1', hero);
+                }
+                else if (percent <= 60 && percent > 40 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 50 && x.getDataValue("isRevive") === false).getDataValue("gold")) {
+                    translationItem_1.TranslationItem.translate(this.translation, 'heal50').replace('$1', hero);
+                }
+                else if (percent <= 40 && percent > 20 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 75 && x.getDataValue("isRevive") === false).getDataValue("gold")) {
+                    translationItem_1.TranslationItem.translate(this.translation, 'heal75').replace('$1', hero);
+                }
+                else if (percent <= 20 && percent > 0 && wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 10 && x.getDataValue("isRevive") === false).getDataValue("gold")) {
+                    translationItem_1.TranslationItem.translate(this.translation, 'heal100').replace('$1', hero);
+                }
+                else if (percent === 0) {
+                    if (wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 100 && x.getDataValue("isRevive") === true).getDataValue("gold")) {
+                        translationItem_1.TranslationItem.translate(this.translation, 'healRevive100').replace('$1', hero);
+                    }
+                    else {
+                        translationItem_1.TranslationItem.translate(this.translation, 'healRevive10').replace('$1', hero);
+                    }
+                }
+            }
+            catch (ex) {
+                global.worker.log.error(`module loot error - function heal - ${ex.message}`);
+                return translationItem_1.TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20019');
             }
         });
     }

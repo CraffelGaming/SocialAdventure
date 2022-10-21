@@ -612,7 +612,7 @@ export class Loot extends Module {
             const wallet = await this.channel.database.sequelize.models.heroWallet.findByPk(hero) as Model<HeroWalletItem>;
             const potions = await this.channel.database.sequelize.models.healingPotion.findAll() as Model<HealingPotionItem>[];
 
-            let percent = 100 / item.getDataValue("hitpointsMax") * item.getDataValue("hitpoints")
+            const percent = 100 / item.getDataValue("hitpointsMax") * item.getDataValue("hitpoints")
 
             if(percent > 80){
                 TranslationItem.translate(this.translation, 'healNo').replace('$1', hero);
