@@ -120,7 +120,7 @@ router.delete('/' + endpoint + '/:node/:handle', (request, response) => __awaite
 }));
 router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        global.worker.log.trace(`post ${endpoint}, node ${request.params.node} redeem ${request.params.promotionHandle} ${request.params.heroName}`);
+        global.worker.log.trace(`post ${endpoint}, node ${request.params.node} redeem ${request.params.promotionHandle} ${request.params.heroName.toLowerCase()}`);
         let node;
         if (request.params.node === 'default')
             node = yield global.defaultNode(request, response);
@@ -130,8 +130,8 @@ router.post('/' + endpoint + '/:node/redeem/:promotionHandle/:heroName', (reques
         if (channel) {
             const promotion = yield channel.database.sequelize.models.promotion.findByPk(request.params.promotionHandle);
             if (promotion) {
-                if (global.isMaster(request, response, node) || global.isChannel(request, response, request.params.heroName) && !promotion.isMaster) {
-                    response.status(yield promotionItem_1.PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName })).json(promotion);
+                if (global.isMaster(request, response, node) || global.isChannel(request, response, request.params.heroName.toLowerCase()) && !promotion.isMaster) {
+                    response.status(yield promotionItem_1.PromotionItem.redeem({ sequelize: channel.database.sequelize, promotion, heroName: request.params.heroName.toLowerCase() })).json(promotion);
                 }
                 else {
                     response.status(403).json();

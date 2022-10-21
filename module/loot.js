@@ -436,7 +436,7 @@ class Loot extends module_1.Module {
                         const adventures = yield this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: heroes[hero].getDataValue("name") } });
                         for (const adventure in adventures) {
                             if (adventures[adventure]) {
-                                heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure: adventures[adventure] });
+                                yield heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure: adventures[adventure] });
                             }
                         }
                         yield heroes[hero].save();

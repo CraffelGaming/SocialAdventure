@@ -387,7 +387,7 @@ export class Loot extends Module {
                     const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: heroes[hero].getDataValue("name")}}) as Model<AdventureItem>[];
                     for(const adventure in adventures){
                         if(adventures[adventure]){
-                            HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure: adventures[adventure]});
+                            await HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure: adventures[adventure]});
                         }
                     }
                     await heroes[hero].save();

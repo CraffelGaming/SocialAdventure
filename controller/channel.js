@@ -76,8 +76,8 @@ class Channel {
                             global.worker.log.info(`node ${this.node.getDataValue('name')}, streamWatcher is now live`);
                             this.node.setDataValue('isLive', true);
                             yield this.node.save();
-                            this.startSays();
-                            this.startLoot();
+                            yield this.startSays();
+                            yield this.startLoot();
                             this.puffer.addMessage(this.translation.find(x => x.getDataValue('handle') === 'botOnline').getDataValue('translation'));
                             this.moderators = yield this.getModerators();
                         }
@@ -89,8 +89,8 @@ class Channel {
                         global.worker.log.info(`node ${this.node.getDataValue('name')}, streamWatcher is not longer live`);
                         this.node.setDataValue('isLive', false);
                         yield this.node.save();
-                        this.stopSays();
-                        this.stopLoot();
+                        yield this.stopSays();
+                        yield this.stopLoot();
                         this.puffer.addMessage(this.translation.find(x => x.getDataValue('handle') === 'botOffline').getDataValue('translation'));
                     }
                     else {
