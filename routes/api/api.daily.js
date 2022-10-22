@@ -73,7 +73,7 @@ router.get('/' + endpoint + '/:node/current/:count', (request, response) => __aw
         if (channel) {
             const count = Number(request.params.count);
             if (!isNaN(count)) {
-                found = yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count });
+                found = yield dailyItem_1.DailyItem.getCurrentDaily({ sequelize: channel.database.sequelize, count, node: node.name });
             }
             if (found)
                 response.status(200).json(found);
@@ -101,7 +101,7 @@ router.get('/' + endpoint + '/:node/current/:count/hero/:name', (request, respon
         if (channel) {
             const count = Number(request.params.count);
             if (!isNaN(count)) {
-                found = yield dailyItem_1.DailyItem.getCurrentDailyByHero({ sequelize: channel.database.sequelize, count, heroName: request.params.name });
+                found = yield dailyItem_1.DailyItem.getCurrentDailyByHero({ sequelize: channel.database.sequelize, count, heroName: request.params.name, node: node.name });
             }
             if (found)
                 response.status(200).json(found);
@@ -130,7 +130,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, respo
                 let found;
                 const count = Number(request.params.number);
                 if (!isNaN(count)) {
-                    found = (yield dailyItem_1.DailyItem.getCurrentDailyByHero({ sequelize: channel.database.sequelize, count, heroName: request.params.name }))[count - 1];
+                    found = (yield dailyItem_1.DailyItem.getCurrentDailyByHero({ sequelize: channel.database.sequelize, count, heroName: request.params.name, node: node.name }))[count - 1];
                 }
                 if (found) {
                     const hero = yield channel.database.sequelize.models.hero.findByPk(request.params.name);

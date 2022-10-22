@@ -288,6 +288,7 @@
     { "page": "command", "handle": "find", "language": "de-DE", "translation": "Sucht einen Gegenstand und zeigt, ob der Gegenstand bereits gefunden wurde oder noch gefunden werden muss. "},
     { "page": "command", "handle": "leave", "language": "de-DE", "translation": "Verlässt das Abenteuer."},
     { "page": "command", "handle": "gold", "language": "de-DE", "translation": "Zeigt die Menge deines Goldes an."},
+    { "page": "command", "handle": "heal", "language": "de-DE", "translation": "Heilt dich entsprechend deines aktuellen Schadens."},
     { "page": "command", "handle": "diamond", "language": "de-DE", "translation": "Zeigt die Menge deiner Diamanten an."},
     { "page": "command", "handle": "chest", "language": "de-DE", "translation": "Zeigt die Anzahl deiner jemals gefundenen Gegenstände an."},
     { "page": "command", "handle": "level", "language": "de-DE", "translation": "Zeigt dein aktuelles Leven an."},
@@ -379,6 +380,10 @@
     { "page": "loot", "handle": "stealItemFailedLoose", "language": "de-DE", "translation": "$1 wurden beim stehlen von $2 erwischt und hat den Gegenstand '$3 [$4]' verloren."},
     { "page": "loot", "handle": "stealSelf", "language": "de-DE", "translation": "$1 hat sich selbst bestohlen."},
     { "page": "loot", "handle": "stealNotActive", "language": "de-DE", "translation": "$1, auf diesem Abenteuer ist Diebstahl verboten."},
+    { "page": "loot", "handle": "healNo", "language": "de-DE", "translation": "$1, du hast noch $2/$3 HP und musst dich nicht heilen."},
+    { "page": "loot", "handle": "healYes", "language": "de-DE", "translation": "$1, du hast einen $2 getrunken und hast jetzt $3/$4 HP"},
+    { "page": "loot", "handle": "healRevive", "language": "de-DE", "translation": "$1, du hast einen $2 und dich wiederbelebt, du hast jetzt $3/$4 HP"},
+    { "page": "loot", "handle": "healNoMoney", "language": "de-DE", "translation": "$1, du hast nicht genug Geld um dich zu heilen. Du besitzt $2 Gold und brauchst $3 Gold "},
 
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},

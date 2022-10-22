@@ -43,7 +43,7 @@ router.get('/' + endpoint + '/:node/current/:count', async (request: express.Req
         if(channel) {
             const count: number = Number(request.params.count);
             if(!isNaN(count)){
-                found = await DailyItem.getCurrentDaily({sequelize: channel.database.sequelize, count });
+                found = await DailyItem.getCurrentDaily({sequelize: channel.database.sequelize, count, node: node.name });
             }
             if(found) response.status(200).json(found);
             else response.status(404).json();
@@ -69,7 +69,7 @@ router.get('/' + endpoint + '/:node/current/:count/hero/:name', async (request: 
         if(channel) {
             const count: number = Number(request.params.count);
             if(!isNaN(count)){
-                found = await DailyItem.getCurrentDailyByHero({sequelize: channel.database.sequelize, count, heroName: request.params.name});
+                found = await DailyItem.getCurrentDailyByHero({sequelize: channel.database.sequelize, count, heroName: request.params.name, node: node.name});
             }
             if(found) response.status(200).json(found);
             else response.status(404).json();
@@ -97,7 +97,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', async (request:
                 const count: number = Number(request.params.number);
 
                 if(!isNaN(count)){
-                    found = (await DailyItem.getCurrentDailyByHero({sequelize: channel.database.sequelize, count, heroName: request.params.name}))[count - 1];
+                    found = (await DailyItem.getCurrentDailyByHero({sequelize: channel.database.sequelize, count, heroName: request.params.name, node: node.name}))[count - 1];
                 }
 
                 if(found){

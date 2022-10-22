@@ -123,12 +123,12 @@ export class DailyItem extends Model<DailyItem>{
         return isValid;
     }
 
-    static async getCurrentDaily({ sequelize, count }: { sequelize: Sequelize, count: number }) : Promise<DailyItem[]>{
+    static async getCurrentDaily({ sequelize, count, node }: { sequelize: Sequelize, count: number, node: string  }) : Promise<DailyItem[]>{
         const item = await sequelize.models.daily.findAll({order: [ [ 'handle', 'ASC' ]], raw: false }) as Model<DailyItem>[];
         const today = new Date();
         const found: DailyItem[] = [];
-        const generatorDaily = seedrandom(today.toDateString());
-        const generatorReward = seedrandom(today.toDateString());
+        const generatorDaily = seedrandom(today.toDateString() + node);
+        const generatorReward = seedrandom(today.toDateString() + node);
 
         for(let i = 1; i <= count; i++){
             const rand = Math.floor(generatorDaily() * (item.length - 0) + 0);
@@ -141,8 +141,8 @@ export class DailyItem extends Model<DailyItem>{
         return found;
     }
 
-    static async getCurrentDailyByHero({ sequelize, count, heroName }: { sequelize: Sequelize, count: number, heroName: string }) : Promise<DailyItem[]>{
-        const found: DailyItem[] = await DailyItem.getCurrentDaily({sequelize, count})
+    static async getCurrentDailyByHero({ sequelize, count, heroName, node }: { sequelize: Sequelize, count: number, heroName: string, node: string }) : Promise<DailyItem[]>{
+        const found: DailyItem[] = await DailyItem.getCurrentDaily({sequelize, count, node})
         const trait = await sequelize.models.heroTrait.findByPk(heroName) as Model<HeroTraitItem>;
         for(const item of found){
             item.gold = Math.round(item.gold * ((trait.getDataValue("workMultipler") / 10) + 1));

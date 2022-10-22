@@ -139,7 +139,7 @@ let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Mod
             return isValid;
         });
     }
-    static getCurrentDaily({ sequelize, count }) {
+    static getCurrentDaily({ sequelize, count, node }) {
         return __awaiter(this, void 0, void 0, function* () {
             const item = yield sequelize.models.daily.findAll({ order: [['handle', 'ASC']], raw: false });
             const today = new Date();
@@ -157,9 +157,9 @@ let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Mod
             return found;
         });
     }
-    static getCurrentDailyByHero({ sequelize, count, heroName }) {
+    static getCurrentDailyByHero({ sequelize, count, heroName, node }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const found = yield DailyItem_1.getCurrentDaily({ sequelize, count });
+            const found = yield DailyItem_1.getCurrentDaily({ sequelize, count, node });
             const trait = yield sequelize.models.heroTrait.findByPk(heroName);
             for (const item of found) {
                 item.gold = Math.round(item.gold * ((trait.getDataValue("workMultipler") / 10) + 1));

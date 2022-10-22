@@ -87,3 +87,5 @@ Release: 2023
 * E-20017 gold
 * E-20018 diamond
 * E-20019 heal
+* E-20020 heal hero
+* E-20021 revive hero
