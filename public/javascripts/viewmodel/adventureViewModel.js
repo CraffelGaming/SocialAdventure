@@ -69,7 +69,7 @@ $(async () => {
                 { dataField: "item.value", caption: translate(language, 'item'), validationRules: [{ type: "required" }]},
                 {
                     dataField: 'item.categoryHandle',
-                    caption: translate(languageItemCategory , 'value'), width: 300,
+                    caption: translate(languageItemCategory , 'value'), width: 200,
                     lookup: {
                       dataSource(options) {
                         return {
@@ -86,7 +86,7 @@ $(async () => {
                       }
                     },
                 },
-                { dataField: "item.gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 300 },
+                { dataField: "item.gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 100 },
                 { dataField: "hero.name", caption: translate(language, 'owner'), validationRules: [{ type: "required" }]}
             ],
             export: {

@@ -78,7 +78,7 @@ $(async () => {
                         template.appendTo(container);
                     },
                 },
-                { dataField: "name", caption: translate(language, 'name') },
+                { dataField: "name", caption: translate(language, 'name'), minWidth: 100 },
                 { caption: translate(languageLevel, 'handle'), width: 100,
                     calculateCellValue(data) {
                         return level.handle;
@@ -180,6 +180,7 @@ $(async () => {
                         allowAdding: false
                     },
                     columns: [
+                        { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
                         { dataField: "item.value", caption: translate(languageItem, 'value') },
                         { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 }
                     ]
@@ -224,10 +225,11 @@ $(async () => {
                         allowAdding: false
                     },
                     columns: [
+                        { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
                         { dataField: "item.value", caption: translate(languageItem, 'value') },
                         {
                             dataField: 'item.categoryHandle',
-                            caption: translate(languageItemCategory , 'value'), width: 300,
+                            caption: translate(languageItemCategory , 'value'), width: 200,
                             lookup: {
                               dataSource(options) {
                                 return {
@@ -240,12 +242,12 @@ $(async () => {
                               },
                               valueExpr: 'handle',
                               displayExpr: function(item) {
-                                  return item && translate(languageItemCategoryList, item.value);
+                                  return item && item.value;
                               }
                             },
                         },
-                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 },
-                        { dataField: "quantity", caption: translate(language, 'quantity'), width: 200 },
+                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100 },
+                        { dataField: "quantity", caption: translate(language, 'quantity'), width: 100 },
                         {
                             caption: translate(language, 'total'), width: 250,
                             calculateCellValue(data) {

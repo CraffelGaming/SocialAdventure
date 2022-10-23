@@ -35,24 +35,27 @@ Release Date: 29.10.200
 ### Release 2
 
 Release: 2023
-- []  !heal im Chat
-- []  !find / steal / give auch mit Itemname
-- []  !raid gegen große bosse
-- []  Englisch
-- []  API aufräumen
-- []  Datenspeicher für Say-Module
-- []  Keyschleuder
-- []  UI Design überarbeiten -> Profi suchen
-- []  Diamanten
-- []  GitHub Readme.md überarbeiten
-- []  Dungeons / Enemy / Item / Category export / import
-- []  Duell
-- []  Kampf / Steal LOG
-- []  Mehr Traits
-- []  Item Verwendungen
-- []  Live Push Notification
-- []  Handbuch
-- []  Validation Engine A < > != B
+- [X]  !heal im Chat
+- [X]  Random Seed in Daly pro Streamer unterschiedlich
+- [ ]  Item ID in Hero and heros Seite
+- [ ]  Item Kategorie wird bei hero heros seiten nicht angezeigt...
+- [ ]  !find / steal / give auch mit Itemname
+- [ ]  !raid gegen große bosse
+- [ ]  Englisch
+- [ ]  API aufräumen
+- [ ]  Datenspeicher für Say-Module
+- [ ]  Keyschleuder
+- [ ]  UI Design überarbeiten -> Profi suchen
+- [ ]  Diamanten
+- [ ]  GitHub Readme.md überarbeiten
+- [ ]  Dungeons / Enemy / Item / Category export / import
+- [ ]  Duell
+- [ ]  Kampf / Steal LOG
+- [ ]  Mehr Traits
+- [ ]  Item Verwendungen
+- [ ]  Live Push Notification
+- [ ]  Handbuch
+- [ ]  Validation Engine A < > != B
 
 ## Error Collection
 ### Say

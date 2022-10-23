@@ -144,8 +144,8 @@ let DailyItem = DailyItem_1 = class DailyItem extends sequelize_typescript_1.Mod
             const item = yield sequelize.models.daily.findAll({ order: [['handle', 'ASC']], raw: false });
             const today = new Date();
             const found = [];
-            const generatorDaily = (0, seedrandom_1.default)(today.toDateString());
-            const generatorReward = (0, seedrandom_1.default)(today.toDateString());
+            const generatorDaily = (0, seedrandom_1.default)(today.toDateString() + node);
+            const generatorReward = (0, seedrandom_1.default)(today.toDateString() + node);
             for (let i = 1; i <= count; i++) {
                 const rand = Math.floor(generatorDaily() * (item.length - 0) + 0);
                 const element = item.splice(rand, 1)[0].get();
