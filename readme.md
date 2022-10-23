@@ -37,8 +37,12 @@ Release Date: 29.10.200
 Release: 2023
 - [X]  !heal im Chat
 - [X]  Random Seed in Daly pro Streamer unterschiedlich
-- [ ]  Item ID in Hero and heros Seite
-- [ ]  Item Kategorie wird bei hero heros seiten nicht angezeigt...
+- [X]  Item ID in Hero and heros Seite
+- [X]  Item Kategorie wird bei hero heros seiten nicht angezeigt...
+- [X]  Heal Description
+- [X]  Shoutout no target message
+- [X]  implement need !loot to use
+- [ ]  deathcounter + xyz
 - [ ]  !find / steal / give auch mit Itemname
 - [ ]  !raid gegen große bosse
 - [ ]  Englisch

@@ -383,7 +383,8 @@
     { "page": "loot", "handle": "healNo", "language": "de-DE", "translation": "$1, du hast noch $2/$3 HP und musst dich nicht heilen."},
     { "page": "loot", "handle": "healYes", "language": "de-DE", "translation": "$1, du hast einen $2 getrunken und hast jetzt $3/$4 HP"},
     { "page": "loot", "handle": "healRevive", "language": "de-DE", "translation": "$1, du hast einen $2 und dich wiederbelebt, du hast jetzt $3/$4 HP"},
-    { "page": "loot", "handle": "healNoMoney", "language": "de-DE", "translation": "$1, du hast nicht genug Geld um dich zu heilen. Du besitzt $2 Gold und brauchst $3 Gold "},
+    { "page": "loot", "handle": "healNoMoney", "language": "de-DE", "translation": "$1, du hast nicht genug Geld um dich zu heilen. Du besitzt $2 Gold und brauchst $3 Gold."},
+    { "page": "loot", "handle": "shoutoutNeedTarget", "language": "de-DE", "translation": "$1, du musst einen Streamernamen angeben, der den Shoutout erhalten soll."},
 
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},

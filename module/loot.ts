@@ -634,7 +634,7 @@ export class Loot extends Module {
             if(potion && !potion.getDataValue("isRevive")){
                 return await this.healHero(command, potion, item, wallet);
             } else if(potion && potion.getDataValue("isRevive")){
-                return await this.reviveHero(command, potion, item, wallet);
+                return await this.reviveHero(command, potion, item);
             } else {
                 return TranslationItem.translate(this.translation, 'healNo').replace('$1', hero)
                                                                             .replace('$2', item.getDataValue("hitpoints").toString())
@@ -650,11 +650,12 @@ export class Loot extends Module {
         let message: string;
         try {
             if(wallet.getDataValue("gold") >= potion.getDataValue("gold")){
-                message = TranslationItem.translate(this.translation, 'healYes').replace('$1', hero.getDataValue("name"))
-                                                                                .replace('$2', potion.getDataValue("value"))
-                                                                                .replace('$3', hero.getDataValue("hitpoints").toString())
-                                                                                .replace('$4', hero.getDataValue("hitpointsMax").toString());
                 await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name")});
+                hero = await this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")) as Model<HeroItem>;
+                message = TranslationItem.translate(this.translation, 'healYes').replace('$1', hero.getDataValue("name"))
+                                         .replace('$2', potion.getDataValue("value"))
+                                         .replace('$3', hero.getDataValue("hitpoints").toString())
+                                         .replace('$4', hero.getDataValue("hitpointsMax").toString());
             } else {
                 message = TranslationItem.translate(this.translation, 'healNoMoney').replace('$1', hero.getDataValue("name"))
                                                                                     .replace('$2', wallet.getDataValue("gold").toString())
@@ -667,7 +668,7 @@ export class Loot extends Module {
         return message;
     }
 
-    async reviveHero(command: Command, potion: Model<HealingPotionItem>, hero: Model<HeroItem>, wallet: Model<HeroWalletItem>){
+    async reviveHero(command: Command, potion: Model<HealingPotionItem>, hero: Model<HeroItem>){
         let message: string;
         try {
             message = TranslationItem.translate(this.translation, 'healRevive').replace('$1', hero.getDataValue("name"))

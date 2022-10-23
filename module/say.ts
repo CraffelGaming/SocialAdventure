@@ -271,16 +271,21 @@ export class Say extends Module {
                     }
 
                     if(this.item.isShoutout){
-                        const raider = await this.channel.twitch.getUserByName(command.target);
-                        if(raider){
-                            const raiderChannel = await this.channel.twitch.GetChannel(raider.id);
-
-                            if(raiderChannel){
-                                text = text.replace('$raider', raider.display_name);
-                                text = text.replace('$raiderGame', raiderChannel.game_name);
-                                text = text.replace('$raiderTitle', raiderChannel.title);
-                                text = text.replace('$raiderUrl', twitchData.url_twitch + raider.login);
+                        if(command.target) {
+                            const raider = await this.channel.twitch.getUserByName(command.target);
+                            if(raider){
+                                const raiderChannel = await this.channel.twitch.GetChannel(raider.id);
+    
+                                if(raiderChannel){
+                                    text = text.replace('$raider', raider.display_name);
+                                    text = text.replace('$raiderGame', raiderChannel.game_name);
+                                    text = text.replace('$raiderTitle', raiderChannel.title);
+                                    text = text.replace('$raiderUrl', twitchData.url_twitch + raider.login);
+                                }
                             }
+                        } else {
+                            global.worker.log.trace(`module ${this.item.command} shout shoutout need target`);
+                            return TranslationItem.translate(this.basicTranslation, "shoutoutNeedTarget").replace("$1", command.source);
                         }
                     }
                     return this.replacePlaceholder(command, text);
