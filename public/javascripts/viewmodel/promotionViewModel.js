@@ -27,7 +27,7 @@ $(async () => {
     async function initialize() {
         $("#form").dxForm({
             formData: {
-                recipient: userdata?.display_name,
+                recipient: userdata?.login,
                 code: ""
             },
             items: [{
@@ -38,7 +38,7 @@ $(async () => {
                         text: translate(language, 'recipient')
                     },
                     editorType: 'dxDropDownBox',
-                    editorOptions: await buildHeroDropdown(userdata?.display_name)   
+                    editorOptions: await buildHeroDropdown(userdata?.login)   
                 },
                 {
                     dataField: "code",
