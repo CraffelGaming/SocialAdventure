@@ -45,6 +45,7 @@ Release: 2023
 - [X]  deathcounter + xyz
 - [X]  Notify Streamer Change
 - [X]  !find / steal / give auch mit Itemname
+- [X]  Heal other
 - [ ]  !raid gegen große bosse
 - [ ]  Englisch
 - [ ]  API aufräumen
