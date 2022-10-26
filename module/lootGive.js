@@ -13,7 +13,7 @@ exports.LootGive = void 0;
 const adventureItem_1 = require("../model/adventureItem");
 class LootGive {
     //#region Construct
-    constructor(loot, sourceHeroName, targetHeroName, itemHandle) {
+    constructor(loot, sourceHeroName, targetHeroName, itemParameter) {
         this.isSource = true;
         this.isTarget = true;
         this.isItem = true;
@@ -23,14 +23,14 @@ class LootGive {
         this.isActive = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
-        this.itemHandle = itemHandle;
+        this.itemParameter = itemParameter;
         this.loot = loot;
     }
     //#endregion
     //#region Execute
     execute(settings) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.itemHandle));
+            this.item = yield this.getItem();
             this.sourceHero = (yield this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName));
             this.targetHero = (yield this.loot.channel.database.sequelize.models.hero.findByPk(this.targetHeroName));
             if (settings.isActive) {
@@ -74,6 +74,22 @@ class LootGive {
             else
                 this.isActive = false;
             return false;
+        });
+    }
+    //#endregion
+    //#region Item
+    getItem() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.itemParameter && this.itemParameter.length > 0) {
+                const itemHandle = Number(this.itemParameter);
+                if (isNaN(itemHandle)) {
+                    return yield this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter } });
+                }
+                else {
+                    return yield this.loot.channel.database.sequelize.models.item.findByPk(itemHandle);
+                }
+            }
+            return null;
         });
     }
 }

@@ -17,7 +17,7 @@ const sequelize_1 = __importDefault(require("sequelize"));
 const adventureItem_1 = require("../model/adventureItem");
 class LootSteal {
     //#region Construct
-    constructor(loot, sourceHeroName, targetHeroName = null, itemHandle = null) {
+    constructor(loot, sourceHeroName, targetHeroName = null, itemParameter = null) {
         this.isSource = true;
         this.isTarget = true;
         this.isItem = true;
@@ -31,7 +31,7 @@ class LootSteal {
         this.isActive = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
-        this.itemHandle = itemHandle;
+        this.itemParameter = itemParameter;
         this.loot = loot;
     }
     //#endregion
@@ -103,8 +103,8 @@ class LootSteal {
     loadElements() {
         return __awaiter(this, void 0, void 0, function* () {
             this.sourceHero = (yield this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName));
-            if (this.itemHandle) {
-                this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.itemHandle));
+            if (this.itemParameter) {
+                this.item = yield this.getItem();
                 if (this.item) {
                     this.adventure = (yield this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle") } }));
                     if (this.adventure) {
@@ -174,6 +174,22 @@ class LootSteal {
             }
             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target win`);
             return false;
+        });
+    }
+    //#endregion
+    //#region Item
+    getItem() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.itemParameter && this.itemParameter.length > 0) {
+                const itemHandle = Number(this.itemParameter);
+                if (isNaN(itemHandle)) {
+                    return yield this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter } });
+                }
+                else {
+                    return yield this.loot.channel.database.sequelize.models.item.findByPk(itemHandle);
+                }
+            }
+            return null;
         });
     }
     //#endregion

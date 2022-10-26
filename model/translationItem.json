@@ -62,9 +62,10 @@
     { "page": "streamer", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
     { "page": "streamer", "handle": "isLive", "language": "de-DE", "translation": "Live"},
     { "page": "streamer", "handle": "endpoint", "language": "de-DE", "translation": "Webseite"},
-    { "page": "streamer", "handle": "checkHint", "language": "de-DE", "translation": "Alles von diesem Streamer anzeigen."},  
-    { "page": "streamer", "handle": "checkTwitch", "language": "de-DE", "translation": "Streamer auf Twitch anzeigen."},    
-    { "page": "streamer", "handle": "liveStreamer", "language": "de-DE", "translation": "Wer ist gerade Live?"},  
+    { "page": "streamer", "handle": "checkHint", "language": "de-DE", "translation": "Alles von diesem Streamer anzeigen."},
+    { "page": "streamer", "handle": "checkTwitch", "language": "de-DE", "translation": "Streamer auf Twitch anzeigen."},
+    { "page": "streamer", "handle": "liveStreamer", "language": "de-DE", "translation": "Wer ist gerade Live?"},
+    { "page": "streamer", "handle": "streamerChanged", "language": "de-DE", "translation": "$1 ausgewählt"},
     
     { "page": "help", "handle": "title", "language": "de-DE", "translation": "Hilfe & Feedback"},
     { "page": "help", "handle": "information", "language": "de-DE", "translation": "Hier kannst du Fragen stellen oder ein Feedback dalassen."},

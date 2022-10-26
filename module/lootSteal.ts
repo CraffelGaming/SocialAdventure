@@ -10,13 +10,12 @@ import { Loot } from "./loot";
 export class LootSteal {
     item: Model<ItemItem>;
     adventure: Model<AdventureItem>;
-    itemHandle: number;
     targetHeroName: string;
     targetHero: Model<HeroItem>;
     sourceHeroName: string;
     sourceHero: Model<HeroItem>;
     loot: Loot;
-
+    itemParameter: string;
     isSource: boolean = true;
     isTarget: boolean = true;
     isItem: boolean = true;
@@ -30,10 +29,10 @@ export class LootSteal {
     isActive: boolean = true;
 
     //#region Construct
-    constructor(loot: Loot, sourceHeroName: string, targetHeroName: string = null, itemHandle: number = null){
+    constructor(loot: Loot, sourceHeroName: string, targetHeroName: string = null, itemParameter: string = null){
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
-        this.itemHandle = itemHandle;
+        this.itemParameter = itemParameter;
         this.loot = loot;
     }
     //#endregion
@@ -94,8 +93,8 @@ export class LootSteal {
     async loadElements(){
         this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName) as Model<HeroItem>;
 
-        if(this.itemHandle){
-            this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.itemHandle) as Model<ItemItem>;
+        if(this.itemParameter){
+            this.item = await this.getItem();
             if(this.item){
                 this.adventure = await this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle") }}) as Model<AdventureItem>;
                 if(this.adventure){
@@ -168,6 +167,20 @@ export class LootSteal {
 
         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target win`);
         return false;
+    }
+    //#endregion
+
+    //#region Item
+    async getItem(){
+        if(this.itemParameter && this.itemParameter.length > 0){
+            const itemHandle = Number(this.itemParameter);
+            if(isNaN(itemHandle)){
+                return await this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter }}) as Model<ItemItem>;
+            } else {
+                return await this.loot.channel.database.sequelize.models.item.findByPk(itemHandle) as Model<ItemItem>;
+            }
+        }
+        return null;
     }
     //#endregion
 

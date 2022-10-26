@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, getEditing, notify, get, copyToClipboard, put } from './globalData.js';
+import { getTranslation, translate, infoPanel, getEditing, notify, get, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;

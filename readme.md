@@ -42,8 +42,9 @@ Release: 2023
 - [X]  Heal Description
 - [X]  Shoutout no target message
 - [X]  implement need !loot to use
-- [ ]  deathcounter + xyz
-- [ ]  !find / steal / give auch mit Itemname
+- [X]  deathcounter + xyz
+- [X]  Notify Streamer Change
+- [X]  !find / steal / give auch mit Itemname
 - [ ]  !raid gegen große bosse
 - [ ]  Englisch
 - [ ]  API aufräumen

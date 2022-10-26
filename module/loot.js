@@ -195,12 +195,7 @@ class Loot extends module_1.Module {
                 let steal;
                 const setting = this.settings.find(x => x.command === "steal");
                 if (command.parameters.length >= 1) {
-                    const itemHandle = Number(command.parameters[0]);
-                    if (!isNaN(itemHandle)) {
-                        steal = new lootSteal_1.LootSteal(this, command.source, null, itemHandle);
-                    }
-                    else
-                        return translationItem_1.TranslationItem.translate(this.translation, 'stealParameterNumber').replace('$1', command.source);
+                    steal = new lootSteal_1.LootSteal(this, command.source, null, command.parameters.join(' '));
                 }
                 else if (command.target.length > 0) {
                     steal = new lootSteal_1.LootSteal(this, command.source, command.target, null);
@@ -284,57 +279,52 @@ class Loot extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (command.parameters.length >= 1) {
-                    const itemHandle = Number(command.parameters[0]);
-                    if (!isNaN(itemHandle)) {
-                        if (command.target.length > 0) {
-                            const give = new lootGive_1.LootGive(this, command.source, command.target, itemHandle);
-                            const setting = this.settings.find(x => x.command === "give");
-                            if (yield give.execute(setting)) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveItem')
-                                    .replace('$1', command.source)
-                                    .replace('$2', command.target)
-                                    .replace('$3', give.item.getDataValue("value"))
-                                    .replace('$4', give.item.getDataValue("handle").toString());
-                            }
-                            else if (!give.isActive) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveNotActive')
-                                    .replace('$1', command.source);
-                            }
-                            else if (!give.isItem) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoItem')
-                                    .replace('$1', command.source)
-                                    .replace('$2', command.parameters[0]);
-                            }
-                            else if (!give.isSource) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoSource')
-                                    .replace('$1', command.source);
-                            }
-                            else if (!give.isTimeout) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveItemTimeout')
-                                    .replace('$1', command.source)
-                                    .replace('$2', this.getDateTimeoutRemainingMinutes(give.sourceHero.getDataValue("lastGive"), setting.minutes).toString());
-                            }
-                            else if (!give.isTarget) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoTarget')
-                                    .replace('$1', command.source)
-                                    .replace('$2', command.target);
-                            }
-                            else if (!give.isAdventure) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoAdventure')
-                                    .replace('$1', command.source)
-                                    .replace('$2', give.item.getDataValue("value"))
-                                    .replace('$3', give.item.getDataValue("handle").toString());
-                            }
-                            else if (!give.isSelf) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'giveSelf')
-                                    .replace('$1', command.source);
-                            }
+                    if (command.target.length > 0) {
+                        const give = new lootGive_1.LootGive(this, command.source, command.target, command.parameters.join(' '));
+                        const setting = this.settings.find(x => x.command === "give");
+                        if (yield give.execute(setting)) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItem')
+                                .replace('$1', command.source)
+                                .replace('$2', command.target)
+                                .replace('$3', give.item.getDataValue("value"))
+                                .replace('$4', give.item.getDataValue("handle").toString());
                         }
-                        else
-                            return translationItem_1.TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
+                        else if (!give.isActive) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveNotActive')
+                                .replace('$1', command.source);
+                        }
+                        else if (!give.isItem) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoItem')
+                                .replace('$1', command.source)
+                                .replace('$2', command.parameters[0]);
+                        }
+                        else if (!give.isSource) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoSource')
+                                .replace('$1', command.source);
+                        }
+                        else if (!give.isTimeout) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemTimeout')
+                                .replace('$1', command.source)
+                                .replace('$2', this.getDateTimeoutRemainingMinutes(give.sourceHero.getDataValue("lastGive"), setting.minutes).toString());
+                        }
+                        else if (!give.isTarget) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoTarget')
+                                .replace('$1', command.source)
+                                .replace('$2', command.target);
+                        }
+                        else if (!give.isAdventure) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveItemNoAdventure')
+                                .replace('$1', command.source)
+                                .replace('$2', give.item.getDataValue("value"))
+                                .replace('$3', give.item.getDataValue("handle").toString());
+                        }
+                        else if (!give.isSelf) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'giveSelf')
+                                .replace('$1', command.source);
+                        }
                     }
                     else
-                        return translationItem_1.TranslationItem.translate(this.translation, 'giveParameterNumber').replace('$1', command.source);
+                        return translationItem_1.TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
                 }
                 else
                     return translationItem_1.TranslationItem.translate(this.translation, 'giveParameterNeeded').replace('$1', command.source);
@@ -351,39 +341,34 @@ class Loot extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 if (command.parameters.length >= 1) {
-                    const itemHandle = Number(command.parameters[0]);
-                    if (!isNaN(itemHandle)) {
-                        const search = new lootSearch_1.LootSearch(this, itemHandle);
-                        if (yield search.execute()) {
-                            return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFound')
+                    const search = new lootSearch_1.LootSearch(this, command.parameters.join(' '));
+                    if (yield search.execute()) {
+                        return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFound')
+                            .replace('$1', command.source)
+                            .replace('$2', search.item.getDataValue("value"))
+                            .replace('$3', search.item.getDataValue("handle").toString())
+                            .replace('$4', search.hero.getDataValue("name"));
+                    }
+                    else {
+                        if (search.isFoundable) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFoundable')
                                 .replace('$1', command.source)
                                 .replace('$2', search.item.getDataValue("value"))
                                 .replace('$3', search.item.getDataValue("handle").toString())
-                                .replace('$4', search.hero.getDataValue("name"));
+                                .replace('$4', search.dungeons.map(a => a.getDataValue("name")).toString());
+                        }
+                        else if (search.isExists) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'searchNotFoundable')
+                                .replace('$1', command.source)
+                                .replace('$2', search.item.getDataValue("value"))
+                                .replace('$3', search.item.getDataValue("handle").toString());
                         }
                         else {
-                            if (search.isFoundable) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'searchIsFoundable')
-                                    .replace('$1', command.source)
-                                    .replace('$2', search.item.getDataValue("value"))
-                                    .replace('$3', search.item.getDataValue("handle").toString())
-                                    .replace('$4', search.dungeons.map(a => a.getDataValue("name")).toString());
-                            }
-                            else if (search.isExists) {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'searchNotFoundable')
-                                    .replace('$1', command.source)
-                                    .replace('$2', search.item.getDataValue("value"))
-                                    .replace('$3', search.item.getDataValue("handle").toString());
-                            }
-                            else {
-                                return translationItem_1.TranslationItem.translate(this.translation, 'searchNotExists')
-                                    .replace('$1', command.source)
-                                    .replace('$2', itemHandle.toString());
-                            }
+                            return translationItem_1.TranslationItem.translate(this.translation, 'searchNotExists')
+                                .replace('$1', command.source)
+                                .replace('$2', command.parameters[0]);
                         }
                     }
-                    else
-                        return translationItem_1.TranslationItem.translate(this.translation, 'searchParameterNumber').replace('$1', command.source);
                 }
                 else
                     return translationItem_1.TranslationItem.translate(this.translation, 'searchParameterNeeded').replace('$1', command.source);

@@ -183,10 +183,7 @@ export class Loot extends Module {
             const setting = this.settings.find(x =>x.command === "steal");
 
             if(command.parameters.length >= 1){
-                const itemHandle = Number(command.parameters[0]);
-                if(!isNaN(itemHandle)){
-                    steal = new LootSteal(this, command.source, null, itemHandle);
-                } else return TranslationItem.translate(this.translation, 'stealParameterNumber').replace('$1', command.source);
+                steal = new LootSteal(this, command.source, null, command.parameters.join(' '));
             } else if (command.target.length > 0) {
                 steal = new LootSteal(this, command.source, command.target, null);
             }else {
@@ -257,46 +254,43 @@ export class Loot extends Module {
     async give(command: Command){
         try {
             if(command.parameters.length >= 1){
-                const itemHandle = Number(command.parameters[0]);
-                if(!isNaN(itemHandle)){
-                    if(command.target.length > 0){
-                        const give = new LootGive(this, command.source, command.target, itemHandle);
-                        const setting = this.settings.find(x =>x.command === "give");
-                        if(await give.execute(setting)){
-                            return TranslationItem.translate(this.translation, 'giveItem')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', command.target)
-                                                  .replace('$3', give.item.getDataValue("value"))
-                                                  .replace('$4', give.item.getDataValue("handle").toString())
-                        } else if(!give.isActive) {
-                            return TranslationItem.translate(this.translation, 'giveNotActive')
-                                                  .replace('$1', command.source)
-                        } else if(!give.isItem) {
-                            return TranslationItem.translate(this.translation, 'giveItemNoItem')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', command.parameters[0])
-                        } else if(!give.isSource) {
-                            return TranslationItem.translate(this.translation, 'giveItemNoSource')
-                                                  .replace('$1', command.source)
-                        } else if(!give.isTimeout) {
-                            return TranslationItem.translate(this.translation, 'giveItemTimeout')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', this.getDateTimeoutRemainingMinutes(give.sourceHero.getDataValue("lastGive"), setting.minutes).toString())
-                        } else if(!give.isTarget) {
-                            return TranslationItem.translate(this.translation, 'giveItemNoTarget')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', command.target)
-                        } else if(!give.isAdventure) {
-                            return TranslationItem.translate(this.translation, 'giveItemNoAdventure')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', give.item.getDataValue("value"))
-                                                  .replace('$3', give.item.getDataValue("handle").toString())
-                        } else if(!give.isSelf) {
-                            return TranslationItem.translate(this.translation, 'giveSelf')
-                                                  .replace('$1', command.source)
-                        }
-                    } else return TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
-                } else return TranslationItem.translate(this.translation, 'giveParameterNumber').replace('$1', command.source);
+                if(command.target.length > 0){
+                    const give = new LootGive(this, command.source, command.target, command.parameters.join(' '));
+                    const setting = this.settings.find(x =>x.command === "give");
+                    if(await give.execute(setting)){
+                        return TranslationItem.translate(this.translation, 'giveItem')
+                                                .replace('$1', command.source)
+                                                .replace('$2', command.target)
+                                                .replace('$3', give.item.getDataValue("value"))
+                                                .replace('$4', give.item.getDataValue("handle").toString())
+                    } else if(!give.isActive) {
+                        return TranslationItem.translate(this.translation, 'giveNotActive')
+                                                .replace('$1', command.source)
+                    } else if(!give.isItem) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoItem')
+                                                .replace('$1', command.source)
+                                                .replace('$2', command.parameters[0])
+                    } else if(!give.isSource) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoSource')
+                                                .replace('$1', command.source)
+                    } else if(!give.isTimeout) {
+                        return TranslationItem.translate(this.translation, 'giveItemTimeout')
+                                                .replace('$1', command.source)
+                                                .replace('$2', this.getDateTimeoutRemainingMinutes(give.sourceHero.getDataValue("lastGive"), setting.minutes).toString())
+                    } else if(!give.isTarget) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoTarget')
+                                                .replace('$1', command.source)
+                                                .replace('$2', command.target)
+                    } else if(!give.isAdventure) {
+                        return TranslationItem.translate(this.translation, 'giveItemNoAdventure')
+                                                .replace('$1', command.source)
+                                                .replace('$2', give.item.getDataValue("value"))
+                                                .replace('$3', give.item.getDataValue("handle").toString())
+                    } else if(!give.isSelf) {
+                        return TranslationItem.translate(this.translation, 'giveSelf')
+                                                .replace('$1', command.source)
+                    }
+                } else return TranslationItem.translate(this.translation, 'giveTargetNeeded').replace('$1', command.source);
             } else return TranslationItem.translate(this.translation, 'giveParameterNeeded').replace('$1', command.source);
         } catch(ex) {
             global.worker.log.error(`module loot error - function give - ${ex.message}`);
@@ -309,34 +303,31 @@ export class Loot extends Module {
     async find(command: Command){
         try {
             if(command.parameters.length >= 1){
-                const itemHandle = Number(command.parameters[0]);
-                if(!isNaN(itemHandle)){
-                    const search = new LootSearch(this, itemHandle);
-                    if(await search.execute()){
-                        return TranslationItem.translate(this.translation, 'searchIsFound')
-                                              .replace('$1', command.source)
-                                              .replace('$2', search.item.getDataValue("value"))
-                                              .replace('$3', search.item.getDataValue("handle").toString())
-                                              .replace('$4', search.hero.getDataValue("name"));
+                const search = new LootSearch(this, command.parameters.join(' '));
+                if(await search.execute()){
+                    return TranslationItem.translate(this.translation, 'searchIsFound')
+                                            .replace('$1', command.source)
+                                            .replace('$2', search.item.getDataValue("value"))
+                                            .replace('$3', search.item.getDataValue("handle").toString())
+                                            .replace('$4', search.hero.getDataValue("name"));
+                } else {
+                    if(search.isFoundable){
+                        return TranslationItem.translate(this.translation, 'searchIsFoundable')
+                        .replace('$1', command.source)
+                        .replace('$2', search.item.getDataValue("value"))
+                        .replace('$3', search.item.getDataValue("handle").toString())
+                        .replace('$4', search.dungeons.map(a => a.getDataValue("name")).toString());
+                    } else if (search.isExists){
+                        return TranslationItem.translate(this.translation, 'searchNotFoundable')
+                                                .replace('$1', command.source)
+                                                .replace('$2', search.item.getDataValue("value"))
+                                                .replace('$3', search.item.getDataValue("handle").toString());
                     } else {
-                        if(search.isFoundable){
-                            return TranslationItem.translate(this.translation, 'searchIsFoundable')
-                            .replace('$1', command.source)
-                            .replace('$2', search.item.getDataValue("value"))
-                            .replace('$3', search.item.getDataValue("handle").toString())
-                            .replace('$4', search.dungeons.map(a => a.getDataValue("name")).toString());
-                        } else if (search.isExists){
-                            return TranslationItem.translate(this.translation, 'searchNotFoundable')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', search.item.getDataValue("value"))
-                                                  .replace('$3', search.item.getDataValue("handle").toString());
-                        } else {
-                            return TranslationItem.translate(this.translation, 'searchNotExists')
-                                                  .replace('$1', command.source)
-                                                  .replace('$2', itemHandle.toString());
-                        }
+                        return TranslationItem.translate(this.translation, 'searchNotExists')
+                                                .replace('$1', command.source)
+                                                .replace('$2', command.parameters[0]);
                     }
-                } else return TranslationItem.translate(this.translation, 'searchParameterNumber').replace('$1', command.source);
+                }
             } else return TranslationItem.translate(this.translation, 'searchParameterNeeded').replace('$1', command.source);
         } catch(ex) {
             global.worker.log.error(`module loot error - function find - ${ex.message}`);

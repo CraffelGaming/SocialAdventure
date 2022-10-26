@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get, put } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, put, notify } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -81,10 +81,13 @@ $(async () => {
                                     'Content-type': 'application/json'
                                 }
                             }).then(async function (res) {
-                                if (res.status == 200) {
-                                    return res.json();
+                                switch(res.status){
+                                    case 200:
+                                        return res.json();
                                 }
                             }).then(async function (json) {
+                                console.log(json);
+                                notify(translate(language, 'streamerChanged').replace('$1', json.node.displayName), 'success');
                                 infoPanel();
                             });
                         }

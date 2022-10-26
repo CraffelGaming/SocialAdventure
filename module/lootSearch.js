@@ -12,21 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LootSearch = void 0;
 class LootSearch {
     //#region Construct
-    constructor(loot, itemHandle) {
+    constructor(loot, itemParameter) {
         this.isFound = false;
         this.isFoundable = false;
         this.isExists = true;
-        this.itemHandle = itemHandle;
+        this.itemParameter = itemParameter;
         this.loot = loot;
     }
     //#endregion
     //#region Execute
     execute() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.item = (yield this.loot.channel.database.sequelize.models.item.findByPk(this.itemHandle));
+            this.item = yield this.getItem();
             if (this.item) {
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module search, item ${this.item.getDataValue("value")}`);
-                this.adventure = (yield this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.itemHandle } }));
+                this.adventure = (yield this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle") } }));
                 this.dungeons = (yield this.loot.channel.database.sequelize.models.location.findAll({ where: { isActive: true, categoryHandle: this.item.getDataValue("categoryHandle") } }));
                 if (this.adventure) {
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module search, adventure`);
@@ -45,6 +45,22 @@ class LootSearch {
             else
                 this.isExists = false;
             return false;
+        });
+    }
+    //#endregion
+    //#region Item
+    getItem() {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.itemParameter && this.itemParameter.length > 0) {
+                const itemHandle = Number(this.itemParameter);
+                if (isNaN(itemHandle)) {
+                    return yield this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter } });
+                }
+                else {
+                    return yield this.loot.channel.database.sequelize.models.item.findByPk(itemHandle);
+                }
+            }
+            return null;
         });
     }
 }

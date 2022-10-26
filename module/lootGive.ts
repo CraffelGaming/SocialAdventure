@@ -8,7 +8,7 @@ import { Loot } from "./loot";
 export class LootGive {
     item: Model<ItemItem>;
     adventure: Model<AdventureItem>;
-    itemHandle: number;
+    itemParameter: string;
     targetHeroName: string;
     targetHero: Model<HeroItem>;
     sourceHeroName: string;
@@ -24,17 +24,17 @@ export class LootGive {
     isActive: boolean = true;
 
     //#region Construct
-    constructor(loot: Loot, sourceHeroName: string, targetHeroName: string, itemHandle: number){
+    constructor(loot: Loot, sourceHeroName: string, targetHeroName: string, itemParameter: string){
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
-        this.itemHandle = itemHandle;
+        this.itemParameter = itemParameter;
         this.loot = loot;
     }
     //#endregion
 
     //#region Execute
     async execute(settings: LootItem) : Promise<boolean>{
-        this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.itemHandle) as Model<ItemItem>;
+        this.item =  await this.getItem();
         this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName) as Model<HeroItem>;
         this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.targetHeroName) as Model<HeroItem>;
 
@@ -66,6 +66,20 @@ export class LootGive {
         } else this.isActive = false;
 
         return false;
+    }
+    //#endregion
+
+    //#region Item
+    async getItem(){
+        if(this.itemParameter && this.itemParameter.length > 0){
+            const itemHandle = Number(this.itemParameter);
+            if(isNaN(itemHandle)){
+                return await this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter }}) as Model<ItemItem>;
+            } else {
+                return await this.loot.channel.database.sequelize.models.item.findByPk(itemHandle) as Model<ItemItem>;
+            }
+        }
+        return null;
     }
     //#endregion
 }
