@@ -35,6 +35,7 @@ import { LevelItem } from '../model/levelItem';
 import { PlaceholderItem } from '../model/placeholderItem';
 import { ValidationItem } from '../model/validationItem';
 import { StateStorageItem } from '../model/stateStorageItem';
+import { Model } from 'sequelize';
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -73,10 +74,9 @@ export class Connection {
             StateStorageItem.setAssociation({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
-
+            await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[] });
             await this.updater("migrations/global");
 
-            await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) as MigrationItem[] });
             await VersionItem.updateTable({ sequelize: this.sequelize });
             await MenuItem.updateTable({ sequelize: this.sequelize });
             await TranslationItem.updateTable({ sequelize: this.sequelize });
@@ -157,17 +157,17 @@ export class Connection {
 
     async updater(folder: string){
         try{
+            const migrations = await this.sequelize.models.migration.findAll() as Model<MigrationItem>[];
+            for(const item of migrations ){
+                global.worker.log.trace('add Migration ' + item.getDataValue('name'));
 
-            for(const item of Object.values(await this.sequelize.models.migration.findAll()) as unknown as MigrationItem[]){
-                global.worker.log.trace('add Migration ' + item.name);
-
-                if(!this.isNewDatabase && !item.isInstalled){
-                    const fileName = path.join(__dirname, folder, item.name + '.js') ;
+                if(!this.isNewDatabase && !item.getDataValue('isInstalled')){
+                    const fileName = path.join(__dirname, folder, item.getDataValue('name') + '.js') ;
                     const file = require(fileName);
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }
-                item.isInstalled = true;
-                await this.sequelize.models.migration.update({isInstalled: item.isInstalled}, {where: {name: item.name}});
+                item.setDataValue('isInstalled', true);
+                item.save();
             }
         } catch (ex) {
             global.worker.log.error(`exception ${ex.message}`);

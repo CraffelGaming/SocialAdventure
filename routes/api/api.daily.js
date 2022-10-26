@@ -135,7 +135,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', (request, respo
                 if (found) {
                     const hero = yield channel.database.sequelize.models.hero.findByPk(request.params.name);
                     if (hero.getDataValue("lastDaily").setHours(0, 0, 0, 0) < found.date.setHours(0, 0, 0, 0)) {
-                        hero.setDataValue("lastDaily", found.date);
+                        // hero.setDataValue("lastDaily", found.date)
                         hero.save();
                         yield channel.database.sequelize.models.heroWallet.increment('gold', { by: found.gold, where: { heroName: request.params.name } });
                         yield channel.database.sequelize.models.hero.increment('experience', { by: found.experience, where: { name: request.params.name } });

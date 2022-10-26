@@ -79,16 +79,15 @@ $(async () => {
                 disabled: new Date(hero?.lastDaily).setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0),
                 onClick: function(e) {
                     let handle = 0;
-
                     switch(e.element[0].id){
                         case "daily0":
                             handle = 1;
                             break;
                         case "daily1":
-                            handle = 1;
+                            handle = 2;
                             break;
                         case "daily2":
-                            handle = 1;
+                            handle = 3;
                             break;
                     }
 
@@ -98,6 +97,7 @@ $(async () => {
                             'Content-type': 'application/json'
                         }
                     }).then(async function (res) {
+                        console.log(res.status)
                         switch(res.status){
                             case 200:
                                 for(let i = 0; i < 3; i++){
@@ -105,10 +105,10 @@ $(async () => {
                                 }
                                 await refreshHero();
                                 await loadWallet();
-                                notify(translate(`${languageDaily}_redeem`, res.status), "success");
+                                notify(translate(languageDaily, `${res.status}_redeem`), "success");
                                 break;
                             default:
-                                notify(translate(`${languageDaily}_redeem`, res.status), "error");
+                                notify(translate(languageDaily, `${res.status}_redeem`), "error");
                                 break;
                         }
                     });

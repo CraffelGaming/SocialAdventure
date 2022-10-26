@@ -97,8 +97,8 @@ class Connection {
                 twitchUserItem_1.TwitchUserItem.setAssociation({ sequelize: this.sequelize });
                 stateStorageItem_1.StateStorageItem.setAssociation({ sequelize: this.sequelize });
                 yield this.sequelize.sync();
-                yield this.updater("migrations/global");
                 yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
+                yield this.updater("migrations/global");
                 yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
                 yield menuItem_1.MenuItem.updateTable({ sequelize: this.sequelize });
                 yield translationItem_1.TranslationItem.updateTable({ sequelize: this.sequelize });
@@ -175,15 +175,16 @@ class Connection {
     updater(folder) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                for (const item of Object.values(yield this.sequelize.models.migration.findAll())) {
-                    global.worker.log.trace('add Migration ' + item.name);
-                    if (!this.isNewDatabase && !item.isInstalled) {
-                        const fileName = path.join(__dirname, folder, item.name + '.js');
+                const migrations = yield this.sequelize.models.migration.findAll();
+                for (const item of migrations) {
+                    global.worker.log.trace('add Migration ' + item.getDataValue('name'));
+                    if (!this.isNewDatabase && !item.getDataValue('isInstalled')) {
+                        const fileName = path.join(__dirname, folder, item.getDataValue('name') + '.js');
                         const file = require(fileName);
                         yield file.up(this.sequelize.getQueryInterface(), this.sequelize);
                     }
-                    item.isInstalled = true;
-                    yield this.sequelize.models.migration.update({ isInstalled: item.isInstalled }, { where: { name: item.name } });
+                    item.setDataValue('isInstalled', true);
+                    item.save();
                 }
             }
             catch (ex) {

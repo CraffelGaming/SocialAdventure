@@ -717,7 +717,7 @@ class Loot extends module_1.Module {
                     return yield this.healHero(command, potion, item, wallet);
                 }
                 else if (potion && potion.getDataValue("isRevive")) {
-                    return yield this.reviveHero(command, potion, item, wallet);
+                    return yield this.reviveHero(command, potion, item);
                 }
                 else {
                     return translationItem_1.TranslationItem.translate(this.translation, 'healNo').replace('$1', hero)
@@ -736,11 +736,12 @@ class Loot extends module_1.Module {
             let message;
             try {
                 if (wallet.getDataValue("gold") >= potion.getDataValue("gold")) {
+                    yield healingPotionItem_1.HealingPotionItem.heal({ sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name") });
+                    hero = (yield this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")));
                     message = translationItem_1.TranslationItem.translate(this.translation, 'healYes').replace('$1', hero.getDataValue("name"))
                         .replace('$2', potion.getDataValue("value"))
                         .replace('$3', hero.getDataValue("hitpoints").toString())
                         .replace('$4', hero.getDataValue("hitpointsMax").toString());
-                    yield healingPotionItem_1.HealingPotionItem.heal({ sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name") });
                 }
                 else {
                     message = translationItem_1.TranslationItem.translate(this.translation, 'healNoMoney').replace('$1', hero.getDataValue("name"))
@@ -755,7 +756,7 @@ class Loot extends module_1.Module {
             return message;
         });
     }
-    reviveHero(command, potion, hero, wallet) {
+    reviveHero(command, potion, hero) {
         return __awaiter(this, void 0, void 0, function* () {
             let message;
             try {

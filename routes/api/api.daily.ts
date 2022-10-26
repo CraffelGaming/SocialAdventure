@@ -104,7 +104,7 @@ router.post('/' + endpoint + '/:node/redeem/:number/hero/:name', async (request:
                     const hero = await channel.database.sequelize.models.hero.findByPk(request.params.name) as Model<HeroItem>;
 
                     if(hero.getDataValue("lastDaily").setHours(0, 0, 0, 0) < found.date.setHours(0, 0, 0, 0)){
-                        hero.setDataValue("lastDaily", found.date)
+                        // hero.setDataValue("lastDaily", found.date)
                         hero.save();
 
                         await channel.database.sequelize.models.heroWallet.increment('gold', { by: found.gold, where: { heroName: request.params.name}});

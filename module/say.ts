@@ -275,7 +275,7 @@ export class Say extends Module {
                             const raider = await this.channel.twitch.getUserByName(command.target);
                             if(raider){
                                 const raiderChannel = await this.channel.twitch.GetChannel(raider.id);
-    
+
                                 if(raiderChannel){
                                     text = text.replace('$raider', raider.display_name);
                                     text = text.replace('$raiderGame', raiderChannel.game_name);
