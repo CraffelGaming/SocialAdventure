@@ -83,8 +83,11 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
         if (channel) {
             if (request.query.childs !== "false") {
                 item = (yield channel.database.sequelize.models.heroPromotion.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], raw: false, include: [{
-                            model: channel.database.sequelize.models.item,
-                            as: 'item',
+                            model: channel.database.sequelize.models.hero,
+                            as: 'hero',
+                        }, {
+                            model: channel.database.sequelize.models.promotion,
+                            as: 'promotion',
                         }] }));
             }
             else

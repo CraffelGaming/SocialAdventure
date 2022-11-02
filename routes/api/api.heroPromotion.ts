@@ -51,9 +51,12 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
         if(channel) {
             if(request.query.childs !== "false"){
                 item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], raw: false, include: [{
-                    model: channel.database.sequelize.models.item,
-                    as: 'item',
-                }]})as unknown as HeroPromotionItem[];
+                    model: channel.database.sequelize.models.hero,
+                    as: 'hero',
+                },{
+                    model: channel.database.sequelize.models.promotion,
+                    as: 'promotion',
+                }]}) as unknown as HeroPromotionItem[];
             } else item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], raw: false }) as unknown as HeroPromotionItem[];
 
             if(item) response.status(200).json(item);

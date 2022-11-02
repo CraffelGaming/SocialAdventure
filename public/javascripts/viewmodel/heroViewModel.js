@@ -10,16 +10,16 @@ $(async () => {
         window.location =  (await get('/twitch?redirect=hero')).url;
     }
     
-    let languageStorage = await getTranslations([module, 'item', 'wallet', 'trait', 'adventure', 'level', 'itemCategoryList', 'itemCategory', 'inventory']);
+    let languageStorage = await getTranslations([module, 'item', 'wallet', 'trait', 'adventure', 'level', 'itemCategory', 'inventory', 'promotion']);
     let language = languageStorage.filter(x => x.page == module);
     let languageItem = languageStorage.filter(x => x.page == 'item');
     let languageWallet = languageStorage.filter(x => x.page == 'wallet');
     let languageTrait = languageStorage.filter(x => x.page == 'trait');
     let languageAdventure = languageStorage.filter(x => x.page == 'adventure');
     let languageLevel = languageStorage.filter(x => x.page == 'level');
-    let languageItemCategoryList = languageStorage.filter(x => x.page == 'itemCategoryList');
     let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
     let languageInventory = languageStorage.filter(x => x.page == 'inventory');
+    let languagePromotion = languageStorage.filter(x => x.page == 'promotion');
 
     let validation = await get(`/validation/${module}`);
     let category = await get('/itemcategory/default/', language);
@@ -156,6 +156,9 @@ $(async () => {
                 }, {
                     title: translate(language, 'time'),
                     template: createTimeTabTemplate(masterDetailOptions.data, 1),
+                }, {
+                    title: translate(language, 'usedPromoCodes'),
+                    template: createPromoCodeTabTemplate(masterDetailOptions.data, 1),
                 }],
             });
         }
@@ -355,6 +358,35 @@ $(async () => {
                         { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime'},
                         { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime' },
                         { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date' },
+                    ]
+                });
+            };
+        }
+
+        function createPromoCodeTabTemplate(masterDetailData) {
+            return function () {
+                return $('<div>').dxDataGrid({
+                    dataSource: new DevExpress.data.CustomStore({
+                        key: ["hero.mame", "promotion.handle"],
+                        loadMode: "raw",
+                        load: async function () {
+                            return await get(`/heropromotion/default/hero/${masterDetailData.name}`, language);
+                        }
+                    }),
+                    allowColumnReordering: true,
+                    allowColumnResizing: true,
+                    selection: { mode: "single" },
+                    editing: {
+                        mode: "row",
+                        allowUpdating: false,
+                        allowDeleting: false,
+                        allowAdding: false
+                    },
+                    columns: [
+                        { dataField: "promotion.handle", caption: translate(languagePromotion, 'title')},
+                        { dataField: "promotion.gold", caption: translate(languageWallet, 'gold')},
+                        { dataField: "promotion.diamond", caption: translate(languageWallet, 'diamond') },
+                        { dataField: 'promotion.experience', caption: translate(language, 'experience') },
                     ]
                 });
             };
