@@ -105,7 +105,7 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
             }
         });
     }
-    static heal({ sequelize, healingPotionHandle, heroName }) {
+    static heal({ sequelize, healingPotionHandle, heroName, bonus }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const potion = yield sequelize.models.healingPotion.findByPk(healingPotionHandle);
@@ -114,10 +114,15 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
                 if (potion && hero && heroWallet) {
                     if (heroWallet.getDataValue("gold") >= potion.getDataValue("gold")) {
                         if (hero.getDataValue("hitpoints") === 0 && potion.getDataValue("isRevive") === true || hero.getDataValue("hitpoints") > 0 && potion.getDataValue("isRevive") === false) {
-                            hero.setDataValue("hitpoints", hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent")));
+                            hero.setDataValue("hitpoints", Math.round(hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent"))));
                             if (hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
                                 hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
-                            yield heroWallet.decrement('gold', { by: potion.getDataValue("gold") });
+                            if (bonus) {
+                                yield heroWallet.decrement('gold', { by: potion.getDataValue("gold") });
+                            }
+                            else {
+                                yield heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2) });
+                            }
                             yield hero.save({ fields: ['hitpoints'] });
                             return 200;
                         }

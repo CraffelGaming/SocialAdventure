@@ -120,30 +120,30 @@ export class Loot extends Module {
         try{
             let isNew = false;
             const join = this.settings.find(x =>x.command === "join");
-            let value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
+            let hero = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
 
-            if(!value){
+            if(!hero){
                 await HeroItem.put({sequelize: this.channel.database.sequelize, element: new HeroItem(command.source), onlyCreate: true});
-                value = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
+                hero = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
                 isNew = true;
             }
-            if(this.isDateTimeoutExpiredMinutes(value.getDataValue("lastJoin"), join.minutes) || join.isActive === false){
-                if(!value.getDataValue("isActive")){
-                    value.setDataValue("isActive",true);
-                    value.setDataValue("lastJoin",new Date());
+            if(this.isDateTimeoutExpiredMinutes(hero.getDataValue("lastLeave"), join.minutes) || join.isActive === false){
+                if(!hero.getDataValue("isActive")){
+                    hero.setDataValue("isActive",true);
+                    hero.setDataValue("lastJoin",new Date());
 
-                    if(value.getDataValue("hitpoints") === 0){
-                        value.setDataValue("hitpoints", value.getDataValue("hitpointsMax") / 2);
+                    if(hero.getDataValue("hitpoints") === 0){
+                        hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax") / 2);
                     }
 
-                    await value.save();
+                    await hero.save();
 
                     if(isNew) {
                         return TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
                     } else return TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
 
                 } else return TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
-            } else return TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(value.getDataValue("lastJoin"), join.minutes).toString());
+            } else return TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(hero.getDataValue("lastJoin"), join.minutes).toString());
         } catch (ex){
             global.worker.log.error(`module loot error - function loot - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20001');
@@ -156,7 +156,7 @@ export class Loot extends Module {
             if(hero !== undefined){
                 if(hero.getDataValue("isActive") === true){
                     hero.setDataValue("isActive", false)
-
+                    hero.setDataValue("lastLeave",new Date());
                     const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: hero.getDataValue("name")}}) as Model<AdventureItem>[];
                     for(const adventure in adventures){
                         if(adventures[adventure]){
@@ -611,9 +611,9 @@ export class Loot extends Module {
                     potion = potions.find(x => x.getDataValue("percent") === 25 && x.getDataValue("isRevive") === false)
                 } else if(percent <= 60 && percent > 40){
                     potion = potions.find(x => x.getDataValue("percent") === 50 && x.getDataValue("isRevive") === false)
-                } else if(percent <= 40 && percent > 20){
+                } else if(percent <= 40 && percent > 10){
                     potion = potions.find(x => x.getDataValue("percent") === 75 && x.getDataValue("isRevive") === false)
-                } else if(percent <= 20 && percent >  0){
+                } else if(percent <= 10 && percent >  0){
                     potion = potions.find(x => x.getDataValue("percent") === 100 && x.getDataValue("isRevive") === false)
                 } else if(percent <= 0){
                     if(wallet.getDataValue("gold") >= potions.find(x => x.getDataValue("percent") === 100 && x.getDataValue("isRevive") === true).getDataValue("gold")){
@@ -626,7 +626,7 @@ export class Loot extends Module {
                 if(potion && !potion.getDataValue("isRevive")){
                     return await this.healHero(command, potion, item, wallet);
                 } else if(potion && potion.getDataValue("isRevive")){
-                    return await this.reviveHero(command, potion, item);
+                    return await this.reviveHero(command, potion, item, wallet);
                 } else {
                     return TranslationItem.translate(this.translation, 'healNo').replace('$1', hero)
                                                                                 .replace('$2', item.getDataValue("hitpoints").toString())
@@ -645,7 +645,7 @@ export class Loot extends Module {
         let message: string;
         try {
             if(wallet.getDataValue("gold") >= potion.getDataValue("gold")){
-                await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name")});
+                await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name"), bonus: hero.getDataValue("name") !== wallet.getDataValue("heroName") });
                 hero = await this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")) as Model<HeroItem>;
                 message = TranslationItem.translate(this.translation, 'healYes').replace('$1', hero.getDataValue("name"))
                                          .replace('$2', potion.getDataValue("value"))
@@ -663,10 +663,10 @@ export class Loot extends Module {
         return message;
     }
 
-    async reviveHero(command: Command, potion: Model<HealingPotionItem>, hero: Model<HeroItem>){
+    async reviveHero(command: Command, potion: Model<HealingPotionItem>, hero: Model<HeroItem>, wallet: Model<HeroWalletItem>){
         let message: string;
         try {
-            await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name")});
+            await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name"), bonus: hero.getDataValue("name") !== wallet.getDataValue("heroName")});
             hero = await this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")) as Model<HeroItem>;
             message = TranslationItem.translate(this.translation, 'healRevive').replace('$1', hero.getDataValue("name"))
                                                                                .replace('$2', potion.getDataValue("value"))

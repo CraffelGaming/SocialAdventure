@@ -16,6 +16,7 @@ import hero from "./api/api.hero";
 import herowallet from "./api/api.heroWallet";
 import herotrait from "./api/api.heroTrait";
 import heroinventory from "./api/api.heroInventory";
+import heropromotion from "./api/api.heroPromotion";
 import item from "./api/api.item";
 import itemCategory from "./api/api.itemCategory";
 import command from "./api/api.command";
@@ -1673,6 +1674,119 @@ const router = express.Router();
  */
   router.post("/heroinventory/:node/sell/item/:handle/hero/:name", heroinventory);
 //#endregion
+
+//#region Hero Promotion
+/**
+ * @swagger
+ * /heropromotion/{node}:
+ *   get:
+ *     tags:
+ *     - Hero Promotion
+ *     summary: Promo-Codes der Helden
+ *     description: Rückgabe aller eingelösten Promo-Codes aller Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               promotionHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des promo-Codes
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/heropromotion/:node", heropromotion);
+
+/**
+ * @swagger
+ * /heropromotion/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - Hero Promotion
+ *     summary: Promo-Codes eines Helden
+ *     description: Rückgabe aller eingelösten Promo-Codes eines Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Hero"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               promotionHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des promo-Codes
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/heropromotion/:node/hero/:name", heropromotion);
+//#endregion
+
 
 //#region Hero Trait
 /**

@@ -1,0 +1,760 @@
+[2022-11-02T09:50:48.613] [ERROR] default - channel error - function addSays - Cannot read properties of undefined (reading 'find')
+[2022-11-02T09:52:19.573] [ERROR] default - channel error - function addSays - Cannot read properties of undefined (reading 'find')
+[2022-11-02T09:54:39.817] [ERROR] default - api endpoint heropromotion error - promotion is not associated to heroInventory!
+[2022-11-02T09:55:38.318] [ERROR] default - channel error - function addSays - Cannot read properties of undefined (reading 'find')
+[2022-11-02T10:14:32.254] [ERROR] default - channel error - function addSays - Cannot read properties of undefined (reading 'find')
+[2022-11-02T10:17:45.863] [WARN] default - node craffelmat, say add craffel.
+[2022-11-02T10:17:45.867] [WARN] default - node craffelmat, say add death.
+[2022-11-02T10:17:45.869] [WARN] default - node craffelmat, say add dice.
+[2022-11-02T10:17:45.871] [WARN] default - node craffelmat, say add lurk.
+[2022-11-02T10:17:45.873] [WARN] default - node craffelmat, say add so.
+[2022-11-02T10:17:45.874] [ERROR] default - channel error - function addSays - Cannot read properties of undefined (reading 'find')
+[2022-11-02T10:18:49.747] [TRACE] default - twitch chat client initialized
+[2022-11-02T10:18:49.823] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-11-02T10:18:49.824] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-11-02T10:18:49.838] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-11-02T10:18:49.841] [INFO] default - HTTP Server listening on port 80
+[2022-11-02T10:18:49.892] [TRACE] default - add Migration update_001
+[2022-11-02T10:18:59.003] [TRACE] default - {
+  access_token: 'r5g5t0ym9ezftd3r49imskl11t33hc',
+  expires_in: 5000963,
+  token_type: 'bearer'
+}
+[2022-11-02T10:18:59.960] [TRACE] default - add Node craffelmat
+[2022-11-02T10:18:59.962] [INFO] default - node craffelmat, add streamWatcher
+[2022-11-02T10:18:59.962] [INFO] default - node craffelmat, initialize
+[2022-11-02T10:18:59.963] [TRACE] default - api connect with node craffelmat
+[2022-11-02T10:18:59.963] [INFO] default - --------------------------------------
+[2022-11-02T10:18:59.964] [INFO] default - ---------- ALL NODES ADDED -----------
+[2022-11-02T10:18:59.964] [INFO] default - --------------------------------------
+[2022-11-02T10:18:59.966] [TRACE] default - api connected accessToken ekdi1uwsl9srmz8omp50mqfxhiirxa, refreshToken ub9x2omeb1mm23tpw9et0zg8ck3f4g8f4c22z6bv6b49461dax
+[2022-11-02T10:18:59.967] [TRACE] default - api connected broadcasterType , displayName craffelmat
+[2022-11-02T10:18:59.996] [TRACE] default - add Migration update_001
+[2022-11-02T10:18:59.996] [TRACE] default - add Migration update_002
+[2022-11-02T10:19:01.733] [TRACE] default - node craffelmat, say add craffel.
+[2022-11-02T10:19:01.736] [INFO] default - node craffelmat, say add craffel.
+[2022-11-02T10:19:01.736] [TRACE] default - node craffelmat, say add death.
+[2022-11-02T10:19:01.739] [INFO] default - node craffelmat, say add death.
+[2022-11-02T10:19:01.740] [TRACE] default - node craffelmat, say add dice.
+[2022-11-02T10:19:01.743] [INFO] default - node craffelmat, say add dice.
+[2022-11-02T10:19:01.743] [TRACE] default - node craffelmat, say add lurk.
+[2022-11-02T10:19:01.745] [INFO] default - node craffelmat, say add lurk.
+[2022-11-02T10:19:01.746] [TRACE] default - node craffelmat, say add so.
+[2022-11-02T10:19:01.746] [TRACE] default - module so isShoutout true
+[2022-11-02T10:19:01.746] [ERROR] default - channel error - function addSays - Cannot read properties of undefined (reading 'find')
+[2022-11-02T10:19:01.752] [INFO] default - node craffelmat, load moderators, id: 664649274
+[2022-11-02T10:19:01.976] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=664649274 OK
+[2022-11-02T10:19:01.976] [TRACE] default - {
+  data: [
+    {
+      user_id: '440371621',
+      user_login: 'craffel',
+      user_name: 'Craffel'
+    }
+  ],
+  pagination: {}
+}
+[2022-11-02T10:19:01.977] [INFO] default - node craffelmat, finish load moderators, count: 1
+[2022-11-02T10:19:01.977] [TRACE] default - node connected: craffelmat
+[2022-11-02T10:20:01.738] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:20:01.739] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:20:01.739] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:20:01.740] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:20:01.740] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:20:01.740] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:20:01.754] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:20:01.754] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:20:01.755] [TRACE] default - node craffelmat, module so not executed active: false
+[2022-11-02T10:20:01.755] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:20:01.756] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:15:32
+[2022-11-02T10:20:01.756] [INFO] default - node craffelmat, module loot not executed
+[2022-11-02T10:20:01.757] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-11-02T10:20:01.757] [TRACE] default - node craffelmat, module loot time elapsed: 6
+[2022-11-02T10:22:21.183] [TRACE] default - twitch chat client initialized
+[2022-11-02T10:22:21.260] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-11-02T10:22:21.260] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-11-02T10:22:21.275] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-11-02T10:22:21.278] [INFO] default - HTTP Server listening on port 80
+[2022-11-02T10:22:21.324] [TRACE] default - add Migration update_001
+[2022-11-02T10:22:29.645] [TRACE] default - {
+  access_token: 'umuuomeez97hd9fryxw8wqc3aa464r',
+  expires_in: 5176720,
+  token_type: 'bearer'
+}
+[2022-11-02T10:22:30.623] [TRACE] default - add Node craffelmat
+[2022-11-02T10:22:30.625] [INFO] default - node craffelmat, add streamWatcher
+[2022-11-02T10:22:30.626] [INFO] default - node craffelmat, initialize
+[2022-11-02T10:22:30.626] [TRACE] default - api connect with node craffelmat
+[2022-11-02T10:22:30.627] [INFO] default - --------------------------------------
+[2022-11-02T10:22:30.627] [INFO] default - ---------- ALL NODES ADDED -----------
+[2022-11-02T10:22:30.628] [INFO] default - --------------------------------------
+[2022-11-02T10:22:30.632] [TRACE] default - api connected accessToken ekdi1uwsl9srmz8omp50mqfxhiirxa, refreshToken ub9x2omeb1mm23tpw9et0zg8ck3f4g8f4c22z6bv6b49461dax
+[2022-11-02T10:22:30.632] [TRACE] default - api connected broadcasterType , displayName craffelmat
+[2022-11-02T10:22:30.667] [TRACE] default - add Migration update_001
+[2022-11-02T10:22:30.667] [TRACE] default - add Migration update_002
+[2022-11-02T10:22:33.052] [TRACE] default - node craffelmat, say add craffel.
+[2022-11-02T10:22:33.055] [INFO] default - node craffelmat, say add craffel.
+[2022-11-02T10:22:33.055] [TRACE] default - node craffelmat, say add death.
+[2022-11-02T10:22:33.058] [INFO] default - node craffelmat, say add death.
+[2022-11-02T10:22:33.058] [TRACE] default - node craffelmat, say add dice.
+[2022-11-02T10:22:33.061] [INFO] default - node craffelmat, say add dice.
+[2022-11-02T10:22:33.061] [TRACE] default - node craffelmat, say add lurk.
+[2022-11-02T10:22:33.064] [INFO] default - node craffelmat, say add lurk.
+[2022-11-02T10:22:33.064] [TRACE] default - node craffelmat, say add so.
+[2022-11-02T10:22:33.066] [INFO] default - node craffelmat, say add so.
+[2022-11-02T10:22:33.066] [TRACE] default - module so isShoutout true
+[2022-11-02T10:22:33.067] [TRACE] default - node craffelmat, say add unlurk.
+[2022-11-02T10:22:33.069] [INFO] default - node craffelmat, say add unlurk.
+[2022-11-02T10:22:33.070] [TRACE] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:22:33.072] [INFO] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:22:33.078] [INFO] default - node craffelmat, load moderators, id: 664649274
+[2022-11-02T10:22:33.338] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=664649274 OK
+[2022-11-02T10:22:33.338] [TRACE] default - {
+  data: [
+    {
+      user_id: '440371621',
+      user_login: 'craffel',
+      user_name: 'Craffel'
+    }
+  ],
+  pagination: {}
+}
+[2022-11-02T10:22:33.339] [INFO] default - node craffelmat, finish load moderators, count: 1
+[2022-11-02T10:22:33.339] [TRACE] default - node connected: craffelmat
+[2022-11-02T10:22:34.122] [TRACE] default - get translation, page navigation
+[2022-11-02T10:22:34.126] [TRACE] default - get translation, page index
+[2022-11-02T10:22:34.134] [TRACE] default - get menu
+[2022-11-02T10:22:34.137] [TRACE] default - get twitch
+[2022-11-02T10:22:34.137] [TRACE] default - twitch - session information EXXc1qXAaVWDOb47EkiI2vrjR79jNVel
+[2022-11-02T10:22:34.137] [TRACE] default - twitch - session information undefined
+[2022-11-02T10:22:34.138] [TRACE] default - twitch - set locale state to e4r88qq30l9zfki6z
+[2022-11-02T10:22:34.149] [TRACE] default - get translation, page streamer
+[2022-11-02T10:22:34.151] [TRACE] default - get twitch
+[2022-11-02T10:22:34.152] [TRACE] default - twitch - session information EXXc1qXAaVWDOb47EkiI2vrjR79jNVel
+[2022-11-02T10:22:34.152] [TRACE] default - twitch - session information e4r88qq30l9zfki6z
+[2022-11-02T10:22:34.152] [TRACE] default - twitch - locale state is e4r88qq30l9zfki6z
+[2022-11-02T10:22:34.157] [TRACE] default - get node, default
+[2022-11-02T10:22:34.249] [TRACE] default - get translation, page information
+[2022-11-02T10:22:34.253] [TRACE] default - get stateStorage, name index
+[2022-11-02T10:22:34.295] [TRACE] default - get node
+[2022-11-02T10:22:34.298] [TRACE] default - get twitch userdata
+[2022-11-02T10:22:34.302] [TRACE] default - get node, default
+[2022-11-02T10:22:39.818] [TRACE] default - get translation, page navigation
+[2022-11-02T10:22:39.824] [TRACE] default - get translation, page index
+[2022-11-02T10:22:39.847] [TRACE] default - get twitch
+[2022-11-02T10:22:39.847] [TRACE] default - twitch - session information EXXc1qXAaVWDOb47EkiI2vrjR79jNVel
+[2022-11-02T10:22:39.848] [TRACE] default - twitch - session information e4r88qq30l9zfki6z
+[2022-11-02T10:22:39.848] [TRACE] default - twitch - locale state is e4r88qq30l9zfki6z
+[2022-11-02T10:22:39.852] [TRACE] default - get menu
+[2022-11-02T10:22:39.869] [TRACE] default - get translation, page streamer
+[2022-11-02T10:22:39.876] [TRACE] default - get twitch
+[2022-11-02T10:22:39.876] [TRACE] default - twitch - session information EXXc1qXAaVWDOb47EkiI2vrjR79jNVel
+[2022-11-02T10:22:39.876] [TRACE] default - twitch - session information e4r88qq30l9zfki6z
+[2022-11-02T10:22:39.877] [TRACE] default - twitch - locale state is e4r88qq30l9zfki6z
+[2022-11-02T10:22:39.986] [TRACE] default - get translation, page information
+[2022-11-02T10:22:40.003] [TRACE] default - get stateStorage, name index
+[2022-11-02T10:22:40.005] [TRACE] default - get node, default
+[2022-11-02T10:22:40.024] [TRACE] default - get twitch userdata
+[2022-11-02T10:22:40.035] [TRACE] default - get node
+[2022-11-02T10:22:40.053] [TRACE] default - get node, default
+[2022-11-02T10:22:43.470] [TRACE] default - get translation, page say,command,placeholder
+[2022-11-02T10:22:43.473] [TRACE] default - get translation, page navigation
+[2022-11-02T10:22:43.498] [TRACE] default - get menu
+[2022-11-02T10:22:43.500] [TRACE] default - get twitch userdata
+[2022-11-02T10:22:43.543] [TRACE] default - get node, default
+[2022-11-02T10:22:43.544] [TRACE] default - get twitch
+[2022-11-02T10:22:43.545] [TRACE] default - twitch - session information EXXc1qXAaVWDOb47EkiI2vrjR79jNVel
+[2022-11-02T10:22:43.545] [TRACE] default - twitch - session information e4r88qq30l9zfki6z
+[2022-11-02T10:22:43.545] [TRACE] default - twitch - locale state is e4r88qq30l9zfki6z
+[2022-11-02T10:22:43.644] [TRACE] default - get translation, page information
+[2022-11-02T10:22:43.651] [TRACE] default - get node, default
+[2022-11-02T10:22:43.654] [TRACE] default - get stateStorage, name say
+[2022-11-02T10:22:43.671] [TRACE] default - get twitch userdata
+[2022-11-02T10:22:43.705] [TRACE] default - get node, default
+[2022-11-02T10:22:43.727] [TRACE] default - get say, node default
+[2022-11-02T10:22:44.954] [TRACE] default - get command, node default
+[2022-11-02T10:22:56.595] [TRACE] default - incomming message self: false
+[2022-11-02T10:22:56.596] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:22:56.596] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:22:56.596] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:22:56.597] [TRACE] default - loot execute
+[2022-11-02T10:22:56.598] [TRACE] default - module craffel say execute
+[2022-11-02T10:22:56.598] [TRACE] default - module death say execute
+[2022-11-02T10:22:56.598] [TRACE] default - module dice say execute
+[2022-11-02T10:22:56.598] [TRACE] default - module lurk say execute
+[2022-11-02T10:22:56.598] [TRACE] default - module so say execute
+[2022-11-02T10:22:56.599] [TRACE] default - is owner: true
+[2022-11-02T10:22:56.599] [TRACE] default - module loot not active
+[2022-11-02T10:22:56.599] [TRACE] default - module unlurk say execute
+[2022-11-02T10:22:56.600] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:22:56.600] [TRACE] default - Command {
+  name: '',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-11-02T10:23:06.293] [TRACE] default - incomming message self: false
+[2022-11-02T10:23:06.293] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:23:06.294] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:23:06.294] [TRACE] default - incomming message message: !so @craffelmat
+[2022-11-02T10:23:06.294] [TRACE] default - loot execute
+[2022-11-02T10:23:06.295] [TRACE] default - module craffel say execute
+[2022-11-02T10:23:06.295] [TRACE] default - module death say execute
+[2022-11-02T10:23:06.295] [TRACE] default - module dice say execute
+[2022-11-02T10:23:06.295] [TRACE] default - module lurk say execute
+[2022-11-02T10:23:06.296] [TRACE] default - module so say execute
+[2022-11-02T10:23:06.296] [TRACE] default - is owner: true
+[2022-11-02T10:23:06.296] [TRACE] default - module loot not active
+[2022-11-02T10:23:06.296] [TRACE] default - module unlurk say execute
+[2022-11-02T10:23:06.296] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:23:06.297] [TRACE] default - Command {
+  name: '',
+  message: '!so @craffelmat',
+  target: 'craffelmat',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-11-02T10:23:16.752] [TRACE] default - incomming message self: false
+[2022-11-02T10:23:16.752] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:23:16.752] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:23:16.753] [TRACE] default - incomming message message: !sostart
+[2022-11-02T10:23:16.753] [TRACE] default - loot execute
+[2022-11-02T10:23:16.753] [TRACE] default - module craffel say execute
+[2022-11-02T10:23:16.753] [TRACE] default - module death say execute
+[2022-11-02T10:23:16.754] [TRACE] default - module dice say execute
+[2022-11-02T10:23:16.754] [TRACE] default - module lurk say execute
+[2022-11-02T10:23:16.754] [TRACE] default - module so say execute
+[2022-11-02T10:23:16.754] [TRACE] default - is owner: true
+[2022-11-02T10:23:16.754] [TRACE] default - is owner: true
+[2022-11-02T10:23:16.773] [TRACE] default - module so set active: true
+[2022-11-02T10:23:16.774] [TRACE] default - module unlurk say execute
+[2022-11-02T10:23:16.774] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:23:16.774] [TRACE] default - Command {
+  name: 'start',
+  message: '!sostart',
+  target: '',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-11-02T10:23:16.775] [TRACE] default - message push Modul wurde gestartet.
+[2022-11-02T10:23:16.991] [TRACE] default - message shift Modul wurde gestartet.
+[2022-11-02T10:23:16.993] [TRACE] default - incomming message self: true
+[2022-11-02T10:23:22.062] [TRACE] default - incomming message self: false
+[2022-11-02T10:23:22.062] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:23:22.062] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:23:22.063] [TRACE] default - incomming message message: !so @craffelmat
+[2022-11-02T10:23:22.063] [TRACE] default - loot execute
+[2022-11-02T10:23:22.063] [TRACE] default - module craffel say execute
+[2022-11-02T10:23:22.064] [TRACE] default - module death say execute
+[2022-11-02T10:23:22.064] [TRACE] default - module dice say execute
+[2022-11-02T10:23:22.064] [TRACE] default - module lurk say execute
+[2022-11-02T10:23:22.064] [TRACE] default - module so say execute
+[2022-11-02T10:23:22.064] [TRACE] default - is owner: true
+[2022-11-02T10:23:22.083] [TRACE] default - module so shout executed
+[2022-11-02T10:23:22.322] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/users?login=craffelmat OK
+[2022-11-02T10:23:22.322] [TRACE] default - {
+  data: [
+    {
+      id: '664649274',
+      login: 'craffelmat',
+      display_name: 'craffelmat',
+      type: '',
+      broadcaster_type: '',
+      description: '',
+      profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/998f01ae-def8-11e9-b95c-784f43822e80-profile_image-300x300.png',
+      offline_image_url: '',
+      view_count: 137,
+      email: 'craffel.gaming@gmail.com',
+      created_at: '2021-03-20T10:24:18Z'
+    }
+  ]
+}
+[2022-11-02T10:23:22.591] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/channels?broadcaster_id=664649274 OK
+[2022-11-02T10:23:22.591] [TRACE] default - {
+  data: [
+    {
+      broadcaster_id: '664649274',
+      broadcaster_login: 'craffelmat',
+      broadcaster_name: 'craffelmat',
+      broadcaster_language: 'en',
+      game_id: '',
+      game_name: '',
+      title: '',
+      delay: 0
+    }
+  ]
+}
+[2022-11-02T10:23:22.593] [TRACE] default - module unlurk say execute
+[2022-11-02T10:23:22.593] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:23:22.594] [TRACE] default - Command {
+  name: 'shout',
+  message: '!so @craffelmat',
+  target: 'craffelmat',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-11-02T10:23:22.595] [TRACE] default - message push Schau doch mal bei craffelmat vorbei. Dort gab es zuletzt . https://twitch.tv/craffelmat
+[2022-11-02T10:23:22.606] [TRACE] default - message shift Schau doch mal bei craffelmat vorbei. Dort gab es zuletzt . https://twitch.tv/craffelmat
+[2022-11-02T10:23:22.606] [TRACE] default - incomming message self: true
+[2022-11-02T10:23:33.061] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:23:33.061] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:23:33.061] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:23:33.062] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:23:33.062] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:23:33.062] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:23:33.062] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:23:33.063] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:23:33.075] [TRACE] default - node craffelmat, module so not executed active: true
+[2022-11-02T10:23:33.076] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:23:33.077] [TRACE] default - node craffelmat, module unlurk not executed active: false
+[2022-11-02T10:23:33.077] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-11-02T10:23:33.078] [TRACE] default - node craffelmat, module verwarnung not executed active: false
+[2022-11-02T10:23:33.078] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-11-02T10:23:33.079] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:15:32
+[2022-11-02T10:23:33.079] [INFO] default - node craffelmat, module loot not executed
+[2022-11-02T10:23:33.080] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-11-02T10:23:33.080] [TRACE] default - node craffelmat, module loot time elapsed: 2
+[2022-11-02T10:23:41.531] [TRACE] default - incomming message self: false
+[2022-11-02T10:23:41.531] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:23:41.531] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:23:41.532] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:23:41.532] [TRACE] default - loot execute
+[2022-11-02T10:23:41.532] [TRACE] default - module craffel say execute
+[2022-11-02T10:23:41.533] [TRACE] default - module death say execute
+[2022-11-02T10:23:41.533] [TRACE] default - module dice say execute
+[2022-11-02T10:23:41.533] [TRACE] default - module lurk say execute
+[2022-11-02T10:23:41.534] [TRACE] default - module so say execute
+[2022-11-02T10:23:41.534] [TRACE] default - is owner: false
+[2022-11-02T10:23:41.535] [TRACE] default - is moderator: false
+[2022-11-02T10:23:41.535] [WARN] default - not owner dedection so  blocked
+[2022-11-02T10:23:41.535] [TRACE] default - module unlurk say execute
+[2022-11-02T10:23:41.535] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:23:41.536] [TRACE] default - Command {
+  name: '',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffel',
+  parameters: []
+}
+[2022-11-02T10:24:18.924] [TRACE] default - incomming message self: false
+[2022-11-02T10:24:18.925] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:24:18.925] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:24:18.925] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:24:18.926] [TRACE] default - loot execute
+[2022-11-02T10:24:18.926] [TRACE] default - module craffel say execute
+[2022-11-02T10:24:18.926] [TRACE] default - module death say execute
+[2022-11-02T10:24:18.927] [TRACE] default - module dice say execute
+[2022-11-02T10:24:18.927] [TRACE] default - module lurk say execute
+[2022-11-02T10:24:18.927] [TRACE] default - module so say execute
+[2022-11-02T10:24:18.927] [TRACE] default - is owner: false
+[2022-11-02T10:24:18.927] [TRACE] default - is moderator: false
+[2022-11-02T10:24:18.928] [WARN] default - not owner dedection so  blocked
+[2022-11-02T10:24:18.928] [TRACE] default - module unlurk say execute
+[2022-11-02T10:24:18.928] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:24:18.928] [TRACE] default - Command {
+  name: '',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffel',
+  parameters: []
+}
+[2022-11-02T10:24:33.070] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:24:33.071] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:24:33.071] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:24:33.071] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:24:33.072] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:24:33.072] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:24:33.072] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:24:33.072] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:24:33.086] [TRACE] default - node craffelmat, module so not executed active: true
+[2022-11-02T10:24:33.086] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:24:33.087] [TRACE] default - node craffelmat, module unlurk not executed active: false
+[2022-11-02T10:24:33.087] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-11-02T10:24:33.087] [TRACE] default - node craffelmat, module verwarnung not executed active: false
+[2022-11-02T10:24:33.087] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-11-02T10:24:33.088] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:15:32
+[2022-11-02T10:24:33.088] [INFO] default - node craffelmat, module loot not executed
+[2022-11-02T10:24:33.088] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-11-02T10:24:33.088] [TRACE] default - node craffelmat, module loot time elapsed: 1
+[2022-11-02T10:25:10.544] [TRACE] default - twitch chat client initialized
+[2022-11-02T10:25:10.626] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-11-02T10:25:10.627] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-11-02T10:25:10.642] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-11-02T10:25:10.645] [INFO] default - HTTP Server listening on port 80
+[2022-11-02T10:25:10.695] [TRACE] default - add Migration update_001
+[2022-11-02T10:25:19.870] [TRACE] default - {
+  access_token: '9a3rshuubmwbm8ffovdsgd3e0tf0k7',
+  expires_in: 5528249,
+  token_type: 'bearer'
+}
+[2022-11-02T10:25:20.836] [TRACE] default - add Node craffelmat
+[2022-11-02T10:25:20.837] [INFO] default - node craffelmat, add streamWatcher
+[2022-11-02T10:25:20.838] [INFO] default - node craffelmat, initialize
+[2022-11-02T10:25:20.838] [TRACE] default - api connect with node craffelmat
+[2022-11-02T10:25:20.839] [INFO] default - --------------------------------------
+[2022-11-02T10:25:20.839] [INFO] default - ---------- ALL NODES ADDED -----------
+[2022-11-02T10:25:20.839] [INFO] default - --------------------------------------
+[2022-11-02T10:25:20.842] [TRACE] default - api connected accessToken ekdi1uwsl9srmz8omp50mqfxhiirxa, refreshToken ub9x2omeb1mm23tpw9et0zg8ck3f4g8f4c22z6bv6b49461dax
+[2022-11-02T10:25:20.842] [TRACE] default - api connected broadcasterType , displayName craffelmat
+[2022-11-02T10:25:20.869] [TRACE] default - add Migration update_001
+[2022-11-02T10:25:20.870] [TRACE] default - add Migration update_002
+[2022-11-02T10:25:23.537] [TRACE] default - node craffelmat, say add craffel.
+[2022-11-02T10:25:23.539] [INFO] default - node craffelmat, say add craffel.
+[2022-11-02T10:25:23.539] [TRACE] default - node craffelmat, say add death.
+[2022-11-02T10:25:23.541] [INFO] default - node craffelmat, say add death.
+[2022-11-02T10:25:23.541] [TRACE] default - node craffelmat, say add dice.
+[2022-11-02T10:25:23.544] [INFO] default - node craffelmat, say add dice.
+[2022-11-02T10:25:23.545] [TRACE] default - node craffelmat, say add lurk.
+[2022-11-02T10:25:23.547] [INFO] default - node craffelmat, say add lurk.
+[2022-11-02T10:25:23.547] [TRACE] default - node craffelmat, say add so.
+[2022-11-02T10:25:23.549] [INFO] default - node craffelmat, say add so.
+[2022-11-02T10:25:23.550] [TRACE] default - module so isShoutout true
+[2022-11-02T10:25:23.550] [TRACE] default - node craffelmat, say add unlurk.
+[2022-11-02T10:25:23.552] [INFO] default - node craffelmat, say add unlurk.
+[2022-11-02T10:25:23.553] [TRACE] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:25:23.555] [INFO] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:25:23.559] [INFO] default - node craffelmat, load moderators, id: 664649274
+[2022-11-02T10:25:23.874] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=664649274 OK
+[2022-11-02T10:25:23.874] [TRACE] default - {
+  data: [
+    {
+      user_id: '440371621',
+      user_login: 'craffel',
+      user_name: 'Craffel'
+    }
+  ],
+  pagination: {}
+}
+[2022-11-02T10:25:23.876] [INFO] default - node craffelmat, finish load moderators, count: 1
+[2022-11-02T10:25:23.876] [TRACE] default - node connected: craffelmat
+[2022-11-02T10:25:35.086] [TRACE] default - incomming message self: false
+[2022-11-02T10:25:35.087] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:25:35.087] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:25:35.087] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:25:35.088] [TRACE] default - loot execute
+[2022-11-02T10:25:35.089] [TRACE] default - module craffel say execute
+[2022-11-02T10:25:35.089] [TRACE] default - module death say execute
+[2022-11-02T10:25:35.090] [TRACE] default - module dice say execute
+[2022-11-02T10:25:35.090] [TRACE] default - module lurk say execute
+[2022-11-02T10:25:35.090] [TRACE] default - module so say execute
+[2022-11-02T10:25:35.090] [TRACE] default - is owner: false
+[2022-11-02T10:25:35.090] [TRACE] default - is moderator: false
+[2022-11-02T10:25:35.091] [WARN] default - not owner dedection so  blocked
+[2022-11-02T10:25:35.091] [TRACE] default - module unlurk say execute
+[2022-11-02T10:25:35.091] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:25:35.091] [TRACE] default - Command {
+  name: '',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffel',
+  parameters: []
+}
+[2022-11-02T10:26:59.499] [TRACE] default - twitch chat client initialized
+[2022-11-02T10:26:59.586] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-11-02T10:26:59.587] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-11-02T10:26:59.602] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-11-02T10:26:59.605] [INFO] default - HTTP Server listening on port 80
+[2022-11-02T10:26:59.652] [TRACE] default - add Migration update_001
+[2022-11-02T10:27:10.305] [TRACE] default - {
+  access_token: 'bvlbvlnviouchp8ldfkfeh5dswxtsh',
+  expires_in: 4981808,
+  token_type: 'bearer'
+}
+[2022-11-02T10:27:11.280] [TRACE] default - add Node craffelmat
+[2022-11-02T10:27:11.282] [INFO] default - node craffelmat, add streamWatcher
+[2022-11-02T10:27:11.282] [INFO] default - node craffelmat, initialize
+[2022-11-02T10:27:11.283] [TRACE] default - api connect with node craffelmat
+[2022-11-02T10:27:11.283] [INFO] default - --------------------------------------
+[2022-11-02T10:27:11.284] [INFO] default - ---------- ALL NODES ADDED -----------
+[2022-11-02T10:27:11.284] [INFO] default - --------------------------------------
+[2022-11-02T10:27:11.288] [TRACE] default - api connected accessToken ekdi1uwsl9srmz8omp50mqfxhiirxa, refreshToken ub9x2omeb1mm23tpw9et0zg8ck3f4g8f4c22z6bv6b49461dax
+[2022-11-02T10:27:11.288] [TRACE] default - api connected broadcasterType , displayName craffelmat
+[2022-11-02T10:27:11.315] [TRACE] default - add Migration update_001
+[2022-11-02T10:27:11.316] [TRACE] default - add Migration update_002
+[2022-11-02T10:27:12.337] [TRACE] default - node craffelmat, say add craffel.
+[2022-11-02T10:27:12.340] [INFO] default - node craffelmat, say add craffel.
+[2022-11-02T10:27:12.341] [TRACE] default - node craffelmat, say add death.
+[2022-11-02T10:27:12.343] [INFO] default - node craffelmat, say add death.
+[2022-11-02T10:27:12.343] [TRACE] default - node craffelmat, say add dice.
+[2022-11-02T10:27:12.346] [INFO] default - node craffelmat, say add dice.
+[2022-11-02T10:27:12.346] [TRACE] default - node craffelmat, say add lurk.
+[2022-11-02T10:27:12.349] [INFO] default - node craffelmat, say add lurk.
+[2022-11-02T10:27:12.349] [TRACE] default - node craffelmat, say add so.
+[2022-11-02T10:27:12.351] [INFO] default - node craffelmat, say add so.
+[2022-11-02T10:27:12.352] [TRACE] default - module so isShoutout true
+[2022-11-02T10:27:12.352] [TRACE] default - node craffelmat, say add unlurk.
+[2022-11-02T10:27:12.354] [INFO] default - node craffelmat, say add unlurk.
+[2022-11-02T10:27:12.355] [TRACE] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:27:12.358] [INFO] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:27:12.362] [INFO] default - node craffelmat, load moderators, id: 664649274
+[2022-11-02T10:27:12.593] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=664649274 OK
+[2022-11-02T10:27:12.594] [TRACE] default - {
+  data: [
+    {
+      user_id: '440371621',
+      user_login: 'craffel',
+      user_name: 'Craffel'
+    }
+  ],
+  pagination: {}
+}
+[2022-11-02T10:27:12.595] [INFO] default - node craffelmat, finish load moderators, count: 1
+[2022-11-02T10:27:12.595] [TRACE] default - node connected: craffelmat
+[2022-11-02T10:27:17.202] [TRACE] default - incomming message self: false
+[2022-11-02T10:27:17.202] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:27:17.202] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:27:17.203] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:27:17.204] [TRACE] default - loot execute
+[2022-11-02T10:27:17.204] [TRACE] default - module craffel say execute
+[2022-11-02T10:27:17.205] [TRACE] default - module death say execute
+[2022-11-02T10:27:17.205] [TRACE] default - module dice say execute
+[2022-11-02T10:27:17.205] [TRACE] default - module lurk say execute
+[2022-11-02T10:27:17.205] [TRACE] default - module so say execute
+[2022-11-02T10:27:17.205] [TRACE] default - is owner: true
+[2022-11-02T10:27:17.223] [TRACE] default - module so shout executed
+[2022-11-02T10:27:17.454] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/users?login=socialadventure OK
+[2022-11-02T10:27:17.455] [TRACE] default - {
+  data: [
+    {
+      id: '838462723',
+      login: 'socialadventure',
+      display_name: 'SocialAdventure',
+      type: '',
+      broadcaster_type: '',
+      description: '',
+      profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/ce57700a-def9-11e9-842d-784f43822e80-profile_image-300x300.png',
+      offline_image_url: '',
+      view_count: 0,
+      created_at: '2022-10-18T17:01:18Z'
+    }
+  ]
+}
+[2022-11-02T10:27:17.736] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/channels?broadcaster_id=838462723 OK
+[2022-11-02T10:27:17.737] [TRACE] default - {
+  data: [
+    {
+      broadcaster_id: '838462723',
+      broadcaster_login: 'socialadventure',
+      broadcaster_name: 'SocialAdventure',
+      broadcaster_language: '',
+      game_id: '',
+      game_name: '',
+      title: '',
+      delay: 0
+    }
+  ]
+}
+[2022-11-02T10:27:17.739] [TRACE] default - module unlurk say execute
+[2022-11-02T10:27:17.739] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:27:17.739] [TRACE] default - Command {
+  name: 'shout',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffelmat',
+  parameters: []
+}
+[2022-11-02T10:27:17.741] [TRACE] default - message push Schau doch mal bei SocialAdventure vorbei. Dort gab es zuletzt . https://twitch.tv/socialadventure
+[2022-11-02T10:27:18.312] [TRACE] default - message shift Schau doch mal bei SocialAdventure vorbei. Dort gab es zuletzt . https://twitch.tv/socialadventure
+[2022-11-02T10:27:18.314] [TRACE] default - incomming message self: true
+[2022-11-02T10:27:28.797] [TRACE] default - incomming message self: false
+[2022-11-02T10:27:28.798] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:27:28.798] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:27:28.798] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:27:28.798] [TRACE] default - loot execute
+[2022-11-02T10:27:28.799] [TRACE] default - module craffel say execute
+[2022-11-02T10:27:28.799] [TRACE] default - module death say execute
+[2022-11-02T10:27:28.799] [TRACE] default - module dice say execute
+[2022-11-02T10:27:28.800] [TRACE] default - module lurk say execute
+[2022-11-02T10:27:28.800] [TRACE] default - module so say execute
+[2022-11-02T10:27:28.800] [TRACE] default - is owner: false
+[2022-11-02T10:27:28.800] [TRACE] default - is moderator: false
+[2022-11-02T10:27:28.800] [WARN] default - not owner dedection so  blocked
+[2022-11-02T10:27:28.801] [TRACE] default - module unlurk say execute
+[2022-11-02T10:27:28.801] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:27:28.801] [TRACE] default - Command {
+  name: '',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffel',
+  parameters: []
+}
+[2022-11-02T10:28:12.352] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:28:12.352] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:28:12.353] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:28:12.353] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:28:12.353] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:28:12.354] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:28:12.354] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:28:12.354] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:28:12.355] [TRACE] default - node craffelmat, module so not executed active: true
+[2022-11-02T10:28:12.355] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:28:12.355] [TRACE] default - node craffelmat, module unlurk not executed active: false
+[2022-11-02T10:28:12.355] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-11-02T10:28:12.356] [TRACE] default - node craffelmat, module verwarnung not executed active: false
+[2022-11-02T10:28:12.357] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-11-02T10:28:12.368] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:15:32
+[2022-11-02T10:28:12.386] [INFO] default - node craffelmat, module loot run after 10 Minutes.
+[2022-11-02T10:28:12.388] [INFO] default - node craffelmat, module loot not executed - missing exploring
+[2022-11-02T10:28:50.429] [TRACE] default - twitch chat client initialized
+[2022-11-02T10:28:50.515] [TRACE] default - basic model path: C:\Projects\SocialAdventure\model
+[2022-11-02T10:28:50.515] [TRACE] default - basic migration path: C:\Projects\SocialAdventure\database\migrations
+[2022-11-02T10:28:50.530] [TRACE] default - Execution Path: C:\Projects\SocialAdventure
+[2022-11-02T10:28:50.533] [INFO] default - HTTP Server listening on port 80
+[2022-11-02T10:28:50.582] [TRACE] default - add Migration update_001
+[2022-11-02T10:29:01.423] [TRACE] default - {
+  access_token: 'mrhb4qrut1rvfsbdjxs0v02p346i4o',
+  expires_in: 5295064,
+  token_type: 'bearer'
+}
+[2022-11-02T10:29:02.396] [TRACE] default - add Node craffelmat
+[2022-11-02T10:29:02.398] [INFO] default - node craffelmat, add streamWatcher
+[2022-11-02T10:29:02.399] [INFO] default - node craffelmat, initialize
+[2022-11-02T10:29:02.399] [TRACE] default - api connect with node craffelmat
+[2022-11-02T10:29:02.400] [INFO] default - --------------------------------------
+[2022-11-02T10:29:02.400] [INFO] default - ---------- ALL NODES ADDED -----------
+[2022-11-02T10:29:02.401] [INFO] default - --------------------------------------
+[2022-11-02T10:29:02.404] [TRACE] default - api connected accessToken ekdi1uwsl9srmz8omp50mqfxhiirxa, refreshToken ub9x2omeb1mm23tpw9et0zg8ck3f4g8f4c22z6bv6b49461dax
+[2022-11-02T10:29:02.404] [TRACE] default - api connected broadcasterType , displayName craffelmat
+[2022-11-02T10:29:02.431] [TRACE] default - add Migration update_001
+[2022-11-02T10:29:02.432] [TRACE] default - add Migration update_002
+[2022-11-02T10:29:03.734] [TRACE] default - node craffelmat, say add craffel.
+[2022-11-02T10:29:03.736] [INFO] default - node craffelmat, say add craffel.
+[2022-11-02T10:29:03.737] [TRACE] default - node craffelmat, say add death.
+[2022-11-02T10:29:03.739] [INFO] default - node craffelmat, say add death.
+[2022-11-02T10:29:03.739] [TRACE] default - node craffelmat, say add dice.
+[2022-11-02T10:29:03.741] [INFO] default - node craffelmat, say add dice.
+[2022-11-02T10:29:03.742] [TRACE] default - node craffelmat, say add lurk.
+[2022-11-02T10:29:03.744] [INFO] default - node craffelmat, say add lurk.
+[2022-11-02T10:29:03.745] [TRACE] default - node craffelmat, say add so.
+[2022-11-02T10:29:03.746] [INFO] default - node craffelmat, say add so.
+[2022-11-02T10:29:03.747] [TRACE] default - module so isShoutout true
+[2022-11-02T10:29:03.747] [TRACE] default - node craffelmat, say add unlurk.
+[2022-11-02T10:29:03.749] [INFO] default - node craffelmat, say add unlurk.
+[2022-11-02T10:29:03.749] [TRACE] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:29:03.752] [INFO] default - node craffelmat, say add verwarnung.
+[2022-11-02T10:29:03.757] [INFO] default - node craffelmat, load moderators, id: 664649274
+[2022-11-02T10:29:03.989] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=664649274 OK
+[2022-11-02T10:29:03.989] [TRACE] default - {
+  data: [
+    {
+      user_id: '440371621',
+      user_login: 'craffel',
+      user_name: 'Craffel'
+    }
+  ],
+  pagination: {}
+}
+[2022-11-02T10:29:03.991] [INFO] default - node craffelmat, finish load moderators, count: 1
+[2022-11-02T10:29:03.991] [TRACE] default - node connected: craffelmat
+[2022-11-02T10:30:03.741] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:30:03.742] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:30:03.742] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:30:03.743] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:30:03.743] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:30:03.743] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:30:03.744] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:30:03.744] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:30:03.757] [TRACE] default - node craffelmat, module so not executed active: true
+[2022-11-02T10:30:03.757] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:30:03.757] [TRACE] default - node craffelmat, module unlurk not executed active: false
+[2022-11-02T10:30:03.758] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-11-02T10:30:03.758] [TRACE] default - node craffelmat, module verwarnung not executed active: false
+[2022-11-02T10:30:03.758] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-11-02T10:30:03.773] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:28:12
+[2022-11-02T10:30:03.773] [INFO] default - node craffelmat, module loot not executed
+[2022-11-02T10:30:03.773] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-11-02T10:30:03.774] [TRACE] default - node craffelmat, module loot time elapsed: 9
+[2022-11-02T10:31:03.744] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:31:03.745] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:31:03.745] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:31:03.746] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:31:03.746] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:31:03.746] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:31:03.746] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:31:03.746] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:31:03.760] [TRACE] default - node craffelmat, module so not executed active: true
+[2022-11-02T10:31:03.760] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:31:03.760] [TRACE] default - node craffelmat, module unlurk not executed active: false
+[2022-11-02T10:31:03.761] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-11-02T10:31:03.761] [TRACE] default - node craffelmat, module verwarnung not executed active: false
+[2022-11-02T10:31:03.761] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-11-02T10:31:03.775] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:28:12
+[2022-11-02T10:31:03.775] [INFO] default - node craffelmat, module loot not executed
+[2022-11-02T10:31:03.776] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-11-02T10:31:03.776] [TRACE] default - node craffelmat, module loot time elapsed: 8
+[2022-11-02T10:32:03.751] [TRACE] default - node craffelmat, module craffel not executed active: false
+[2022-11-02T10:32:03.752] [TRACE] default - node craffelmat, module craffel not executed minutes: 60
+[2022-11-02T10:32:03.752] [TRACE] default - node craffelmat, module death not executed active: true
+[2022-11-02T10:32:03.752] [TRACE] default - node craffelmat, module death not executed minutes: 0
+[2022-11-02T10:32:03.753] [TRACE] default - node craffelmat, module dice not executed active: false
+[2022-11-02T10:32:03.753] [TRACE] default - node craffelmat, module dice not executed minutes: 0
+[2022-11-02T10:32:03.753] [TRACE] default - node craffelmat, module lurk not executed active: false
+[2022-11-02T10:32:03.753] [TRACE] default - node craffelmat, module lurk not executed minutes: 0
+[2022-11-02T10:32:03.767] [TRACE] default - node craffelmat, module so not executed active: true
+[2022-11-02T10:32:03.767] [TRACE] default - node craffelmat, module so not executed minutes: 0
+[2022-11-02T10:32:03.768] [TRACE] default - node craffelmat, module unlurk not executed active: false
+[2022-11-02T10:32:03.768] [TRACE] default - node craffelmat, module unlurk not executed minutes: 0
+[2022-11-02T10:32:03.768] [TRACE] default - node craffelmat, module verwarnung not executed active: false
+[2022-11-02T10:32:03.769] [TRACE] default - node craffelmat, module verwarnung not executed minutes: 0
+[2022-11-02T10:32:03.782] [INFO] default - node craffelmat, module loot last run 2.11.2022 10:28:12
+[2022-11-02T10:32:03.783] [INFO] default - node craffelmat, module loot not executed
+[2022-11-02T10:32:03.783] [TRACE] default - node craffelmat, module loot minutes: 10
+[2022-11-02T10:32:03.783] [TRACE] default - node craffelmat, module loot time elapsed: 7
+[2022-11-02T10:32:31.944] [TRACE] default - incomming message self: false
+[2022-11-02T10:32:31.945] [TRACE] default - incomming message channel: craffelmat)
+[2022-11-02T10:32:31.945] [TRACE] default - incomming message target: #craffelmat (Channel: craffelmat)
+[2022-11-02T10:32:31.945] [TRACE] default - incomming message message: !so @SocialAdventure
+[2022-11-02T10:32:31.946] [TRACE] default - loot execute
+[2022-11-02T10:32:31.947] [TRACE] default - module craffel say execute
+[2022-11-02T10:32:31.947] [TRACE] default - module death say execute
+[2022-11-02T10:32:31.947] [TRACE] default - module dice say execute
+[2022-11-02T10:32:31.948] [TRACE] default - module lurk say execute
+[2022-11-02T10:32:31.948] [TRACE] default - module so say execute
+[2022-11-02T10:32:31.948] [TRACE] default - is owner: false
+[2022-11-02T10:32:31.949] [TRACE] default - is moderator: true
+[2022-11-02T10:32:31.959] [TRACE] default - module so shout executed
+[2022-11-02T10:32:32.196] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/users?login=socialadventure OK
+[2022-11-02T10:32:32.197] [TRACE] default - {
+  data: [
+    {
+      id: '838462723',
+      login: 'socialadventure',
+      display_name: 'SocialAdventure',
+      type: '',
+      broadcaster_type: '',
+      description: '',
+      profile_image_url: 'https://static-cdn.jtvnw.net/user-default-pictures-uv/ce57700a-def9-11e9-842d-784f43822e80-profile_image-300x300.png',
+      offline_image_url: '',
+      view_count: 0,
+      created_at: '2022-10-18T17:01:18Z'
+    }
+  ]
+}
+[2022-11-02T10:32:32.480] [TRACE] default - api request, node craffelmat, GET https://api.twitch.tv/helix/channels?broadcaster_id=838462723 OK
+[2022-11-02T10:32:32.480] [TRACE] default - {
+  data: [
+    {
+      broadcaster_id: '838462723',
+      broadcaster_login: 'socialadventure',
+      broadcaster_name: 'SocialAdventure',
+      broadcaster_language: '',
+      game_id: '',
+      game_name: '',
+      title: '',
+      delay: 0
+    }
+  ]
+}
+[2022-11-02T10:32:32.482] [TRACE] default - module unlurk say execute
+[2022-11-02T10:32:32.483] [TRACE] default - module verwarnung say execute
+[2022-11-02T10:32:32.483] [TRACE] default - Command {
+  name: 'shout',
+  message: '!so @SocialAdventure',
+  target: 'socialadventure',
+  source: 'craffel',
+  parameters: []
+}
+[2022-11-02T10:32:32.484] [TRACE] default - message push Schau doch mal bei SocialAdventure vorbei. Dort gab es zuletzt . https://twitch.tv/socialadventure
+[2022-11-02T10:32:32.985] [TRACE] default - message shift Schau doch mal bei SocialAdventure vorbei. Dort gab es zuletzt . https://twitch.tv/socialadventure
+[2022-11-02T10:32:32.986] [TRACE] default - incomming message self: true

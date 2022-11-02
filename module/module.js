@@ -39,7 +39,7 @@ class Module {
     isModerator(command) {
         let result = false;
         if (this.channel.moderators && this.channel.moderators.length > 0) {
-            if (this.channel.moderators.some(x => x.user_name === command.source))
+            if (this.channel.moderators.some(x => x.user_name.toLocaleLowerCase() === command.source.toLocaleLowerCase()))
                 result = true;
         }
         global.worker.log.trace(`is moderator: ${result}`);

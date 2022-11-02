@@ -12,6 +12,8 @@ export class HeroItem {
     @Column
     lastJoin: Date = new Date(2020, 1, 1);
     @Column
+    lastLeave: Date = new Date(2020, 1, 1);
+    @Column
     lastGive: Date = new Date(2020, 1, 1);
     @Column
     lastDaily: Date = new Date(2020, 1, 1);
@@ -51,6 +53,11 @@ export class HeroItem {
                 defaultValue: Date.UTC(2020, 1, 1)
             },
             lastJoin: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
+            lastLeave: {
                 type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)

@@ -109,12 +109,17 @@ class Channel {
     addSays() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']], raw: true });
-                for (const item of Object.values(yield this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']], raw: true }))) {
+                const translation = yield global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']] });
+                for (const item of yield this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']] })) {
+                    global.worker.log.trace(`node ${this.node.getDataValue('name')}, say add ${item.getDataValue("command")}.`);
                     const element = new say_1.Say(translation, this, item);
                     yield element.initialize();
                     this.say.push(element);
-                    global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.command}.`);
+                    global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
+                    if (element.item.getDataValue("isShoutout")) {
+                        global.worker.log.trace(`module ${element.item.getDataValue("command")} isShoutout ${element.item.getDataValue("isShoutout")}`);
+                        element.commands.find(x => x.command === '').isModerator = true;
+                    }
                 }
             }
             catch (ex) {
@@ -126,9 +131,9 @@ class Channel {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 for (const item of this.say) {
-                    if (item.item.isLiveAutoControl) {
+                    if (item.item.getDataValue("isLiveAutoControl")) {
                         yield item.stop();
-                        global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.command}.`);
+                        global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.getDataValue("command")}.`);
                     }
                 }
             }
@@ -141,9 +146,9 @@ class Channel {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 for (const item of this.say) {
-                    if (item.item.isLiveAutoControl) {
+                    if (item.item.getDataValue("isLiveAutoControl")) {
                         yield item.start();
-                        global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.command}.`);
+                        global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.getDataValue("command")}.`);
                     }
                 }
             }
@@ -159,7 +164,7 @@ class Channel {
                 const element = new say_1.Say(translation, this, item);
                 yield element.initialize();
                 this.say.push(element);
-                global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.command}.`);
+                global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
             }
             catch (ex) {
                 global.worker.log.error(`channel error - function addSay - ${ex.message}`);
@@ -169,9 +174,9 @@ class Channel {
     removeSay(command) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const index = this.say.findIndex(d => d.item.command === command);
+                const index = this.say.findIndex(d => d.item.getDataValue("command") === command);
                 if (index > -1) {
-                    global.worker.log.info(`node ${this.node.getDataValue('name')}, say remove ${this.say[index].item.command}.`);
+                    global.worker.log.info(`node ${this.node.getDataValue('name')}, say remove ${this.say[index].item.getDataValue("command")}.`);
                     this.say[index].remove();
                     this.say.splice(index, 1);
                 }

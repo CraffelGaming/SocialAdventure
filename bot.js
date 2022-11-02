@@ -85,7 +85,7 @@ global.isRegistered = function isRegistered(request, response) {
 };
 global.isModerator = function isRegistered(request, response, moderators) {
     if ((moderators === null || moderators === void 0 ? void 0 : moderators.length) > 0 && request.session != null && request.session.userData != null && request.session.userData.login != null) {
-        if (moderators.some(x => x.user_login === request.session.userData.login)) {
+        if (moderators.some(x => x.user_login.toLocaleLowerCase() === request.session.userData.login.toLocaleLowerCase())) {
             return true;
         }
     }

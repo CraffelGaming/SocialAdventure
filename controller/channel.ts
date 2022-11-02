@@ -114,13 +114,19 @@ export class Channel {
     //#region Say
     async addSays(){
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as unknown as TranslationItem[]
 
-            for(const item of Object.values(await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]], raw: true})) as unknown as SayItem[]){
+            for(const item of await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]]}) as Model<SayItem>[]){
+                global.worker.log.trace(`node ${this.node.getDataValue('name')}, say add ${item.getDataValue("command")}.`);
                 const element = new Say(translation, this, item);
                 await element.initialize();
                 this.say.push(element);
-                global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.command}.`);
+                global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
+
+                if(element.item.getDataValue("isShoutout")) {
+                    global.worker.log.trace(`module ${element.item.getDataValue("command")} isShoutout ${element.item.getDataValue("isShoutout")}`);
+                    element.commands.find(x => x.command === '').isModerator = true;
+                }
             }
         } catch(ex) {
             global.worker.log.error(`channel error - function addSays - ${ex.message}`);
@@ -130,9 +136,9 @@ export class Channel {
     async stopSays(){
         try {
             for(const item of this.say){
-                if(item.item.isLiveAutoControl){
+                if(item.item.getDataValue("isLiveAutoControl")){
                     await item.stop();
-                    global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.command}.`);
+                    global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.getDataValue("command")}.`);
                 }
             }
         } catch(ex) {
@@ -143,9 +149,9 @@ export class Channel {
     async startSays(){
         try {
             for(const item of this.say){
-                if(item.item.isLiveAutoControl){
+                if(item.item.getDataValue("isLiveAutoControl")){
                     await item.start();
-                    global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.command}.`);
+                    global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.getDataValue("command")}.`);
                 }
             }
         } catch(ex) {
@@ -159,7 +165,7 @@ export class Channel {
             const element = new Say(translation, this, item);
             await element.initialize();
             this.say.push(element);
-            global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.command}.`);
+            global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
         } catch(ex) {
             global.worker.log.error(`channel error - function addSay - ${ex.message}`);
         }
@@ -167,10 +173,10 @@ export class Channel {
 
     async removeSay(command: string){
         try {
-            const index = this.say.findIndex(d => d.item.command === command);
+            const index = this.say.findIndex(d => d.item.getDataValue("command") === command);
 
             if(index > -1){
-                global.worker.log.info(`node ${this.node.getDataValue('name')}, say remove ${this.say[index].item.command}.`);
+                global.worker.log.info(`node ${this.node.getDataValue('name')}, say remove ${this.say[index].item.getDataValue("command")}.`);
                 this.say[index].remove();
                 this.say.splice(index, 1)
             }

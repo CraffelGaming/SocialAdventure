@@ -42,6 +42,7 @@ const api_hero_1 = __importDefault(require("./api/api.hero"));
 const api_heroWallet_1 = __importDefault(require("./api/api.heroWallet"));
 const api_heroTrait_1 = __importDefault(require("./api/api.heroTrait"));
 const api_heroInventory_1 = __importDefault(require("./api/api.heroInventory"));
+const api_heroPromotion_1 = __importDefault(require("./api/api.heroPromotion"));
 const api_item_1 = __importDefault(require("./api/api.item"));
 const api_itemCategory_1 = __importDefault(require("./api/api.itemCategory"));
 const api_command_1 = __importDefault(require("./api/api.command"));
@@ -1670,6 +1671,116 @@ router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
  *         description: no data
  */
 router.post("/heroinventory/:node/sell/item/:handle/hero/:name", api_heroInventory_1.default);
+//#endregion
+//#region Hero Promotion
+/**
+ * @swagger
+ * /heropromotion/{node}:
+ *   get:
+ *     tags:
+ *     - Hero Promotion
+ *     summary: Promo-Codes der Helden
+ *     description: Rückgabe aller eingelösten Promo-Codes aller Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               promotionHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des promo-Codes
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/heropromotion/:node", api_heroPromotion_1.default);
+/**
+ * @swagger
+ * /heropromotion/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - Hero Promotion
+ *     summary: Promo-Codes eines Helden
+ *     description: Rückgabe aller eingelösten Promo-Codes eines Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Hero"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               promotionHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des promo-Codes
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/heropromotion/:node/hero/:name", api_heroPromotion_1.default);
 //#endregion
 //#region Hero Trait
 /**

@@ -95,7 +95,7 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
         }
     }
 
-    static async heal({ sequelize, healingPotionHandle, heroName }: { sequelize: Sequelize, healingPotionHandle: string, heroName: string }): Promise<number>{
+    static async heal({ sequelize, healingPotionHandle, heroName, bonus }: { sequelize: Sequelize, healingPotionHandle: string, heroName: string, bonus: boolean }): Promise<number>{
         try{
             const potion = await sequelize.models.healingPotion.findByPk(healingPotionHandle) as Model<HealingPotionItem>;
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
@@ -104,12 +104,17 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
             if(potion && hero && heroWallet){
                 if(heroWallet.getDataValue("gold") >= potion.getDataValue("gold")){
                     if(hero.getDataValue("hitpoints") === 0 && potion.getDataValue("isRevive") === true || hero.getDataValue("hitpoints") > 0 && potion.getDataValue("isRevive") === false){
-                        hero.setDataValue("hitpoints", hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent")));
+                        hero.setDataValue("hitpoints", Math.round(hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent"))));
 
                         if(hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
                             hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
 
-                        await heroWallet.decrement('gold', { by: potion.getDataValue("gold")});
+                        if(bonus){
+                            await heroWallet.decrement('gold', { by: potion.getDataValue("gold")});
+                        } else {
+                            await heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2)});
+                        }
+
                         await hero.save({ fields: ['hitpoints'] });
                         return 200;
                     } else return 406

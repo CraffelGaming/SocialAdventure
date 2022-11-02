@@ -36,7 +36,7 @@ class LootGive {
             if (settings.isActive) {
                 if (this.item) {
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, item ${this.item.getDataValue("value")}`);
-                    if (this.sourceHero) {
+                    if (this.sourceHero && this.sourceHero.getDataValue("isActive")) {
                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, sourceHero ${this.sourceHero.getDataValue("name")}`);
                         if (this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastGive")), settings.minutes)) {
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, timeout expired`);

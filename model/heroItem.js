@@ -28,6 +28,7 @@ let HeroItem = HeroItem_1 = class HeroItem {
     constructor(name) {
         this.lastSteal = new Date(2020, 1, 1);
         this.lastJoin = new Date(2020, 1, 1);
+        this.lastLeave = new Date(2020, 1, 1);
         this.lastGive = new Date(2020, 1, 1);
         this.lastDaily = new Date(2020, 1, 1);
         this.startIndex = 0;
@@ -54,6 +55,11 @@ let HeroItem = HeroItem_1 = class HeroItem {
                 defaultValue: Date.UTC(2020, 1, 1)
             },
             lastJoin: {
+                type: sequelize_1.DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
+            lastLeave: {
                 type: sequelize_1.DataTypes.DATE,
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)
@@ -170,6 +176,10 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)
 ], HeroItem.prototype, "lastJoin", void 0);
+__decorate([
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Date)
+], HeroItem.prototype, "lastLeave", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)
