@@ -101,7 +101,7 @@ class Channel {
             catch (ex) {
                 global.worker.log.error(`channel error - function streamWatcher - ${ex.message}`);
             }
-        }), 1000 * 300 // 5 Minute(n)
+        }), 1000 * 120 // 5 Minute(n)
         );
     }
     //#endregion
