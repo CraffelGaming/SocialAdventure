@@ -46,7 +46,12 @@ Release: 2023
 - [X]  Notify Streamer Change
 - [X]  !find / steal / give auch mit Itemname
 - [X]  Heal other
+
+- [X]  Befehle anlegen, wenn mit ! dann ! entfernen
 - [ ]  !raid gegen große bosse
+- [ ]  Duell
+- [ ]  Kampf / Steal LOG
+
 - [ ]  Englisch
 - [ ]  API aufräumen
 - [ ]  Datenspeicher für Say-Module
@@ -55,8 +60,6 @@ Release: 2023
 - [ ]  Diamanten
 - [ ]  GitHub Readme.md überarbeiten
 - [ ]  Dungeons / Enemy / Item / Category export / import
-- [ ]  Duell
-- [ ]  Kampf / Steal LOG
 - [ ]  Mehr Traits
 - [ ]  Item Verwendungen
 - [ ]  Live Push Notification
