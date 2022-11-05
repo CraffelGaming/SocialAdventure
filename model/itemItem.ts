@@ -69,9 +69,9 @@ export class ItemItem extends Model<ItemItem>{
                     if(isGlobal === true && item.categoryHandle > 1){
                         await sequelize.models.item.create(item as any);
                     }
-                    // else if(isGlobal === false && item.categoryHandle <= 1){
-                    //    await sequelize.models.item.create(item as any);
-                    // }
+                    else if(isGlobal === false && item.categoryHandle <= 1){
+                       await sequelize.models.item.create(item as any);
+                    }
                 }
 
                 else {

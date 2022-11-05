@@ -48,8 +48,9 @@ class Loot extends module_1.Module {
                 const loot = this.settings.find(x => x.command === "loot");
                 const allowedCommand = this.commands.find(x => x.command === command.name);
                 if (allowedCommand) {
-                    if (!allowedCommand.isMaster || this.isOwner(command)) {
-                        if (loot.isActive || allowedCommand.isMaster && this.isOwner(command)) {
+                    const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+                    if (isAllowed) {
+                        if (loot.isActive || isAllowed) {
                             return yield this[command.name](command);
                         }
                         else {
@@ -137,7 +138,7 @@ class Loot extends module_1.Module {
                     if (!hero.getDataValue("isActive")) {
                         hero.setDataValue("isActive", true);
                         hero.setDataValue("lastJoin", new Date());
-                        if (hero.getDataValue("hitpoints") === 0) {
+                        if (hero.getDataValue("hitpoints") < hero.getDataValue("hitpointsMax") / 2) {
                             hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax") / 2);
                         }
                         yield hero.save();
@@ -388,12 +389,17 @@ class Loot extends module_1.Module {
                 const hero = this.getTargetHero(command);
                 const gold = (yield this.channel.database.sequelize.query(this.getRankStatement(hero, "heroName", "heroWallet", "gold")))[0][0];
                 const experience = (yield this.channel.database.sequelize.query(this.getRankStatement(hero, "name", "hero", "experience")))[0][0];
-                return translationItem_1.TranslationItem.translate(this.translation, 'heroRank')
-                    .replace('$1', hero)
-                    .replace('$2', gold.rank)
-                    .replace('$3', gold.gold)
-                    .replace('$4', experience.rank)
-                    .replace('$5', experience.experience);
+                if (gold != null && experience != null) {
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroRank')
+                        .replace('$1', hero)
+                        .replace('$2', gold.rank)
+                        .replace('$3', gold.gold)
+                        .replace('$4', experience.rank)
+                        .replace('$5', experience.experience);
+                }
+                else {
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
+                }
             }
             catch (ex) {
                 global.worker.log.error(`module loot error - function rank - ${ex.message}`);
@@ -417,16 +423,20 @@ class Loot extends module_1.Module {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const heroes = yield this.channel.database.sequelize.models.hero.findAll({ where: { isActive: true } });
-                for (const hero in heroes) {
-                    if (heroes[hero] !== undefined) {
-                        heroes[hero].setDataValue("isActive", false);
-                        const adventures = yield this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: heroes[hero].getDataValue("name") } });
-                        for (const adventure in adventures) {
-                            if (adventures[adventure]) {
-                                yield heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure: adventures[adventure] });
+                if (heroes != null) {
+                    for (const hero of heroes) {
+                        if (hero !== null && hero !== undefined) {
+                            hero.setDataValue("isActive", false);
+                            const adventures = yield this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: hero.getDataValue("name") } });
+                            if (adventures != null) {
+                                for (const adventure of adventures) {
+                                    if (adventure !== null && adventure !== undefined) {
+                                        yield heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure });
+                                    }
+                                }
+                                yield hero.save();
                             }
                         }
-                        yield heroes[hero].save();
                     }
                 }
                 return translationItem_1.TranslationItem.translate(this.translation, "cleared");
@@ -707,9 +717,19 @@ class Loot extends module_1.Module {
                         return yield this.reviveHero(command, potion, item, wallet);
                     }
                     else {
-                        return translationItem_1.TranslationItem.translate(this.translation, 'healNo').replace('$1', hero)
-                            .replace('$2', item.getDataValue("hitpoints").toString())
-                            .replace('$3', item.getDataValue("hitpointsMax").toString());
+                        if (wallet.getDataValue("heroName") === item.getDataValue("name")) {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'healNo')
+                                .replace('$1', wallet.getDataValue("heroName"))
+                                .replace('$2', item.getDataValue("hitpoints").toString())
+                                .replace('$3', item.getDataValue("hitpointsMax").toString());
+                        }
+                        else {
+                            return translationItem_1.TranslationItem.translate(this.translation, 'healNoOther')
+                                .replace('$1', wallet.getDataValue("heroName"))
+                                .replace('$2', item.getDataValue("hitpoints").toString())
+                                .replace('$3', item.getDataValue("hitpointsMax").toString())
+                                .replace('$4', item.getDataValue("name").toString());
+                        }
                     }
                 }
                 else {
@@ -729,15 +749,35 @@ class Loot extends module_1.Module {
                 if (wallet.getDataValue("gold") >= potion.getDataValue("gold")) {
                     yield healingPotionItem_1.HealingPotionItem.heal({ sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name"), bonus: hero.getDataValue("name") !== wallet.getDataValue("heroName") });
                     hero = (yield this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")));
-                    message = translationItem_1.TranslationItem.translate(this.translation, 'healYes').replace('$1', hero.getDataValue("name"))
-                        .replace('$2', potion.getDataValue("value"))
-                        .replace('$3', hero.getDataValue("hitpoints").toString())
-                        .replace('$4', hero.getDataValue("hitpointsMax").toString());
+                    if (wallet.getDataValue("heroName") === hero.getDataValue("name")) {
+                        message = translationItem_1.TranslationItem.translate(this.translation, 'healYes')
+                            .replace('$1', wallet.getDataValue("heroName"))
+                            .replace('$2', potion.getDataValue("value"))
+                            .replace('$3', hero.getDataValue("hitpoints").toString())
+                            .replace('$4', hero.getDataValue("hitpointsMax").toString());
+                    }
+                    else {
+                        message = translationItem_1.TranslationItem.translate(this.translation, 'healYesOther')
+                            .replace('$1', wallet.getDataValue("heroName"))
+                            .replace('$2', potion.getDataValue("value"))
+                            .replace('$3', hero.getDataValue("hitpoints").toString())
+                            .replace('$4', hero.getDataValue("hitpointsMax").toString())
+                            .replaceAll('$5', hero.getDataValue("name"));
+                    }
                 }
                 else {
-                    message = translationItem_1.TranslationItem.translate(this.translation, 'healNoMoney').replace('$1', hero.getDataValue("name"))
-                        .replace('$2', wallet.getDataValue("gold").toString())
-                        .replace('$3', potion.getDataValue("gold").toString());
+                    if (wallet.getDataValue("heroName") === hero.getDataValue("name")) {
+                        message = translationItem_1.TranslationItem.translate(this.translation, 'healNoMoney')
+                            .replace('$1', wallet.getDataValue("heroName"))
+                            .replace('$2', wallet.getDataValue("gold").toString())
+                            .replace('$3', potion.getDataValue("gold").toString());
+                    }
+                    else {
+                        message = translationItem_1.TranslationItem.translate(this.translation, 'healNoMoneyOther').replace('$1', wallet.getDataValue("heroName"))
+                            .replace('$2', wallet.getDataValue("gold").toString())
+                            .replace('$3', potion.getDataValue("gold").toString())
+                            .replace('$4', hero.getDataValue("name"));
+                    }
                 }
             }
             catch (ex) {
@@ -753,10 +793,21 @@ class Loot extends module_1.Module {
             try {
                 yield healingPotionItem_1.HealingPotionItem.heal({ sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name"), bonus: hero.getDataValue("name") !== wallet.getDataValue("heroName") });
                 hero = (yield this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")));
-                message = translationItem_1.TranslationItem.translate(this.translation, 'healRevive').replace('$1', hero.getDataValue("name"))
-                    .replace('$2', potion.getDataValue("value"))
-                    .replace('$3', hero.getDataValue("hitpoints").toString())
-                    .replace('$4', hero.getDataValue("hitpointsMax").toString());
+                if (wallet.getDataValue("heroName") === hero.getDataValue("name")) {
+                    message = translationItem_1.TranslationItem.translate(this.translation, 'healRevive')
+                        .replace('$1', wallet.getDataValue("heroName"))
+                        .replace('$2', potion.getDataValue("value"))
+                        .replace('$3', hero.getDataValue("hitpoints").toString())
+                        .replace('$4', hero.getDataValue("hitpointsMax").toString());
+                }
+                else {
+                    message = translationItem_1.TranslationItem.translate(this.translation, 'healReviveOther')
+                        .replace('$1', wallet.getDataValue("heroName"))
+                        .replace('$2', potion.getDataValue("value"))
+                        .replace('$3', hero.getDataValue("hitpoints").toString())
+                        .replace('$4', hero.getDataValue("hitpointsMax").toString())
+                        .replaceAll('$5', hero.getDataValue("name"));
+                }
             }
             catch (ex) {
                 global.worker.log.error(`module loot error - function reviveHero - ${ex.message}`);

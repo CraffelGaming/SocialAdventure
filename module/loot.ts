@@ -46,8 +46,10 @@ export class Loot extends Module {
             const allowedCommand = this.commands.find(x => x.command === command.name);
 
             if(allowedCommand){
-                if(!allowedCommand.isMaster || this.isOwner(command)){
-                    if(loot.isActive || allowedCommand.isMaster && this.isOwner(command)) {
+                const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+
+                if(isAllowed){
+                    if(loot.isActive || isAllowed) {
                         return await this[command.name](command);
                     } else {
                         global.worker.log.trace(`module loot not active`);
@@ -132,7 +134,7 @@ export class Loot extends Module {
                     hero.setDataValue("isActive",true);
                     hero.setDataValue("lastJoin",new Date());
 
-                    if(hero.getDataValue("hitpoints") === 0){
+                    if(hero.getDataValue("hitpoints") < hero.getDataValue("hitpointsMax") / 2){
                         hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax") / 2);
                     }
 
@@ -343,12 +345,17 @@ export class Loot extends Module {
             const gold = (await this.channel.database.sequelize.query(this.getRankStatement(hero,"heroName", "heroWallet", "gold")))[0][0] as any
             const experience = (await this.channel.database.sequelize.query(this.getRankStatement(hero,"name", "hero", "experience")))[0][0] as any;
 
-            return TranslationItem.translate(this.translation, 'heroRank')
-                                  .replace('$1', hero)
-                                  .replace('$2', gold.rank)
-                                  .replace('$3', gold.gold)
-                                  .replace('$4', experience.rank)
-                                  .replace('$5', experience.experience);
+            if(gold != null && experience != null){
+                return TranslationItem.translate(this.translation, 'heroRank')
+                .replace('$1', hero)
+                .replace('$2', gold.rank)
+                .replace('$3', gold.gold)
+                .replace('$4', experience.rank)
+                .replace('$5', experience.experience);
+            } else {
+                return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
+            }
+
         } catch(ex) {
             global.worker.log.error(`module loot error - function rank - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20006');
@@ -371,19 +378,24 @@ export class Loot extends Module {
     async lootclear(command: Command = null){
         try{
             const heroes = await this.channel.database.sequelize.models.hero.findAll({where: {isActive: true}}) as Model<HeroItem>[];
-            for(const hero in heroes){
-                if(heroes[hero] !== undefined){
-                    heroes[hero].setDataValue("isActive", false)
+            if(heroes != null){
+                for(const hero of heroes){
+                    if(hero !== null && hero !== undefined){
+                        hero.setDataValue("isActive", false)
 
-                    const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: heroes[hero].getDataValue("name")}}) as Model<AdventureItem>[];
-                    for(const adventure in adventures){
-                        if(adventures[adventure]){
-                            await HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure: adventures[adventure]});
+                        const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: hero.getDataValue("name")}}) as Model<AdventureItem>[];
+                        if(adventures != null){
+                            for(const adventure of adventures){
+                                if(adventure !== null && adventure !== undefined){
+                                    await HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure});
+                                }
+                            }
+                            await hero.save();
                         }
                     }
-                    await heroes[hero].save();
                 }
             }
+
             return TranslationItem.translate(this.translation, "cleared");
         } catch (ex){
             global.worker.log.error(`module loot error - function lootclear - ${ex.message}`);
@@ -628,9 +640,18 @@ export class Loot extends Module {
                 } else if(potion && potion.getDataValue("isRevive")){
                     return await this.reviveHero(command, potion, item, wallet);
                 } else {
-                    return TranslationItem.translate(this.translation, 'healNo').replace('$1', hero)
-                                                                                .replace('$2', item.getDataValue("hitpoints").toString())
-                                                                                .replace('$3', item.getDataValue("hitpointsMax").toString());
+                    if(wallet.getDataValue("heroName") === item.getDataValue("name")){
+                        return TranslationItem.translate(this.translation, 'healNo')
+                                              .replace('$1', wallet.getDataValue("heroName"))
+                                              .replace('$2', item.getDataValue("hitpoints").toString())
+                                              .replace('$3', item.getDataValue("hitpointsMax").toString());
+                    } else {
+                        return TranslationItem.translate(this.translation, 'healNoOther')
+                                              .replace('$1', wallet.getDataValue("heroName"))
+                                              .replace('$2', item.getDataValue("hitpoints").toString())
+                                              .replace('$3', item.getDataValue("hitpointsMax").toString())
+                                              .replace('$4', item.getDataValue("name").toString());
+                    }
                 }
             } else {
                 return TranslationItem.translate(this.translation, 'heroNotJoined').replace('$1', command.source);
@@ -647,14 +668,32 @@ export class Loot extends Module {
             if(wallet.getDataValue("gold") >= potion.getDataValue("gold")){
                 await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name"), bonus: hero.getDataValue("name") !== wallet.getDataValue("heroName") });
                 hero = await this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")) as Model<HeroItem>;
-                message = TranslationItem.translate(this.translation, 'healYes').replace('$1', hero.getDataValue("name"))
-                                         .replace('$2', potion.getDataValue("value"))
-                                         .replace('$3', hero.getDataValue("hitpoints").toString())
-                                         .replace('$4', hero.getDataValue("hitpointsMax").toString());
+                if(wallet.getDataValue("heroName") === hero.getDataValue("name") ){
+                    message = TranslationItem.translate(this.translation, 'healYes')
+                                             .replace('$1', wallet.getDataValue("heroName"))
+                                             .replace('$2', potion.getDataValue("value"))
+                                             .replace('$3', hero.getDataValue("hitpoints").toString())
+                                             .replace('$4', hero.getDataValue("hitpointsMax").toString());
+                } else {
+                    message = TranslationItem.translate(this.translation, 'healYesOther')
+                                             .replace('$1', wallet.getDataValue("heroName"))
+                                             .replace('$2', potion.getDataValue("value"))
+                                             .replace('$3', hero.getDataValue("hitpoints").toString())
+                                             .replace('$4', hero.getDataValue("hitpointsMax").toString())
+                                             .replaceAll('$5', hero.getDataValue("name"));
+                }
             } else {
-                message = TranslationItem.translate(this.translation, 'healNoMoney').replace('$1', hero.getDataValue("name"))
-                                                                                    .replace('$2', wallet.getDataValue("gold").toString())
-                                                                                    .replace('$3', potion.getDataValue("gold").toString());
+                if(wallet.getDataValue("heroName") === hero.getDataValue("name") ){
+                    message = TranslationItem.translate(this.translation, 'healNoMoney')
+                                             .replace('$1', wallet.getDataValue("heroName"))
+                                             .replace('$2', wallet.getDataValue("gold").toString())
+                                             .replace('$3', potion.getDataValue("gold").toString());
+                } else {
+                    message = TranslationItem.translate(this.translation, 'healNoMoneyOther').replace('$1', wallet.getDataValue("heroName"))
+                    .replace('$2', wallet.getDataValue("gold").toString())
+                    .replace('$3', potion.getDataValue("gold").toString())
+                    .replace('$4', hero.getDataValue("name"));
+                }
             }
         } catch(ex) {
             global.worker.log.error(`module loot error - function healHero - ${ex.message}`);
@@ -668,11 +707,20 @@ export class Loot extends Module {
         try {
             await HealingPotionItem.heal({sequelize: this.channel.database.sequelize, healingPotionHandle: potion.getDataValue("handle").toString(), heroName: hero.getDataValue("name"), bonus: hero.getDataValue("name") !== wallet.getDataValue("heroName")});
             hero = await this.channel.database.sequelize.models.hero.findByPk(hero.getDataValue("name")) as Model<HeroItem>;
-            message = TranslationItem.translate(this.translation, 'healRevive').replace('$1', hero.getDataValue("name"))
-                                                                               .replace('$2', potion.getDataValue("value"))
-                                                                               .replace('$3', hero.getDataValue("hitpoints").toString())
-                                                                               .replace('$4', hero.getDataValue("hitpointsMax").toString());
-
+            if(wallet.getDataValue("heroName") === hero.getDataValue("name") ){
+                message = TranslationItem.translate(this.translation, 'healRevive')
+                                         .replace('$1', wallet.getDataValue("heroName"))
+                                         .replace('$2', potion.getDataValue("value"))
+                                         .replace('$3', hero.getDataValue("hitpoints").toString())
+                                         .replace('$4', hero.getDataValue("hitpointsMax").toString());
+            } else {
+                message = TranslationItem.translate(this.translation, 'healReviveOther')
+                                         .replace('$1', wallet.getDataValue("heroName"))
+                                         .replace('$2', potion.getDataValue("value"))
+                                         .replace('$3', hero.getDataValue("hitpoints").toString())
+                                         .replace('$4', hero.getDataValue("hitpointsMax").toString())
+                                         .replaceAll('$5', hero.getDataValue("name"));
+            }
         } catch(ex) {
             global.worker.log.error(`module loot error - function reviveHero - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20021');

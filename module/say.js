@@ -47,8 +47,9 @@ class Say extends module_1.Module {
                     command.name = command.name.replace(this.item.getDataValue("command"), "");
                     const allowedCommand = this.commands.find(x => x.command === command.name);
                     if (allowedCommand) {
-                        if (!allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command)) {
-                            if (this.item.getDataValue("isActive") || allowedCommand.isMaster && this.isOwner(command)) {
+                        const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+                        if (isAllowed) {
+                            if (this.item.getDataValue("isActive") || isAllowed) {
                                 if (command.name.length === 0)
                                     command.name = "shout";
                                 command.name = command.name.replace("+", "plus");

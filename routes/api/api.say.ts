@@ -40,7 +40,7 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(request.body.command.startsWith('!'))
             request.body.command.substring(1);
-            
+
         if(channel) {
             if(global.isMaster(request, response, node)){
                 if(request.body.command != null && request.body.command.length > 0){

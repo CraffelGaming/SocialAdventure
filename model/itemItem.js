@@ -76,9 +76,9 @@ let ItemItem = ItemItem_1 = class ItemItem extends sequelize_typescript_1.Model 
                         if (isGlobal === true && item.categoryHandle > 1) {
                             yield sequelize.models.item.create(item);
                         }
-                        // else if(isGlobal === false && item.categoryHandle <= 1){
-                        //    await sequelize.models.item.create(item as any);
-                        // }
+                        else if (isGlobal === false && item.categoryHandle <= 1) {
+                            yield sequelize.models.item.create(item);
+                        }
                     }
                     else {
                         if (isGlobal === true && item.categoryHandle > 1) {
