@@ -643,9 +643,10 @@ class Loot extends module_1.Module {
                         }
                     });
                     if (level) {
-                        return translationItem_1.TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero)
-                            .replace('$2', level.getDataValue("handle").toString()
-                            .replace('$3', item.getDataValue("prestige").toString()));
+                        return translationItem_1.TranslationItem.translate(this.translation, 'heroLevel')
+                            .replace('$1', hero)
+                            .replace('$2', level.getDataValue("handle").toString())
+                            .replace('$3', item.getDataValue("prestige").toString());
                     }
                     else
                         return translationItem_1.TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);

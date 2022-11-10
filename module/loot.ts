@@ -579,9 +579,10 @@ export class Loot extends Module {
                 }}) as Model<LevelItem>;
 
                 if(level){
-                    return TranslationItem.translate(this.translation, 'heroLevel').replace('$1', hero)
-                                          .replace('$2', level.getDataValue("handle").toString()
-                                          .replace('$3', item.getDataValue("prestige").toString()));
+                    return TranslationItem.translate(this.translation, 'heroLevel')
+                                          .replace('$1', hero)
+                                          .replace('$2', level.getDataValue("handle").toString())
+                                          .replace('$3', item.getDataValue("prestige").toString());
                 } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
             } else return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
         } catch(ex) {
