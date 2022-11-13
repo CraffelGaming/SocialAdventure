@@ -86,7 +86,6 @@ $(async () => {
                                         return res.json();
                                 }
                             }).then(async function (json) {
-                                console.log(json);
                                 notify(translate(language, 'streamerChanged').replace('$1', json.node.displayName), 'success');
                                 infoPanel();
                             });

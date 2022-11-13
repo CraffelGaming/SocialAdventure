@@ -127,6 +127,7 @@ $(async () => {
                                     return res.json();
                                 }
                             }).then(async function (json) {
+                                notify(translate(languageStreamer, 'streamerChanged').replace('$1', json.node.displayName), 'success');
                                 infoPanel();
                             });
                         }

@@ -109,13 +109,13 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
 
                             if(hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
                                 hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
-    
+
                             if(bonus === true){
                                 await heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2)});
                             } else {
                                 await heroWallet.decrement('gold', { by: potion.getDataValue("gold")});
                             }
-    
+
                             await hero.save({ fields: ['hitpoints'] });
                             return 200;
                         } else return 204;

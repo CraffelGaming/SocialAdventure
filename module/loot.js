@@ -427,15 +427,15 @@ class Loot extends module_1.Module {
                     for (const hero of heroes) {
                         if (hero !== null && hero !== undefined) {
                             hero.setDataValue("isActive", false);
-                            const adventures = yield this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: hero.getDataValue("name") } });
-                            if (adventures != null) {
-                                for (const adventure of adventures) {
-                                    if (adventure !== null && adventure !== undefined) {
-                                        yield heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure });
-                                    }
-                                }
-                                yield hero.save();
-                            }
+                            yield hero.save();
+                        }
+                    }
+                }
+                const adventures = yield this.channel.database.sequelize.models.adventure.findAll();
+                if (adventures != null) {
+                    for (const adventure of adventures) {
+                        if (adventure !== null && adventure !== undefined) {
+                            yield heroInventoryItem_1.HeroInventoryItem.transferAdventureToInventory({ sequelize: this.channel.database.sequelize, adventure });
                         }
                     }
                 }

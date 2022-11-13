@@ -112,19 +112,23 @@ let HealingPotionItem = class HealingPotionItem extends sequelize_typescript_1.M
                 const hero = yield sequelize.models.hero.findByPk(heroName);
                 const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
                 if (potion && hero && heroWallet) {
-                    if (heroWallet.getDataValue("gold") >= potion.getDataValue("gold")) {
+                    if (heroWallet.getDataValue("gold") >= potion.getDataValue("gold") && !bonus || heroWallet.getDataValue("gold") >= potion.getDataValue("gold") / 2 && bonus) {
                         if (hero.getDataValue("hitpoints") === 0 && potion.getDataValue("isRevive") === true || hero.getDataValue("hitpoints") > 0 && potion.getDataValue("isRevive") === false) {
-                            hero.setDataValue("hitpoints", Math.round(hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent"))));
-                            if (hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
-                                hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
-                            if (bonus) {
-                                yield heroWallet.decrement('gold', { by: potion.getDataValue("gold") });
+                            if (hero.getDataValue("hitpoints") < hero.getDataValue("hitpointsMax")) {
+                                hero.setDataValue("hitpoints", Math.round(hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent"))));
+                                if (hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
+                                    hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
+                                if (bonus === true) {
+                                    yield heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2) });
+                                }
+                                else {
+                                    yield heroWallet.decrement('gold', { by: potion.getDataValue("gold") });
+                                }
+                                yield hero.save({ fields: ['hitpoints'] });
+                                return 200;
                             }
-                            else {
-                                yield heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2) });
-                            }
-                            yield hero.save({ fields: ['hitpoints'] });
-                            return 200;
+                            else
+                                return 204;
                         }
                         else
                             return 406;

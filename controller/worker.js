@@ -128,6 +128,7 @@ class Worker {
         try {
             this.log.trace('node connected: ' + channel.node.getDataValue('name'));
             this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
+            this.log.trace(this.tmi);
         }
         catch (ex) {
             global.worker.log.error(`worker error - function register - ${ex.message}`);

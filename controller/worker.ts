@@ -134,6 +134,7 @@ export class Worker {
         try {
             this.log.trace('node connected: ' + channel.node.getDataValue('name'));
             this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
+            this.log.trace(this.tmi);
         } catch(ex) {
             global.worker.log.error(`worker error - function register - ${ex.message}`);
         }
@@ -179,7 +180,8 @@ export class Worker {
 
     async onDisconnectedHandler() {
         try {
-            await global.worker.restart();
+            global.worker.log.warn(`worker warn - function onDisconnectedHandler - Reconnect Disabled`);
+            //await global.worker.restart();
         } catch(ex) {
             global.worker.log.error(`worker error - function onDisconnectedHandler - ${ex.message}`);
         }
