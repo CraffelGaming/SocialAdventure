@@ -381,21 +381,20 @@ export class Loot extends Module {
             if(heroes != null){
                 for(const hero of heroes){
                     if(hero !== null && hero !== undefined){
-                        hero.setDataValue("isActive", false)
-
-                        const adventures = await this.channel.database.sequelize.models.adventure.findAll({where: {heroName: hero.getDataValue("name")}}) as Model<AdventureItem>[];
-                        if(adventures != null){
-                            for(const adventure of adventures){
-                                if(adventure !== null && adventure !== undefined){
-                                    await HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure});
-                                }
-                            }
-                            await hero.save();
-                        }
+                        hero.setDataValue("isActive", false);
+                        await hero.save();
                     }
                 }
             }
 
+            const adventures = await this.channel.database.sequelize.models.adventure.findAll() as Model<AdventureItem>[];
+            if(adventures != null){
+                for(const adventure of adventures){
+                    if(adventure !== null && adventure !== undefined){
+                        await HeroInventoryItem.transferAdventureToInventory({sequelize: this.channel.database.sequelize, adventure});
+                    }
+                }
+            }
             return TranslationItem.translate(this.translation, "cleared");
         } catch (ex){
             global.worker.log.error(`module loot error - function lootclear - ${ex.message}`);
