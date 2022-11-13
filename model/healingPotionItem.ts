@@ -102,21 +102,23 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
 
             if(potion && hero && heroWallet){
-                if(heroWallet.getDataValue("gold") >= potion.getDataValue("gold")){
+                if(heroWallet.getDataValue("gold") >= potion.getDataValue("gold") && !bonus || heroWallet.getDataValue("gold") >= potion.getDataValue("gold") / 2 && bonus){
                     if(hero.getDataValue("hitpoints") === 0 && potion.getDataValue("isRevive") === true || hero.getDataValue("hitpoints") > 0 && potion.getDataValue("isRevive") === false){
-                        hero.setDataValue("hitpoints", Math.round(hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent"))));
+                        if(hero.getDataValue("hitpoints") < hero.getDataValue("hitpointsMax")) {
+                            hero.setDataValue("hitpoints", Math.round(hero.getDataValue("hitpoints") + (hero.getDataValue("hitpointsMax") / 100 * potion.getDataValue("percent"))));
 
-                        if(hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
-                            hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
-
-                        if(bonus){
-                            await heroWallet.decrement('gold', { by: potion.getDataValue("gold")});
-                        } else {
-                            await heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2)});
-                        }
-
-                        await hero.save({ fields: ['hitpoints'] });
-                        return 200;
+                            if(hero.getDataValue("hitpoints") > hero.getDataValue("hitpointsMax"))
+                                hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax"));
+    
+                            if(bonus === true){
+                                await heroWallet.decrement('gold', { by: Math.round(potion.getDataValue("gold") / 2)});
+                            } else {
+                                await heroWallet.decrement('gold', { by: potion.getDataValue("gold")});
+                            }
+    
+                            await hero.save({ fields: ['hitpoints'] });
+                            return 200;
+                        } else return 204;
                     } else return 406
                 } else return 402;
             } else return 404;

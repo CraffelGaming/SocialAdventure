@@ -176,6 +176,7 @@
     { "page": "healing", "handle": "percent", "language": "de-DE", "translation": "Heilwirkung (%)"},
     { "page": "healing", "handle": "isRevive", "language": "de-DE", "translation": "Beleber?"},
     { "page": "healing", "handle": "200", "language": "de-DE", "translation": "Du hast dich geheilt."},
+    { "page": "healing", "handle": "204", "language": "de-DE", "translation": "Du musst dich nicht heilen."},
     { "page": "healing", "handle": "402", "language": "de-DE", "translation": "Dir fehlt das nötige Kleingeld."},
     { "page": "healing", "handle": "404", "language": "de-DE", "translation": "Der Händler hat keine Waren mehr."},
     { "page": "healing", "handle": "406", "language": "de-DE", "translation": "Beleber können nur bei 0 HP eingesetzt werden."},
