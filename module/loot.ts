@@ -145,7 +145,7 @@ export class Loot extends Module {
                     } else return TranslationItem.translate(this.translation, 'heroJoined').replace('$1', command.source);
 
                 } else return TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
-            } else return TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(hero.getDataValue("lastJoin"), join.minutes).toString());
+            } else return TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(hero.getDataValue("lastLeave"), join.minutes).toString());
         } catch (ex){
             global.worker.log.error(`module loot error - function loot - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20001');
