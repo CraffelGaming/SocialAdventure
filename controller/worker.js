@@ -173,7 +173,8 @@ class Worker {
     onDisconnectedHandler() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield global.worker.restart();
+                global.worker.log.warn(`worker warn - function onDisconnectedHandler - Reconnect Disabled`);
+                // await global.worker.restart();
             }
             catch (ex) {
                 global.worker.log.error(`worker error - function onDisconnectedHandler - ${ex.message}`);

@@ -181,7 +181,7 @@ export class Worker {
     async onDisconnectedHandler() {
         try {
             global.worker.log.warn(`worker warn - function onDisconnectedHandler - Reconnect Disabled`);
-            //await global.worker.restart();
+            // await global.worker.restart();
         } catch(ex) {
             global.worker.log.error(`worker error - function onDisconnectedHandler - ${ex.message}`);
         }

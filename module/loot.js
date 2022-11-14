@@ -152,7 +152,7 @@ class Loot extends module_1.Module {
                         return translationItem_1.TranslationItem.translate(this.translation, 'heroAlreadyJoined').replace('$1', command.source);
                 }
                 else
-                    return translationItem_1.TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(hero.getDataValue("lastJoin"), join.minutes).toString());
+                    return translationItem_1.TranslationItem.translate(this.translation, 'heroTimeoutJoined').replace('$1', command.source).replace('$2', this.getDateTimeoutRemainingMinutes(hero.getDataValue("lastLeave"), join.minutes).toString());
             }
             catch (ex) {
                 global.worker.log.error(`module loot error - function loot - ${ex.message}`);
