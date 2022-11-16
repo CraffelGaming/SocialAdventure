@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,11 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TwitchUserItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-let TwitchUserItem = class TwitchUserItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+let TwitchUserItem = class TwitchUserItem extends Model {
     constructor() {
         super();
         this.viewCount = 0;
@@ -20,41 +17,41 @@ let TwitchUserItem = class TwitchUserItem extends sequelize_typescript_1.Model {
     static createTable({ sequelize }) {
         sequelize.define('twitchUser', {
             channelName: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
             displayName: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             id: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             type: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             broadcasterType: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             description: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             profileImageUrl: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             },
             viewCount: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
             },
             eMail: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             }
         }, { freezeTableName: true });
@@ -64,46 +61,45 @@ let TwitchUserItem = class TwitchUserItem extends sequelize_typescript_1.Model {
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "channelName", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "displayName", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "id", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "type", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "broadcasterType", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "description", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "profileImageUrl", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], TwitchUserItem.prototype, "viewCount", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TwitchUserItem.prototype, "eMail", void 0);
 TwitchUserItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "twitchUser", modelName: "twitchUser" }),
+    Table({ tableName: "twitchUser", modelName: "twitchUser" }),
     __metadata("design:paramtypes", [])
 ], TwitchUserItem);
-exports.TwitchUserItem = TwitchUserItem;
-module.exports.default = TwitchUserItem;
+export { TwitchUserItem };
 //# sourceMappingURL=twitchUserItem.js.map

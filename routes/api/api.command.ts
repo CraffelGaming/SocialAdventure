@@ -1,6 +1,6 @@
-import * as express from 'express';
-import { CommandItem } from '../../model/commandItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { CommandItem } from '../../model/commandItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
 
 const router = express.Router();
 const endpoint = 'command';

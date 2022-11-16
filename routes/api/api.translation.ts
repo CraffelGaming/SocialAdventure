@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express from 'express';
 import { Op } from 'sequelize';
 
 const router = express.Router();

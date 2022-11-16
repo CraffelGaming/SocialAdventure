@@ -1,20 +1,20 @@
 import { Op } from "sequelize";
 import { Model } from "sequelize-typescript";
-import { Channel } from "../controller/channel";
-import { Command } from "../controller/command";
-import { AdventureItem } from "../model/adventureItem";
-import { HealingPotionItem } from "../model/healingPotionItem";
-import { HeroInventoryItem } from "../model/heroInventoryItem";
-import { HeroItem } from "../model/heroItem";
-import { HeroWalletItem } from "../model/heroWalletItem";
-import { LevelItem } from "../model/levelItem";
-import { LootItem } from "../model/lootItem";
-import { TranslationItem } from "../model/translationItem";
-import { LootExploring } from "./lootExploring";
-import { LootGive } from "./lootGive";
-import { LootSearch } from "./lootSearch";
-import { LootSteal } from "./lootSteal";
-import { Module } from "./module";
+import { Channel } from "../controller/channel.js";
+import { Command } from "../controller/command.js";
+import { AdventureItem } from "../model/adventureItem.js";
+import { HealingPotionItem } from "../model/healingPotionItem.js";
+import { HeroInventoryItem } from "../model/heroInventoryItem.js";
+import { HeroItem } from "../model/heroItem.js";
+import { HeroWalletItem } from "../model/heroWalletItem.js";
+import { LevelItem } from "../model/levelItem.js";
+import { LootItem } from "../model/lootItem.js";
+import { TranslationItem } from "../model/translationItem.js";
+import { LootExploring } from "./lootExploring.js";
+import { LootGive } from "./lootGive.js";
+import { LootSearch } from "./lootSearch.js";
+import { LootSteal } from "./lootSteal.js";
+import { Module } from "./module.js";
 
 export class Loot extends Module {
     timer: NodeJS.Timer;

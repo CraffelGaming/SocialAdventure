@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Command = void 0;
-class Command {
+export class Command {
     //#region Construct
     constructor(message, context) {
         this.name = "";
@@ -25,5 +22,4 @@ class Command {
         }
     }
 }
-exports.Command = Command;
 //# sourceMappingURL=command.js.map

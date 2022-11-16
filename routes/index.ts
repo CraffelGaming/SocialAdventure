@@ -1,25 +1,24 @@
 import "reflect-metadata";
 
-import * as express from 'express';
-
-import help from "./help";
-import streamer from "./streamer";
-import twitch from "./twitch";
-import daily from "./daily";
-import command from "./command";
-import hero from "./hero";
-import heroes from "./heroes";
-import item from "./item";
-import itemCategory from "./itemCategory";
-import say from "./say";
-import statistic from "./statistic";
-import taverne from "./taverne";
-import level from "./level";
-import location from "./location";
-import enemy from "./enemy";
-import adventure from "./adventure";
-import setting from "./setting";
-import promotion from "./promotion";
+import express from 'express';
+import help from "./help.js";
+import streamer from "./streamer.js";
+import twitch from "./twitch.js";
+import daily from "./daily.js";
+import command from "./command.js";
+import hero from "./hero.js";
+import heroes from "./heroes.js";
+import item from "./item.js";
+import itemCategory from "./itemCategory.js";
+import say from "./say.js";
+import statistic from "./statistic.js";
+import taverne from "./taverne.js";
+import level from "./level.js";
+import location from "./location.js";
+import enemy from "./enemy.js";
+import adventure from "./adventure.js";
+import setting from "./setting.js";
+import promotion from "./promotion.js";
 
 const endpoint = 'index';
 const type = 'app';

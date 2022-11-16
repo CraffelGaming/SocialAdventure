@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,20 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.VersionItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-let VersionItem = class VersionItem extends sequelize_typescript_1.Model {
+import { Column, Table, PrimaryKey, Model } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const project = JSON.parse(fs.readFileSync(path.join(dirname, './../package.json')).toString());
+let VersionItem = class VersionItem extends Model {
     constructor(version) {
         super();
         this.version = version;
@@ -29,35 +23,31 @@ let VersionItem = class VersionItem extends sequelize_typescript_1.Model {
     static createTable({ sequelize }) {
         sequelize.define('version', {
             version: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             }
         }, { freezeTableName: true });
     }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const version = require('./../package.json').version;
-                if ((yield sequelize.models.version.count({ where: { version } })) === 0) {
-                    yield sequelize.models.version.create({ version });
-                }
+    static async updateTable({ sequelize }) {
+        try {
+            if (await sequelize.models.version.count({ where: { version: project.version } }) === 0) {
+                await sequelize.models.version.create({ version: project.version });
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], VersionItem.prototype, "version", void 0);
 VersionItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "version", modelName: "version" }),
+    Table({ tableName: "version", modelName: "version" }),
     __metadata("design:paramtypes", [String])
 ], VersionItem);
-exports.VersionItem = VersionItem;
-module.exports.default = VersionItem;
+export { VersionItem };
 //# sourceMappingURL=versionItem.js.map

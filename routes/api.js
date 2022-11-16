@@ -1,62 +1,34 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = __importStar(require("express"));
-const swaggerUi = require("swagger-ui-express");
-const specs = __importStar(require("../swagger"));
-const api_version_1 = __importDefault(require("./api/api.version"));
-const api_node_1 = __importDefault(require("./api/api.node"));
-const api_menu_1 = __importDefault(require("./api/api.menu"));
-const api_migration_1 = __importDefault(require("./api/api.migration"));
-const api_translation_1 = __importDefault(require("./api/api.translation"));
-const api_twitch_1 = __importDefault(require("./api/api.twitch"));
-const api_level_1 = __importDefault(require("./api/api.level"));
-const api_say_1 = __importDefault(require("./api/api.say"));
-const api_loot_1 = __importDefault(require("./api/api.loot"));
-const api_hero_1 = __importDefault(require("./api/api.hero"));
-const api_heroWallet_1 = __importDefault(require("./api/api.heroWallet"));
-const api_heroTrait_1 = __importDefault(require("./api/api.heroTrait"));
-const api_heroInventory_1 = __importDefault(require("./api/api.heroInventory"));
-const api_heroPromotion_1 = __importDefault(require("./api/api.heroPromotion"));
-const api_item_1 = __importDefault(require("./api/api.item"));
-const api_itemCategory_1 = __importDefault(require("./api/api.itemCategory"));
-const api_command_1 = __importDefault(require("./api/api.command"));
-const api_location_1 = __importDefault(require("./api/api.location"));
-const api_enemy_1 = __importDefault(require("./api/api.enemy"));
-const api_adventure_1 = __importDefault(require("./api/api.adventure"));
-const api_trainer_1 = __importDefault(require("./api/api.trainer"));
-const api_healingPotion_1 = __importDefault(require("./api/api.healingPotion"));
-const api_daily_1 = __importDefault(require("./api/api.daily"));
-const api_promotion_1 = __importDefault(require("./api/api.promotion"));
-const api_help_1 = __importDefault(require("./api/api.help"));
-const api_placeholder_1 = __importDefault(require("./api/api.placeholder"));
-const api_validation_1 = __importDefault(require("./api/api.validation"));
-const api_stateStorage_1 = __importDefault(require("./api/api.stateStorage"));
+import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import * as specs from '../swagger.js';
+import version from "./api/api.version.js";
+import node from "./api/api.node.js";
+import menu from "./api/api.menu.js";
+import migration from "./api/api.migration.js";
+import translation from "./api/api.translation.js";
+import twitch from "./api/api.twitch.js";
+import level from "./api/api.level.js";
+import say from "./api/api.say.js";
+import loot from "./api/api.loot.js";
+import hero from "./api/api.hero.js";
+import herowallet from "./api/api.heroWallet.js";
+import herotrait from "./api/api.heroTrait.js";
+import heroinventory from "./api/api.heroInventory.js";
+import heropromotion from "./api/api.heroPromotion.js";
+import item from "./api/api.item.js";
+import itemCategory from "./api/api.itemCategory.js";
+import command from "./api/api.command.js";
+import location from "./api/api.location.js";
+import enemy from "./api/api.enemy.js";
+import adventure from "./api/api.adventure.js";
+import trainer from "./api/api.trainer.js";
+import healingPotion from "./api/api.healingPotion.js";
+import daily from "./api/api.daily.js";
+import promotion from "./api/api.promotion.js";
+import help from "./api/api.help.js";
+import placeholder from "./api/api.placeholder.js";
+import validation from "./api/api.validation.js";
+import stateStorage from "./api/api.stateStorage.js";
 const router = express.Router();
 //#region Adventure
 /**
@@ -109,7 +81,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-router.get("/adventure/:node", api_adventure_1.default);
+router.get("/adventure/:node", adventure);
 /**
  * @swagger
  * /adventure/{node}/hero/{name}:
@@ -166,7 +138,7 @@ router.get("/adventure/:node", api_adventure_1.default);
  *       404:
  *         description: no data
  */
-router.get("/adventure/:node/hero/:name", api_adventure_1.default);
+router.get("/adventure/:node/hero/:name", adventure);
 /**
  * @swagger
  * /adventure/{node}:
@@ -216,7 +188,7 @@ router.get("/adventure/:node/hero/:name", api_adventure_1.default);
  *       404:
  *         description: no data
  */
-router.put("/adventure/:node", api_adventure_1.default);
+router.put("/adventure/:node", adventure);
 /**
  * @swagger
  * /adventure/{node}/{heroName}/{itemHandle}:
@@ -254,7 +226,7 @@ router.put("/adventure/:node", api_adventure_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/adventure/:node/:heroName/:itemHandle", api_adventure_1.default);
+router.delete("/adventure/:node/:heroName/:itemHandle", adventure);
 //#endregion
 //#region Command
 /**
@@ -321,7 +293,7 @@ router.delete("/adventure/:node/:heroName/:itemHandle", api_adventure_1.default)
  *       404:
  *         description: no data
  */
-router.get("/command/:node", api_command_1.default);
+router.get("/command/:node", command);
 /**
  * @swagger
  * /command/{node}/{module}:
@@ -392,7 +364,7 @@ router.get("/command/:node", api_command_1.default);
  *       404:
  *         description: no data
  */
-router.get("/command/:node/:module", api_command_1.default);
+router.get("/command/:node/:module", command);
 //#endregion
 //#region Daily
 /**
@@ -465,7 +437,7 @@ router.get("/command/:node/:module", api_command_1.default);
  *       404:
  *         description: no data
  */
-router.get("/daily/:node", api_daily_1.default);
+router.get("/daily/:node", daily);
 /**
  * @swagger
  * /daily/{node}/current/{count}:
@@ -534,7 +506,7 @@ router.get("/daily/:node", api_daily_1.default);
  *       404:
  *         description: no data
  */
-router.get("/daily/:node/current/:count", api_daily_1.default);
+router.get("/daily/:node/current/:count", daily);
 /**
  * @swagger
  * /daily/{node}/current/{count}/hero/{name}:
@@ -609,7 +581,7 @@ router.get("/daily/:node/current/:count", api_daily_1.default);
  *       404:
  *         description: no data
  */
-router.get("/daily/:node/current/:count/hero/:name", api_daily_1.default);
+router.get("/daily/:node/current/:count/hero/:name", daily);
 /**
  * @swagger
  * /daily/{node}/redeem/{number}/hero/{name}:
@@ -684,7 +656,7 @@ router.get("/daily/:node/current/:count/hero/:name", api_daily_1.default);
  *       404:
  *         description: no data
  */
-router.post("/daily/:node/redeem/:number/hero/:name", api_daily_1.default);
+router.post("/daily/:node/redeem/:number/hero/:name", daily);
 /**
  * @swagger
  * /daily/{node}:
@@ -774,7 +746,7 @@ router.post("/daily/:node/redeem/:number/hero/:name", api_daily_1.default);
  *       404:
  *         description: no data
  */
-router.put("/daily/:node", api_daily_1.default);
+router.put("/daily/:node", daily);
 /**
  * @swagger
  * /daily/{node}/{handle}:
@@ -806,7 +778,7 @@ router.put("/daily/:node", api_daily_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/daily/:node/:handle", api_daily_1.default);
+router.delete("/daily/:node/:handle", daily);
 //#endregion
 //#region Enemy
 /**
@@ -879,7 +851,7 @@ router.delete("/daily/:node/:handle", api_daily_1.default);
  *       404:
  *         description: no data
  */
-router.get("/enemy/:node", api_enemy_1.default);
+router.get("/enemy/:node", enemy);
 /**
  * @swagger
  * /enemy/{node}:
@@ -969,7 +941,7 @@ router.get("/enemy/:node", api_enemy_1.default);
  *       404:
  *         description: no data
  */
-router.put("/enemy/:node", api_enemy_1.default);
+router.put("/enemy/:node", enemy);
 /**
  * @swagger
  * /enemy/{node}/{handle}:
@@ -1001,7 +973,7 @@ router.put("/enemy/:node", api_enemy_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/enemy/:node/:handle", api_enemy_1.default);
+router.delete("/enemy/:node/:handle", enemy);
 //#endregion
 //#region Healing Potion
 /**
@@ -1066,7 +1038,7 @@ router.delete("/enemy/:node/:handle", api_enemy_1.default);
  *       404:
  *         description: no data
  */
-router.get("/healingPotion/:node", api_healingPotion_1.default);
+router.get("/healingPotion/:node", healingPotion);
 /**
  * @swagger
  * /healingPotion/{node}:
@@ -1140,7 +1112,7 @@ router.get("/healingPotion/:node", api_healingPotion_1.default);
  *       404:
  *         description: no data
  */
-router.put("/healingPotion/:node", api_healingPotion_1.default);
+router.put("/healingPotion/:node", healingPotion);
 /**
  * @swagger
  * /healingPotion/{node}/{handle}:
@@ -1172,7 +1144,7 @@ router.put("/healingPotion/:node", api_healingPotion_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/healingPotion/:node/:handle", api_healingPotion_1.default);
+router.delete("/healingPotion/:node/:handle", healingPotion);
 /**
  * @swagger
  * /healingPotion/{node}/heal/{handle}/hero/{name}:
@@ -1210,7 +1182,7 @@ router.delete("/healingPotion/:node/:handle", api_healingPotion_1.default);
  *       404:
  *         description: no data
  */
-router.post("/healingPotion/:node/heal/:handle/hero/:name", api_healingPotion_1.default);
+router.post("/healingPotion/:node/heal/:handle/hero/:name", healingPotion);
 //#endregion
 //#region Help
 /**
@@ -1278,7 +1250,7 @@ router.post("/healingPotion/:node/heal/:handle/hero/:name", api_healingPotion_1.
  *       404:
  *         description: no data
  */
-router.put("/help/:node", api_help_1.default);
+router.put("/help/:node", help);
 //#endregion
 //#region Hero
 /**
@@ -1351,7 +1323,7 @@ router.put("/help/:node", api_help_1.default);
  *       404:
  *         description: no data
  */
-router.get("/hero/:node", api_hero_1.default);
+router.get("/hero/:node", hero);
 /**
  * @swagger
  * /hero/{node}/{name}:
@@ -1424,7 +1396,7 @@ router.get("/hero/:node", api_hero_1.default);
  *       404:
  *         description: no data
  */
-router.get("/hero/:node/:name", api_hero_1.default);
+router.get("/hero/:node/:name", hero);
 /**
  * @swagger
  * /hero/{node}:
@@ -1506,7 +1478,7 @@ router.get("/hero/:node/:name", api_hero_1.default);
  *       404:
  *         description: no data
  */
-router.put("/hero/:node", api_hero_1.default);
+router.put("/hero/:node", hero);
 //#endregion
 //#region Hero Inventory
 /**
@@ -1567,7 +1539,7 @@ router.put("/hero/:node", api_hero_1.default);
  *       404:
  *         description: no data
  */
-router.get("/heroinventory/:node", api_heroInventory_1.default);
+router.get("/heroinventory/:node", heroinventory);
 /**
  * @swagger
  * /heroinventory/{node}/hero/{name}:
@@ -1632,7 +1604,7 @@ router.get("/heroinventory/:node", api_heroInventory_1.default);
  *       404:
  *         description: no data
  */
-router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
+router.get("/heroinventory/:node/hero/:name", heroinventory);
 /**
  * @swagger
  * /heroinventory/{node}/sell/item/{handle}/hero/{name}:
@@ -1670,7 +1642,7 @@ router.get("/heroinventory/:node/hero/:name", api_heroInventory_1.default);
  *       404:
  *         description: no data
  */
-router.post("/heroinventory/:node/sell/item/:handle/hero/:name", api_heroInventory_1.default);
+router.post("/heroinventory/:node/sell/item/:handle/hero/:name", heroinventory);
 //#endregion
 //#region Hero Promotion
 /**
@@ -1723,7 +1695,7 @@ router.post("/heroinventory/:node/sell/item/:handle/hero/:name", api_heroInvento
  *       404:
  *         description: no data
  */
-router.get("/heropromotion/:node", api_heroPromotion_1.default);
+router.get("/heropromotion/:node", heropromotion);
 /**
  * @swagger
  * /heropromotion/{node}/hero/{name}:
@@ -1780,7 +1752,7 @@ router.get("/heropromotion/:node", api_heroPromotion_1.default);
  *       404:
  *         description: no data
  */
-router.get("/heropromotion/:node/hero/:name", api_heroPromotion_1.default);
+router.get("/heropromotion/:node/hero/:name", heropromotion);
 //#endregion
 //#region Hero Trait
 /**
@@ -1845,7 +1817,7 @@ router.get("/heropromotion/:node/hero/:name", api_heroPromotion_1.default);
  *       404:
  *         description: no data
  */
-router.get("/herotrait/:node", api_heroTrait_1.default);
+router.get("/herotrait/:node", herotrait);
 /**
  * @swagger
  * /herotrait/{node}/hero/{name}:
@@ -1912,7 +1884,7 @@ router.get("/herotrait/:node", api_heroTrait_1.default);
  *       404:
  *         description: no data
  */
-router.get("/herotrait/:node/hero/:name", api_heroTrait_1.default);
+router.get("/herotrait/:node/hero/:name", herotrait);
 //#endregion
 //#region Hero Wallet
 /**
@@ -1977,7 +1949,7 @@ router.get("/herotrait/:node/hero/:name", api_heroTrait_1.default);
  *       404:
  *         description: no data
  */
-router.get("/herowallet/:node", api_heroWallet_1.default);
+router.get("/herowallet/:node", herowallet);
 /**
  * @swagger
  * /herowallet/{node}/hero/{name}:
@@ -2044,7 +2016,7 @@ router.get("/herowallet/:node", api_heroWallet_1.default);
  *       404:
  *         description: no data
  */
-router.get("/herowallet/:node/hero/:name", api_heroWallet_1.default);
+router.get("/herowallet/:node/hero/:name", herowallet);
 //#endregion
 //#region Item
 /**
@@ -2110,7 +2082,7 @@ router.get("/herowallet/:node/hero/:name", api_heroWallet_1.default);
  *       404:
  *         description: no data
  */
-router.get("/item", api_item_1.default);
+router.get("/item", item);
 /**
  * @swagger
  * /item/{node}:
@@ -2180,7 +2152,7 @@ router.get("/item", api_item_1.default);
  *       404:
  *         description: no data
  */
-router.get("/item/:node", api_item_1.default);
+router.get("/item/:node", item);
 /**
  * @swagger
  * /item/{node}/{handle}:
@@ -2254,7 +2226,7 @@ router.get("/item/:node", api_item_1.default);
  *       404:
  *         description: no data
  */
-router.get("/item/:node/:handle", api_item_1.default);
+router.get("/item/:node/:handle", item);
 /**
  * @swagger
  * /item/{node}:
@@ -2320,7 +2292,7 @@ router.get("/item/:node/:handle", api_item_1.default);
  *       404:
  *         description: no data
  */
-router.put("/item/:node", api_item_1.default);
+router.put("/item/:node", item);
 /**
  * @swagger
  * /item/{node}/{handle}:
@@ -2352,7 +2324,7 @@ router.put("/item/:node", api_item_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/item/:node/:handle", api_item_1.default);
+router.delete("/item/:node/:handle", item);
 //#endregion
 //#region Item Category
 /**
@@ -2428,7 +2400,7 @@ router.delete("/item/:node/:handle", api_item_1.default);
  *       404:
  *         description: no data
  */
-router.get("/itemcategory", api_itemCategory_1.default);
+router.get("/itemcategory", itemCategory);
 /**
  * @swagger
  * /itemcategory/{node}:
@@ -2508,7 +2480,7 @@ router.get("/itemcategory", api_itemCategory_1.default);
  *       404:
  *         description: no data
  */
-router.get("/itemcategory/:node", api_itemCategory_1.default);
+router.get("/itemcategory/:node", itemCategory);
 /**
  * @swagger
  * /itemcategory/{node}/transfer/{handle}:
@@ -2538,7 +2510,7 @@ router.get("/itemcategory/:node", api_itemCategory_1.default);
  *       404:
  *         description: no data
  */
-router.post("/itemcategory/:node/transfer/:handle", api_itemCategory_1.default);
+router.post("/itemcategory/:node/transfer/:handle", itemCategory);
 /**
  * @swagger
  * /itemCategory/{node}:
@@ -2588,7 +2560,7 @@ router.post("/itemcategory/:node/transfer/:handle", api_itemCategory_1.default);
  *       404:
  *         description: no data
  */
-router.put("/itemCategory/:node", api_itemCategory_1.default);
+router.put("/itemCategory/:node", itemCategory);
 /**
  * @swagger
  * /itemCategory/{node}/{handle}:
@@ -2620,7 +2592,7 @@ router.put("/itemCategory/:node", api_itemCategory_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/itemCategory/:node/:handle", api_itemCategory_1.default);
+router.delete("/itemCategory/:node/:handle", itemCategory);
 //#endregion
 //#region Level
 /**
@@ -2677,7 +2649,7 @@ router.delete("/itemCategory/:node/:handle", api_itemCategory_1.default);
  *       404:
  *         description: no data
  */
-router.get("/level/:node", api_level_1.default);
+router.get("/level/:node", level);
 /**
  * @swagger
  * /level/{node}/{experience}:
@@ -2738,7 +2710,7 @@ router.get("/level/:node", api_level_1.default);
  *       404:
  *         description: no data
  */
-router.get("/level/:node/:experience", api_level_1.default);
+router.get("/level/:node/:experience", level);
 //#endregion
 //#region Location
 /**
@@ -2814,7 +2786,7 @@ router.get("/level/:node/:experience", api_level_1.default);
  *       404:
  *         description: no data
  */
-router.get("/location/:node", api_location_1.default);
+router.get("/location/:node", location);
 /**
  * @swagger
  * /location/{node}/active:
@@ -2888,7 +2860,7 @@ router.get("/location/:node", api_location_1.default);
  *       404:
  *         description: no data
  */
-router.get("/location/:node/active", api_location_1.default);
+router.get("/location/:node/active", location);
 /**
  * @swagger
  * /location/{node}:
@@ -2962,7 +2934,7 @@ router.get("/location/:node/active", api_location_1.default);
  *       404:
  *         description: no data
  */
-router.put("/location/:node", api_location_1.default);
+router.put("/location/:node", location);
 /**
  * @swagger
  * /location/{node}/{handle}:
@@ -2994,7 +2966,7 @@ router.put("/location/:node", api_location_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/location/:node/:handle", api_location_1.default);
+router.delete("/location/:node/:handle", location);
 //#endregion
 //#region Loot
 /**
@@ -3063,7 +3035,7 @@ router.delete("/location/:node/:handle", api_location_1.default);
  *       404:
  *         description: no data
  */
-router.get("/loot/:node", api_loot_1.default);
+router.get("/loot/:node", loot);
 /**
  * @swagger
  * /loot/{node}:
@@ -3127,7 +3099,7 @@ router.get("/loot/:node", api_loot_1.default);
  *       404:
  *         description: no data
  */
-router.put("/loot/:node", api_loot_1.default);
+router.put("/loot/:node", loot);
 /**
  * @swagger
  * /loot/{node}/{command}:
@@ -3159,7 +3131,7 @@ router.put("/loot/:node", api_loot_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/loot/:node/:command", api_loot_1.default);
+router.delete("/loot/:node/:command", loot);
 //#endregion
 //#region Menu
 /**
@@ -3214,7 +3186,7 @@ router.delete("/loot/:node/:command", api_loot_1.default);
  *       404:
  *         description: no data
  */
-router.get("/menu", api_menu_1.default);
+router.get("/menu", menu);
 //#endregion
 //#region Migration
 /**
@@ -3261,7 +3233,7 @@ router.get("/menu", api_menu_1.default);
  *       404:
  *         description: no data
  */
-router.get("/migration", api_migration_1.default);
+router.get("/migration", migration);
 //#endregion
 //#region Node
 /**
@@ -3363,7 +3335,7 @@ router.get("/migration", api_migration_1.default);
  *       404:
  *         description: no data
  */
-router.get("/node", api_node_1.default);
+router.get("/node", node);
 /**
  * @swagger
  * /node/live:
@@ -3463,7 +3435,7 @@ router.get("/node", api_node_1.default);
  *       404:
  *         description: no data
  */
-router.get("/node/live", api_node_1.default);
+router.get("/node/live", node);
 /**
  * @swagger
  * /node/default:
@@ -3487,7 +3459,7 @@ router.get("/node/live", api_node_1.default);
  *       404:
  *         description: no data
  */
-router.get("/node/default", api_node_1.default);
+router.get("/node/default", node);
 /**
  * @swagger
  * /node/default:
@@ -3516,7 +3488,7 @@ router.get("/node/default", api_node_1.default);
  *               example: "craffel"
  *               descrition: Name des Nodes
  */
-router.post("/node/default", api_node_1.default);
+router.post("/node/default", node);
 //#endregion
 //#region Placeholder
 /**
@@ -3571,7 +3543,7 @@ router.post("/node/default", api_node_1.default);
  *       404:
  *         description: no data
  */
-router.get("/placeholder", api_placeholder_1.default);
+router.get("/placeholder", placeholder);
 //#endregion
 //#region Promotion
 /**
@@ -3648,7 +3620,7 @@ router.get("/placeholder", api_placeholder_1.default);
  *       404:
  *         description: no data
  */
-router.get("/promotion/:node", api_promotion_1.default);
+router.get("/promotion/:node", promotion);
 /**
  * @swagger
  * /promotion/{node}:
@@ -3746,7 +3718,7 @@ router.get("/promotion/:node", api_promotion_1.default);
  *       404:
  *         description: no data
  */
-router.put("/promotion/:node", api_promotion_1.default);
+router.put("/promotion/:node", promotion);
 /**
  * @swagger
  * /promotion/{node}/redeem/{promotionHandle}/{heroName}:
@@ -3819,7 +3791,7 @@ router.put("/promotion/:node", api_promotion_1.default);
  *       404:
  *         description: no data
  */
-router.post("/promotion/:node/redeem/:promotionHandle/:heroName", api_promotion_1.default);
+router.post("/promotion/:node/redeem/:promotionHandle/:heroName", promotion);
 /**
  * @swagger
  * /promotion/{node}/{handle}:
@@ -3851,7 +3823,7 @@ router.post("/promotion/:node/redeem/:promotionHandle/:heroName", api_promotion_
  *       404:
  *         description: no data
  */
-router.delete("/promotion/:node/:handle", api_promotion_1.default);
+router.delete("/promotion/:node/:handle", promotion);
 //#endregion
 //#region Say
 /**
@@ -3940,7 +3912,7 @@ router.delete("/promotion/:node/:handle", api_promotion_1.default);
  *       404:
  *         description: no data
  */
-router.get("/say/:node", api_say_1.default);
+router.get("/say/:node", say);
 /**
  * @swagger
  * /say/{node}:
@@ -4036,7 +4008,7 @@ router.get("/say/:node", api_say_1.default);
  *       404:
  *         description: no data
  */
-router.put("/say/:node", api_say_1.default);
+router.put("/say/:node", say);
 /**
  * @swagger
  * /say/{node}/{command}:
@@ -4068,7 +4040,7 @@ router.put("/say/:node", api_say_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/say/:node/:command", api_say_1.default);
+router.delete("/say/:node/:command", say);
 //#endregion
 //#region State Storage
 /**
@@ -4119,7 +4091,7 @@ router.delete("/say/:node/:command", api_say_1.default);
  *       404:
  *         description: no data
  */
-router.get("/stateStorage", api_stateStorage_1.default);
+router.get("/stateStorage", stateStorage);
 /**
  * @swagger
  * /stateStorage/{name}:
@@ -4167,7 +4139,7 @@ router.get("/stateStorage", api_stateStorage_1.default);
  *       404:
  *         description: no data
  */
-router.get("/stateStorage/:name", api_stateStorage_1.default);
+router.get("/stateStorage/:name", stateStorage);
 /**
  * @swagger
  * /stateStorage/:
@@ -4214,7 +4186,7 @@ router.get("/stateStorage/:name", api_stateStorage_1.default);
  *       404:
  *         description: no data
  */
-router.put("/stateStorage", api_stateStorage_1.default);
+router.put("/stateStorage", stateStorage);
 /**
  * @swagger
  * /stateStorage/{name}:
@@ -4239,7 +4211,7 @@ router.put("/stateStorage", api_stateStorage_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/stateStorage/:name", api_stateStorage_1.default);
+router.delete("/stateStorage/:name", stateStorage);
 //#endregion
 //#region Trainer
 /**
@@ -4300,7 +4272,7 @@ router.delete("/stateStorage/:name", api_stateStorage_1.default);
  *       404:
  *         description: no data
  */
-router.get("/trainer/:node", api_trainer_1.default);
+router.get("/trainer/:node", trainer);
 /**
  * @swagger
  * /trainer/{node}:
@@ -4366,7 +4338,7 @@ router.get("/trainer/:node", api_trainer_1.default);
  *       404:
  *         description: no data
  */
-router.put("/trainer/:node", api_trainer_1.default);
+router.put("/trainer/:node", trainer);
 /**
  * @swagger
  * /trainer/{node}/{handle}:
@@ -4398,7 +4370,7 @@ router.put("/trainer/:node", api_trainer_1.default);
  *       404:
  *         description: no data
  */
-router.delete("/trainer/:node/:handle", api_trainer_1.default);
+router.delete("/trainer/:node/:handle", trainer);
 /**
  * @swagger
  * /trainer/{node}/training/{handle}/hero/{name}:
@@ -4436,7 +4408,7 @@ router.delete("/trainer/:node/:handle", api_trainer_1.default);
  *       404:
  *         description: no data
  */
-router.post("/trainer/:node/training/:handle/hero/:name", api_trainer_1.default);
+router.post("/trainer/:node/training/:handle/hero/:name", trainer);
 //#endregion
 //#region Translation
 /**
@@ -4496,7 +4468,7 @@ router.post("/trainer/:node/training/:handle/hero/:name", api_trainer_1.default)
  *       404:
  *         description: no data
  */
-router.get("/translation", api_translation_1.default);
+router.get("/translation", translation);
 /**
  * @swagger
  * /translation/{page}?language={language}:
@@ -4553,7 +4525,7 @@ router.get("/translation", api_translation_1.default);
  *       404:
  *         description: no data
  */
-router.get("/translation/:page", api_translation_1.default);
+router.get("/translation/:page", translation);
 /**
  * @swagger
  * /translation?language={language}:
@@ -4622,7 +4594,7 @@ router.get("/translation/:page", api_translation_1.default);
  *       404:
  *         description: no data
  */
-router.post("/translation", api_translation_1.default);
+router.post("/translation", translation);
 //#endregion
 //#region Twitch
 /**
@@ -4648,7 +4620,7 @@ router.post("/translation", api_translation_1.default);
  *       404:
  *         description: no data
  */
-router.get("/twitch", api_twitch_1.default);
+router.get("/twitch", twitch);
 /**
  * @swagger
  * /twitch/userdata:
@@ -4712,7 +4684,7 @@ router.get("/twitch", api_twitch_1.default);
  *       404:
  *         description: no data
  */
-router.get("/twitch/userdata", api_twitch_1.default);
+router.get("/twitch/userdata", twitch);
 /**
  * @swagger
  * /twitch:
@@ -4729,7 +4701,7 @@ router.get("/twitch/userdata", api_twitch_1.default);
  *       404:
  *         description: no data
  */
-router.post("/twitch", api_twitch_1.default);
+router.post("/twitch", twitch);
 //#endregion
 //#region Validation
 /**
@@ -4784,7 +4756,7 @@ router.post("/twitch", api_twitch_1.default);
  *       404:
  *         description: no data
  */
-router.get("/validation", api_validation_1.default);
+router.get("/validation", validation);
 /**
  * @swagger
  * /validation/{page}:
@@ -4841,7 +4813,7 @@ router.get("/validation", api_validation_1.default);
  *       404:
  *         description: no data
  */
-router.get("/validation/:page", api_validation_1.default);
+router.get("/validation/:page", validation);
 //#endregion
 //#region Version
 /**
@@ -4875,9 +4847,9 @@ router.get("/validation/:page", api_validation_1.default);
  *       404:
  *         description: no data
  */
-router.get("/version", api_version_1.default);
+router.get("/version", version);
 //#endregion
 // documentation endpoint for Swagger
 router.use('/', swaggerUi.serve, swaggerUi.setup(specs.default));
-exports.default = router;
+export default router;
 //# sourceMappingURL=api.js.map

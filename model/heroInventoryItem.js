@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,20 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.HeroInventoryItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+let HeroInventoryItem = class HeroInventoryItem extends Model {
     constructor() {
         super();
         this.quantity = 0;
@@ -30,17 +18,17 @@ let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.M
     static createTable({ sequelize }) {
         sequelize.define('heroInventory', {
             itemHandle: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 primaryKey: true
             },
             heroName: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
             quantity: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 1
             }
@@ -50,75 +38,68 @@ let HeroInventoryItem = class HeroInventoryItem extends sequelize_typescript_1.M
         sequelize.models.heroInventory.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
         sequelize.models.heroInventory.belongsTo(sequelize.models.item, { as: 'item', foreignKey: 'itemHandle' });
     }
-    static transferAdventureToInventory({ sequelize, adventure }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const inventory = yield sequelize.models.heroInventory.findOne({ where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
-            if (inventory) {
-                yield sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
-            }
-            else {
-                yield sequelize.models.heroInventory.create({ heroName: adventure.getDataValue("heroName"),
-                    itemHandle: adventure.getDataValue("itemHandle") });
-            }
-            adventure.destroy();
-        });
+    static async transferAdventureToInventory({ sequelize, adventure }) {
+        const inventory = await sequelize.models.heroInventory.findOne({ where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
+        if (inventory) {
+            await sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
+        }
+        else {
+            await sequelize.models.heroInventory.create({ heroName: adventure.getDataValue("heroName"),
+                itemHandle: adventure.getDataValue("itemHandle") });
+        }
+        adventure.destroy();
     }
-    static transferItemToInventory({ sequelize, item, heroName }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const inventory = yield sequelize.models.heroInventory.findOne({ where: { itemHandle: item.getDataValue("handle"), heroName } });
-            if (inventory) {
-                yield sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: item.getDataValue("handle"), heroName } });
-            }
-            else {
-                yield sequelize.models.heroInventory.create({ heroName,
-                    itemHandle: item.getDataValue("handle") });
-            }
-        });
+    static async transferItemToInventory({ sequelize, item, heroName }) {
+        const inventory = await sequelize.models.heroInventory.findOne({ where: { itemHandle: item.getDataValue("handle"), heroName } });
+        if (inventory) {
+            await sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: item.getDataValue("handle"), heroName } });
+        }
+        else {
+            await sequelize.models.heroInventory.create({ heroName,
+                itemHandle: item.getDataValue("handle") });
+        }
     }
-    static sell({ sequelize, itemHandle, heroName }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const inventory = yield sequelize.models.heroInventory.findOne({ where: { heroName, itemHandle } });
-                const hero = yield sequelize.models.hero.findByPk(heroName);
-                const item = yield sequelize.models.item.findByPk(itemHandle);
-                const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
-                if (inventory && hero && heroWallet && item) {
-                    yield heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold") });
-                    inventory.destroy();
-                    return 200;
-                }
-                else
-                    return 404;
+    static async sell({ sequelize, itemHandle, heroName }) {
+        try {
+            const inventory = await sequelize.models.heroInventory.findOne({ where: { heroName, itemHandle } });
+            const hero = await sequelize.models.hero.findByPk(heroName);
+            const item = await sequelize.models.item.findByPk(itemHandle);
+            const heroWallet = await sequelize.models.heroWallet.findByPk(heroName);
+            if (inventory && hero && heroWallet && item) {
+                await heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold") });
+                inventory.destroy();
+                return 200;
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-                return 500;
-            }
-        });
+            else
+                return 404;
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+            return 500;
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", Number)
 ], HeroInventoryItem.prototype, "itemHandle", void 0);
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], HeroInventoryItem.prototype, "heroName", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], HeroInventoryItem.prototype, "quantity", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], HeroInventoryItem.prototype, "isReload", void 0);
 HeroInventoryItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "heroInventory", modelName: "heroInventory" }),
+    Table({ tableName: "heroInventory", modelName: "heroInventory" }),
     __metadata("design:paramtypes", [])
 ], HeroInventoryItem);
-exports.HeroInventoryItem = HeroInventoryItem;
-module.exports.default = HeroInventoryItem;
+export { HeroInventoryItem };
 //# sourceMappingURL=heroInventoryItem.js.map

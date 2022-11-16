@@ -1,12 +1,12 @@
-import { Connection } from '../database/connection';
-import { NodeItem } from '../model/nodeItem';
-import { Say } from '../module/say';
-import { Loot } from '../module/loot';
-import { Puffer } from './puffer';
-import { SayItem } from '../model/sayItem';
-import { Command } from './command';
-import { TranslationItem } from '../model/translationItem';
-import { Twitch } from './twitch';
+import { Connection } from '../database/connection.js';
+import { NodeItem } from '../model/nodeItem.js';
+import { Say } from '../module/say.js';
+import { Loot } from '../module/loot.js';
+import { Puffer } from './puffer.js';
+import { SayItem } from '../model/sayItem.js';
+import { Command } from './command.js';
+import { TranslationItem } from '../model/translationItem.js';
+import { Twitch } from './twitch.js';
 import { Model } from 'sequelize';
 
 export class Channel {
@@ -241,5 +241,3 @@ export class Channel {
     }
     //#endregion
 }
-
-module.exports.default = Channel;

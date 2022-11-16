@@ -1,9 +1,10 @@
-import * as express from 'express';
-import uniqid = require('uniqid');
-import { HeroItem } from '../../model/heroItem';
-import { NodeItem } from '../../model/nodeItem';
-import twitchData from '../../twitch.json';
+import express from 'express';
+import uniqid from 'uniqid';
+import { HeroItem } from '../../model/heroItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+import * as fs from 'fs';
 
+const twitchData = JSON.parse(fs.readFileSync('twitch.json').toString());
 const router = express.Router();
 const endpoint = 'twitch';
 

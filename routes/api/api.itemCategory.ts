@@ -1,8 +1,8 @@
-import * as express from 'express';
-import { HeroInventoryItem } from '../../model/heroInventoryItem';
-import { ItemCategoryItem } from '../../model/itemCategoryItem';
-import { ItemItem } from '../../model/itemItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { HeroInventoryItem } from '../../model/heroInventoryItem.js';
+import { ItemCategoryItem } from '../../model/itemCategoryItem.js';
+import { ItemItem } from '../../model/itemItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
 
 const router = express.Router();
 const endpoint = 'itemcategory';

@@ -1,5 +1,5 @@
-import * as express from 'express';
-import { MenuItem } from '../../model/menuItem';
+import express from 'express';
+import { MenuItem } from '../../model/menuItem.js';
 
 const router = express.Router();
 const endpoint = 'menu';

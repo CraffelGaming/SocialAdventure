@@ -63,5 +63,3 @@ export class NodeItem extends Model<NodeItem>{
       sequelize.models.node.belongsTo(sequelize.models.twitchUser, { as: 'twitchUser', foreignKey: 'name'});
     }
 }
-
-module.exports.default = NodeItem;

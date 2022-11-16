@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,29 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.HeroPromotionItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
+import { Column, Table, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
 let HeroPromotionItem = class HeroPromotionItem {
     static createTable({ sequelize }) {
         sequelize.define('heroPromotion', {
             promotionHandle: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
             heroName: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             }
@@ -40,35 +28,32 @@ let HeroPromotionItem = class HeroPromotionItem {
         sequelize.models.heroPromotion.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
         sequelize.models.heroPromotion.belongsTo(sequelize.models.promotion, { as: 'promotion', foreignKey: 'promotionHandle' });
     }
-    static put({ sequelize, element }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const item = yield sequelize.models.heroPromotion.findOne({ where: { heroName: element.heroName, promotionHandle: element.promotionHandle } });
-                if (!item) {
-                    yield sequelize.models.heroPromotion.create(element);
-                    return 201;
-                }
+    static async put({ sequelize, element }) {
+        try {
+            const item = await sequelize.models.heroPromotion.findOne({ where: { heroName: element.heroName, promotionHandle: element.promotionHandle } });
+            if (!item) {
+                await sequelize.models.heroPromotion.create(element);
+                return 201;
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-                return 500;
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+            return 500;
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], HeroPromotionItem.prototype, "promotionHandle", void 0);
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], HeroPromotionItem.prototype, "heroName", void 0);
 HeroPromotionItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "heroPromotion", modelName: "heroPromotion" })
+    Table({ tableName: "heroPromotion", modelName: "heroPromotion" })
 ], HeroPromotionItem);
-exports.HeroPromotionItem = HeroPromotionItem;
-module.exports.default = HeroPromotionItem;
+export { HeroPromotionItem };
 //# sourceMappingURL=heroPromotionItem.js.map

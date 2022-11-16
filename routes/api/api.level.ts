@@ -1,6 +1,7 @@
-import * as express from 'express';
+import express from 'express';
 import { Op } from 'sequelize';
-import { NodeItem } from '../../model/nodeItem';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'level';
 

@@ -1,6 +1,12 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./validationItem.json');
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'validationItem.json')).toString());
 
 @Table({ tableName: "validation", modelName: "validation"})
 export class ValidationItem extends Model<ValidationItem>{
@@ -58,5 +64,3 @@ export class ValidationItem extends Model<ValidationItem>{
         }
     }
 }
-module.exports.default = ValidationItem;
-

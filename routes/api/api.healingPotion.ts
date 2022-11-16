@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { NodeItem } from '../../model/nodeItem';
-import { HealingPotionItem } from '../../model/healingPotionItem';
+import express from 'express';
+import { NodeItem } from '../../model/nodeItem.js';
+import { HealingPotionItem } from '../../model/healingPotionItem.js';
+
 const router = express.Router();
 const endpoint = 'healingPotion';
 

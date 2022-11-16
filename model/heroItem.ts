@@ -1,7 +1,7 @@
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import { HeroTraitItem } from './heroTraitItem';
-import { HeroWalletItem } from './heroWalletItem';
+import { HeroTraitItem } from './heroTraitItem.js';
+import { HeroWalletItem } from './heroWalletItem.js';
 @Table({ tableName: "hero", modelName: "hero" })
 export class HeroItem {
     @PrimaryKey
@@ -158,5 +158,3 @@ export class HeroItem {
         return result;
     }
 }
-
-module.exports.default = HeroItem;

@@ -1,8 +1,9 @@
-import * as express from 'express';
+import express from 'express';
 import { Model } from 'sequelize-typescript';
-import { DailyItem } from '../../model/dailyItem';
-import { HeroItem } from '../../model/heroItem';
-import { NodeItem } from '../../model/nodeItem';
+import { DailyItem } from '../../model/dailyItem.js';
+import { HeroItem } from '../../model/heroItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'daily';
 

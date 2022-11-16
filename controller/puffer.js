@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Puffer = void 0;
-class Puffer {
+export class Puffer {
     //#region Construct
     constructor(node) {
         this.messages = [];
@@ -53,5 +50,4 @@ class Puffer {
         );
     }
 }
-exports.Puffer = Puffer;
 //# sourceMappingURL=puffer.js.map

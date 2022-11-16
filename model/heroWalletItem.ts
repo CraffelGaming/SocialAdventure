@@ -68,5 +68,3 @@ export class HeroWalletItem {
         }
     }
 }
-
-module.exports.default = HeroWalletItem;

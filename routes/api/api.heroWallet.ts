@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { HeroWalletItem } from '../../model/heroWalletItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { HeroWalletItem } from '../../model/heroWalletItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'herowallet';
 

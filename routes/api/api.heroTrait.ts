@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { HeroTraitItem } from '../../model/heroTraitItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { HeroTraitItem } from '../../model/heroTraitItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'herotrait';
 

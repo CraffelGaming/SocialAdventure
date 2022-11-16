@@ -1,101 +1,64 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-const express = __importStar(require("express"));
-const help_1 = __importDefault(require("./help"));
-const streamer_1 = __importDefault(require("./streamer"));
-const twitch_1 = __importDefault(require("./twitch"));
-const daily_1 = __importDefault(require("./daily"));
-const command_1 = __importDefault(require("./command"));
-const hero_1 = __importDefault(require("./hero"));
-const heroes_1 = __importDefault(require("./heroes"));
-const item_1 = __importDefault(require("./item"));
-const itemCategory_1 = __importDefault(require("./itemCategory"));
-const say_1 = __importDefault(require("./say"));
-const statistic_1 = __importDefault(require("./statistic"));
-const taverne_1 = __importDefault(require("./taverne"));
-const level_1 = __importDefault(require("./level"));
-const location_1 = __importDefault(require("./location"));
-const enemy_1 = __importDefault(require("./enemy"));
-const adventure_1 = __importDefault(require("./adventure"));
-const setting_1 = __importDefault(require("./setting"));
-const promotion_1 = __importDefault(require("./promotion"));
+import "reflect-metadata";
+import express from 'express';
+import help from "./help.js";
+import streamer from "./streamer.js";
+import twitch from "./twitch.js";
+import daily from "./daily.js";
+import command from "./command.js";
+import hero from "./hero.js";
+import heroes from "./heroes.js";
+import item from "./item.js";
+import itemCategory from "./itemCategory.js";
+import say from "./say.js";
+import statistic from "./statistic.js";
+import taverne from "./taverne.js";
+import level from "./level.js";
+import location from "./location.js";
+import enemy from "./enemy.js";
+import adventure from "./adventure.js";
+import setting from "./setting.js";
+import promotion from "./promotion.js";
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
 // Promotion
-router.get('/promotion', promotion_1.default);
+router.get('/promotion', promotion);
 // Setting
-router.get('/setting', setting_1.default);
+router.get('/setting', setting);
 // Adventure
-router.get('/adventure', adventure_1.default);
+router.get('/adventure', adventure);
 // Help
-router.get('/help', help_1.default);
+router.get('/help', help);
 // Streamer
-router.get('/streamer', streamer_1.default);
+router.get('/streamer', streamer);
 // Twitch
-router.get('/twitch', twitch_1.default);
+router.get('/twitch', twitch);
 // Daily
-router.get('/daily', daily_1.default);
+router.get('/daily', daily);
 // Command
-router.get('/command', command_1.default);
+router.get('/command', command);
 // Hero
-router.get('/hero', hero_1.default);
+router.get('/hero', hero);
 // Heroes
-router.get('/heroes', heroes_1.default);
+router.get('/heroes', heroes);
 // Item
-router.get('/item', item_1.default);
+router.get('/item', item);
 // Item Category
-router.get('/itemCategory', itemCategory_1.default);
+router.get('/itemCategory', itemCategory);
 // Location
-router.get('/location', location_1.default);
+router.get('/location', location);
 // Enemy
-router.get('/enemy', enemy_1.default);
+router.get('/enemy', enemy);
 // Say
-router.get('/say', say_1.default);
+router.get('/say', say);
 // Statistic
-router.get('/statistic', statistic_1.default);
+router.get('/statistic', statistic);
 // Taverne
-router.get('/taverne', taverne_1.default);
+router.get('/taverne', taverne);
 // Level
-router.get('/level', level_1.default);
+router.get('/level', level);
 // index
-router.get('/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/', async (request, response) => {
     if (request.query.node) {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === request.query.node);
         if (channel) {
@@ -105,6 +68,6 @@ router.get('/', (request, response) => __awaiter(void 0, void 0, void 0, functio
     response.render(endpoint, {
         title: 'Social Adventure'
     });
-}));
-exports.default = router;
+});
+export default router;
 //# sourceMappingURL=index.js.map

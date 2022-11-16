@@ -1,10 +1,12 @@
-import { Channel } from "../controller/channel";
-import { Command } from "../controller/command";
-import { SayItem } from "../model/sayItem";
-import { TranslationItem } from "../model/translationItem";
-import { Module } from "./module";
-import twitchData from '../twitch.json';
+import { Channel } from "../controller/channel.js";
+import { Command } from "../controller/command.js";
+import { SayItem } from "../model/sayItem.js";
+import { TranslationItem } from "../model/translationItem.js";
+import { Module } from "./module.js";
 import { Model } from "sequelize";
+import * as fs from 'fs';
+
+const twitchData = JSON.parse(fs.readFileSync('twitch.json').toString());
 export class Say extends Module {
     item: Model<SayItem>;
     countMessages: number;

@@ -62,5 +62,3 @@ export class StateStorageItem{
         }
     }
 }
-module.exports.default = StateStorageItem;
-

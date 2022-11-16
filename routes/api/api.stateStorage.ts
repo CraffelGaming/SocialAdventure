@@ -1,5 +1,5 @@
-import * as express from 'express';
-import { StateStorageItem } from '../../model/stateStorageItem';
+import express from 'express';
+import { StateStorageItem } from '../../model/stateStorageItem.js';
 
 const router = express.Router();
 const endpoint = 'stateStorage';

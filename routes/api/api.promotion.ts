@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { PromotionItem } from '../../model/promotionItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { PromotionItem } from '../../model/promotionItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'promotion';
 

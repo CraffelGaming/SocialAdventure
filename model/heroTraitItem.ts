@@ -82,5 +82,3 @@ export class HeroTraitItem {
         }
     }
 }
-
-module.exports.default = HeroTraitItem;

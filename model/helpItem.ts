@@ -62,5 +62,3 @@ export class HelpItem {
         }
     }
 }
-module.exports.default = HelpItem;
-

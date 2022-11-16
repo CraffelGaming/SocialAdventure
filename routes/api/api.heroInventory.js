@@ -1,63 +1,29 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = __importStar(require("express"));
-const heroInventoryItem_1 = require("../../model/heroInventoryItem");
+import express from 'express';
+import { HeroInventoryItem } from '../../model/heroInventoryItem.js';
 const router = express.Router();
 const endpoint = 'heroinventory';
-router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/' + endpoint + '/:node/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let item;
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = (yield channel.database.sequelize.models.heroInventory.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroInventory.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
                         }, {
                             model: channel.database.sequelize.models.item,
                             as: 'item',
-                        }] }));
+                        }] });
             }
             else
-                item = (yield channel.database.sequelize.models.heroInventory.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false }));
+                item = await channel.database.sequelize.models.heroInventory.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false });
             if (item)
                 response.status(200).json(item);
             else
@@ -70,26 +36,26 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+});
+router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
         let item;
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = (yield channel.database.sequelize.models.heroInventory.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroInventory.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
                             model: channel.database.sequelize.models.item,
                             as: 'item',
-                        }] }));
+                        }] });
             }
             else
-                item = (yield channel.database.sequelize.models.heroInventory.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false }));
+                item = await channel.database.sequelize.models.heroInventory.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false });
             if (item)
                 response.status(200).json(item);
             else
@@ -102,19 +68,19 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+});
+router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', async (request, response) => {
     try {
         global.worker.log.trace(`put ${endpoint}, node ${request.params.node}, item ${request.params.handle}, hero ${request.params.name}`);
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isChannel(request, response, request.params.name)) {
-                response.status(yield heroInventoryItem_1.HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name })).json();
+                response.status(await HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name })).json();
             }
             else {
                 response.status(403).json();
@@ -127,6 +93,6 @@ router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', (request, re
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-exports.default = router;
+});
+export default router;
 //# sourceMappingURL=api.heroInventory.js.map

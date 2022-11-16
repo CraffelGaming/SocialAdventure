@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,21 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LootItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-const json = require("./lootItem.json");
-let LootItem = class LootItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'lootItem.json')).toString());
+let LootItem = class LootItem extends Model {
     constructor() {
         super();
         this.minutes = 60;
@@ -35,91 +28,88 @@ let LootItem = class LootItem extends sequelize_typescript_1.Model {
     static createTable({ sequelize }) {
         sequelize.define('loot', {
             command: {
-                type: sequelize_1.DataTypes.STRING(50),
+                type: DataTypes.STRING(50),
                 allowNull: false,
                 primaryKey: true
             },
             minutes: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 10
             },
             lastRun: {
-                type: sequelize_1.DataTypes.DATE,
+                type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: new Date(2020, 1, 1)
             },
             isActive: {
-                type: sequelize_1.DataTypes.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: true
             },
             isLiveAutoControl: {
-                type: sequelize_1.DataTypes.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: true
             },
             countUses: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
             },
             countRuns: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
             }
         }, { freezeTableName: true });
     }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.loot.count({ where: { command: item.command } })) === 0) {
-                        yield sequelize.models.loot.create(item);
-                    } // else await sequelize.models.loot.update(item, {where: {command: item.command}});
-                }
+    static async updateTable({ sequelize }) {
+        try {
+            const items = JSON.parse(JSON.stringify(json));
+            for (const item of items) {
+                if (await sequelize.models.loot.count({ where: { command: item.command } }) === 0) {
+                    await sequelize.models.loot.create(item);
+                } // else await sequelize.models.loot.update(item, {where: {command: item.command}});
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], LootItem.prototype, "command", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LootItem.prototype, "minutes", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], LootItem.prototype, "isActive", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], LootItem.prototype, "isLiveAutoControl", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LootItem.prototype, "countUses", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LootItem.prototype, "countRuns", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Date)
 ], LootItem.prototype, "lastRun", void 0);
 LootItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "loot", modelName: "loot" }),
+    Table({ tableName: "loot", modelName: "loot" }),
     __metadata("design:paramtypes", [])
 ], LootItem);
-exports.LootItem = LootItem;
-module.exports.default = LootItem;
+export { LootItem };
 //# sourceMappingURL=lootItem.js.map

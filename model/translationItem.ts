@@ -1,6 +1,12 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./translationItem.json');
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'translationItem.json')).toString());
 @Table({ tableName: "translation", modelName: "translation"})
 export class TranslationItem extends Model<TranslationItem>{
     @PrimaryKey
@@ -70,5 +76,3 @@ export class TranslationItem extends Model<TranslationItem>{
         return '[missing translation]';
     }
 }
-
-module.exports.default = TranslationItem;

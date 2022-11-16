@@ -74,5 +74,3 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
         sequelize.models.twitchUser.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name'});
     }
 }
-
-module.exports.default = TwitchUserItem;

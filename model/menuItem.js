@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,21 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MenuItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-const json = require("./menuItem.json");
-let MenuItem = class MenuItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'menuItem.json')).toString());
+let MenuItem = class MenuItem extends Model {
     constructor(endpoint, name, order) {
         super();
         this.authenticationRequired = false;
@@ -38,30 +31,30 @@ let MenuItem = class MenuItem extends sequelize_typescript_1.Model {
     static createTable({ sequelize }) {
         sequelize.define('menu', {
             endpoint: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
             name: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             order: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false
             },
             authenticationRequired: {
-                type: sequelize_1.DataTypes.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
             },
             nodeRequired: {
-                type: sequelize_1.DataTypes.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
             },
             isActive: {
-                type: sequelize_1.DataTypes.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: true
             }
@@ -71,53 +64,50 @@ let MenuItem = class MenuItem extends sequelize_typescript_1.Model {
         sequelize.models.menu.hasMany(sequelize.models.menu, { as: 'childs', foreignKey: 'parentEndpoint' });
         sequelize.models.menu.belongsTo(sequelize.models.menu, { as: 'parent', foreignKey: 'parentEndpoint' });
     }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.menu.count({ where: { endpoint: item.endpoint } })) === 0) {
-                        yield sequelize.models.menu.create(item);
-                    }
-                    else
-                        yield sequelize.models.menu.update(item, { where: { endpoint: item.endpoint } });
+    static async updateTable({ sequelize }) {
+        try {
+            const items = JSON.parse(JSON.stringify(json));
+            for (const item of items) {
+                if (await sequelize.models.menu.count({ where: { endpoint: item.endpoint } }) === 0) {
+                    await sequelize.models.menu.create(item);
                 }
+                else
+                    await sequelize.models.menu.update(item, { where: { endpoint: item.endpoint } });
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], MenuItem.prototype, "endpoint", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], MenuItem.prototype, "name", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], MenuItem.prototype, "order", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], MenuItem.prototype, "authenticationRequired", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], MenuItem.prototype, "nodeRequired", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], MenuItem.prototype, "isActive", void 0);
 MenuItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "menu", modelName: "menu" }),
+    Table({ tableName: "menu", modelName: "menu" }),
     __metadata("design:paramtypes", [String, String, Number])
 ], MenuItem);
-exports.MenuItem = MenuItem;
-module.exports.default = MenuItem;
+export { MenuItem };
 //# sourceMappingURL=menuItem.js.map

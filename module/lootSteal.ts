@@ -1,11 +1,11 @@
 import sequelize from "sequelize";
 import { Model } from "sequelize-typescript";
-import { AdventureItem } from "../model/adventureItem";
-import { HeroItem } from "../model/heroItem";
-import { HeroTraitItem } from "../model/heroTraitItem";
-import { ItemItem } from "../model/itemItem";
-import { LootItem } from "../model/lootItem";
-import { Loot } from "./loot";
+import { AdventureItem } from "../model/adventureItem.js";
+import { HeroItem } from "../model/heroItem.js";
+import { HeroTraitItem } from "../model/heroTraitItem.js";
+import { ItemItem } from "../model/itemItem.js";
+import { LootItem } from "../model/lootItem.js";
+import { Loot } from "./loot.js";
 
 export class LootSteal {
     item: Model<ItemItem>;

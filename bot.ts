@@ -1,24 +1,24 @@
-import "reflect-metadata";
-
-import express = require('express');
-import session = require('express-session');
-import cookieParser = require('cookie-parser');
-import bodyParser = require('body-parser');
-import favicon = require('serve-favicon');
-import https = require('https');
-import http = require('http');
-import path = require('path');
-import logFile = require('rotating-file-stream')
-import morgan = require('morgan');
+import express from 'express';
+import session from 'express-session';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import favicon from 'serve-favicon';
+import https from 'https';
+import http from 'http';
+import logFile from 'rotating-file-stream';
 import * as fs from 'fs';
-import log4js = require('log4js');
-import settings from './settings.json';
-import routes from './routes/index';
-import api from './routes/api';
+import log4js from 'log4js';
+import morgan from 'morgan';
+import routes from './routes/index.js';
+import api from './routes/api.js';
+import { Worker } from './controller/worker.js';
+import { NodeItem } from "./model/nodeItem.js";
+import { fileURLToPath } from 'url';
 
-import { Worker } from './controller/worker';
-import { NodeItem } from "./model/nodeItem";
-
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'settings.json')).toString());
 const app = express();
 
 // Global
@@ -142,12 +142,12 @@ app.use(session({
 app.disable('x-powered-by');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('trust proxy', 1);
 
-app.use(favicon(path.join(__dirname, settings.favicon)));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(dirname, settings.favicon)));
+app.use(express.static(path.join(dirname, 'public')));
 app.use(bodyParser.json()); // { limit: '20mb' }
 app.use(bodyParser.urlencoded({ extended: false })); // { limit: '20mb', extended: true }
 app.use(cookieParser());
@@ -155,7 +155,7 @@ app.use(cookieParser());
 // create a rotating write stream
 const accessLogStream = logFile.createStream('request.log', {
     interval: '1d', // rotate daily
-    path: path.join(__dirname, 'log')
+    path: path.join(dirname, 'log')
 })
 
 // setup the logger
@@ -171,9 +171,9 @@ log4js.configure({
 // set routes
 app.use('/', routes);
 app.use('/api', api);
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use('/devExpress', express.static(__dirname + '/node_modules/devextreme/dist'));
-app.use('/moment', express.static(__dirname + '/node_modules/moment/src'));
+app.use('/jquery', express.static(path.join(dirname, '/node_modules/jquery/dist/')));
+app.use('/devExpress', express.static(path.join(dirname, '/node_modules/devextreme/dist')));
+app.use('/moment', express.static(path.join(dirname, '/node_modules/moment/src')));
 
 // development error handler
 // will print stacktrace
@@ -204,17 +204,17 @@ global.worker = new Worker(log4js.getLogger("default"));
 global.worker.initialize();
 
 // Logging
-global.worker.log.trace('Execution Path: ' + __dirname);
+global.worker.log.trace('Execution Path: ' + dirname);
 
 start();
 
 function start(){
     try{
     // start server
-    if (fs.existsSync(path.join(__dirname, settings.key)) && fs.existsSync(path.join(__dirname, settings.cert))) {
+    if (fs.existsSync(path.join(dirname, settings.key)) && fs.existsSync(path.join(dirname, settings.cert))) {
         https.createServer({
-            key: fs.readFileSync(path.join(__dirname, settings.key)),
-            cert: fs.readFileSync(path.join(__dirname, settings.cert))
+            key: fs.readFileSync(path.join(dirname, settings.key)),
+            cert: fs.readFileSync(path.join(dirname, settings.cert))
         }, app)
             .listen(app.get('port'), () => {
                 global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));

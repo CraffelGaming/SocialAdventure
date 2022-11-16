@@ -1,52 +1,18 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = __importStar(require("express"));
-const adventureItem_1 = require("../../model/adventureItem");
+import express from 'express';
+import { AdventureItem } from '../../model/adventureItem.js';
 const router = express.Router();
 const endpoint = 'adventure';
-router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/' + endpoint + '/:node/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
-            const item = yield channel.database.sequelize.models.adventure.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
+            const item = await channel.database.sequelize.models.adventure.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
                         model: channel.database.sequelize.models.hero,
                         as: 'hero',
                     }, {
@@ -65,18 +31,18 @@ router.get('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+});
+router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
-            const item = yield channel.database.sequelize.models.adventure.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
+            const item = await channel.database.sequelize.models.adventure.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], raw: false, include: [{
                         model: channel.database.sequelize.models.hero,
                         as: 'hero',
                     }, {
@@ -95,19 +61,19 @@ router.get('/' + endpoint + '/:node/hero/:name', (request, response) => __awaite
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+});
+router.put('/' + endpoint + '/:node/', async (request, response) => {
     try {
         global.worker.log.trace(`put ${endpoint}, node ${request.params.node}`);
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
-                response.status(yield adventureItem_1.AdventureItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
+                response.status(await AdventureItem.put({ sequelize: channel.database.sequelize, element: request.body })).json(request.body);
             }
             else {
                 response.status(403).json();
@@ -120,22 +86,22 @@ router.put('/' + endpoint + '/:node/', (request, response) => __awaiter(void 0, 
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-router.delete('/' + endpoint + '/:node/:heroName/:itemHandle', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+});
+router.delete('/' + endpoint + '/:node/:heroName/:itemHandle', async (request, response) => {
     try {
         global.worker.log.trace(`delete ${endpoint}, node ${request.params.node}, heroName ${request.params.heroName}, itemHandle ${request.params.itemHandle}`);
         let node;
         if (request.params.node === 'default')
-            node = yield global.defaultNode(request, response);
+            node = await global.defaultNode(request, response);
         else
-            node = (yield global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node));
+            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isMaster(request, response, node)) {
                 if (request.params.heroName != null && request.params.itemHandle != null) {
-                    const item = yield channel.database.sequelize.models.adventure.findOne({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle } });
+                    const item = await channel.database.sequelize.models.adventure.findOne({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle } });
                     if (item) {
-                        yield channel.database.sequelize.models.adventure.destroy({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle } });
+                        await channel.database.sequelize.models.adventure.destroy({ where: { heroName: request.params.heroName, itemHandle: request.params.itemHandle } });
                     }
                     response.status(204).json();
                 }
@@ -153,6 +119,6 @@ router.delete('/' + endpoint + '/:node/:heroName/:itemHandle', (request, respons
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
         response.status(500).json();
     }
-}));
-exports.default = router;
+});
+export default router;
 //# sourceMappingURL=api.adventure.js.map

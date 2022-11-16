@@ -1,8 +1,13 @@
 
 import { Sequelize, Model, PrimaryKey, Column, Table } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./commandItem.json');
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'commandItem.json')).toString());
 @Table({ tableName: "command", modelName: "command"})
 export class CommandItem extends Model<CommandItem>{
     @PrimaryKey
@@ -71,5 +76,3 @@ export class CommandItem extends Model<CommandItem>{
         }
     }
 }
-
-module.exports.default = CommandItem;

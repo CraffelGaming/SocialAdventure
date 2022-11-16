@@ -1,7 +1,12 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./locationItem.json');
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'locationItem.json')).toString());
 @Table({ tableName: "location", modelName: "location"})
 export class LocationItem extends Model<LocationItem>{
     @PrimaryKey
@@ -94,5 +99,3 @@ export class LocationItem extends Model<LocationItem>{
         }
     }
 }
-module.exports.default = LocationItem;
-

@@ -1,65 +1,28 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-const express = require("express");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const favicon = require("serve-favicon");
-const https = require("https");
-const http = require("http");
-const path = require("path");
-const logFile = require("rotating-file-stream");
-const morgan = require("morgan");
-const fs = __importStar(require("fs"));
-const log4js = require("log4js");
-const settings_json_1 = __importDefault(require("./settings.json"));
-const index_1 = __importDefault(require("./routes/index"));
-const api_1 = __importDefault(require("./routes/api"));
-const worker_1 = require("./controller/worker");
+import express from 'express';
+import session from 'express-session';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import favicon from 'serve-favicon';
+import https from 'https';
+import http from 'http';
+import logFile from 'rotating-file-stream';
+import * as fs from 'fs';
+import log4js from 'log4js';
+import morgan from 'morgan';
+import routes from './routes/index.js';
+import api from './routes/api.js';
+import { Worker } from './controller/worker.js';
+import { fileURLToPath } from 'url';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'settings.json')).toString());
 const app = express();
-global.defaultNode = function defaultNode(request, response) {
-    return __awaiter(this, void 0, void 0, function* () {
-        if (!request.session.node) {
-            request.session.node = (yield global.worker.globalDatabase.sequelize.models.node.findOne());
-        }
-        return request.session.node;
-    });
+global.defaultNode = async function defaultNode(request, response) {
+    if (!request.session.node) {
+        request.session.node = await global.worker.globalDatabase.sequelize.models.node.findOne();
+    }
+    return request.session.node;
 };
 global.isMaster = function isMaster(request, response, node) {
     if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
@@ -84,7 +47,7 @@ global.isRegistered = function isRegistered(request, response) {
     return false;
 };
 global.isModerator = function isRegistered(request, response, moderators) {
-    if ((moderators === null || moderators === void 0 ? void 0 : moderators.length) > 0 && request.session != null && request.session.userData != null && request.session.userData.login != null) {
+    if (moderators?.length > 0 && request.session != null && request.session.userData != null && request.session.userData.login != null) {
         if (moderators.some(x => x.user_login.toLocaleLowerCase() === request.session.userData.login.toLocaleLowerCase())) {
             return true;
         }
@@ -93,7 +56,7 @@ global.isModerator = function isRegistered(request, response, moderators) {
 };
 // session handler
 app.use(session({
-    'secret': settings_json_1.default.secret,
+    'secret': settings.secret,
     'resave': false,
     'saveUninitialized': true,
     cookie: { sameSite: 'lax' }
@@ -101,33 +64,33 @@ app.use(session({
 // security
 app.disable('x-powered-by');
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('trust proxy', 1);
-app.use(favicon(path.join(__dirname, settings_json_1.default.favicon)));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(dirname, settings.favicon)));
+app.use(express.static(path.join(dirname, 'public')));
 app.use(bodyParser.json()); // { limit: '20mb' }
 app.use(bodyParser.urlencoded({ extended: false })); // { limit: '20mb', extended: true }
 app.use(cookieParser());
 // create a rotating write stream
 const accessLogStream = logFile.createStream('request.log', {
     interval: '1d',
-    path: path.join(__dirname, 'log')
+    path: path.join(dirname, 'log')
 });
 // setup the logger
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 // setup debug
 log4js.configure({
-    appenders: { file: { type: "dateFile", filename: settings_json_1.default.logOutputPath, compress: true }, console: { type: "console" } },
-    categories: { default: { appenders: ["file", 'console'], level: settings_json_1.default.logLevel } }
+    appenders: { file: { type: "dateFile", filename: settings.logOutputPath, compress: true }, console: { type: "console" } },
+    categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
 });
 // set routes
-app.use('/', index_1.default);
-app.use('/api', api_1.default);
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use('/devExpress', express.static(__dirname + '/node_modules/devextreme/dist'));
-app.use('/moment', express.static(__dirname + '/node_modules/moment/src'));
+app.use('/', routes);
+app.use('/api', api);
+app.use('/jquery', express.static(path.join(dirname, '/node_modules/jquery/dist/')));
+app.use('/devExpress', express.static(path.join(dirname, '/node_modules/devextreme/dist')));
+app.use('/moment', express.static(path.join(dirname, '/node_modules/moment/src')));
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -148,20 +111,20 @@ app.use((err, request, response) => {
         error: {}
     });
 });
-app.set('port', settings_json_1.default.port);
+app.set('port', settings.port);
 // app.set('twitch', twitch);
-global.worker = new worker_1.Worker(log4js.getLogger("default"));
+global.worker = new Worker(log4js.getLogger("default"));
 global.worker.initialize();
 // Logging
-global.worker.log.trace('Execution Path: ' + __dirname);
+global.worker.log.trace('Execution Path: ' + dirname);
 start();
 function start() {
     try {
         // start server
-        if (fs.existsSync(path.join(__dirname, settings_json_1.default.key)) && fs.existsSync(path.join(__dirname, settings_json_1.default.cert))) {
+        if (fs.existsSync(path.join(dirname, settings.key)) && fs.existsSync(path.join(dirname, settings.cert))) {
             https.createServer({
-                key: fs.readFileSync(path.join(__dirname, settings_json_1.default.key)),
-                cert: fs.readFileSync(path.join(__dirname, settings_json_1.default.cert))
+                key: fs.readFileSync(path.join(dirname, settings.key)),
+                cert: fs.readFileSync(path.join(dirname, settings.cert))
             }, app)
                 .listen(app.get('port'), () => {
                 global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));

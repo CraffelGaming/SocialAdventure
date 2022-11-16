@@ -1,11 +1,16 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./trainerItem.json');
-import { HeroItem } from './heroItem';
-import { HeroTraitItem } from './heroTraitItem';
-import { HeroWalletItem } from './heroWalletItem';
-import { ValidationItem } from './validationItem';
+import { HeroItem } from './heroItem.js';
+import { HeroTraitItem } from './heroTraitItem.js';
+import { HeroWalletItem } from './heroWalletItem.js';
+import { ValidationItem } from './validationItem.js';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'trainerItem.json')).toString());
 @Table({ tableName: "trainer", modelName: "trainer"})
 export class TrainerItem extends Model<TrainerItem>{
     @PrimaryKey
@@ -120,5 +125,3 @@ export class TrainerItem extends Model<TrainerItem>{
         }
     }
 }
-module.exports.default = TrainerItem;
-

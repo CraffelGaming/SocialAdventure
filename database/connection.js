@@ -1,197 +1,158 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Connection = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const fs = __importStar(require("fs"));
-const path = __importStar(require("path"));
-const jsonMigration = require("../model/migrationItem.json");
-const jsonMigrationGlobal = require("../model/migrationGlobalItem.json");
-const sayItem_1 = require("../model/sayItem");
-const heroItem_1 = require("../model/heroItem");
-const heroTraitItem_1 = require("../model/heroTraitItem");
-const heroInventoryItem_1 = require("../model/heroInventoryItem");
-const heroWalletItem_1 = require("../model/heroWalletItem");
-const itemItem_1 = require("../model/itemItem");
-const commandItem_1 = require("../model/commandItem");
-const itemCategoryItem_1 = require("../model/itemCategoryItem");
-const locationItem_1 = require("../model/locationItem");
-const enemyItem_1 = require("../model/enemyItem");
-const adventureItem_1 = require("../model/adventureItem");
-const lootItem_1 = require("../model/lootItem");
-const healingPotionItem_1 = require("../model/healingPotionItem");
-const trainerItem_1 = require("../model/trainerItem");
-const dailyItem_1 = require("../model/dailyItem");
-const promotionItem_1 = require("../model/promotionItem");
-const heroPromotionItem_1 = require("../model/heroPromotionItem");
-const helpItem_1 = require("../model/helpItem");
-const versionItem_1 = require("../model/versionItem");
-const nodeItem_1 = require("../model/nodeItem");
-const migrationItem_1 = require("../model/migrationItem");
-const menuItem_1 = require("../model/menuItem");
-const translationItem_1 = require("../model/translationItem");
-const twitchItem_1 = require("../model/twitchItem");
-const twitchUserItem_1 = require("../model/twitchUserItem");
-const levelItem_1 = require("../model/levelItem");
-const placeholderItem_1 = require("../model/placeholderItem");
-const validationItem_1 = require("../model/validationItem");
-const stateStorageItem_1 = require("../model/stateStorageItem");
-class Connection {
+import { Sequelize } from 'sequelize-typescript';
+import * as fs from 'fs';
+import * as path from 'path';
+import { SayItem } from '../model/sayItem.js';
+import { HeroItem } from '../model/heroItem.js';
+import { HeroTraitItem } from '../model/heroTraitItem.js';
+import { HeroInventoryItem } from '../model/heroInventoryItem.js';
+import { HeroWalletItem } from '../model/heroWalletItem.js';
+import { ItemItem } from '../model/itemItem.js';
+import { CommandItem } from '../model/commandItem.js';
+import { ItemCategoryItem } from '../model/itemCategoryItem.js';
+import { LocationItem } from '../model/locationItem.js';
+import { EnemyItem } from '../model/enemyItem.js';
+import { AdventureItem } from '../model/adventureItem.js';
+import { LootItem } from '../model/lootItem.js';
+import { HealingPotionItem } from '../model/healingPotionItem.js';
+import { TrainerItem } from '../model/trainerItem.js';
+import { DailyItem } from '../model/dailyItem.js';
+import { PromotionItem } from '../model/promotionItem.js';
+import { HeroPromotionItem } from '../model/heroPromotionItem.js';
+import { HelpItem } from '../model/helpItem.js';
+import { VersionItem } from '../model/versionItem.js';
+import { NodeItem } from '../model/nodeItem.js';
+import { MigrationItem } from '../model/migrationItem.js';
+import { MenuItem } from '../model/menuItem.js';
+import { TranslationItem } from '../model/translationItem.js';
+import { TwitchItem } from '../model/twitchItem.js';
+import { TwitchUserItem } from '../model/twitchUserItem.js';
+import { LevelItem } from '../model/levelItem.js';
+import { PlaceholderItem } from '../model/placeholderItem.js';
+import { ValidationItem } from '../model/validationItem.js';
+import { StateStorageItem } from '../model/stateStorageItem.js';
+import { fileURLToPath } from 'url';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const jsonMigration = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationItem.json')).toString());
+const jsonMigrationGlobal = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationGlobalItem.json')).toString());
+export class Connection {
     constructor({ databaseName }) {
         this.databaseName = databaseName;
-        this.databasePath = path.join(__dirname, this.databaseName + '.sqlite');
+        this.databasePath = path.join(dirname, this.databaseName + '.sqlite');
         this.isNewDatabase = !fs.existsSync(this.databasePath);
-        this.sequelize = new sequelize_typescript_1.Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: false });
+        this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: false });
     }
-    initializeGlobal() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.sequelize.authenticate();
-                migrationItem_1.MigrationItem.createTable({ sequelize: this.sequelize });
-                versionItem_1.VersionItem.createTable({ sequelize: this.sequelize });
-                nodeItem_1.NodeItem.createTable({ sequelize: this.sequelize });
-                menuItem_1.MenuItem.createTable({ sequelize: this.sequelize });
-                translationItem_1.TranslationItem.createTable({ sequelize: this.sequelize });
-                twitchItem_1.TwitchItem.createTable({ sequelize: this.sequelize });
-                twitchUserItem_1.TwitchUserItem.createTable({ sequelize: this.sequelize });
-                itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
-                itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
-                helpItem_1.HelpItem.createTable({ sequelize: this.sequelize });
-                placeholderItem_1.PlaceholderItem.createTable({ sequelize: this.sequelize });
-                validationItem_1.ValidationItem.createTable({ sequelize: this.sequelize });
-                stateStorageItem_1.StateStorageItem.createTable({ sequelize: this.sequelize });
-                menuItem_1.MenuItem.setAssociation({ sequelize: this.sequelize });
-                nodeItem_1.NodeItem.setAssociation({ sequelize: this.sequelize });
-                twitchItem_1.TwitchItem.setAssociation({ sequelize: this.sequelize });
-                twitchUserItem_1.TwitchUserItem.setAssociation({ sequelize: this.sequelize });
-                stateStorageItem_1.StateStorageItem.setAssociation({ sequelize: this.sequelize });
-                yield this.sequelize.sync();
-                yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
-                yield this.updater("migrations/global");
-                yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
-                yield menuItem_1.MenuItem.updateTable({ sequelize: this.sequelize });
-                yield translationItem_1.TranslationItem.updateTable({ sequelize: this.sequelize });
-                yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
-                yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
-                yield placeholderItem_1.PlaceholderItem.updateTable({ sequelize: this.sequelize });
-                yield validationItem_1.ValidationItem.updateTable({ sequelize: this.sequelize });
-                itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
-                itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
-                return true;
-            }
-            catch (ex) {
-                return false;
-            }
-        });
+    async initializeGlobal() {
+        try {
+            await this.sequelize.authenticate();
+            MigrationItem.createTable({ sequelize: this.sequelize });
+            VersionItem.createTable({ sequelize: this.sequelize });
+            NodeItem.createTable({ sequelize: this.sequelize });
+            MenuItem.createTable({ sequelize: this.sequelize });
+            TranslationItem.createTable({ sequelize: this.sequelize });
+            TwitchItem.createTable({ sequelize: this.sequelize });
+            TwitchUserItem.createTable({ sequelize: this.sequelize });
+            ItemCategoryItem.createTable({ sequelize: this.sequelize });
+            ItemItem.createTable({ sequelize: this.sequelize });
+            HelpItem.createTable({ sequelize: this.sequelize });
+            PlaceholderItem.createTable({ sequelize: this.sequelize });
+            ValidationItem.createTable({ sequelize: this.sequelize });
+            StateStorageItem.createTable({ sequelize: this.sequelize });
+            MenuItem.setAssociation({ sequelize: this.sequelize });
+            NodeItem.setAssociation({ sequelize: this.sequelize });
+            TwitchItem.setAssociation({ sequelize: this.sequelize });
+            TwitchUserItem.setAssociation({ sequelize: this.sequelize });
+            StateStorageItem.setAssociation({ sequelize: this.sequelize });
+            await this.sequelize.sync();
+            await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigrationGlobal)) });
+            await this.updater("migrations/global");
+            await VersionItem.updateTable({ sequelize: this.sequelize });
+            await MenuItem.updateTable({ sequelize: this.sequelize });
+            await TranslationItem.updateTable({ sequelize: this.sequelize });
+            await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
+            await ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: true });
+            await PlaceholderItem.updateTable({ sequelize: this.sequelize });
+            await ValidationItem.updateTable({ sequelize: this.sequelize });
+            ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
+            ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
+            return true;
+        }
+        catch (ex) {
+            return false;
+        }
     }
-    initialize() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                yield this.sequelize.authenticate();
-                migrationItem_1.MigrationItem.createTable({ sequelize: this.sequelize });
-                versionItem_1.VersionItem.createTable({ sequelize: this.sequelize });
-                levelItem_1.LevelItem.createTable({ sequelize: this.sequelize });
-                sayItem_1.SayItem.createTable({ sequelize: this.sequelize });
-                heroItem_1.HeroItem.createTable({ sequelize: this.sequelize });
-                heroTraitItem_1.HeroTraitItem.createTable({ sequelize: this.sequelize });
-                heroWalletItem_1.HeroWalletItem.createTable({ sequelize: this.sequelize });
-                heroInventoryItem_1.HeroInventoryItem.createTable({ sequelize: this.sequelize });
-                itemCategoryItem_1.ItemCategoryItem.createTable({ sequelize: this.sequelize });
-                itemItem_1.ItemItem.createTable({ sequelize: this.sequelize });
-                locationItem_1.LocationItem.createTable({ sequelize: this.sequelize });
-                enemyItem_1.EnemyItem.createTable({ sequelize: this.sequelize });
-                commandItem_1.CommandItem.createTable({ sequelize: this.sequelize });
-                adventureItem_1.AdventureItem.createTable({ sequelize: this.sequelize });
-                lootItem_1.LootItem.createTable({ sequelize: this.sequelize });
-                healingPotionItem_1.HealingPotionItem.createTable({ sequelize: this.sequelize });
-                trainerItem_1.TrainerItem.createTable({ sequelize: this.sequelize });
-                dailyItem_1.DailyItem.createTable({ sequelize: this.sequelize });
-                promotionItem_1.PromotionItem.createTable({ sequelize: this.sequelize });
-                heroPromotionItem_1.HeroPromotionItem.createTable({ sequelize: this.sequelize });
-                yield this.sequelize.sync();
-                yield migrationItem_1.MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
-                yield this.updater("migrations/general");
-                yield versionItem_1.VersionItem.updateTable({ sequelize: this.sequelize });
-                yield levelItem_1.LevelItem.updateTable({ sequelize: this.sequelize });
-                yield sayItem_1.SayItem.updateTable({ sequelize: this.sequelize });
-                yield itemCategoryItem_1.ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
-                yield itemItem_1.ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
-                yield locationItem_1.LocationItem.updateTable({ sequelize: this.sequelize });
-                yield enemyItem_1.EnemyItem.updateTable({ sequelize: this.sequelize });
-                yield commandItem_1.CommandItem.updateTable({ sequelize: this.sequelize });
-                yield lootItem_1.LootItem.updateTable({ sequelize: this.sequelize });
-                yield healingPotionItem_1.HealingPotionItem.updateTable({ sequelize: this.sequelize });
-                yield trainerItem_1.TrainerItem.updateTable({ sequelize: this.sequelize });
-                yield dailyItem_1.DailyItem.updateTable({ sequelize: this.sequelize });
-                yield promotionItem_1.PromotionItem.updateTable({ sequelize: this.sequelize });
-                heroItem_1.HeroItem.setAssociation({ sequelize: this.sequelize });
-                heroTraitItem_1.HeroTraitItem.setAssociation({ sequelize: this.sequelize });
-                heroWalletItem_1.HeroWalletItem.setAssociation({ sequelize: this.sequelize });
-                heroInventoryItem_1.HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
-                itemCategoryItem_1.ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
-                itemItem_1.ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
-                locationItem_1.LocationItem.setAssociation({ sequelize: this.sequelize });
-                adventureItem_1.AdventureItem.setAssociation({ sequelize: this.sequelize });
-                promotionItem_1.PromotionItem.setAssociation({ sequelize: this.sequelize });
-                heroPromotionItem_1.HeroPromotionItem.setAssociation({ sequelize: this.sequelize });
-                return true;
-            }
-            catch (ex) {
-                return false;
-            }
-        });
+    async initialize() {
+        try {
+            await this.sequelize.authenticate();
+            MigrationItem.createTable({ sequelize: this.sequelize });
+            VersionItem.createTable({ sequelize: this.sequelize });
+            LevelItem.createTable({ sequelize: this.sequelize });
+            SayItem.createTable({ sequelize: this.sequelize });
+            HeroItem.createTable({ sequelize: this.sequelize });
+            HeroTraitItem.createTable({ sequelize: this.sequelize });
+            HeroWalletItem.createTable({ sequelize: this.sequelize });
+            HeroInventoryItem.createTable({ sequelize: this.sequelize });
+            ItemCategoryItem.createTable({ sequelize: this.sequelize });
+            ItemItem.createTable({ sequelize: this.sequelize });
+            LocationItem.createTable({ sequelize: this.sequelize });
+            EnemyItem.createTable({ sequelize: this.sequelize });
+            CommandItem.createTable({ sequelize: this.sequelize });
+            AdventureItem.createTable({ sequelize: this.sequelize });
+            LootItem.createTable({ sequelize: this.sequelize });
+            HealingPotionItem.createTable({ sequelize: this.sequelize });
+            TrainerItem.createTable({ sequelize: this.sequelize });
+            DailyItem.createTable({ sequelize: this.sequelize });
+            PromotionItem.createTable({ sequelize: this.sequelize });
+            HeroPromotionItem.createTable({ sequelize: this.sequelize });
+            await this.sequelize.sync();
+            await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
+            await this.updater("migrations/general");
+            await VersionItem.updateTable({ sequelize: this.sequelize });
+            await LevelItem.updateTable({ sequelize: this.sequelize });
+            await SayItem.updateTable({ sequelize: this.sequelize });
+            await ItemCategoryItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
+            await ItemItem.updateTable({ sequelize: this.sequelize, isGlobal: false });
+            await LocationItem.updateTable({ sequelize: this.sequelize });
+            await EnemyItem.updateTable({ sequelize: this.sequelize });
+            await CommandItem.updateTable({ sequelize: this.sequelize });
+            await LootItem.updateTable({ sequelize: this.sequelize });
+            await HealingPotionItem.updateTable({ sequelize: this.sequelize });
+            await TrainerItem.updateTable({ sequelize: this.sequelize });
+            await DailyItem.updateTable({ sequelize: this.sequelize });
+            await PromotionItem.updateTable({ sequelize: this.sequelize });
+            HeroItem.setAssociation({ sequelize: this.sequelize });
+            HeroTraitItem.setAssociation({ sequelize: this.sequelize });
+            HeroWalletItem.setAssociation({ sequelize: this.sequelize });
+            HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
+            ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
+            ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
+            LocationItem.setAssociation({ sequelize: this.sequelize });
+            AdventureItem.setAssociation({ sequelize: this.sequelize });
+            PromotionItem.setAssociation({ sequelize: this.sequelize });
+            HeroPromotionItem.setAssociation({ sequelize: this.sequelize });
+            return true;
+        }
+        catch (ex) {
+            return false;
+        }
     }
-    updater(folder) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const migrations = yield this.sequelize.models.migration.findAll();
-                for (const item of migrations) {
-                    global.worker.log.trace('add Migration ' + item.getDataValue('name'));
-                    if (!this.isNewDatabase && !item.getDataValue('isInstalled')) {
-                        const fileName = path.join(__dirname, folder, item.getDataValue('name') + '.js');
-                        const file = require(fileName);
-                        yield file.up(this.sequelize.getQueryInterface(), this.sequelize);
-                    }
-                    item.setDataValue('isInstalled', true);
-                    item.save();
+    async updater(folder) {
+        try {
+            const migrations = await this.sequelize.models.migration.findAll();
+            for (const item of migrations) {
+                global.worker.log.trace('add Migration ' + item.getDataValue('name'));
+                if (!this.isNewDatabase && !item.getDataValue('isInstalled')) {
+                    const fileName = path.join(dirname, folder, item.getDataValue('name') + '.js');
+                    const file = require(fileName);
+                    await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }
+                item.setDataValue('isInstalled', true);
+                item.save();
             }
-            catch (ex) {
-                global.worker.log.error(`exception ${ex.message}`);
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(`exception ${ex.message}`);
+        }
     }
 }
-exports.Connection = Connection;
 //# sourceMappingURL=connection.js.map

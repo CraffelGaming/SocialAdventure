@@ -1,8 +1,13 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./enemyItem.json');
-import { ValidationItem } from './validationItem';
+import { ValidationItem } from './validationItem.js';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'enemyItem.json')).toString());
 @Table({ tableName: "enemy", modelName: "enemy"})
 export class EnemyItem extends Model<EnemyItem>{
     @PrimaryKey
@@ -145,5 +150,3 @@ export class EnemyItem extends Model<EnemyItem>{
         return isValid;
     }
 }
-module.exports.default = EnemyItem;
-

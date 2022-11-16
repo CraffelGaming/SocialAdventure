@@ -1,7 +1,7 @@
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import { ItemItem } from './itemItem';
-import { HeroItem } from './heroItem';
+import { ItemItem } from './itemItem.js';
+import { HeroItem } from './heroItem.js';
 
 @Table({ tableName: "adventure", modelName: "adventure"})
 export class AdventureItem{
@@ -54,5 +54,3 @@ export class AdventureItem{
         }
     }
 }
-module.exports.default = AdventureItem;
-

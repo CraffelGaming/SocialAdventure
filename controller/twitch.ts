@@ -1,10 +1,10 @@
-import { TwitchItem } from '../model/twitchItem';
-import { TwitchUserItem } from '../model/twitchUserItem';
-import twitchData from '../twitch.json';
-
+import { TwitchItem } from '../model/twitchItem.js';
+import { TwitchUserItem } from '../model/twitchUserItem.js';
 import fetch from 'node-fetch';
 import { Model } from 'sequelize-typescript';
+import * as fs from 'fs';
 
+const twitchData = JSON.parse(fs.readFileSync('./twitch.json').toString());
 export class Twitch {
     channelName: string;
     twitch: Model<TwitchItem>;
@@ -283,5 +283,3 @@ export class Twitch {
     }
     //#endregion
 }
-
-module.exports.default = Twitch;

@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { NodeItem } from '../../model/nodeItem';
-import { SayItem } from '../../model/sayItem';
+import express from 'express';
+import { NodeItem } from '../../model/nodeItem.js';
+import { SayItem } from '../../model/sayItem.js';
+
 const router = express.Router();
 const endpoint = 'say';
 

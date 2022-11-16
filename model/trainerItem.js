@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,21 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TrainerItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-const json = require("./trainerItem.json");
-let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'trainerItem.json')).toString());
+let TrainerItem = class TrainerItem extends Model {
     constructor() {
         super();
         this.value = "";
@@ -32,136 +25,129 @@ let TrainerItem = class TrainerItem extends sequelize_typescript_1.Model {
     static createTable({ sequelize }) {
         sequelize.define('trainer', {
             handle: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
             value: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             description: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             gold: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false
             },
             image: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: true
             }
         }, { freezeTableName: true });
     }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.trainer.count({ where: { handle: item.handle } })) === 0) {
-                        yield sequelize.models.trainer.create(item);
-                    }
-                    else
-                        yield sequelize.models.trainer.update(item, { where: { handle: item.handle } });
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
-    }
-    static put({ sequelize, element }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                if (element.handle != null && element.handle.length > 0) {
-                    const item = yield sequelize.models.trainer.findByPk(element.handle);
-                    if (item) {
-                        yield sequelize.models.trainer.update(element, { where: { handle: element.handle } });
-                        return 201;
-                    }
-                }
-                else {
-                    if (element.value != null && element.value.length > 0 && element.gold != null && element.gold > 0) {
-                        yield sequelize.models.trainer.create(element);
-                        return 201;
-                    }
-                    else
-                        return 406;
-                }
-            }
-            catch (ex) {
-                global.worker.log.error(ex);
-                return 500;
-            }
-        });
-    }
-    static training({ sequelize, globalSequelize, trainerHandle, heroName }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const trainer = yield sequelize.models.trainer.findByPk(trainerHandle);
-                const hero = yield sequelize.models.hero.findByPk(heroName);
-                const heroTrait = yield sequelize.models.heroTrait.findByPk(heroName);
-                const heroWallet = yield sequelize.models.heroWallet.findByPk(heroName);
-                const validation = yield globalSequelize.models.validation.findAll({ where: { page: 'hero' } });
-                if (trainer && hero && heroWallet && heroTrait && validation) {
-                    const trait = (trainer.getDataValue("handle") + "Multipler");
-                    const value = heroTrait.getDataValue(trait);
-                    const price = value * trainer.getDataValue("gold");
-                    if (heroWallet.getDataValue("gold") >= price) {
-                        if (value < validation.find(x => x.getDataValue("handle") === trait).getDataValue("max")) {
-                            yield heroWallet.decrement('gold', { by: price });
-                            yield heroTrait.increment(trait, { by: 1 });
-                            if (trainer.getDataValue("handle") === "hitpoint") {
-                                yield hero.increment('hitpointsMax', { by: 10 });
-                                yield hero.increment('hitpoints', { by: 10 });
-                            }
-                            if (trainer.getDataValue("handle") === "strength") {
-                                yield hero.increment('strength', { by: 1 });
-                            }
-                            return 200;
-                        }
-                        else
-                            return 401;
-                    }
-                    else
-                        return 402;
+    static async updateTable({ sequelize }) {
+        try {
+            const items = JSON.parse(JSON.stringify(json));
+            for (const item of items) {
+                if (await sequelize.models.trainer.count({ where: { handle: item.handle } }) === 0) {
+                    await sequelize.models.trainer.create(item);
                 }
                 else
-                    return 404;
+                    await sequelize.models.trainer.update(item, { where: { handle: item.handle } });
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-                return 500;
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+        }
+    }
+    static async put({ sequelize, element }) {
+        try {
+            if (element.handle != null && element.handle.length > 0) {
+                const item = await sequelize.models.trainer.findByPk(element.handle);
+                if (item) {
+                    await sequelize.models.trainer.update(element, { where: { handle: element.handle } });
+                    return 201;
+                }
             }
-        });
+            else {
+                if (element.value != null && element.value.length > 0 && element.gold != null && element.gold > 0) {
+                    await sequelize.models.trainer.create(element);
+                    return 201;
+                }
+                else
+                    return 406;
+            }
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+            return 500;
+        }
+    }
+    static async training({ sequelize, globalSequelize, trainerHandle, heroName }) {
+        try {
+            const trainer = await sequelize.models.trainer.findByPk(trainerHandle);
+            const hero = await sequelize.models.hero.findByPk(heroName);
+            const heroTrait = await sequelize.models.heroTrait.findByPk(heroName);
+            const heroWallet = await sequelize.models.heroWallet.findByPk(heroName);
+            const validation = await globalSequelize.models.validation.findAll({ where: { page: 'hero' } });
+            if (trainer && hero && heroWallet && heroTrait && validation) {
+                const trait = (trainer.getDataValue("handle") + "Multipler");
+                const value = heroTrait.getDataValue(trait);
+                const price = value * trainer.getDataValue("gold");
+                if (heroWallet.getDataValue("gold") >= price) {
+                    if (value < validation.find(x => x.getDataValue("handle") === trait).getDataValue("max")) {
+                        await heroWallet.decrement('gold', { by: price });
+                        await heroTrait.increment(trait, { by: 1 });
+                        if (trainer.getDataValue("handle") === "hitpoint") {
+                            await hero.increment('hitpointsMax', { by: 10 });
+                            await hero.increment('hitpoints', { by: 10 });
+                        }
+                        if (trainer.getDataValue("handle") === "strength") {
+                            await hero.increment('strength', { by: 1 });
+                        }
+                        return 200;
+                    }
+                    else
+                        return 401;
+                }
+                else
+                    return 402;
+            }
+            else
+                return 404;
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+            return 500;
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], TrainerItem.prototype, "handle", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TrainerItem.prototype, "value", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TrainerItem.prototype, "description", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], TrainerItem.prototype, "gold", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], TrainerItem.prototype, "image", void 0);
 TrainerItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "trainer", modelName: "trainer" }),
+    Table({ tableName: "trainer", modelName: "trainer" }),
     __metadata("design:paramtypes", [])
 ], TrainerItem);
-exports.TrainerItem = TrainerItem;
-module.exports.default = TrainerItem;
+export { TrainerItem };
 //# sourceMappingURL=trainerItem.js.map

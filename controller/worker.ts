@@ -1,15 +1,21 @@
-import * as express from 'express';
-import { Connection } from '../database/connection';
-import log4js = require('log4js');
-import path = require('path');
-import { NodeItem } from '../model/nodeItem';
-import { Channel } from './channel';
-import tmi = require('tmi.js');
-import tmiSettings = require('../bot.json');
-import { Command } from './command';
-import { Twitch } from './twitch';
-import { TranslationItem } from '../model/translationItem';
+import express from 'express';
+import { Connection } from '../database/connection.js';
+import log4js from 'log4js';
+import path from 'path';
+import { NodeItem } from '../model/nodeItem.js';
+import { Channel } from './channel.js';
+import tmi from 'tmi.js';
+import { Command } from './command.js';
+import { Twitch } from './twitch.js';
+import { TranslationItem } from '../model/translationItem.js';
 import { Model } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const tmiSettings = JSON.parse(fs.readFileSync(path.join(dirname, '../bot.json')).toString());
+
 export class Worker {
     pathModel: string;
     pathMigration: string
@@ -24,8 +30,8 @@ export class Worker {
     //#region Construct
     constructor(log: log4js.Logger){
         this.log = log;
-        this.pathModel = path.join(__dirname, '..', 'model');
-        this.pathMigration = path.join(__dirname, '..','database', 'migrations');
+        this.pathModel = path.join(dirname, '..', 'model');
+        this.pathMigration = path.join(dirname, '..','database', 'migrations');
         this.channels = [];
         this.tmi = new tmi.client(tmiSettings);
         this.twitch = new Twitch();

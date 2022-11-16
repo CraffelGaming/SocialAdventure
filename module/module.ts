@@ -1,7 +1,7 @@
-import { Channel } from "../controller/channel";
-import { Command } from "../controller/command";
-import { CommandItem } from "../model/commandItem";
-import { TranslationItem } from "../model/translationItem";
+import { Channel } from "../controller/channel.js";
+import { Command } from "../controller/command.js";
+import { CommandItem } from "../model/commandItem.js";
+import { TranslationItem } from "../model/translationItem.js";
 
 export class Module {
     language: string;

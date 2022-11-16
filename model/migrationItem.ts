@@ -42,5 +42,3 @@ export class MigrationItem extends Model<MigrationItem>{
         }
     }
 }
-
-module.exports.default = MigrationItem;

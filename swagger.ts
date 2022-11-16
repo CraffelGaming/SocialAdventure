@@ -1,7 +1,12 @@
-import swaggerJsdoc = require('swagger-jsdoc');
+import swaggerJsdoc from 'swagger-jsdoc';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 const options = {
-    apis: [`${__dirname}/routes/api.js`],
+    apis: [`${dirname}/routes/api.js`],
     swaggerDefinition: {
         basePath: '/api',
         info: {

@@ -43,5 +43,3 @@ export class HeroPromotionItem{
         }
     }
 }
-module.exports.default = HeroPromotionItem;
-

@@ -1,5 +1,5 @@
 import { Model } from "sequelize";
-import { NodeItem } from "../model/nodeItem";
+import { NodeItem } from "../model/nodeItem.js";
 
 export class Puffer {
     messages: string[];

@@ -1,10 +1,10 @@
 
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import { AdventureItem } from './adventureItem';
-import { HeroItem } from './heroItem';
-import { HeroWalletItem } from './heroWalletItem';
-import { ItemItem } from './itemItem';
+import { AdventureItem } from './adventureItem.js';
+import { HeroItem } from './heroItem.js';
+import { HeroWalletItem } from './heroWalletItem.js';
+import { ItemItem } from './itemItem.js';
 
 @Table({ tableName: "heroInventory", modelName: "heroInventory"})
 export class HeroInventoryItem extends Model<HeroInventoryItem>{
@@ -89,5 +89,3 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
         }
     }
 }
-
-module.exports.default = HeroInventoryItem;

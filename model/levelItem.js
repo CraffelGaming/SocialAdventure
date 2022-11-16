@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,76 +7,67 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LevelItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-const json = require("./levelItem.json");
-let LevelItem = class LevelItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'levelItem.json')).toString());
+let LevelItem = class LevelItem extends Model {
     constructor() {
         super();
     }
     static createTable({ sequelize }) {
         sequelize.define('level', {
             handle: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 primaryKey: true
             },
             experienceMin: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false
             },
             experienceMax: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false
             }
         }, { freezeTableName: true });
     }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.level.count({ where: { handle: item.handle } })) === 0) {
-                        yield sequelize.models.level.create(item);
-                    }
-                    else
-                        yield sequelize.models.level.update(item, { where: { handle: item.handle } });
+    static async updateTable({ sequelize }) {
+        try {
+            const items = JSON.parse(JSON.stringify(json));
+            for (const item of items) {
+                if (await sequelize.models.level.count({ where: { handle: item.handle } }) === 0) {
+                    await sequelize.models.level.create(item);
                 }
+                else
+                    await sequelize.models.level.update(item, { where: { handle: item.handle } });
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", Number)
 ], LevelItem.prototype, "handle", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LevelItem.prototype, "experienceMin", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LevelItem.prototype, "experienceMax", void 0);
 LevelItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "level", modelName: "level" }),
+    Table({ tableName: "level", modelName: "level" }),
     __metadata("design:paramtypes", [])
 ], LevelItem);
-exports.LevelItem = LevelItem;
-module.exports.default = LevelItem;
+export { LevelItem };
 //# sourceMappingURL=levelItem.js.map

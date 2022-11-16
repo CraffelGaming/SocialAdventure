@@ -1,13 +1,18 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./promotionItem.json');
-import { HeroItem } from './heroItem';
-import { HeroWalletItem } from './heroWalletItem';
-import { ItemItem } from './itemItem';
-import { HeroInventoryItem } from './heroInventoryItem';
-import { HeroPromotionItem } from './heroPromotionItem';
-import { ValidationItem } from './validationItem';
+import { HeroItem } from './heroItem.js';
+import { HeroWalletItem } from './heroWalletItem.js';
+import { ItemItem } from './itemItem.js';
+import { HeroInventoryItem } from './heroInventoryItem.js';
+import { HeroPromotionItem } from './heroPromotionItem.js';
+import { ValidationItem } from './validationItem.js';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'promotionItem.json')).toString());
 @Table({ tableName: "promotion", modelName: "promotion"})
 export class PromotionItem extends Model<PromotionItem>{
     @PrimaryKey
@@ -173,5 +178,3 @@ export class PromotionItem extends Model<PromotionItem>{
         }
     }
 }
-module.exports.default = PromotionItem;
-

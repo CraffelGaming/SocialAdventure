@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,19 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.StateStorageItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
+import { Column, Table, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
 let StateStorageItem = class StateStorageItem {
     constructor(handle, name, channelName) {
         this.handle = handle;
@@ -30,20 +18,20 @@ let StateStorageItem = class StateStorageItem {
     static createTable({ sequelize }) {
         sequelize.define('stateStorage', {
             handle: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 primaryKey: true
             },
             name: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             storage: {
-                type: sequelize_1.DataTypes.STRING(8000),
+                type: DataTypes.STRING(8000),
                 allowNull: true
             },
             channelName: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 primaryKey: true,
                 allowNull: false
             }
@@ -52,47 +40,44 @@ let StateStorageItem = class StateStorageItem {
     static setAssociation({ sequelize }) {
         sequelize.models.stateStorage.belongsTo(sequelize.models.twitch, { as: 'twitch', foreignKey: 'channelName' });
     }
-    static put({ sequelize, element }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const item = yield sequelize.models.stateStorage.findOne({ where: { handle: element.handle, channelName: element.channelName } });
-                if (item) {
-                    yield sequelize.models.stateStorage.update(element, ({ where: { handle: element.handle, channelName: element.channelName } }));
-                    return 201;
-                }
-                else {
-                    yield sequelize.models.stateStorage.create(element);
-                    return 201;
-                }
+    static async put({ sequelize, element }) {
+        try {
+            const item = await sequelize.models.stateStorage.findOne({ where: { handle: element.handle, channelName: element.channelName } });
+            if (item) {
+                await sequelize.models.stateStorage.update(element, ({ where: { handle: element.handle, channelName: element.channelName } }));
+                return 201;
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-                return 500;
+            else {
+                await sequelize.models.stateStorage.create(element);
+                return 201;
             }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+            return 500;
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", String)
 ], StateStorageItem.prototype, "handle", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], StateStorageItem.prototype, "name", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], StateStorageItem.prototype, "storage", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], StateStorageItem.prototype, "channelName", void 0);
 StateStorageItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "stateStorage", modelName: "stateStorage" }),
+    Table({ tableName: "stateStorage", modelName: "stateStorage" }),
     __metadata("design:paramtypes", [String, String, String])
 ], StateStorageItem);
-exports.StateStorageItem = StateStorageItem;
-module.exports.default = StateStorageItem;
+export { StateStorageItem };
 //# sourceMappingURL=stateStorageItem.js.map

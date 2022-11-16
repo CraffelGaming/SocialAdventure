@@ -1,7 +1,8 @@
-import * as express from 'express';
-import { NodeItem } from '../../model/nodeItem';
-import { LootItem } from '../../model/lootItem';
+import express from 'express';
+import { NodeItem } from '../../model/nodeItem.js';
+import { LootItem } from '../../model/lootItem.js';
 import { Model } from 'sequelize';
+
 const router = express.Router();
 const endpoint = 'loot';
 

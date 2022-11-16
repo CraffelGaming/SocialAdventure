@@ -1,7 +1,12 @@
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import json = require('./placeholderItem.json');
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'placeholderItem.json')).toString());
 @Table({ tableName: "placeholder", modelName: "placeholder"})
 export class PlaceholderItem {
     @PrimaryKey
@@ -51,5 +56,3 @@ export class PlaceholderItem {
         }
     }
 }
-module.exports.default = PlaceholderItem;
-

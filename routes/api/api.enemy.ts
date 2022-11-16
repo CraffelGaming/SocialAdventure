@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { EnemyItem } from '../../model/enemyItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { EnemyItem } from '../../model/enemyItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'enemy';
 

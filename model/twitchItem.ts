@@ -56,5 +56,3 @@ export class TwitchItem extends Model<TwitchItem>{
         sequelize.models.twitch.hasMany(sequelize.models.stateStorage, { as: 'storage', foreignKey: 'channelName'});
     }
 }
-
-module.exports.default = TwitchItem;

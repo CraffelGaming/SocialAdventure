@@ -1,6 +1,7 @@
-import * as express from 'express';
-import { TrainerItem } from '../../model/trainerItem';
-import { NodeItem } from '../../model/nodeItem';
+import express from 'express';
+import { TrainerItem } from '../../model/trainerItem.js';
+import { NodeItem } from '../../model/nodeItem.js';
+
 const router = express.Router();
 const endpoint = 'trainer';
 

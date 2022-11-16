@@ -1,41 +1,43 @@
 import { Sequelize } from 'sequelize-typescript'
-
 import * as fs from 'fs';
 import * as path from 'path';
-
-import jsonMigration = require('../model/migrationItem.json');
-import jsonMigrationGlobal = require('../model/migrationGlobalItem.json');
-
-import { SayItem } from '../model/sayItem';
-import { HeroItem } from '../model/heroItem';
-import { HeroTraitItem } from '../model/heroTraitItem';
-import { HeroInventoryItem } from '../model/heroInventoryItem';
-import { HeroWalletItem } from '../model/heroWalletItem';
-import { ItemItem } from '../model/itemItem';
-import { CommandItem } from '../model/commandItem';
-import { ItemCategoryItem } from '../model/itemCategoryItem';
-import { LocationItem } from '../model/locationItem';
-import { EnemyItem } from '../model/enemyItem';
-import { AdventureItem } from '../model/adventureItem';
-import { LootItem } from '../model/lootItem';
-import { HealingPotionItem } from '../model/healingPotionItem';
-import { TrainerItem } from '../model/trainerItem';
-import { DailyItem } from '../model/dailyItem';
-import { PromotionItem } from '../model/promotionItem';
-import { HeroPromotionItem } from '../model/heroPromotionItem';
-import { HelpItem } from '../model/helpItem';
-import { VersionItem } from '../model/versionItem';
-import { NodeItem } from '../model/nodeItem';
-import { MigrationItem } from '../model/migrationItem';
-import { MenuItem } from '../model/menuItem';
-import { TranslationItem } from '../model/translationItem';
-import { TwitchItem } from '../model/twitchItem';
-import { TwitchUserItem } from '../model/twitchUserItem';
-import { LevelItem } from '../model/levelItem';
-import { PlaceholderItem } from '../model/placeholderItem';
-import { ValidationItem } from '../model/validationItem';
-import { StateStorageItem } from '../model/stateStorageItem';
+import { SayItem } from '../model/sayItem.js';
+import { HeroItem } from '../model/heroItem.js';
+import { HeroTraitItem } from '../model/heroTraitItem.js';
+import { HeroInventoryItem } from '../model/heroInventoryItem.js';
+import { HeroWalletItem } from '../model/heroWalletItem.js';
+import { ItemItem } from '../model/itemItem.js';
+import { CommandItem } from '../model/commandItem.js';
+import { ItemCategoryItem } from '../model/itemCategoryItem.js';
+import { LocationItem } from '../model/locationItem.js';
+import { EnemyItem } from '../model/enemyItem.js';
+import { AdventureItem } from '../model/adventureItem.js';
+import { LootItem } from '../model/lootItem.js';
+import { HealingPotionItem } from '../model/healingPotionItem.js';
+import { TrainerItem } from '../model/trainerItem.js';
+import { DailyItem } from '../model/dailyItem.js';
+import { PromotionItem } from '../model/promotionItem.js';
+import { HeroPromotionItem } from '../model/heroPromotionItem.js';
+import { HelpItem } from '../model/helpItem.js';
+import { VersionItem } from '../model/versionItem.js';
+import { NodeItem } from '../model/nodeItem.js';
+import { MigrationItem } from '../model/migrationItem.js';
+import { MenuItem } from '../model/menuItem.js';
+import { TranslationItem } from '../model/translationItem.js';
+import { TwitchItem } from '../model/twitchItem.js';
+import { TwitchUserItem } from '../model/twitchUserItem.js';
+import { LevelItem } from '../model/levelItem.js';
+import { PlaceholderItem } from '../model/placeholderItem.js';
+import { ValidationItem } from '../model/validationItem.js';
+import { StateStorageItem } from '../model/stateStorageItem.js';
 import { Model } from 'sequelize';
+import { fileURLToPath } from 'url';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const jsonMigration = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationItem.json')).toString());
+const jsonMigrationGlobal = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationGlobalItem.json')).toString());
+
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -44,7 +46,7 @@ export class Connection {
 
     constructor({ databaseName}: { databaseName: string;}){
         this.databaseName = databaseName;
-        this.databasePath = path.join(__dirname, this.databaseName + '.sqlite') ;
+        this.databasePath = path.join(dirname, this.databaseName + '.sqlite') ;
         this.isNewDatabase = !fs.existsSync(this.databasePath);
         this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: false });
     }
@@ -162,7 +164,7 @@ export class Connection {
                 global.worker.log.trace('add Migration ' + item.getDataValue('name'));
 
                 if(!this.isNewDatabase && !item.getDataValue('isInstalled')){
-                    const fileName = path.join(__dirname, folder, item.getDataValue('name') + '.js') ;
+                    const fileName = path.join(dirname, folder, item.getDataValue('name') + '.js') ;
                     const file = require(fileName);
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }

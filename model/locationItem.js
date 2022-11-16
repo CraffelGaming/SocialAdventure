@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,21 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.LocationItem = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
-const sequelize_1 = require("sequelize");
-const json = require("./locationItem.json");
-let LocationItem = class LocationItem extends sequelize_typescript_1.Model {
+import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const json = JSON.parse(fs.readFileSync(path.join(dirname, 'locationItem.json')).toString());
+let LocationItem = class LocationItem extends Model {
     constructor() {
         super();
         this.difficulty = 1;
@@ -32,31 +25,31 @@ let LocationItem = class LocationItem extends sequelize_typescript_1.Model {
     static createTable({ sequelize }) {
         sequelize.define('location', {
             handle: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true
             },
             name: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             description: {
-                type: sequelize_1.DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false
             },
             difficulty: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 1
             },
             categoryHandle: {
-                type: sequelize_1.DataTypes.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 1
             },
             isActive: {
-                type: sequelize_1.DataTypes.BOOLEAN,
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
             }
@@ -65,76 +58,71 @@ let LocationItem = class LocationItem extends sequelize_typescript_1.Model {
     static setAssociation({ sequelize }) {
         sequelize.models.location.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle' });
     }
-    static updateTable({ sequelize }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const items = JSON.parse(JSON.stringify(json));
-                for (const item of items) {
-                    if ((yield sequelize.models.location.count({ where: { handle: item.handle } })) === 0) {
-                        yield sequelize.models.location.create(item);
-                    } // else await sequelize.models.location.update(item, {where: {handle: item.handle}});
-                }
+    static async updateTable({ sequelize }) {
+        try {
+            const items = JSON.parse(JSON.stringify(json));
+            for (const item of items) {
+                if (await sequelize.models.location.count({ where: { handle: item.handle } }) === 0) {
+                    await sequelize.models.location.create(item);
+                } // else await sequelize.models.location.update(item, {where: {handle: item.handle}});
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-            }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+        }
     }
-    static put({ sequelize, element }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                if (element.handle != null && element.handle > 0) {
-                    const item = yield sequelize.models.location.findByPk(element.handle);
-                    if (item) {
-                        yield sequelize.models.location.update(element, { where: { handle: element.handle } });
-                        return 201;
-                    }
-                }
-                else {
-                    if (element.name != null && element.name.length > 0) {
-                        yield sequelize.models.location.create(element);
-                        return 201;
-                    }
-                    else
-                        return 406;
+    static async put({ sequelize, element }) {
+        try {
+            if (element.handle != null && element.handle > 0) {
+                const item = await sequelize.models.location.findByPk(element.handle);
+                if (item) {
+                    await sequelize.models.location.update(element, { where: { handle: element.handle } });
+                    return 201;
                 }
             }
-            catch (ex) {
-                global.worker.log.error(ex);
-                return 500;
+            else {
+                if (element.name != null && element.name.length > 0) {
+                    await sequelize.models.location.create(element);
+                    return 201;
+                }
+                else
+                    return 406;
             }
-        });
+        }
+        catch (ex) {
+            global.worker.log.error(ex);
+            return 500;
+        }
     }
 };
 __decorate([
-    sequelize_typescript_1.PrimaryKey,
-    sequelize_typescript_1.Column,
+    PrimaryKey,
+    Column,
     __metadata("design:type", Number)
 ], LocationItem.prototype, "handle", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], LocationItem.prototype, "name", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", String)
 ], LocationItem.prototype, "description", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LocationItem.prototype, "difficulty", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Number)
 ], LocationItem.prototype, "categoryHandle", void 0);
 __decorate([
-    sequelize_typescript_1.Column,
+    Column,
     __metadata("design:type", Boolean)
 ], LocationItem.prototype, "isActive", void 0);
 LocationItem = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: "location", modelName: "location" }),
+    Table({ tableName: "location", modelName: "location" }),
     __metadata("design:paramtypes", [])
 ], LocationItem);
-exports.LocationItem = LocationItem;
-module.exports.default = LocationItem;
+export { LocationItem };
 //# sourceMappingURL=locationItem.js.map

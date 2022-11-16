@@ -1,10 +1,9 @@
-import { toNamespacedPath } from "path";
 import { Model } from "sequelize-typescript";
-import { AdventureItem } from "../model/adventureItem";
-import { HeroItem } from "../model/heroItem";
-import { ItemItem } from "../model/itemItem";
-import { LocationItem } from "../model/locationItem";
-import { Loot } from "./loot";
+import { AdventureItem } from "../model/adventureItem.js";
+import { HeroItem } from "../model/heroItem.js";
+import { ItemItem } from "../model/itemItem.js";
+import { LocationItem } from "../model/locationItem.js";
+import { Loot } from "./loot.js";
 
 export class LootSearch {
     dungeons: Model<LocationItem>[];
