@@ -99,6 +99,10 @@ let SayItem = class SayItem extends Model {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
+            },
+            shortcuts: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
         }, { freezeTableName: true });
     }
@@ -173,6 +177,10 @@ __decorate([
     Column,
     __metadata("design:type", Number)
 ], SayItem.prototype, "count", void 0);
+__decorate([
+    Column,
+    __metadata("design:type", String)
+], SayItem.prototype, "shortcuts", void 0);
 SayItem = __decorate([
     Table({ tableName: "say", modelName: "say" }),
     __metadata("design:paramtypes", [])

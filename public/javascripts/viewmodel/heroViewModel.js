@@ -5,6 +5,8 @@ $(async () => {
 
     let module = 'hero';
     let userdata = await loadUserData();
+    let editingItemKey;
+    let editingItemQuantity;
 
     if(!userdata){
         window.location =  (await get('/twitch?redirect=hero')).url;
@@ -200,8 +202,8 @@ $(async () => {
                         load: async function () {
                             return await get(`/heroinventory/default/hero/${masterDetailData.name}`, language);
                         },
-                        remove: async function (key) {
-                            await fetch(`./api/heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}`, {
+                        update: async function (key, values) {
+                            await fetch(`./api/heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}/quantity/${values.quantitySell}`, {
                                 method: 'post',
                                 headers: {
                                     'Content-type': 'application/json'
@@ -223,16 +225,16 @@ $(async () => {
                     selection: { mode: "single" },
                     editing: {
                         mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: true,
+                        allowUpdating: true,
+                        allowDeleting: false,
                         allowAdding: false
                     },
                     columns: [
-                        { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
-                        { dataField: "item.value", caption: translate(languageItem, 'value') },
+                        { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
+                        { dataField: "item.value", caption: translate(languageItem, 'value'), allowEditing: false },
                         {
                             dataField: 'item.categoryHandle',
-                            caption: translate(languageItemCategory , 'value'), width: 200,
+                            caption: translate(languageItemCategory , 'value'), width: 200, allowEditing: false,
                             lookup: {
                               dataSource(options) {
                                 return {
@@ -247,25 +249,39 @@ $(async () => {
                               displayExpr: function(item) {
                                   return item && item.value;
                               }
-                            },
-                        },
-                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100 },
-                        { dataField: "quantity", caption: translate(language, 'quantity'), width: 100 },
-                        {
-                            caption: translate(language, 'total'), width: 250,
-                            calculateCellValue(data) {
-                              return data.quantity * data.item.gold;
                             }
                         },
+                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100, allowEditing: false },
+                        { dataField: "quantity", caption: translate(language, 'quantity'), width: 100, allowEditing: false },
                         {
-                            type: "buttons",
-                            buttons: [{
-                                name: "delete",
-                                icon: "check",
-                                hint: translate(languageInventory, "checkSell"),
-                            }]
+                            caption: translate(language, 'total'), allowEditing: false, width: 200,
+                            calculateCellValue(data) {
+                                if(data && data.item){
+                                    return data.quantity * data.item.gold;
+                                }
+                            }
+                        },
+                        { dataField: "quantitySell", caption: translate(language, 'quantitySell'), width: 200,
+                            calculateCellValue(data) {
+                                if(data && data.item){
+                                    return data.quantity - 1;
+                                }
+                            } 
                         }
-                    ]
+                    ],
+                    onEditingStart(e) {
+                        editingItemQuantity = e.data.quantity - 1;
+                        editingItemKey = e.key;
+                    },
+                    onSaving(e) {
+                        if (e.changes.length == 0) {
+                            e.changes.push({
+                                type: "update",
+                                key: editingItemKey,
+                                data: {quantitySell : editingItemQuantity}
+                            });
+                        }
+                    }
                 });
             };
         }

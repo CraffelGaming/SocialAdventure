@@ -71,16 +71,26 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
         }
     }
 
-    static async sell({ sequelize, itemHandle, heroName }: { sequelize: Sequelize, itemHandle: string, heroName: string }): Promise<number>{
+    static async sell({ sequelize, itemHandle, heroName, quantity }: { sequelize: Sequelize, itemHandle: string, heroName: string, quantity: number }): Promise<number>{
         try{
             const inventory = await sequelize.models.heroInventory.findOne({ where: { heroName,  itemHandle} }) as Model<HeroInventoryItem>;
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
             const item = await sequelize.models.item.findByPk(itemHandle) as Model<ItemItem>;
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
 
-            if(inventory && hero && heroWallet && item){
-                await heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold")});
-                inventory.destroy();
+            if(inventory && hero && heroWallet && item && quantity > 0){
+                if(quantity > inventory.getDataValue('quantity')){
+                    quantity = inventory.getDataValue('quantity');
+                }
+
+                await heroWallet.increment('gold', { by: quantity * item.getDataValue("gold")});
+
+                if(quantity >= inventory.getDataValue('quantity')){
+                    inventory.destroy();
+                } else {
+                    await inventory.decrement('quantity', { by: quantity });
+                }
+
                 return 200;
             } else return 404;
         } catch(ex){

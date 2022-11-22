@@ -37,7 +37,6 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const jsonMigration = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationItem.json')).toString());
 const jsonMigrationGlobal = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationGlobalItem.json')).toString());
-
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -164,8 +163,8 @@ export class Connection {
                 global.worker.log.trace('add Migration ' + item.getDataValue('name'));
 
                 if(!this.isNewDatabase && !item.getDataValue('isInstalled')){
-                    const fileName = path.join(dirname, folder, item.getDataValue('name') + '.js') ;
-                    const file = require(fileName);
+                    const sql = path.join(dirname, folder, item.getDataValue('name') + '.js') ;
+                    const file = await import(`file:///${sql}`);
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }
                 item.setDataValue('isInstalled', true);

@@ -38,6 +38,8 @@ export class SayItem extends Model<SayItem>{
     timeout: number = 10;
     @Column
     count: number = 0;
+    @Column
+    shortcuts: string;
 
     constructor(){
         super();
@@ -112,6 +114,10 @@ export class SayItem extends Model<SayItem>{
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 defaultValue: 0
+            },
+            shortcuts: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
           }, {freezeTableName: true});
     }

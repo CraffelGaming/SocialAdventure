@@ -59,15 +59,23 @@ let HeroInventoryItem = class HeroInventoryItem extends Model {
                 itemHandle: item.getDataValue("handle") });
         }
     }
-    static async sell({ sequelize, itemHandle, heroName }) {
+    static async sell({ sequelize, itemHandle, heroName, quantity }) {
         try {
             const inventory = await sequelize.models.heroInventory.findOne({ where: { heroName, itemHandle } });
             const hero = await sequelize.models.hero.findByPk(heroName);
             const item = await sequelize.models.item.findByPk(itemHandle);
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName);
-            if (inventory && hero && heroWallet && item) {
-                await heroWallet.increment('gold', { by: inventory.getDataValue("quantity") * item.getDataValue("gold") });
-                inventory.destroy();
+            if (inventory && hero && heroWallet && item && quantity > 0) {
+                if (quantity > inventory.getDataValue('quantity')) {
+                    quantity = inventory.getDataValue('quantity');
+                }
+                await heroWallet.increment('gold', { by: quantity * item.getDataValue("gold") });
+                if (quantity >= inventory.getDataValue('quantity')) {
+                    inventory.destroy();
+                }
+                else {
+                    await inventory.decrement('quantity', { by: quantity });
+                }
                 return 200;
             }
             else

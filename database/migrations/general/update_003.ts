@@ -4,12 +4,11 @@ import { Sequelize } from 'sequelize-typescript';
 export async function up (queryInterface : QueryInterface, sequelize : Sequelize) {
   return Promise.all([
     queryInterface.addColumn(
-      'command',
-      'isModerator',
+      'say',
+      'shortcuts',
       {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+        type: DataTypes.STRING,
+        allowNull: true
       },
     )
   ]);
@@ -17,6 +16,6 @@ export async function up (queryInterface : QueryInterface, sequelize : Sequelize
 
 export async function down (queryInterface : QueryInterface, sequelize : Sequelize) {
   return Promise.all([
-    queryInterface.removeColumn('command', 'isModerator')
+    queryInterface.removeColumn('say', 'shortcuts')
   ]);
 }

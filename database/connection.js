@@ -142,8 +142,8 @@ export class Connection {
             for (const item of migrations) {
                 global.worker.log.trace('add Migration ' + item.getDataValue('name'));
                 if (!this.isNewDatabase && !item.getDataValue('isInstalled')) {
-                    const fileName = path.join(dirname, folder, item.getDataValue('name') + '.js');
-                    const file = require(fileName);
+                    const sql = path.join(dirname, folder, item.getDataValue('name') + '.js');
+                    const file = await import(`file:///${sql}`);
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }
                 item.setDataValue('isInstalled', true);

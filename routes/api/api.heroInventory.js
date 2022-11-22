@@ -69,9 +69,9 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
         response.status(500).json();
     }
 });
-router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', async (request, response) => {
+router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name/quantity/:quantity', async (request, response) => {
     try {
-        global.worker.log.trace(`put ${endpoint}, node ${request.params.node}, item ${request.params.handle}, hero ${request.params.name}`);
+        global.worker.log.trace(`put ${endpoint}, node ${request.params.node}, item ${request.params.handle}, hero ${request.params.name}, amount ${request.params.amount}`);
         let node;
         if (request.params.node === 'default')
             node = await global.defaultNode(request, response);
@@ -80,7 +80,11 @@ router.post('/' + endpoint + '/:node/sell/item/:handle/hero/:name', async (reque
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (global.isChannel(request, response, request.params.name)) {
-                response.status(await HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name })).json();
+                let quantityNumber = Number(request.params.quantity);
+                if (isNaN(quantityNumber)) {
+                    quantityNumber = 0;
+                }
+                response.status(await HeroInventoryItem.sell({ sequelize: channel.database.sequelize, itemHandle: request.params.handle, heroName: request.params.name, quantity: quantityNumber })).json();
             }
             else {
                 response.status(403).json();

@@ -1635,7 +1635,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /heroinventory/{node}/sell/item/{handle}/hero/{name}:
+ * /heroinventory/{node}/sell/item/{handle}/hero/{name}/quantity/{quantity}:
  *   post:
  *     tags:
  *     - Hero Inventory
@@ -1662,6 +1662,12 @@ const router = express.Router();
  *       required: true
  *       type: "string"
  *       default: "craffel"
+ *     - name: "quantity"
+ *       in: "path"
+ *       description: "Anzahl des Gegenstandes"
+ *       required: true
+ *       type: "string"
+ *       default: "1"
  *     responses:
  *       200:
  *         description: successful operation
@@ -1670,7 +1676,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.post("/heroinventory/:node/sell/item/:handle/hero/:name", heroinventory);
+  router.post("/heroinventory/:node/sell/item/:handle/hero/:name/quantity/:quantity", heroinventory);
 //#endregion
 
 //#region Hero Promotion

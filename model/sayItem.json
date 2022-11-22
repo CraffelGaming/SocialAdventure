@@ -6,7 +6,8 @@
         "help": "",
         "text": "Schau dir deinen Helden auf craffel.de an.",
         "isActive": false,
-        "isLiveAutoControl": true
+        "isLiveAutoControl": true,
+        "shortcuts": ""
     },
     {
         "command": "death",
@@ -16,7 +17,8 @@
         "text": "$streamer ist schon $counter mal gestorben.",
         "isActive": false,
         "isCounter": true,
-        "isLiveAutoControl": true
+        "isLiveAutoControl": true,
+        "shortcuts": ""
     },
     {
         "command": "so",
@@ -26,7 +28,8 @@
         "text": "Schau doch mal bei $raider vorbei. Dort gab es zuletzt $raiderGame. $raiderUrl",
         "isActive": false,
         "isShoutout": true,
-        "isLiveAutoControl": true
+        "isLiveAutoControl": true,
+        "shortcuts": ""
     },
     {
         "command": "dice",
@@ -36,7 +39,8 @@
         "text": "$source hat eine $dice gewürfelt.",
         "isActive": false,
         "isShoutout": false,
-        "isLiveAutoControl": false
+        "isLiveAutoControl": false,
+        "shortcuts": ""
     },
     {
         "command": "lurk",
@@ -46,7 +50,8 @@
         "text": "$source, vielen Dank für deine Unterstützung.",
         "isActive": false,
         "isShoutout": false,
-        "isLiveAutoControl": false
+        "isLiveAutoControl": false,
+        "shortcuts": ""
     },
     {
         "command": "unlurk",
@@ -56,7 +61,8 @@
         "text": "Willkommen zurück $source",
         "isActive": false,
         "isShoutout": false,
-        "isLiveAutoControl": false
+        "isLiveAutoControl": false,
+        "shortcuts": ""
     },
     {
         "command": "verwarnung",
@@ -66,6 +72,7 @@
         "text": "$source ermahnt $target! Ab in die Stille Ecke!",
         "isActive": false,
         "isShoutout": false,
-        "isLiveAutoControl": false
+        "isLiveAutoControl": false,
+        "shortcuts": ""
     }
 ]

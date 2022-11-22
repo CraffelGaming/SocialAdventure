@@ -32,6 +32,16 @@ Release Date: 29.10.200
 - [x]  Live Highlight auf Webseite
 - [x]  Datum Format bei Befehle (Say)
 
+
+### BugFix / Features
+Preis vom königlichen Wiederbelebungstrank von 1000 Gold auf 800 Gold reduziert.
+Standardwerte bei der Neuanlage von Befehlen hinzugefügt
+Gegenstände Verkaufen: Meldungen überarbeitet
+Gegenstände Verkaufen: Auswahl, wie viele der Gegenstände verkauft werden sollen hinzugefügt
+Befehle können nun mit und ohne Ausrufezeichen eingegeben werden, resultat ist nun immer ein Ausrufezeichen.
+Befehle können nun beliebig viele Shortcuts erhalten, z.B. kann der Befehl !doscord dann auch z.B. mit !dc aufgerufen werden. 
+Neue Counter für Blutrausch, Verschenken, Abenteuer beitreten und Stehlen
+Hintergrundlogiken automatische Datenbankaktuallisierung
 ### Release 2
 
 Release: 2023

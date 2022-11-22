@@ -1,8 +1,5 @@
 [
-    {
-        "name": "update_001", "isInstalled": false
-    },
-    {
-        "name": "update_002", "isInstalled": false
-    }
+    { "name": "update_001", "isInstalled": false },
+    { "name": "update_002", "isInstalled": false },
+    { "name": "update_003", "isInstalled": false }
 ]

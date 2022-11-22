@@ -126,6 +126,7 @@ $(async () => {
                     }},
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 160 },
+                { dataField: "shortcuts", caption: translate(language, 'shortcuts'), validationRules: [{ type: "required" }], visible: false },
                 { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
                         if(data.isShoutout != null){
@@ -180,13 +181,29 @@ $(async () => {
 
                 if (e.dataField === "isActive" && e.parentType === "dataRow") {
                     if (e.row.isNewRow) {
+                        e.row.data.isActive = true;
                         e.editorOptions.value = true;
                     }
                 }
 
                 if (e.dataField === "isLiveAutoControl" && e.parentType === "dataRow") {
                     if (e.row.isNewRow) {
+                        e.row.data.isLiveAutoControl = true;
                         e.editorOptions.value = true;
+                    }
+                }
+
+                if (e.dataField === "minutes" && e.parentType === "dataRow") {
+                    if (e.row.isNewRow) {
+                        e.editorOptions.value = 60;
+                        e.row.data.minutes = 60;
+                    }
+                }
+
+                if (e.dataField === "delay" && e.parentType === "dataRow") {
+                    if (e.row.isNewRow) {
+                        e.editorOptions.value = 5;
+                        e.row.data.delay = 5;
                     }
                 }
             },

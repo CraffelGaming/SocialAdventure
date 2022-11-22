@@ -12,6 +12,7 @@ export class Say extends Module {
     countMessages: number;
     timer: NodeJS.Timer;
     lastCount: Date;
+    shortcuts: string[];
 
     //#region Construct
     constructor(translation: TranslationItem[], channel: Channel, item: Model<SayItem>){
@@ -19,6 +20,10 @@ export class Say extends Module {
         this.countMessages = 0;
         this.lastCount = new Date();
         this.item = item;
+
+        if(this.item.getDataValue('shortcuts'))
+            this.shortcuts = this.item.getDataValue('shortcuts').split(' ');
+
         this.automation();
     }
     //#endregion
@@ -37,12 +42,26 @@ export class Say extends Module {
 
     //#region Execute
     async execute(command: Command){
+        let isExecute = false;
         try{
             global.worker.log.trace(`module ${this.item.getDataValue("command")} say execute`);
 
             if(command.name.startsWith(this.item.getDataValue("command"))){
-                command.name = command.name.replace(this.item.getDataValue("command"), "");
+                command.name = command.name.replace(this.item.getDataValue("command"), '');
+                isExecute = true;
+            } else {
+                if(this.shortcuts){
+                    for(const shortcut of this.shortcuts){
+                        if(command.name.startsWith(shortcut)){
+                            command.name = command.name.replace(shortcut, '');
+                            isExecute = true;
+                            break;
+                        }
+                    }
+                }
+            }
 
+            if(isExecute){
                 const allowedCommand = this.commands.find(x => x.command === command.name);
 
                 if(allowedCommand){

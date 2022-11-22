@@ -39,8 +39,9 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
 
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
-        if(request.body.command.startsWith('!'))
-            request.body.command.substring(1);
+        if(request.body.command.startsWith('!')) {
+            request.body.command = request.body.command.substring(1);
+        }
 
         if(channel) {
             if(global.isMaster(request, response, node)){
