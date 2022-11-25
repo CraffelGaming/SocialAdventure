@@ -139,7 +139,7 @@ export class Loot extends Module {
                     }
 
                     await hero.save();
-                    await join.increment('countUses', { by: 1 });
+                    // await join.increment('countUses', { by: 1 });
 
                     if(isNew) {
                         return TranslationItem.translate(this.translation, 'heroNewJoined').replace('$1', command.source);
@@ -491,7 +491,7 @@ export class Loot extends Module {
                         item.setDataValue("blood", this.getRandomNumber(1 + countHeroes, 10 + countHeroes));
                         item.setDataValue("lastBlood", new Date());
                         await item.save();
-                        await blood.increment('countUses', { by: 1 });
+                        // await blood.increment('countUses', { by: 1 });
                         return TranslationItem.translate(this.translation, 'heroBlood').replace('$1', hero).replace('$2', blood.minutes.toString()).replace('$3', item.getDataValue("blood").toString());
                     } else return TranslationItem.translate(this.translation, 'heroNoBlood').replace('$1', hero).replace('$2', this.getDateTimeoutRemainingMinutes(new Date(item.getDataValue("lastBlood")), blood.minutes).toString()).replace('$3', item.getDataValue("blood").toString());
                 } return TranslationItem.translate(this.translation, 'heroBloodNotActive').replace('$1', hero)

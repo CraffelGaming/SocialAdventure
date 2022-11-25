@@ -126,7 +126,7 @@ $(async () => {
                     }},
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 160 },
-                { dataField: "shortcuts", caption: translate(language, 'shortcuts'), validationRules: [{ type: "required" }], visible: false },
+                { dataField: "shortcuts", caption: translate(language, 'shortcuts'), visible: false },
                 { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
                         if(data.isShoutout != null){
