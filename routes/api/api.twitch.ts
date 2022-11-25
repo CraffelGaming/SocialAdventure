@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, 'twitch.json')).toString());
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '\\..\\..\\', 'twitch.json')).toString());
 
 const router = express.Router();
 const endpoint = 'twitch';

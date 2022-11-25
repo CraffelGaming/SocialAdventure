@@ -85,6 +85,7 @@ log4js.configure({
     appenders: { file: { type: "dateFile", filename: settings.logOutputPath, compress: true }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
 });
+log4js.getLogger("default").trace('Logger initialized.');
 // set routes
 app.use('/', routes);
 app.use('/api', api);
