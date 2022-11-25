@@ -3,8 +3,13 @@ import uniqid from 'uniqid';
 import { HeroItem } from '../../model/heroItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 import * as fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const twitchData = JSON.parse(fs.readFileSync('twitch.json').toString());
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, 'twitch.json')).toString());
+
 const router = express.Router();
 const endpoint = 'twitch';
 

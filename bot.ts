@@ -120,6 +120,7 @@ global.isModerator = function isRegistered(request: express.Request, response: e
     }
     return false;
 }
+
 // extend session
 declare module 'express-session' {
     interface SessionData {
