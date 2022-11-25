@@ -38,7 +38,7 @@ export class LootGive {
                                     await AdventureItem.put({ sequelize: this.loot.channel.database.sequelize, element: adventure });
                                     this.sourceHero.setDataValue("lastGive", new Date());
                                     await this.sourceHero.save();
-                                    await settings.increment('countUses', { by: 1 });
+                                    // await settings.increment('countUses', { by: 1 });
                                     return true;
                                 }
                                 else

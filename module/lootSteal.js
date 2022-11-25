@@ -38,7 +38,7 @@ export class LootSteal {
                                     if (await this.isStealSuccess()) {
                                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, succsess`);
                                         await this.save(this.sourceHero, this.sourceHero);
-                                        await settings.increment('countUses', { by: 1 });
+                                        // await settings.increment('countUses', { by: 1 });
                                         return true;
                                     }
                                     else {
@@ -51,7 +51,7 @@ export class LootSteal {
                                             if (this.isItem) {
                                                 this.isLoose = false;
                                                 await this.save(this.sourceHero, this.targetHero);
-                                                await settings.increment('countUses', { by: 1 });
+                                                // await settings.increment('countUses', { by: 1 });
                                             }
                                         }
                                     }
