@@ -5,8 +5,12 @@ import { TranslationItem } from "../model/translationItem.js";
 import { Module } from "./module.js";
 import { Model } from "sequelize";
 import * as fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const twitchData = JSON.parse(fs.readFileSync('twitch.json').toString());
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '/../', 'twitch.json')).toString());
 export class Say extends Module {
     item: Model<SayItem>;
     countMessages: number;

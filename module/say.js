@@ -1,7 +1,11 @@
 import { TranslationItem } from "../model/translationItem.js";
 import { Module } from "./module.js";
 import * as fs from 'fs';
-const twitchData = JSON.parse(fs.readFileSync('twitch.json').toString());
+import path from 'path';
+import { fileURLToPath } from 'url';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '/../', 'twitch.json')).toString());
 export class Say extends Module {
     //#region Construct
     constructor(translation, channel, item) {
