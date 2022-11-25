@@ -95,6 +95,7 @@ global.isMaster = function isMaster(request: express.Request, response: express.
     }
     return false;
 }
+
 global.isChannel = function isChannel(request: express.Request, response: express.Response, channelName: string) : boolean{
     if(request.session != null && request.session.userData != null && request.session.userData.login != null){
         if(request.session.userData.login === channelName){
@@ -167,6 +168,8 @@ log4js.configure({
     appenders: { file: { type: "dateFile", filename: settings.logOutputPath, compress: true }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
 });
+
+log4js.getLogger("default").trace('Logger initialized.');
 
 // set routes
 app.use('/', routes);
