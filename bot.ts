@@ -201,7 +201,7 @@ app.set('port', settings.port);
 // app.set('twitch', twitch);
 
 global.worker = new Worker(log4js.getLogger("default"));
-global.worker.initialize();
+await global.worker.initialize();
 
 // Logging
 global.worker.log.trace('Execution Path: ' + dirname);
