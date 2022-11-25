@@ -1,6 +1,10 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
-const twitchData = JSON.parse(fs.readFileSync('./twitch.json').toString());
+import path from 'path';
+import { fileURLToPath } from 'url';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '/../', 'twitch.json')).toString());
 export class Twitch {
     //#region Load
     async load(channelName) {

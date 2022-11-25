@@ -3,8 +3,13 @@ import { TwitchUserItem } from '../model/twitchUserItem.js';
 import fetch from 'node-fetch';
 import { Model } from 'sequelize-typescript';
 import * as fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const twitchData = JSON.parse(fs.readFileSync('./twitch.json').toString());
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '/../', 'twitch.json')).toString());
+
 export class Twitch {
     channelName: string;
     twitch: Model<TwitchItem>;
