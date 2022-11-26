@@ -142,6 +142,11 @@
         "order": 1500
     },
     {
+        "endpoint": "impressum",
+        "name": "impressum",
+        "order": 1550
+    },
+    {
         "endpoint": "api",
         "name": "api",
         "order": 1600

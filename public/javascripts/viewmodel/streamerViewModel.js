@@ -1,4 +1,5 @@
 import { getTranslation, translate, infoPanel, get, put, notify } from './globalData.js';
+import { getCookie, setCookie } from './cookieViewModel.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -86,6 +87,9 @@ $(async () => {
                                         return res.json();
                                 }
                             }).then(async function (json) {
+                                if(getCookie('allowCookies')) {
+                                    setCookie('channelName', json.node.name, 365);
+                                }
                                 notify(translate(language, 'streamerChanged').replace('$1', json.node.displayName), 'success');
                                 infoPanel();
                             });

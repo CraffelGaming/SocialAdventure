@@ -5,13 +5,14 @@
     { "page": "information", "handle": "noStreamer", "language": "de-DE", "translation": "Kein Streamer ausgewählt" },
     { "page": "information", "handle": "noLogin", "language": "de-DE", "translation": "Nicht angemeldet" },
     { "page": "information", "handle": "streamer", "language": "de-DE", "translation": "Streamer $1 ausgewählt." },
+    { "page": "information", "handle": "impressum", "language": "de-DE", "translation": "Impressum" },
     { "page": "information", "handle": "login", "language": "de-DE", "translation": "Angemeldet als $1." },
     
     { "page": "navigation", "handle": "streamer", "language": "de-DE", "translation": "Streamer" },
     { "page": "navigation", "handle": "twitch", "language": "de-DE", "translation": "Twitch" },
     { "page": "navigation", "handle": "login", "language": "de-DE", "translation": "Anmelden" },
     { "page": "navigation", "handle": "logout", "language": "de-DE", "translation": "Abmelden"},
-    { "page": "navigation", "handle": "api", "language": "de-DE", "translation": "API"},
+    { "page": "navigation", "handle": "impressum", "language": "de-DE", "translation": "Impressum"},
     { "page": "navigation", "handle": "help", "language": "de-DE", "translation": "Hilfe & Feedback"},
     { "page": "navigation", "handle": "impressum", "language": "de-DE", "translation": "Impressum"},
     { "page": "navigation", "handle": "title", "language": "de-DE", "translation": "Social Adventure"},
@@ -450,5 +451,11 @@
     { "page": "setting", "handle": "403", "language": "de-DE", "translation": "Anlage auf diesen Kanal verboten."},
     { "page": "setting", "handle": "404", "language": "de-DE", "translation": "Datensatz existiert nicht."},
     { "page": "setting", "handle": "406", "language": "de-DE", "translation": "Pflichtfelder nicht ausgefüllt."},
-    { "page": "setting", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."}
+    { "page": "setting", "handle": "500", "language": "de-DE", "translation": "Interner Fehler."},
+
+    { "page": "impressum", "handle": "Information", "language": "de-DE", "translation": "Diese Webseite wurde privat erstellt und ist nach § 5 Abs. 1 des Telemediengesetzes (TMG) nicht zu einem Impressum verpflichtet. Es wird kein Umsatz durch Werbung oder andere Kaufoptionen erziehlt. Alle Funktionen stehen kostenlos und ohne Einschränkungen zur Verfügung."},
+
+    { "page": "cookie", "handle": "Title", "language": "de-DE", "translation": "Lust auf Cookies?"},
+    { "page": "cookie", "handle": "Text", "language": "de-DE", "translation": "Wie jede Webseite speichern wir Daten in Form von Keksen. Aber unsere Kekse sind nicht nur lecker sondern auch fair! Keine Kekse die nicht wirklich sein müssen, nur die, die wir brauchen damit die Webseite überhaupt funktioniert. Darunter zählt eine Nummer, die dich eindeutig auf der Webseite von anderen unterscheiden kann, die Speicherung deines letzten ausgewählten Streamers und ob du die Kekse akzeptierst."},
+    { "page": "cookie", "handle": "Allow", "language": "de-DE", "translation": "Nur erforderliche Cookies erlauben"}
 ]

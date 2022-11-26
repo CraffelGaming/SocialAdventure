@@ -33,17 +33,17 @@ export class LootGive {
     //#endregion
 
     //#region Execute
-    async execute(settings: LootItem) : Promise<boolean>{
+    async execute(settings: Model<LootItem>) : Promise<boolean>{
         this.item =  await this.getItem();
         this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName) as Model<HeroItem>;
         this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.targetHeroName) as Model<HeroItem>;
 
-        if(settings.isActive){
+        if(settings.getDataValue("isActive")){
             if(this.item){
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, item ${this.item.getDataValue("value")}`);
                 if(this.sourceHero && this.sourceHero.getDataValue("isActive")){
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, sourceHero ${this.sourceHero.getDataValue("name")}`);
-                    if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastGive")), settings.minutes)){
+                    if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastGive")), settings.getDataValue("minutes"))){
                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, timeout expired`);
                         if(this.targetHero){
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, targetHero ${this.targetHero.getDataValue("name")}`);
@@ -56,7 +56,7 @@ export class LootGive {
                                     await AdventureItem.put({sequelize: this.loot.channel.database.sequelize, element: adventure});
                                     this.sourceHero.setDataValue("lastGive", new Date());
                                     await this.sourceHero.save();
-                                    // await settings.increment('countUses', { by: 1 });
+                                    await settings.increment('countUses', { by: 1 });
                                     return true;
                                 } else this.isAdventure = false;
                             } else this.isSelf = false;

@@ -18,6 +18,7 @@ import enemy from "./enemy.js";
 import adventure from "./adventure.js";
 import setting from "./setting.js";
 import promotion from "./promotion.js";
+import impressum from "./impressum.js";
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
@@ -57,6 +58,8 @@ router.get('/statistic', statistic);
 router.get('/taverne', taverne);
 // Level
 router.get('/level', level);
+// Impressum
+router.get('/impressum', impressum);
 // index
 router.get('/', async (request, response) => {
     if (request.query.node) {

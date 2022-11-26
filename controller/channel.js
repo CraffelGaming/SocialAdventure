@@ -175,7 +175,7 @@ export class Channel {
     }
     async stopLoot() {
         try {
-            if (this.loot.settings.find(x => x.command === 'loot').isLiveAutoControl) {
+            if (this.loot.settings.find(x => x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")) {
                 await this.loot.lootclear();
                 await this.loot.lootstop();
             }
@@ -186,7 +186,7 @@ export class Channel {
     }
     async startLoot() {
         try {
-            if (this.loot.settings.find(x => x.command === 'loot').isLiveAutoControl) {
+            if (this.loot.settings.find(x => x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")) {
                 await this.loot.lootstart();
             }
         }

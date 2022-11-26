@@ -136,9 +136,9 @@ export class LootExploring {
     //#region Wallet
     async getWallet() {
         const wallet = await this.loot.channel.database.sequelize.models.heroWallet.findByPk(this.hero.getDataValue("name"));
-        const blood = this.loot.settings.find(x => x.command === "blood");
+        const blood = this.loot.settings.find(x => x.getDataValue("command") === "blood");
         if (wallet) {
-            if (this.loot.isDateTimeoutExpiredMinutes(new Date(wallet.getDataValue("lastBlood")), blood.minutes)) {
+            if (this.loot.isDateTimeoutExpiredMinutes(new Date(wallet.getDataValue("lastBlood")), blood.getDataValue("minutes"))) {
                 wallet.setDataValue("blood", 0);
                 wallet.save();
             }

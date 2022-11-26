@@ -61,6 +61,8 @@ Release: 2023
 - [ ]  !raid gegen große bosse
 - [ ]  Duell
 - [ ]  Kampf / Steal LOG
+- [X]  Impressum
+- [X]  Cookies
 
 - [ ]  Englisch
 - [ ]  API aufräumen

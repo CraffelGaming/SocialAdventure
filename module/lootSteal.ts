@@ -38,15 +38,15 @@ export class LootSteal {
     //#endregion
 
     //#region Execute
-    async execute(settings: LootItem) : Promise<boolean>{
+    async execute(settings: Model<LootItem>) : Promise<boolean>{
         await this.loadElements();
 
-        if(settings.isActive){
+        if(settings.getDataValue("isActive")){
             if(this.item){
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, item ${this.item.getDataValue("value")}`);
                 if(this.sourceHero && this.sourceHero.getDataValue("isActive")){
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
-                    if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.minutes)){
+                    if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.getDataValue("minutes"))){
                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, timeout expired`);
                         if(this.targetHero){
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
@@ -56,12 +56,13 @@ export class LootSteal {
                                     if(await this.isStealSuccess()){
                                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, succsess`);
                                         await this.save(this.sourceHero, this.sourceHero);
-                                        // await settings.increment('countUses', { by: 1 });
+                                        await settings.increment('countUses', { by: 1 });
                                         return true;
                                     } else {
                                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, failed`);
                                         this.isSteal = false
                                         this.adventure = await this.getAdventure(this.sourceHero);
+                                        await settings.increment('countUses', { by: 1 });
 
                                         if(this.adventure){
                                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, adventure`);
@@ -69,7 +70,6 @@ export class LootSteal {
                                             if(this.isItem){
                                                 this.isLoose = false;
                                                 await this.save(this.sourceHero, this.targetHero);
-                                                // await settings.increment('countUses', { by: 1 });
                                             }
                                         }
                                     }

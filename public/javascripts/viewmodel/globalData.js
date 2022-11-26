@@ -29,11 +29,13 @@ export async function infoPanel() {
         items: [{ 
             text: (userData != null) ? translate(languageInfo, 'login').replace('$1', userData.display_name) : translate(languageInfo, 'noLogin'),
             disabled: true, 
-            stylingMode: "text" 
+            stylingMode: "text",
+            type:"success"
         }, {
             text: (defaultNode != null) ? translate(languageInfo, 'streamer').replace('$1', defaultNode.displayName) : translate(languageInfo, 'noStreamer'),
             disabled: true, 
-            stylingMode: "text"
+            stylingMode: "text",
+            type:"success"
         }],
     });
 }
