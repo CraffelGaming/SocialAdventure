@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    app:
+        image: socialadventure:latest
+        ports:
+          - "80:80"
+        volumes:
+          - ./config:/usr/src/app/config
