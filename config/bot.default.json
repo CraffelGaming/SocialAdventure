@@ -1,0 +1,13 @@
+{
+    "identity": 
+    {
+      "username": "[ TWITCH USERNAME ]",
+      "password": "oauth:[ PASSWORD OAUTH ]"
+    },
+    "connection": 
+    {
+      "reconnect": true
+    },
+    "channels": 
+    []
+}

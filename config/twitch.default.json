@@ -1,0 +1,14 @@
+{
+    "url_authorize" : "https://id.twitch.tv/oauth2/authorize",
+    "url_token" : "https://id.twitch.tv/oauth2/token",
+    "url_base" : "https://api.twitch.tv/helix",
+    "client_id" : "[ API CLIENT ID ]",
+    "client_secret" : "[ API CLIENT SECRET ]",
+    "redirect_uri" : "https://localhost/twitch",
+    "redirect_uri_echtsystem" : "https://localhost/twitch",
+    "response_type" : "code",
+    "scope" : "chat:read user:read:email",
+    "state" : "[ STATE ]",
+    "grant_type" : "authorization_code",
+    "refresh_type" : "refresh_token"
+}
