@@ -16,7 +16,7 @@ import { Worker } from './controller/worker.js';
 import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'settings.json')).toString());
+const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'config/', 'settings.json')).toString());
 const app = express();
 global.defaultNode = async function defaultNode(request, response) {
     if (!request.session.node) {

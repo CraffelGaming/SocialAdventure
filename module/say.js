@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '/../', 'twitch.json')).toString());
+const twitchData = JSON.parse(fs.readFileSync(path.join(dirname, '/../config/', 'twitch.json')).toString());
 export class Say extends Module {
     //#region Construct
     constructor(translation, channel, item) {

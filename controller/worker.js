@@ -8,7 +8,7 @@ import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-const tmiSettings = JSON.parse(fs.readFileSync(path.join(dirname, '../bot.json')).toString());
+const tmiSettings = JSON.parse(fs.readFileSync(path.join(dirname, '../config/bot.json')).toString());
 export class Worker {
     //#region Construct
     constructor(log) {
