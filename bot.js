@@ -82,7 +82,7 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 // setup debug
 log4js.configure({
-    appenders: { file: { type: "dateFile", filename: settings.logOutputPath, compress: true }, console: { type: "console" } },
+    appenders: { file: { type: "dateFile", filename: path.join(dirname, settings.logOutputPath), compress: true }, console: { type: "console" } },
     categories: { default: { appenders: ["file", 'console'], level: settings.logLevel } }
 });
 log4js.getLogger("default").trace('Logger initialized.');
