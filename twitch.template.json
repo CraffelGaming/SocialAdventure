@@ -1,0 +1,16 @@
+{
+    "url_authorize" : "https://id.twitch.tv/oauth2/authorize",
+    "url_token" : "https://id.twitch.tv/oauth2/token",
+    "url_base" : "https://api.twitch.tv/helix",
+    "url_twitch" : "https://twitch.tv/",
+    "client_id" : "",
+    "client_secret" : "",
+    "redirect_uri" : "http://localhost/twitch",
+    "response_type" : "code",
+    "scope" : "chat:read chat:edit user:read:email channel:read:stream_key moderation:read",
+    "state" : "craffel",
+    "user_grant_type" : "authorization_code",
+    "user_grant_type_refresh" : "refresh_token",
+    "bot_grant_type" : "client_credentials",
+    "refresh_type" : "refresh_token"
+}

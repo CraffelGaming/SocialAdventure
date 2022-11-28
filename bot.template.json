@@ -1,0 +1,13 @@
+{
+    "identity": 
+    {
+      "username": "",
+      "password": ""
+    },
+    "connection": 
+    {
+      "reconnect": true
+    },
+    "channels": 
+    []
+}
