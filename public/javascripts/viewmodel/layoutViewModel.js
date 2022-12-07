@@ -27,10 +27,12 @@ $(async () => {
                 visible: true
             });
     
+            //$('#cookieText').html(translate(languageCookie, "Text"));
             $('#cookieText').dxTextArea({
                 value: translate(languageCookie, "Text"),
                 height: 250,
-                disabled: true
+                stylingMode:"outlined",
+                readOnly: true
             });
     
             $('#cookieAllow').dxButton({

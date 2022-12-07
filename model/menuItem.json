@@ -2,80 +2,92 @@
     {
         "endpoint": "twitch",
         "name": "twitch",
-        "order": 1000
+        "order": 1000,
+        "isActive": false
     },
     {
         "endpoint": "login",
         "name": "login",
         "order": 1010,
-        "parentEndpoint": "twitch"
+        "parentEndpoint": null,
+        "isActive": true
     },
     {
         "endpoint": "streamer",
         "name": "streamer",
-        "order": 1100
+        "order": 1100,
+        "isActive": true
     },
     {
         "endpoint": "game",
         "name": "game",
         "order": 1200,
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "adventure",
         "name": "adventure",
         "order": 1210,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "heroes",
         "name": "heroes",
         "order": 1220,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "item",
         "name": "item",
         "order": 1230,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "itemCategory",
         "name": "itemCategory",
         "order": 1240,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "location",
         "name": "location",
         "order": 1250,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "enemy",
         "name": "enemy",
         "order": 1260,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "level",
         "name": "level",
         "order": 1270,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "daily",
         "name": "daily",
         "order": 1275,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "statistic",
@@ -90,21 +102,24 @@
         "name": "command",
         "order": 1290,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "setting",
         "name": "setting",
         "order": 1295,
         "parentEndpoint": "game",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "me",
         "name": "me",
         "order": 1300,
         "authenticationRequired": true,
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "hero",
@@ -112,7 +127,8 @@
         "order": 1310,
         "parentEndpoint": "me",
         "authenticationRequired": true,
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "taverne",
@@ -120,7 +136,8 @@
         "order": 1320,
         "parentEndpoint": "me",
         "authenticationRequired": true,
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "promotion",
@@ -128,27 +145,32 @@
         "order": 1330,
         "authenticationRequired": true,
         "parentEndpoint": "me",
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "say",
         "name": "say",
         "order": 1400,
-        "nodeRequired": true
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "help",
         "name": "help",
-        "order": 1500
+        "order": 1500,
+        "isActive": true
     },
     {
         "endpoint": "impressum",
         "name": "impressum",
-        "order": 1550
+        "order": 1550,
+        "isActive": true
     },
     {
         "endpoint": "api",
         "name": "api",
-        "order": 1600
+        "order": 1600,
+        "isActive": true
     }
 ]

@@ -21,3 +21,11 @@ footer {
     width: 100%;
     padding: 10px;
 }
+
+#loginInfo .dx-button-text { 
+    color: white;  
+}  
+
+#selectedInfo .dx-button-text { 
+    color: white;  
+}  
