@@ -31,6 +31,9 @@ import { PlaceholderItem } from '../model/placeholderItem.js';
 import { ValidationItem } from '../model/validationItem.js';
 import { StateStorageItem } from '../model/stateStorageItem.js';
 import { fileURLToPath } from 'url';
+import { RaidBossItem } from '../model/raidBossItem.js';
+import { RaidHeroItem } from '../model/raidHeroItem.js';
+import { RaidItem } from '../model/raidItem.js';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const jsonMigration = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationItem.json')).toString());
@@ -104,6 +107,9 @@ export class Connection {
             DailyItem.createTable({ sequelize: this.sequelize });
             PromotionItem.createTable({ sequelize: this.sequelize });
             HeroPromotionItem.createTable({ sequelize: this.sequelize });
+            RaidBossItem.createTable({ sequelize: this.sequelize });
+            RaidHeroItem.createTable({ sequelize: this.sequelize });
+            RaidItem.createTable({ sequelize: this.sequelize });
             await this.sequelize.sync();
             await MigrationItem.updateTable({ sequelize: this.sequelize, migrations: JSON.parse(JSON.stringify(jsonMigration)) });
             await this.updater("migrations/general");
@@ -120,6 +126,7 @@ export class Connection {
             await TrainerItem.updateTable({ sequelize: this.sequelize });
             await DailyItem.updateTable({ sequelize: this.sequelize });
             await PromotionItem.updateTable({ sequelize: this.sequelize });
+            await RaidBossItem.updateTable({ sequelize: this.sequelize });
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });
             HeroWalletItem.setAssociation({ sequelize: this.sequelize });
@@ -130,6 +137,9 @@ export class Connection {
             AdventureItem.setAssociation({ sequelize: this.sequelize });
             PromotionItem.setAssociation({ sequelize: this.sequelize });
             HeroPromotionItem.setAssociation({ sequelize: this.sequelize });
+            RaidBossItem.setAssociation({ sequelize: this.sequelize });
+            RaidHeroItem.setAssociation({ sequelize: this.sequelize });
+            RaidItem.setAssociation({ sequelize: this.sequelize });
             return true;
         }
         catch (ex) {

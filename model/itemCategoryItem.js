@@ -35,7 +35,8 @@ let ItemCategoryItem = class ItemCategoryItem extends Model {
     }
     static setAssociation({ sequelize }) {
         sequelize.models.itemCategory.hasMany(sequelize.models.item, { as: 'items', foreignKey: 'categoryHandle' });
-        sequelize.models.itemCategory.hasMany(sequelize.models.item, { as: 'locations', foreignKey: 'categoryHandle' });
+        sequelize.models.itemCategory.hasMany(sequelize.models.location, { as: 'locations', foreignKey: 'categoryHandle' });
+        sequelize.models.itemCategory.hasMany(sequelize.models.raidBoss, { as: 'raidBosses', foreignKey: 'categoryHandle' });
     }
     static async updateTable({ sequelize, isGlobal }) {
         try {

@@ -80,7 +80,6 @@ export class LootSteal {
                 } else this.isSource = false;
             } else this.isItem = false;
         } else this.isActive = false;
-
         return false;
     }
 

@@ -394,6 +394,7 @@
     { "page": "loot", "handle": "healNoMoney", "language": "de-DE", "translation": "$1, du hast nicht genug Geld um dich zu heilen. Du besitzt $2 Gold und brauchst $3 Gold."},
     { "page": "loot", "handle": "healNoMoneyOther", "language": "de-DE", "translation": "$1, du hast nicht genug Geld um $4 zu heilen. Du besitzt $2 Gold und brauchst $3 Gold."},
     { "page": "loot", "handle": "shoutoutNeedTarget", "language": "de-DE", "translation": "$1, du musst einen Streamernamen angeben, der den Shoutout erhalten soll."},
+    
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},
     { "page": "location", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},

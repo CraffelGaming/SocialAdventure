@@ -121,6 +121,7 @@ export class HeroItem {
             sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName'});
             sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName'});
             sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName'});
+            sequelize.models.hero.hasMany(sequelize.models.raidHero, { as: 'raids', foreignKey: 'heroName'});
     }
 
     static async calculateHero({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<boolean>{

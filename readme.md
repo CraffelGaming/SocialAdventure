@@ -59,7 +59,7 @@ Release: 2023
 
 - [X]  Befehle anlegen, wenn mit ! dann ! entfernen
 - [ ]  !raid gegen große bosse
-- [ ]  Duell
+- [ ]  !duell
 - [ ]  Kampf / Steal LOG
 - [X]  Impressum
 - [X]  Cookies

@@ -32,6 +32,9 @@ import { ValidationItem } from '../model/validationItem.js';
 import { StateStorageItem } from '../model/stateStorageItem.js';
 import { Model } from 'sequelize';
 import { fileURLToPath } from 'url';
+import { RaidBossItem } from '../model/raidBossItem.js';
+import { RaidHeroItem } from '../model/raidHeroItem.js';
+import { RaidItem } from '../model/raidItem.js';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -119,6 +122,9 @@ export class Connection {
             DailyItem.createTable({ sequelize: this.sequelize });
             PromotionItem.createTable({ sequelize: this.sequelize });
             HeroPromotionItem.createTable({ sequelize: this.sequelize });
+            RaidBossItem.createTable({ sequelize: this.sequelize });
+            RaidHeroItem.createTable({ sequelize: this.sequelize });
+            RaidItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -138,6 +144,7 @@ export class Connection {
             await TrainerItem.updateTable({ sequelize: this.sequelize });
             await DailyItem.updateTable({ sequelize: this.sequelize });
             await PromotionItem.updateTable({ sequelize: this.sequelize });
+            await RaidBossItem.updateTable({ sequelize: this.sequelize });
 
             HeroItem.setAssociation({ sequelize: this.sequelize });
             HeroTraitItem.setAssociation({ sequelize: this.sequelize });
@@ -149,6 +156,9 @@ export class Connection {
             AdventureItem.setAssociation({ sequelize: this.sequelize});
             PromotionItem.setAssociation({ sequelize: this.sequelize});
             HeroPromotionItem.setAssociation({ sequelize: this.sequelize});
+            RaidBossItem.setAssociation({ sequelize: this.sequelize});
+            RaidHeroItem.setAssociation({ sequelize: this.sequelize});
+            RaidItem.setAssociation({ sequelize: this.sequelize});
 
             return true;
         }  catch (ex){

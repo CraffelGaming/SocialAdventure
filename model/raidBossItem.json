@@ -1,0 +1,5 @@
+[
+    { "handle": 1, "name": "Ogrim der Starke",   "description": "Ein starker Oger, nicht sonderlich schlau, aber seine Keule ist trotzdem ein starkes Argument.",            "hitpoints": 1000, "strength": 10, "gold": 5000,    "diamond": 25,  "experience": 3000, "categoryHandle": 1, "isActive": true},
+    { "handle": 2, "name": "Shay die Flinke",    "description": "Man sagt, das Ihre potenziellen Opfer so schnell besiegt werden das sie keinen Satz mehr zu Ende sp...",    "hitpoints": 750,  "strength": 15, "gold": 7500,    "diamond": 50,  "experience": 6000, "categoryHandle": 1, "isActive": true},
+    { "handle": 3, "name": "Tessa die Neutrale", "description": "Weder gut, noch schlecht. Jeden zu besiegen, das findet sie gerecht.",                                      "hitpoints": 2000, "strength": 5,  "gold": 10000,   "diamond": 75,  "experience": 9000, "categoryHandle": 1, "isActive": true}
+]
