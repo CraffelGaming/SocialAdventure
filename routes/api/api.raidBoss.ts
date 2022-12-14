@@ -17,7 +17,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.enemy.findAll({order: [ [ 'name', 'ASC' ]], raw: false });
+            const item = await channel.database.sequelize.models.raidBoss.findAll({order: [ [ 'name', 'ASC' ]], raw: false });
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();
@@ -39,7 +39,7 @@ router.get('/' + endpoint + '/:node/:handle', async (request: express.Request, r
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.enemy.findAll({ where: { handle: request.params.handle}, order: [ [ 'name', 'ASC' ]], raw: false });
+            const item = await channel.database.sequelize.models.raidBoss.findAll({ where: { handle: request.params.handle}, order: [ [ 'name', 'ASC' ]], raw: false });
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();
@@ -87,9 +87,9 @@ router.delete('/' + endpoint + '/:node/:handle', async (request: express.Request
         if(channel) {
             if(global.isMaster(request, response, node)){
                 if(request.params.handle != null){
-                    const item = await channel.database.sequelize.models.enemy.findByPk(request.params.handle) as unknown as RaidBossItem;
+                    const item = await channel.database.sequelize.models.raidBoss.findByPk(request.params.handle) as unknown as RaidBossItem;
                     if(item){
-                        await channel.database.sequelize.models.enemy.destroy({where: {handle: request.params.handle}});
+                        await channel.database.sequelize.models.raidBoss.destroy({where: {handle: request.params.handle}});
                     }
                     response.status(204).json();
                 } else response.status(404).json();

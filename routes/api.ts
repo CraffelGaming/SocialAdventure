@@ -30,7 +30,877 @@ import placeholder from "./api/api.placeholder.js";
 import validation from "./api/api.validation.js";
 import stateStorage from "./api/api.stateStorage.js";
 
+import raid from "./api/api.raid.js";
+import raidBoss from "./api/api.raidBoss.js";
+import raidHero from "./api/api.raidHero.js";
+
 const router = express.Router();
+
+//#region Raid
+/**
+ * @swagger
+ * /raid/{node}:
+ *   get:
+ *     tags:
+ *     - Raid
+ *     summary: Raid
+ *     description: Rückgabe aller Raids.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Raids
+ *               raidBossHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Raid Bosses
+ *               hitpoints:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Verbleibende Lebenspunkte des Raid Bosses.
+ *               isDefeated:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Raidboss besiegt wurde.
+ *               isActive:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Raid noch aktiv ist.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/raid/:node", raid);
+
+/**
+ * @swagger
+ * /raid/{node}/{handle}:
+ *   get:
+ *     tags:
+ *     - Raid
+ *     summary: Raid
+ *     description: Rückgabe eines Raids.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Raids"
+ *       required: true
+ *       type: "integer"
+ *       default: 1
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raids
+ *             raidBossHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raid Bosses
+ *             hitpoints:
+ *               type: integer
+ *               example: 100
+ *               descrition: Verbleibende Lebenspunkte des Raid Bosses.
+ *             isDefeated:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raidboss besiegt wurde.
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raid noch aktiv ist.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/raid/:node/:handle", raid);
+
+/**
+ * @swagger
+ * /raid/{node}:
+ *   put:
+ *     tags:
+ *     - Raid
+ *     summary: Raid
+ *     description: Anlage eines neuen Raids.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Raids
+ *           raidBossHandle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Raid Bosses
+ *           hitpoints:
+ *             type: integer
+ *             example: 100
+ *             descrition: Verbleibende Lebenspunkte des Raid Bosses.
+ *           isDefeated:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob der Raidboss besiegt wurde.
+ *           isActive:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob der Raid noch aktiv ist.
+ *           createdAt:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Datum der Anlage
+ *           updatedAt:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Datum der letzten Änderung
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raids
+ *             raidBossHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raid Bosses
+ *             hitpoints:
+ *               type: integer
+ *               example: 100
+ *               descrition: Verbleibende Lebenspunkte des Raid Bosses.
+ *             isDefeated:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raidboss besiegt wurde.
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raid noch aktiv ist.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/raid/:node", raid);
+
+/**
+ * @swagger
+ * /raid/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Raid
+ *     summary: Raid
+ *     description: Löscht einen bestimmten Raid.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Raids"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/raid/:node/:handle", raid);
+//#endregion
+
+//#region Raid Boss
+/**
+ * @swagger
+ * /raidboss/{node}:
+ *   get:
+ *     tags:
+ *     - Raid Boss
+ *     summary: Raid Boss
+ *     description: Rückgabe aller Raid Bosse.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               handle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Raid Bosses
+ *               name:
+ *                 type: string
+ *                 example: "Ogrim der Starke"
+ *                 descrition: Name des Raid Bosses
+ *               description:
+ *                 type: string
+ *                 example: "Ein starker Oger, nicht sonderlich schlau, aber seine Keule ist trotzdem ein starkes Argument."
+ *                 descrition: Beschreibung des Raid Bosses
+ *               hitpoints:
+ *                 type: integer
+ *                 example: 1000
+ *                 descrition: Lebenspunkte des Raid Bosses.
+ *               strength:
+ *                 type: integer
+ *                 example: 10
+ *                 descrition: Stärke des Raid Bosses.
+ *               gold:
+ *                 type: integer
+ *                 example: 10
+ *                 descrition: Goldbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *               diamond:
+ *                 type: integer
+ *                 example: 10
+ *                 descrition: Diamantbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *               experience:
+ *                 type: integer
+ *                 example: 10
+ *                 descrition: Erfahrungsgewinn des Raid Bosses, wenn dieser besiegt wird.
+ *               categoryHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: Getenstandstabelle des Raidbosses, von dem jeder Held Gegenstände bekommt, wenn dieser besiegt wird.
+ *               isActive:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Raid noch aktiv ist.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/raidboss/:node", raidBoss);
+
+/**
+ * @swagger
+ * /raidboss/{node}/{handle}:
+ *   get:
+ *     tags:
+ *     - Raid Boss
+ *     summary: Raid Boss
+ *     description: Rückgabe eines Raid Bosses.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Raid Bosses"
+ *       required: true
+ *       type: "integer"
+ *       default: 1
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raid Bosses
+ *             name:
+ *               type: string
+ *               example: "Ogrim der Starke"
+ *               descrition: Name des Raid Bosses
+ *             description:
+ *               type: string
+ *               example: "Ein starker Oger, nicht sonderlich schlau, aber seine Keule ist trotzdem ein starkes Argument."
+ *               descrition: Beschreibung des Raid Bosses
+ *             hitpoints:
+ *               type: integer
+ *               example: 1000
+ *               descrition: Lebenspunkte des Raid Bosses.
+ *             strength:
+ *               type: integer
+ *               example: 10
+ *               descrition: Stärke des Raid Bosses.
+ *             gold:
+ *               type: integer
+ *               example: 10
+ *               descrition: Goldbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *             diamond:
+ *               type: integer
+ *               example: 10
+ *               descrition: Diamantbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *             experience:
+ *               type: integer
+ *               example: 10
+ *               descrition: Erfahrungsgewinn des Raid Bosses, wenn dieser besiegt wird.
+ *             categoryHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: Getenstandstabelle des Raidbosses, von dem jeder Held Gegenstände bekommt, wenn dieser besiegt wird.
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raid noch aktiv ist.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/raidboss/:node/:handle", raidBoss);
+
+/**
+ * @swagger
+ * /raidboss/{node}:
+ *   put:
+ *     tags:
+ *     - Raid Boss
+ *     summary: Raid Boss
+ *     description: Anlage eines neuen Raid Bosses.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           handle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Raid Bosses
+ *           name:
+ *             type: string
+ *             example: "Ogrim der Starke"
+ *             descrition: Name des Raid Bosses
+ *           description:
+ *             type: string
+ *             example: "Ein starker Oger, nicht sonderlich schlau, aber seine Keule ist trotzdem ein starkes Argument."
+ *             descrition: Beschreibung des Raid Bosses
+ *           hitpoints:
+ *             type: integer
+ *             example: 1000
+ *             descrition: Lebenspunkte des Raid Bosses.
+ *           strength:
+ *             type: integer
+ *             example: 10
+ *             descrition: Stärke des Raid Bosses.
+ *           gold:
+ *             type: integer
+ *             example: 10
+ *             descrition: Goldbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *           diamond:
+ *             type: integer
+ *             example: 10
+ *             descrition: Diamantbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *           experience:
+ *             type: integer
+ *             example: 10
+ *             descrition: Erfahrungsgewinn des Raid Bosses, wenn dieser besiegt wird.
+ *           categoryHandle:
+ *             type: integer
+ *             example: 1
+ *             descrition: Getenstandstabelle des Raidbosses, von dem jeder Held Gegenstände bekommt, wenn dieser besiegt wird.
+ *           isActive:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob der Raid noch aktiv ist.
+ *           createdAt:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Datum der Anlage
+ *           updatedAt:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Datum der letzten Änderung
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raid Bosses
+ *             name:
+ *               type: string
+ *               example: "Ogrim der Starke"
+ *               descrition: Name des Raid Bosses
+ *             description:
+ *               type: string
+ *               example: "Ein starker Oger, nicht sonderlich schlau, aber seine Keule ist trotzdem ein starkes Argument."
+ *               descrition: Beschreibung des Raid Bosses
+ *             hitpoints:
+ *               type: integer
+ *               example: 1000
+ *               descrition: Lebenspunkte des Raid Bosses.
+ *             strength:
+ *               type: integer
+ *               example: 10
+ *               descrition: Stärke des Raid Bosses.
+ *             gold:
+ *               type: integer
+ *               example: 10
+ *               descrition: Goldbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *             diamond:
+ *               type: integer
+ *               example: 10
+ *               descrition: Diamantbelohnung des Raid Bosses, wenn dieser besiegt wird.
+ *             experience:
+ *               type: integer
+ *               example: 10
+ *               descrition: Erfahrungsgewinn des Raid Bosses, wenn dieser besiegt wird.
+ *             categoryHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: Getenstandstabelle des Raidbosses, von dem jeder Held Gegenstände bekommt, wenn dieser besiegt wird.
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raid noch aktiv ist.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/raidboss/:node", raidBoss);
+
+/**
+ * @swagger
+ * /raidboss/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Raid Boss
+ *     summary: Raid Boss
+ *     description: Löscht einen bestimmten Raid Boss.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "handle"
+ *       in: "path"
+ *       description: "ID des Raid Bosses"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/raidboss/:node/:handle", raidBoss);
+//#endregion
+
+//#region Raid Hero
+/**
+ * @swagger
+ * /raidhero/{node}:
+ *   get:
+ *     tags:
+ *     - Raid Hero
+ *     summary: Raid Hero
+ *     description: Rückgabe aller Raid Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               raidHandle:
+ *                 type: integer
+ *                 example: 1
+ *                 descrition: ID des Raids
+ *               heroName:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               damage:
+ *                 type: integer
+ *                 example: 100
+ *                 descrition: Zugefügter Schaden an den Raid Boss
+ *               isActive:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Held noch aktiv im Raid kämpft.
+ *               isRewarded:
+ *                 type: boolean
+ *                 example: false
+ *                 descrition: Angabe, ob der Held die Belohnungen erhalten hat.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/raidhero/:node", raidHero);
+
+/**
+ * @swagger
+ * /raidhero/{node}/{handle}:
+ *   get:
+ *     tags:
+ *     - Raid Hero
+ *     summary: Raid Helden
+ *     description: Rückgabe eines Raid Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "raidHandle"
+ *       in: "path"
+ *       description: "ID des Raids"
+ *       required: true
+ *       type: "integer"
+ *       default: 1
+ *     - name: "heroName"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             raidHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raids
+ *             heroName:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Helden
+ *             damage:
+ *               type: integer
+ *               example: 100
+ *               descrition: Zugefügter Schaden an den Raid Boss
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Held noch aktiv im Raid kämpft.
+ *             isRewarded:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Held die Belohnungen erhalten hat.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+ router.get("/raidhero/:node/:raidHandle/:heroName", raidHero);
+
+/**
+ * @swagger
+ * /raidhero/{node}:
+ *   put:
+ *     tags:
+ *     - Raid Hero
+ *     summary: Raid Helden
+ *     description: Anlage eines neuen Raid Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "item"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           raidHandle:
+ *             type: integer
+ *             example: 1
+ *             descrition: ID des Raids
+ *           heroName:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Name des Helden
+ *           damage:
+ *             type: integer
+ *             example: 100
+ *             descrition: Zugefügter Schaden an den Raid Boss
+ *           isActive:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob der Held noch aktiv im Raid kämpft.
+ *           isRewarded:
+ *             type: boolean
+ *             example: false
+ *             descrition: Angabe, ob der Held die Belohnungen erhalten hat.
+ *           createdAt:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Datum der Anlage
+ *           updatedAt:
+ *             type: string
+ *             example: "2022-05-12 10:11:35.027 +00:00"
+ *             descrition: Datum der letzten Änderung
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             raidHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raids
+ *             heroName:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Helden
+ *             damage:
+ *               type: integer
+ *               example: 100
+ *               descrition: Zugefügter Schaden an den Raid Boss
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Held noch aktiv im Raid kämpft.
+ *             isRewarded:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Held die Belohnungen erhalten hat.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.put("/raidhero/:node", raidHero);
+
+/**
+ * @swagger
+ * /raidhero/{node}/{handle}:
+ *   delete:
+ *     tags:
+ *     - Raid Hero
+ *     summary: Raid Helden
+ *     description: Löscht einen bestimmten Raid Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "raidHandle"
+ *       in: "path"
+ *       description: "ID des Raids"
+ *       required: true
+ *       type: "integer"
+ *       default: 1
+ *     - name: "heroName"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     responses:
+ *       204:
+ *         description: successful operation
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+ router.delete("/raidhero/:node/:raidHandle/:heroName", raidHero);
+//#endregion
 
 //#region Adventure
 /**
@@ -1790,7 +2660,6 @@ const router = express.Router();
  */
  router.get("/heropromotion/:node/hero/:name", heropromotion);
 //#endregion
-
 
 //#region Hero Trait
 /**

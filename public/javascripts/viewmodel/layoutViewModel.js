@@ -61,11 +61,11 @@ $(async () => {
         var menu = menus.filter(x => !x.parent).sort(function (a, b) {
             return a.order - b.order;
         });
-        
+
         for (let i = 0; i < menu.length; i++) {
             SetMenu(menu[i], items);
         }
-
+        console.log(items);
         $("#menu").dxMenu({
             adaptivityEnabled: true,
             items: items,
@@ -78,6 +78,7 @@ $(async () => {
     }
 
     function SetMenu(item, parent) {
+        
         var subs = menus.filter(x => x.parent && x.parent.endpoint == item.endpoint).sort(function (a, b) {
             return a.order - b.order;
         });
