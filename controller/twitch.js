@@ -49,8 +49,10 @@ export class Twitch {
                 global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401`);
                 if (refresh) {
                     this.credential = await this.authentificationRefresh();
-                    await this.updateTwitch(this.credential);
-                    return this.push(method, endpoint, false);
+                    if (this.credential != null) {
+                        await this.updateTwitch(this.credential);
+                        return this.push(method, endpoint, false);
+                    }
                 }
             }
             else {
@@ -65,39 +67,74 @@ export class Twitch {
     //#endregion
     //#region API
     async GetChannel(id) {
-        return (await this.push('GET', '/channels?broadcaster_id=' + id))[0];
+        try {
+            return (await this.push('GET', '/channels?broadcaster_id=' + id))[0];
+        }
+        catch (ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
     async GetModerators(id) {
-        return (await this.push('GET', '/moderation/moderators?broadcaster_id=' + id));
+        try {
+            return (await this.push('GET', '/moderation/moderators?broadcaster_id=' + id));
+        }
+        catch (ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
     async GetStream(id) {
-        return (await this.push('GET', '/streams?user_id=' + id))[0];
+        try {
+            return (await this.push('GET', '/streams?user_id=' + id))[0];
+        }
+        catch (ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
     async getUser(id) {
-        return (await this.push('GET', '/users?id=' + id))[0];
+        try {
+            return (await this.push('GET', '/users?id=' + id))[0];
+        }
+        catch (ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
     async getUserByName(name) {
-        return (await this.push('GET', '/users?login=' + name))[0];
+        try {
+            return (await this.push('GET', '/users?login=' + name))[0];
+        }
+        catch (ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
     async getCurrentUser(credential) {
-        const response = await fetch(twitchData.url_base + '/users', {
-            method: 'GET',
-            withCredentials: true,
-            credentials: 'include',
-            headers: {
-                'client-id': twitchData.client_id,
-                'Authorization': 'Bearer ' + credential.access_token,
-                'Content-Type': 'application/json'
-            },
-        });
-        if (response.ok) {
-            const json = await response.json();
-            global.worker.log.trace(json);
-            const result = json.data[0];
-            return result;
+        try {
+            const response = await fetch(twitchData.url_base + '/users', {
+                method: 'GET',
+                withCredentials: true,
+                credentials: 'include',
+                headers: {
+                    'client-id': twitchData.client_id,
+                    'Authorization': 'Bearer ' + credential.access_token,
+                    'Content-Type': 'application/json'
+                },
+            });
+            if (response.ok) {
+                const json = await response.json();
+                global.worker.log.trace(json);
+                const result = json.data[0];
+                return result;
+            }
+            else if (response.status === 401) {
+                global.worker.log.trace('refresh access token');
+            }
         }
-        else if (response.status === 401) {
-            global.worker.log.trace('refresh access token');
+        catch (ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
         }
         return null;
     }

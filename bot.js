@@ -141,7 +141,7 @@ function start() {
     catch (ex) {
         global.worker.log.error('Error start server! Restart...');
         global.worker.log.error(ex);
-        setTimeout(start, 1000);
+        setTimeout(start, 5000);
         start();
     }
 }

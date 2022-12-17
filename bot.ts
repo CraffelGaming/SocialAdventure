@@ -214,26 +214,25 @@ start();
 
 function start(){
     try{
-    // start server
-    if (fs.existsSync(path.join(dirname, settings.key)) && fs.existsSync(path.join(dirname, settings.cert))) {
-        https.createServer({
-            key: fs.readFileSync(path.join(dirname, settings.key)),
-            cert: fs.readFileSync(path.join(dirname, settings.cert))
-        }, app)
-            .listen(app.get('port'), () => {
-                global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
-                })
-    } else {
-        http.createServer(app)
-            .listen(app.get('port'), () => {
-                    global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
-                })
-    }
+        // start server
+        if (fs.existsSync(path.join(dirname, settings.key)) && fs.existsSync(path.join(dirname, settings.cert))) {
+            https.createServer({
+                key: fs.readFileSync(path.join(dirname, settings.key)),
+                cert: fs.readFileSync(path.join(dirname, settings.cert))
+            }, app)
+                .listen(app.get('port'), () => {
+                    global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
+                    })
+        } else {
+            http.createServer(app)
+                .listen(app.get('port'), () => {
+                        global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
+                    })
+        }
     } catch(ex){
         global.worker.log.error('Error start server! Restart...');
         global.worker.log.error(ex);
-        setTimeout(start, 1000);
+        setTimeout(start, 5000);
         start();
     }
-
 }

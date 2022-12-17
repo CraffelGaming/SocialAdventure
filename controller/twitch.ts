@@ -59,9 +59,12 @@ export class Twitch {
             } else if(response.status === 401) {
                 global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401`);
                 if(refresh){
-                    this.credential = await this.authentificationRefresh()
-                    await this.updateTwitch(this.credential);
-                    return this.push<T>(method, endpoint, false)
+                    this.credential = await this.authentificationRefresh();
+
+                    if(this.credential != null){
+                        await this.updateTwitch(this.credential);
+                        return this.push<T>(method, endpoint, false)
+                    }
                 }
             } else {
                 global.worker.log.error(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint}`);
@@ -76,47 +79,76 @@ export class Twitch {
 
     //#region API
     async GetChannel(id: string): Promise<twitchChannelItem>{
-        return (await this.push<twitchChannelItem[]>('GET', '/channels?broadcaster_id=' + id))[0];
+        try {
+            return (await this.push<twitchChannelItem[]>('GET', '/channels?broadcaster_id=' + id))[0];
+        } catch(ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
 
     async GetModerators(id: string): Promise<twitchModeratorItem[]>{
-        return (await this.push<twitchModeratorItem[]>('GET', '/moderation/moderators?broadcaster_id=' + id));
+        try {
+            return (await this.push<twitchModeratorItem[]>('GET', '/moderation/moderators?broadcaster_id=' + id));
+        } catch(ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
 
     async GetStream(id: string): Promise<twitchStreamItem>{
-        return (await this.push<twitchStreamItem[]>('GET', '/streams?user_id=' + id))[0];
+        try {
+            return (await this.push<twitchStreamItem[]>('GET', '/streams?user_id=' + id))[0];
+        } catch(ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
 
     async getUser(id: string): Promise<credentialUserItem> {
-        return (await this.push<credentialUserItem[]>('GET', '/users?id=' + id))[0];
+        try {
+            return (await this.push<credentialUserItem[]>('GET', '/users?id=' + id))[0];
+        } catch(ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
 
     async getUserByName(name: string): Promise<credentialUserItem> {
-        return (await this.push<credentialUserItem[]>('GET', '/users?login=' + name))[0];
+        try {
+            return (await this.push<credentialUserItem[]>('GET', '/users?login=' + name))[0];
+        } catch(ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
+        return null;
     }
 
     async getCurrentUser(credential: credentialItem) : Promise<credentialUserItem>{
-        const response = await fetch(twitchData.url_base + '/users', {
-            method: 'GET',
-            withCredentials: true,
-            credentials: 'include',
-            headers: {
-                'client-id': twitchData.client_id,
-                'Authorization': 'Bearer ' + credential.access_token,
-                'Content-Type': 'application/json'
-            },
-        });
+        try {
+            const response = await fetch(twitchData.url_base + '/users', {
+                method: 'GET',
+                withCredentials: true,
+                credentials: 'include',
+                headers: {
+                    'client-id': twitchData.client_id,
+                    'Authorization': 'Bearer ' + credential.access_token,
+                    'Content-Type': 'application/json'
+                },
+            });
 
-    if (response.ok) {
-        const json = await response.json();
-        global.worker.log.trace(json);
-        const result = json.data[0] as globalThis.credentialUserItem;
-        return result;
-    } else if(response.status === 401) {
-        global.worker.log.trace('refresh access token');
-    }
+            if (response.ok) {
+                const json = await response.json();
+                global.worker.log.trace(json);
+                const result = json.data[0] as globalThis.credentialUserItem;
+                return result;
+            } else if(response.status === 401) {
+                global.worker.log.trace('refresh access token');
+            }
+        } catch(ex) {
+            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+        }
 
-    return null;
+        return null;
     }
     //#endregion
 

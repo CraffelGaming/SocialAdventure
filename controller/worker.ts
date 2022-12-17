@@ -45,9 +45,13 @@ export class Worker {
 
     //#region Restart
     async restart(){
-        global.worker.tmi = new tmi.client(tmiSettings);
-        global.worker.channels = [];
-        await global.worker.initialize();
+        try {
+            global.worker.tmi = new tmi.client(tmiSettings);
+            global.worker.channels = [];
+            await global.worker.initialize();
+        } catch(ex) {
+            global.worker.log.error(`worker error - function restart - ${ex.message}`);
+        }
     }
     //#endregion
 
@@ -66,7 +70,7 @@ export class Worker {
                 model: global.worker.globalDatabase.sequelize.models.twitchUser,
                 as: 'twitchUser',
             }]})) as unknown as NodeItem[]){
-                this.startNode(node); // no await needed
+                await this.startNode(node); // no await needed
             }
             global.worker.log.info(`--------------------------------------`);
             global.worker.log.info(`---------- ALL NODES ADDED -----------`);
@@ -88,14 +92,13 @@ export class Worker {
                 await channel.initialize();
 
                 // Register Channel to twitch
-                this.register(channel);
+                await this.register(channel);
                 this.channels.push(channel);
             } else {
                 this.log.trace('Node already added ' + node.name);
             }
 
             return channel;
-
         } catch(ex) {
             global.worker.log.error(`worker error - function startNode - ${ex.message}`);
         }
@@ -136,10 +139,10 @@ export class Worker {
         }
     }
 
-    register(channel: Channel){
+    async register(channel: Channel){
         try {
             this.log.trace('node connected: ' + channel.node.getDataValue('name'));
-            this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
+            await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
             this.log.trace(this.tmi);
         } catch(ex) {
             global.worker.log.error(`worker error - function register - ${ex.message}`);
@@ -181,7 +184,6 @@ export class Worker {
         } catch(ex) {
             global.worker.log.error(`worker error - function onConnectedHandler - ${ex.message}`);
         }
-
     }
 
     async onDisconnectedHandler() {

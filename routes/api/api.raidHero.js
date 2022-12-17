@@ -1,7 +1,7 @@
 import express from 'express';
 import { RaidHeroItem } from '../../model/raidHeroItem.js';
 const router = express.Router();
-const endpoint = 'raidboss';
+const endpoint = 'raidhero';
 router.get('/' + endpoint + '/:node/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);

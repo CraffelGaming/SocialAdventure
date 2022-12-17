@@ -26,9 +26,14 @@ export class Worker {
     //#endregion
     //#region Restart
     async restart() {
-        global.worker.tmi = new tmi.client(tmiSettings);
-        global.worker.channels = [];
-        await global.worker.initialize();
+        try {
+            global.worker.tmi = new tmi.client(tmiSettings);
+            global.worker.channels = [];
+            await global.worker.initialize();
+        }
+        catch (ex) {
+            global.worker.log.error(`worker error - function restart - ${ex.message}`);
+        }
     }
     //#endregion
     //#region Initialize
@@ -43,7 +48,7 @@ export class Worker {
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
                         as: 'twitchUser',
                     }] }))) {
-                this.startNode(node); // no await needed
+                await this.startNode(node); // no await needed
             }
             global.worker.log.info(`--------------------------------------`);
             global.worker.log.info(`---------- ALL NODES ADDED -----------`);
@@ -63,7 +68,7 @@ export class Worker {
                 channel = new Channel(node, this.translation);
                 await channel.initialize();
                 // Register Channel to twitch
-                this.register(channel);
+                await this.register(channel);
                 this.channels.push(channel);
             }
             else {
@@ -106,10 +111,10 @@ export class Worker {
             global.worker.log.error(`worker error - function connect - ${ex.message}`);
         }
     }
-    register(channel) {
+    async register(channel) {
         try {
             this.log.trace('node connected: ' + channel.node.getDataValue('name'));
-            this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
+            await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
             this.log.trace(this.tmi);
         }
         catch (ex) {
