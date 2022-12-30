@@ -2,7 +2,7 @@ import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescrip
 import { DataTypes } from 'sequelize';
 
 @Table({ tableName: "raidHero", modelName: "raidHero"})
-export class RaidHeroItem extends Model<RaidHeroItem>{
+export class RaidHeroItem{
     @PrimaryKey
     @Column
     raidHandle: number;
@@ -16,8 +16,9 @@ export class RaidHeroItem extends Model<RaidHeroItem>{
     @Column
     isActive: boolean = false;
 
-    constructor(){
-        super();
+    constructor({ raidHandle, heroName}: { raidHandle: number, heroName: string}){
+        this.raidHandle = raidHandle;
+        this.heroName = heroName;
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){

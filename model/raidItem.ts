@@ -2,7 +2,7 @@ import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescrip
 import { DataTypes } from 'sequelize';
 
 @Table({ tableName: "raid", modelName: "raid"})
-export class RaidItem extends Model<RaidItem>{
+export class RaidItem {
     @PrimaryKey
     @Column
     handle: number;
@@ -14,10 +14,6 @@ export class RaidItem extends Model<RaidItem>{
     isDefeated: boolean = false;
     @Column
     isActive: boolean = false;
-
-    constructor(){
-        super();
-    }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('raid', {

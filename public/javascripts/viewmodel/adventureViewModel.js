@@ -18,8 +18,11 @@ $(async () => {
     let validation = await get(`/validation/hero`);
     let dungeons = await get('/location/default/active', language);
     let category = await get('/itemcategory/default/', language);
-    let raid = await get('/raid/default/', language);
+    let raid = await get('/raid/default/current/active', language);
     let raidHero = await get('/raidHero/default/', language);
+    
+    console.log(raid);
+    console.log(raidHero);
 
     translation();
     initialize();

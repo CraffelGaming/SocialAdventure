@@ -1,3 +1,4 @@
+import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel.js";
 import { Command } from "../controller/command.js";
 import { CommandItem } from "../model/commandItem.js";
@@ -5,15 +6,15 @@ import { TranslationItem } from "../model/translationItem.js";
 
 export class Module {
     language: string;
-    translation: TranslationItem[];
-    basicTranslation: TranslationItem[];
-    commands: CommandItem[];
+    translation: Model<TranslationItem>[];
+    basicTranslation: Model<TranslationItem>[];
+    commands: Model<CommandItem>[];
     channel: Channel;
     lastRun: Date;
     name: string;
 
     //#region Construct
-    constructor(translation : TranslationItem[], channel: Channel, name: string){
+    constructor(translation : Model<TranslationItem>[], channel: Channel, name: string){
         this.translation = translation;
         this.channel = channel;
         this.name = name;
@@ -22,8 +23,8 @@ export class Module {
 
     //#region Initialize
     async initialize(){
-        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[];
-        this.commands = await this.channel.database.sequelize.models.command.findAll({where: { module: this.name }, order: [ [ 'command', 'ASC' ]], raw: true}) as unknown as CommandItem[];
+        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[];
+        this.commands = await this.channel.database.sequelize.models.command.findAll({where: { module: this.name }, order: [ [ 'command', 'ASC' ]]}) as Model<CommandItem>[];
     }
     //#endregion
 

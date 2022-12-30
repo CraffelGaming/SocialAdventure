@@ -51,11 +51,12 @@ export class Say extends Module {
                 }
             }
             if (isExecute) {
-                const allowedCommand = this.commands.find(x => x.command === command.name);
+                const allowedCommand = this.commands.find(x => x.getDataValue('command') === command.name);
                 if (allowedCommand) {
-                    const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+                    const isAllowed = !allowedCommand.getDataValue('isMaster') && !allowedCommand.getDataValue('isModerator') || this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
+                    const isAdmin = allowedCommand.getDataValue('isMaster') && this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
                     if (isAllowed) {
-                        if (this.item.getDataValue("isActive") || isAllowed) {
+                        if (this.item.getDataValue("isActive") || isAdmin) {
                             if (command.name.length === 0)
                                 command.name = "shout";
                             command.name = command.name.replace("+", "plus");

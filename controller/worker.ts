@@ -8,7 +8,7 @@ import tmi from 'tmi.js';
 import { Command } from './command.js';
 import { Twitch } from './twitch.js';
 import { TranslationItem } from '../model/translationItem.js';
-import { Model } from 'sequelize';
+import { Model } from 'sequelize-typescript';
 import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 

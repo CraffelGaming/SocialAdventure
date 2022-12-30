@@ -1,7 +1,6 @@
 import express from 'express';
 import { RaidItem } from '../../model/raidItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
-import sequelize from 'sequelize';
 
 const router = express.Router();
 const endpoint = 'raid';
@@ -21,10 +20,10 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         if(channel) {
             if(request.query.childs !== "false"){
                 item = await channel.database.sequelize.models.raid.findAll({order: [ [ 'handle', 'ASC' ]], include: [{
-                    model: global.worker.globalDatabase.sequelize.models.raidBoss,
+                    model: channel.database.sequelize.models.raidBoss,
                     as: 'raidBoss',
                 }, {
-                    model: global.worker.globalDatabase.sequelize.models.raidHero,
+                    model: channel.database.sequelize.models.raidHero,
                     as: 'raidHeroes',
                 }]}) as unknown as RaidItem[];
             } else {
@@ -55,10 +54,10 @@ router.get('/' + endpoint + '/:node/:handle', async (request: express.Request, r
         if(channel) {
             if(request.query.childs !== "false"){
                 item = await channel.database.sequelize.models.raid.findOne({ where: { handle: request.params.handle}, order: [ [ 'handle', 'ASC' ]], include: [{
-                    model: global.worker.globalDatabase.sequelize.models.raidBoss,
+                    model: channel.database.sequelize.models.raidBoss,
                     as: 'raidBoss',
                 }, {
-                    model: global.worker.globalDatabase.sequelize.models.raidHero,
+                    model: channel.database.sequelize.models.raidHero,
                     as: 'raidHeroes',
                 }]}) as unknown as RaidItem;
             } else {
@@ -89,10 +88,10 @@ router.get('/' + endpoint + '/:node/current/active', async (request: express.Req
             if(request.query.childs !== "false"){
                 item = await channel.database.sequelize.models.raid.findOne({ where: { isActive: true },
                     order: [ [ 'handle', 'DESC' ]], include: [{
-                    model: global.worker.globalDatabase.sequelize.models.raidBoss,
+                    model: channel.database.sequelize.models.raidBoss,
                     as: 'raidBoss',
                 }, {
-                    model: global.worker.globalDatabase.sequelize.models.raidHero,
+                    model: channel.database.sequelize.models.raidHero,
                     as: 'raidHeroes',
                 }]}) as unknown as RaidItem;
             } else {

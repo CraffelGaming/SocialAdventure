@@ -15,10 +15,10 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         if (channel) {
             if (request.query.childs !== "false") {
                 item = await channel.database.sequelize.models.raid.findAll({ order: [['handle', 'ASC']], include: [{
-                            model: global.worker.globalDatabase.sequelize.models.raidBoss,
+                            model: channel.database.sequelize.models.raidBoss,
                             as: 'raidBoss',
                         }, {
-                            model: global.worker.globalDatabase.sequelize.models.raidHero,
+                            model: channel.database.sequelize.models.raidHero,
                             as: 'raidHeroes',
                         }] });
             }
@@ -51,10 +51,10 @@ router.get('/' + endpoint + '/:node/:handle', async (request, response) => {
         if (channel) {
             if (request.query.childs !== "false") {
                 item = await channel.database.sequelize.models.raid.findOne({ where: { handle: request.params.handle }, order: [['handle', 'ASC']], include: [{
-                            model: global.worker.globalDatabase.sequelize.models.raidBoss,
+                            model: channel.database.sequelize.models.raidBoss,
                             as: 'raidBoss',
                         }, {
-                            model: global.worker.globalDatabase.sequelize.models.raidHero,
+                            model: channel.database.sequelize.models.raidHero,
                             as: 'raidHeroes',
                         }] });
             }
@@ -88,10 +88,10 @@ router.get('/' + endpoint + '/:node/current/active', async (request, response) =
             if (request.query.childs !== "false") {
                 item = await channel.database.sequelize.models.raid.findOne({ where: { isActive: true },
                     order: [['handle', 'DESC']], include: [{
-                            model: global.worker.globalDatabase.sequelize.models.raidBoss,
+                            model: channel.database.sequelize.models.raidBoss,
                             as: 'raidBoss',
                         }, {
-                            model: global.worker.globalDatabase.sequelize.models.raidHero,
+                            model: channel.database.sequelize.models.raidHero,
                             as: 'raidHeroes',
                         }] });
             }

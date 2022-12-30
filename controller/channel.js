@@ -101,7 +101,7 @@ export class Channel {
                 global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
                 if (element.item.getDataValue("isShoutout")) {
                     global.worker.log.trace(`module ${element.item.getDataValue("command")} isShoutout ${element.item.getDataValue("isShoutout")}`);
-                    element.commands.find(x => x.command === '').isModerator = true;
+                    element.commands.find(x => x.getDataValue('command') === '').setDataValue('isModerator', true);
                 }
             }
         }
@@ -137,7 +137,7 @@ export class Channel {
     }
     async addSay(item) {
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']], raw: true });
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']] });
             const element = new Say(translation, this, item);
             await element.initialize();
             this.say.push(element);
@@ -164,10 +164,11 @@ export class Channel {
     //#region Loot
     async addLoot() {
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']], raw: true });
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']] });
             this.loot = new Loot(translation, this);
             await this.loot.initialize();
             await this.loot.InitializeLoot();
+            await this.loot.InitializeRaid();
         }
         catch (ex) {
             global.worker.log.error(`channel error - function addLoot - ${ex.message}`);

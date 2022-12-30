@@ -113,3 +113,9 @@ Release: 2023
 * E-20019 heal
 * E-20020 heal hero
 * E-20021 revive hero
+
+### Raid
+* E-30000 raidStart
+* E-30001 raidinfo
+* E-30002 raid
+* E-30003 raidStop

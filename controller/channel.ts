@@ -7,7 +7,7 @@ import { SayItem } from '../model/sayItem.js';
 import { Command } from './command.js';
 import { TranslationItem } from '../model/translationItem.js';
 import { Twitch } from './twitch.js';
-import { Model } from 'sequelize';
+import { Model } from 'sequelize-typescript';
 
 export class Channel {
     countMessages: number;
@@ -114,7 +114,7 @@ export class Channel {
     //#region Say
     async addSays(){
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as unknown as TranslationItem[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[]
 
             for(const item of await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]]}) as Model<SayItem>[]){
                 global.worker.log.trace(`node ${this.node.getDataValue('name')}, say add ${item.getDataValue("command")}.`);
@@ -125,7 +125,7 @@ export class Channel {
 
                 if(element.item.getDataValue("isShoutout")) {
                     global.worker.log.trace(`module ${element.item.getDataValue("command")} isShoutout ${element.item.getDataValue("isShoutout")}`);
-                    element.commands.find(x => x.command === '').isModerator = true;
+                    element.commands.find(x => x.getDataValue('command') === '').setDataValue('isModerator', true);
                 }
             }
         } catch(ex) {
@@ -161,7 +161,7 @@ export class Channel {
 
     async addSay(item: SayItem){
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]] }) as unknown as TranslationItem[]
             const element = new Say(translation, this, item);
             await element.initialize();
             this.say.push(element);
@@ -189,7 +189,7 @@ export class Channel {
     //#region Loot
     async addLoot(){
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'loot', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]], raw: true}) as unknown as TranslationItem[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'loot', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[]
             this.loot = new Loot(translation, this);
             await this.loot.initialize();
             await this.loot.InitializeLoot();

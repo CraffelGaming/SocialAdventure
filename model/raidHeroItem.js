@@ -7,14 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { Column, Table, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-let RaidHeroItem = class RaidHeroItem extends Model {
-    constructor() {
-        super();
+let RaidHeroItem = class RaidHeroItem {
+    constructor({ raidHandle, heroName }) {
         this.damage = 0;
         this.isRewarded = false;
         this.isActive = false;
+        this.raidHandle = raidHandle;
+        this.heroName = heroName;
     }
     static createTable({ sequelize }) {
         sequelize.define('raidHero', {
@@ -93,7 +94,7 @@ __decorate([
 ], RaidHeroItem.prototype, "isActive", void 0);
 RaidHeroItem = __decorate([
     Table({ tableName: "raidHero", modelName: "raidHero" }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [Object])
 ], RaidHeroItem);
 export { RaidHeroItem };
 //# sourceMappingURL=raidHeroItem.js.map

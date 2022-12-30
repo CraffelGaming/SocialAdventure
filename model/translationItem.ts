@@ -68,10 +68,10 @@ export class TranslationItem extends Model<TranslationItem>{
         }
     }
 
-    static translate(translation: TranslationItem[], handle: string): string {
-        const value = translation.find(x => x.handle === handle)
-        if (value && value.translation)
-            return value.translation;
+    static translate(translation: Model<TranslationItem>[], handle: string): string {
+        const value = translation.find(x => x.getDataValue('handle') === handle)
+        if (value && value.getDataValue('translation'))
+            return value.getDataValue('translation');
 
         return '[missing translation]';
     }

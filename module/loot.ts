@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { Op } from "sequelize";
 import { Model } from "sequelize-typescript";
 import { Channel } from "../controller/channel.js";
@@ -9,9 +10,11 @@ import { HeroItem } from "../model/heroItem.js";
 import { HeroWalletItem } from "../model/heroWalletItem.js";
 import { LevelItem } from "../model/levelItem.js";
 import { LootItem } from "../model/lootItem.js";
+import { RaidHeroItem } from "../model/raidHeroItem.js";
 import { TranslationItem } from "../model/translationItem.js";
 import { LootExploring } from "./lootExploring.js";
 import { LootGive } from "./lootGive.js";
+import { LootRaid } from "./lootRaid.js";
 import { LootSearch } from "./lootSearch.js";
 import { LootSteal } from "./lootSteal.js";
 import { Module } from "./module.js";
@@ -19,10 +22,12 @@ import { Module } from "./module.js";
 export class Loot extends Module {
     timer: NodeJS.Timer;
     settings: Model<LootItem>[];
+    raidItem: LootRaid;
 
     //#region Construct
-    constructor(translation: TranslationItem[], channel: Channel){
+    constructor(translation: Model<TranslationItem>[], channel: Channel){
         super(translation, channel, 'loot');
+        this.raidItem = new LootRaid(this);
     }
     //#endregion
 
@@ -43,13 +48,14 @@ export class Loot extends Module {
         try{
             global.worker.log.trace('loot execute');
             const loot = this.settings.find(x =>x.getDataValue("command") === "loot");
-            const allowedCommand = this.commands.find(x => x.command === command.name);
+            const allowedCommand = this.commands.find(x => x.getDataValue('command') === command.name);
 
             if(allowedCommand){
-                const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+                const isAllowed = !allowedCommand.getDataValue('isMaster') && !allowedCommand.getDataValue('isModerator') || this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
+                const isAdmin = allowedCommand.getDataValue('isMaster') && this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
 
                 if(isAllowed){
-                    if(loot.getDataValue("isActive") || isAllowed) {
+                    if(loot.getDataValue("isActive") || isAdmin) {
                         return await this[command.name](command);
                     } else {
                         global.worker.log.trace(`module loot not active`);
@@ -778,6 +784,99 @@ export class Loot extends Module {
 
     async getCountActiveHeroes(){
         return await this.channel.database.sequelize.models.hero.count({where: { isActive: true }});;
+    }
+    //#endregion
+
+    //#region Raid
+    async raidstart(command: Command = null){
+        try {
+            const raid = this.settings.find(x =>x.getDataValue("command") === "raid");
+
+            if(!raid.getDataValue("isActive")){
+                raid.setDataValue("isActive", true);
+                await raid.save();
+                global.worker.log.trace(`module ${raid.getDataValue("command")} set active: ${raid.getDataValue("isActive")}`);
+                return TranslationItem.translate(this.basicTranslation, "start");
+            }
+            else {
+                global.worker.log.trace(`module ${raid.getDataValue("command")} already started.`);
+                return TranslationItem.translate(this.basicTranslation, "alreadyStarted");
+            }
+        } catch(ex) {
+            global.worker.log.error(`module loot error - function raidstart - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30000');
+        }
+    }
+    async raidstop(command: Command = null){
+        try {
+            const raid = this.settings.find(x =>x.getDataValue("command") === "raid");
+            if(raid.getDataValue("isActive")){
+                raid.setDataValue("isActive", false);
+                await raid.save();
+                global.worker.log.trace(`module lootstop set active: ${raid.getDataValue("isActive")}`);
+                return TranslationItem.translate(this.basicTranslation, "stop");
+            }
+            else {
+                global.worker.log.trace(`module ${raid.getDataValue("command")} already stopped.`);
+                return TranslationItem.translate(this.basicTranslation, "alreadyStopped");
+            }
+        } catch(ex) {
+            global.worker.log.error(`module loot error - function raidstop - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30003');
+        }
+    }
+
+    async raidinfo(command: Command) : Promise<string>{
+        try {
+            const hero = this.getTargetHero(command);
+            const raid = this.settings.find(x =>x.getDataValue("command") === "raid");
+            
+            if(raid.getDataValue('isActive')) {
+                const heroes = await this.raidItem.loadRaidHeroes();
+                if(heroes && heroes.length > 0){
+                    const current = heroes.find(x => x.getDataValue('heroName') === hero);
+             
+                    return TranslationItem.translate(this.translation, 'raidInfo')
+                                                 .replace('$1', hero)
+                                                 .replace('$2', this.raidItem.boss.getDataValue('name'))
+                                                 .replace('$3', this.raidItem.raid.getDataValue('hitpoints').toString())
+                                                 .replace('$4', this.raidItem.boss.getDataValue('hitpoints').toString())
+                                                 .replace('$5', heroes.length.toString())
+                                                 .replace('$6', this.getDateTimeoutRemainingMinutes(raid.getDataValue('lastRun'), raid.getDataValue('minutes')).toString())
+                                                 .replace('$7', current ? TranslationItem.translate(this.translation, 'raidInfoJoined') : TranslationItem.translate(this.translation, 'raidInfoJoin'));
+
+                } else return TranslationItem.translate(this.translation, 'raidInfoEmpty').replace('$1', hero).replace('$2', this.raidItem.boss.getDataValue('name'));
+            } else return TranslationItem.translate(this.translation, 'raidNo').replace('$1', hero);
+        } catch(ex) {
+            global.worker.log.error(`module loot error - function raidinfo - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30001');
+        }
+    }
+
+    async raid(command: Command){
+        try {
+            const raid = this.settings.find(x =>x.getDataValue("command") === "raid");
+            if(raid.getDataValue('isActive')) {
+                const raidHero = await this.raidItem.loadRaidHero(command.source);
+
+                if(!raidHero) {
+                    let hero = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
+
+                    if(!hero){
+                        await HeroItem.put({sequelize: this.channel.database.sequelize, element: new HeroItem(command.source), onlyCreate: true});
+                        hero = await this.channel.database.sequelize.models.hero.findByPk(command.source) as Model<HeroItem>;
+                    }
+
+                    if(hero){
+                        await RaidHeroItem.put({sequelize: this.channel.database.sequelize, element: new RaidHeroItem({ heroName: hero.getDataValue('name'), raidHandle: this.raidItem.raid.getDataValue('handle')})})
+                        return TranslationItem.translate(this.translation, 'raidJoin').replace('$1', command.source);
+                    }
+                } else return TranslationItem.translate(this.translation, 'raidJoined').replace('$1', command.source);
+            } else return TranslationItem.translate(this.translation, 'raidNo').replace('$1', command.source);
+        } catch(ex) {
+            global.worker.log.error(`module loot error - function raidinfo - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30002');
+        }
     }
     //#endregion
 }

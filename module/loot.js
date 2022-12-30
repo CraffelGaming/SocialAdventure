@@ -2,9 +2,11 @@ import { Op } from "sequelize";
 import { HealingPotionItem } from "../model/healingPotionItem.js";
 import { HeroInventoryItem } from "../model/heroInventoryItem.js";
 import { HeroItem } from "../model/heroItem.js";
+import { RaidHeroItem } from "../model/raidHeroItem.js";
 import { TranslationItem } from "../model/translationItem.js";
 import { LootExploring } from "./lootExploring.js";
 import { LootGive } from "./lootGive.js";
+import { LootRaid } from "./lootRaid.js";
 import { LootSearch } from "./lootSearch.js";
 import { LootSteal } from "./lootSteal.js";
 import { Module } from "./module.js";
@@ -25,17 +27,28 @@ export class Loot extends Module {
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20000');
         }
     }
+    async InitializeRaid() {
+        try {
+            this.raidItem = new LootRaid(this);
+            await this.raidItem.initialize();
+        }
+        catch (ex) {
+            global.worker.log.error(`module loot error - function InitializeRaid - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30000');
+        }
+    }
     //#endregion
     //#region Execute
     async execute(command) {
         try {
             global.worker.log.trace('loot execute');
             const loot = this.settings.find(x => x.getDataValue("command") === "loot");
-            const allowedCommand = this.commands.find(x => x.command === command.name);
+            const allowedCommand = this.commands.find(x => x.getDataValue('command') === command.name);
             if (allowedCommand) {
-                const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+                const isAllowed = !allowedCommand.getDataValue('isMaster') && !allowedCommand.getDataValue('isModerator') || this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
+                const isAdmin = allowedCommand.getDataValue('isMaster') && this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
                 if (isAllowed) {
-                    if (loot.getDataValue("isActive") || isAllowed) {
+                    if (loot.getDataValue("isActive") || isAdmin) {
                         return await this[command.name](command);
                     }
                     else {
@@ -805,6 +818,60 @@ export class Loot extends Module {
     async getCountActiveHeroes() {
         return await this.channel.database.sequelize.models.hero.count({ where: { isActive: true } });
         ;
+    }
+    //#endregion
+    //#region Raid
+    async raidinfo(command) {
+        try {
+            const hero = this.getTargetHero(command);
+            if (this.raidItem?.raid) {
+                const heroes = await this.raidItem.loadHeroes();
+                if (heroes && heroes.length > 0) {
+                    const current = heroes.find(x => x.getDataValue('heroName') === hero);
+                    return TranslationItem.translate(this.translation, 'raidInfo')
+                        .replace('$1', hero)
+                        .replace('$2', this.raidItem.boss.getDataValue('name'))
+                        .replace('$3', this.raidItem.raid.getDataValue('hitpoints').toString())
+                        .replace('$4', this.raidItem.boss.getDataValue('hitpoints').toString())
+                        .replace('$5', heroes.length.toString())
+                        .replace('$6', current ? TranslationItem.translate(this.translation, 'raidInfoJoined') : TranslationItem.translate(this.translation, 'raidInfoJoin'));
+                }
+                else
+                    return TranslationItem.translate(this.translation, 'raidInfoEmpty').replace('$1', hero).replace('$2', this.raidItem.boss.getDataValue('name'));
+            }
+            else
+                return TranslationItem.translate(this.translation, 'raidNo').replace('$1', hero);
+        }
+        catch (ex) {
+            global.worker.log.error(`module loot error - function raidinfo - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30001');
+        }
+    }
+    async raid(command) {
+        try {
+            if (this.raidItem?.raid) {
+                const raidHero = await this.raidItem.loadHero(command.source);
+                if (!raidHero) {
+                    let hero = await this.channel.database.sequelize.models.hero.findByPk(command.source);
+                    if (!hero) {
+                        await HeroItem.put({ sequelize: this.channel.database.sequelize, element: new HeroItem(command.source), onlyCreate: true });
+                        hero = await this.channel.database.sequelize.models.hero.findByPk(command.source);
+                    }
+                    if (hero) {
+                        await RaidHeroItem.put({ sequelize: this.channel.database.sequelize, element: new RaidHeroItem({ heroName: hero.getDataValue('name'), raidHandle: this.raidItem.raid.getDataValue('handle') }) });
+                        return TranslationItem.translate(this.translation, 'raidJoin').replace('$1', command.source);
+                    }
+                }
+                else
+                    return TranslationItem.translate(this.translation, 'raidJoined').replace('$1', command.source);
+            }
+            else
+                return TranslationItem.translate(this.translation, 'raidNo').replace('$1', command.source);
+        }
+        catch (ex) {
+            global.worker.log.error(`module loot error - function raidinfo - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30002');
+        }
     }
 }
 //# sourceMappingURL=loot.js.map

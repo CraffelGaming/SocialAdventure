@@ -8,8 +8,8 @@ export class Module {
     //#endregion
     //#region Initialize
     async initialize() {
-        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [['handle', 'ASC']], raw: true });
-        this.commands = await this.channel.database.sequelize.models.command.findAll({ where: { module: this.name }, order: [['command', 'ASC']], raw: true });
+        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [['handle', 'ASC']] });
+        this.commands = await this.channel.database.sequelize.models.command.findAll({ where: { module: this.name }, order: [['command', 'ASC']] });
     }
     //#endregion
     //#region Owner

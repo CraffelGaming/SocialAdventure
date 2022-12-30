@@ -20,7 +20,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         if(channel) {
             if(request.query.childs !== "false"){
                 item = await channel.database.sequelize.models.location.findAll({order: [ [ 'name', 'ASC' ]], raw: false, include: [{
-                    model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                    model: channel.database.sequelize.models.itemCategory,
                     as: 'category',
                 }]}) as unknown as LocationItem[];
             } else {

@@ -33,5 +33,12 @@
         "delay": 0,
         "isActive": true,
         "isLiveAutoControl": false
+    },
+    {
+        "command": "raid",
+        "minutes": 40,
+        "delay": 0,
+        "isActive": false,
+        "isLiveAutoControl": true
     }
 ]

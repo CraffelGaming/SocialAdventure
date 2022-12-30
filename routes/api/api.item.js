@@ -30,7 +30,7 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             const item = await channel.database.sequelize.models.item.findAll({ order: [['value', 'ASC']], raw: false, include: [{
-                        model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                        model: channel.database.sequelize.models.itemCategory,
                         as: 'category',
                     }] });
             if (item)
@@ -57,7 +57,7 @@ router.get('/' + endpoint + '/:node/:handle', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             const item = await channel.database.sequelize.models.item.findByPk(request.params.handle, { raw: false, include: [{
-                        model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                        model: channel.database.sequelize.models.itemCategory,
                         as: 'category',
                     }] });
             if (item)

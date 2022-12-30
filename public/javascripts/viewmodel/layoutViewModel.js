@@ -65,7 +65,7 @@ $(async () => {
         for (let i = 0; i < menu.length; i++) {
             SetMenu(menu[i], items);
         }
-        console.log(items);
+
         $("#menu").dxMenu({
             adaptivityEnabled: true,
             items: items,

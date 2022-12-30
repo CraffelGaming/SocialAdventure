@@ -7,11 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Column, Table, Model, PrimaryKey } from 'sequelize-typescript';
+import { Column, Table, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-let RaidItem = class RaidItem extends Model {
+let RaidItem = class RaidItem {
     constructor() {
-        super();
         this.hitpoints = 1000;
         this.isDefeated = false;
         this.isActive = false;
@@ -97,8 +96,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], RaidItem.prototype, "isActive", void 0);
 RaidItem = __decorate([
-    Table({ tableName: "raid", modelName: "raid" }),
-    __metadata("design:paramtypes", [])
+    Table({ tableName: "raid", modelName: "raid" })
 ], RaidItem);
 export { RaidItem };
 //# sourceMappingURL=raidItem.js.map

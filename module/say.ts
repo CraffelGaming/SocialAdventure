@@ -3,7 +3,7 @@ import { Command } from "../controller/command.js";
 import { SayItem } from "../model/sayItem.js";
 import { TranslationItem } from "../model/translationItem.js";
 import { Module } from "./module.js";
-import { Model } from "sequelize";
+import { Model } from "sequelize-typescript";
 import * as fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -20,7 +20,7 @@ export class Say extends Module {
     shortcuts: string[];
 
     //#region Construct
-    constructor(translation: TranslationItem[], channel: Channel, item: Model<SayItem>){
+    constructor(translation: Model<TranslationItem>[], channel: Channel, item: Model<SayItem>){
         super(translation, channel, 'say');
         this.countMessages = 0;
         this.lastCount = new Date();
@@ -67,13 +67,14 @@ export class Say extends Module {
             }
 
             if(isExecute){
-                const allowedCommand = this.commands.find(x => x.command === command.name);
+                const allowedCommand = this.commands.find(x => x.getDataValue('command') === command.name);
 
                 if(allowedCommand){
-                    const isAllowed = !allowedCommand.isMaster && !allowedCommand.isModerator || this.isOwner(command) || allowedCommand.isModerator && this.isModerator(command);
+                    const isAllowed = !allowedCommand.getDataValue('isMaster') && !allowedCommand.getDataValue('isModerator') || this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
+                    const isAdmin = allowedCommand.getDataValue('isMaster') && this.isOwner(command) || allowedCommand.getDataValue('isModerator') && this.isModerator(command);
 
                     if(isAllowed){
-                        if(this.item.getDataValue("isActive") || isAllowed) {
+                        if(this.item.getDataValue("isActive") || isAdmin) {
                             if(command.name.length === 0) command.name = "shout";
                             command.name = command.name.replace("+", "plus");
                             command.name = command.name.replace("-", "minus");
@@ -81,7 +82,6 @@ export class Say extends Module {
                         } else {
                             global.worker.log.trace(`module loot not active`);
                         }
-
                     } else global.worker.log.warn(`not owner dedection ${this.item.getDataValue("command")} ${command.name} blocked`);
                 } else global.worker.log.warn(`hack dedection ${this.item.getDataValue("command")} ${command.name} blocked`);
             }
