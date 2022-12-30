@@ -9,6 +9,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node: NodeItem;
+        let item : RaidHeroItem[];
 
         if(request.params.node === 'default')
             node = await global.defaultNode(request, response);
@@ -17,7 +18,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.raidHero.findAll({order: [ [ 'heroName', 'ASC' ]], raw: false });
+            item = await channel.database.sequelize.models.raidHero.findAll({order: [ [ 'heroName', 'ASC' ]], raw: false }) as unknown as RaidHeroItem[];
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();
@@ -31,7 +32,7 @@ router.get('/' + endpoint + '/:node/:raidHandle/:heroName', async (request: expr
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node: NodeItem;
-
+        let item : RaidHeroItem;
         if(request.params.node === 'default')
             node = await global.defaultNode(request, response);
         else node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node) as NodeItem;
@@ -39,7 +40,7 @@ router.get('/' + endpoint + '/:node/:raidHandle/:heroName', async (request: expr
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.raidHero.findAll({ where: { raidHandle: request.params.raidHandle, heroName: request.params.heroName }, order: [ [ 'heroName', 'ASC' ]], raw: false });
+            item = await channel.database.sequelize.models.raidHero.findOne({ where: { raidHandle: request.params.raidHandle, heroName: request.params.heroName }, order: [ [ 'heroName', 'ASC' ]] }) as unknown as RaidHeroItem;
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();

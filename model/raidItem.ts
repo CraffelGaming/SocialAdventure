@@ -73,5 +73,6 @@ export class RaidItem extends Model<RaidItem>{
             global.worker.log.error(ex);
             return 500;
         }
+        return 404;
     }
 }

@@ -72,6 +72,7 @@ let RaidItem = class RaidItem extends Model {
             global.worker.log.error(ex);
             return 500;
         }
+        return 404;
     }
 };
 __decorate([

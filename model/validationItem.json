@@ -21,5 +21,10 @@
     {"page": "hero",           "handle": "workMultipler",     "min": 1,       "max": 100},
     {"page": "hero",           "handle": "strengthMultipler", "min": 1,       "max": 100},
     {"page": "hero",           "handle": "hitpointMultipler", "min": 1,       "max": 100},
-    {"page": "hero",           "handle": "amount",            "min": 1,       "max": 1000}
+    {"page": "hero",           "handle": "amount",            "min": 1,       "max": 1000},
+    {"page": "raidBoss",       "handle": "experience",        "min": 1000,    "max": 10000},
+    {"page": "raidBoss",       "handle": "gold",              "min": 1000,    "max": 10000},
+    {"page": "raidBoss",       "handle": "diamond",           "min": 10,      "max": 100},
+    {"page": "raidBoss",       "handle": "hitpoints",         "min": 1000,    "max": 5000},
+    {"page": "raidBoss",       "handle": "strength",          "min": 5,       "max": 20}
 ]

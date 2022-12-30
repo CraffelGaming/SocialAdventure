@@ -74,6 +74,14 @@
         "isActive": true
     },
     {
+        "endpoint": "raidBoss",
+        "name": "raidBoss",
+        "order": 1265,
+        "parentEndpoint": "game",
+        "nodeRequired": true,
+        "isActive": true
+    },
+    {
         "endpoint": "level",
         "name": "level",
         "order": 1270,

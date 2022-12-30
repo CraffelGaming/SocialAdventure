@@ -15,6 +15,7 @@ import taverne from "./taverne.js";
 import level from "./level.js";
 import location from "./location.js";
 import enemy from "./enemy.js";
+import raidBoss from "./raidBoss.js";
 import adventure from "./adventure.js";
 import setting from "./setting.js";
 import promotion from "./promotion.js";
@@ -50,6 +51,8 @@ router.get('/itemCategory', itemCategory);
 router.get('/location', location);
 // Enemy
 router.get('/enemy', enemy);
+// Raid Boss
+router.get('/raidBoss', raidBoss);
 // Say
 router.get('/say', say);
 // Statistic

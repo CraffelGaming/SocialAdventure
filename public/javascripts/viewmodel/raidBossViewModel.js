@@ -3,10 +3,11 @@ import { getTranslations, translate, infoPanel, tableExport, getEditing, notify,
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let module = 'location';
+    let module = 'raidBoss';
     let languageStorage = await getTranslations([module, 'itemCategory']);
     let language = languageStorage.filter(x => x.page == module);
     let languageItemCategory = languageStorage.filter(x => x.page == 'itemCategory');
+    let validation = await get(`/validation/${module}`);
     let category = await get('/itemCategory/default?childs=false');
 
     translation();
@@ -27,12 +28,10 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get('/location/default', language);
+                    return await get('/raidBoss/default', language);
                 },
                 insert: async function (values) {
-                    if(values.category != null)
-                    values.categoryHandle = values.category.handle;
-                    await fetch('./api/location/default', {
+                    await fetch('./api/raidBoss/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -53,10 +52,7 @@ $(async () => {
                     var item = values;
                     item.handle = key;
 
-                    if(item.category != null)
-                        item.categoryHandle = item.category.handle;
-
-                    await fetch('./api/location/default', {
+                    await fetch('./api/raidBoss/default', {
                         method: 'put',
                         headers: {
                             'Content-type': 'application/json'
@@ -74,7 +70,7 @@ $(async () => {
                     });
                 },
                 remove: async function (key) {
-                    await fetch('./api/location/default/' + key, {
+                    await fetch('./api/raidBoss/default/' + key, {
                         method: 'delete',
                         headers: {
                             'Content-type': 'application/json'
@@ -115,7 +111,7 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 250 },
+                { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 150 },
                 { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }],
                     cellTemplate: function(element, info) {
                         $("<div>")
@@ -126,8 +122,11 @@ $(async () => {
                             .css("white-space", "normal")
                             .css("overflow-wrap", 'break-word'); 
                 }},
-                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 120},
-                { dataField: "isActive", caption: translate(language, 'isActive'), width: 120, editorType: "dxCheckBox" },
+                { dataField: "hitpoints", width: 120 , caption: translate(language, 'hitpoints'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'hitpoints').min, max: validation.find(x => x.handle == 'hitpoints').max }},
+                { dataField: "strength", width: 120 , caption: translate(language, 'strength'), validationRules: [{ type: "required" }], width: 150, editorOptions: { min: validation.find(x => x.handle == 'strength').min, max: validation.find(x => x.handle == 'strength').max }},
+                { dataField: "gold", width: 180 , caption: translate(language, 'gold'), validationRules: [{ type: "required" }], editorOptions: { min: validation.find(x => x.handle == 'gold').min, max: validation.find(x => x.handle == 'gold').max }},
+                { dataField: "diamond", width: 180 , caption: translate(language, 'diamond'), validationRules: [{ type: "required" }], editorOptions: { min: validation.find(x => x.handle == 'diamond').min, max: validation.find(x => x.handle == 'diamond').max }},
+                { dataField: "experience", width: 180 , caption: translate(language, 'experience'), validationRules: [{ type: "required" }], editorOptions: { min: validation.find(x => x.handle == 'experience').min, max: validation.find(x => x.handle == 'experience').max }},
                 {
                     dataField: 'category.handle',
                     caption: translate(languageItemCategory , 'value'), width: 150,
@@ -146,7 +145,8 @@ $(async () => {
                             return item && item.value;
                         }
                     },
-                }
+                },
+                { dataField: "isActive", caption: translate(language, 'isActive'), width: 200, editorType: "dxCheckBox", width: 120 }
             ],
             editing: await getEditing(),
             export: {

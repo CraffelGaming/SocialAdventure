@@ -166,6 +166,67 @@ router.get("/raid/:node", raid);
 router.get("/raid/:node/:handle", raid);
 /**
  * @swagger
+ * /raid/{node}/current/active:
+ *   get:
+ *     tags:
+ *     - Raid
+ *     summary: Raid
+ *     description: Rückgabe eines Raids.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             handle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raids
+ *             raidBossHandle:
+ *               type: integer
+ *               example: 1
+ *               descrition: ID des Raid Bosses
+ *             hitpoints:
+ *               type: integer
+ *               example: 100
+ *               descrition: Verbleibende Lebenspunkte des Raid Bosses.
+ *             isDefeated:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raidboss besiegt wurde.
+ *             isActive:
+ *               type: boolean
+ *               example: false
+ *               descrition: Angabe, ob der Raid noch aktiv ist.
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/raid/:node/current/active", raid);
+/**
+ * @swagger
  * /raid/{node}:
  *   put:
  *     tags:

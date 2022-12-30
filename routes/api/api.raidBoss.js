@@ -6,13 +6,22 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node;
+        let item;
         if (request.params.node === 'default')
             node = await global.defaultNode(request, response);
         else
             node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
-            const item = await channel.database.sequelize.models.raidBoss.findAll({ order: [['name', 'ASC']], raw: false });
+            if (request.query.childs !== "false") {
+                item = await channel.database.sequelize.models.raidBoss.findAll({ order: [['name', 'ASC']], include: [{
+                            model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                            as: 'category',
+                        }] });
+            }
+            else {
+                item = await channel.database.sequelize.models.raidBoss.findAll({ order: [['name', 'ASC']] });
+            }
             if (item)
                 response.status(200).json(item);
             else
@@ -30,13 +39,22 @@ router.get('/' + endpoint + '/:node/:handle', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node;
+        let item;
         if (request.params.node === 'default')
             node = await global.defaultNode(request, response);
         else
             node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
-            const item = await channel.database.sequelize.models.raidBoss.findAll({ where: { handle: request.params.handle }, order: [['name', 'ASC']], raw: false });
+            if (request.query.childs !== "false") {
+                item = await channel.database.sequelize.models.raidBoss.findOne({ where: { handle: request.params.handle }, order: [['name', 'ASC']], raw: false, include: [{
+                            model: global.worker.globalDatabase.sequelize.models.itemCategory,
+                            as: 'category',
+                        }] });
+            }
+            else {
+                item = await channel.database.sequelize.models.raidBoss.findAll({ where: { handle: request.params.handle }, order: [['name', 'ASC']], raw: false });
+            }
             if (item)
                 response.status(200).json(item);
             else
