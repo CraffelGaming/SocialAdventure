@@ -399,7 +399,7 @@
     { "page": "loot", "handle": "healNoMoneyOther", "language": "de-DE", "translation": "$1, du hast nicht genug Geld um $4 zu heilen. Du besitzt $2 Gold und brauchst $3 Gold."},
     { "page": "loot", "handle": "shoutoutNeedTarget", "language": "de-DE", "translation": "$1, du musst einen Streamernamen angeben, der den Shoutout erhalten soll."},  
     { "page": "loot", "handle": "raidNo", "language": "de-DE", "translation": "$1, aktuell ist es ruhig und es greift kein Boss an."},
-    { "page": "loot", "handle": "raidInfo", "language": "de-DE", "translation": "$1, der Boss '$2' ( $3/$4 HP) greift den Stream an! $5 Helden formieren sich bereits zum Angriff in $6 Minuten. $7"},
+    { "page": "loot", "handle": "raidInfo", "language": "de-DE", "translation": "$1, der Boss '$2' ($3/$4 HP) greift den Stream an! $5 Helden formieren sich bereits zum Angriff in $6 Minuten. $7"},
     { "page": "loot", "handle": "raidInfoEmpty", "language": "de-DE", "translation": "$1, der Boss '$2' greift den Stream an! Stell dich mit !raid dem Boss entgegen."},
     { "page": "loot", "handle": "raidInfoJoined", "language": "de-DE", "translation": "Du nimmst beim Angriff teil."},
     { "page": "loot", "handle": "raidInfoJoin", "language": "de-DE", "translation": "Nimm jetzt mit !raid teil."},

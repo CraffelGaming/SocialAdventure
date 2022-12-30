@@ -14,6 +14,7 @@ export class Loot extends Module {
     //#region Construct
     constructor(translation, channel) {
         super(translation, channel, 'loot');
+        this.raidItem = new LootRaid(this);
     }
     //#endregion
     //#region Initialize
@@ -25,16 +26,6 @@ export class Loot extends Module {
         catch (ex) {
             global.worker.log.error(`module loot error - function InitializeLoot - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20000');
-        }
-    }
-    async InitializeRaid() {
-        try {
-            this.raidItem = new LootRaid(this);
-            await this.raidItem.initialize();
-        }
-        catch (ex) {
-            global.worker.log.error(`module loot error - function InitializeRaid - ${ex.message}`);
-            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30000');
         }
     }
     //#endregion
@@ -821,11 +812,50 @@ export class Loot extends Module {
     }
     //#endregion
     //#region Raid
+    async raidstart(command = null) {
+        try {
+            const raid = this.settings.find(x => x.getDataValue("command") === "raid");
+            if (!raid.getDataValue("isActive")) {
+                raid.setDataValue("isActive", true);
+                await raid.save();
+                global.worker.log.trace(`module ${raid.getDataValue("command")} set active: ${raid.getDataValue("isActive")}`);
+                return TranslationItem.translate(this.basicTranslation, "start");
+            }
+            else {
+                global.worker.log.trace(`module ${raid.getDataValue("command")} already started.`);
+                return TranslationItem.translate(this.basicTranslation, "alreadyStarted");
+            }
+        }
+        catch (ex) {
+            global.worker.log.error(`module loot error - function raidstart - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30000');
+        }
+    }
+    async raidstop(command = null) {
+        try {
+            const raid = this.settings.find(x => x.getDataValue("command") === "raid");
+            if (raid.getDataValue("isActive")) {
+                raid.setDataValue("isActive", false);
+                await raid.save();
+                global.worker.log.trace(`module lootstop set active: ${raid.getDataValue("isActive")}`);
+                return TranslationItem.translate(this.basicTranslation, "stop");
+            }
+            else {
+                global.worker.log.trace(`module ${raid.getDataValue("command")} already stopped.`);
+                return TranslationItem.translate(this.basicTranslation, "alreadyStopped");
+            }
+        }
+        catch (ex) {
+            global.worker.log.error(`module loot error - function raidstop - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30003');
+        }
+    }
     async raidinfo(command) {
         try {
             const hero = this.getTargetHero(command);
-            if (this.raidItem?.raid) {
-                const heroes = await this.raidItem.loadHeroes();
+            const raid = this.settings.find(x => x.getDataValue("command") === "raid");
+            if (raid.getDataValue('isActive') && this.raidItem.raid) {
+                const heroes = await this.raidItem.loadRaidHeroes();
                 if (heroes && heroes.length > 0) {
                     const current = heroes.find(x => x.getDataValue('heroName') === hero);
                     return TranslationItem.translate(this.translation, 'raidInfo')
@@ -834,7 +864,8 @@ export class Loot extends Module {
                         .replace('$3', this.raidItem.raid.getDataValue('hitpoints').toString())
                         .replace('$4', this.raidItem.boss.getDataValue('hitpoints').toString())
                         .replace('$5', heroes.length.toString())
-                        .replace('$6', current ? TranslationItem.translate(this.translation, 'raidInfoJoined') : TranslationItem.translate(this.translation, 'raidInfoJoin'));
+                        .replace('$6', this.getDateTimeoutRemainingMinutes(raid.getDataValue('lastRun'), raid.getDataValue('minutes')).toString())
+                        .replace('$7', current ? TranslationItem.translate(this.translation, 'raidInfoJoined') : TranslationItem.translate(this.translation, 'raidInfoJoin'));
                 }
                 else
                     return TranslationItem.translate(this.translation, 'raidInfoEmpty').replace('$1', hero).replace('$2', this.raidItem.boss.getDataValue('name'));
@@ -849,8 +880,9 @@ export class Loot extends Module {
     }
     async raid(command) {
         try {
-            if (this.raidItem?.raid) {
-                const raidHero = await this.raidItem.loadHero(command.source);
+            const raid = this.settings.find(x => x.getDataValue("command") === "raid");
+            if (raid.getDataValue('isActive') && this.raidItem.raid) {
+                const raidHero = await this.raidItem.loadRaidHero(command.source);
                 if (!raidHero) {
                     let hero = await this.channel.database.sequelize.models.hero.findByPk(command.source);
                     if (!hero) {
@@ -869,7 +901,7 @@ export class Loot extends Module {
                 return TranslationItem.translate(this.translation, 'raidNo').replace('$1', command.source);
         }
         catch (ex) {
-            global.worker.log.error(`module loot error - function raidinfo - ${ex.message}`);
+            global.worker.log.error(`module loot error - function raid - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30002');
         }
     }

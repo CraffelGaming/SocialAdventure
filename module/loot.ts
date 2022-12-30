@@ -830,12 +830,12 @@ export class Loot extends Module {
         try {
             const hero = this.getTargetHero(command);
             const raid = this.settings.find(x =>x.getDataValue("command") === "raid");
-            
-            if(raid.getDataValue('isActive')) {
+
+            if(raid.getDataValue('isActive') && this.raidItem.raid) {
                 const heroes = await this.raidItem.loadRaidHeroes();
                 if(heroes && heroes.length > 0){
                     const current = heroes.find(x => x.getDataValue('heroName') === hero);
-             
+
                     return TranslationItem.translate(this.translation, 'raidInfo')
                                                  .replace('$1', hero)
                                                  .replace('$2', this.raidItem.boss.getDataValue('name'))
@@ -856,7 +856,7 @@ export class Loot extends Module {
     async raid(command: Command){
         try {
             const raid = this.settings.find(x =>x.getDataValue("command") === "raid");
-            if(raid.getDataValue('isActive')) {
+            if(raid.getDataValue('isActive') && this.raidItem.raid) {
                 const raidHero = await this.raidItem.loadRaidHero(command.source);
 
                 if(!raidHero) {

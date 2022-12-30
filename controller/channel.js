@@ -168,7 +168,6 @@ export class Channel {
             this.loot = new Loot(translation, this);
             await this.loot.initialize();
             await this.loot.InitializeLoot();
-            await this.loot.InitializeRaid();
         }
         catch (ex) {
             global.worker.log.error(`channel error - function addLoot - ${ex.message}`);

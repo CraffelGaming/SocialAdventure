@@ -18,8 +18,8 @@ $(async () => {
     let validation = await get(`/validation/hero`);
     let dungeons = await get('/location/default/active', language);
     let category = await get('/itemcategory/default/', language);
-    let raid = await get('/raid/default/current/active', language);
-    let raidHero = await get('/raidHero/default/', language);
+    let raid = await get('/raid/default/current/active');
+    let raidHero = await get('/raidHero/default/');
     
     console.log(raid);
     console.log(raidHero);
@@ -61,7 +61,9 @@ $(async () => {
             },
         });
 
-        $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  1).replace('$2',  dungeons.length));
+        if(dungeons){
+            $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  1).replace('$2',  dungeons.length));
+        }
 
         $("#dataGridAdventure").dxDataGrid({
             dataSource: new DevExpress.data.CustomStore({
