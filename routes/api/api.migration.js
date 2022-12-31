@@ -4,7 +4,8 @@ const endpoint = 'migration';
 router.get('/' + endpoint + '/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}`);
-        const item = await global.worker.globalDatabase.sequelize.models.migration.findAll({ order: [['name', 'ASC']], raw: true });
+        const item = await global.worker.globalDatabase.sequelize.models.migration.findAll({ order: [['name', 'ASC']] });
+        ;
         if (item)
             response.status(200).json(item);
         else

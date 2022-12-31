@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { HeroPromotionItem } from '../../model/heroPromotionItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -8,7 +9,7 @@ const endpoint = 'heropromotion';
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-        let item : HeroPromotionItem[];
+        let item : Model<HeroPromotionItem>[];
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -19,14 +20,14 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.heroPromotion.findAll({order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroPromotion.findAll({order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.hero,
                     as: 'hero',
                 },{
                     model: channel.database.sequelize.models.promotion,
                     as: 'promotion',
-                }]}) as unknown as HeroPromotionItem[];
-            } else item = await channel.database.sequelize.models.heroPromotion.findAll({order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], raw: false }) as unknown as HeroPromotionItem[];
+                }]}) as Model<HeroPromotionItem>[];
+            } else item = await channel.database.sequelize.models.heroPromotion.findAll({order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], }) as Model<HeroPromotionItem>[];
 
             if(item) response.status(200).json(item);
             else response.status(404).json();
@@ -40,7 +41,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-        let item : HeroPromotionItem[];
+        let item : Model<HeroPromotionItem>[];
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -51,14 +52,14 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.hero,
                     as: 'hero',
                 },{
                     model: channel.database.sequelize.models.promotion,
                     as: 'promotion',
-                }]}) as unknown as HeroPromotionItem[];
-            } else item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], raw: false }) as unknown as HeroPromotionItem[];
+                }]}) as Model<HeroPromotionItem>[];
+            } else item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]]}) as Model<HeroPromotionItem>[];
 
             if(item) response.status(200).json(item);
             else response.status(404).json();

@@ -4,7 +4,7 @@ const endpoint = 'placeholder';
 router.get('/' + endpoint + '/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}`);
-        const item = await global.worker.globalDatabase.sequelize.models.placeholder.findAll({ order: [['handle', 'ASC']], raw: true });
+        const item = await global.worker.globalDatabase.sequelize.models.placeholder.findAll({ order: [['handle', 'ASC']] });
         if (item)
             response.status(200).json(item);
         else

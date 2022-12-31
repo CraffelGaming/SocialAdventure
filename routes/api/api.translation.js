@@ -5,7 +5,7 @@ const endpoint = 'translation';
 router.get('/' + endpoint + '/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}`);
-        const item = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { language: request.query.language }, order: [['handle', 'ASC']], raw: true });
+        const item = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { language: request.query.language }, order: [['handle', 'ASC']] });
         if (item)
             response.status(200).json(item);
         else
@@ -19,7 +19,8 @@ router.get('/' + endpoint + '/', async (request, response) => {
 router.get('/' + endpoint + '/:page', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, page ${request.params.page}`);
-        const item = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: request.params.page, language: request.query.language }, order: [['handle', 'ASC']], raw: true });
+        const item = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: request.params.page, language: request.query.language }, order: [['handle', 'ASC']] });
+        ;
         if (item)
             response.status(200).json(item);
         else

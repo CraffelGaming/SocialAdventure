@@ -6,7 +6,7 @@ router.get('/' + endpoint + '/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}`);
         if (global.isRegistered(request, response)) {
-            const item = await global.worker.globalDatabase.sequelize.models.stateStorage.findAll({ where: { channelName: request.session.userData.login }, raw: true });
+            const item = await global.worker.globalDatabase.sequelize.models.stateStorage.findAll({ where: { channelName: request.session.userData.login } });
             if (item)
                 response.status(200).json(item);
             else
@@ -28,7 +28,7 @@ router.get('/' + endpoint + '/:name', async (request, response) => {
             let item = await global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
             if (!item) {
                 await StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: new StateStorageItem(request.params.name, "Standard", request.session.userData.login) });
-                item = await global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login }, raw: true });
+                item = await global.worker.globalDatabase.sequelize.models.stateStorage.findOne({ where: { handle: request.params.name, channelName: request.session.userData.login } });
             }
             if (item)
                 response.status(200).json(item);

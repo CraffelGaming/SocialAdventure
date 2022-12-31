@@ -1,7 +1,7 @@
 import express from 'express';
 import { NodeItem } from '../../model/nodeItem.js';
 import { LootItem } from '../../model/lootItem.js';
-import { Model } from 'sequelize';
+import { Model } from 'sequelize-typescript';
 
 const router = express.Router();
 const endpoint = 'loot';
@@ -18,7 +18,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.loot.findAll({order: [ [ 'command', 'ASC' ]], raw: true});
+            const item = await channel.database.sequelize.models.loot.findAll({order: [ [ 'command', 'ASC' ]]}) as Model<LootItem>[];
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();

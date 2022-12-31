@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { HeroInventoryItem } from '../../model/heroInventoryItem.js';
 import { ItemCategoryItem } from '../../model/itemCategoryItem.js';
 import { ItemItem } from '../../model/itemItem.js';
@@ -10,16 +11,16 @@ const endpoint = 'itemcategory';
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}`);
-        let item : ItemCategoryItem[];
+        let item : Model<ItemCategoryItem>[];
 
         if(request.query.childs !== "false"){
-            item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [ [ 'value', 'ASC' ]], raw: false, include: [{
+            item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [ [ 'value', 'ASC' ]], include: [{
                 model: global.worker.globalDatabase.sequelize.models.item,
                 as: 'items',
-            }]}) as unknown as ItemCategoryItem[];
-        } else item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [ [ 'value', 'ASC' ]], raw: false }) as unknown as ItemCategoryItem[];
+            }]}) as Model<ItemCategoryItem>[];
+        } else item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [ [ 'value', 'ASC' ]]}) as Model<ItemCategoryItem>[];
 
-        if(item) response.status(200).json(item.filter(x => x.items?.length > 0));
+        if(item) response.status(200).json(item.filter(x => x.getDataValue('items')?.length > 0));
         else response.status(404).json();
     } catch(ex){
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
@@ -30,7 +31,7 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-        let item : ItemCategoryItem[];
+        let item : Model<ItemCategoryItem>[];
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -41,11 +42,11 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.itemCategory.findAll({order: [ [ 'value', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.itemCategory.findAll({order: [ [ 'value', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.item,
                     as: 'items',
-                }]}) as unknown as ItemCategoryItem[];
-            } else item = await channel.database.sequelize.models.itemCategory.findAll({order: [ [ 'value', 'ASC' ]], raw: false }) as unknown as ItemCategoryItem[];
+                }]}) as Model<ItemCategoryItem>[];
+            } else item = await channel.database.sequelize.models.itemCategory.findAll({order: [ [ 'value', 'ASC' ]]}) as Model<ItemCategoryItem>[];
 
             if(item) response.status(200).json(item);
             else response.status(404).json();

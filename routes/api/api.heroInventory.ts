@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { HeroInventoryItem } from '../../model/heroInventoryItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -8,7 +9,7 @@ const endpoint = 'heroinventory';
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-        let item : HeroInventoryItem[];
+        let item : Model<HeroInventoryItem>[];
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -19,14 +20,14 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.heroInventory.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroInventory.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.hero,
                     as: 'hero',
                 },{
                     model: channel.database.sequelize.models.item,
                     as: 'item',
-                }]}) as unknown as HeroInventoryItem[];
-            } else item = await channel.database.sequelize.models.heroInventory.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false }) as unknown as HeroInventoryItem[];
+                }]}) as Model<HeroInventoryItem>[];
+            } else item = await channel.database.sequelize.models.heroInventory.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]]}) as Model<HeroInventoryItem>[];
 
             if(item) response.status(200).json(item);
             else response.status(404).json();
@@ -40,7 +41,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-        let item : HeroInventoryItem[];
+        let item : Model<HeroInventoryItem>[];
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -51,11 +52,11 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.heroInventory.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroInventory.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.item,
                     as: 'item',
-                }]})as unknown as HeroInventoryItem[];
-            } else item = await channel.database.sequelize.models.heroInventory.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false }) as unknown as HeroInventoryItem[];
+                }]}) as Model<HeroInventoryItem>[];
+            } else item = await channel.database.sequelize.models.heroInventory.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]]}) as Model<HeroInventoryItem>[];
 
             if(item) response.status(200).json(item);
             else response.status(404).json();

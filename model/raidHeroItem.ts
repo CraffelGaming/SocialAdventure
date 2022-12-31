@@ -14,7 +14,7 @@ export class RaidHeroItem{
     @Column
     isRewarded: boolean = false;
     @Column
-    isActive: boolean = false;
+    isActive: boolean = true;
 
     constructor({ raidHandle, heroName}: { raidHandle: number, heroName: string}){
         this.raidHandle = raidHandle;

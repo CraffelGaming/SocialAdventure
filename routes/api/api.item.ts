@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { HeroInventoryItem } from '../../model/heroInventoryItem.js';
 import { ItemItem } from '../../model/itemItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
@@ -9,10 +10,10 @@ const endpoint = 'item';
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}`);
-        const item = await global.worker.globalDatabase.sequelize.models.item.findAll({ order: [ [ 'value', 'ASC' ]], raw: false, include: [{
+        const item = await global.worker.globalDatabase.sequelize.models.item.findAll({ order: [ [ 'value', 'ASC' ]], include: [{
             model: global.worker.globalDatabase.sequelize.models.itemCategory,
             as: 'category',
-        }]}) as unknown as ItemItem[];
+        }]}) as Model<ItemItem>[];
 
         if(item) response.status(200).json(item);
         else response.status(404).json();
@@ -34,10 +35,10 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.item.findAll({order: [ [ 'value', 'ASC' ]], raw: false, include: [{
+            const item = await channel.database.sequelize.models.item.findAll({order: [ [ 'value', 'ASC' ]], include: [{
                 model: channel.database.sequelize.models.itemCategory,
                 as: 'category',
-            }]});
+            }]}) as Model<ItemItem>[];
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();
@@ -59,10 +60,10 @@ router.get('/' + endpoint + '/:node/:handle', async (request: express.Request, r
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.item.findByPk(request.params.handle, {raw: false, include: [{
+            const item = await channel.database.sequelize.models.item.findByPk(request.params.handle, {include: [{
                 model: channel.database.sequelize.models.itemCategory,
                 as: 'category',
-            }]});
+            }]}) as Model<ItemItem>;
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();

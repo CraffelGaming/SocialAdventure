@@ -13,7 +13,7 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.heroPromotion.findAll({ order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroPromotion.findAll({ order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
                         }, {
@@ -22,7 +22,7 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
                         }] });
             }
             else
-                item = await channel.database.sequelize.models.heroPromotion.findAll({ order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], raw: false });
+                item = await channel.database.sequelize.models.heroPromotion.findAll({ order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], });
             if (item)
                 response.status(200).json(item);
             else
@@ -48,7 +48,7 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.heroPromotion.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroPromotion.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
                         }, {
@@ -57,7 +57,7 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
                         }] });
             }
             else
-                item = await channel.database.sequelize.models.heroPromotion.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], raw: false });
+                item = await channel.database.sequelize.models.heroPromotion.findAll({ where: { heroName: request.params.name }, order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']] });
             if (item)
                 response.status(200).json(item);
             else

@@ -7,15 +7,15 @@ router.get('/' + endpoint + '/', async (request, response) => {
         global.worker.log.trace(`get ${endpoint}`);
         let item;
         if (request.query.childs !== "false") {
-            item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
+            item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], include: [{
                         model: global.worker.globalDatabase.sequelize.models.item,
                         as: 'items',
                     }] });
         }
         else
-            item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false });
+            item = await global.worker.globalDatabase.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']] });
         if (item)
-            response.status(200).json(item.filter(x => x.items?.length > 0));
+            response.status(200).json(item.filter(x => x.getDataValue('items')?.length > 0));
         else
             response.status(404).json();
     }
@@ -36,13 +36,13 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], include: [{
                             model: channel.database.sequelize.models.item,
                             as: 'items',
                         }] });
             }
             else
-                item = await channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']], raw: false });
+                item = await channel.database.sequelize.models.itemCategory.findAll({ order: [['value', 'ASC']] });
             if (item)
                 response.status(200).json(item);
             else

@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { HeroTraitItem } from '../../model/heroTraitItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -8,7 +9,7 @@ const endpoint = 'herotrait';
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
-        let item : HeroTraitItem[];
+        let item : Model<HeroTraitItem>[];
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -19,11 +20,11 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.heroTrait.findAll({order: [ [ 'heroName', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroTrait.findAll({order: [ [ 'heroName', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.hero,
                     as: 'hero',
-                }]})as unknown as HeroTraitItem[];
-            } else item = await channel.database.sequelize.models.heroTrait.findAll({order: [ [ 'heroName', 'ASC' ]], raw: false}) as unknown as HeroTraitItem[];
+                }]}) as Model<HeroTraitItem>[];
+            } else item = await channel.database.sequelize.models.heroTrait.findAll({order: [ [ 'heroName', 'ASC' ]]}) as Model<HeroTraitItem>[];
 
             if(item) response.status(200).json(item);
             else response.status(404).json();
@@ -37,7 +38,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-        let item : HeroTraitItem[];
+        let item : Model<HeroTraitItem>;
         let node: NodeItem;
 
         if(request.params.node === 'default')
@@ -48,11 +49,11 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.heroTrait.findOne({where: { heroName: request.params.name }, raw: false, include: [{
+                item = await channel.database.sequelize.models.heroTrait.findOne({where: { heroName: request.params.name }, include: [{
                     model: channel.database.sequelize.models.hero,
                     as: 'hero',
-                }]}) as unknown as HeroTraitItem[];
-            } else item = await channel.database.sequelize.models.heroTrait.findOne({where: { heroName: request.params.name }, raw: false}) as unknown as HeroTraitItem[];
+                }]}) as Model<HeroTraitItem>;
+            } else item = await channel.database.sequelize.models.heroTrait.findOne({where: { heroName: request.params.name }, raw: false}) as Model<HeroTraitItem>;
 
             if(item) response.status(200).json(item);
             else response.status(404).json();

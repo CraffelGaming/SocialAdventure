@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { EnemyItem } from '../../model/enemyItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -17,7 +18,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.enemy.findAll({order: [ [ 'name', 'ASC' ]], raw: false });
+            const item = await channel.database.sequelize.models.enemy.findAll({order: [ [ 'name', 'ASC' ]] }) as Model<EnemyItem>[];
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();

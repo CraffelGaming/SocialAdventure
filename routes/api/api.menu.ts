@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { MenuItem } from '../../model/menuItem.js';
 
 const router = express.Router();
@@ -7,20 +8,20 @@ const endpoint = 'menu';
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}`);
-        let item : MenuItem[];
+        let item : Model<MenuItem>[];
 
         if(request.query.childs !== "false"){
-            item = await global.worker.globalDatabase.sequelize.models.menu.findAll({ where: {isActive: true }, order: [ [ 'order', 'ASC' ]], raw: false, include: [{
+            item = await global.worker.globalDatabase.sequelize.models.menu.findAll({ where: {isActive: true }, order: [ [ 'order', 'ASC' ]], include: [{
                 model: global.worker.globalDatabase.sequelize.models.menu,
                 as: 'childs',
             }, {
                 model: global.worker.globalDatabase.sequelize.models.menu,
                 as: 'parent',
-            }]}) as unknown as MenuItem[];
-        } else item = await global.worker.globalDatabase.sequelize.models.menu.findAll({ where: {isActive: true }, order: [ [ 'order', 'ASC' ]], raw: false }) as unknown as MenuItem[];
+            }]}) as Model<MenuItem>[];
+        } else item = await global.worker.globalDatabase.sequelize.models.menu.findAll({ where: {isActive: true }, order: [ [ 'order', 'ASC' ]] }) as Model<MenuItem>[];
 
         if(!global.isRegistered(request, response)) {
-            item = item.filter(x => x.authenticationRequired === false)
+            item = item.filter(x => x.getDataValue('authenticationRequired') === false)
         }
 
         // if(!request.session.node) {

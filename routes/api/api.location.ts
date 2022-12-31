@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { LocationItem } from '../../model/locationItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -9,7 +10,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node: NodeItem;
-        let item : LocationItem[];
+        let item : Model<LocationItem>[];
 
         if(request.params.node === 'default')
             node = await global.defaultNode(request, response);
@@ -19,12 +20,12 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.location.findAll({order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.location.findAll({order: [ [ 'name', 'ASC' ]], include: [{
                     model: channel.database.sequelize.models.itemCategory,
                     as: 'category',
-                }]}) as unknown as LocationItem[];
+                }]}) as Model<LocationItem>[];
             } else {
-                item = await channel.database.sequelize.models.location.findAll({order: [ [ 'name', 'ASC' ]], raw: false }) as unknown as LocationItem[];
+                item = await channel.database.sequelize.models.location.findAll({order: [ [ 'name', 'ASC' ]]}) as Model<LocationItem>[];
             }
 
             if(item) response.status(200).json(item);
@@ -40,7 +41,7 @@ router.get('/' + endpoint + '/:node/active', async (request: express.Request, re
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node: NodeItem;
-        let item : LocationItem[];
+        let item : Model<LocationItem>[];
 
         if(request.params.node === 'default')
             node = await global.defaultNode(request, response);
@@ -50,12 +51,12 @@ router.get('/' + endpoint + '/:node/active', async (request: express.Request, re
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.location.findAll({where: { isActive: true}, order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.location.findAll({where: { isActive: true}, order: [ [ 'name', 'ASC' ]], include: [{
                     model: global.worker.globalDatabase.sequelize.models.itemCategory,
                     as: 'category',
-                }]}) as unknown as LocationItem[];
+                }]}) as Model<LocationItem>[];
             } else {
-                item = await channel.database.sequelize.models.location.findAll({where: { isActive: true}, order: [ [ 'name', 'ASC' ]], raw: false }) as unknown as LocationItem[];
+                item = await channel.database.sequelize.models.location.findAll({where: { isActive: true}, order: [ [ 'name', 'ASC' ]]}) as Model<LocationItem>[];
             }
 
             if(item) response.status(200).json(item);

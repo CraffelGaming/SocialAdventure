@@ -245,6 +245,7 @@
     { "page": "hero", "handle": "lastJoin", "language": "de-DE", "translation": "Letztes Abenteuer"},
     { "page": "hero", "handle": "startIndex", "language": "de-DE", "translation": "Startnummer"},
     { "page": "hero", "handle": "experience", "language": "de-DE", "translation": "Erfahrungspunkte"},
+    { "page": "hero", "handle": "hitpoints", "language": "de-DE", "translation": "Lebenspunkte"},
     { "page": "hero", "handle": "isActive", "language": "de-DE", "translation": "Abenteuer aktiv?"},
     { "page": "hero", "handle": "quantity", "language": "de-DE", "translation": "Menge"},
     { "page": "hero", "handle": "quantitySell", "language": "de-DE", "translation": "Verkaufsmenge"},
@@ -450,7 +451,8 @@
     { "page": "adventure", "handle": "item", "language": "de-DE", "translation": "Gefundener Gegenstand"},
     { "page": "adventure", "handle": "trait", "language": "de-DE", "translation": "Eigenschaften des Besitzers"},
     { "page": "adventure", "handle": "informationDungeon", "language": "de-DE", "translation": "Dungeon $1 von $2: Swipe nach links oder rechts um alle Dungeons zu sehen."},  
-    
+    { "page": "adventure", "handle": "inactive", "language": "de-DE", "translation": "Aktuell läuft kein Abenteuer"},
+
     { "page": "setting", "handle": "title", "language": "de-DE", "translation": "Einstellungen"},    
     { "page": "setting", "handle": "command", "language": "de-DE", "translation": "Abenteuer Funktionen"},
     { "page": "setting", "handle": "minutes", "language": "de-DE", "translation": "Timeout"},
@@ -499,6 +501,7 @@
     { "page": "raid", "handle": "hitpoints", "language": "de-DE", "translation": "Verbleibende Lebenspunkte"},
     { "page": "raid", "handle": "isDefeated", "language": "de-DE", "translation": "Besiegt?"},
     { "page": "raid", "handle": "isActive", "language": "de-DE", "translation": "Aktiv"},
+    { "page": "raid", "handle": "inactive", "language": "de-DE", "translation": "Aktuell greift kein Raidboss an."},
     { "page": "raid", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "raid", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
     { "page": "raid", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},

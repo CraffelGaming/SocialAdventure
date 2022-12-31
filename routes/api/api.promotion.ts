@@ -1,6 +1,7 @@
 import express from 'express';
 import { PromotionItem } from '../../model/promotionItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
+import { Model } from 'sequelize-typescript';
 
 const router = express.Router();
 const endpoint = 'promotion';
@@ -17,7 +18,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.promotion.findAll({order: [ [ 'handle', 'ASC' ]], raw: false });
+            const item = await channel.database.sequelize.models.promotion.findAll({order: [ [ 'handle', 'ASC' ]]}) as Model<PromotionItem>[];
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();

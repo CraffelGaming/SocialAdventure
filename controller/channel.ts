@@ -203,6 +203,7 @@ export class Channel {
             if(this.loot.settings.find(x =>x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")){
                 await this.loot.lootclear();
                 await this.loot.lootstop();
+                await this.loot.raidstop();
             }
         } catch(ex) {
             global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);
@@ -213,6 +214,7 @@ export class Channel {
         try {
             if(this.loot.settings.find(x =>x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")){
                 await this.loot.lootstart();
+                await this.loot.raidstart();
             }
         } catch(ex) {
             global.worker.log.error(`channel error - function startLoot - ${ex.message}`);

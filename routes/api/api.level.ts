@@ -1,5 +1,7 @@
 import express from 'express';
 import { Op } from 'sequelize';
+import { Model } from 'sequelize-typescript';
+import { LevelItem } from '../../model/levelItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
 const router = express.Router();
@@ -17,7 +19,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.level.findAll({order: [ [ 'handle', 'ASC' ]], raw: true});
+            const item = await channel.database.sequelize.models.level.findAll({order: [ [ 'handle', 'ASC' ]]}) as Model<LevelItem>[];
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();
@@ -42,7 +44,7 @@ router.get('/' + endpoint + '/:node/:experience', async (request: express.Reques
             const item = await channel.database.sequelize.models.level.findOne({
                 where: { experienceMin :{[Op.lte]: request.params.experience },
                 experienceMax :{[Op.gte]: request.params.experience }
-            }});
+            }}) as Model<LevelItem>;;
 
             if(item) response.status(200).json(item);
             else response.status(404).json();

@@ -1,6 +1,7 @@
 import express from 'express';
 import { RaidBossItem } from '../../model/raidBossItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
+import { Model } from 'sequelize-typescript';
 
 const router = express.Router();
 const endpoint = 'raidboss';
@@ -9,7 +10,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node: NodeItem;
-        let item : RaidBossItem[];
+        let item : Model<RaidBossItem>[];
 
         if(request.params.node === 'default')
             node = await global.defaultNode(request, response);
@@ -22,9 +23,9 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
                 item = await channel.database.sequelize.models.raidBoss.findAll({order: [ [ 'name', 'ASC' ]], include: [{
                     model: global.worker.globalDatabase.sequelize.models.itemCategory,
                     as: 'category',
-                }]}) as unknown as RaidBossItem[];
+                }]}) as Model<RaidBossItem>[];
             } else {
-                item = await channel.database.sequelize.models.raidBoss.findAll({order: [ [ 'name', 'ASC' ]] }) as unknown as RaidBossItem[];
+                item = await channel.database.sequelize.models.raidBoss.findAll({order: [ [ 'name', 'ASC' ]] }) as Model<RaidBossItem>[];
             }
             if(item) response.status(200).json(item);
             else response.status(404).json();
@@ -39,7 +40,7 @@ router.get('/' + endpoint + '/:node/:handle', async (request: express.Request, r
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);
         let node: NodeItem;
-        let item : RaidBossItem;
+        let item : Model<RaidBossItem>;
 
         if(request.params.node === 'default')
             node = await global.defaultNode(request, response);
@@ -49,12 +50,12 @@ router.get('/' + endpoint + '/:node/:handle', async (request: express.Request, r
 
         if(channel) {
             if(request.query.childs !== "false"){
-                item = await channel.database.sequelize.models.raidBoss.findOne({where: { handle: request.params.handle}, order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+                item = await channel.database.sequelize.models.raidBoss.findOne({where: { handle: request.params.handle}, order: [ [ 'name', 'ASC' ]], include: [{
                     model: global.worker.globalDatabase.sequelize.models.itemCategory,
                     as: 'category',
-                }]}) as unknown as RaidBossItem;
+                }]}) as Model<RaidBossItem>;
             } else {
-                item = await channel.database.sequelize.models.raidBoss.findAll({where: { handle: request.params.handle}, order: [ [ 'name', 'ASC' ]], raw: false }) as unknown as RaidBossItem;
+                item = await channel.database.sequelize.models.raidBoss.findOne({where: { handle: request.params.handle}, order: [ [ 'name', 'ASC' ]]}) as Model<RaidBossItem>;
             }
             if(item) response.status(200).json(item);
             else response.status(404).json();

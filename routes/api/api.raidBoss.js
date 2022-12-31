@@ -47,13 +47,13 @@ router.get('/' + endpoint + '/:node/:handle', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.raidBoss.findOne({ where: { handle: request.params.handle }, order: [['name', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.raidBoss.findOne({ where: { handle: request.params.handle }, order: [['name', 'ASC']], include: [{
                             model: global.worker.globalDatabase.sequelize.models.itemCategory,
                             as: 'category',
                         }] });
             }
             else {
-                item = await channel.database.sequelize.models.raidBoss.findAll({ where: { handle: request.params.handle }, order: [['name', 'ASC']], raw: false });
+                item = await channel.database.sequelize.models.raidBoss.findOne({ where: { handle: request.params.handle }, order: [['name', 'ASC']] });
             }
             if (item)
                 response.status(200).json(item);

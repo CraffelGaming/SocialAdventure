@@ -13,13 +13,13 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.heroWallet.findAll({ order: [['heroName', 'ASC']], raw: false, include: [{
+                item = await channel.database.sequelize.models.heroWallet.findAll({ order: [['heroName', 'ASC']], include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
                         }] });
             }
             else
-                item = await channel.database.sequelize.models.heroWallet.findAll({ order: [['heroName', 'ASC']], raw: false });
+                item = await channel.database.sequelize.models.heroWallet.findAll({ order: [['heroName', 'ASC']] });
             if (item)
                 response.status(200).json(item);
             else
@@ -45,13 +45,13 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.heroWallet.findOne({ where: { heroName: request.params.name }, raw: false, include: [{
+                item = await channel.database.sequelize.models.heroWallet.findOne({ where: { heroName: request.params.name }, include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
                         }] });
             }
             else
-                item = await channel.database.sequelize.models.heroWallet.findOne({ where: { heroName: request.params.name }, raw: false });
+                item = await channel.database.sequelize.models.heroWallet.findOne({ where: { heroName: request.params.name } });
             if (item)
                 response.status(200).json(item);
             else

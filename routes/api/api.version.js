@@ -4,7 +4,7 @@ const endpoint = 'version';
 router.get('/' + endpoint + '/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}`);
-        const item = await global.worker.globalDatabase.sequelize.models.version.findOne({ order: [['version', 'DESC']], raw: true });
+        const item = await global.worker.globalDatabase.sequelize.models.version.findOne({ order: [['version', 'DESC']] });
         if (item)
             response.status(200).json(item);
         else

@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { CommandItem } from '../../model/commandItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -17,14 +18,14 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            let item = await channel.database.sequelize.models.command.findAll({order: [ [ 'module', 'ASC' ], [ 'command', 'ASC' ]], raw: false }) as unknown as CommandItem[];
+            let item = await channel.database.sequelize.models.command.findAll({order: [ [ 'module', 'ASC' ], [ 'command', 'ASC' ]] }) as Model<CommandItem>[];
 
             if(!global.isMaster(request, response)) {
-                item = item.filter(x => x.isMaster === false)
+                item = item.filter(x => x.getDataValue('isMaster') === false)
             }
 
             if(request.query.counter !== "1") {
-                item = item.filter(x => x.isCounter === false)
+                item = item.filter(x => x.getDataValue('isCounter') === false)
             }
 
             if(item) response.status(200).json(item);
@@ -49,14 +50,14 @@ router.get('/' + endpoint + '/:node/:module', async (request: express.Request, r
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            let item = await channel.database.sequelize.models.command.findAll({where: { module: request.params.module}, order: [ [ 'module', 'ASC' ], [ 'command', 'ASC' ]], raw: false }) as unknown as CommandItem[];
+            let item = await channel.database.sequelize.models.command.findAll({where: { module: request.params.module}, order: [ [ 'module', 'ASC' ], [ 'command', 'ASC' ]] }) as Model<CommandItem>[];
 
             if(!global.isMaster(request, response, node)) {
-                item = item.filter(x => x.isMaster === false)
+                item = item.filter(x => x.getDataValue('isMaster') === false)
             }
 
             if(request.query.counter !== "1") {
-                item = item.filter(x => x.isCounter === false)
+                item = item.filter(x => x.getDataValue('isCounter') === false)
             }
 
             if(item) response.status(200).json(item);

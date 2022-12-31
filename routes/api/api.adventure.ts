@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { AdventureItem } from '../../model/adventureItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -17,13 +18,14 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.adventure.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false, include: [{
+            const item = await channel.database.sequelize.models.adventure.findAll({order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], include: [{
                 model: channel.database.sequelize.models.hero,
                 as: 'hero',
             }, {
                 model: channel.database.sequelize.models.item,
                 as: 'item',
-            }] });
+            }] }) as Model<AdventureItem>[];
+
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();
@@ -45,13 +47,13 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name)
 
         if(channel) {
-            const item = await channel.database.sequelize.models.adventure.findAll({where: {heroName: request.params.name}, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], raw: false, include: [{
+            const item = await channel.database.sequelize.models.adventure.findAll({where: {heroName: request.params.name}, order: [ [ 'heroName', 'ASC' ], [ 'itemHandle', 'ASC' ]], include: [{
                 model: channel.database.sequelize.models.hero,
                 as: 'hero',
             }, {
                 model: channel.database.sequelize.models.item,
                 as: 'item',
-            }] });
+            }] }) as Model<AdventureItem>[];;
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else response.status(404).json();

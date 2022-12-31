@@ -18,7 +18,7 @@ router.get('/' + endpoint + '/', async (request, response) => {
 router.get('/' + endpoint + '/:page', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, page ${request.params.page}`);
-        const item = await global.worker.globalDatabase.sequelize.models.validation.findAll({ where: { page: request.params.page }, raw: true });
+        const item = await global.worker.globalDatabase.sequelize.models.validation.findAll({ where: { page: request.params.page } });
         if (item)
             response.status(200).json(item);
         else

@@ -901,7 +901,7 @@ export class Loot extends Module {
                 return TranslationItem.translate(this.translation, 'raidNo').replace('$1', command.source);
         }
         catch (ex) {
-            global.worker.log.error(`module loot error - function raid - ${ex.message}`);
+            global.worker.log.error(`module loot error - function raidinfo - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-30002');
         }
     }

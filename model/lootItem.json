@@ -39,6 +39,6 @@
         "minutes": 40,
         "delay": 0,
         "isActive": false,
-        "isLiveAutoControl": true
+        "isLiveAutoControl": false
     }
 ]

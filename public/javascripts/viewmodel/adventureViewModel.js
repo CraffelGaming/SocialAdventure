@@ -12,18 +12,10 @@ $(async () => {
     let languageLocation = languageStorage.filter(x => x.page == 'location');
     let languageRaid = languageStorage.filter(x => x.page == 'raid');
     let languageRaidHero = languageStorage.filter(x => x.page == 'raidHero');
-    let languageRaidBoss = languageStorage.filter(x => x.page == 'raidBoss');
     let languageHero = languageStorage.filter(x => x.page == 'hero');
 
-    let validation = await get(`/validation/hero`);
-    let dungeons = await get('/location/default/active', language);
-    let category = await get('/itemcategory/default/', language);
-    let raid = await get('/raid/default/current/active');
-    let raidHero = await get('/raidHero/default/');
+    let settings = await get('/loot/default/');
     
-    console.log(raid);
-    console.log(raidHero);
-
     translation();
     initialize();
     await loadAdventure();
@@ -36,99 +28,109 @@ $(async () => {
     }
     //#endregion
 
-    //#region Load
-    async function loadAdventure() {       
-        $('#multiview-container').dxMultiView({
-            height: 250,
-            dataSource: dungeons,
-            selectedIndex: 0,
-            loop: true,
-            animationEnabled: true,
-            itemTemplate: function(itemData, itemIndex, itemElement) {
-                var container = $("<div style='margin:25px;'>");
-                container.append("<h4>" + itemData.name + "</h4>");
-                var info = $("<div style='text-align:left;'>");
+    //#region Adventure
+    async function loadAdventure() {    
+        if(settings.find(x =>x.command === "loot")?.isActive) {
+            document.getElementById("informationDungeon").textContent = translate(language, 'informationDungeon');
 
-                info.append(itemData.description + "</b></p>");
-                info.append("<p>" + translate(languageLocation, 'difficulty') + ": <b>" + itemData.difficulty + "</b></p>");
-                info.append("<p>" + translate(languageItemCategory, 'value') + ": <b>"+ category.find(x => x.handle == itemData.categoryHandle).value + "</b></p>");
-
-                container.append(info);
-                itemElement.append(container);
-            },
-            onSelectionChanged(e) {
-                $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  e.component.option('selectedIndex') + 1).replace('$2',  dungeons.length));
-            },
-        });
-
-        if(dungeons){
-            $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  1).replace('$2',  dungeons.length));
-        }
-
-        $("#dataGridAdventure").dxDataGrid({
-            dataSource: new DevExpress.data.CustomStore({
-                key: ["itemHandle", "heroName"],
-                loadMode: "raw",
-                load: async function (loadOptions) {
-                    return await get('/adventure/default', language);
+            let validation = await get(`/validation/hero`);
+            let category = await get('/itemcategory/default/', language);
+            let dungeons = await get('/location/default/active', language);
+            
+            $('#multiview-container').dxMultiView({
+                height: 250,
+                dataSource: dungeons,
+                selectedIndex: 0,
+                loop: true,
+                animationEnabled: true,
+                itemTemplate: function(itemData, itemIndex, itemElement) {
+                    var container = $("<div style='margin:25px;'>");
+                    container.append("<h4>" + itemData.name + "</h4>");
+                    var info = $("<div style='text-align:left;'>");
+    
+                    info.append(itemData.description + "</b></p>");
+                    info.append("<p>" + translate(languageLocation, 'difficulty') + ": <b>" + itemData.difficulty + "</b></p>");
+                    info.append("<p>" + translate(languageItemCategory, 'value') + ": <b>"+ category.find(x => x.handle == itemData.categoryHandle).value + "</b></p>");
+    
+                    container.append(info);
+                    itemElement.append(container);
                 },
-            }),
-            masterDetail: {
-                enabled: true,
-                template: masterDetailTemplate
-            },
-            columns: [
-                { dataField: "item.value", caption: translate(language, 'item'), validationRules: [{ type: "required" }]},
-                {
-                    dataField: 'item.categoryHandle',
-                    caption: translate(languageItemCategory , 'value'), width: 200,
-                    lookup: {
-                      dataSource(options) {
-                        return {
-                          store: {  
-                              type: 'array',  
-                              data: category,  
-                              key: "handle"  
-                            }
-                        };
-                      },
-                      valueExpr: 'handle',
-                      displayExpr: function(item) {
-                          return item && item.value;
-                      }
-                    },
+                onSelectionChanged(e) {
+                    $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  e.component.option('selectedIndex') + 1).replace('$2',  dungeons.length));
                 },
-                { dataField: "item.gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 100 },
-                { dataField: "hero.name", caption: translate(language, 'owner'), validationRules: [{ type: "required" }]}
-            ],
-            export: {
-                enabled: true,
-                formats: ['xlsx', 'pdf']
-            },
-            onExporting(e) {
-                tableExport(e, translate(language, 'title'))
-            },
-            stateStoring: {
-                enabled: true,
-                type: "custom",
-                customLoad: async function () {
-                    var state = (await get(`/stateStorage/${module}`))?.storage;
-                    if (state)
-                        return JSON.parse(state);
-                    return null;
-                },
-                customSave: async function (state) {
-                    await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
-                }
-            },
-            toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridAdventure').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridAdventure').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+            });
+    
+            if(dungeons){
+                $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  1).replace('$2',  dungeons.length));
             }
-        });
+    
+            $("#dataGridAdventure").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["itemHandle", "heroName"],
+                    loadMode: "raw",
+                    load: async function (loadOptions) {
+                        return await get('/adventure/default', language);
+                    },
+                }),
+                masterDetail: {
+                    enabled: true,
+                    template: masterDetailTemplate
+                },
+                columns: [
+                    { dataField: "item.value", caption: translate(language, 'item'), validationRules: [{ type: "required" }]},
+                    {
+                        dataField: 'item.categoryHandle',
+                        caption: translate(languageItemCategory , 'value'), width: 200,
+                        lookup: {
+                          dataSource(options) {
+                            return {
+                              store: {  
+                                  type: 'array',  
+                                  data: category,  
+                                  key: "handle"  
+                                }
+                            };
+                          },
+                          valueExpr: 'handle',
+                          displayExpr: function(item) {
+                              return item && item.value;
+                          }
+                        },
+                    },
+                    { dataField: "item.gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 100 },
+                    { dataField: "hero.name", caption: translate(language, 'owner'), validationRules: [{ type: "required" }]}
+                ],
+                export: {
+                    enabled: true,
+                    formats: ['xlsx', 'pdf']
+                },
+                onExporting(e) {
+                    tableExport(e, translate(language, 'title'))
+                },
+                stateStoring: {
+                    enabled: true,
+                    type: "custom",
+                    customLoad: async function () {
+                        var state = (await get(`/stateStorage/${module}`))?.storage;
+                        if (state)
+                            return JSON.parse(state);
+                        return null;
+                    },
+                    customSave: async function (state) {
+                        await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                    }
+                },
+                toolbar: {
+                    items: ["groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridAdventure').dxDataGrid('instance').refresh(); }}
+                    }, { 
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridAdventure').dxDataGrid('instance').state(null); }}
+                        }, "searchPanel", "exportButton"]
+                }
+            });
+        } else {
+            document.getElementById("adventureInactive").textContent = translate(language, 'inactive');
+        } 
     }
 
     function masterDetailTemplate(_, masterDetailOptions) {
@@ -182,48 +184,68 @@ $(async () => {
     //#endregion
   
     //#region Raid
-    async function loadRaid() {       
-        $("#dataGridRaid").dxDataGrid({
-            dataSource: new DevExpress.data.CustomStore({
-                key: ["raidHandle", "heroName"],
-                loadMode: "raw",
-                load: async function (loadOptions) {
-                    return await get('/raidHero/default', language);
+    async function loadRaid() {    
+        let raid = await get('/raid/default/current/active');
+        console.log(raid);
+        if(settings.find(x =>x.command === "raid")?.isActive && raid?.raidBoss) {
+            document.getElementById("raidBossName").textContent = raid.raidBoss.name;
+            document.getElementById("raidBossDescription").textContent = raid.raidBoss.description;
+
+            $(function() {
+                $("#raidBossHitpoints").dxProgressBar({
+                    min: 0,
+                    max: raid.raidBoss.hitpoints,
+                    value: raid.hitpoints,
+                    statusFormat(ratio) {
+                      return `${raid.hitpoints}/${raid.raidBoss.hitpoints}`;
+                    }
+                });
+            });
+
+            $("#dataGridRaid").dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["raidHandle", "heroName"],
+                    loadMode: "raw",
+                    load: async function (loadOptions) {
+                        return raid.raidHeroes;
+                    },
+                }),
+                columns: [
+                    { dataField: "heroName", caption: translate(languageHero, 'name'), validationRules: [{ type: "required" }]},
+                    { dataField: "damage", caption: translate(languageRaidHero, 'damage'), validationRules: [{ type: "required" }], width: 200 },
+                    { dataField: "isRewarded", caption: translate(languageRaidHero, 'isRewarded'), validationRules: [{ type: "required" }], width: 200}
+                ],
+                export: {
+                    enabled: true,
+                    formats: ['xlsx', 'pdf']
                 },
-            }),
-            columns: [
-                { dataField: "heroName", caption: translate(languageHero, 'name'), validationRules: [{ type: "required" }]},
-                { dataField: "damage", caption: translate(languageRaidHero, 'damage'), validationRules: [{ type: "required" }], width: 200 },
-                { dataField: "isRewarded", caption: translate(languageRaidHero, 'isRewarded'), validationRules: [{ type: "required" }], width: 200}
-            ],
-            export: {
-                enabled: true,
-                formats: ['xlsx', 'pdf']
-            },
-            onExporting(e) {
-                tableExport(e, translate(languageRaidHero, 'title'))
-            },
-            stateStoring: {
-                enabled: true,
-                type: "custom",
-                customLoad: async function () {
-                    var state = (await get(`/stateStorage/${module}`))?.storage;
-                    if (state)
-                        return JSON.parse(state);
-                    return null;
+                onExporting(e) {
+                    tableExport(e, translate(languageRaidHero, 'title'))
                 },
-                customSave: async function (state) {
-                    await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                stateStoring: {
+                    enabled: true,
+                    type: "custom",
+                    customLoad: async function () {
+                        var state = (await get(`/stateStorage/${module}`))?.storage;
+                        if (state)
+                            return JSON.parse(state);
+                        return null;
+                    },
+                    customSave: async function (state) {
+                        await put('/stateStorage', { 'handle': module, 'name': 'Standard', 'storage': JSON.stringify(state) }, "put");
+                    }
+                },
+                toolbar: {
+                    items: ["groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridRaid').dxDataGrid('instance').refresh(); }}
+                    }, { 
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridRaid').dxDataGrid('instance').state(null); }}
+                        }, "searchPanel", "exportButton"]
                 }
-            },
-            toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridRaid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridRaid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
-            }
-        });
+            });
+        } else {
+            document.getElementById("raidInactive").textContent = translate(languageRaid, 'inactive');
+        }
     }
     //#endregion
     
@@ -231,7 +253,6 @@ $(async () => {
     function translation() {
         document.getElementById("labelTitle").textContent = translate(language, 'title');
         document.getElementById("labelTitleRaid").textContent = translate(languageRaid, 'title');
-        document.getElementById("informationDungeon").textContent = translate(language, 'informationDungeon');
     }
     //#endregion
 });

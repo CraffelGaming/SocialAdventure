@@ -1,4 +1,5 @@
 import express from 'express';
+import { Model } from 'sequelize-typescript';
 import { HeroItem } from '../../model/heroItem.js';
 import { NodeItem } from '../../model/nodeItem.js';
 
@@ -8,15 +9,41 @@ const endpoint = 'node';
 router.get('/' + endpoint + '/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}`);
-        let item: NodeItem;
+        let item: Model<NodeItem>[];
 
         if(request.query.childs !== "false"){
-            item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+            item = await global.worker.globalDatabase.sequelize.models.node.findAll({where: { isActive: true }, order: [ [ 'name', 'ASC' ]], include: [{
                 model: global.worker.globalDatabase.sequelize.models.twitchUser,
                 as: 'twitchUser',
-            }]}) as undefined as NodeItem;
+            }]}) as Model<NodeItem>[];
         }
-        else item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: false}) as undefined as NodeItem;
+        else item = await global.worker.globalDatabase.sequelize.models.node.findAll({where: { isActive: true }, order: [ [ 'name', 'ASC' ]]}) as Model<NodeItem>[];
+
+        if(item) response.status(200).json(item);
+        else response.status(404).json();
+    } catch(ex){
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+});
+
+router.get('/' + endpoint + '/information/:node/', async (request: express.Request, response: express.Response) => {
+    try{
+        global.worker.log.trace(`get ${endpoint}`);
+        let nodeName: string;
+        let item: Model<NodeItem>;
+
+        if(request.params.node === 'default')
+            nodeName = (await global.defaultNode(request, response)).getDataValue('name');
+        else nodeName = request.params.node;
+
+        if(request.query.childs !== "false"){
+            item = await global.worker.globalDatabase.sequelize.models.node.findOne({where: { name: nodeName, isActive: true }, include: [{
+                model: global.worker.globalDatabase.sequelize.models.twitchUser,
+                as: 'twitchUser',
+            }]}) as Model<NodeItem>;
+        }
+        else item = await global.worker.globalDatabase.sequelize.models.node.findOne({where: { name: nodeName, isActive: true }}) as Model<NodeItem>;
 
         if(item) response.status(200).json(item);
         else response.status(404).json();
@@ -29,15 +56,15 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
 router.get('/' + endpoint + '/live', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}`);
-        let item: NodeItem;
+        let item: Model<NodeItem>[];
 
         if(request.query.childs !== "false"){
-            item = await global.worker.globalDatabase.sequelize.models.node.findAll({where: { isLive: true, isActive: true }, order: [ [ 'name', 'ASC' ]], raw: false, include: [{
+            item = await global.worker.globalDatabase.sequelize.models.node.findAll({where: { isLive: true, isActive: true }, order: [ [ 'name', 'ASC' ]], include: [{
                 model: global.worker.globalDatabase.sequelize.models.twitchUser,
                 as: 'twitchUser',
-            }]}) as undefined as NodeItem;
+            }]}) as Model<NodeItem>[];
         }
-        else item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]], raw: false}) as undefined as NodeItem;
+        else item = await global.worker.globalDatabase.sequelize.models.node.findAll({order: [ [ 'name', 'ASC' ]]}) as Model<NodeItem>[];
 
         if(item) response.status(200).json(item);
         else response.status(404).json();

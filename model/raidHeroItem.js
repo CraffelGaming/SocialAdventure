@@ -13,7 +13,7 @@ let RaidHeroItem = class RaidHeroItem {
     constructor({ raidHandle, heroName }) {
         this.damage = 0;
         this.isRewarded = false;
-        this.isActive = false;
+        this.isActive = true;
         this.raidHandle = raidHandle;
         this.heroName = heroName;
     }
