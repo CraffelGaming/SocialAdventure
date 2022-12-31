@@ -11,5 +11,7 @@
     {"handle": 9,   "value": "Phasmophobia"},
     {"handle": 10,  "value": "Rocket League"},
     {"handle": 11,  "value": "Essen"},
-    {"handle": 12,  "value": "Kunst"}
+    {"handle": 12,  "value": "Kunst"},
+    {"handle": 13,  "value": "Sherlock Holmes"},
+    {"handle": 14,  "value": "Raid"}
 ]
