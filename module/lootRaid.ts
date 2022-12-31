@@ -89,8 +89,6 @@ export class LootRaid {
                 hitpoints = 0;
             }
 
-            hitpoints = 0;
-
             this.raid.setDataValue('hitpoints', hitpoints);
             this.raid.save();
 

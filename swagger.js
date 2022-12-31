@@ -11,7 +11,7 @@ const options = {
             description: 'Vollständige API Entwicklerdokumentation.',
             swagger: '2.0',
             title: 'Social Adventure',
-            version: '1.0.8',
+            version: '1.1.0',
         }
     }
 };
