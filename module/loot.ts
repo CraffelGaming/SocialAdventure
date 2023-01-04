@@ -869,6 +869,7 @@ export class Loot extends Module {
 
                     if(hero){
                         await RaidHeroItem.put({sequelize: this.channel.database.sequelize, element: new RaidHeroItem({ heroName: hero.getDataValue('name'), raidHandle: this.raidItem.raid.getDataValue('handle')})})
+                        await raid.increment('countUses', { by: 1 });
                         return TranslationItem.translate(this.translation, 'raidJoin').replace('$1', command.source);
                     }
                 } else return TranslationItem.translate(this.translation, 'raidJoined').replace('$1', command.source);
