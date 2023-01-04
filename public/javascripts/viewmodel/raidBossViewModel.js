@@ -31,6 +31,7 @@ $(async () => {
                     return await get('/raidBoss/default', language);
                 },
                 insert: async function (values) {
+                    values.categoryHandle = values.category.handle;
                     await fetch('./api/raidBoss/default', {
                         method: 'put',
                         headers: {
@@ -51,6 +52,9 @@ $(async () => {
                 update: async function (key, values) {
                     var item = values;
                     item.handle = key;
+
+                    if(item.category != null)
+                        item.categoryHandle = item.category.handle;
 
                     await fetch('./api/raidBoss/default', {
                         method: 'put',
