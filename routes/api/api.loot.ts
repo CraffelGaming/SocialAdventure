@@ -50,7 +50,7 @@ router.put('/' + endpoint + '/:node/', async (request: express.Request, response
                     }
 
                     item = await channel.database.sequelize.models.loot.findByPk(request.body.command) as Model<LootItem>;
-                    channel.loot.settings[channel.loot.settings.findIndex(x => x.getDataValue("command") === request.body.command)] = item.get();
+                    channel.loot.settings[channel.loot.settings.findIndex(x => x.getDataValue("command") === request.body.command)] = item;
                     response.status(201).json(request.body);
                 } else {
                     response.status(406).json();

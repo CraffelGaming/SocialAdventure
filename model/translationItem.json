@@ -411,8 +411,9 @@
     { "page": "loot", "handle": "raidCompleted", "language": "de-DE", "translation": "Der Boss '$1' wurde besiegt jeder Teilnehmer erhält $2 Diamanten, $3 Gold, $4 EXP und den Gegenstand '$5'."},
     { "page": "loot", "handle": "raidCompletedError", "language": "de-DE", "translation": "Der Boss '$1' konnte fliehen und hat seinen Loot mitgenommen. Aber zum Glück ist der Chat heile geblieben."},
     { "page": "loot", "handle": "raidNoHero", "language": "de-DE", "translation": "Kein Held hat es gegen den Boss '$1' aufgenommen, der Boss verwüstet den Chat munter weiter."},
-    { "page": "loot", "handle": "raidFight", "language": "de-DE", "translation": "$1 Helden stürzen sich auf den Boss '$2' und fügen $3 Schaden zu. Verbleibende Lebenspunkte: $4/$5 HP. Unterstütze die Helden mit !raid."},
-
+    { "page": "loot", "handle": "raidFight", "language": "de-DE", "translation": "$1 Helden stürzen sich auf den Boss '$2' und fügen $3 Schaden zu. Verbleibende Lebenspunkte: $4/$5 HP. Unterstütze die Helden mit !raid. $6"},
+    { "page": "loot", "handle": "raidDefeatedHeroes", "language": "de-DE", "translation": "Besiegte Helden: $1"},
+    { "page": "loot", "handle": "raidNoOne", "language": "de-DE", "translation": "Niemand"},
     { "page": "location", "handle": "name", "language": "de-DE", "translation": "Name"},
     { "page": "location", "handle": "title", "language": "de-DE", "translation": "Dungeons"},
     { "page": "location", "handle": "description", "language": "de-DE", "translation": "Beschreibung"},

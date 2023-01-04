@@ -113,7 +113,8 @@ export class Worker {
     }
     async register(channel) {
         try {
-            this.log.trace('node connected: ' + channel.node.getDataValue('name'));
+            if (channel?.node != null && this.tmi != null)
+                this.log.trace('node connected: ' + channel.node.getDataValue('name'));
             await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
             this.log.trace(this.tmi);
         }

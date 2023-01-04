@@ -1,12 +1,12 @@
-import { Model } from "sequelize-typescript";
-import { HeroInventoryItem } from "../model/heroInventoryItem.js";
-import { HeroItem } from "../model/heroItem.js";
-import { ItemItem } from "../model/itemItem.js";
-import { RaidBossItem } from "../model/raidBossItem.js";
-import { RaidHeroItem } from "../model/raidHeroItem.js";
-import { RaidItem } from "../model/raidItem.js";
-import { TranslationItem } from "../model/translationItem.js";
-import { Loot } from "./loot.js";
+import { Model } from 'sequelize-typescript';
+import { HeroInventoryItem } from '../model/heroInventoryItem.js';
+import { HeroItem } from '../model/heroItem.js';
+import { ItemItem } from '../model/itemItem.js';
+import { RaidBossItem } from '../model/raidBossItem.js';
+import { RaidHeroItem } from '../model/raidHeroItem.js';
+import { RaidItem } from '../model/raidItem.js';
+import { TranslationItem } from '../model/translationItem.js';
+import { Loot } from './loot.js';
 
 export class LootRaid {
     timer: NodeJS.Timer;
@@ -27,27 +27,27 @@ export class LootRaid {
         this.timer = setInterval(
             async () => {
                 try {
-                    const raid = this.loot.settings.find(x =>x.getDataValue("command") === "raid");
+                    const raid = this.loot.settings.find(x =>x.getDataValue('command') === 'raid');
 
-                    if(raid.getDataValue("isActive")){
+                    if(raid.getDataValue('isActive')){
                         if(!this.raid) {
                             this.loot.channel.puffer.addMessage(await this.start());
-                            raid.setDataValue("lastRun", new Date());
+                            raid.setDataValue('lastRun', new Date());
                             await raid.save();
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid started`);
                         } else if(!this.raid.getDataValue('isDefeated')) {
-                            if(this.loot.isDateTimeoutExpiredMinutes(new Date(raid.getDataValue("lastRun")), raid.getDataValue("minutes"))){
-                                raid.setDataValue("lastRun", new Date());
-                                raid.setDataValue("countRuns", raid.getDataValue("countRuns") + 1);
+                            if(this.loot.isDateTimeoutExpiredMinutes(new Date(raid.getDataValue('lastRun')), raid.getDataValue('minutes'))){
+                                raid.setDataValue('lastRun', new Date());
+                                raid.setDataValue('countRuns', raid.getDataValue('countRuns') + 1);
 
                                 await raid.save();
-                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue("command")} run after ${raid.getDataValue("minutes")} Minutes.`);
+                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue('command')} run after ${raid.getDataValue('minutes')} Minutes.`);
 
                                 this.loot.channel.puffer.addMessage(await this.fight());
                             } else {
-                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue("command")} not executed`);
-                                global.worker.log.trace(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue("command")} minutes: ${raid.getDataValue("minutes")}`);
-                                global.worker.log.trace(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue("command")} time elapsed: ${this.loot.getDateTimeoutRemainingMinutes(new Date(raid.getDataValue("lastRun")), raid.getDataValue("minutes"))}`);
+                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue('command')} not executed`);
+                                global.worker.log.trace(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue('command')} minutes: ${raid.getDataValue('minutes')}`);
+                                global.worker.log.trace(`node ${this.loot.channel.node.getDataValue('name')}, module ${raid.getDataValue('command')} time elapsed: ${this.loot.getDateTimeoutRemainingMinutes(new Date(raid.getDataValue('lastRun')), raid.getDataValue('minutes'))}`);
                             }
                         }
                     } else {
@@ -71,17 +71,31 @@ export class LootRaid {
     //region Fight
     async fight() : Promise<string> {
         let result = '';
+        let damage = 0;
+        const defeatedHeroes = [];
 
         const raidHeroes = await this.loadRaidHeroes();
-        let damage = 0;
         const count = raidHeroes.length;
+
         if(count > 0) {
             for(const raidHero of raidHeroes){
                 const hero = await this.loadHero(raidHero.getDataValue('heroName'));
-                const heroDamage = hero.getDataValue('strength') * this.loot.getRandomNumber(1, count) + this.loot.getRandomNumber(1, count)
-                damage += Math.round(heroDamage);
 
-                await raidHero.increment('damage', { by: heroDamage });
+                if(hero.getDataValue('hitpoints') > 0) {
+                    const heroDamage = this.loot.getRandomNumber(Math.round(hero.getDataValue('strength') / 2), hero.getDataValue('strength')) * this.loot.getRandomNumber(Math.round(count / 2), count) + this.loot.getRandomNumber(Math.round(count / 2), count)
+
+                    damage += Math.round(heroDamage);
+                    await raidHero.increment('damage', { by: heroDamage });
+
+                    let bossDamage = this.loot.getRandomNumber(Math.round(this.boss.getDataValue('strength') / 2), this.boss.getDataValue('strength'))
+
+                    if(hero.getDataValue('hitpoints') <= bossDamage) {
+                        bossDamage = hero.getDataValue('hitpoints');
+                        defeatedHeroes.push(hero.getDataValue('name'));
+                    }
+
+                    await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: bossDamage, where: { name: hero.getDataValue('name') }});
+                }
             }
             let hitpoints = this.raid.getDataValue('hitpoints') - damage;
 
@@ -94,13 +108,14 @@ export class LootRaid {
 
             if(hitpoints === 0) {
                 result = await this.complete();
-            } else result = TranslationItem.translate(this.loot.translation, "raidFight")
+            } else result = TranslationItem.translate(this.loot.translation, 'raidFight')
                                            .replace('$1', count.toString())
-                                           .replace('$2', this.boss.getDataValue("name"))
+                                           .replace('$2', this.boss.getDataValue('name'))
                                            .replace('$3', damage.toString())
-                                           .replace('$4', this.raid.getDataValue("hitpoints").toString())
-                                           .replace('$5', this.boss.getDataValue("hitpoints").toString())
-        } else result = TranslationItem.translate(this.loot.translation, "raidNoHero").replace('$1', this.boss.getDataValue("name"));
+                                           .replace('$4', this.raid.getDataValue('hitpoints').toString())
+                                           .replace('$5', this.boss.getDataValue('hitpoints').toString())
+                                           .replace('$6', TranslationItem.translate(this.loot.translation, 'raidDefeatedHeroes').replace('$1', defeatedHeroes.length > 0 ? defeatedHeroes.join(', ') : TranslationItem.translate(this.loot.translation, 'raidNoOne')))
+        } else result = TranslationItem.translate(this.loot.translation, 'raidNoHero').replace('$1', this.boss.getDataValue('name'));
 
         return result;
     }
@@ -128,7 +143,7 @@ export class LootRaid {
         }
 
         if(this.raid) {
-            result = TranslationItem.translate(this.loot.translation, 'raidStart').replace('$1',  this.boss.getDataValue("name"));
+            result = TranslationItem.translate(this.loot.translation, 'raidStart').replace('$1',  this.boss.getDataValue('name'));
         }
 
         return result;
@@ -149,7 +164,7 @@ export class LootRaid {
             await this.raid.save();
 
             if(!this.raid.getDataValue('isDefeated')) {
-                result = TranslationItem.translate(this.loot.translation, 'raidStop').replace('$1',  this.boss.getDataValue("name"));
+                result = TranslationItem.translate(this.loot.translation, 'raidStop').replace('$1',  this.boss.getDataValue('name'));
             }
         }
 
@@ -200,12 +215,12 @@ export class LootRaid {
 
         if(isRewarded) {
             return TranslationItem.translate(this.loot.translation, 'raidCompleted')
-                                  .replace('$1', this.boss.getDataValue("name"))
-                                  .replace('$2', this.boss.getDataValue("diamond").toString())
-                                  .replace('$3', this.boss.getDataValue("gold").toString())
-                                  .replace('$4', this.boss.getDataValue("experience").toString())
+                                  .replace('$1', this.boss.getDataValue('name'))
+                                  .replace('$2', this.boss.getDataValue('diamond').toString())
+                                  .replace('$3', this.boss.getDataValue('gold').toString())
+                                  .replace('$4', this.boss.getDataValue('experience').toString())
                                   .replace('$5', item.getDataValue('value'))
-        } else return TranslationItem.translate(this.loot.translation, 'raidCompletedError').replace('$1', this.boss.getDataValue("name"));
+        } else return TranslationItem.translate(this.loot.translation, 'raidCompletedError').replace('$1', this.boss.getDataValue('name'));
     }
     //#endregion
 

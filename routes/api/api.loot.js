@@ -45,7 +45,7 @@ router.put('/' + endpoint + '/:node/', async (request, response) => {
                         await channel.database.sequelize.models.loot.create(request.body);
                     }
                     item = await channel.database.sequelize.models.loot.findByPk(request.body.command);
-                    channel.loot.settings[channel.loot.settings.findIndex(x => x.getDataValue("command") === request.body.command)] = item.get();
+                    channel.loot.settings[channel.loot.settings.findIndex(x => x.getDataValue("command") === request.body.command)] = item;
                     response.status(201).json(request.body);
                 }
                 else {
