@@ -10,6 +10,8 @@ export class HeroItem {
     @Column
     lastSteal: Date = new Date(2020, 1, 1);
     @Column
+    lastDuell: Date = new Date(2020, 1, 1);
+    @Column
     lastJoin: Date = new Date(2020, 1, 1);
     @Column
     lastLeave: Date = new Date(2020, 1, 1);
@@ -32,8 +34,6 @@ export class HeroItem {
     @Column
     isFounder: boolean = false;
     @Column
-    level: number = 1;
-    @Column
     strength: number = 20;
 
     constructor(name: string){
@@ -48,6 +48,11 @@ export class HeroItem {
                 allowNull: false
             },
             lastSteal: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
+            lastDuell: {
                 type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)

@@ -1,5 +1,7 @@
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
+import { PromotionItem } from './promotionItem';
+import { HeroItem } from './heroItem';
 
 @Table({ tableName: "heroPromotion", modelName: "heroPromotion"})
 export class HeroPromotionItem{
@@ -9,6 +11,9 @@ export class HeroPromotionItem{
     @PrimaryKey
     @Column
     heroName: string;
+
+    promotion: PromotionItem;
+    hero: HeroItem;
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
         sequelize.define('heroPromotion', {

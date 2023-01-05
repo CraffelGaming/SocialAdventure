@@ -15,6 +15,7 @@ import { HeroWalletItem } from './heroWalletItem.js';
 let HeroItem = HeroItem_1 = class HeroItem {
     constructor(name) {
         this.lastSteal = new Date(2020, 1, 1);
+        this.lastDuell = new Date(2020, 1, 1);
         this.lastJoin = new Date(2020, 1, 1);
         this.lastLeave = new Date(2020, 1, 1);
         this.lastGive = new Date(2020, 1, 1);
@@ -26,7 +27,6 @@ let HeroItem = HeroItem_1 = class HeroItem {
         this.hitpointsMax = 100;
         this.isActive = false;
         this.isFounder = false;
-        this.level = 1;
         this.strength = 20;
         this.name = name;
     }
@@ -38,6 +38,11 @@ let HeroItem = HeroItem_1 = class HeroItem {
                 allowNull: false
             },
             lastSteal: {
+                type: DataTypes.DATE,
+                allowNull: false,
+                defaultValue: Date.UTC(2020, 1, 1)
+            },
+            lastDuell: {
                 type: DataTypes.DATE,
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)
@@ -160,6 +165,10 @@ __decorate([
 __decorate([
     Column,
     __metadata("design:type", Date)
+], HeroItem.prototype, "lastDuell", void 0);
+__decorate([
+    Column,
+    __metadata("design:type", Date)
 ], HeroItem.prototype, "lastJoin", void 0);
 __decorate([
     Column,
@@ -201,10 +210,6 @@ __decorate([
     Column,
     __metadata("design:type", Boolean)
 ], HeroItem.prototype, "isFounder", void 0);
-__decorate([
-    Column,
-    __metadata("design:type", Number)
-], HeroItem.prototype, "level", void 0);
 __decorate([
     Column,
     __metadata("design:type", Number)

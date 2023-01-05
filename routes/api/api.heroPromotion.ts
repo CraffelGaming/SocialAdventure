@@ -61,7 +61,7 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request: express.Request
                 }]}) as Model<HeroPromotionItem>[];
             } else item = await channel.database.sequelize.models.heroPromotion.findAll({where: { heroName: request.params.name }, order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]]}) as Model<HeroPromotionItem>[];
 
-            if(item) response.status(200).json(item);
+            if(item) response.status(200).json(item.filter(x => x.getDataValue('promotion') != null));
             else response.status(404).json();
         } else response.status(404).json();
     } catch(ex){

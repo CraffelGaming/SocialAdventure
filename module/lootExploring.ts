@@ -104,8 +104,8 @@ export class LootExploring {
 
             await this.loot.channel.database.sequelize.models.adventure.create(adventure as any);
             await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.gold, where: { heroName: this.hero.getDataValue("name") }});
-            await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.experience, where: { name: this.hero.getDataValue("name") }});
-            await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: this.damage, where: { name: this.hero.getDataValue("name") }});
+            await this.hero.increment('experience', { by: this.experience });
+            await this.hero.decrement('hitpoints', { by: this.damage });
             await HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: this.hero.get()});
         } else {
             await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: this.damage, where: { name: this.hero.getDataValue("name") }});

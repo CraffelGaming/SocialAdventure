@@ -40,5 +40,12 @@
         "delay": 0,
         "isActive": false,
         "isLiveAutoControl": false
+    },
+    {
+        "command": "duell",
+        "minutes": 20,
+        "delay": 0,
+        "isActive": true,
+        "isLiveAutoControl": false
     }
 ]

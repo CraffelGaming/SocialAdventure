@@ -12,6 +12,7 @@ import { LevelItem } from "../model/levelItem.js";
 import { LootItem } from "../model/lootItem.js";
 import { RaidHeroItem } from "../model/raidHeroItem.js";
 import { TranslationItem } from "../model/translationItem.js";
+import { LootDuell } from "./lootDuell.js";
 import { LootExploring } from "./lootExploring.js";
 import { LootGive } from "./lootGive.js";
 import { LootRaid } from "./lootRaid.js";
@@ -249,13 +250,59 @@ export class Loot extends Module {
                                       .replace('$1', command.source)
                                       .replace('$2', steal.item.getDataValue("value"))
                                       .replace('$3', steal.item.getDataValue("handle").toString())
-            } else if(!steal.isSelf) {
+            } else if(steal.isSelf) {
                 return TranslationItem.translate(this.translation, 'stealSelf')
                                       .replace('$1', command.source)
             }
         } catch(ex) {
             global.worker.log.error(`module loot error - function steal - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20003');
+        }
+    }
+    //#endregion
+
+    //#region Duell
+    async duell(command: Command){
+        try {
+            if(command.target.length > 0){
+                const duell = new LootDuell(this, command.source, command.target);
+                const setting = this.settings.find(x =>x.getDataValue("command") === "duell");
+                if(await duell.execute(setting)){
+                    return TranslationItem.translate(this.translation, 'duellSuccess')
+                                            .replace('$1', command.source)
+                                            .replace('$2', command.target)
+                                            .replace('$3', duell.gold.toString())
+                                            .replace('$4', duell.experience.toString())
+                                            .replace('$5', duell.sourceHitpoints.toString());
+                } else if(!duell.isActive) {
+                    return TranslationItem.translate(this.translation, 'duellNotActive')
+                                            .replace('$1', command.source)
+                } else if(!duell.isSource) {
+                    return TranslationItem.translate(this.translation, 'duellNoSource')
+                                            .replace('$1', command.source)
+                } else if(!duell.isTimeout) {
+                    return TranslationItem.translate(this.translation, 'duellTimeout')
+                                            .replace('$1', command.source)
+                                            .replace('$2', this.getDateTimeoutRemainingMinutes(duell.sourceHero.getDataValue("lastDuell"), setting.getDataValue("minutes")).toString())
+                } else if(!duell.isTarget) {
+                    return TranslationItem.translate(this.translation, 'duellNoTarget')
+                                            .replace('$1', command.source)
+                                            .replace('$2', command.target)
+                } else if(duell.isSelf) {
+                    return TranslationItem.translate(this.translation, 'duellSelf')
+                                            .replace('$1', command.source)
+                } else {
+                    return TranslationItem.translate(this.translation, 'duellFailed')
+                    .replace('$1', command.source)
+                    .replace('$2', command.target)
+                    .replace('$3', duell.gold.toString())
+                    .replace('$4', duell.experience.toString())
+                    .replace('$5', duell.targetHitpoints.toString());
+                }
+            } else return TranslationItem.translate(this.translation, 'duellTargetNeeded').replace('$1', command.source);
+        } catch(ex) {
+            global.worker.log.error(`module duell error - function give - ${ex.message}`);
+            return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20022');
         }
     }
     //#endregion

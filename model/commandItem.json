@@ -27,6 +27,7 @@
     {"module": "loot",      "command": "hitpoints",     "isMaster": false,      "translation": "hitpoints"},
     {"module": "loot",      "command": "hp",            "isMaster": false,      "translation": "hitpoints"},
     {"module": "loot",      "command": "heal",          "isMaster": false,      "translation": "heal"},
+    {"module": "loot",      "command": "duell",         "isMaster": false,      "translation": "duell"},
     {"module": "loot",      "command": "raid",          "isMaster": false,      "translation": "raid"},
     {"module": "loot",      "command": "raidinfo",      "isMaster": false,      "translation": "raidinfo"},
     {"module": "loot",      "command": "raidstart",     "isMaster": true,       "translation": "raidinfo",      "isModerator": true},

@@ -12,7 +12,7 @@ export class LootSteal {
         this.isTimeout = true;
         this.isSteal = true;
         this.isLoose = true;
-        this.isSelf = true;
+        this.isSelf = false;
         this.isActive = true;
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
@@ -30,7 +30,7 @@ export class LootSteal {
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, sourceHero ${this.sourceHero.getDataValue("name")}`);
                     if (this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastSteal")), settings.getDataValue("minutes"))) {
                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, timeout expired`);
-                        if (this.targetHero) {
+                        if (this.targetHero && this.targetHero.getDataValue("isActive")) {
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, targetHero ${this.targetHero.getDataValue("name")}`);
                             if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
                                 if (this.adventure) {
@@ -59,6 +59,8 @@ export class LootSteal {
                                 else
                                     this.isAdventure = false;
                             }
+                            else
+                                this.isSelf = true;
                         }
                         else
                             this.isTarget = false;

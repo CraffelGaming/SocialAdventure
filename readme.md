@@ -58,12 +58,12 @@ Release: 2023
 - [X]  Heal other
 
 - [X]  Befehle anlegen, wenn mit ! dann ! entfernen
-- [ ]  !raid gegen große bosse
-- [ ]  !duell
-- [ ]  Kampf / Steal LOG
+- [X]  !raid gegen große bosse
+- [X]  !duell
 - [X]  Impressum
 - [X]  Cookies
 
+- [ ]  Kampf / Steal LOG
 - [ ]  Englisch
 - [ ]  API aufräumen
 - [ ]  Datenspeicher für Say-Module
@@ -113,6 +113,7 @@ Release: 2023
 * E-20019 heal
 * E-20020 heal hero
 * E-20021 revive hero
+* E-20022 duell
 
 ### Raid
 * E-30000 raidStart

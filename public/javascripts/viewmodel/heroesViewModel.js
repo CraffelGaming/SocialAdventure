@@ -336,6 +336,7 @@ $(async () => {
                     columns: [
                         { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime'},
                         { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime' },
+                        { dataField: 'lastDuell', caption: translate(language, 'lastDuell'), dataType: 'datetime' },
                         { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date' },
                     ]
                 });
