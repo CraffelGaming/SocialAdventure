@@ -1,8 +1,9 @@
 # Social Adventure bloodpoints
 
+Social Adventure ist eine kostenlose Twitch-Bot Alternative zu Streamlabs, Nightbot, Moobot und co. Neben den Standard Features wie automatische und manuelle Nachrichten, Death-Counter und Shoutouts bietet Social Adventure ein komplettes Browser und Chat basiertes Spiel, bei dem du deinen Helden verbessern und deine Unterstützung zum Streamer zeigen kannst. Social Adventure wurde von Craffel entwickelt und wird immer wieder mit neuen Features ausgestattet.
 ## Roadmap
-### Release 1 
-Release Date: 29.10.200
+### Release 1.0.0 
+Release Date: 29.10.2022
 - [x] Logo des Streamers in der Navigation
 - [x] Prestige level für Helden
 - [x] Eigene URL für jeden Streamer
@@ -28,23 +29,12 @@ Release Date: 29.10.200
 - [x] Start / Stop automation 
 - [x] Live Auto Control
 - [x] Full qualified API Connection
-- [x]  Shoutout
-- [x]  Live Highlight auf Webseite
-- [x]  Datum Format bei Befehle (Say)
+- [x] Shoutout
+- [x] Live Highlight auf Webseite
+- [x] Datum Format bei Befehle (Say)
 
-
-### BugFix / Features
-Preis vom königlichen Wiederbelebungstrank von 1000 Gold auf 800 Gold reduziert.
-Standardwerte bei der Neuanlage von Befehlen hinzugefügt
-Gegenstände Verkaufen: Meldungen überarbeitet
-Gegenstände Verkaufen: Auswahl, wie viele der Gegenstände verkauft werden sollen hinzugefügt
-Befehle können nun mit und ohne Ausrufezeichen eingegeben werden, resultat ist nun immer ein Ausrufezeichen.
-Befehle können nun beliebig viele Shortcuts erhalten, z.B. kann der Befehl !doscord dann auch z.B. mit !dc aufgerufen werden. 
-Neue Counter für Blutrausch, Verschenken, Abenteuer beitreten und Stehlen
-Hintergrundlogiken automatische Datenbankaktuallisierung
-### Release 2
-
-Release: 2023
+### Release 1.1.0 
+Release Date: 31.12.2022
 - [X]  !heal im Chat
 - [X]  Random Seed in Daly pro Streamer unterschiedlich
 - [X]  Item ID in Hero and heros Seite
@@ -56,13 +46,16 @@ Release: 2023
 - [X]  Notify Streamer Change
 - [X]  !find / steal / give auch mit Itemname
 - [X]  Heal other
-
 - [X]  Befehle anlegen, wenn mit ! dann ! entfernen
+### Release 1.2.0 
+Release Date: 05.01.2023
 - [X]  !raid gegen große bosse
 - [X]  !duell
 - [X]  Impressum
 - [X]  Cookies
 
+### Release 1.3.0 
+Release Date: 2023
 - [ ]  Kampf / Steal LOG
 - [ ]  Englisch
 - [ ]  API aufräumen
