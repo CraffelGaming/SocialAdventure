@@ -108,7 +108,7 @@ export class LootDuell {
             this.gold = 10 * ((this.sourceHero.getDataValue('strength') - strengthDifference) + sourceWallet.getDataValue("blood") + 1);
             this.gold = Math.round(this.gold * ((sourceTrait.getDataValue("goldMultipler") / 10) + 1));
 
-            this.experience = 15 * this.sourceHitpoints;
+            this.experience = 15 * this.sourceHitpoints > 0 ? this.sourceHitpoints : this.targetHitpoints;
 
             if(this.targetHitpoints === 0) {
                 return true;
