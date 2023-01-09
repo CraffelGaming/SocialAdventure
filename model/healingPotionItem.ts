@@ -106,6 +106,10 @@ export class HealingPotionItem extends Model<HealingPotionItem>{
             const hero = await sequelize.models.hero.findByPk(heroName) as Model<HeroItem>;
             const heroWallet = await sequelize.models.heroWallet.findByPk(heroName) as Model<HeroWalletItem>;
 
+            if(hero.getDataValue("hitpoints") < 0){
+                hero.setDataValue("hitpoints", 0);
+            }
+
             if(potion && hero && heroWallet){
                 if(heroWallet.getDataValue("gold") >= potion.getDataValue("gold") && !bonus || heroWallet.getDataValue("gold") >= potion.getDataValue("gold") / 2 && bonus){
                     if(hero.getDataValue("hitpoints") === 0 && potion.getDataValue("isRevive") === true || hero.getDataValue("hitpoints") > 0 && potion.getDataValue("isRevive") === false){

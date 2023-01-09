@@ -142,6 +142,10 @@ export class Loot extends Module {
                     hero.setDataValue("isActive",true);
                     hero.setDataValue("lastJoin",new Date());
 
+                    if(hero.getDataValue("hitpoints") < 0) {
+                        hero.setDataValue("hitpoints", 0);
+                    }
+
                     if(hero.getDataValue("hitpoints") < hero.getDataValue("hitpointsMax") / 2){
                         hero.setDataValue("hitpoints", hero.getDataValue("hitpointsMax") / 2);
                     }
