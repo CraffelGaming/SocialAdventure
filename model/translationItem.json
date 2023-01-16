@@ -309,6 +309,7 @@
     { "page": "command", "handle": "clear", "language": "de-DE", "translation": "Beendet das bestehende Abenteuer und startet ein Neues."},
     { "page": "command", "handle": "loot", "language": "de-DE", "translation": "Tritt dem Abenteuer bei."},
     { "page": "command", "handle": "raid", "language": "de-DE", "translation": "Tritt dem Raid bei."},
+    { "page": "command", "handle": "mission", "language": "de-DE", "translation": "Held tritt dem Abenteuer und Raid bei, nimmt einen Heiltrank, wenn nötig und startet einen Blutrausch."},
     { "page": "command", "handle": "raidinfo", "language": "de-DE", "translation": "Zeigt Informationen zum aktuellen Raid an."},
     { "page": "command", "handle": "counterMinus", "language": "de-DE", "translation": "Counter wird um 1 erhöht."},
     { "page": "command", "handle": "counterPlus", "language": "de-DE", "translation": "Counter wird um 1 reduziert."},
