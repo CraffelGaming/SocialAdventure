@@ -453,6 +453,46 @@ export class Loot extends Module {
             " WHERE " + heroColumn + " = '" + hero + "'";
     }
     //#endregion
+    //#region Mission
+    async mission(command) {
+        let hero = await this.channel.database.sequelize.models.hero.findByPk(command.source);
+        let result = '';
+        if (hero !== undefined) {
+            if (command.target.length === 0) {
+                const loot = this.settings.find(x => x.getDataValue("command") === "loot");
+                const raid = this.settings.find(x => x.getDataValue("command") === "raid");
+                const blood = this.settings.find(x => x.getDataValue("command") === "blood");
+                if (loot.getDataValue("isActive")) {
+                    await this.loot(command);
+                    await this.heal(command);
+                    hero = await this.channel.database.sequelize.models.hero.findByPk(command.source);
+                    result = TranslationItem.translate(this.translation, 'heroJoinMission')
+                        .replace('$1', command.source)
+                        .replace('$2', TranslationItem.translate(this.translation, 'heroJoinMissionLoot'))
+                        .replace('$4', TranslationItem.translate(this.translation, 'heroJoinMissionHeal')
+                        .replace('$1', hero.getDataValue('hitpoints').toString())
+                        .replace('$2', hero.getDataValue('hitpointsMax').toString()));
+                    if (blood.getDataValue("isActive")) {
+                        await this.blood(command);
+                        const wallet = await this.channel.database.sequelize.models.heroWallet.findByPk(command.source);
+                        result = result.replace('$5', TranslationItem.translate(this.translation, 'heroJoinMissionBlood').replace('$1', wallet.getDataValue('blood').toString()));
+                    }
+                    if (raid.getDataValue("isActive")) {
+                        await this.raid(command);
+                        result = result.replace('$3', TranslationItem.translate(this.translation, 'heroJoinMissionRaid'));
+                    }
+                    result = result.replace('$5', '');
+                    result = result.replace('$3', '');
+                }
+            }
+            else
+                return TranslationItem.translate(this.translation, 'heroOnlyYou').replace('$1', command.source);
+        }
+        else
+            return TranslationItem.translate(this.translation, 'heroNotExists').replace('$1', command.source);
+        return result;
+    }
+    //#endregion
     //#region Clear
     async lootclear(command = null) {
         try {

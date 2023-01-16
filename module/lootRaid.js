@@ -65,7 +65,7 @@ export class LootRaid {
             for (const raidHero of raidHeroes) {
                 const hero = await this.loadHero(raidHero.getDataValue('heroName'));
                 if (hero.getDataValue('hitpoints') > 0) {
-                    const heroDamage = this.loot.getRandomNumber(Math.round(hero.getDataValue('strength') / 2), hero.getDataValue('strength')) * this.loot.getRandomNumber(Math.round(count / 2), count) + this.loot.getRandomNumber(Math.round(count / 2), count);
+                    const heroDamage = this.loot.getRandomNumber(Math.round(hero.getDataValue('strength') / 2), hero.getDataValue('strength')) * this.loot.getRandomNumber(1, Math.round(count / 2) + 1) + this.loot.getRandomNumber(Math.round(count / 2), count);
                     damage += Math.round(heroDamage);
                     await raidHero.increment('damage', { by: heroDamage });
                     let bossDamage = this.loot.getRandomNumber(Math.round(this.boss.getDataValue('strength') / 2), this.boss.getDataValue('strength'));
