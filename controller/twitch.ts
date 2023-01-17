@@ -57,14 +57,15 @@ export class Twitch {
                 const result = json.data as T;
                 return result;
             } else if(response.status === 401) {
-                global.worker.log.trace(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401`);
+                global.worker.log.warn(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401`);
                 if(refresh){
                     this.credential = await this.authentificationRefresh();
 
                     if(this.credential != null){
+                        global.worker.log.warn(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401 - refresh success`);
                         await this.updateTwitch(this.credential);
                         return this.push<T>(method, endpoint, false)
-                    }
+                    } else global.worker.log.error(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint} 401 - refresh error`);
                 }
             } else {
                 global.worker.log.error(`api request, node ${this.channelName}, ${method} ${twitchData.url_base}${endpoint}`);
@@ -80,9 +81,13 @@ export class Twitch {
     //#region API
     async GetChannel(id: string): Promise<twitchChannelItem>{
         try {
-            return (await this.push<twitchChannelItem[]>('GET', '/channels?broadcaster_id=' + id))[0];
+            const list = await this.push<twitchChannelItem[]>('GET', '/channels?broadcaster_id=' + id);
+
+            if(list && list.length > 0) {
+                return list[0];
+            } else global.worker.log.warn(`twitch warn - function GetChannel - broadcaster_id ${id} - list is null or lenght = 0`);
         } catch(ex) {
-            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+            global.worker.log.error(`twitch error - function GetChannel - ${ex.message}`);
         }
         return null;
     }
@@ -91,34 +96,45 @@ export class Twitch {
         try {
             return (await this.push<twitchModeratorItem[]>('GET', '/moderation/moderators?broadcaster_id=' + id));
         } catch(ex) {
-            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+            global.worker.log.error(`twitch error - function GetModerators - broadcaster_id ${id} - ${ex.message}`);
         }
         return null;
     }
 
     async GetStream(id: string): Promise<twitchStreamItem>{
         try {
-            return (await this.push<twitchStreamItem[]>('GET', '/streams?user_id=' + id))[0];
+            const list = await this.push<twitchStreamItem[]>('GET', '/streams?user_id=' + id)
+            if(list && list.length > 0) {
+                return list[0];
+            } else global.worker.log.trace(`twitch trace - function GetStream - user_id ${id} - streamer offline`);
         } catch(ex) {
-            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+            global.worker.log.error(`twitch error - function GetStream - user_id ${id} - ${ex.message}`);
         }
         return null;
     }
 
     async getUser(id: string): Promise<credentialUserItem> {
         try {
-            return (await this.push<credentialUserItem[]>('GET', '/users?id=' + id))[0];
+            const list = await this.push<credentialUserItem[]>('GET', '/users?id=' + id)
+
+            if(list && list.length > 0) {
+                return list[0];
+            } else global.worker.log.warn(`twitch warn - function getUser - user_id ${id} - list is null or lenght = 0`);
         } catch(ex) {
-            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+            global.worker.log.error(`twitch error - function getUser - user_id ${id} - ${ex.message}`);
         }
         return null;
     }
 
     async getUserByName(name: string): Promise<credentialUserItem> {
         try {
-            return (await this.push<credentialUserItem[]>('GET', '/users?login=' + name))[0];
+            const list = await this.push<credentialUserItem[]>('GET', '/users?login=' + name);
+
+            if(list && list.length > 0) {
+                return list[0];
+            } else global.worker.log.warn(`twitch warn - function getUserByName - login ${name} - list is null or lenght = 0`);
         } catch(ex) {
-            global.worker.log.error(`twitch error - function getCurrentUser - ${ex.message}`);
+            global.worker.log.error(`twitch error - function getUserByName - login ${name} - ${ex.message}`);
         }
         return null;
     }

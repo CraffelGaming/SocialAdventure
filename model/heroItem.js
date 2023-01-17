@@ -116,6 +116,8 @@ let HeroItem = HeroItem_1 = class HeroItem {
         sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName' });
         sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName' });
         sequelize.models.hero.hasMany(sequelize.models.raidHero, { as: 'raids', foreignKey: 'heroName' });
+        sequelize.models.hero.hasMany(sequelize.models.historyDuell, { as: 'duellSource', foreignKey: 'sourceHeroName' });
+        sequelize.models.hero.hasMany(sequelize.models.historyDuell, { as: 'duellTarget', foreignKey: 'targetHeroName' });
     }
     static async calculateHero({ sequelize, element }) {
         const level = await sequelize.models.level.findOne({

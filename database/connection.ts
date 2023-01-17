@@ -35,11 +35,13 @@ import { fileURLToPath } from 'url';
 import { RaidBossItem } from '../model/raidBossItem.js';
 import { RaidHeroItem } from '../model/raidHeroItem.js';
 import { RaidItem } from '../model/raidItem.js';
+import { HistoryDuellItem } from '../model/historyDuellItem.js';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const jsonMigration = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationItem.json')).toString());
 const jsonMigrationGlobal = JSON.parse(fs.readFileSync(path.join(dirname, '../model/migrationGlobalItem.json')).toString());
+const settings = JSON.parse(fs.readFileSync(path.join(dirname, '../settings.json')).toString());
 export class Connection {
     databaseName: string;
     databasePath: string;
@@ -50,7 +52,7 @@ export class Connection {
         this.databaseName = databaseName;
         this.databasePath = path.join(dirname, this.databaseName + '.sqlite') ;
         this.isNewDatabase = !fs.existsSync(this.databasePath);
-        this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: false });
+        this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: settings.logDatabase });
     }
 
     async initializeGlobal(){
@@ -125,6 +127,7 @@ export class Connection {
             RaidBossItem.createTable({ sequelize: this.sequelize });
             RaidHeroItem.createTable({ sequelize: this.sequelize });
             RaidItem.createTable({ sequelize: this.sequelize });
+            HistoryDuellItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -159,6 +162,7 @@ export class Connection {
             RaidBossItem.setAssociation({ sequelize: this.sequelize});
             RaidHeroItem.setAssociation({ sequelize: this.sequelize});
             RaidItem.setAssociation({ sequelize: this.sequelize});
+            HistoryDuellItem.setAssociation({ sequelize: this.sequelize});
 
             return true;
         }  catch (ex){

@@ -268,44 +268,42 @@ export class Loot extends Module {
     //#region Duell
     async duell(command: Command){
         try {
-            if(command.target.length > 0){
-                const duell = new LootDuell(this, command.source, command.target);
-                const setting = this.settings.find(x =>x.getDataValue("command") === "duell");
-                if(await duell.execute(setting)){
-                    return TranslationItem.translate(this.translation, 'duellSuccess')
-                                            .replace('$1', command.source)
-                                            .replace('$2', command.target)
-                                            .replace('$3', duell.gold.toString())
-                                            .replace('$4', duell.experience.toString())
-                                            .replace('$5', duell.sourceHitpoints.toString());
-                } else if(!duell.isActive) {
-                    return TranslationItem.translate(this.translation, 'duellNotActive')
-                                            .replace('$1', command.source)
-                } else if(!duell.isSource) {
-                    return TranslationItem.translate(this.translation, 'duellNoSource')
-                                            .replace('$1', command.source)
-                } else if(!duell.isTimeout) {
-                    return TranslationItem.translate(this.translation, 'duellTimeout')
-                                            .replace('$1', command.source)
-                                            .replace('$2', this.getDateTimeoutRemainingMinutes(duell.sourceHero.getDataValue("lastDuell"), setting.getDataValue("minutes")).toString())
-                } else if(!duell.isTarget) {
-                    return TranslationItem.translate(this.translation, 'duellNoTarget')
-                                            .replace('$1', command.source)
-                                            .replace('$2', command.target)
-                } else if(duell.isSelf) {
-                    return TranslationItem.translate(this.translation, 'duellSelf')
-                                            .replace('$1', command.source)
-                } else {
-                    return TranslationItem.translate(this.translation, 'duellFailed')
-                    .replace('$1', command.source)
-                    .replace('$2', command.target)
-                    .replace('$3', duell.gold.toString())
-                    .replace('$4', duell.experience.toString())
-                    .replace('$5', duell.targetHitpoints.toString());
-                }
-            } else return TranslationItem.translate(this.translation, 'duellTargetNeeded').replace('$1', command.source);
+            const duell = new LootDuell(this, command.source, command.target);
+            const setting = this.settings.find(x =>x.getDataValue("command") === "duell");
+            if(await duell.execute(setting)){
+                return TranslationItem.translate(this.translation, 'duellSuccess')
+                                        .replace('$1', duell.item.sourceHeroName)
+                                        .replace('$2', duell.item.targetHeroName)
+                                        .replace('$3', duell.item.gold.toString())
+                                        .replace('$4', duell.item.experience.toString())
+                                        .replace('$5', duell.item.sourceHitpoints.toString());
+            } else if(!duell.isActive) {
+                return TranslationItem.translate(this.translation, 'duellNotActive')
+                                        .replace('$1', duell.item.sourceHeroName)
+            } else if(!duell.isSource) {
+                return TranslationItem.translate(this.translation, 'duellNoSource')
+                                        .replace('$1', duell.item.sourceHeroName)
+            } else if(!duell.isTimeout) {
+                return TranslationItem.translate(this.translation, 'duellTimeout')
+                                        .replace('$1', duell.item.sourceHeroName)
+                                        .replace('$2', this.getDateTimeoutRemainingMinutes(duell.sourceHero.getDataValue("lastDuell"), setting.getDataValue("minutes")).toString())
+            } else if(!duell.isTarget) {
+                return TranslationItem.translate(this.translation, 'duellNoTarget')
+                                        .replace('$1', duell.item.sourceHeroName)
+                                        .replace('$2', duell.item.targetHeroName)
+            } else if(duell.isSelf) {
+                return TranslationItem.translate(this.translation, 'duellSelf')
+                                        .replace('$1', duell.item.sourceHeroName)
+            } else {
+                return TranslationItem.translate(this.translation, 'duellFailed')
+                .replace('$1', duell.item.sourceHeroName)
+                .replace('$2', duell.item.targetHeroName)
+                .replace('$3', duell.item.gold.toString())
+                .replace('$4', duell.item.experience.toString())
+                .replace('$5', duell.item.targetHitpoints.toString());
+            }
         } catch(ex) {
-            global.worker.log.error(`module duell error - function give - ${ex.message}`);
+            global.worker.log.error(`module duell error - function duell - ${ex.message}`);
             return TranslationItem.translate(this.basicTranslation, "ohNo").replace('$1', 'E-20022');
         }
     }

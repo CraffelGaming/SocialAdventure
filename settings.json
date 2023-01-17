@@ -6,5 +6,6 @@
     "key" : "/ssl/craffel.de_private_key.key",
     "cert" : "/ssl/craffel.de_ssl_certificate.cer",
     "logLevel": "warn",
+    "logDatabase": false,
     "logOutputPath": "log/default.log"
 }

@@ -120,9 +120,10 @@ export class LootSteal {
                 this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.adventure.getDataValue("heroName")) as Model<HeroItem>;
                 this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")) as Model<ItemItem>;
 
-                if(!this.isItem)
+                if(!this.isItem) {
                     this.isItemHeroes = false;
-            } this.isItemHeroes = false;
+                }
+            } else this.isItemHeroes = false;
         }
     }
 

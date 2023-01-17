@@ -29,6 +29,7 @@ import help from "./api/api.help.js";
 import placeholder from "./api/api.placeholder.js";
 import validation from "./api/api.validation.js";
 import stateStorage from "./api/api.stateStorage.js";
+import historyDuell from "./api/api.historyDuell.js";
 
 import raid from "./api/api.raid.js";
 import raidBoss from "./api/api.raidBoss.js";
@@ -66,24 +67,7 @@ const router = express.Router();
  *         schema:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               heroName:
- *                 type: string
- *                 example: 1
- *                 descrition: Name des Helden
- *               itemHandle:
- *                 type: integer
- *                 example: 1
- *                 descrition: ID des Gegenstandes
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
+ *             $ref: '#/definitions/Adventure'
  *       404:
  *         description: no data
  */
@@ -124,24 +108,7 @@ const router = express.Router();
  *         schema:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               heroName:
- *                 type: string
- *                 example: 1
- *                 descrition: Name des Helden
- *               itemHandle:
- *                 type: integer
- *                 example: 1
- *                 descrition: ID des Gegenstandes
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
+ *             $ref: '#/definitions/Adventure'
  *       404:
  *         description: no data
  */
@@ -167,16 +134,7 @@ const router = express.Router();
  *     - name: "item"
  *       in: "body"
  *       schema:
- *         type: object
- *         properties:
- *           heroName:
- *             type: string
- *             example: "craffel"
- *             descrition: Name des Helden
- *           itemHandle:
- *             type: integer
- *             example: 1
- *             descrition: ID des Gegenstandes
+ *         $ref: '#/definitions/Adventure'
  *     responses:
  *       201:
  *         description: successful operation
@@ -274,32 +232,7 @@ const router = express.Router();
  *         schema:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               module:
- *                 type: string
- *                 example: "say"
- *                 descrition: Name des Moduls
- *               command:
- *                 type: string
- *                 example: "text"
- *                 descrition: Name des Befehls.
- *               isMaster:
- *                 type: boolean
- *                 example: false
- *                 descrition: Gibt an, ob nur der Streamer den Befehl verwenden darf.
- *               translation:
- *                 type: string
- *                 example: "text"
- *                 descrition: GName der Übersetzung
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
+ *             $ref: '#/definitions/Command'
  *       404:
  *         description: no data
  */
@@ -346,32 +279,7 @@ const router = express.Router();
  *         schema:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               module:
- *                 type: string
- *                 example: "say"
- *                 descrition: Name des Moduls
- *               command:
- *                 type: string
- *                 example: "text"
- *                 descrition: Name des Befehls.
- *               isMaster:
- *                 type: boolean
- *                 example: false
- *                 descrition: Gibt an, ob nur der Streamer den Befehl verwenden darf.
- *               translation:
- *                 type: string
- *                 example: "text"
- *                 descrition: GName der Übersetzung
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
+ *             $ref: '#/definitions/Command'
  *       404:
  *         description: no data
  */
@@ -2061,6 +1969,121 @@ const router = express.Router();
  *         description: no data
  */
   router.get("/herowallet/:node/hero/:name", herowallet);
+ //#endregion
+
+//#region History Duell
+/**
+ * @swagger
+ * /historyduell/{node}:
+ *   get:
+ *     tags:
+ *     - History Duell
+ *     summary: Ermittelt alle verganenen Duelle zwischen zwei Helden.
+ *     description: Rückgabe aller verganenen Duelle zwischen zwei Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/HistoryDuell'
+ *       404:
+ *         description: no data
+ */
+router.get("/historyduell/:node", historyDuell);
+
+/**
+ * @swagger
+ * /historyduell/{node}/sourcehero/{name}:
+ *   get:
+ *     tags:
+ *     - History Duell
+ *     summary: Ermittelt alle verganenen Duelle zwischen zwei Helden, bei den der übergebene Held der Angreifer war.
+ *     description: Rückgabe aller verganenen Duelle zwischen zwei Helden, bei den der übergebene Held der Angreifer war.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Angreifer"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           $ref: '#/definitions/HistoryDuell'
+ *       404:
+ *         description: no data
+ */
+  router.get("/historyduell/:node/sourcehero/:name", historyDuell);
+
+/**
+ * @swagger
+ * /historyduell/{node}/targethero/{name}:
+ *   get:
+ *     tags:
+ *     - History Duell
+ *     summary: Ermittelt alle verganenen Duelle zwischen zwei Helden, bei den der übergebene Held der Verteidiger war.
+ *     description: Rückgabe aller verganenen Duelle zwischen zwei Helden, bei den der übergebene Held der Verteidiger war.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Verteidiger"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           $ref: '#/definitions/HistoryDuell'
+ *       404:
+ *         description: no data
+ */
+router.get("/historyduell/:node/targethero/:name", historyDuell);
  //#endregion
 
 //#region Item

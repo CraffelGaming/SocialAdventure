@@ -36,6 +36,7 @@
     { "page": "navigation", "handle": "loginAs", "language": "de-DE", "translation": "Angemeldet als $1"},
     { "page": "navigation", "handle": "promotion", "language": "de-DE", "translation": "Promo-Codes"},
     { "page": "navigation", "handle": "api", "language": "de-DE", "translation": "API"},
+    { "page": "navigation", "handle": "information", "language": "de-DE", "translation": "Informationen"},
 
     { "page": "promotion", "handle": "title", "language": "de-DE", "translation": "Promo-Codes"},
     { "page": "promotion", "handle": "recipient", "language": "de-DE", "translation": "Empfänger"},

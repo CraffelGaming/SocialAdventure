@@ -6,6 +6,37 @@ import { NodeItem } from '../../model/nodeItem.js';
 const router = express.Router();
 const endpoint = 'adventure';
 
+//#region swagger
+/**
+ * @swagger
+ *
+ * definitions:
+ *   Adventure:
+ *     type: object
+ *     required:
+ *       - itemHandle
+ *       - heroName
+ *     properties:
+ *       itemHandle:
+ *         type: integer
+ *         descrition: Eindeutige ID eines Gegenstands
+ *       heroName:
+ *         type: string
+ *         descrition: Eindeutiger Name eines Helden
+ *       createdAt:
+ *         type: string
+ *         descrition: Datum der Anlage
+ *       updatedAt:
+ *         type: string
+ *         descrition: Datum der letzten Änderung
+ *     example:
+ *       itemHandle: 1
+ *       heroName: 'craffel'
+ *       createdAt: "2022-05-12 10:11:35.027 +00:00"
+ *       updatedAt: "2022-05-12 10:11:35.027 +00:00"
+ */
+//#endregion
+
 router.get('/' + endpoint + '/:node/', async (request: express.Request, response: express.Response) => {
     try{
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);

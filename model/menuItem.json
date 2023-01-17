@@ -164,21 +164,30 @@
         "isActive": true
     },
     {
+        "endpoint": "information",
+        "name": "information",
+        "order": 1500,
+        "isActive": true
+    },
+    {
         "endpoint": "help",
         "name": "help",
-        "order": 1500,
+        "order": 1510,
+        "parentEndpoint": "information",
         "isActive": true
     },
     {
         "endpoint": "impressum",
         "name": "impressum",
-        "order": 1550,
+        "order": 1520,
+        "parentEndpoint": "information",
         "isActive": true
     },
     {
         "endpoint": "api",
         "name": "api",
-        "order": 1600,
+        "order": 1530,
+        "parentEndpoint": "information",
         "isActive": true
     }
 ]
