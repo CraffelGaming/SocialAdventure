@@ -49,7 +49,7 @@ export class Channel {
             this.removeSays();
             this.removeLoot();
         } catch(ex) {
-            global.worker.log.error(`channel error - function initialize - ${ex.message}`);
+            global.worker.log.error(`channel error - function deactivate - ${ex.message}`);
         }
     }
     //#endregion
@@ -80,7 +80,7 @@ export class Channel {
 
             global.worker.log.info(`node ${this.node.getDataValue('name')}, finish load moderators, count: ${moderators.length}`);
         } catch(ex) {
-            global.worker.log.error(`channel error - function initialize - ${ex.message}`);
+            global.worker.log.error(`channel error - function getModerators - ${ex.message}`);
         }
         return moderators;
     }
@@ -169,7 +169,7 @@ export class Channel {
                 global.worker.log.info(`node ${this.node.getDataValue('name')}, remove module ${item.item.getDataValue("command")}.`);
             }
         } catch(ex) {
-            global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
+            global.worker.log.error(`channel error - function removeSays - ${ex.message}`);
         }
     }
 
@@ -243,7 +243,7 @@ export class Channel {
         try {
             this.loot.remove();
         } catch(ex) {
-            global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);
+            global.worker.log.error(`channel error - function removeLoot - ${ex.message}`);
         }
     }
 

@@ -15,6 +15,8 @@ export class NodeItem extends Model<NodeItem>{
     isLive: boolean = false;
     @Column
     endpoint : string = '/';
+    @Column
+    database : string;
 
     constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
         super();
@@ -54,6 +56,10 @@ export class NodeItem extends Model<NodeItem>{
                type: DataTypes.STRING,
                allowNull: false,
                defaultValue: '/'
+            },
+            database: {
+               type: DataTypes.STRING,
+               allowNull: true,
             }
           }, {freezeTableName: true});
     }

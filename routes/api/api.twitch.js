@@ -60,7 +60,7 @@ router.post('/' + endpoint + '/', async (request, response) => {
                 where: { name: request.session.userData.login }
             }))[0];
             node.setDataValue('isActive', true);
-            node.save();
+            await node.save();
             const channel = await global.worker.startNode(node);
             await HeroItem.put({ sequelize: channel.database.sequelize, element: new HeroItem(channel.node.getDataValue('name')), onlyCreate: true });
             response.status(200).json();
@@ -80,7 +80,7 @@ router.post('/' + endpoint + '/deactivate', async (request, response) => {
             const node = await global.worker.globalDatabase.sequelize.models.node.findOne({ where: { name: request.session.userData.login } });
             if (node) {
                 node.setDataValue('isActive', false);
-                node.save();
+                await node.save();
                 const channel = await global.worker.stopNode(node);
                 request.session.node = null;
                 response.status(200).json(channel);

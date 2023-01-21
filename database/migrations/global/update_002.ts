@@ -5,11 +5,10 @@ export async function up (queryInterface : QueryInterface, sequelize : Sequelize
   return Promise.all([
     queryInterface.addColumn(
       'node',
-      'endpoint',
+      'database',
       {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: '/'
+        allowNull: true,
       },
     )
   ]);
@@ -17,6 +16,6 @@ export async function up (queryInterface : QueryInterface, sequelize : Sequelize
 
 export async function down (queryInterface : QueryInterface, sequelize : Sequelize) {
   return Promise.all([
-    queryInterface.removeColumn('node', 'endpoint')
+    queryInterface.removeColumn('node', 'database')
   ]);
 }

@@ -51,6 +51,10 @@ let NodeItem = class NodeItem extends Model {
                 type: DataTypes.STRING,
                 allowNull: false,
                 defaultValue: '/'
+            },
+            database: {
+                type: DataTypes.STRING,
+                allowNull: true,
             }
         }, { freezeTableName: true });
     }
@@ -84,6 +88,10 @@ __decorate([
     Column,
     __metadata("design:type", String)
 ], NodeItem.prototype, "endpoint", void 0);
+__decorate([
+    Column,
+    __metadata("design:type", String)
+], NodeItem.prototype, "database", void 0);
 NodeItem = __decorate([
     Table({ tableName: "node", modelName: "node" }),
     __metadata("design:paramtypes", [String, String, String, Boolean])

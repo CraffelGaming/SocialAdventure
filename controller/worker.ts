@@ -94,6 +94,12 @@ export class Worker {
                 // Register Channel to twitch
                 await this.register(channel);
                 this.channels.push(channel);
+
+                // Add DB Name to Node-Table
+                if(!node.getDataValue('database')) {
+                    node.setDataValue('database', channel.database.databaseName);
+                    await node.save();
+                }
             } else {
                 this.log.trace('Node already added ' + node.getDataValue('name'));
             }
@@ -167,15 +173,16 @@ export class Worker {
 
     async register(channel: Channel){
         try {
-            if(channel?.node != null && this.tmi != null)
-            this.log.trace('node connected: ' + channel.node.getDataValue('name'));
-            await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
+            if(channel?.node != null && this.tmi != null) {
+                this.log.trace('node connected: ' + channel.node.getDataValue('name'));
+                await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
 
-            if(this.tmi?.username) {
-                this.log.trace(`TMI username ${this.tmi.username} `);
+                if(this.tmi?.username) {
+                    this.log.trace(`TMI username ${this.tmi.username} `);
+                }
             }
         } catch(ex) {
-            global.worker.log.error(`worker error - function register - ${ex.message}`);
+            global.worker.log.error(`worker error - function register - channel ${channel?.node?.getDataValue('name')} - ${ex.message}`);
         }
     }
 
