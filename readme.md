@@ -56,7 +56,7 @@ Release Date: 05.01.2023
 
 ### Release 1.3.0 
 Release Date: 2023
-- [ ]  Kampf / Steal LOG
+- [X]  Logs
 - [ ]  Englisch
 - [ ]  API aufräumen
 - [ ]  Datenspeicher für Say-Module
@@ -65,11 +65,12 @@ Release Date: 2023
 - [ ]  Diamanten
 - [ ]  GitHub Readme.md überarbeiten
 - [ ]  Dungeons / Enemy / Item / Category export / import
-- [ ]  Mehr Traits
+- [X]  Mehr Traits
 - [ ]  Item Verwendungen
 - [ ]  Live Push Notification
 - [ ]  Handbuch
 - [ ]  Validation Engine A < > != B
+- [ ]  Housing
 
 ## Error Collection
 ### Say
