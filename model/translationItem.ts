@@ -73,6 +73,6 @@ export class TranslationItem extends Model<TranslationItem>{
         if (value && value.getDataValue('translation'))
             return value.getDataValue('translation');
 
-        return '[missing translation]';
+        return '';
     }
 }

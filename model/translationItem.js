@@ -67,7 +67,7 @@ let TranslationItem = class TranslationItem extends Model {
         const value = translation.find(x => x.getDataValue('handle') === handle);
         if (value && value.getDataValue('translation'))
             return value.getDataValue('translation');
-        return '[missing translation]';
+        return '';
     }
 };
 __decorate([

@@ -32,10 +32,14 @@ export class LootRaid {
 
                     if(raid.getDataValue('isActive')){
                         if(!this.raid) {
-                            this.loot.channel.puffer.addMessage(await this.start());
-                            raid.setDataValue('lastRun', new Date());
-                            await raid.save();
-                            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid started`);
+                            if(this.loot.getRandomNumber(1, 3) === 1) {
+                                this.loot.channel.puffer.addMessage(await this.start());
+                                raid.setDataValue('lastRun', new Date());
+                                await raid.save();
+                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid started`);
+                            } else {
+                                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid idle`);
+                            }
                         } else if(!this.raid.getDataValue('isDefeated')) {
                             if(this.loot.isDateTimeoutExpiredMinutes(new Date(raid.getDataValue('lastRun')), raid.getDataValue('minutes'))){
                                 raid.setDataValue('lastRun', new Date());
@@ -88,13 +92,20 @@ export class LootRaid {
                                        * this.loot.getRandomNumber(1, Math.round(count / 2) + 1)
                                        + this.loot.getRandomNumber(Math.round(count / 2), count)
 
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, hero ${hero.getDataValue('name')} damage ${heroDamage}`);
+
                     damage += Math.round(heroDamage);
                     await raidHero.increment('damage', { by: heroDamage });
 
                     let bossDamage = this.loot.getRandomNumber(Math.round(this.boss.getDataValue('strength') / 2), this.boss.getDataValue('strength'))
-                    bossDamage += Math.round(bossDamage / 100 * (100 - trait.getDataValue("defenceMultipler")) / 2);
-                    if(hero.getDataValue('hitpoints') <= bossDamage) {
 
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss damage before defence ${bossDamage}`);
+
+                    bossDamage = Math.round(bossDamage / 100 * (100 - (trait.getDataValue("defenceMultipler") / 2 + 1)));
+
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss damage after defence ${bossDamage}`);
+
+                    if(hero.getDataValue('hitpoints') <= bossDamage) {
                         bossDamage = hero.getDataValue('hitpoints');
                         defeatedHeroes.push(hero.getDataValue('name'));
                     }
@@ -107,6 +118,9 @@ export class LootRaid {
             if(hitpoints < 0) {
                 hitpoints = 0;
             }
+
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss hitpoints before fight ${this.raid.getDataValue('hitpoints')}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss hitpoints after fight ${hitpoints}`);
 
             this.raid.setDataValue('hitpoints', hitpoints);
             this.raid.save();

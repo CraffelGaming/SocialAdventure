@@ -50,9 +50,11 @@ export class LootExploring {
             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight heroDamage ${heroDamage}`);
             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyHitpoints ${enemyHitpoints}`);
             if (enemyHitpoints > 0) {
-                const enemyDamage = this.loot.getRandomNumber(Math.round(this.enemy.getDataValue("strength") / 2), this.enemy.getDataValue("strength"));
-                this.damage += Math.round(enemyDamage / 100 * (100 - this.trait.getDataValue("defenceMultipler")) / 2);
-                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyDamage ${enemyDamage}`);
+                let enemyDamage = this.loot.getRandomNumber(Math.round(this.enemy.getDataValue("strength") / 2), this.enemy.getDataValue("strength"));
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyDamage before defence ${enemyDamage}`);
+                enemyDamage = Math.round(enemyDamage / 100 * (100 - (this.trait.getDataValue("defenceMultipler") / 2 + 1)));
+                this.damage += enemyDamage;
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyDamage after defence ${enemyDamage}`);
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight complete damage ${this.damage}`);
             }
         }
