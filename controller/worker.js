@@ -44,10 +44,10 @@ export class Worker {
             await this.connect();
             // Load default Translation
             this.translation = await this.globalDatabase.sequelize.models.translation.findAll({ where: { language: 'default' }, order: [['handle', 'ASC']] });
-            for (const node of Object.values(await this.globalDatabase.sequelize.models.node.findAll({ include: [{
+            for (const node of await this.globalDatabase.sequelize.models.node.findAll({ where: { isActive: true }, include: [{
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
                         as: 'twitchUser',
-                    }] }))) {
+                    }] })) {
                 await this.startNode(node); // no await needed
             }
             global.worker.log.info(`--------------------------------------`);
@@ -62,9 +62,9 @@ export class Worker {
     //#region Node
     async startNode(node) {
         try {
-            let channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
+            let channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.getDataValue('name'));
             if (channel == null) {
-                this.log.trace('add Node ' + node.name);
+                this.log.trace('add Node ' + node.getDataValue('name'));
                 channel = new Channel(node, this.translation);
                 await channel.initialize();
                 // Register Channel to twitch
@@ -72,12 +72,34 @@ export class Worker {
                 this.channels.push(channel);
             }
             else {
-                this.log.trace('Node already added ' + node.name);
+                this.log.trace('Node already added ' + node.getDataValue('name'));
             }
             return channel;
         }
         catch (ex) {
             global.worker.log.error(`worker error - function startNode - ${ex.message}`);
+        }
+        return null;
+    }
+    async stopNode(node) {
+        try {
+            let channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.getDataValue('name'));
+            if (channel != null) {
+                this.log.trace('remove Node ' + node.getDataValue('name'));
+                // Deactivate Channel
+                channel.deactivate();
+                // Unregister Channel to twitch
+                await this.register(channel);
+                this.channels = this.channels.filter(x => x !== channel);
+                channel = null;
+            }
+            else {
+                this.log.trace('Node already removed ' + node.getDataValue('name'));
+            }
+            return channel;
+        }
+        catch (ex) {
+            global.worker.log.error(`worker error - function stopNode - ${ex.message}`);
         }
         return null;
     }
@@ -116,6 +138,17 @@ export class Worker {
             if (channel?.node != null && this.tmi != null)
                 this.log.trace('node connected: ' + channel.node.getDataValue('name'));
             await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
+            this.log.trace(this.tmi);
+        }
+        catch (ex) {
+            global.worker.log.error(`worker error - function register - ${ex.message}`);
+        }
+    }
+    async unregister(channel) {
+        try {
+            if (channel?.node != null && this.tmi != null)
+                this.log.trace('node disconnected: ' + channel.node.getDataValue('name'));
+            await this.tmi.part(channel.node.getDataValue('name').replace('#', ''));
             this.log.trace(this.tmi);
         }
         catch (ex) {

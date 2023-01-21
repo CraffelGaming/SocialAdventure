@@ -5913,6 +5913,24 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *         description: no data
  */
   router.post("/twitch", twitch);
+
+/**
+ * @swagger
+ * /twitch/deactivate:
+ *   post:
+ *     tags:
+ *     - Twitch
+ *     summary: Deregistrierung neuer Streamer
+ *     description: Deregistrierung des angemeldeten Streamer.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *       404:
+ *         description: no data
+ */
+router.post("/twitch/deactivate", twitch);
 //#endregion
 
 //#region Validation

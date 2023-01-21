@@ -18,6 +18,21 @@ export class Channel {
         this.streamWatcher();
     }
     //#endregion
+    //#region Deactivate
+    deactivate() {
+        try {
+            global.worker.log.info(`node ${this.node.getDataValue('name')}, deactivate`);
+            if (this.streamWatcherTimer) {
+                clearInterval(this.streamWatcherTimer);
+            }
+            this.removeSays();
+            this.removeLoot();
+        }
+        catch (ex) {
+            global.worker.log.error(`channel error - function initialize - ${ex.message}`);
+        }
+    }
+    //#endregion
     //#region Initialize
     async initialize() {
         try {
@@ -50,7 +65,7 @@ export class Channel {
     //#region Stream / Twitch Watcher
     streamWatcher() {
         global.worker.log.info(`node ${this.node.getDataValue('name')}, add streamWatcher`);
-        setInterval(async () => {
+        this.streamWatcherTimer = setInterval(async () => {
             global.worker.log.trace(`node ${this.node.getDataValue('name')}, streamWatcher run`);
             try {
                 if (this.twitch) {
@@ -122,6 +137,17 @@ export class Channel {
             global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
         }
     }
+    async removeSays() {
+        try {
+            for (const item of this.say) {
+                item.remove();
+                global.worker.log.info(`node ${this.node.getDataValue('name')}, remove module ${item.item.getDataValue("command")}.`);
+            }
+        }
+        catch (ex) {
+            global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
+        }
+    }
     async startSays() {
         try {
             for (const item of this.say) {
@@ -147,7 +173,7 @@ export class Channel {
             global.worker.log.error(`channel error - function addSay - ${ex.message}`);
         }
     }
-    async removeSay(command) {
+    removeSay(command) {
         try {
             const index = this.say.findIndex(d => d.item.getDataValue("command") === command);
             if (index > -1) {
@@ -182,6 +208,14 @@ export class Channel {
             if (this.loot.settings.find(x => x.getDataValue("command") === 'raid').getDataValue("isLiveAutoControl")) {
                 await this.loot.raidstop();
             }
+        }
+        catch (ex) {
+            global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);
+        }
+    }
+    removeLoot() {
+        try {
+            this.loot.remove();
         }
         catch (ex) {
             global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);

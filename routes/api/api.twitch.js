@@ -59,13 +59,36 @@ router.post('/' + endpoint + '/', async (request, response) => {
                 },
                 where: { name: request.session.userData.login }
             }))[0];
-            await global.worker.globalDatabase.sequelize.models.node.update(node, { where: { name: request.session.userData.login } });
+            node.setDataValue('isActive', true);
+            node.save();
             const channel = await global.worker.startNode(node);
             await HeroItem.put({ sequelize: channel.database.sequelize, element: new HeroItem(channel.node.getDataValue('name')), onlyCreate: true });
             response.status(200).json();
         }
         else
             response.status(404).json();
+    }
+    catch (ex) {
+        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
+        response.status(500).json();
+    }
+});
+router.post('/' + endpoint + '/deactivate', async (request, response) => {
+    try {
+        global.worker.log.trace(`post ${endpoint} deactivate`);
+        if (global.isMaster(request, response, request.session.node)) {
+            const node = await global.worker.globalDatabase.sequelize.models.node.findOne({ where: { name: request.session.userData.login } });
+            if (node) {
+                node.setDataValue('isActive', false);
+                node.save();
+                const channel = await global.worker.stopNode(node);
+                response.status(200).json(channel);
+            }
+            else
+                response.status(404).json();
+        }
+        else
+            response.status(401).json();
     }
     catch (ex) {
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);

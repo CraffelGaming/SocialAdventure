@@ -559,6 +559,23 @@ export class Loot extends Module {
         }
     }
     //#endregion
+    //#region Remove
+    remove() {
+        try {
+            if (this.timer != null) {
+                clearInterval(this.timer);
+                if (this.raidItem != null) {
+                    if (this.raidItem.timer != null) {
+                        clearInterval(this.raidItem.timer);
+                    }
+                }
+            }
+        }
+        catch (ex) {
+            global.worker.log.error(`module loot error function remove - ${ex.message}`);
+        }
+    }
+    //#endregion
     //#region Hitpoints
     async hitpoints(command) {
         try {

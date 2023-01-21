@@ -68,7 +68,7 @@ export class LootRaid {
     }
     //#endregion
 
-    //region Fight
+    //#region Fight
     async fight() : Promise<string> {
         let result = '';
         let damage = 0;

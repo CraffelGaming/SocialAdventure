@@ -254,14 +254,14 @@ $(async () => {
                         { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100, allowEditing: false },
                         { dataField: "quantity", caption: translate(language, 'quantity'), width: 100, allowEditing: false },
                         {
-                            caption: translate(language, 'total'), allowEditing: false, width: 200,
+                            caption: translate(language, 'total'), allowEditing: false, width: 140,
                             calculateCellValue(data) {
                                 if(data && data.item){
                                     return data.quantity * data.item.gold;
                                 }
                             }
                         },
-                        { dataField: "quantitySell", caption: translate(language, 'quantitySell'), width: 200,
+                        { dataField: "quantitySell", caption: translate(language, 'quantitySell'), width: 140,
                             calculateCellValue(data) {
                                 if(data && data.item){
                                     return data.quantity - 1;

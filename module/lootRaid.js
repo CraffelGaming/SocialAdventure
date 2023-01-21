@@ -54,7 +54,7 @@ export class LootRaid {
         );
     }
     //#endregion
-    //region Fight
+    //#region Fight
     async fight() {
         let result = '';
         let damage = 0;

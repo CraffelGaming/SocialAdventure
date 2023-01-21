@@ -34,7 +34,7 @@ router.get('/' + endpoint + '/information/:node/', async (request: express.Reque
         let item: Model<NodeItem>;
 
         if(request.params.node === 'default')
-            nodeName = (await global.defaultNode(request, response)).getDataValue('name');
+            nodeName = (await global.defaultNode(request, response)).name;
         else nodeName = request.params.node;
 
         if(request.query.childs !== "false"){
@@ -94,7 +94,7 @@ router.post('/' + endpoint + '/default', async (request: express.Request, respon
         if(channel) {
             request.session.node = channel.node.get();
 
-            if(global.isRegistered(request,response ))
+            if(global.isRegistered(request,response))
                 await HeroItem.put({sequelize: channel.database.sequelize, element: new HeroItem(request.session.userData?.login), onlyCreate: true});
 
             response.status(200).json({ node: request.session.node});

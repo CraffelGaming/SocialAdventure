@@ -103,7 +103,15 @@
         "order": 1280,
         "parentEndpoint": "game",
         "nodeRequired": true,
-        "isActive": false
+        "isActive": true
+    },
+    {
+        "endpoint": "historyDuell",
+        "name": "historyDuell",
+        "order": 1281,
+        "parentEndpoint": "statistic",
+        "nodeRequired": true,
+        "isActive": true
     },
     {
         "endpoint": "command",

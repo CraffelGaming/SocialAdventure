@@ -30,7 +30,7 @@ router.get('/' + endpoint + '/information/:node/', async (request, response) => 
         let nodeName;
         let item;
         if (request.params.node === 'default')
-            nodeName = (await global.defaultNode(request, response)).getDataValue('name');
+            nodeName = (await global.defaultNode(request, response)).name;
         else
             nodeName = request.params.node;
         if (request.query.childs !== "false") {
