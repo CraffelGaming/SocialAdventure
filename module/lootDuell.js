@@ -16,7 +16,7 @@ export class LootDuell {
     //#region Execute
     async execute(settings) {
         this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.item.sourceHeroName);
-        if (this.item.targetHeroName) {
+        if (this.item.targetHeroName?.length > 0) {
             this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.item.targetHeroName);
         }
         else {

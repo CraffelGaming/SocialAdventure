@@ -1,6 +1,6 @@
 [
-    { "page": "default", "handle": "botOnline", "language": "de-DE", "translation": "Bot gestartet." },
-    { "page": "default", "handle": "botOffline", "language": "de-DE", "translation": "Bot beendet." },
+    { "page": "default", "handle": "botOnline", "language": "de-DE", "translation": "Social Adventure Bot ist online." },
+    { "page": "default", "handle": "botOffline", "language": "de-DE", "translation": "Social Adventure wurde beendet." },
 
     { "page": "information", "handle": "noStreamer", "language": "de-DE", "translation": "Kein Streamer ausgewählt" },
     { "page": "information", "handle": "noLogin", "language": "de-DE", "translation": "Nicht angemeldet" },

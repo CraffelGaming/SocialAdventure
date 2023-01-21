@@ -92,10 +92,11 @@ export class Channel {
         this.streamWatcherTimer = setInterval(
             async () => {
                 global.worker.log.trace(`node ${this.node.getDataValue('name')}, streamWatcher run`);
+
                 try{
                    if(this.twitch){
                         const stream = await this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
-                        if(stream && stream.type === 'live') {
+                        if(stream?.type === 'live') {
                             if(!this.node.getDataValue('isLive')){
                                 global.worker.log.info(`node ${this.node.getDataValue('name')}, streamWatcher is now live`);
                                 this.node.setDataValue('isLive', true);

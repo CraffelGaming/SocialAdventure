@@ -278,13 +278,13 @@ export class LootRaid {
     }
     //#endregion
 
-        //#region Trait
-        async getTrait(hero: Model<HeroItem>): Promise<Model<HeroTraitItem>>{
-            const trait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(hero.getDataValue("name")) as Model<HeroTraitItem>;
-            if(trait){
-                return trait;
-            }
-            return null;
+    //#region Trait
+    async getTrait(hero: Model<HeroItem>): Promise<Model<HeroTraitItem>>{
+        const trait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(hero.getDataValue("name")) as Model<HeroTraitItem>;
+        if(trait){
+            return trait;
         }
-        //#endregion
+        return null;
+    }
+    //#endregion
 }

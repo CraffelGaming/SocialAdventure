@@ -64,7 +64,7 @@ export class Worker {
             await this.connect();
 
             // Load default Translation
-            this.translation = await this.globalDatabase.sequelize.models.translation.findAll({where: { language: 'default' }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[];
+            this.translation = await this.globalDatabase.sequelize.models.translation.findAll({where: { page: 'default' }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[];
 
             for(const node of await this.globalDatabase.sequelize.models.node.findAll({ where: { isActive: true }, include: [{
                 model: global.worker.globalDatabase.sequelize.models.twitchUser,

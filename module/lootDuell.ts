@@ -1,5 +1,3 @@
-import { devNull } from 'os';
-import { off } from 'process';
 import sequelize from 'sequelize';
 import { Model } from 'sequelize-typescript';
 import { AdventureItem } from '../model/adventureItem.js';
@@ -7,7 +5,6 @@ import { HeroItem } from '../model/heroItem.js';
 import { HeroTraitItem } from '../model/heroTraitItem.js';
 import { HeroWalletItem } from '../model/heroWalletItem.js';
 import { HistoryDuellItem } from '../model/historyDuellItem.js';
-import { ItemItem } from '../model/itemItem.js';
 import { LootItem } from '../model/lootItem.js';
 import { Loot } from './loot.js';
 
@@ -35,7 +32,7 @@ export class LootDuell {
     async execute(settings: Model<LootItem>) : Promise<boolean>{
         this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.item.sourceHeroName) as Model<HeroItem>;
 
-        if(this.item.targetHeroName) {
+        if(this.item.targetHeroName?.length > 0) {
             this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.item.targetHeroName) as Model<HeroItem>;
         } else {
             const adventure = await this.getAdventure();

@@ -179,6 +179,7 @@ export class Say extends Module {
             if (!this.item.getDataValue("isActive")) {
                 this.item.setDataValue("isActive", true);
                 this.item.setDataValue("count", 0);
+                this.item.setDataValue("lastRun", new Date());
                 await this.item.save();
                 global.worker.log.trace(`module ${this.item.getDataValue("command")} set active: ${this.item.getDataValue("isActive")}`);
                 return TranslationItem.translate(this.basicTranslation, "start");
