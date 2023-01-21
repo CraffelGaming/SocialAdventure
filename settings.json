@@ -5,7 +5,7 @@
     "favicon": "/public/images/favicon.png",
     "key" : "/ssl/craffel.de_private_key.key",
     "cert" : "/ssl/craffel.de_ssl_certificate.cer",
-    "logLevel": "warn",
+    "logLevel": "trace",
     "logDatabase": false,
     "logOutputPath": "log/default.log"
 }

@@ -418,19 +418,27 @@ export class Loot extends Module {
     //#region Rank
     async rank(command) {
         try {
-            const hero = this.getTargetHero(command);
-            const gold = (await this.channel.database.sequelize.query(this.getRankStatement(hero, "heroName", "heroWallet", "gold")))[0][0];
-            const experience = (await this.channel.database.sequelize.query(this.getRankStatement(hero, "name", "hero", "experience")))[0][0];
+            const heroName = this.getTargetHero(command);
+            const hero = await this.channel.database.sequelize.models.hero.findByPk(heroName);
+            const gold = (await this.channel.database.sequelize.query(this.getRankStatement(heroName, "heroName", "heroWallet", "gold")))[0][0];
+            const experience = (await this.channel.database.sequelize.query(this.getRankStatement(heroName, "name", "hero", "experience")))[0][0];
+            const prestige = (await this.channel.database.sequelize.query(this.getRankStatement(heroName, "name", "hero", "prestige")))[0][0];
+            const level = await this.channel.database.sequelize.models.level.findOne({
+                attributes: [[this.channel.database.sequelize.fn('max', this.channel.database.sequelize.col('experienceMax')), 'max']]
+            });
+            const maxExperience = level.getDataValue("max");
             if (gold != null && experience != null) {
                 return TranslationItem.translate(this.translation, 'heroRank')
-                    .replace('$1', hero)
+                    .replace('$1', heroName)
                     .replace('$2', gold.rank)
                     .replace('$3', gold.gold)
                     .replace('$4', experience.rank)
-                    .replace('$5', experience.experience);
+                    .replace('$5', experience.experience)
+                    .replace('$6', prestige.rank)
+                    .replace('$7', (prestige.prestige + 1));
             }
             else {
-                return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', hero);
+                return TranslationItem.translate(this.translation, 'heroJoin').replace('$1', heroName);
             }
         }
         catch (ex) {
@@ -441,7 +449,7 @@ export class Loot extends Module {
     getRankStatement(hero, heroColumn, table, column) {
         return "SELECT rank, " + column + ", " + heroColumn + " FROM (" +
             "    SELECT" +
-            "        ROW_NUMBER () OVER ( " +
+            "        DENSE_RANK () OVER ( " +
             "            ORDER BY " + column + " DESC" +
             "        ) rank," + column + ", " + heroColumn +
             "    FROM " + table +
@@ -966,7 +974,7 @@ export class Loot extends Module {
             const hero = this.getTargetHero(command);
             const raid = this.settings.find(x => x.getDataValue("command") === "raid");
             if (raid.getDataValue('isActive') && this.raidItem.raid) {
-                const heroes = await this.raidItem.loadRaidHeroes();
+                const heroes = await this.raidItem.getRaidHeroes();
                 if (heroes && heroes.length > 0) {
                     const current = heroes.find(x => x.getDataValue('heroName') === hero);
                     return TranslationItem.translate(this.translation, 'raidInfo')
@@ -993,7 +1001,7 @@ export class Loot extends Module {
         try {
             const raid = this.settings.find(x => x.getDataValue("command") === "raid");
             if (raid.getDataValue('isActive') && this.raidItem.raid) {
-                const raidHero = await this.raidItem.loadRaidHero(command.source);
+                const raidHero = await this.raidItem.getRaidHero(command.source);
                 if (!raidHero) {
                     let hero = await this.channel.database.sequelize.models.hero.findByPk(command.source);
                     if (!hero) {

@@ -135,7 +135,7 @@ export class LootSteal {
 
         if(sourceTrait && targetTrait){
             const sourceTrys = targetTrait.getDataValue("stealMultipler");
-            const targetTrys = targetTrait.getDataValue("defenceMultipler");
+            const targetTrys = targetTrait.getDataValue("perceptionMultipler");
 
             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence sourceTrys ${sourceTrys}`);
             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence targetTrys ${targetTrys}`);

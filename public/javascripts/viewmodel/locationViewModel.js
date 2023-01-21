@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get, put } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -27,7 +27,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get('/location/default', language);
+                    return await getList('/location/default', language);
                 },
                 insert: async function (values) {
                     if(values.category != null)

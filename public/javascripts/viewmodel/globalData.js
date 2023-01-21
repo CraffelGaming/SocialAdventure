@@ -88,15 +88,17 @@ export function notify(message, type) {
     DevExpress.ui.notify(
         {
             message: message,
-            width: 300,
+            width: 350,
             position: {
                 my: "top",
                 at: "center",
                 of: "#notification"
-            }
+            },
+            closeOnClick: true,
+            hideOnParentScroll: true
         },
         type,
-        2000
+        600
     );
 }
 //#endregion
@@ -164,6 +166,18 @@ export async function isHero(heroName) {
 //#endregion
 
 //#region Get
+export async function getList(endpoint, language = undefined) {
+    let item = await get(endpoint, language);
+
+    if(!item) {
+        return [];
+    } else if(Array.isArray(item)) {
+        return item;
+    } else {
+        return [item];
+    }
+}
+
 export async function get(endpoint, language = undefined) {
     let items;
 
@@ -203,7 +217,6 @@ export async function put(endpoint, body, type = 'put', language = undefined) {
                 'Content-type': 'application/json'
             }, body: JSON.stringify(body)
         }).then(async function (res) {
-            //console.log(res);
             switch (res.status) {
                 case 200:
                 case 201:

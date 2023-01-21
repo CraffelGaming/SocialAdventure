@@ -21,6 +21,7 @@ import adventure from "./adventure.js";
 import setting from "./setting.js";
 import promotion from "./promotion.js";
 import impressum from "./impressum.js";
+import historyDuell from "./historyDuell.js";
 
 const endpoint = 'index';
 const type = 'app';
@@ -86,6 +87,9 @@ router.get('/level', level);
 
 // Impressum
 router.get('/impressum', impressum);
+
+// History
+router.get('/historyDuell', historyDuell);
 
 // index
 router.get('/', async (request: express.Request, response: express.Response) => {

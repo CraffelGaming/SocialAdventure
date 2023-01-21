@@ -30,7 +30,7 @@ $(async () => {
 
     //#region Adventure
     async function loadAdventure() {    
-        if(settings.find(x =>x.command === "loot")?.isActive) {
+        if(settings?.find(x =>x.command === "loot")?.isActive) {
             document.getElementById("informationDungeon").textContent = translate(language, 'informationDungeon');
 
             let validation = await get(`/validation/hero`);
@@ -187,7 +187,7 @@ $(async () => {
     async function loadRaid() {    
         let raid = await get('/raid/default/current/active');
         console.log(raid);
-        if(settings.find(x =>x.command === "raid")?.isActive && raid?.raidBoss) {
+        if(settings?.find(x =>x.command === "raid")?.isActive && raid?.raidBoss) {
             document.getElementById("raidBossName").textContent = raid.raidBoss.name;
             document.getElementById("raidBossDescription").textContent = raid.raidBoss.description;
 

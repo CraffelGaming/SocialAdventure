@@ -1,9 +1,8 @@
-import { getTranslation, translate, infoPanel, get, put } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, put, notify } from './globalData.js';
 import { getCookie, setCookie } from './cookieViewModel.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
-    
     let module = 'index';
     let language = await getTranslation(module);
     let twitch = await get(`/twitch`, language);

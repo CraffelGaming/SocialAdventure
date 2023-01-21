@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, getEditing, get, notify, put } from './globalData.js';
+import { getTranslation, translate, infoPanel, getEditing, get, notify, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -25,7 +25,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/daily/default`, language);
+                    return await getList(`/daily/default`, language);
                 },
                 insert: async function (values) {
                     await fetch('./api/daily/default', {

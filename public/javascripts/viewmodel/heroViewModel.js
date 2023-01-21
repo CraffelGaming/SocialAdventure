@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, get, loadUserData, notify, put } from './globalData.js';
+import { getTranslations, translate, infoPanel, get, loadUserData, notify, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -36,8 +36,14 @@ $(async () => {
     //#region Initialize
     async function initialize() {
         userdata = await loadUserData();
-        hero = await get('/hero/default/' + userdata.login, language)
-        level = await get('/level/default/' + hero.experience, language)
+
+        if(userdata) {         
+            hero = await get('/hero/default/' + userdata.login, language);
+
+            if(hero) {
+                level = await get('/level/default/' + hero.experience, language)
+            }
+        }
     }
     //#endregion
 
@@ -140,274 +146,280 @@ $(async () => {
                     }, "searchPanel", "exportButton"]
             }
         });
+    }
+    //#endregion
+  
+    //#region MasterDetail
+    function masterDetailTemplate(_, masterDetailOptions) {
+        return $('<div>').dxTabPanel({
+            items: [{
+                title: translate(language, 'inventory'),
+                template: createItemTabTemplate(masterDetailOptions.data, 1),
+            }, {
+                title: translate(language, 'wallet'),
+                template: createWalletTabTemplate(masterDetailOptions.data, 1),
+            }, {
+                title: translate(language, 'trait'),
+                template: createTraitTabTemplate(masterDetailOptions.data, 1),
+            }, {
+                title: translate(languageAdventure, 'adventure'),
+                template: createAdventureTabTemplate(masterDetailOptions.data, 1),
+            }, {
+                title: translate(language, 'time'),
+                template: createTimeTabTemplate(masterDetailOptions.data, 1),
+            }, {
+                title: translate(language, 'usedPromoCodes'),
+                template: createPromoCodeTabTemplate(masterDetailOptions.data, 1),
+            }],
+        });
+    }
 
-        function masterDetailTemplate(_, masterDetailOptions) {
-            return $('<div>').dxTabPanel({
-                items: [{
-                    title: translate(language, 'inventory'),
-                    template: createItemTabTemplate(masterDetailOptions.data, 1),
-                }, {
-                    title: translate(language, 'wallet'),
-                    template: createWalletTabTemplate(masterDetailOptions.data, 1),
-                }, {
-                    title: translate(language, 'trait'),
-                    template: createTraitTabTemplate(masterDetailOptions.data, 1),
-                }, {
-                    title: translate(languageAdventure, 'adventure'),
-                    template: createAdventureTabTemplate(masterDetailOptions.data, 1),
-                }, {
-                    title: translate(language, 'time'),
-                    template: createTimeTabTemplate(masterDetailOptions.data, 1),
-                }, {
-                    title: translate(language, 'usedPromoCodes'),
-                    template: createPromoCodeTabTemplate(masterDetailOptions.data, 1),
-                }],
-            });
-        }
-
-        function createAdventureTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["itemHandle", "heroName"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return await get(`/adventure/default/hero/${masterDetailData.name}`, language);
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
-                    },
-                    columns: [
-                        { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
-                        { dataField: "item.value", caption: translate(languageItem, 'value') },
-                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 }
-                    ]
-                });
-            };
-        }
-
-        function createItemTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["itemHandle", "heroName"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return await get(`/heroinventory/default/hero/${masterDetailData.name}`, language);
-                        },
-                        update: async function (key, values) {
-                            await fetch(`./api/heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}/quantity/${values.quantitySell}`, {
-                                method: 'post',
-                                headers: {
-                                    'Content-type': 'application/json'
-                                }
-                            }).then(async function (res) {
-                                switch(res.status){
-                                    case 200:
-                                        notify(translate(languageInventory, res.status), "success");
-                                        break;
-                                    default:
-                                        notify(translate(languageInventory, res.status), "error");
-                                        break;
-                                }
-                            });
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: true,
-                        allowDeleting: false,
-                        allowAdding: false
-                    },
-                    columns: [
-                        { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
-                        { dataField: "item.value", caption: translate(languageItem, 'value'), allowEditing: false },
-                        {
-                            dataField: 'item.categoryHandle',
-                            caption: translate(languageItemCategory , 'value'), width: 200, allowEditing: false,
-                            lookup: {
-                              dataSource(options) {
-                                return {
-                                  store: {  
-                                      type: 'array',  
-                                      data: category,  
-                                      key: "handle"  
-                                    }
-                                };
-                              },
-                              valueExpr: 'handle',
-                              displayExpr: function(item) {
-                                  return item && item.value;
-                              }
-                            }
-                        },
-                        { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100, allowEditing: false },
-                        { dataField: "quantity", caption: translate(language, 'quantity'), width: 100, allowEditing: false },
-                        {
-                            caption: translate(language, 'total'), allowEditing: false, width: 140,
-                            calculateCellValue(data) {
-                                if(data && data.item){
-                                    return data.quantity * data.item.gold;
-                                }
-                            }
-                        },
-                        { dataField: "quantitySell", caption: translate(language, 'quantitySell'), width: 140,
-                            calculateCellValue(data) {
-                                if(data && data.item){
-                                    return data.quantity - 1;
-                                }
-                            } 
-                        }
-                    ],
-                    onEditingStart(e) {
-                        editingItemQuantity = e.data.quantity - 1;
-                        editingItemKey = e.key;
-                    },
-                    onSaving(e) {
-                        if (e.changes.length == 0) {
-                            e.changes.push({
-                                type: "update",
-                                key: editingItemKey,
-                                data: {quantitySell : editingItemQuantity}
-                            });
-                        }
+    function createAdventureTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["itemHandle", "heroName"],
+                    loadMode: "raw",
+                    load: async function () {
+                        return await getList(`/adventure/default/hero/${masterDetailData.name}`, language);
                     }
-                });
-            };
-        }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
+                    { dataField: "item.value", caption: translate(languageItem, 'value') },
+                    { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 }
+                ]
+            });
+        };
+    }
 
-        function createWalletTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["heroName"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return [await get(`/herowallet/default/hero/${masterDetailData.name}`, language)];
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
+    function createItemTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["itemHandle", "heroName"],
+                    loadMode: "raw",
+                    load: async function () {
+                        return await getList(`/heroinventory/default/hero/${masterDetailData.name}`, language);
                     },
-                    columns: [
-                        { dataField: "gold", caption: translate(languageWallet, 'gold')},
-                        { dataField: "diamond", caption: translate(languageWallet, 'diamond')},
-                        { dataField: "blood", caption: translate(languageWallet, 'blood') },
-                        { dataField: 'lastBlood', caption: translate(languageWallet, 'lastBlood'), dataType: 'datetime', width: 150 },
-                    ]
-                });
-            };
-        }
+                    update: async function (key, values) {
+                        await fetch(`./api/heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}/quantity/${values.quantitySell}`, {
+                            method: 'post',
+                            headers: {
+                                'Content-type': 'application/json'
+                            }
+                        }).then(async function (res) {
+                            switch(res.status){
+                                case 200:
+                                    notify(translate(languageInventory, res.status), "success");
+                                    break;
+                                default:
+                                    notify(translate(languageInventory, res.status), "error");
+                                    break;
+                            }
+                        });
+                    }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: true,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
+                    { dataField: "item.value", caption: translate(languageItem, 'value'), allowEditing: false },
+                    {
+                        dataField: 'item.categoryHandle',
+                        caption: translate(languageItemCategory , 'value'), width: 200, allowEditing: false,
+                        lookup: {
+                          dataSource(options) {
+                            return {
+                              store: {  
+                                  type: 'array',  
+                                  data: category,  
+                                  key: "handle"  
+                                }
+                            };
+                          },
+                          valueExpr: 'handle',
+                          displayExpr: function(item) {
+                              return item && item.value;
+                          }
+                        }
+                    },
+                    { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100, allowEditing: false },
+                    { dataField: "quantity", caption: translate(language, 'quantity'), width: 100, allowEditing: false },
+                    {
+                        caption: translate(language, 'total'), allowEditing: false, width: 140,
+                        calculateCellValue(data) {
+                            if(data && data.item){
+                                return data.quantity * data.item.gold;
+                            }
+                        }
+                    },
+                    { dataField: "quantitySell", caption: translate(language, 'quantitySell'), width: 140,
+                        calculateCellValue(data) {
+                            if(data && data.item){
+                                return data.quantity - 1;
+                            }
+                        } 
+                    }
+                ],
+                onEditingStart(e) {
+                    editingItemQuantity = e.data.quantity - 1;
+                    editingItemKey = e.key;
+                },
+                onSaving(e) {
+                    if (e.changes.length == 0) {
+                        e.changes.push({
+                            type: "update",
+                            key: editingItemKey,
+                            data: {quantitySell : editingItemQuantity}
+                        });
+                    }
+                }
+            });
+        };
+    }
 
-        function createTraitTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["heroName"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return [await get(`/herotrait/default/hero/${masterDetailData.name}`, language)];
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
-                    },
-                    columns: [
-                        { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.goldMultipler} / ${validation.find(x => x.handle == 'goldMultipler').max}`
-                        }},
-                        { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.stealMultipler} / ${validation.find(x => x.handle == 'stealMultipler').max}`
-                        }},
-                        { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.defenceMultipler} / ${validation.find(x => x.handle == 'defenceMultipler').max}`
-                        }},
-                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.workMultipler} / ${validation.find(x => x.handle == 'workMultipler').max}`
-                        }},
-                        { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.hitpointMultipler} / ${validation.find(x => x.handle == 'hitpointMultipler').max}`
-                        }},
-                        { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
-                        }}
-                    ]
-                });
-            };
-        }
-        
-        function createTimeTabTemplate(masterDetailData) {
-            return function () {
-                return $("<div>").dxDataGrid({
-                    dataSource: [masterDetailData],
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    columns: [
-                        { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime'},
-                        { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime' },
-                        { dataField: 'lastDuell', caption: translate(language, 'lastDuell'), dataType: 'datetime' },
-                        { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date' },
-                    ]
-                });
-            };
-        }
+    function createWalletTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["heroName"],
+                    loadMode: "raw",
+                    load: async function () {
+                        return await getList(`/herowallet/default/hero/${masterDetailData.name}`, language);
+                    }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    { dataField: "gold", caption: translate(languageWallet, 'gold')},
+                    { dataField: "diamond", caption: translate(languageWallet, 'diamond')},
+                    { dataField: "blood", caption: translate(languageWallet, 'blood') },
+                    { dataField: 'lastBlood', caption: translate(languageWallet, 'lastBlood'), dataType: 'datetime', width: 150 },
+                ]
+            });
+        };
+    }
 
-        function createPromoCodeTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["hero.mame", "promotion.handle"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return await get(`/heropromotion/default/hero/${masterDetailData.name}`, language);
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
-                    },
-                    columns: [
-                        { dataField: "promotion.handle", caption: translate(languagePromotion, 'title')},
-                        { dataField: "promotion.gold", caption: translate(languageWallet, 'gold')},
-                        { dataField: "promotion.diamond", caption: translate(languageWallet, 'diamond') },
-                        { dataField: 'promotion.experience', caption: translate(language, 'experience') },
-                    ]
-                });
-            };
-        }
+    function createTraitTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["heroName"],
+                    loadMode: "raw",
+                    load: async function () {
+                        return await getList(`/herotrait/default/hero/${masterDetailData.name}`, language);
+                    }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.goldMultipler} / ${validation.find(x => x.handle == 'goldMultipler').max}`
+                    }},
+                    { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.stealMultipler} / ${validation.find(x => x.handle == 'stealMultipler').max}`
+                    }},
+                    { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.defenceMultipler} / ${validation.find(x => x.handle == 'defenceMultipler').max}`
+                    }},
+                    { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.workMultipler} / ${validation.find(x => x.handle == 'workMultipler').max}`
+                    }},
+                    { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.hitpointMultipler} / ${validation.find(x => x.handle == 'hitpointMultipler').max}`
+                    }},
+                    { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
+                    }},
+                    { dataField: "perceptionMultipler", caption: translate(languageTrait, 'perceptionMultipler'), 
+                        calculateCellValue(data) {
+                            return `${data.perceptionMultipler} / ${validation.find(x => x.handle == 'perceptionMultipler').max}`
+                    }}
+                ]
+            });
+        };
+    }
+    
+    function createTimeTabTemplate(masterDetailData) {
+        return function () {
+            return $("<div>").dxDataGrid({
+                dataSource: [masterDetailData],
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                columns: [
+                    { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime'},
+                    { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime' },
+                    { dataField: 'lastDuell', caption: translate(language, 'lastDuell'), dataType: 'datetime' },
+                    { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date' },
+                ]
+            });
+        };
+    }
+
+    function createPromoCodeTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["hero.mame", "promotion.handle"],
+                    loadMode: "raw",
+                    load: async function () {
+                        return await getList(`/heropromotion/default/hero/${masterDetailData.name}`, language);
+                    }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    { dataField: "promotion.handle", caption: translate(languagePromotion, 'title')},
+                    { dataField: "promotion.gold", caption: translate(languageWallet, 'gold')},
+                    { dataField: "promotion.diamond", caption: translate(languageWallet, 'diamond') },
+                    { dataField: 'promotion.experience', caption: translate(language, 'experience') },
+                ]
+            });
+        };
     }
     //#endregion
 

@@ -20,6 +20,7 @@ import adventure from "./adventure.js";
 import setting from "./setting.js";
 import promotion from "./promotion.js";
 import impressum from "./impressum.js";
+import historyDuell from "./historyDuell.js";
 const endpoint = 'index';
 const type = 'app';
 const router = express.Router();
@@ -63,6 +64,8 @@ router.get('/taverne', taverne);
 router.get('/level', level);
 // Impressum
 router.get('/impressum', impressum);
+// History
+router.get('/historyDuell', historyDuell);
 // index
 router.get('/', async (request, response) => {
     if (request.query.node) {

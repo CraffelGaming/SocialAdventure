@@ -13,3 +13,7 @@
     padding-right: 2px;
     z-index: 9999;
 }
+
+#notification {
+    z-index: 10000;
+}

@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, isMaster, get, put } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, isMaster, get, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -27,7 +27,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/itemCategory/default`, language);
+                    return await getList(`/itemCategory/default`, language);
                 },
                 insert: async function (values) {
                     await fetch('./api/itemCategory/default', {
@@ -179,7 +179,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/itemCategory`, language);
+                    return await getList(`/itemCategory`, language);
                 }
             }),
             filterRow: { visible: false },

@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, get, loadUserData, notify, put } from './globalData.js';
+import { getTranslations, translate, infoPanel, get, loadUserData, notify, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -40,10 +40,12 @@ $(async () => {
     }
 
     async function refreshHero(){
-        dailies = await get(`/daily/default/current/3/hero/${userdata.login}`, languageDaily); 
-        hero = await get(`/hero/default/${userdata.login}`);
-        heroWallet = await get(`/heroWallet/default/hero/${userdata.login}`);
-        heroTrait = await get(`/heroTrait/default/hero/${userdata.login}`);
+        if(userdata) {
+            dailies = await get(`/daily/default/current/3/hero/${userdata.login}`, languageDaily); 
+            hero = await get(`/hero/default/${userdata.login}`);
+            heroWallet = await get(`/heroWallet/default/hero/${userdata.login}`);
+            heroTrait = await get(`/heroTrait/default/hero/${userdata.login}`);
+        }
     }
 
     //#endregion
@@ -68,10 +70,12 @@ $(async () => {
         });
 
         for(let i = 0; i < 3; i++){
-            document.getElementById(`daily${i}Title`).textContent = dailies[i].value;
-            document.getElementById(`daily${i}Information`).textContent = dailies[i].description;
-            document.getElementById(`daily${i}gold`).textContent = translate(languageWallet, 'gold') + ': ' + dailies[i].gold;
-            document.getElementById(`daily${i}xp`).textContent = translate(languageHero, 'experience') + ': ' + dailies[i].experience;
+            if(dailies) {
+                document.getElementById(`daily${i}Title`).textContent = dailies[i].value;
+                document.getElementById(`daily${i}Information`).textContent = dailies[i].description;
+                document.getElementById(`daily${i}gold`).textContent = translate(languageWallet, 'gold') + ': ' + dailies[i].gold;
+                document.getElementById(`daily${i}xp`).textContent = translate(languageHero, 'experience') + ': ' + dailies[i].experience;
+            }
             
             $(`#daily${i}`).dxButton({
                 text: translate(languageDaily, 'work'),
@@ -97,7 +101,6 @@ $(async () => {
                             'Content-type': 'application/json'
                         }
                     }).then(async function (res) {
-                        console.log(res.status)
                         switch(res.status){
                             case 200:
                                 for(let i = 0; i < 3; i++){
@@ -125,13 +128,13 @@ $(async () => {
                 key: ["heroName"],
                 loadMode: "raw",
                 load: async function () {
-                    return [await get(`/herowallet/default/hero/${hero.name}`, language)];
+                    return await getList(`/herowallet/default/hero/${hero?.name}`, language);
                 }
             }),
             columns: [
                 { caption: translate(languageHero, 'hitpoints'), 
                     cellTemplate: function (container, options) {  
-                        $("<div />").attr({ 'class': 'cls', 'data-key': hero.name }).dxProgressBar({  
+                        $("<div />").attr({ 'class': 'cls', 'data-key': hero?.name }).dxProgressBar({  
                             min: 0,  
                             max: hero.hitpointsMax,
                             value: hero.hitpoints,
@@ -154,7 +157,7 @@ $(async () => {
                 key: ["heroName"],
                 loadMode: "raw",
                 load: async function () {
-                    return [await get(`/heroTrait/default/hero/${hero.name}`, language)];
+                    return await getList(`/heroTrait/default/hero/${hero?.name}`, language);
                 }
             }),
             columns: [
@@ -182,6 +185,10 @@ $(async () => {
                     calculateCellValue(data) {
                         return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
                 }},
+                { dataField: "perceptionMultipler", caption: translate(languageTrait, 'perceptionMultipler'), 
+                    calculateCellValue(data) {
+                        return `${data.perceptionMultipler} / ${validation.find(x => x.handle == 'perceptionMultipler').max}`
+                }},
                 { dataField: "gold", caption: translate(languageWallet, 'gold'), width: 200,
                     calculateCellValue(data) {
                         return heroWallet.gold;
@@ -189,7 +196,7 @@ $(async () => {
                 { dataField: "diamond", caption: translate(languageWallet, 'diamond'), width: 200,
                     calculateCellValue(data) {
                         return heroWallet.diamond;
-                }},
+                }}
             ]
         });
     }
@@ -200,7 +207,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/healingPotion/default`, language);
+                    return await getList(`/healingPotion/default`, language);
                 }
             }),
            
@@ -237,7 +244,7 @@ $(async () => {
                         icon: "check",
                         hint: translate(language, "checkHint"),
                         onClick: function (e) {
-                            fetch(`./api/healingPotion/default/heal/${e.row.key}/hero/${hero.name}`, {
+                            fetch(`./api/healingPotion/default/heal/${e.row.key}/hero/${hero?.name}`, {
                                 method: 'post',
                                 headers: {
                                     'Content-type': 'application/json'
@@ -269,7 +276,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/trainer/default`, language);
+                    return await getList(`/trainer/default`, language);
                 }
             }),
             columns: [
@@ -297,7 +304,7 @@ $(async () => {
                         icon: "check",
                         hint: translate(language, "checkHint"),
                         onClick: function (e) {
-                            fetch(`./api/trainer/default/training/${e.row.key}/hero/${hero.name}`, {
+                            fetch(`./api/trainer/default/training/${e.row.key}/hero/${hero?.name}`, {
                                 method: 'post',
                                 headers: {
                                     'Content-type': 'application/json'

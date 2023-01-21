@@ -79,7 +79,7 @@ export class LootExploring {
 
             if(enemyHitpoints > 0){
                 const enemyDamage = this.loot.getRandomNumber(Math.round(this.enemy.getDataValue("strength") / 2), this.enemy.getDataValue("strength"));
-                this.damage += enemyDamage;
+                this.damage += Math.round(enemyDamage / 100 * (100 - this.trait.getDataValue("defenceMultipler")) / 2);
 
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight enemyDamage ${enemyDamage}`);
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module exploring, fight complete damage ${this.damage}`);

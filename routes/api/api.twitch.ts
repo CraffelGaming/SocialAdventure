@@ -91,6 +91,7 @@ router.post('/' + endpoint + '/deactivate', async (request: express.Request, res
                 node.setDataValue('isActive', false);
                 node.save();
                 const channel = await global.worker.stopNode(node);
+                request.session.node = null;
                 response.status(200).json(channel);
             } else response.status(404).json();
         } else response.status(401).json();

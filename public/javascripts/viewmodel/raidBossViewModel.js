@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get, put } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -28,7 +28,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get('/raidBoss/default', language);
+                    return await getList('/raidBoss/default', language);
                 },
                 insert: async function (values) {
                     values.categoryHandle = values.category.handle;

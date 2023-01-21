@@ -170,7 +170,10 @@ export class Worker {
             if(channel?.node != null && this.tmi != null)
             this.log.trace('node connected: ' + channel.node.getDataValue('name'));
             await this.tmi.join(channel.node.getDataValue('name').replace('#', ''));
-            this.log.trace(this.tmi);
+
+            if(this.tmi?.username) {
+                this.log.trace(`TMI username ${this.tmi.username} `);
+            }
         } catch(ex) {
             global.worker.log.error(`worker error - function register - ${ex.message}`);
         }

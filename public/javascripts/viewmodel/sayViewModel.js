@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, getEditing, notify, get, copyToClipboard, put } from './globalData.js';
+import { getTranslations, translate, infoPanel, getEditing, notify, get, copyToClipboard, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -27,7 +27,7 @@ $(async () => {
                 key: "command",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await get(`/say/default`, language);
+                    return await getList(`/say/default`, language);
                 },
                 insert: async function (values) {
                     await fetch('./api/say/default', {
@@ -228,137 +228,139 @@ $(async () => {
                     }, "searchPanel", "exportButton"]
             }
         });
+    }
+    //#endregion
 
-        function masterDetailTemplate(_, masterDetailOptions) {
-            return $('<div>').dxTabPanel({
-                items: [{
-                    title: translate(language, 'overview'),
-                    template: createOverviewTabTemplate(masterDetailOptions.data),
-                }, {
-                    title: translate(language, 'statistic'),
-                    template: createStatisticTabTemplate(masterDetailOptions.data),
-                }, {
-                    title: translate(language, 'placeholder'),
-                    template: createPlaceholderTabTemplate(masterDetailOptions.data),
-                }],
+    //#region MasterDetail
+    function masterDetailTemplate(_, masterDetailOptions) {
+        return $('<div>').dxTabPanel({
+            items: [{
+                title: translate(language, 'overview'),
+                template: createOverviewTabTemplate(masterDetailOptions.data),
+            }, {
+                title: translate(language, 'statistic'),
+                template: createStatisticTabTemplate(masterDetailOptions.data),
+            }, {
+                title: translate(language, 'placeholder'),
+                template: createPlaceholderTabTemplate(masterDetailOptions.data),
+            }],
+        });
+    }
+
+    function createStatisticTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new Array(masterDetailData),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                columns: [
+                    { dataField: "countUses", caption: translate(language, 'countUses') },
+                    { dataField: "countRuns", caption: translate(language, 'countRuns') },
+                    { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'datetime', width: 200 },
+                    { dataField: 'count', caption: translate(language, 'count')}
+                ]
             });
-        }
+        };
+    }
 
-        function createStatisticTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new Array(masterDetailData),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    columns: [
-                        { dataField: "countUses", caption: translate(language, 'countUses') },
-                        { dataField: "countRuns", caption: translate(language, 'countRuns') },
-                        { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'datetime', width: 200 },
-                        { dataField: 'count', caption: translate(language, 'count')}
-                    ]
-                });
-            };
-        }
-
-        function createOverviewTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: ["module", "command"],
-                        loadMode: "raw",
-                        load: async function () {
-                            return await get(`/command/default/say?counter=${masterDetailData.isCounter}`, language);
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
+    function createOverviewTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: ["module", "command"],
+                    loadMode: "raw",
+                    load: async function () {
+                        return await get(`/command/default/say?counter=${masterDetailData.isCounter}`, language);
+                    }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    {
+                        type: "buttons",
+                        buttons: [{
+                            icon: "link",
+                            hint: translate(language, "copyToClipboard"),
+                            onClick: function (e) {
+                                copyToClipboard(e.row.values[1]);
+                            }
+                        }]
                     },
-                    columns: [
-                        {
-                            type: "buttons",
-                            buttons: [{
-                                icon: "link",
-                                hint: translate(language, "copyToClipboard"),
-                                onClick: function (e) {
-                                    copyToClipboard(e.row.values[1]);
-                                }
-                            }]
-                        },
-                        {
-                            caption: translate(languageCommand, 'command'), width: 200,
-                            calculateCellValue(data) {
-                              return "!" + masterDetailData.command + data.command;
-                            }
-                        },
-                        { dataField: "isMaster", caption: translate(languageCommand, 'isMaster'), width: 200 },
-                        { dataField: "isModerator", caption: translate(languageCommand, 'isModerator'), width: 200 },
-                        {
-                            caption: translate(languageCommand, 'description'),
-                            calculateCellValue(data) {
-                              return translate(languageCommand, data.translation)
-                            }
+                    {
+                        caption: translate(languageCommand, 'command'), width: 200,
+                        calculateCellValue(data) {
+                          return "!" + masterDetailData.command + data.command;
                         }
-                    ]
-                });
-            };
-        }
-        
-        function createPlaceholderTabTemplate(masterDetailData) {
-            return function () {
-                return $('<div>').dxDataGrid({
-                    dataSource: new DevExpress.data.CustomStore({
-                        key: "handle",
-                        loadMode: "raw",
-                        load: async function () {
-                            let items = await get(`/placeholder`, languagePlaceholder);
-
-                            if(!masterDetailData.isCounter){
-                                items = items.filter(x => !x.isCounter)
-                            }
-                            if(!masterDetailData.isShoutout){
-                                items = items.filter(x => !x.isShoutout)
-                            } 
-                            return items;
-                        }
-                    }),
-                    allowColumnReordering: true,
-                    allowColumnResizing: true,
-                    selection: { mode: "single" },
-                    editing: {
-                        mode: "row",
-                        allowUpdating: false,
-                        allowDeleting: false,
-                        allowAdding: false
                     },
-                    columns: [
-                        {
-                            type: "buttons",
-                            buttons: [{
-                                icon: "link",
-                                hint: translate(language, "copyToClipboard"),
-                                onClick: function (e) {
-                                    copyToClipboard(e.row.values[1]);
-                                }
-                            }]
-                        },
-                        { dataField: "handle", caption: translate(languagePlaceholder, 'title'), width: 200 },
-                        {
-                            caption: translate(languagePlaceholder, 'description'),
-                            calculateCellValue(data) {
-                              return translate(languagePlaceholder, data.translation)
-                            }
+                    { dataField: "isMaster", caption: translate(languageCommand, 'isMaster'), width: 200 },
+                    { dataField: "isModerator", caption: translate(languageCommand, 'isModerator'), width: 200 },
+                    {
+                        caption: translate(languageCommand, 'description'),
+                        calculateCellValue(data) {
+                          return translate(languageCommand, data.translation)
                         }
-                    ]
-                });
-            };
-        }
+                    }
+                ]
+            });
+        };
+    }
+    
+    function createPlaceholderTabTemplate(masterDetailData) {
+        return function () {
+            return $('<div>').dxDataGrid({
+                dataSource: new DevExpress.data.CustomStore({
+                    key: "handle",
+                    loadMode: "raw",
+                    load: async function () {
+                        let items = await get(`/placeholder`, languagePlaceholder);
+
+                        if(!masterDetailData.isCounter){
+                            items = items.filter(x => !x.isCounter)
+                        }
+                        if(!masterDetailData.isShoutout){
+                            items = items.filter(x => !x.isShoutout)
+                        } 
+                        return items;
+                    }
+                }),
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                selection: { mode: "single" },
+                editing: {
+                    mode: "row",
+                    allowUpdating: false,
+                    allowDeleting: false,
+                    allowAdding: false
+                },
+                columns: [
+                    {
+                        type: "buttons",
+                        buttons: [{
+                            icon: "link",
+                            hint: translate(language, "copyToClipboard"),
+                            onClick: function (e) {
+                                copyToClipboard(e.row.values[1]);
+                            }
+                        }]
+                    },
+                    { dataField: "handle", caption: translate(languagePlaceholder, 'title'), width: 200 },
+                    {
+                        caption: translate(languagePlaceholder, 'description'),
+                        calculateCellValue(data) {
+                          return translate(languagePlaceholder, data.translation)
+                        }
+                    }
+                ]
+            });
+        };
     }
     //#endregion
 

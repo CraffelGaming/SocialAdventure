@@ -59,11 +59,12 @@ export class LootRaid {
         let result = '';
         let damage = 0;
         const defeatedHeroes = [];
-        const raidHeroes = await this.loadRaidHeroes();
+        const raidHeroes = await this.getRaidHeroes();
         const count = raidHeroes.length;
         if (count > 0) {
             for (const raidHero of raidHeroes) {
-                const hero = await this.loadHero(raidHero.getDataValue('heroName'));
+                const hero = await this.getHero(raidHero.getDataValue('heroName'));
+                const trait = await this.getTrait(hero);
                 if (hero.getDataValue('hitpoints') > 0) {
                     const heroDamage = this.loot.getRandomNumber(Math.round(hero.getDataValue('strength') / 2), hero.getDataValue('strength'))
                         * this.loot.getRandomNumber(1, Math.round(count / 2) + 1)
@@ -71,6 +72,7 @@ export class LootRaid {
                     damage += Math.round(heroDamage);
                     await raidHero.increment('damage', { by: heroDamage });
                     let bossDamage = this.loot.getRandomNumber(Math.round(this.boss.getDataValue('strength') / 2), this.boss.getDataValue('strength'));
+                    bossDamage += Math.round(bossDamage / 100 * (100 - trait.getDataValue("defenceMultipler")) / 2);
                     if (hero.getDataValue('hitpoints') <= bossDamage) {
                         bossDamage = hero.getDataValue('hitpoints');
                         defeatedHeroes.push(hero.getDataValue('name'));
@@ -103,10 +105,10 @@ export class LootRaid {
     //#endregion
     //#region Start
     async start() {
-        this.raid = await this.loadRaid();
+        this.raid = await this.getRaid();
         let result = '';
         if (!this.raid) {
-            this.boss = await this.loadRandomBoss();
+            this.boss = await this.getRandomBoss();
             if (this.boss) {
                 const item = new RaidItem();
                 item.raidBossHandle = this.boss.getDataValue('handle');
@@ -114,11 +116,11 @@ export class LootRaid {
                 item.isActive = true;
                 item.isDefeated = false;
                 await RaidItem.put({ sequelize: this.loot.channel.database.sequelize, element: item });
-                this.raid = await this.loadRaid();
+                this.raid = await this.getRaid();
             }
         }
         else {
-            this.boss = await this.loadBoss();
+            this.boss = await this.getBoss();
         }
         if (this.raid) {
             result = TranslationItem.translate(this.loot.translation, 'raidStart').replace('$1', this.boss.getDataValue('name'));
@@ -130,7 +132,7 @@ export class LootRaid {
     async stop() {
         let result = '';
         if (this.raid?.getDataValue('isActive')) {
-            const raidHeroes = await this.loadRaidHeroes();
+            const raidHeroes = await this.getRaidHeroes();
             for (const raidHero of raidHeroes) {
                 raidHero.setDataValue('isActive', false);
                 await raidHero.save();
@@ -152,7 +154,7 @@ export class LootRaid {
         let item = null;
         if (this.raid?.getDataValue('isActive')) {
             if (this.raid?.getDataValue('hitpoints') <= 0) {
-                const raidHeroes = await this.loadRaidHeroes();
+                const raidHeroes = await this.getRaidHeroes();
                 item = await this.getItem(this.boss.getDataValue('categoryHandle'));
                 for (const raidHero of raidHeroes) {
                     if (!raidHero.getDataValue('isRewarded') && raidHero.getDataValue('isActive')) {
@@ -188,33 +190,33 @@ export class LootRaid {
     }
     //#endregion
     //#region Boss
-    async loadBosses() {
+    async getBosses() {
         return await this.loot.channel.database.sequelize.models.raidBoss.findAll({ where: { isActive: true } });
     }
-    async loadRandomBoss() {
-        const bosses = await this.loadBosses();
+    async getRandomBoss() {
+        const bosses = await this.getBosses();
         if (bosses) {
             return bosses[this.loot.getRandomNumber(0, bosses.length - 1)];
         }
         return null;
     }
-    async loadBoss() {
+    async getBoss() {
         return await this.loot.channel.database.sequelize.models.raidBoss.findOne({ where: { handle: this.raid.getDataValue('raidBossHandle') } });
     }
     //#endregion
     //#region Heroes
-    async loadRaidHeroes() {
+    async getRaidHeroes() {
         return await this.loot.channel.database.sequelize.models.raidHero.findAll({ where: { raidHandle: this.raid.getDataValue('handle') } });
     }
-    async loadRaidHero(heroName) {
+    async getRaidHero(heroName) {
         return await this.loot.channel.database.sequelize.models.raidHero.findOne({ where: { heroName, isActive: true } });
     }
-    async loadHero(heroName) {
+    async getHero(heroName) {
         return await this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: heroName } });
     }
     //#endregion
     //#region Raid
-    async loadRaid() {
+    async getRaid() {
         return await this.loot.channel.database.sequelize.models.raid.findOne({ where: { isActive: true }, order: [['handle', 'ASC']] });
     }
     //#endregion
@@ -225,6 +227,15 @@ export class LootRaid {
     async getItem(categoryHandle) {
         const items = await this.getItems(categoryHandle);
         return items[this.loot.getRandomNumber(0, items.length - 1)];
+    }
+    //#endregion
+    //#region Trait
+    async getTrait(hero) {
+        const trait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(hero.getDataValue("name"));
+        if (trait) {
+            return trait;
+        }
+        return null;
     }
 }
 //# sourceMappingURL=lootRaid.js.map

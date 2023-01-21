@@ -1,16 +1,16 @@
-import { getTranslation, translate, infoPanel, get, copyToClipboard, put, getList } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, put, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let module = 'command';
+    let module = 'historyDuell';
     let language = await getTranslation(module);
     
     translation();
     initialize();
     load();
     infoPanel();
-    
+
     //#region Initialize
     function initialize() {
 
@@ -21,10 +21,10 @@ $(async () => {
     function load() {
         $("#dataGrid").dxDataGrid({
             dataSource: new DevExpress.data.CustomStore({
-                key: "command",
+                key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await getList('/command/default/loot', language);
+                    return await getList(`/historyDuell/default`, language);
                 }
             }),
             filterRow: { visible: true },
@@ -51,38 +51,14 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                {
-                    type: "buttons",
-                    buttons: [{
-                        icon: "link",
-                        hint: translate(language, "copyToClipboard"),
-                        onClick: function (e) {
-                            copyToClipboard(e.row.values[1]);
-                        }
-                    }]
-                },
-                {
-                    caption: translate(language, 'command'), width: 200,
-                    calculateCellValue(data) {
-                      return "!" + data.command;
-                    }
-                },
-                { dataField: "isMaster", caption: translate(language, 'isMaster'), width: 200 },
-                {
-                    caption: translate(language, 'description'),
-                    calculateCellValue(data) {
-                      return translate(language, data.translation)
-                    },
-                    cellTemplate: function(element, info) {
-                        $("<div>")
-                            .appendTo(element)
-                            .text(info.value)
-                            .css("width", info.column.width - 20)
-                            .css("height", 40)
-                            .css("white-space", "normal")
-                            .css("overflow-wrap", 'break-word'); 
-                    }
-                }
+                { dataField: "handle", caption: translate(language, 'handle'), visible: false },
+                { dataField: "date", caption: translate(language, 'date'), dataType: 'datetime', sortIndex: 0, sortOrder: "desc" },
+                { dataField: "heroSource.name", caption: translate(language, 'sourceHeroName') },
+                { dataField: "sourceHitpoints", caption: translate(language, 'sourceHitpoints') },
+                { dataField: "heroTarget.name", caption: translate(language, 'targetHeroName') },
+                { dataField: "targetHitpoints", caption: translate(language, 'targetHitpoints') },
+                { dataField: "gold", caption: translate(language, 'gold') },
+                { dataField: "experience", caption: translate(language, 'experience') },
             ],
             export: {
                 enabled: true,
@@ -90,19 +66,6 @@ $(async () => {
             },
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
-            },
-            onEditorPreparing(e) {
-                var names = ["command"];
-
-                if (names.includes(e.dataField) && e.parentType === "dataRow") {
-                    e.editorOptions.disabled = e.row.isNewRow ? false : true;
-                }
-
-                if (e.dataField === "isActive" && e.parentType === "dataRow") {
-                    if (e.row.isNewRow) {
-                        e.editorOptions.value = true;
-                    }
-                }
             },
             stateStoring: {
                 enabled: true,

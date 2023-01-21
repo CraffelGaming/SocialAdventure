@@ -18,6 +18,8 @@ export class HeroTraitItem {
     strengthMultipler: number = 1;
     @Column
     hitpointMultipler: number = 1;
+    @Column
+    perceptionMultipler: number = 1;
 
     constructor(heroName: string){
         this.heroName = heroName;
@@ -56,6 +58,11 @@ export class HeroTraitItem {
                 defaultValue: 1
             },
             hitpointMultipler: {
+                type: DataTypes.DOUBLE,
+                allowNull: false,
+                defaultValue: 1
+            },
+            perceptionMultipler: {
                 type: DataTypes.DOUBLE,
                 allowNull: false,
                 defaultValue: 1

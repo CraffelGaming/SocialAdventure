@@ -2,5 +2,7 @@
     { "name": "update_001", "isInstalled": false },
     { "name": "update_002", "isInstalled": false },
     { "name": "update_003", "isInstalled": false },
-    { "name": "update_004", "isInstalled": false }
+    { "name": "update_004", "isInstalled": false },
+    { "name": "update_005", "isInstalled": false },
+    { "name": "update_006", "isInstalled": false }
 ]

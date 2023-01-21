@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { HeroInventoryItem } from '../model/heroInventoryItem.js';
 import { HeroItem } from '../model/heroItem.js';
+import { HeroTraitItem } from '../model/heroTraitItem.js';
 import { ItemItem } from '../model/itemItem.js';
 import { RaidBossItem } from '../model/raidBossItem.js';
 import { RaidHeroItem } from '../model/raidHeroItem.js';
@@ -74,12 +75,13 @@ export class LootRaid {
         let damage = 0;
         const defeatedHeroes = [];
 
-        const raidHeroes = await this.loadRaidHeroes();
+        const raidHeroes = await this.getRaidHeroes();
         const count = raidHeroes.length;
 
         if(count > 0) {
             for(const raidHero of raidHeroes){
-                const hero = await this.loadHero(raidHero.getDataValue('heroName'));
+                const hero = await this.getHero(raidHero.getDataValue('heroName'));
+                const trait = await this.getTrait(hero);
 
                 if(hero.getDataValue('hitpoints') > 0) {
                     const heroDamage = this.loot.getRandomNumber(Math.round(hero.getDataValue('strength') / 2), hero.getDataValue('strength'))
@@ -90,8 +92,9 @@ export class LootRaid {
                     await raidHero.increment('damage', { by: heroDamage });
 
                     let bossDamage = this.loot.getRandomNumber(Math.round(this.boss.getDataValue('strength') / 2), this.boss.getDataValue('strength'))
-
+                    bossDamage += Math.round(bossDamage / 100 * (100 - trait.getDataValue("defenceMultipler")) / 2);
                     if(hero.getDataValue('hitpoints') <= bossDamage) {
+
                         bossDamage = hero.getDataValue('hitpoints');
                         defeatedHeroes.push(hero.getDataValue('name'));
                     }
@@ -125,11 +128,11 @@ export class LootRaid {
 
     //#region Start
     async start() : Promise<string> {
-        this.raid = await this.loadRaid();
+        this.raid = await this.getRaid();
         let result = '';
 
         if(!this.raid) {
-            this.boss = await this.loadRandomBoss();
+            this.boss = await this.getRandomBoss();
 
             if(this.boss) {
                 const item = new RaidItem();
@@ -138,10 +141,10 @@ export class LootRaid {
                 item.isActive = true;
                 item.isDefeated = false;
                 await RaidItem.put({sequelize: this.loot.channel.database.sequelize, element:  item});
-                this.raid = await this.loadRaid();
+                this.raid = await this.getRaid();
             }
         } else {
-            this.boss = await this.loadBoss();
+            this.boss = await this.getBoss();
         }
 
         if(this.raid) {
@@ -156,7 +159,7 @@ export class LootRaid {
     async stop() : Promise<string> {
         let result = '';
         if(this.raid?.getDataValue('isActive')) {
-            const raidHeroes = await this.loadRaidHeroes();
+            const raidHeroes = await this.getRaidHeroes();
             for(const raidHero of raidHeroes){
                 raidHero.setDataValue('isActive', false);
                 await raidHero.save();
@@ -184,7 +187,7 @@ export class LootRaid {
 
         if(this.raid?.getDataValue('isActive')) {
             if(this.raid?.getDataValue('hitpoints') <= 0) {
-                const raidHeroes = await this.loadRaidHeroes();
+                const raidHeroes = await this.getRaidHeroes();
                 item = await this.getItem(this.boss.getDataValue('categoryHandle'));
 
                 for(const raidHero of raidHeroes){
@@ -227,39 +230,39 @@ export class LootRaid {
     //#endregion
 
     //#region Boss
-    async loadBosses() : Promise<Model<RaidBossItem>[]> {
+    async getBosses() : Promise<Model<RaidBossItem>[]> {
         return await this.loot.channel.database.sequelize.models.raidBoss.findAll({ where: { isActive: true }}) as Model<RaidBossItem>[];
     }
 
-    async loadRandomBoss() : Promise<Model<RaidBossItem>> {
-        const bosses = await this.loadBosses();
+    async getRandomBoss() : Promise<Model<RaidBossItem>> {
+        const bosses = await this.getBosses();
         if(bosses) {
             return bosses[this.loot.getRandomNumber(0, bosses.length -1)];
         }
         return null;
     }
 
-    async loadBoss() : Promise<Model<RaidBossItem>> {
+    async getBoss() : Promise<Model<RaidBossItem>> {
         return await this.loot.channel.database.sequelize.models.raidBoss.findOne({ where: { handle: this.raid.getDataValue('raidBossHandle') }}) as Model<RaidBossItem>;
     }
     //#endregion
 
     //#region Heroes
-    async loadRaidHeroes() : Promise<Model<RaidHeroItem>[]> {
+    async getRaidHeroes() : Promise<Model<RaidHeroItem>[]> {
         return await this.loot.channel.database.sequelize.models.raidHero.findAll({ where: { raidHandle: this.raid.getDataValue('handle') }}) as Model<RaidHeroItem>[];
     }
 
-    async loadRaidHero(heroName: string) : Promise<Model<RaidHeroItem>> {
+    async getRaidHero(heroName: string) : Promise<Model<RaidHeroItem>> {
         return await this.loot.channel.database.sequelize.models.raidHero.findOne({ where: { heroName, isActive: true }}) as Model<RaidHeroItem>;
     }
 
-    async loadHero(heroName: string) : Promise<Model<HeroItem>> {
+    async getHero(heroName: string) : Promise<Model<HeroItem>> {
         return await this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: heroName }}) as Model<HeroItem>;
     }
     //#endregion
 
     //#region Raid
-    async loadRaid() : Promise<Model<RaidItem>> {
+    async getRaid() : Promise<Model<RaidItem>> {
         return await this.loot.channel.database.sequelize.models.raid.findOne({ where: { isActive: true }, order: [ [ 'handle', 'ASC' ]]}) as Model<RaidItem>;
     }
     //#endregion
@@ -274,4 +277,14 @@ export class LootRaid {
         return items[this.loot.getRandomNumber(0, items.length -1)];
     }
     //#endregion
+
+        //#region Trait
+        async getTrait(hero: Model<HeroItem>): Promise<Model<HeroTraitItem>>{
+            const trait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(hero.getDataValue("name")) as Model<HeroTraitItem>;
+            if(trait){
+                return trait;
+            }
+            return null;
+        }
+        //#endregion
 }
