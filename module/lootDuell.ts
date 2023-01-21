@@ -35,11 +35,8 @@ export class LootDuell {
         if(this.item.targetHeroName?.length > 0) {
             this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.item.targetHeroName) as Model<HeroItem>;
         } else {
-            const adventure = await this.getAdventure();
-            if(adventure){
-                this.item.targetHeroName = adventure.getDataValue("heroName");
-                this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(adventure.getDataValue("heroName")) as Model<HeroItem>;
-            }
+            this.targetHero = await this.getHero();
+            this.item.targetHeroName = this.targetHero?.getDataValue('name');
         }
 
         if(settings.getDataValue('isActive')){
@@ -128,15 +125,15 @@ export class LootDuell {
     //#endregion
 
     //#region Adventure
-    async getAdventures(): Promise<Model<AdventureItem>[]>{
-        return await this.loot.channel.database.sequelize.models.adventure.findAll({ where: { heroName: {[sequelize.Op.not]: this.sourceHero.getDataValue("name") }}}) as Model<AdventureItem>[];
+    async getHeroes(): Promise<Model<HeroItem>[]>{
+        return await this.loot.channel.database.sequelize.models.hero.findAll({ where: { isActive: true }}) as Model<HeroItem>[];
     }
 
-    async getAdventure(): Promise<Model<AdventureItem>>{
-        const adventures = await this.getAdventures();
+    async getHero(): Promise<Model<HeroItem>>{
+        const heroes = await this.getHeroes();
 
-        if(adventures.length > 0){
-            return adventures[this.loot.getRandomNumber(0, adventures.length -1)];
+        if(heroes.length > 0){
+            return heroes[this.loot.getRandomNumber(0, heroes.length -1)];
         }
 
         return null;

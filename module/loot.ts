@@ -469,7 +469,7 @@ export class Loot extends Module {
                         result = result.replace('$5', TranslationItem.translate(this.translation, 'heroJoinMissionBlood').replace('$1', wallet.getDataValue('blood').toString()));
                     }
 
-                    if(raid.getDataValue("isActive")){
+                    if(raid.getDataValue("isActive") && this.raidItem?.raid && !this.raidItem?.raid?.getDataValue('isDefeated')){
                         await this.raid(command);
                         result = result.replace('$3', TranslationItem.translate(this.translation, 'heroJoinMissionRaid'));
                     }

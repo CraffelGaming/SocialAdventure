@@ -79,7 +79,7 @@ export class LootRaid {
                     await raidHero.increment('damage', { by: heroDamage });
                     let bossDamage = this.loot.getRandomNumber(Math.round(this.boss.getDataValue('strength') / 2), this.boss.getDataValue('strength'));
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss damage before defence ${bossDamage}`);
-                    bossDamage += Math.round(bossDamage / 100 * (100 - (trait.getDataValue("defenceMultipler") / 2 + 1)));
+                    bossDamage = Math.round(bossDamage / 100 * (100 - (trait.getDataValue("defenceMultipler") / 2 + 1)));
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss damage after defence ${bossDamage}`);
                     if (hero.getDataValue('hitpoints') <= bossDamage) {
                         bossDamage = hero.getDataValue('hitpoints');
@@ -97,9 +97,9 @@ export class LootRaid {
             this.raid.setDataValue('hitpoints', hitpoints);
             this.raid.save();
             if (hitpoints === 0) {
-                result = await this.complete();
+                result = await this.complete(damage);
             }
-            else
+            else if (damage > 0) {
                 result = TranslationItem.translate(this.loot.translation, 'raidFight')
                     .replace('$1', count.toString())
                     .replace('$2', this.boss.getDataValue('name'))
@@ -107,6 +107,10 @@ export class LootRaid {
                     .replace('$4', this.raid.getDataValue('hitpoints').toString())
                     .replace('$5', this.boss.getDataValue('hitpoints').toString())
                     .replace('$6', TranslationItem.translate(this.loot.translation, 'raidDefeatedHeroes').replace('$1', defeatedHeroes.length > 0 ? defeatedHeroes.join(', ') : TranslationItem.translate(this.loot.translation, 'raidNoOne')));
+            }
+            else {
+                result = TranslationItem.translate(this.loot.translation, 'raidAllHeroesKilled').replace('$1', this.boss.getDataValue('name'));
+            }
         }
         else
             result = TranslationItem.translate(this.loot.translation, 'raidNoHero').replace('$1', this.boss.getDataValue('name'));
@@ -159,7 +163,7 @@ export class LootRaid {
     }
     //#endregion
     //#region Complete
-    async complete() {
+    async complete(damage) {
         let isRewarded = false;
         let item = null;
         if (this.raid?.getDataValue('isActive')) {
@@ -193,7 +197,8 @@ export class LootRaid {
                 .replace('$2', this.boss.getDataValue('diamond').toString())
                 .replace('$3', this.boss.getDataValue('gold').toString())
                 .replace('$4', this.boss.getDataValue('experience').toString())
-                .replace('$5', item.getDataValue('value'));
+                .replace('$5', item.getDataValue('value'))
+                .replace('$6', damage.toString());
         }
         else
             return TranslationItem.translate(this.loot.translation, 'raidCompletedError').replace('$1', this.boss.getDataValue('name'));

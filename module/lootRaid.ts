@@ -126,14 +126,18 @@ export class LootRaid {
             this.raid.save();
 
             if(hitpoints === 0) {
-                result = await this.complete();
-            } else result = TranslationItem.translate(this.loot.translation, 'raidFight')
-                                           .replace('$1', count.toString())
-                                           .replace('$2', this.boss.getDataValue('name'))
-                                           .replace('$3', damage.toString())
-                                           .replace('$4', this.raid.getDataValue('hitpoints').toString())
-                                           .replace('$5', this.boss.getDataValue('hitpoints').toString())
-                                           .replace('$6', TranslationItem.translate(this.loot.translation, 'raidDefeatedHeroes').replace('$1', defeatedHeroes.length > 0 ? defeatedHeroes.join(', ') : TranslationItem.translate(this.loot.translation, 'raidNoOne')))
+                result = await this.complete(damage);
+            } else if (damage > 0) {
+                result = TranslationItem.translate(this.loot.translation, 'raidFight')
+                    .replace('$1', count.toString())
+                    .replace('$2', this.boss.getDataValue('name'))
+                    .replace('$3', damage.toString())
+                    .replace('$4', this.raid.getDataValue('hitpoints').toString())
+                    .replace('$5', this.boss.getDataValue('hitpoints').toString())
+                    .replace('$6', TranslationItem.translate(this.loot.translation, 'raidDefeatedHeroes').replace('$1', defeatedHeroes.length > 0 ? defeatedHeroes.join(', ') : TranslationItem.translate(this.loot.translation, 'raidNoOne')))
+            } else {
+                result = TranslationItem.translate(this.loot.translation, 'raidAllHeroesKilled').replace('$1', this.boss.getDataValue('name'));
+            }
         } else result = TranslationItem.translate(this.loot.translation, 'raidNoHero').replace('$1', this.boss.getDataValue('name'));
 
         return result;
@@ -195,7 +199,7 @@ export class LootRaid {
     //#endregion
 
     //#region Complete
-    async complete() : Promise<string> {
+    async complete(damage: number) : Promise<string> {
         let isRewarded = false;
         let item: Model<ItemItem> = null;
 
@@ -239,6 +243,7 @@ export class LootRaid {
                                   .replace('$3', this.boss.getDataValue('gold').toString())
                                   .replace('$4', this.boss.getDataValue('experience').toString())
                                   .replace('$5', item.getDataValue('value'))
+                                  .replace('$6', damage.toString())
         } else return TranslationItem.translate(this.loot.translation, 'raidCompletedError').replace('$1', this.boss.getDataValue('name'));
     }
     //#endregion
