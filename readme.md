@@ -2,14 +2,91 @@
 
 Social Adventure ist eine kostenlose Twitch-Bot Alternative zu Streamlabs, Nightbot, Moobot und co. Neben den Standard Features wie automatische und manuelle Nachrichten, Death-Counter und Shoutouts bietet Social Adventure ein komplettes Browser und Chat basiertes Spiel, bei dem du deinen Helden verbessern und deine Unterstützung zum Streamer zeigen kannst. Social Adventure wurde von Craffel entwickelt und wird immer wieder mit neuen Features ausgestattet.
 
+## Rechtliches und Lizenz
+Der Social Adventure Bot darf für nicht kommerzielle Zwecke verwendet werden. 
+Die Angabe des Autors "Craffel (Martin Rosbund)" ist gut ersichtlich im Code und auf jeder Verlinkung / Webseite einzufügen.
 ## Installation für Entwickler
-###Benötigte Anwendungen
+### Benötigte Anwendungen
 - Visual Studio Code:https://code.visualstudio.com/download 
 - GIT: https://git-scm.com/downloads
 - Node.js: https://nodejs.org/en/download/
 
-## Sequelize
-comming soon.
+### Benötigte Anwendungen
+- git clone https://github.com/CraffelGaming/SocialAdventure
+
+### Zusätzliche Dateien
+Damit die Anwendung läuft, werden neben den GIT Repository folgende Daten benötigt:
+
+- Twitch-Konfiguration: twitch.json
+- SocialAdventure-Konfiguration: bot.json
+- SSL-Zertifikat Key: craffel.de_private_key.key
+- SSL-Zertifikat: craffel.de_ssl_certificate.cer
+
+### Twitch-Konfiguration
+Die Datei “twitch.json” muss im Projekt-Root hinzugefügt werden.
+
+Aufbau der Datei
+
+```
+{
+    "url_authorize" : "https://id.twitch.tv/oauth2/authorize",
+    "url_token" : "https://id.twitch.tv/oauth2/token",
+    "url_base" : "https://api.twitch.tv/helix",
+    "client_id" : "[API-Zugriff eintragen]",
+    "client_secret" : "[API-Zugriff eintragen]",
+    "redirect_uri" : "https://localhost/twitch",
+    "redirect_uri_echtsystem" : "https://craffel.de/twitch",
+    "response_type" : "code",
+    "scope" : "chat:read user:read:email",
+    "state" : "craffel",
+    "grant_type" : "authorization_code",
+    "refresh_type" : "refresh_token"
+}
+```
+
+### API-Zugriff
+
+Erstelle einen neuen Account auf Twitch (https://www.twitch.tv) und erstelle auf folgender Seite eine neue Twitch-Anwendung: https://dev.twitch.tv/console/apps/create.
+
+Trage nun die Client-ID und das Client-Secret in die Datei “twitch.json” ein. Ald URL reicht eine localhost URL. Wenn du kein SSL-Zertifikat hast, kannst du auch http:// anstelle https:// eintragen. http:// ist jedoch nicht für den produktiven Einsatz auf einen Cloud Server möglich.
+
+### SocialAdventure Konfiguration
+Die Datei “bot.json” muss im Projekt-Root hinzugefügt werden.
+Aufbau der Datei
+
+```
+{
+    "identity": 
+    {
+      "username": "[Twitch-Accountname]",
+      "password": "oauth:[Twitch-Passwort]"
+    },
+    "connection": 
+    {
+      "reconnect": true
+    },
+    "channels": 
+    []
+}
+
+```
+### Twitch-Bot-Zugriff
+Nutze deinen neu angelegten Account und registriere ihn als Bot. Das ist notwendig, damit eine hohe Anzahl von Chat-Nachrichten gesendet werden können und Twitch schreibt dies auch vor, es ist Pflicht. Bot-Accounts werden auch nicht mehr als Viewer während eines Streams berücksichtigt. Hier kannst du deinen Account als Bot registrieren: 
+https://twitchapps.com/tmi/
+
+Trage nun das Kennwort und das Passwort deines Accounts in die Datei “twitch.json” ein.
+
+### SSL-Zertifikat
+Die Dateien “craffel.de_private_key.key” und “craffel.de_ssl_certificate.cer” müssen im Ordner “ssl” eingefügt werden. Dieser Ordner befindet sich im  Projekt-Root. Zum Testen auf Localhost (127.0.0.1) ist kein Zertifikat notwendig.
+
+## Erster Programmstart
+Wenn der SocialAdventure das erste Mal startet, wird eine globale Datenbank im Ordner “database” erstellt. Nun kannst du über den Browser auf den SocialAdventure zugreifen. Der Standard-Port ist 80 bei http:// und 443 bei https://. Zum testen kannst du den Port aber auch jederzeit in der Datei “settings.json” ändern, falls die Ports bereits belegt sind. Die Datei befindet sich im Projekt-Root.
+
+Wenn du nun auf die Seite http://localhost zugreifst, kannst du dich mit Twitch verbinden (Am besten auch mit deinen Bot-Account.
+
+Nach einer erfolgreichen Verbindung, kannst du den Bot für den angemeldeten Account aktivieren, damit du den Chatbot in deinen Chat verwenden kannst: 
+
+Nun wird eine Anwendungsdatenbank erstellt, die ebenfalls im Ordner “database” zu finden ist. Ebenso wird der angemeldete Account nun auf der Streamer-Seite angezeigt:
 
 ## http/https
 Der Social Adventure Bot kann nur im Testbetrieb über http erreichbar sein. Im Echtbetrieb ist ein SSL-Zertifikat notwendig. 
