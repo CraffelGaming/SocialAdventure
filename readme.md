@@ -164,7 +164,7 @@ Release Date: 05.01.2023
 - [X]  Cookies
 
 ### Release 1.3.0 
-Release Date: 2023
+Release Date: 22.01.2023
 - [X]  Logs Steal
 - [X]  Logs Duell
 - [X]  Logs Adventure
@@ -175,6 +175,7 @@ Release Date: 2023
 - [X]  !mission
 
 ### Release 1.4.0 
+Release Date: 2023
 - [ ]  Logs Give
 - [ ]  Logs Raid
 - [ ]  Logs Blood 
@@ -186,6 +187,7 @@ Release Date: 2023
 - [ ]  1000er Trennzeichen überall
 
 ### Release 1.5.0 
+Release Date: 2024
 - [ ]  Englisch
 - [ ]  Keyschleuder
 - [ ]  Dungeons / Enemy / Item / Category export / import
