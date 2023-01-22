@@ -88,6 +88,14 @@ Nach einer erfolgreichen Verbindung, kannst du den Bot für den angemeldeten Acc
 
 Nun wird eine Anwendungsdatenbank erstellt, die ebenfalls im Ordner “database” zu finden ist. Ebenso wird der angemeldete Account nun auf der Streamer-Seite angezeigt:
 
+### Zurücksetzen
+Wenn du den Crafelmat resetten willst, reicht es aus, die globale Datenbank und die Anwendungsdatenbank(en) aus dem Ordner “database” zu entfernen und das Projekt neu zu starten. 
+
+### Twitch Dokumentationen
+- Twitch-Chat-Bot: https://dev.twitch.tv/docs/irc
+- Twitch-API-Reference: https://dev.twitch.tv/docs/api/reference
+- Twitch API Authentication: https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#oauth-authorization-code-flow
+
 ## http/https
 Der Social Adventure Bot kann nur im Testbetrieb über http erreichbar sein. Im Echtbetrieb ist ein SSL-Zertifikat notwendig. 
 Um ein SSL-Zertifikat zu installieren wird der Public-Key (.pem) und der Private-Key (.key) benötigt.
@@ -196,6 +204,9 @@ Release Date: 2024
 - [ ]  Handbuch
 - [ ]  UI Design überarbeiten -> Profi suchen
 - [ ]  Item Verwendungen
+- [ ]  Streamerübergreifende Statistiken
+- [ ]  Streamerübergreifende Dialoge
+
 ## Error Collection
 ### Say
 * E-10000 execute
