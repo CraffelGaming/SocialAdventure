@@ -73,8 +73,8 @@ Release Date: 2023
 - [ ]  Datenspeicher für Say-Module
 - [ ]  Diamanten
 - [ ]  GitHub Readme.md überarbeiten
-- [ ]  Item Verwendungen
 - [ ]  Validation Engine A < > != B
+- [ ]  1000er Trennzeichen überall
 
 ### Release 1.5.0 
 - [ ]  Englisch
@@ -84,6 +84,7 @@ Release Date: 2023
 - [ ]  Live Push Notification
 - [ ]  Handbuch
 - [ ]  UI Design überarbeiten -> Profi suchen
+- [ ]  Item Verwendungen
 ## Error Collection
 ### Say
 * E-10000 execute
