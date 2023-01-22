@@ -36,6 +36,8 @@ import { RaidBossItem } from '../model/raidBossItem.js';
 import { RaidHeroItem } from '../model/raidHeroItem.js';
 import { RaidItem } from '../model/raidItem.js';
 import { HistoryDuellItem } from '../model/historyDuellItem.js';
+import { HistoryStealItem } from '../model/historyStealItem.js';
+import { HistoryAdventureItem } from '../model/historyAdventureItem.js';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -128,6 +130,8 @@ export class Connection {
             RaidHeroItem.createTable({ sequelize: this.sequelize });
             RaidItem.createTable({ sequelize: this.sequelize });
             HistoryDuellItem.createTable({ sequelize: this.sequelize });
+            HistoryStealItem.createTable({ sequelize: this.sequelize });
+            HistoryAdventureItem.createTable({ sequelize: this.sequelize });
 
             await this.sequelize.sync();
 
@@ -162,7 +166,6 @@ export class Connection {
             RaidBossItem.setAssociation({ sequelize: this.sequelize});
             RaidHeroItem.setAssociation({ sequelize: this.sequelize});
             RaidItem.setAssociation({ sequelize: this.sequelize});
-            HistoryDuellItem.setAssociation({ sequelize: this.sequelize});
 
             return true;
         }  catch (ex){

@@ -89,7 +89,7 @@ export class Loot extends Module {
 
                             const exploring = new LootExploring(this);
                             if(await exploring.execute()){
-                                if(!exploring.isWinner){
+                                if(!exploring.adventureItem.isSuccess){
                                     this.channel.puffer.addMessage(TranslationItem.translate(this.translation, 'heroAdventureLoose')
                                                         .replace('$1', exploring.hero.getDataValue("name"))
                                                         .replace('$2', exploring.enemy.getDataValue("name")));
@@ -98,8 +98,8 @@ export class Loot extends Module {
                                                         .replace('$1', exploring.hero.getDataValue("name"))
                                                         .replace('$2', exploring.dungeon.getDataValue("name"))
                                                         .replace('$3', exploring.enemy.getDataValue("name"))
-                                                        .replace('$4', exploring.gold.toString())
-                                                        .replace('$5', exploring.experience.toString())
+                                                        .replace('$4', exploring.adventureItem.gold.toString())
+                                                        .replace('$5', exploring.adventureItem.experience.toString())
                                                         .replace('$6', exploring.item.getDataValue("value"))
                                                         .replace('$7', exploring.item.getDataValue("handle").toString()));
                                 }
@@ -221,7 +221,7 @@ export class Loot extends Module {
                                       .replace('$2', steal.targetHero.getDataValue("name"))
                                       .replace('$3', steal.item.getDataValue("value"))
                                       .replace('$4', steal.item.getDataValue("handle").toString())
-            } else if(!steal.isSteal) {
+            } else if(!steal.stealItem.isSuccess) {
                 return TranslationItem.translate(this.translation, 'stealItemFailed')
                                       .replace('$1', command.source)
                                       .replace('$2', steal.targetHero.getDataValue("name"))

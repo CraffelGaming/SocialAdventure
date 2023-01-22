@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    script(type="module" src='/javascripts/viewmodel/historyAdventureViewModel.js')   
+
+    body.dx-viewport
+        #container.main-container
+            h4#labelTitle
+            #dataGrid
+            
+    footer#sticky-footer.footer
+        #info-panel

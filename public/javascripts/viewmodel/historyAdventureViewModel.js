@@ -3,7 +3,7 @@ import { getTranslation, translate, infoPanel, get, put, getList } from './globa
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let module = 'historyDuell';
+    let module = 'historyAdventure';
     let language = await getTranslation(module);
     
     translation();
@@ -24,7 +24,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await getList(`/historyDuell/default`, language);
+                    return await getList(`/historyAdventure/default`, language);
                 }
             }),
             filterRow: { visible: true },
@@ -53,12 +53,18 @@ $(async () => {
             columns: [
                 { dataField: "handle", caption: translate(language, 'handle'), visible: false },
                 { dataField: "date", caption: translate(language, 'date'), dataType: 'datetime', sortIndex: 0, sortOrder: "desc" },
-                { dataField: "sourceHeroName", caption: translate(language, 'sourceHeroName') },
-                { dataField: "sourceHitpoints", caption: translate(language, 'sourceHitpoints') },
-                { dataField: "targetHeroName", caption: translate(language, 'targetHeroName') },
-                { dataField: "targetHitpoints", caption: translate(language, 'targetHitpoints') },
+                { dataField: "heroName", caption: translate(language, 'heroName') },
+                { dataField: "enemyName", caption: translate(language, 'enemyName') },
+                { dataField: "isSuccess", caption: translate(language, 'isSuccess'), dataType:'boolean' },
+                { dataField: "heroHitpointsStart", caption: translate(language, 'heroHitpointsStart') },
+                { dataField: "enemyDamage", caption: translate(language, 'enemyDamage') },
+                { dataField: "heroHitpointsEnd", caption: translate(language, 'heroHitpointsEnd') },
+                { dataField: "enemyHitpointsStart", caption: translate(language, 'enemyHitpointsStart') },
+                { dataField: "heroDamage", caption: translate(language, 'heroDamage') },
+                { dataField: "enemyHitpointsEnd", caption: translate(language, 'enemyHitpointsEnd') },
                 { dataField: "gold", caption: translate(language, 'gold') },
                 { dataField: "experience", caption: translate(language, 'experience') },
+                { dataField: "itemName", caption: translate(language, 'itemName') }
             ],
             export: {
                 enabled: true,

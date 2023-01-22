@@ -22,6 +22,8 @@ import setting from "./setting.js";
 import promotion from "./promotion.js";
 import impressum from "./impressum.js";
 import historyDuell from "./historyDuell.js";
+import historyAdventure from "./historyAdventure.js";
+import historySteal from "./historySteal.js";
 
 const endpoint = 'index';
 const type = 'app';
@@ -90,6 +92,8 @@ router.get('/impressum', impressum);
 
 // History
 router.get('/historyDuell', historyDuell);
+router.get('/historySteal', historySteal);
+router.get('/historyAdventure', historyAdventure);
 
 // index
 router.get('/', async (request: express.Request, response: express.Response) => {

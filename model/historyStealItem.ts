@@ -1,8 +1,8 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "historyDuell", modelName: "historyDuell"})
-export class HistoryDuellItem {
+@Table({ tableName: "historySteal", modelName: "historySteal"})
+export class HistoryStealItem {
     @PrimaryKey
     @Column
     handle: string;
@@ -11,13 +11,17 @@ export class HistoryDuellItem {
     @Column
     targetHeroName: string;
     @Column
-    sourceHitpoints: number = 0;
+    rollSource: number = 0;
     @Column
-    targetHitpoints: number = 0;
+    rollSourceCount: number = 0;
     @Column
-    gold: number = 0;
+    rollTarget: number = 0;
     @Column
-    experience: number = 0;
+    rollTargetCount: number = 0;
+    @Column
+    isSuccess: boolean = true;
+    @Column
+    itemName: string;
     @Column
     date: Date = new Date(2020, 1, 1);
 
@@ -28,7 +32,7 @@ export class HistoryDuellItem {
     }
 
     static createTable({ sequelize }: { sequelize: Sequelize; }){
-        sequelize.define('historyDuell', {
+        sequelize.define('historySteal', {
             handle: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
@@ -43,25 +47,30 @@ export class HistoryDuellItem {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            sourceHitpoints: {
+            rollSource: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: false
             },
-            targetHitpoints: {
+            rollSourceCount: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: false
             },
-            gold: {
+            rollTarget: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: false
             },
-            experience: {
+            rollTargetCount: {
                 type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            isSuccess: {
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: false
+            },
+            itemName: {
+                type: DataTypes.STRING,
+                allowNull: true
             },
             date: {
                 type: DataTypes.DATE,
@@ -71,15 +80,15 @@ export class HistoryDuellItem {
           }, {freezeTableName: true});
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: HistoryDuellItem }): Promise<number>{
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HistoryStealItem }): Promise<number>{
         try{
-            const item = await sequelize.models.historyDuell.findByPk(element.handle);
+            const item = await sequelize.models.historySteal.findByPk(element.handle);
 
             if(item){
-                await sequelize.models.historyDuell.update(element, {where: {handle: element.handle}});
+                await sequelize.models.historySteal.update(element, {where: {handle: element.handle}});
                 return 201;
             } else {
-                await sequelize.models.historyDuell.create(element as any);
+                await sequelize.models.historySteal.create(element as any);
                 return 201;
             }
         } catch(ex){

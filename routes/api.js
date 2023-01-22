@@ -30,6 +30,8 @@ import placeholder from "./api/api.placeholder.js";
 import validation from "./api/api.validation.js";
 import stateStorage from "./api/api.stateStorage.js";
 import historyDuell from "./api/api.historyDuell.js";
+import historySteal from "./api/api.historySteal.js";
+import historyAdventure from "./api/api.historyAdventure.js";
 import raid from "./api/api.raid.js";
 import raidBoss from "./api/api.raidBoss.js";
 import raidHero from "./api/api.raidHero.js";
@@ -2046,6 +2048,192 @@ router.get("/historyduell/:node/sourcehero/:name", historyDuell);
  *         description: no data
  */
 router.get("/historyduell/:node/targethero/:name", historyDuell);
+//#endregion
+//#region History Steal
+/**
+ * @swagger
+ * /historysteal/{node}:
+ *   get:
+ *     tags:
+ *     - History Steal
+ *     summary: Ermittelt alle verganenen Diebstähle zwischen zwei Helden.
+ *     description: Rückgabe aller verganenen Diebstähle zwischen zwei Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/HistorySteal'
+ *       404:
+ *         description: no data
+ */
+router.get("/historysteal/:node", historySteal);
+/**
+ * @swagger
+ * /historysteal/{node}/sourcehero/{name}:
+ *   get:
+ *     tags:
+ *     - History Steal
+ *     summary: Ermittelt alle verganenen Diebstähle zwischen zwei Helden, bei den der übergebene Held der Dieb war.
+ *     description: Rückgabe aller verganenen Diebstähle zwischen zwei Helden, bei den der übergebene Held der Dieb war.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Dieb"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           $ref: '#/definitions/HistorySteal'
+ *       404:
+ *         description: no data
+ */
+router.get("/historysteal/:node/sourcehero/:name", historySteal);
+/**
+ * @swagger
+ * /historysteal/{node}/targethero/{name}:
+ *   get:
+ *     tags:
+ *     - History Steal
+ *     summary: Ermittelt alle verganenen Diebstähle zwischen zwei Helden, bei den der übergebene Held das Opfer war.
+ *     description: Rückgabe aller verganenen Diebstähle zwischen zwei Helden, bei den der übergebene Held das Opfer war.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Opfer"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           $ref: '#/definitions/HistorySteal'
+ *       404:
+ *         description: no data
+ */
+router.get("/historysteal/:node/targethero/:name", historySteal);
+//#endregion
+//#region History Adventure
+/**
+ * @swagger
+ * /historyadventure/{node}:
+ *   get:
+ *     tags:
+ *     - History Adventure
+ *     summary: Ermittelt alle verganenen Abenteuer.
+ *     description: Rückgabe aller verganenen Adventure.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/HistoryAdventure'
+ *       404:
+ *         description: no data
+ */
+router.get("/historyadventure/:node", historyAdventure);
+/**
+ * @swagger
+ * /historyadventure/{node}/hero/{name}:
+ *   get:
+ *     tags:
+ *     - History Adventure
+ *     summary: Ermittelt alle verganenen Abenteuer eines Helden.
+ *     description: Rückgabe aller verganenen Abenteuer eines Helden.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Dieb"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           $ref: '#/definitions/HistoryAdventure'
+ *       404:
+ *         description: no data
+ */
+router.get("/historyadventure/:node/hero/:name", historyAdventure);
 //#endregion
 //#region Item
 /**

@@ -114,6 +114,22 @@
         "isActive": true
     },
     {
+        "endpoint": "historySteal",
+        "name": "historySteal",
+        "order": 1282,
+        "parentEndpoint": "statistic",
+        "nodeRequired": true,
+        "isActive": true
+    },
+    {
+        "endpoint": "historyAdventure",
+        "name": "historyAdventure",
+        "order": 1283,
+        "parentEndpoint": "statistic",
+        "nodeRequired": true,
+        "isActive": true
+    },
+    {
         "endpoint": "command",
         "name": "command",
         "order": 1290,

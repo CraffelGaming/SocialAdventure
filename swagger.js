@@ -18,6 +18,8 @@ const options = {
         `${dirname}/routes/api/api.heroTrait.js`,
         `${dirname}/routes/api/api.heroWallet.js`,
         `${dirname}/routes/api/api.historyDuell.js`,
+        `${dirname}/routes/api/api.historySteal.js`,
+        `${dirname}/routes/api/api.historyAdventure.js`,
         `${dirname}/routes/api/api.item.js`,
         `${dirname}/routes/api/api.itemCategory.js`,
         `${dirname}/routes/api/api.level.js`,
@@ -45,7 +47,7 @@ const options = {
             description: 'Vollständige API Entwicklerdokumentation.',
             swagger: '2.0',
             title: 'Social Adventure',
-            version: '1.3.23',
+            version: '1.3.26',
         }
     }
 };

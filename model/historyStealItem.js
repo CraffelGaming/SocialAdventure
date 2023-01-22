@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Column, Table, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-let HistoryDuellItem = class HistoryDuellItem {
+let HistoryStealItem = class HistoryStealItem {
     constructor(sourceHeroName, targetHeroName) {
-        this.sourceHitpoints = 0;
-        this.targetHitpoints = 0;
-        this.gold = 0;
-        this.experience = 0;
+        this.rollSource = 0;
+        this.rollSourceCount = 0;
+        this.rollTarget = 0;
+        this.rollTargetCount = 0;
+        this.isSuccess = true;
         this.date = new Date(2020, 1, 1);
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
         this.date = new Date();
     }
     static createTable({ sequelize }) {
-        sequelize.define('historyDuell', {
+        sequelize.define('historySteal', {
             handle: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
@@ -36,25 +37,30 @@ let HistoryDuellItem = class HistoryDuellItem {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            sourceHitpoints: {
+            rollSource: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: false
             },
-            targetHitpoints: {
+            rollSourceCount: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: false
             },
-            gold: {
+            rollTarget: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                defaultValue: 0
+                allowNull: false
             },
-            experience: {
+            rollTargetCount: {
                 type: DataTypes.INTEGER,
+                allowNull: false
+            },
+            isSuccess: {
+                type: DataTypes.BOOLEAN,
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: false
+            },
+            itemName: {
+                type: DataTypes.STRING,
+                allowNull: true
             },
             date: {
                 type: DataTypes.DATE,
@@ -65,13 +71,13 @@ let HistoryDuellItem = class HistoryDuellItem {
     }
     static async put({ sequelize, element }) {
         try {
-            const item = await sequelize.models.historyDuell.findByPk(element.handle);
+            const item = await sequelize.models.historySteal.findByPk(element.handle);
             if (item) {
-                await sequelize.models.historyDuell.update(element, { where: { handle: element.handle } });
+                await sequelize.models.historySteal.update(element, { where: { handle: element.handle } });
                 return 201;
             }
             else {
-                await sequelize.models.historyDuell.create(element);
+                await sequelize.models.historySteal.create(element);
                 return 201;
             }
         }
@@ -85,38 +91,46 @@ __decorate([
     PrimaryKey,
     Column,
     __metadata("design:type", String)
-], HistoryDuellItem.prototype, "handle", void 0);
+], HistoryStealItem.prototype, "handle", void 0);
 __decorate([
     Column,
     __metadata("design:type", String)
-], HistoryDuellItem.prototype, "sourceHeroName", void 0);
+], HistoryStealItem.prototype, "sourceHeroName", void 0);
 __decorate([
     Column,
     __metadata("design:type", String)
-], HistoryDuellItem.prototype, "targetHeroName", void 0);
+], HistoryStealItem.prototype, "targetHeroName", void 0);
 __decorate([
     Column,
     __metadata("design:type", Number)
-], HistoryDuellItem.prototype, "sourceHitpoints", void 0);
+], HistoryStealItem.prototype, "rollSource", void 0);
 __decorate([
     Column,
     __metadata("design:type", Number)
-], HistoryDuellItem.prototype, "targetHitpoints", void 0);
+], HistoryStealItem.prototype, "rollSourceCount", void 0);
 __decorate([
     Column,
     __metadata("design:type", Number)
-], HistoryDuellItem.prototype, "gold", void 0);
+], HistoryStealItem.prototype, "rollTarget", void 0);
 __decorate([
     Column,
     __metadata("design:type", Number)
-], HistoryDuellItem.prototype, "experience", void 0);
+], HistoryStealItem.prototype, "rollTargetCount", void 0);
+__decorate([
+    Column,
+    __metadata("design:type", Boolean)
+], HistoryStealItem.prototype, "isSuccess", void 0);
+__decorate([
+    Column,
+    __metadata("design:type", String)
+], HistoryStealItem.prototype, "itemName", void 0);
 __decorate([
     Column,
     __metadata("design:type", Date)
-], HistoryDuellItem.prototype, "date", void 0);
-HistoryDuellItem = __decorate([
-    Table({ tableName: "historyDuell", modelName: "historyDuell" }),
+], HistoryStealItem.prototype, "date", void 0);
+HistoryStealItem = __decorate([
+    Table({ tableName: "historySteal", modelName: "historySteal" }),
     __metadata("design:paramtypes", [String, String])
-], HistoryDuellItem);
-export { HistoryDuellItem };
-//# sourceMappingURL=historyDuellItem.js.map
+], HistoryStealItem);
+export { HistoryStealItem };
+//# sourceMappingURL=historyStealItem.js.map

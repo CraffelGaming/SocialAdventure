@@ -3,16 +3,17 @@ import { Model } from "sequelize-typescript";
 import { AdventureItem } from "../model/adventureItem.js";
 import { HeroItem } from "../model/heroItem.js";
 import { HeroTraitItem } from "../model/heroTraitItem.js";
+import { HistoryStealItem } from "../model/historyStealItem.js";
 import { ItemItem } from "../model/itemItem.js";
 import { LootItem } from "../model/lootItem.js";
 import { Loot } from "./loot.js";
 
 export class LootSteal {
+    stealItem: HistoryStealItem;
+
     item: Model<ItemItem>;
     adventure: Model<AdventureItem>;
-    targetHeroName: string;
     targetHero: Model<HeroItem>;
-    sourceHeroName: string;
     sourceHero: Model<HeroItem>;
     loot: Loot;
     itemParameter: string;
@@ -23,15 +24,13 @@ export class LootSteal {
     isItemHeroes: boolean = true;
     isAdventure: boolean = true;
     isTimeout: boolean = true;
-    isSteal: boolean = true;
     isLoose: boolean = true;
     isSelf: boolean = false;
     isActive: boolean = true;
 
     //#region Construct
     constructor(loot: Loot, sourceHeroName: string, targetHeroName: string = null, itemParameter: string = null){
-        this.sourceHeroName = sourceHeroName;
-        this.targetHeroName = targetHeroName;
+        this.stealItem = new HistoryStealItem(sourceHeroName, targetHeroName);
         this.itemParameter = itemParameter;
         this.loot = loot;
     }
@@ -54,13 +53,14 @@ export class LootSteal {
                                 if(this.adventure){
                                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, adventure`);
                                     if(await this.isStealSuccess()){
+                                        this.stealItem.isSuccess = true;
                                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, succsess`);
                                         await this.save(this.sourceHero, this.sourceHero);
                                         await settings.increment('countUses', { by: 1 });
                                         return true;
                                     } else {
                                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, failed`);
-                                        this.isSteal = false
+                                        this.stealItem.isSuccess = false;
                                         this.adventure = await this.getAdventure(this.sourceHero);
                                         await settings.increment('countUses', { by: 1 });
 
@@ -71,6 +71,8 @@ export class LootSteal {
                                                 this.isLoose = false;
                                                 await this.save(this.sourceHero, this.targetHero);
                                             }
+                                        } else {
+                                            HistoryStealItem.put({sequelize: this.loot.channel.database.sequelize, element: this.stealItem});
                                         }
                                     }
                                 } else this.isAdventure = false;
@@ -89,10 +91,13 @@ export class LootSteal {
         await AdventureItem.put({sequelize: this.loot.channel.database.sequelize, element: adventure});
         source.setDataValue("lastSteal", new Date());
         await source.save();
+
+        this.stealItem.itemName = this.item?.getDataValue('value');
+        HistoryStealItem.put({sequelize: this.loot.channel.database.sequelize, element: this.stealItem});
     }
 
     async loadElements(){
-        this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName) as Model<HeroItem>;
+        this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.stealItem.sourceHeroName) as Model<HeroItem>;
 
         if(this.itemParameter){
             this.item = await this.getItem();
@@ -102,8 +107,8 @@ export class LootSteal {
                     this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.adventure.getDataValue("heroName")) as Model<HeroItem>;
                 }
             }
-        } else if(this.targetHeroName){
-            this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.targetHeroName) as Model<HeroItem>;
+        } else if(this.stealItem.targetHeroName){
+            this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.stealItem.targetHeroName) as Model<HeroItem>;
 
             if(this.targetHero){
                 this.adventure = await this.getAdventure(this.targetHero);
@@ -117,6 +122,7 @@ export class LootSteal {
         } else {
             this.adventure = await this.getAdventure();
             if(this.adventure){
+                this.stealItem.targetHeroName = this.adventure.getDataValue("heroName");
                 this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.adventure.getDataValue("heroName")) as Model<HeroItem>;
                 this.item = await this.loot.channel.database.sequelize.models.item.findByPk(this.adventure.getDataValue("itemHandle")) as Model<ItemItem>;
 
@@ -130,38 +136,37 @@ export class LootSteal {
     async isStealSuccess() : Promise<boolean>{
         const sourceTrait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(this.sourceHero.getDataValue("name")) as Model<HeroTraitItem>;
         const targetTrait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(this.targetHero.getDataValue("name")) as Model<HeroTraitItem>;
-        let targetResult = 0;
-        let sourceResult = 0;
 
         if(sourceTrait && targetTrait){
-            const sourceTrys = targetTrait.getDataValue("stealMultipler");
-            const targetTrys = targetTrait.getDataValue("perceptionMultipler");
+            this.stealItem.rollSourceCount = targetTrait.getDataValue("stealMultipler");
+            this.stealItem.rollTargetCount = targetTrait.getDataValue("perceptionMultipler");
 
-            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence sourceTrys ${sourceTrys}`);
-            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence targetTrys ${targetTrys}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence sourceTrys ${this.stealItem.rollSourceCount}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence targetTrys ${this.stealItem.rollTargetCount}`);
 
-            for(let i = 1; i <= sourceTrys; i++) {
+
+            for(let i = 1; i <= this.stealItem.rollSourceCount; i++) {
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source try ${i}`);
                 const sourceDice = this.loot.getRandomNumber(0, 100);
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source dice ${sourceDice}`);
-                if(sourceDice > sourceResult){
-                    sourceResult = sourceDice;
+                if(sourceDice > this.stealItem.rollSource){
+                    this.stealItem.rollSource = sourceDice;
                 }
             }
 
-            for(let i = 1; i <= targetTrys; i++) {
+            for(let i = 1; i <= this.stealItem.rollTargetCount; i++) {
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target try ${i}`);
                 const targetDice = this.loot.getRandomNumber(0, 100);
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target dice ${targetDice}`);
-                if(targetDice > targetResult){
-                    targetResult = targetDice;
+                if(targetDice > this.stealItem.rollTarget){
+                    this.stealItem.rollTarget = targetDice;
                 }
             }
 
-            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source result ${sourceResult}`);
-            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target result ${targetResult}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source result ${this.stealItem.rollSource}`);
+            global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence target result ${this.stealItem.rollTarget}`);
 
-            if(sourceResult >= targetResult){
+            if(this.stealItem.rollSource >= this.stealItem.rollTarget){
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module steal, silence source win`);
                 return true;
             }

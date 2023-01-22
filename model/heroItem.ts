@@ -121,15 +121,12 @@ export class HeroItem {
     }
 
     static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-            sequelize.models.hero.hasOne(sequelize.models.heroTrait, { as: 'trait', foreignKey: 'heroName'});
-            sequelize.models.hero.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'heroName'});
-            sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName'});
-            sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName'});
-            sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName'});
-            sequelize.models.hero.hasMany(sequelize.models.raidHero, { as: 'raids', foreignKey: 'heroName'});
-
-            sequelize.models.hero.hasMany(sequelize.models.historyDuell, { as: 'duellSource', foreignKey: 'sourceHeroName'});
-            sequelize.models.hero.hasMany(sequelize.models.historyDuell, { as: 'duellTarget', foreignKey: 'targetHeroName'});
+        sequelize.models.hero.hasOne(sequelize.models.heroTrait, { as: 'trait', foreignKey: 'heroName'});
+        sequelize.models.hero.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'heroName'});
+        sequelize.models.hero.hasOne(sequelize.models.heroWallet, { as: 'wallet', foreignKey: 'heroName'});
+        sequelize.models.hero.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'heroName'});
+        sequelize.models.hero.hasMany(sequelize.models.heroPromotion, { as: 'promotion', foreignKey: 'heroName'});
+        sequelize.models.hero.hasMany(sequelize.models.raidHero, { as: 'raids', foreignKey: 'heroName'});
     }
 
     static async calculateHero({ sequelize, element }: { sequelize: Sequelize, element: HeroItem }): Promise<boolean>{

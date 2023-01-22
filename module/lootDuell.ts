@@ -1,6 +1,5 @@
 import sequelize from 'sequelize';
 import { Model } from 'sequelize-typescript';
-import { AdventureItem } from '../model/adventureItem.js';
 import { HeroItem } from '../model/heroItem.js';
 import { HeroTraitItem } from '../model/heroTraitItem.js';
 import { HeroWalletItem } from '../model/heroWalletItem.js';
@@ -86,7 +85,11 @@ export class LootDuell {
             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module duell, sourceHitpoints ${this.item.sourceHitpoints}`);
 
             while(this.item.targetHitpoints !== 0 && this.item.sourceHitpoints !== 0){
-                const sourceDamage = this.loot.getRandomNumber(Math.round(this.sourceHero.getDataValue('strength') / 2), this.sourceHero.getDataValue('strength'));
+                let sourceDamage = this.loot.getRandomNumber(Math.round(this.sourceHero.getDataValue('strength') / 2), this.sourceHero.getDataValue('strength'));
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module duell, source damage before defence ${sourceDamage}`);
+                sourceDamage = Math.round(sourceDamage / 100 * (100 - (sourceTrait.getDataValue("defenceMultipler") / 2 + 1)));
+                global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module duell, source damage after defence ${sourceDamage}`);
+
                 this.item.targetHitpoints -= sourceDamage;
 
                 if(this.item.targetHitpoints < 0) {
@@ -94,7 +97,10 @@ export class LootDuell {
                 }
 
                 if(this.item.targetHitpoints > 0) {
-                    const targetDamage = this.loot.getRandomNumber(Math.round(this.targetHero.getDataValue('strength') / 2), this.targetHero.getDataValue('strength'));
+                    let targetDamage = this.loot.getRandomNumber(Math.round(this.targetHero.getDataValue('strength') / 2), this.targetHero.getDataValue('strength'));
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module duell, target damage before defence ${targetDamage}`);
+                    targetDamage = Math.round(targetDamage / 100 * (100 - (targetTrait.getDataValue("defenceMultipler") / 2 + 1)));
+                    global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module duell, target damage after defence ${targetDamage}`);
                     this.item.sourceHitpoints -= targetDamage;
 
                     if(this.item.sourceHitpoints < 0) {
@@ -126,7 +132,7 @@ export class LootDuell {
 
     //#region Adventure
     async getHeroes(): Promise<Model<HeroItem>[]>{
-        return await this.loot.channel.database.sequelize.models.hero.findAll({ where: { isActive: true }}) as Model<HeroItem>[];
+        return await this.loot.channel.database.sequelize.models.hero.findAll({ where: { isActive: true, name: {[sequelize.Op.not]: this.sourceHero.getDataValue("name") } }}) as Model<HeroItem>[];
     }
 
     async getHero(): Promise<Model<HeroItem>>{

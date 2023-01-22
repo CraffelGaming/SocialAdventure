@@ -1,40 +1,58 @@
 import express from 'express';
 const router = express.Router();
-const endpoint = 'historyduell';
+const endpoint = 'historyadventure';
 //#region swagger
 /**
  * @swagger
  *
  * definitions:
- *   HistoryDuell:
+ *   HistoryAdventure:
  *     type: object
  *     required:
  *       - handle
  *       - date
- *       - sourceHeroName
- *       - targetHeroName
+ *       - heroName
+ *       - enemyName
  *     properties:
  *       handle:
  *         type: integer
  *         descrition: Eindeutige ID des Protokolls
- *       sourceHeroName:
+ *       heroName:
  *         type: string
- *         descrition: Heldenname des Angreifers
- *       targetHeroName:
+ *         descrition: Heldenname
+ *       enemyName:
  *         type: string
- *         descrition: Heldenname des Verteidigers
- *       sourceHitpoints:
+ *         descrition: Monstername
+ *       heroHitpointsStart:
  *         type: integer
- *         descrition: Verbleibende Lebenspunkte des Angreifers, wenn 0 dann verloren, ansonsten gewonnen
- *       targetHitpoints:
+ *         descrition: HP des Helden vor Kampf
+ *       heroHitpointsEnd:
  *         type: integer
- *         descrition: Verbleibende Lebenspunkte des Verteidigers, wenn 0 dann verloren, ansonsten gewonnen
+ *         descrition: HP des Helden nach Kampf
+ *       enemyHitpointsStart:
+ *         type: integer
+ *         descrition: HP des Monsters vor Kampf
+ *       enemyHitpointsEnd:
+ *         type: integer
+ *         descrition: HP des Monsters nach Kampf
+ *       isSuccess:
+ *         type: boolean
+ *         descrition: Abgabe, ob das Abenteuer erfolgreich war
+ *       heroDamage:
+ *         type: integer
+ *         descrition: Schaden des Helden
+ *       enemyDamage:
+ *         type: integer
+ *         descrition: Schaden des Monsters
  *       gold:
  *         type: integer
  *         descrition: Goldgewinn des Gewinners
  *       experience:
  *         type: integer
  *         descrition: Erfahrungsgewinn des Gewinners
+ *       itemName:
+ *         type: string
+ *         descrition: Gefundener Gegenstand.
  *       date:
  *         type: string
  *         descrition: Datum des Duells
@@ -46,12 +64,18 @@ const endpoint = 'historyduell';
  *         descrition: Datum der letzten Änderung
  *     example:
  *       handle: 1
- *       sourceHeroName: 'craffel'
- *       targetHeroName: 'socialadventure'
- *       sourceHitpoints: 10
- *       targetHitpoints: 0
+ *       heroName: 'craffel'
+ *       enemyName: 'Goblin'
+ *       heroHitpointsStart: 100
+ *       heroHitpointsEnd: 90
+ *       enemyHitpointsStart: 30
+ *       enemyHitpointsEnd: 0
+ *       isSuccess: true
+ *       enemyDamage: 10
+ *       heroDamage: 30
  *       gold: 200
  *       experience: 300
+ *       itemName: 'Holzschwert'
  *       date: "2022-05-12 10:11:35.027 +00:00"
  *       createdAt: "2022-05-12 10:11:35.027 +00:00"
  *       updatedAt: "2022-05-12 10:11:35.027 +00:00"
@@ -69,10 +93,10 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.historyDuell.findAll({ order: [['handle', 'ASC']], limit: 1000 });
+                item = await channel.database.sequelize.models.historyAdventure.findAll({ order: [['handle', 'ASC']], limit: 1000 });
             }
             else
-                item = await channel.database.sequelize.models.historyDuell.findAll({ order: [['handle', 'ASC']], limit: 1000 });
+                item = await channel.database.sequelize.models.historyAdventure.findAll({ order: [['handle', 'ASC']], limit: 1000 });
             if (item)
                 response.status(200).json(item);
             else
@@ -86,7 +110,7 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         response.status(500).json();
     }
 });
-router.get('/' + endpoint + '/:node/sourcehero/:name', async (request, response) => {
+router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
         let item;
@@ -98,39 +122,10 @@ router.get('/' + endpoint + '/:node/sourcehero/:name', async (request, response)
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.historyDuell.findOne({ where: { sourceHeroName: request.params.name }, order: [['handle', 'ASC']], limit: 1000 });
+                item = await channel.database.sequelize.models.historyAdventure.findOne({ where: { heroName: request.params.name, order: [['handle', 'ASC']], limit: 1000 } });
             }
             else
-                item = await channel.database.sequelize.models.historyDuell.findOne({ where: { sourceHeroName: request.params.name }, order: [['handle', 'ASC']], limit: 1000 });
-            if (item)
-                response.status(200).json(item);
-            else
-                response.status(404).json();
-        }
-        else
-            response.status(404).json();
-    }
-    catch (ex) {
-        global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
-        response.status(500).json();
-    }
-});
-router.get('/' + endpoint + '/:node/targethero/:name', async (request, response) => {
-    try {
-        global.worker.log.trace(`get ${endpoint}, node ${request.params.node}, hero ${request.params.name}`);
-        let item;
-        let node;
-        if (request.params.node === 'default')
-            node = await global.defaultNode(request, response);
-        else
-            node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
-        const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
-        if (channel) {
-            if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.historyDuell.findOne({ where: { targetHeroName: request.params.name }, order: [['handle', 'ASC']], limit: 1000 });
-            }
-            else
-                item = await channel.database.sequelize.models.historyDuell.findOne({ where: { targetHeroName: request.params.name }, order: [['handle', 'ASC']], limit: 1000 });
+                item = await channel.database.sequelize.models.historyAdventure.findOne({ where: { heroName: request.params.name, order: [['handle', 'ASC']], limit: 1000 } });
             if (item)
                 response.status(200).json(item);
             else
@@ -145,4 +140,4 @@ router.get('/' + endpoint + '/:node/targethero/:name', async (request, response)
     }
 });
 export default router;
-//# sourceMappingURL=api.historyDuell.js.map
+//# sourceMappingURL=api.historyAdventure.js.map

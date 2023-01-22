@@ -3,7 +3,7 @@ import { getTranslation, translate, infoPanel, get, put, getList } from './globa
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
 
-    let module = 'historyDuell';
+    let module = 'historySteal';
     let language = await getTranslation(module);
     
     translation();
@@ -24,7 +24,7 @@ $(async () => {
                 key: "handle",
                 loadMode: "raw",
                 load: async function (loadOptions) {
-                    return await getList(`/historyDuell/default`, language);
+                    return await getList(`/historySteal/default`, language);
                 }
             }),
             filterRow: { visible: true },
@@ -54,11 +54,13 @@ $(async () => {
                 { dataField: "handle", caption: translate(language, 'handle'), visible: false },
                 { dataField: "date", caption: translate(language, 'date'), dataType: 'datetime', sortIndex: 0, sortOrder: "desc" },
                 { dataField: "sourceHeroName", caption: translate(language, 'sourceHeroName') },
-                { dataField: "sourceHitpoints", caption: translate(language, 'sourceHitpoints') },
                 { dataField: "targetHeroName", caption: translate(language, 'targetHeroName') },
-                { dataField: "targetHitpoints", caption: translate(language, 'targetHitpoints') },
-                { dataField: "gold", caption: translate(language, 'gold') },
-                { dataField: "experience", caption: translate(language, 'experience') },
+                { dataField: "rollSource", caption: translate(language, 'rollSource') },
+                { dataField: "rollSourceCount", caption: translate(language, 'rollSourceCount') },
+                { dataField: "rollTarget", caption: translate(language, 'rollTarget') },
+                { dataField: "rollTargetCount", caption: translate(language, 'rollTargetCount') },
+                { dataField: "isSuccess", caption: translate(language, 'isSuccess') },
+                { dataField: "itemName", caption: translate(language, 'itemName') }
             ],
             export: {
                 enabled: true,
