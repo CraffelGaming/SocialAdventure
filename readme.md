@@ -1,6 +1,35 @@
-# Social Adventure bloodpoints
+# Social Adventure
 
 Social Adventure ist eine kostenlose Twitch-Bot Alternative zu Streamlabs, Nightbot, Moobot und co. Neben den Standard Features wie automatische und manuelle Nachrichten, Death-Counter und Shoutouts bietet Social Adventure ein komplettes Browser und Chat basiertes Spiel, bei dem du deinen Helden verbessern und deine Unterstützung zum Streamer zeigen kannst. Social Adventure wurde von Craffel entwickelt und wird immer wieder mit neuen Features ausgestattet.
+
+## Installation für Entwickler
+comming soon.
+
+## Sequelize
+comming soon.
+
+## http/https
+Der Social Adventure Bot kann nur im Testbetrieb über http erreichbar sein. Im Echtbetrieb ist ein SSL-Zertifikat notwendig. 
+Um ein SSL-Zertifikat zu installieren wird der Public-Key (.pem) und der Private-Key (.key) benötigt.
+Diese können im Installationsverzeichnis unter dem Ordner "cert" mit den Namen "cert.pem" und "cert.key" abgelegt werden.
+Sollte der Name anders lauten oder der Pfad einen anderen entsprechen müssen, kann dieser über die JSON-Konfigurationsdatei "settings.json" bearbeitet werden:
+
+```
+{
+  [...]
+  "key": "/cert/cert.key",
+  "cert": "/cert/cert.pem",
+  [...]
+}
+```
+
+## Port
+Der Social Adventure Bot verwendet 2 Ports, je nachdem ob sich diese im Entwicklungsmodus oder Betriebsmodus befindet.
+- Entwicklungsmodus : Port 80
+- Betriebsmodus: Port 443
+## Node.js
+Der Social Adventure Bot liefert keine eigene Node.js Binarys und muss folgende Version verwenden: 18.13.0 LTS
+
 ## Roadmap
 ### Release 1.0.0 
 Release Date: 29.10.2022
@@ -127,3 +156,30 @@ Release Date: 2023
 * E-30001 raidinfo
 * E-30002 raid
 * E-30003 raidStop
+
+
+## Abhängigkeiten Betrieb
+`body-parser@1.19.2`
+`cookie-parser@1.4.6`
+`devextreme@22.1.4`
+`express@4.17.3`
+`express-session@1.17.2`
+`jquery@3.6.0`
+`log4js@6.4.3`
+`moment@2.29.4`
+`morgan@1.10.0`
+`popper.js@1.16.1`
+`pug@3.0.2`
+`reflect-metadata@0.1.13`
+`request@2.88.2`
+`rotating-file-stream@3.0.3`
+`seedrandom@3.0.5`
+`sequelize@6.19.0`
+`sequelize-typescript@2.1.3`
+`serve-favicon@2.5.0`
+`sqlite3@5.0.8`
+`swagger@0.0.1`
+`swagger-jsdoc@6.1.0`
+`swagger-ui-express@4.3.0`
+`tmi.js@1.8.5`
+`uniqid@5.4.0`
