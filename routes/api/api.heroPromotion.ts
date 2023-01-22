@@ -29,7 +29,7 @@ router.get('/' + endpoint + '/:node/', async (request: express.Request, response
                 }]}) as Model<HeroPromotionItem>[];
             } else item = await channel.database.sequelize.models.heroPromotion.findAll({order: [ [ 'heroName', 'ASC' ], [ 'promotionHandle', 'ASC' ]], }) as Model<HeroPromotionItem>[];
 
-            if(item) response.status(200).json(item);
+            if(item) response.status(200).json(item.filter(x => x.getDataValue('promotion') != null));
             else response.status(404).json();
         } else response.status(404).json();
     } catch(ex){

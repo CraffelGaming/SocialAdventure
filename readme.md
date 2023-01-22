@@ -56,22 +56,34 @@ Release Date: 05.01.2023
 
 ### Release 1.3.0 
 Release Date: 2023
-- [X]  Logs
-- [ ]  Englisch
+- [X]  Logs Steal
+- [X]  Logs Duell
+- [X]  Logs Adventure
+- [X]  Wahrnehmung als Trait
+- [X]  Kanalinformationen erneuern
+- [X]  Bot Deaktivieren
+- [X]  Online / Offline Meldung
+- [X]  !mission
+
+### Release 1.4.0 
+- [ ]  Logs Give
+- [ ]  Logs Raid
+- [ ]  Logs Blood 
 - [ ]  API aufräumen
 - [ ]  Datenspeicher für Say-Module
-- [ ]  Keyschleuder
-- [ ]  UI Design überarbeiten -> Profi suchen
 - [ ]  Diamanten
 - [ ]  GitHub Readme.md überarbeiten
-- [ ]  Dungeons / Enemy / Item / Category export / import
-- [X]  Mehr Traits
 - [ ]  Item Verwendungen
+- [ ]  Validation Engine A < > != B
+
+### Release 1.5.0 
+- [ ]  Englisch
+- [ ]  Keyschleuder
+- [ ]  Dungeons / Enemy / Item / Category export / import
+- [ ]  Housing
 - [ ]  Live Push Notification
 - [ ]  Handbuch
-- [ ]  Validation Engine A < > != B
-- [ ]  Housing
-
+- [ ]  UI Design überarbeiten -> Profi suchen
 ## Error Collection
 ### Say
 * E-10000 execute
