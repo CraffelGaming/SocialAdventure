@@ -11,7 +11,7 @@ export class AdventureItem{
     @PrimaryKey
     @Column
     heroName: string;
-    
+
     hero: HeroItem;
     item: ItemItem;
 

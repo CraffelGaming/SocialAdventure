@@ -25,7 +25,7 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
             else
                 item = await channel.database.sequelize.models.heroInventory.findAll({ order: [['heroName', 'ASC'], ['itemHandle', 'ASC']] });
             if (item)
-                response.status(200).json(item);
+                response.status(200).json(item.filter(x => x.getDataValue('item') != null));
             else
                 response.status(404).json();
         }

@@ -18,7 +18,7 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
     quantity: number = 0;
     @Column
     isReload: boolean = false;
-    
+
     hero: HeroItem;
     item: ItemItem;
 

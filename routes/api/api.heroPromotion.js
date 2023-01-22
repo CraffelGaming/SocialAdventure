@@ -24,7 +24,7 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
             else
                 item = await channel.database.sequelize.models.heroPromotion.findAll({ order: [['heroName', 'ASC'], ['promotionHandle', 'ASC']], });
             if (item)
-                response.status(200).json(item);
+                response.status(200).json(item.filter(x => x.getDataValue('promotion') != null));
             else
                 response.status(404).json();
         }
