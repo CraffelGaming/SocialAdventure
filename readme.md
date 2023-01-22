@@ -3,7 +3,10 @@
 Social Adventure ist eine kostenlose Twitch-Bot Alternative zu Streamlabs, Nightbot, Moobot und co. Neben den Standard Features wie automatische und manuelle Nachrichten, Death-Counter und Shoutouts bietet Social Adventure ein komplettes Browser und Chat basiertes Spiel, bei dem du deinen Helden verbessern und deine Unterstützung zum Streamer zeigen kannst. Social Adventure wurde von Craffel entwickelt und wird immer wieder mit neuen Features ausgestattet.
 
 ## Installation für Entwickler
-comming soon.
+###Benötigte Anwendungen
+- Visual Studio Code:https://code.visualstudio.com/download 
+- GIT: https://git-scm.com/downloads
+- Node.js: https://nodejs.org/en/download/
 
 ## Sequelize
 comming soon.
@@ -158,7 +161,7 @@ Release Date: 2023
 * E-30003 raidStop
 
 
-## Abhängigkeiten Betrieb
+## Abhängigkeiten Productive
 `body-parser@1.19.2`
 `cookie-parser@1.4.6`
 `devextreme@22.1.4`
@@ -183,3 +186,21 @@ Release Date: 2023
 `swagger-ui-express@4.3.0`
 `tmi.js@1.8.5`
 `uniqid@5.4.0`
+
+## Abhängigkeiten Development
+`@types/bluebird@3.5.36`
+`@types/cookie-parser@1.4.2`
+`@types/express@4.17.13`
+`@types/express-session@1.17.4`
+`@types/morgan@1.9.3`
+`@types/node@17.0.25`
+`@types/seedrandom@3.0.2`
+`@types/sequelize@4.28.14`
+`@types/serve-favicon@2.5.3`
+`@types/swagger-jsdoc@6.0.1`
+`@types/swagger-ui-express@4.1.3`
+`@types/tmi.js@1.8.2`
+`@types/uniqid@5.3.2`
+`@types/validator@13.7.2`
+`tslint@6.1.3`
+`typescript@4.6.2`
