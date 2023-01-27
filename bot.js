@@ -14,10 +14,18 @@ import routes from './routes/index.js';
 import api from './routes/api.js';
 import { Worker } from './controller/worker.js';
 import { fileURLToPath } from 'url';
+import compression from 'compression';
+import robots from 'express-robots-txt';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'settings.json')).toString());
 const app = express();
+// Compress all responses
+app.use(compression());
+app.use(robots({
+    UserAgent: '*',
+    Allow: '/'
+}));
 global.defaultNode = async function defaultNode(request, response) {
     if (!request.session.node) {
         request.session.node = await global.worker.globalDatabase.sequelize.models.node.findOne();
@@ -96,11 +104,13 @@ app.use('/moment', express.static(path.join(dirname, '/node_modules/moment/src')
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use((err, request, response) => {
-        response.status(err.status || 500);
-        response.render('error', {
-            message: err.message,
-            error: err
-        });
+        if (response) {
+            response.status(err.status || 500);
+            response.render('error', {
+                message: err.message,
+                error: err
+            });
+        }
     });
 }
 // production error handler

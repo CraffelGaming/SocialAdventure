@@ -13,7 +13,7 @@ router.get('/' + endpoint + '/', async (request: express.Request, response: expr
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else {
-            response.status(403).json();
+            response.status(204).json();
         }
     } catch(ex){
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
@@ -33,7 +33,7 @@ router.get('/' + endpoint + '/:name', async (request: express.Request, response:
             if(item) response.status(200).json(item);
             else response.status(404).json();
         } else {
-            response.status(403).json();
+            response.status(204).json();
         }
     } catch(ex){
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
@@ -47,7 +47,7 @@ router.put('/' + endpoint + '/', async (request: express.Request, response: expr
             request.body.channelName = request.session.userData.login;
             response.status(await StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body})).json(request.body);
         } else {
-            response.status(403).json();
+            response.status(204).json();
         }
     } catch(ex){
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);
@@ -66,7 +66,7 @@ router.delete('/' + endpoint + '/:name', async (request: express.Request, respon
                     response.status(204).json();
                 } else response.status(404).json();
         } else {
-            response.status(403).json();
+            response.status(204).json();
         }
     } catch(ex){
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);

@@ -52,9 +52,8 @@ $(async () => {
         var items = [];
 
         items.push({
-            icon: node?.twitchUser?.profileImageUrl != null ? node.twitchUser.profileImageUrl : '/images/favicon.png',
-            href: '/',
-            text: translate(language, "title")
+            text: translate(language, "title"),
+            template: "<img alt='ISB Solutions GmbH' src='/images/favicon24x24.png' href:'\' height='24' class='dx-icon'></div>"
         });
 
         var menu = menus.filter(x => !x.parent).sort(function (a, b) {

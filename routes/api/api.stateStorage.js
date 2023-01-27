@@ -13,7 +13,7 @@ router.get('/' + endpoint + '/', async (request, response) => {
                 response.status(404).json();
         }
         else {
-            response.status(403).json();
+            response.status(204).json();
         }
     }
     catch (ex) {
@@ -36,7 +36,7 @@ router.get('/' + endpoint + '/:name', async (request, response) => {
                 response.status(404).json();
         }
         else {
-            response.status(403).json();
+            response.status(204).json();
         }
     }
     catch (ex) {
@@ -51,7 +51,7 @@ router.put('/' + endpoint + '/', async (request, response) => {
             response.status(await StateStorageItem.put({ sequelize: global.worker.globalDatabase.sequelize, element: request.body })).json(request.body);
         }
         else {
-            response.status(403).json();
+            response.status(204).json();
         }
     }
     catch (ex) {
@@ -72,7 +72,7 @@ router.delete('/' + endpoint + '/:name', async (request, response) => {
                 response.status(404).json();
         }
         else {
-            response.status(403).json();
+            response.status(204).json();
         }
     }
     catch (ex) {

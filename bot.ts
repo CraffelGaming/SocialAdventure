@@ -15,11 +15,22 @@ import api from './routes/api.js';
 import { Worker } from './controller/worker.js';
 import { NodeItem } from "./model/nodeItem.js";
 import { fileURLToPath } from 'url';
+import compression from 'compression';
+import robots from 'express-robots-txt'
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'settings.json')).toString());
 const app = express();
+
+// Compress all responses
+app.use(compression());
+
+// Robot
+app.use(robots({
+    UserAgent: '*',
+    Allow: '/'
+}))
 
 // Global
 declare global {
@@ -183,11 +194,13 @@ app.use('/moment', express.static(path.join(dirname, '/node_modules/moment/src')
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use((err: any, request: express.Request, response: express.Response) => {
-        response.status(err.status || 500);
-        response.render('error', {
-            message: err.message,
-            error: err
-        });
+        if(response) {
+            response.status(err.status || 500);
+            response.render('error', {
+                message: err.message,
+                error: err
+            });
+        }
     });
 }
 
