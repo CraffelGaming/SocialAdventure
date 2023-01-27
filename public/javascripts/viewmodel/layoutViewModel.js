@@ -52,8 +52,13 @@ $(async () => {
         var items = [];
 
         items.push({
+            href:'\\',
+            template: "<img alt='ISB Solutions GmbH' src='/images/favicon24x24.png' height='24' class='dx-icon' text='TEST'></div>"
+        });
+
+        items.push({
             text: translate(language, "title"),
-            template: "<img alt='ISB Solutions GmbH' src='/images/favicon24x24.png' href:'\' height='24' class='dx-icon'></div>"
+            href:'\\'
         });
 
         var menu = menus.filter(x => !x.parent).sort(function (a, b) {
