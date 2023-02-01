@@ -77,6 +77,7 @@ $(async () => {
                     template: masterDetailTemplate
                 },
                 columns: [
+                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), validationRules: [{ type: "required" }], width: 100},
                     { dataField: "item.value", caption: translate(language, 'item'), validationRules: [{ type: "required" }]},
                     {
                         dataField: 'item.categoryHandle',

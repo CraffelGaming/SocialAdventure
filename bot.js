@@ -22,6 +22,7 @@ const settings = JSON.parse(fs.readFileSync(path.join(dirname, 'settings.json'))
 const app = express();
 // Compress all responses
 app.use(compression());
+// Robot
 app.use(robots({
     UserAgent: '*',
     Allow: '/'
