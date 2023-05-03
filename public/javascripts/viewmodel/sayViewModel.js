@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, getEditing, notify, get, copyToClipboard, put, getList } from './globalData.js';
+import { getTranslations, translate, infoPanel, getEditing, remove, get, copyToClipboard, put, getList, isMaster, isStreamer, loadUserData } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -30,59 +30,14 @@ $(async () => {
                     return await getList(`/say/default`, language);
                 },
                 insert: async function (values) {
-                    await fetch('./api/say/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(values)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                            break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    await put('/say/default', values, 'put', language);
                 },
                 update: async function (key, values) {
-                    var item = values;
-                    item.command = key;
-                    await fetch('./api/say/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(item)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    values.command = key;
+                    await put('/say/default', values, 'put', language);
                 },
-                remove: async function (key) {;
-                    await fetch('./api/say/default/' + key, {
-                        method: 'delete',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 204:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                remove: async function (key) {
+                    await remove(`/say/default/${key}`, language);
                 }
             }),
             filterRow: { visible: true },
@@ -114,54 +69,77 @@ $(async () => {
             },
             columns: [
                 { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
-                { dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: {autoResizeEnabled: true}, validationRules: [{ type: "required" }],
-                    cellTemplate: function(element, info) {
+                {
+                    dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: { autoResizeEnabled: true }, validationRules: [{ type: "required" }],
+                    cellTemplate: function (element, info) {
                         $("<div>")
                             .appendTo(element)
                             .text(info.value)
                             .css("width", info.column.width - 20)
                             .css("height", 40)
                             .css("white-space", "normal")
-                            .css("overflow-wrap", 'break-word'); 
-                    }},
+                            .css("overflow-wrap", 'break-word');
+                    }
+                },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "delay", caption: translate(language, 'delay'), validationRules: [{ type: "required" }], width: 160 },
+                { dataField: "timeout", caption: translate(language, 'timeout'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "shortcuts", caption: translate(language, 'shortcuts'), visible: false },
-                { dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
+                {
+                    dataField: "isShoutout", caption: translate(language, 'isShoutout'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
-                        if(data.isShoutout != null){
+                        if (data.isShoutout != null) {
                             return data.isShoutout == 1 ? true : false;
                         } else {
                             return false;
-                        } 
-                    } 
+                        }
+                    }
                 },
-                { dataField: "isCounter", caption: translate(language, 'isCounter'), editorType: "dxCheckBox", width: 120,
+                {
+                    dataField: "isCounter", caption: translate(language, 'isCounter'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
-                        if(data.isCounter != null){
+                        if (data.isCounter != null) {
                             return data.isCounter == 1 ? true : false;
                         } else {
                             return false;
-                        } 
-                    } 
+                        }
+                    }
                 },
-                { dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
+                {
+                    dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
-                        if(data.isActive != null){
+                        if (data.isActive != null) {
                             return data.isActive == 1 ? true : false;
                         } else {
                             return false;
-                        } 
-                    } 
+                        }
+                    }
                 },
-                { dataField: "isLiveAutoControl", caption: translate(language, 'isLiveAutoControl'), editorType: "dxCheckBox", width: 160,
+                {
+                    dataField: "isLiveAutoControl", caption: translate(language, 'isLiveAutoControl'), editorType: "dxCheckBox", width: 160,
                     calculateCellValue(data) {
-                        if(data.isLiveAutoControl != null){
+                        if (data.isLiveAutoControl != null) {
                             return data.isLiveAutoControl == 1 ? true : false;
                         } else {
                             return false;
-                        } 
-                    } 
+                        }
+                    }
+                },
+                {
+                    type: 'buttons',
+                    buttons: ['edit', 'delete', {
+                        icon: 'copy',
+                        visible: (await isStreamer() && !await isMaster()),
+                        hint: translate(language, "copyToOwnChannel"),
+                        onClick: async function (e) {
+                            let userData = await loadUserData();
+                            e.row.data.count = 0;
+                            e.row.data.countRuns = 0;
+                            e.row.data.lastRun = null;
+                            e.row.data.lastRun = null;
+                            await put(`/say/${userData.login}`, e.row.data, 'put', language);
+                        }
+                    }]
                 }
             ],
             editing: await getEditing(),
@@ -222,9 +200,9 @@ $(async () => {
             },
             toolbar: {
                 items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
+                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
                     }, "searchPanel", "exportButton"]
             }
         });
@@ -258,7 +236,7 @@ $(async () => {
                     { dataField: "countUses", caption: translate(language, 'countUses') },
                     { dataField: "countRuns", caption: translate(language, 'countRuns') },
                     { dataField: 'lastRun', caption: translate(language, 'lastRun'), dataType: 'datetime', width: 200 },
-                    { dataField: 'count', caption: translate(language, 'count')}
+                    { dataField: 'count', caption: translate(language, 'count') }
                 ]
             });
         };
@@ -297,7 +275,7 @@ $(async () => {
                     {
                         caption: translate(languageCommand, 'command'), width: 200,
                         calculateCellValue(data) {
-                          return "!" + masterDetailData.command + data.command;
+                            return "!" + masterDetailData.command + data.command;
                         }
                     },
                     { dataField: "isMaster", caption: translate(languageCommand, 'isMaster'), width: 200 },
@@ -305,14 +283,14 @@ $(async () => {
                     {
                         caption: translate(languageCommand, 'description'),
                         calculateCellValue(data) {
-                          return translate(languageCommand, data.translation)
+                            return translate(languageCommand, data.translation)
                         }
                     }
                 ]
             });
         };
     }
-    
+
     function createPlaceholderTabTemplate(masterDetailData) {
         return function () {
             return $('<div>').dxDataGrid({
@@ -322,12 +300,12 @@ $(async () => {
                     load: async function () {
                         let items = await get(`/placeholder`, languagePlaceholder);
 
-                        if(!masterDetailData.isCounter){
+                        if (!masterDetailData.isCounter) {
                             items = items.filter(x => !x.isCounter)
                         }
-                        if(!masterDetailData.isShoutout){
+                        if (!masterDetailData.isShoutout) {
                             items = items.filter(x => !x.isShoutout)
-                        } 
+                        }
                         return items;
                     }
                 }),
@@ -355,7 +333,7 @@ $(async () => {
                     {
                         caption: translate(languagePlaceholder, 'description'),
                         calculateCellValue(data) {
-                          return translate(languagePlaceholder, data.translation)
+                            return translate(languagePlaceholder, data.translation)
                         }
                     }
                 ]

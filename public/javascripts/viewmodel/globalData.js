@@ -14,7 +14,7 @@ export function translate(language, handle) {
         if (value && value.translation)
             return value.translation;
     }
-    return ''; 
+    return '';
 }
 //#endregion
 
@@ -23,19 +23,19 @@ export async function infoPanel() {
     let languageInfo = await getTranslation('information');
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
-    
+
     $("#info-panel").dxButtonGroup({
-        width:"100%",
-        items: [{ 
+        width: "100%",
+        items: [{
             text: (userData != null) ? translate(languageInfo, 'login').replace('$1', userData.display_name) : translate(languageInfo, 'noLogin'),
-            disabled: true, 
+            disabled: true,
             stylingMode: "text",
             elementAttr: {
                 id: 'loginInfo'
             }
         }, {
             text: (defaultNode != null) ? translate(languageInfo, 'streamer').replace('$1', defaultNode.displayName) : translate(languageInfo, 'noStreamer'),
-            disabled: true, 
+            disabled: true,
             stylingMode: "text",
             elementAttr: {
                 id: 'selectedInfo'
@@ -52,6 +52,10 @@ export async function loadUserData() {
 
 export async function loadDefaultNode() {
     return await get(`/node/default`);
+}
+
+export async function loadNode(name) {
+    return await get(`/node/information/${name}`);;
 }
 //#endregion
 
@@ -105,9 +109,9 @@ export function notify(message, type) {
 
 //#region Editing
 export async function getEditing(allowUpdating = true, allowAdding = true, allowDeleting = true, mode = "popup") {
-    let master = await isMaster();  
-    
-    if(master){
+    let master = await isMaster();
+
+    if (master) {
         return {
             mode: mode,
             allowUpdating: master && allowUpdating,
@@ -125,8 +129,8 @@ export async function getEditing(allowUpdating = true, allowAdding = true, allow
 }
 
 export async function getEditingHero(heroName, allowUpdating = true, allowAdding = true, allowDeleting = true, mode = "popup") {
-    let hero = isHero(heroName);  
-    if(hero){
+    let hero = isHero(heroName);
+    if (hero) {
         return {
             mode: mode,
             allowUpdating: hero && allowUpdating,
@@ -149,8 +153,18 @@ export async function isMaster() {
     let userData = await loadUserData();
     let defaultNode = await loadDefaultNode();
 
-    if(userData != null && defaultNode?.name != null){
+    if (userData != null && defaultNode?.name != null) {
         return userData.login === defaultNode.name;
+    }
+    return false;
+}
+
+export async function isStreamer() {
+    let userData = await loadUserData();
+    let node = await loadNode(userData.login);
+
+    if (node?.name?.length > 0) {
+        return true;
     }
     return false;
 }
@@ -158,7 +172,7 @@ export async function isMaster() {
 export async function isHero(heroName) {
     let userData = await loadUserData();
 
-    if(userData != null && heroName != null){
+    if (userData != null && heroName != null) {
         return userData.login === heroName;
     }
     return false;
@@ -169,9 +183,9 @@ export async function isHero(heroName) {
 export async function getList(endpoint, language = undefined) {
     let item = await get(endpoint, language);
 
-    if(!item) {
+    if (!item) {
         return [];
-    } else if(Array.isArray(item)) {
+    } else if (Array.isArray(item)) {
         return item;
     } else {
         return [item];
@@ -220,7 +234,13 @@ export async function put(endpoint, body, type = 'put', language = undefined) {
             switch (res.status) {
                 case 200:
                 case 201:
+                    if (language != undefined)
+                        notify(translate(language, res.status), "success");
                     items = await res.json();
+                    break;
+                case 201:
+                    if (language != undefined)
+                        notify(translate(language, res.status), "success");
                     break;
                 default:
                     if (language != undefined)
@@ -249,7 +269,13 @@ export async function remove(endpoint, language = undefined) {
             //console.log(res);
             switch (res.status) {
                 case 204:
+                    if (language != undefined)
+                        notify(translate(language, res.status), "success");
                     result = true;
+                    break;
+                case 201:
+                    if (language != undefined)
+                        notify(translate(language, res.status), "success");
                     break;
                 default:
                     if (language != undefined)

@@ -42,9 +42,9 @@ declare global {
         refresh_token: string;
         scope: string[];
         token_type: string;
-      };
+    };
 
-      type credentialUserItem = {
+    type credentialUserItem = {
         id: string;
         login: string;
         display_name: string;
@@ -56,9 +56,9 @@ declare global {
         view_count: number;
         email: string;
         created_at: string;
-      };
+    };
 
-      type twitchStreamItem = {
+    type twitchStreamItem = {
         id: string;
         user_id: string;
         user_login: string;
@@ -71,9 +71,9 @@ declare global {
         started_at: string;
         language: string;
         thumbnail_url: string;
-      };
+    };
 
-      type twitchChannelItem = {
+    type twitchChannelItem = {
         broadcaster_id: string;
         broadcaster_login: string;
         broadcaster_name: string;
@@ -82,50 +82,50 @@ declare global {
         game_name: string;
         title: string;
         delay: string;
-      };
+    };
 
-      type twitchModeratorItem = {
+    type twitchModeratorItem = {
         user_id: string;
         user_login: string;
         user_name: string;
-      };
+    };
 }
 
-global.defaultNode = async function defaultNode(request: express.Request, response: express.Response) : Promise<NodeItem> {
-    if(!request.session.node){
+global.defaultNode = async function defaultNode(request: express.Request, response: express.Response): Promise<NodeItem> {
+    if (!request.session.node) {
         request.session.node = await global.worker.globalDatabase.sequelize.models.node.findOne() as NodeItem;
     }
     return request.session.node;
 }
 
-global.isMaster = function isMaster(request: express.Request, response: express.Response, node: NodeItem) : boolean{
-    if(request.session != null && request.session.userData != null && request.session.userData.login != null){
-        if(request.session.userData.login === node.name){
+global.isMaster = function isMaster(request: express.Request, response: express.Response, node: NodeItem): boolean {
+    if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
+        if (request.session.userData.login === node.name) {
             return true;
         }
     }
     return false;
 }
 
-global.isChannel = function isChannel(request: express.Request, response: express.Response, channelName: string) : boolean{
-    if(request.session != null && request.session.userData != null && request.session.userData.login != null){
-        if(request.session.userData.login === channelName){
+global.isChannel = function isChannel(request: express.Request, response: express.Response, channelName: string): boolean {
+    if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
+        if (request.session.userData.login === channelName) {
             return true;
         }
     }
     return false;
 }
 
-global.isRegistered = function isRegistered(request: express.Request, response: express.Response) : boolean{
-    if(request.session != null && request.session.userData != null && request.session.userData.login != null){
+global.isRegistered = function isRegistered(request: express.Request, response: express.Response): boolean {
+    if (request.session != null && request.session.userData != null && request.session.userData.login != null) {
         return true;
     }
     return false;
 }
 
-global.isModerator = function isRegistered(request: express.Request, response: express.Response, moderators: twitchModeratorItem[]) : boolean{
-    if(moderators?.length > 0 && request.session != null && request.session.userData != null && request.session.userData.login != null){
-        if(moderators.some(x => x.user_login.toLocaleLowerCase() === request.session.userData.login.toLocaleLowerCase())){
+global.isModerator = function isRegistered(request: express.Request, response: express.Response, moderators: twitchModeratorItem[]): boolean {
+    if (moderators?.length > 0 && request.session != null && request.session.userData != null && request.session.userData.login != null) {
+        if (moderators.some(x => x.user_login.toLocaleLowerCase() === request.session.userData.login.toLocaleLowerCase())) {
             return true;
         }
     }
@@ -149,7 +149,7 @@ app.use(session({
     'resave': false,
     'saveUninitialized': true,
     cookie: { sameSite: 'lax' }
-  }))
+}))
 
 // security
 app.disable('x-powered-by');
@@ -194,8 +194,8 @@ app.use('/moment', express.static(path.join(dirname, '/node_modules/moment/src')
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use((err: any, request: express.Request, response: express.Response) => {
-        if(response) {
-            response.status(err.status || 500);
+        if (response) {
+            //response.status(err.status || 500);
             response.render('error', {
                 message: err.message,
                 error: err
@@ -207,7 +207,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use((err: any, request: express.Request, response: express.Response) => {
-    response.status(err.status || 500);
+    //response.status(err.status || 500);
     response.render('error', {
         message: err.message,
         error: {}
@@ -225,8 +225,8 @@ global.worker.log.trace('Execution Path: ' + dirname);
 
 start();
 
-function start(){
-    try{
+function start() {
+    try {
         // start server
         if (fs.existsSync(path.join(dirname, settings.key)) && fs.existsSync(path.join(dirname, settings.cert))) {
             https.createServer({
@@ -235,14 +235,14 @@ function start(){
             }, app)
                 .listen(app.get('port'), () => {
                     global.worker.log.info('HTTPS Server listening on port ' + app.get('port'));
-                    })
+                })
         } else {
             http.createServer(app)
                 .listen(app.get('port'), () => {
-                        global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
-                    })
+                    global.worker.log.info('HTTP Server listening on port ' + app.get('port'));
+                })
         }
-    } catch(ex){
+    } catch (ex) {
         global.worker.log.error('Error start server! Restart...');
         global.worker.log.error(ex);
         setTimeout(start, 5000);

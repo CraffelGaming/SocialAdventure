@@ -1,9 +1,10 @@
 {
-    "compilerOptions": 
-    {
+    "compilerOptions": {
         "module": "esnext",
         "target": "es2021",
-        "lib": [ "es2021" ],
+        "lib": [
+            "es2021"
+        ],
         "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
@@ -16,4 +17,4 @@
     "exclude": [
         "node_modules"
     ]
-  }
+}

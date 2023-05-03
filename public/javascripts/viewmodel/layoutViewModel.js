@@ -53,7 +53,7 @@ $(async () => {
 
         items.push({
             href:'\\',
-            template: "<img alt='ISB Solutions GmbH' src='/images/favicon24x24.png' height='24' class='dx-icon' text='TEST'></div>"
+            template: "<img alt='Martin Rosbund' src='/images/favicon24x24.png' height='24' class='dx-icon' text='Social Adventure Bot'></div>"
         });
 
         items.push({

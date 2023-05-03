@@ -246,6 +246,7 @@
     { "page": "say", "handle": "countUses", "language": "de-DE", "translation": "Anzahl Verwendung"},
     { "page": "say", "handle": "countRuns", "language": "de-DE", "translation": "Anzahl Trigger"},
     { "page": "say", "handle": "copyToClipboard", "language": "de-DE", "translation": "Befehl in die Zwischenablage kopieren."}, 
+    { "page": "say", "handle": "copyToOwnChannel", "language": "de-DE", "translation": "Befehl zum eigenen Bot hinzufügen."}, 
     { "page": "say", "handle": "200", "language": "de-DE", "translation": "Daten erfolgreich geladen."},
     { "page": "say", "handle": "201", "language": "de-DE", "translation": "Datensatz erfolgreich gespeichert."},
     { "page": "say", "handle": "204", "language": "de-DE", "translation": "Datensatz erfolgreich gelöscht."},
