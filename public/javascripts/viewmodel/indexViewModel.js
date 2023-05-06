@@ -13,7 +13,7 @@ $(async () => {
     load();
     loadOnlineStreamer();
     infoPanel();
-    
+
     //#region Initialize
     function initialize() {
         $('#responsive-box').dxResponsiveBox({
@@ -35,16 +35,16 @@ $(async () => {
 
         $("#left").dxButton({
             text: translate(language, 'leftButton'),
-            onClick: function() {
+            onClick: function () {
                 window.location = twitch.url;
-            } 
+            }
         });
 
         $("#right").dxButton({
             text: translate(language, 'rightButton'),
-            onClick: function() {
+            onClick: function () {
                 window.location = "/streamer"
-            } 
+            }
         });
     }
     //#endregion
@@ -53,11 +53,11 @@ $(async () => {
     function load() {
         const query = new URLSearchParams(window.location.search)
         let node = "";
-        if(query.has('node')){
+        if (query.has('node')) {
             node = query.get('node')
         }
 
-        if(node != ""){
+        if (node != "") {
             document.getElementById("information").textContent = translate(language, 'node').replace('$1', node);
         } else document.getElementById("information").textContent = translate(language, 'information');
         document.getElementById("start").textContent = translate(language, 'start');
@@ -102,15 +102,15 @@ $(async () => {
                     allowFiltering: false,
                     allowSorting: false,
                     cellTemplate(container, options) {
-                      $('<div>')
-                        .append($('<img>', { src: options.data.twitchUser.profileImageUrl != null ?options.data.twitchUser.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
-                        .appendTo(container);
+                        $('<div>')
+                            .append($('<img>', { src: options.data.twitchUser.profileImageUrl != null ? options.data.twitchUser.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
+                            .appendTo(container);
                     },
                 },
                 { dataField: "name", caption: translate(languageStreamer, 'name'), visible: false },
                 { dataField: "displayName", caption: translate(languageStreamer, 'displayName'), overflow: 'hidden' },
                 { dataField: "language", caption: translate(languageStreamer, 'language'), width: 120 },
-                { dataField: "endpoint", caption: translate(languageStreamer, 'endpoint'), width: 400, editorType: "dxTextBox", editorOptions: { type: 'url' }},
+                { dataField: "endpoint", caption: translate(languageStreamer, 'endpoint'), width: 400, editorType: "dxTextBox", editorOptions: { type: 'url' } },
                 {
                     type: "buttons",
                     buttons: [{
@@ -127,7 +127,7 @@ $(async () => {
                                     return res.json();
                                 }
                             }).then(async function (json) {
-                                if(getCookie('allowCookies')) {
+                                if (getCookie('allowCookies')) {
                                     setCookie('channelName', json.node.name, 365);
                                 }
                                 notify(translate(languageStreamer, 'streamerChanged').replace('$1', json.node.displayName), 'success');
@@ -161,11 +161,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

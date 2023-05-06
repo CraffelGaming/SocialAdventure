@@ -1,6 +1,6 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-@Table({ tableName: "node", modelName: "node"})
+@Table({ tableName: "node", modelName: "node" })
 export class NodeItem extends Model<NodeItem>{
     @PrimaryKey
     @Column
@@ -14,11 +14,11 @@ export class NodeItem extends Model<NodeItem>{
     @Column
     isLive: boolean = false;
     @Column
-    endpoint : string = '/';
+    endpoint: string = '/';
     @Column
-    database : string;
+    database: string;
 
-    constructor(name? : string, displayName? : string, language? : string, isActive? : boolean){
+    constructor(name?: string, displayName?: string, language?: string, isActive?: boolean) {
         super();
         this.name = name;
         this.displayName = displayName;
@@ -26,7 +26,7 @@ export class NodeItem extends Model<NodeItem>{
         this.isActive = isActive;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('node', {
             name: {
                 type: DataTypes.STRING,
@@ -43,29 +43,29 @@ export class NodeItem extends Model<NodeItem>{
                 defaultValue: "de-DE",
             },
             isActive: {
-               type: DataTypes.BOOLEAN,
-               allowNull: false,
-               defaultValue: true,
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true,
             },
             isLive: {
-               type: DataTypes.BOOLEAN,
-               allowNull: false,
-               defaultValue: false,
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false,
             },
             endpoint: {
-               type: DataTypes.STRING,
-               allowNull: false,
-               defaultValue: '/'
+                type: DataTypes.STRING,
+                allowNull: false,
+                defaultValue: '/'
             },
             database: {
-               type: DataTypes.STRING,
-               allowNull: true,
+                type: DataTypes.STRING,
+                allowNull: true,
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-      sequelize.models.node.belongsTo(sequelize.models.twitch, { as: 'twitch', foreignKey: 'name'});
-      sequelize.models.node.belongsTo(sequelize.models.twitchUser, { as: 'twitchUser', foreignKey: 'name'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }) {
+        sequelize.models.node.belongsTo(sequelize.models.twitch, { as: 'twitch', foreignKey: 'name' });
+        sequelize.models.node.belongsTo(sequelize.models.twitchUser, { as: 'twitchUser', foreignKey: 'name' });
     }
 }

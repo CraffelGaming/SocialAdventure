@@ -1,7 +1,7 @@
 
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-@Table({ tableName: "heroWallet", modelName: "heroWallet"})
+@Table({ tableName: "heroWallet", modelName: "heroWallet" })
 export class HeroWalletItem {
     @PrimaryKey
     @Column
@@ -15,11 +15,11 @@ export class HeroWalletItem {
     @Column
     lastBlood: Date = new Date(2020, 1, 1);
 
-    constructor(heroName: string){
+    constructor(heroName: string) {
         this.heroName = heroName;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('heroWallet', {
             heroName: {
                 type: DataTypes.STRING,
@@ -46,23 +46,23 @@ export class HeroWalletItem {
                 allowNull: false,
                 defaultValue: Date.UTC(2020, 1, 1)
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-        sequelize.models.heroWallet.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }) {
+        sequelize.models.heroWallet.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroWalletItem }): Promise<number>{
-        try{
-            if(element.heroName !== null && element.heroName !== ""){
-                if(await sequelize.models.heroWallet.count({where: {heroName: element.heroName}}) === 0){
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroWalletItem }): Promise<number> {
+        try {
+            if (element.heroName !== null && element.heroName !== "") {
+                if (await sequelize.models.heroWallet.count({ where: { heroName: element.heroName } }) === 0) {
                     await sequelize.models.heroWallet.create(element as any);
-                } else await sequelize.models.heroWallet.update(element, {where: {heroName: element.heroName}});
+                } else await sequelize.models.heroWallet.update(element, { where: { heroName: element.heroName } });
                 return 201;
             } else return 406;
 
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

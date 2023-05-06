@@ -1,7 +1,7 @@
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "historyAdventure", modelName: "historyAdventure"})
+@Table({ tableName: "historyAdventure", modelName: "historyAdventure" })
 export class HistoryAdventureItem {
     @PrimaryKey
     @Column
@@ -33,11 +33,11 @@ export class HistoryAdventureItem {
     @Column
     date: Date = new Date(2020, 1, 1);
 
-    constructor(){
+    constructor() {
         this.date = new Date();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('historyAdventure', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -107,21 +107,21 @@ export class HistoryAdventureItem {
                 allowNull: false,
                 defaultValue: Date.UTC(2099, 12, 31)
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: HistoryAdventureItem }): Promise<number>{
-        try{
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HistoryAdventureItem }): Promise<number> {
+        try {
             const item = await sequelize.models.historyAdventure.findByPk(element.handle);
 
-            if(item){
-                await sequelize.models.historyAdventure.update(element, {where: {handle: element.handle}});
+            if (item) {
+                await sequelize.models.historyAdventure.update(element, { where: { handle: element.handle } });
                 return 201;
             } else {
                 await sequelize.models.historyAdventure.create(element as any);
                 return 201;
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

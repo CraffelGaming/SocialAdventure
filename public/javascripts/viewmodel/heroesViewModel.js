@@ -17,12 +17,12 @@ $(async () => {
     let validation = await get(`/validation/${module}`);
     let category = await get('/itemcategory/default/', language);
     let levels = [];
-    
+
     translation();
     await initialize();
     load();
     infoPanel();
-    
+
     //#region Initialize
     async function initialize() {
         levels = await get('/level/default/', language)
@@ -76,47 +76,51 @@ $(async () => {
                     cellTemplate(container, options) {
                         var template = $('<div>');
                         template.append($('<img>', { src: options?.row?.data?.prestige != null ? '/images/prestige/' + options.row.data.prestige + '.png' : null, width: 64, height: 64 }))
-                        if(options.data.isFounder)
+                        if (options.data.isFounder)
                             template.append($('<img>', { src: '/images/hero/founder.png', width: 32, height: 32 }))
                         template.appendTo(container);
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name'), minWidth: 100 },
-                { caption: translate(languageLevel, 'handle'), width: 100,
+                {
+                    caption: translate(languageLevel, 'handle'), width: 100,
                     calculateCellValue(data) {
-                        if(levels) {
+                        if (levels) {
                             return levels.find(x => x.experienceMax >= data.experience && x.experienceMin <= data.experience).handle;
                         }
                         return 0;
-                }}, 
-                { dataField: "experience", caption: translate(language, 'experience'), width: 250, 
-                    cellTemplate: function (container, options) {  
-                        if(levels) {
-                            let level = levels.find(x => x.experienceMax >= options.data.experience && x.experienceMin <= options.data.experience);
-                            $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
-                                min: level.experienceMin,  
-                                max: level.experienceMax,
-                                value: options.data.experience,
-                                statusFormat: function(){
-                                    return options.data.experience + ' / ' + level.experienceMax
-                                }  
-                            }).appendTo(container);  
-                        }
-                        return 0; 
                     }
                 },
-                { dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 250, 
-                    cellTemplate: function (container, options) {  
-                        $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({  
-                            min: 0,  
+                {
+                    dataField: "experience", caption: translate(language, 'experience'), width: 250,
+                    cellTemplate: function (container, options) {
+                        if (levels) {
+                            let level = levels.find(x => x.experienceMax >= options.data.experience && x.experienceMin <= options.data.experience);
+                            $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({
+                                min: level.experienceMin,
+                                max: level.experienceMax,
+                                value: options.data.experience,
+                                statusFormat: function () {
+                                    return options.data.experience + ' / ' + level.experienceMax
+                                }
+                            }).appendTo(container);
+                        }
+                        return 0;
+                    }
+                },
+                {
+                    dataField: "hitpoints", caption: translate(language, 'hitpoints'), width: 250,
+                    cellTemplate: function (container, options) {
+                        $("<div />").attr({ 'class': 'cls', 'data-key': options.data.name }).dxProgressBar({
+                            min: 0,
                             max: options.data.hitpointsMax,
                             value: options.data.hitpoints,
-                            statusFormat: function(){
+                            statusFormat: function () {
                                 return options.data.hitpoints + '/' + options.data.hitpointsMax
-                            }  
-                        }).appendTo(container);  
-                    }  
-                }, 
+                            }
+                        }).appendTo(container);
+                    }
+                },
                 { dataField: 'strength', caption: translate(language, 'strength'), width: 150 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 200 }
             ],
@@ -141,11 +145,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }
@@ -196,7 +202,7 @@ $(async () => {
                     allowAdding: false
                 },
                 columns: [
-                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
+                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
                     { dataField: "item.value", caption: translate(languageItem, 'value') },
                     { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 200 }
                 ]
@@ -224,25 +230,25 @@ $(async () => {
                     allowAdding: false
                 },
                 columns: [
-                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
+                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
                     { dataField: "item.value", caption: translate(languageItem, 'value') },
                     {
                         dataField: 'item.categoryHandle',
-                        caption: translate(languageItemCategory , 'value'), width: 200,
+                        caption: translate(languageItemCategory, 'value'), width: 200,
                         lookup: {
-                          dataSource(options) {
-                            return {
-                              store: {  
-                                  type: 'array',  
-                                  data: category,  
-                                  key: "handle"  
-                                }
-                            };
-                          },
-                          valueExpr: 'handle',
-                          displayExpr: function(item) {
-                            return item && item.value;
-                          }
+                            dataSource(options) {
+                                return {
+                                    store: {
+                                        type: 'array',
+                                        data: category,
+                                        key: "handle"
+                                    }
+                                };
+                            },
+                            valueExpr: 'handle',
+                            displayExpr: function (item) {
+                                return item && item.value;
+                            }
                         },
                     },
                     { dataField: "item.gold", caption: translate(languageItem, 'gold'), width: 100 },
@@ -250,7 +256,7 @@ $(async () => {
                     {
                         caption: translate(language, 'total'), width: 250,
                         calculateCellValue(data) {
-                          return data.quantity * data.item.gold;
+                            return data.quantity * data.item.gold;
                         }
                     }
                 ]
@@ -278,8 +284,8 @@ $(async () => {
                     allowAdding: false
                 },
                 columns: [
-                    { dataField: "gold", caption: translate(languageWallet, 'gold')},
-                    { dataField: "diamond", caption: translate(languageWallet, 'diamond')},
+                    { dataField: "gold", caption: translate(languageWallet, 'gold') },
+                    { dataField: "diamond", caption: translate(languageWallet, 'diamond') },
                     { dataField: "blood", caption: translate(languageWallet, 'blood') },
                     { dataField: 'lastBlood', caption: translate(languageWallet, 'lastBlood'), dataType: 'datetime', width: 150 }
                 ]
@@ -307,34 +313,48 @@ $(async () => {
                     allowAdding: false
                 },
                 columns: [
-                    { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'), 
+                    {
+                        dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'),
                         calculateCellValue(data) {
                             return `${data.goldMultipler} / ${validation.find(x => x.handle == 'goldMultipler').max}`
-                    }},
-                    { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'), 
+                        }
+                    },
+                    {
+                        dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'),
                         calculateCellValue(data) {
                             return `${data.stealMultipler} / ${validation.find(x => x.handle == 'stealMultipler').max}`
-                    }},
-                    { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'), 
+                        }
+                    },
+                    {
+                        dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'),
                         calculateCellValue(data) {
                             return `${data.defenceMultipler} / ${validation.find(x => x.handle == 'defenceMultipler').max}`
-                    }},
-                    { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'), 
+                        }
+                    },
+                    {
+                        dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'),
                         calculateCellValue(data) {
                             return `${data.workMultipler} / ${validation.find(x => x.handle == 'workMultipler').max}`
-                    }},
-                    { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'), 
+                        }
+                    },
+                    {
+                        dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'),
                         calculateCellValue(data) {
                             return `${data.hitpointMultipler} / ${validation.find(x => x.handle == 'hitpointMultipler').max}`
-                    }},
-                    { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'), 
+                        }
+                    },
+                    {
+                        dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'),
                         calculateCellValue(data) {
                             return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
-                    }},
-                    { dataField: "perceptionMultipler", caption: translate(languageTrait, 'perceptionMultipler'), 
+                        }
+                    },
+                    {
+                        dataField: "perceptionMultipler", caption: translate(languageTrait, 'perceptionMultipler'),
                         calculateCellValue(data) {
                             return `${data.perceptionMultipler} / ${validation.find(x => x.handle == 'perceptionMultipler').max}`
-                    }}
+                        }
+                    }
                 ]
             });
         };
@@ -347,7 +367,7 @@ $(async () => {
                 allowColumnReordering: true,
                 allowColumnResizing: true,
                 columns: [
-                    { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime'},
+                    { dataField: 'lastSteal', caption: translate(language, 'lastSteal'), dataType: 'datetime' },
                     { dataField: 'lastJoin', caption: translate(language, 'lastJoin'), dataType: 'datetime' },
                     { dataField: 'lastDuell', caption: translate(language, 'lastDuell'), dataType: 'datetime' },
                     { dataField: 'lastDaily', caption: translate(language, 'lastDaily'), dataType: 'date' },
@@ -376,8 +396,8 @@ $(async () => {
                     allowAdding: false
                 },
                 columns: [
-                    { dataField: "promotion.handle", caption: translate(languagePromotion, 'title')},
-                    { dataField: "promotion.gold", caption: translate(languageWallet, 'gold')},
+                    { dataField: "promotion.handle", caption: translate(languagePromotion, 'title') },
+                    { dataField: "promotion.gold", caption: translate(languageWallet, 'gold') },
                     { dataField: "promotion.diamond", caption: translate(languageWallet, 'diamond') },
                     { dataField: 'promotion.experience', caption: translate(language, 'experience') },
                 ]

@@ -14,7 +14,7 @@ export class Module {
     name: string;
 
     //#region Construct
-    constructor(translation : Model<TranslationItem>[], channel: Channel, name: string){
+    constructor(translation: Model<TranslationItem>[], channel: Channel, name: string) {
         this.translation = translation;
         this.channel = channel;
         this.name = name;
@@ -22,17 +22,17 @@ export class Module {
     //#endregion
 
     //#region Initialize
-    async initialize(){
-        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[];
-        this.commands = await this.channel.database.sequelize.models.command.findAll({where: { module: this.name }, order: [ [ 'command', 'ASC' ]]}) as Model<CommandItem>[];
+    async initialize() {
+        this.basicTranslation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'module', language: this.channel.node.getDataValue('language') }, order: [['handle', 'ASC']] }) as Model<TranslationItem>[];
+        this.commands = await this.channel.database.sequelize.models.command.findAll({ where: { module: this.name }, order: [['command', 'ASC']] }) as Model<CommandItem>[];
     }
     //#endregion
 
     //#region Owner
-    isOwner(command : Command){
+    isOwner(command: Command) {
         let result = false;
 
-        if(this.channel.node.getDataValue('name') === command.source)
+        if (this.channel.node.getDataValue('name') === command.source)
             result = true;
 
         global.worker.log.trace(`is owner: ${result}`);
@@ -41,12 +41,12 @@ export class Module {
     //#endregion
 
     //#region Moderator
-    isModerator(command : Command){
+    isModerator(command: Command) {
         let result = false;
 
-        if(this.channel.moderators && this.channel.moderators.length > 0){
-            if(this.channel.moderators.some(x => x.user_name.toLocaleLowerCase() === command.source.toLocaleLowerCase()))
-            result = true;
+        if (this.channel.moderators && this.channel.moderators.length > 0) {
+            if (this.channel.moderators.some(x => x.user_name.toLocaleLowerCase() === command.source.toLocaleLowerCase()))
+                result = true;
         }
 
         global.worker.log.trace(`is moderator: ${result}`);
@@ -55,20 +55,20 @@ export class Module {
     //#endregion
 
     //#region Placeholder
-    replacePlaceholder(command: Command, text: string) : string{
+    replacePlaceholder(command: Command, text: string): string {
         text = text.replace('$streamer', this.channel.node.getDataValue('name'));
 
-        if(command != null){
+        if (command != null) {
             text = text.replace('$source', command.source);
             text = text.replace('$target', command.target.length > 0 ? command.target : command.source);
             text = text.replace('$command', command.name);
 
 
-            if(text.includes('$dice')){
-                if(command.parameters.length >= 2){
+            if (text.includes('$dice')) {
+                if (command.parameters.length >= 2) {
                     const min = Number(command.parameters[0]);
                     const max = Number(command.parameters[1]);
-                    if(!isNaN(min) && !isNaN(max))
+                    if (!isNaN(min) && !isNaN(max))
                         text = text.replace('$dice', this.getRandomNumber(min, max).toString());
                     else text = text.replace('$dice', this.getRandomNumber(1, 6).toString());
                 } else text = text.replace('$dice', this.getRandomNumber(1, 6).toString());

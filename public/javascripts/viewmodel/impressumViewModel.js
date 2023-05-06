@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, notify} from './globalData.js';
+import { getTranslations, translate, infoPanel, notify } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -10,7 +10,7 @@ $(async () => {
     translation();
     initialize();
     infoPanel();
-    
+
     //#region Initialize
     function initialize() {
 

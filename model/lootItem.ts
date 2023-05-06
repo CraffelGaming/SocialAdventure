@@ -7,17 +7,17 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'lootItem.json')).toString());
-@Table({ tableName: "loot", modelName: "loot"})
+@Table({ tableName: "loot", modelName: "loot" })
 export class LootItem extends Model<LootItem>{
     @PrimaryKey
     @Column
     command: string;
     @Column
-    minutes: number= 60;
+    minutes: number = 60;
     @Column
-    isActive : boolean = true;
+    isActive: boolean = true;
     @Column
-    isLiveAutoControl : boolean = true;
+    isLiveAutoControl: boolean = true;
     @Column
     countUses: number = 0;
     @Column
@@ -25,11 +25,11 @@ export class LootItem extends Model<LootItem>{
     @Column
     lastRun: Date = new Date(2020, 1, 1);
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('loot', {
             command: {
                 type: DataTypes.STRING(50),
@@ -66,19 +66,19 @@ export class LootItem extends Model<LootItem>{
                 allowNull: false,
                 defaultValue: 0
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as LootItem[];
 
-            for(const item of items){
-                if(await sequelize.models.loot.count({where: {command: item.command}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.loot.count({ where: { command: item.command } }) === 0) {
                     await sequelize.models.loot.create(item as any);
                 } // else await sequelize.models.loot.update(item, {where: {command: item.command}});
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

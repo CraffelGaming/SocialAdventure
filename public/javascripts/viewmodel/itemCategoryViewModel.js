@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, isMaster, get, put, getList } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, isMaster, get, put, remove, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -30,63 +30,17 @@ $(async () => {
                     return await getList(`/itemCategory/default`, language);
                 },
                 insert: async function (values) {
-                    await fetch('./api/itemCategory/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(values)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                            break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    await put('/itemCategory/default', values, 'put', language);
                 },
                 update: async function (key, values) {
-                    var item = values;
-                    item.handle = key;
+                    values.handle = key;
 
-                    if(item.category != null)
-                        item.categoryHandle = item.category.handle;
-
-                    await fetch('./api/itemCategory/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(item)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    if (values.category != null)
+                        values.categoryHandle = values.category.handle;
+                    await put('/itemCategory/default', values, 'put', language);
                 },
                 remove: async function (key) {
-                    await fetch('./api/itemCategory/default/' + key, {
-                        method: 'delete',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 204:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    await remove(`/itemCategory/default/${key}`, language);
                 }
             }),
             filterRow: { visible: false },
@@ -120,25 +74,25 @@ $(async () => {
                         allowColumnReordering: true,
                         allowColumnResizing: true,
                         columns: [
-                            { dataField: "handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
-                            { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }]  },
-                            { dataField: "gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 200}
+                            { dataField: "handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
+                            { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }] },
+                            { dataField: "gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 200 }
                         ]
                     }));
                 }
             },
-            editing: await getEditing(),
+            editing: await getEditing(true, true, true, 'row'),
             columns: [
                 { dataField: "value", caption: translate(language, 'value') },
                 {
                     caption: translate(language, 'count'), width: 250,
                     calculateCellValue(data) {
-                        if(data.items != null) {
+                        if (data.items != null) {
                             return data.items.length;
                         } else {
                             return 0;
                         }
-                    }, allowEditing: false 
+                    }, allowEditing: false
                 }
             ],
             export: {
@@ -162,16 +116,18 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridStreamer').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridStreamer').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridStreamer').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridStreamer').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }
     //#endregion
-       
+
     //#region Load Shop
     async function loadShop() {
         $("#dataGridShop").dxDataGrid({
@@ -213,8 +169,8 @@ $(async () => {
                         allowColumnReordering: true,
                         allowColumnResizing: true,
                         columns: [
-                            { dataField: "handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100  },
-                            { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }]  },
+                            { dataField: "handle", caption: translate(languageItem, 'handle'), allowEditing: false, width: 100 },
+                            { dataField: "value", caption: translate(languageItem, 'value'), validationRules: [{ type: "required" }] },
                             { dataField: "gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 200 }
                         ]
                     }));
@@ -225,7 +181,7 @@ $(async () => {
                 {
                     caption: translate(language, 'count'), width: 250,
                     calculateCellValue(data) {
-                        if(data.items != null) {
+                        if (data.items != null) {
                             return data.items.length;
                         } else {
                             return 0;
@@ -245,7 +201,7 @@ $(async () => {
                                     'Content-type': 'application/json'
                                 }
                             }).then(async function (res) {
-                                switch(res.status){
+                                switch (res.status) {
                                     case 201:
                                         notify(translate(language, res.status), "success");
                                         $("#dataGridStreamer").dxDataGrid('instance').refresh();
@@ -281,11 +237,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridShop').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridShop').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridShop').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridShop').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

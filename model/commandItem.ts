@@ -8,7 +8,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'commandItem.json')).toString());
-@Table({ tableName: "command", modelName: "command"})
+@Table({ tableName: "command", modelName: "command" })
 export class CommandItem extends Model<CommandItem>{
     @PrimaryKey
     @Column
@@ -24,11 +24,11 @@ export class CommandItem extends Model<CommandItem>{
     @Column
     translation: string;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('command', {
             module: {
                 type: DataTypes.STRING,
@@ -59,19 +59,19 @@ export class CommandItem extends Model<CommandItem>{
                 type: DataTypes.STRING,
                 allowNull: false
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as CommandItem[];
 
-            for(const item of items){
-                if(await sequelize.models.command.count({where: {module: item.module, command: item.command}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.command.count({ where: { module: item.module, command: item.command } }) === 0) {
                     await sequelize.models.command.create(item as any);
-                } else await sequelize.models.command.update(item, {where: {module: item.module, command: item.command}});
+                } else await sequelize.models.command.update(item, { where: { module: item.module, command: item.command } });
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

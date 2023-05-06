@@ -2,10 +2,10 @@ import { getTranslation, translate, infoPanel, put } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
-    
+
     let module = 'statistic';
     let language = await getTranslation(module);
-    
+
     translation();
     initialize();
     load();
@@ -19,7 +19,7 @@ $(async () => {
 
     //#region Load
     function load() {
-      
+
     }
     //#endregion
 

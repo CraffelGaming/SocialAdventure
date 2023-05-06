@@ -7,21 +7,21 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'sayItem.json')).toString());
-@Table({ tableName: "say", modelName: "say"})
+@Table({ tableName: "say", modelName: "say" })
 export class SayItem extends Model<SayItem>{
     @PrimaryKey
     @Column
     command: string;
     @Column
-    minutes: number= 60;
+    minutes: number = 60;
     @Column
     help: string;
     @Column
     text: string;
     @Column
-    isActive : boolean = true;
+    isActive: boolean = true;
     @Column
-    isLiveAutoControl : boolean = true;
+    isLiveAutoControl: boolean = true;
     @Column
     lastRun: Date = new Date(2020, 1, 1);
     @Column
@@ -31,9 +31,9 @@ export class SayItem extends Model<SayItem>{
     @Column
     countRuns: number = 0;
     @Column
-    isCounter : boolean = false;
+    isCounter: boolean = false;
     @Column
-    isShoutout : boolean = false;
+    isShoutout: boolean = false;
     @Column
     timeout: number = 10;
     @Column
@@ -41,11 +41,11 @@ export class SayItem extends Model<SayItem>{
     @Column
     shortcuts: string;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('say', {
             command: {
                 type: DataTypes.STRING(50),
@@ -119,19 +119,19 @@ export class SayItem extends Model<SayItem>{
                 type: DataTypes.STRING,
                 allowNull: true
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as SayItem[];
 
-            for(const item of items){
-                if(await sequelize.models.say.count({where: {command: item.command}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.say.count({ where: { command: item.command } }) === 0) {
                     await sequelize.models.say.create(item as any);
                 } // else await sequelize.models.say.update(item, {where: {command: item.command}});
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

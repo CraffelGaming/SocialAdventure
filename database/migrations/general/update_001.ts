@@ -1,7 +1,7 @@
 import { DataTypes, QueryInterface } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 
-export async function up (queryInterface : QueryInterface, sequelize : Sequelize) {
+export async function up(queryInterface: QueryInterface, sequelize: Sequelize) {
   return Promise.all([
     queryInterface.addColumn(
       'command',
@@ -15,7 +15,7 @@ export async function up (queryInterface : QueryInterface, sequelize : Sequelize
   ]);
 }
 
-export async function down (queryInterface : QueryInterface, sequelize : Sequelize) {
+export async function down(queryInterface: QueryInterface, sequelize: Sequelize) {
   return Promise.all([
     queryInterface.removeColumn('command', 'isModerator')
   ]);

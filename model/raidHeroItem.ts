@@ -1,8 +1,8 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "raidHero", modelName: "raidHero"})
-export class RaidHeroItem{
+@Table({ tableName: "raidHero", modelName: "raidHero" })
+export class RaidHeroItem {
     @PrimaryKey
     @Column
     raidHandle: number;
@@ -16,12 +16,12 @@ export class RaidHeroItem{
     @Column
     isActive: boolean = true;
 
-    constructor({ raidHandle, heroName}: { raidHandle: number, heroName: string}){
+    constructor({ raidHandle, heroName }: { raidHandle: number, heroName: string }) {
         this.raidHandle = raidHandle;
         this.heroName = heroName;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('raidHero', {
             raidHandle: {
                 type: DataTypes.INTEGER,
@@ -48,27 +48,27 @@ export class RaidHeroItem{
                 allowNull: false,
                 defaultValue: true
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize }){
-        sequelize.models.raidHero.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
-        sequelize.models.raidHero.belongsTo(sequelize.models.raid, { as: 'raids', foreignKey: 'raidHandle'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize }) {
+        sequelize.models.raidHero.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
+        sequelize.models.raidHero.belongsTo(sequelize.models.raid, { as: 'raids', foreignKey: 'raidHandle' });
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: RaidHeroItem }): Promise<number>{
-        try{
-            if(element.raidHandle != null && element.raidHandle > 0 && element.heroName != null && element.heroName.length > 0){
-                const item = await sequelize.models.raidHero.findOne({ where: {raidHandle : element.raidHandle, heroName: element.heroName} });
-                if(item){
-                    await sequelize.models.raidHero.update(element, { where: {raidHandle : element.raidHandle, heroName: element.heroName} });
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: RaidHeroItem }): Promise<number> {
+        try {
+            if (element.raidHandle != null && element.raidHandle > 0 && element.heroName != null && element.heroName.length > 0) {
+                const item = await sequelize.models.raidHero.findOne({ where: { raidHandle: element.raidHandle, heroName: element.heroName } });
+                if (item) {
+                    await sequelize.models.raidHero.update(element, { where: { raidHandle: element.raidHandle, heroName: element.heroName } });
                     return 201;
                 } else {
                     await sequelize.models.raidHero.create(element as any);
                     return 201;
                 }
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

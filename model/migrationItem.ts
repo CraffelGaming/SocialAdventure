@@ -1,7 +1,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "migration", modelName: "migration"})
+@Table({ tableName: "migration", modelName: "migration" })
 export class MigrationItem extends Model<MigrationItem>{
     @PrimaryKey
     @Column
@@ -9,13 +9,13 @@ export class MigrationItem extends Model<MigrationItem>{
     @Column
     isInstalled: boolean = false;
 
-    constructor(name? : string, isInstalled? : boolean){
+    constructor(name?: string, isInstalled?: boolean) {
         super();
         this.name = name;
         this.isInstalled = isInstalled;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('migration', {
             name: {
                 type: DataTypes.STRING,
@@ -23,21 +23,21 @@ export class MigrationItem extends Model<MigrationItem>{
                 primaryKey: true
             },
             isInstalled: {
-               type: DataTypes.BOOLEAN,
-               allowNull: false,
-               defaultValue: false
-           }
-          }, {freezeTableName: true});
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            }
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize, migrations }: { sequelize: Sequelize; migrations: MigrationItem[] }): Promise<void>{
-        try{
-            for(const item of migrations){
-                if(await sequelize.models.migration.count({where: {name: item.name}}) === 0){
+    static async updateTable({ sequelize, migrations }: { sequelize: Sequelize; migrations: MigrationItem[] }): Promise<void> {
+        try {
+            for (const item of migrations) {
+                if (await sequelize.models.migration.count({ where: { name: item.name } }) === 0) {
                     await sequelize.models.migration.create(item as any);
                 }
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

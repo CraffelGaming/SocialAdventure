@@ -8,7 +8,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'levelItem.json')).toString());
-@Table({ tableName: "level", modelName: "level"})
+@Table({ tableName: "level", modelName: "level" })
 export class LevelItem extends Model<LevelItem>{
     @PrimaryKey
     @Column
@@ -18,11 +18,11 @@ export class LevelItem extends Model<LevelItem>{
     @Column
     experienceMax: number;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('level', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -37,19 +37,19 @@ export class LevelItem extends Model<LevelItem>{
                 type: DataTypes.INTEGER,
                 allowNull: false
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as LevelItem[];
 
-            for(const item of items){
-                if(await sequelize.models.level.count({where: {handle: item.handle}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.level.count({ where: { handle: item.handle } }) === 0) {
                     await sequelize.models.level.create(item as any);
-                } else await sequelize.models.level.update(item, {where: {handle: item.handle}});
+                } else await sequelize.models.level.update(item, { where: { handle: item.handle } });
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

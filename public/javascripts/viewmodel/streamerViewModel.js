@@ -59,17 +59,17 @@ $(async () => {
                     allowFiltering: false,
                     allowSorting: false,
                     cellTemplate(container, options) {
-                      $('<div>')
-                        .append($('<img>', { src: options.data.twitchUser.profileImageUrl != null ?options.data.twitchUser.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
-                        .appendTo(container);
+                        $('<div>')
+                            .append($('<img>', { src: options.data.twitchUser.profileImageUrl != null ? options.data.twitchUser.profileImageUrl : '/images/twitch-logo.png', width: 64, height: 64 }))
+                            .appendTo(container);
                     },
                 },
                 { dataField: "name", caption: translate(language, 'name'), visible: false },
                 { dataField: "displayName", caption: translate(language, 'displayName'), overflow: 'hidden' },
                 { dataField: "language", caption: translate(language, 'language'), width: 120 },
-                { dataField: "isActive", caption: translate(language, 'isActive'), dataType:'boolean', alignment: 'left', width: 120 },
-                { dataField: "isLive", caption: translate(language, 'isLive'), dataType:'boolean', alignment: 'left', width: 120 },
-                { dataField: "endpoint", caption: translate(language, 'endpoint'), width: 250, editorType: "dxTextBox", editorOptions: { type: 'url' }},
+                { dataField: "isActive", caption: translate(language, 'isActive'), dataType: 'boolean', alignment: 'left', width: 120 },
+                { dataField: "isLive", caption: translate(language, 'isLive'), dataType: 'boolean', alignment: 'left', width: 120 },
+                { dataField: "endpoint", caption: translate(language, 'endpoint'), width: 250, editorType: "dxTextBox", editorOptions: { type: 'url' } },
                 {
                     type: "buttons",
                     buttons: [{
@@ -82,12 +82,12 @@ $(async () => {
                                     'Content-type': 'application/json'
                                 }
                             }).then(async function (res) {
-                                switch(res.status){
+                                switch (res.status) {
                                     case 200:
                                         return res.json();
                                 }
                             }).then(async function (json) {
-                                if(getCookie('allowCookies')) {
+                                if (getCookie('allowCookies')) {
                                     setCookie('channelName', json.node.name, 365);
                                 }
                                 notify(translate(language, 'streamerChanged').replace('$1', json.node.displayName), 'success');
@@ -128,11 +128,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

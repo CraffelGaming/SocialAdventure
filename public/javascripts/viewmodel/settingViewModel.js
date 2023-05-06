@@ -26,60 +26,9 @@ $(async () => {
                 load: async function (loadOptions) {
                     return await getList(`/loot/default`, language);
                 },
-                insert: async function (values) {
-                    await fetch('./api/loot/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(values)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                            break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
-                },
                 update: async function (key, values) {
-                    var item = values;
-                    item.command = key;
-                    await fetch('./api/loot/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(item)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
-                },
-                remove: async function (key) {;
-                    await fetch('./api/loot/default/' + key, {
-                        method: 'delete',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 204:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    values.command = key;
+                    await put('/loot/default', values, 'put', language);
                 }
             }),
             filterRow: { visible: true },
@@ -106,34 +55,37 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                { dataField: "command", caption: translate(language, 'command'), allowEditing: false,
+                {
+                    dataField: "command", caption: translate(language, 'command'), allowEditing: false,
                     calculateCellValue(data) {
                         return translate(language, data.command)
-                    }
+                    }, sortIndex: 0, sortOrder: "asc"
                 },
                 { dataField: "minutes", caption: translate(language, 'minutes'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "countUses", caption: translate(language, 'countUses'), validationRules: [{ type: "required" }], width: 180, allowEditing: false },
                 { dataField: "countRuns", caption: translate(language, 'countRuns'), validationRules: [{ type: "required" }], width: 180, allowEditing: false },
-                { dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
+                {
+                    dataField: "isActive", caption: translate(language, 'isActive'), editorType: "dxCheckBox", width: 120,
                     calculateCellValue(data) {
-                        if(data.isActive != null){
+                        if (data.isActive != null) {
                             return data.isActive == 1 ? true : false;
                         } else {
                             return false;
-                        } 
-                    } 
+                        }
+                    }
                 },
-                { dataField: "isLiveAutoControl", caption: translate(language, 'isLiveAutoControl'), editorType: "dxCheckBox", width: 160,
+                {
+                    dataField: "isLiveAutoControl", caption: translate(language, 'isLiveAutoControl'), editorType: "dxCheckBox", width: 160,
                     calculateCellValue(data) {
-                        if(data.isLiveAutoControl != null){
+                        if (data.isLiveAutoControl != null) {
                             return data.isLiveAutoControl == 1 ? true : false;
                         } else {
                             return false;
-                        } 
-                    } 
+                        }
+                    }
                 }
             ],
-            editing: await getEditing(true, false, false),
+            editing: await getEditing(true, false, false, 'row'),
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']
@@ -155,11 +107,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

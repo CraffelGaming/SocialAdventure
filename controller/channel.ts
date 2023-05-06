@@ -23,7 +23,7 @@ export class Channel {
     streamWatcherTimer: NodeJS.Timer;
 
     //#region Construct
-    constructor(node: Model<NodeItem>, translation: Model<TranslationItem>[]){
+    constructor(node: Model<NodeItem>, translation: Model<TranslationItem>[]) {
         this.node = node;
         this.countMessages = 0;
         this.twitch = new Twitch();
@@ -31,7 +31,7 @@ export class Channel {
         this.stream = null;
         this.database = new Connection({ databaseName: Buffer.from(node.getDataValue('name')).toString('base64') });
         this.puffer = new Puffer(node),
-        this.puffer.interval();
+            this.puffer.interval();
         this.say = [];
 
         this.streamWatcher();
@@ -39,23 +39,23 @@ export class Channel {
     //#endregion
 
     //#region Deactivate
-    deactivate(){
+    deactivate() {
         try {
             global.worker.log.info(`node ${this.node.getDataValue('name')}, deactivate`);
 
-            if(this.streamWatcherTimer) {
+            if (this.streamWatcherTimer) {
                 clearInterval(this.streamWatcherTimer);
             }
             this.removeSays();
             this.removeLoot();
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function deactivate - ${ex.message}`);
         }
     }
     //#endregion
 
     //#region Initialize
-    async initialize(){
+    async initialize() {
         try {
             global.worker.log.info(`node ${this.node.getDataValue('name')}, initialize`);
             await this.twitch.load(this.node.getDataValue('name'));
@@ -63,7 +63,7 @@ export class Channel {
             await this.addSays();
             await this.addLoot();
             this.moderators = await this.getModerators();
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function initialize - ${ex.message}`);
         }
     }
@@ -75,11 +75,11 @@ export class Channel {
             global.worker.log.info(`node ${this.node.getDataValue('name')}, load moderators, id: ${this.twitch.twitchUser.getDataValue('id')}`);
             moderators = await this.twitch.GetModerators(this.twitch.twitchUser.getDataValue('id'));
 
-            if(!moderators)
+            if (!moderators)
                 moderators = [];
 
             global.worker.log.info(`node ${this.node.getDataValue('name')}, finish load moderators, count: ${moderators.length}`);
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function getModerators - ${ex.message}`);
         }
         return moderators;
@@ -87,17 +87,17 @@ export class Channel {
     //#endregion
 
     //#region Stream / Twitch Watcher
-    streamWatcher(){
+    streamWatcher() {
         global.worker.log.info(`node ${this.node.getDataValue('name')}, add streamWatcher`);
         this.streamWatcherTimer = setInterval(
             async () => {
                 global.worker.log.trace(`node ${this.node.getDataValue('name')}, streamWatcher run`);
 
-                try{
-                   if(this.twitch){
+                try {
+                    if (this.twitch) {
                         const stream = await this.twitch.GetStream(this.twitch.twitchUser.getDataValue('id'));
-                        if(stream?.type === 'live') {
-                            if(!this.node.getDataValue('isLive')){
+                        if (stream?.type === 'live') {
+                            if (!this.node.getDataValue('isLive')) {
                                 global.worker.log.info(`node ${this.node.getDataValue('name')}, streamWatcher is now live`);
                                 this.node.setDataValue('isLive', true);
                                 await this.node.save();
@@ -118,8 +118,8 @@ export class Channel {
                         } else {
                             global.worker.log.trace(`node ${this.node.getDataValue('name')}, streamWatcher nothing changed, live: ${this.node.getDataValue('isLive')}`);
                         }
-                   }
-                } catch (ex){
+                    }
+                } catch (ex) {
                     global.worker.log.error(`channel error - function streamWatcher - ${ex.message}`);
                 }
             },
@@ -129,134 +129,134 @@ export class Channel {
     //#endregion
 
     //#region Say
-    async addSays(){
+    async addSays() {
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']] }) as Model<TranslationItem>[]
 
-            for(const item of await this.database.sequelize.models.say.findAll({order: [ [ 'command', 'ASC' ]]}) as Model<SayItem>[]){
+            for (const item of await this.database.sequelize.models.say.findAll({ order: [['command', 'ASC']] }) as Model<SayItem>[]) {
                 global.worker.log.trace(`node ${this.node.getDataValue('name')}, say add ${item.getDataValue("command")}.`);
                 const element = new Say(translation, this, item);
                 await element.initialize();
                 this.say.push(element);
                 global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
 
-                if(element.item.getDataValue("isShoutout")) {
+                if (element.item.getDataValue("isShoutout")) {
                     global.worker.log.trace(`module ${element.item.getDataValue("command")} isShoutout ${element.item.getDataValue("isShoutout")}`);
                     element.commands.find(x => x.getDataValue('command') === '').setDataValue('isModerator', true);
                 }
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function addSays - ${ex.message}`);
         }
     }
 
-    async stopSays(){
+    async stopSays() {
         try {
-            for(const item of this.say){
-                if(item.item.getDataValue("isLiveAutoControl")){
+            for (const item of this.say) {
+                if (item.item.getDataValue("isLiveAutoControl")) {
                     await item.stop();
                     global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.getDataValue("command")}.`);
                 }
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function stopSays - ${ex.message}`);
         }
     }
 
-    async removeSays(){
+    async removeSays() {
         try {
-            for(const item of this.say){
+            for (const item of this.say) {
                 item.remove();
                 global.worker.log.info(`node ${this.node.getDataValue('name')}, remove module ${item.item.getDataValue("command")}.`);
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function removeSays - ${ex.message}`);
         }
     }
 
-    async startSays(){
+    async startSays() {
         try {
-            for(const item of this.say){
-                if(item.item.getDataValue("isLiveAutoControl")){
+            for (const item of this.say) {
+                if (item.item.getDataValue("isLiveAutoControl")) {
                     await item.start();
                     global.worker.log.info(`node ${this.node.getDataValue('name')}, stop module ${item.item.getDataValue("command")}.`);
                 }
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function startSays - ${ex.message}`);
         }
     }
 
-    async addSay(item: SayItem){
+    async addSay(item: SayItem) {
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'say', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]] }) as unknown as TranslationItem[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'say', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']] }) as unknown as TranslationItem[]
             const element = new Say(translation, this, item);
             await element.initialize();
             this.say.push(element);
             global.worker.log.info(`node ${this.node.getDataValue('name')}, say add ${element.item.getDataValue("command")}.`);
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function addSay - ${ex.message}`);
         }
     }
 
-    removeSay(command: string){
+    removeSay(command: string) {
         try {
             const index = this.say.findIndex(d => d.item.getDataValue("command") === command);
 
-            if(index > -1){
+            if (index > -1) {
                 global.worker.log.info(`node ${this.node.getDataValue('name')}, say remove ${this.say[index].item.getDataValue("command")}.`);
                 this.say[index].remove();
                 this.say.splice(index, 1)
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function removeSay - ${ex.message}`);
         }
     }
     //#endregion
 
     //#region Loot
-    async addLoot(){
+    async addLoot() {
         try {
-            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({where: { page: 'loot', language: this.node.getDataValue('language') }, order: [ [ 'handle', 'ASC' ]]}) as Model<TranslationItem>[]
+            const translation = await global.worker.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'loot', language: this.node.getDataValue('language') }, order: [['handle', 'ASC']] }) as Model<TranslationItem>[]
             this.loot = new Loot(translation, this);
             await this.loot.initialize();
             await this.loot.InitializeLoot();
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function addLoot - ${ex.message}`);
         }
     }
 
-    async stopLoot(){
+    async stopLoot() {
         try {
-            if(this.loot.settings.find(x =>x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")){
+            if (this.loot.settings.find(x => x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")) {
                 await this.loot.lootclear();
                 await this.loot.lootstop();
             }
-            if(this.loot.settings.find(x =>x.getDataValue("command") === 'raid').getDataValue("isLiveAutoControl")){
+            if (this.loot.settings.find(x => x.getDataValue("command") === 'raid').getDataValue("isLiveAutoControl")) {
                 await this.loot.raidstop();
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function stopLoot - ${ex.message}`);
         }
     }
 
-    removeLoot(){
+    removeLoot() {
         try {
             this.loot.remove();
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function removeLoot - ${ex.message}`);
         }
     }
 
-    async startLoot(){
+    async startLoot() {
         try {
-            if(this.loot.settings.find(x =>x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")){
+            if (this.loot.settings.find(x => x.getDataValue("command") === 'loot').getDataValue("isLiveAutoControl")) {
                 await this.loot.lootstart();
             }
-            if(this.loot.settings.find(x =>x.getDataValue("command") === 'raid').getDataValue("isLiveAutoControl")){
+            if (this.loot.settings.find(x => x.getDataValue("command") === 'raid').getDataValue("isLiveAutoControl")) {
                 await this.loot.raidstart();
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function startLoot - ${ex.message}`);
         }
 
@@ -264,18 +264,18 @@ export class Channel {
     //#endregion
 
     //#region Execute
-    async execute(command: Command){
-        const messages : string[] = [];
+    async execute(command: Command) {
+        const messages: string[] = [];
 
         try {
             messages.push(await this.loot.execute(command));
 
-            for(const key in Object.keys(this.say)){
+            for (const key in Object.keys(this.say)) {
                 if (this.say.hasOwnProperty(key)) {
                     messages.push(await this.say[key].execute(command))
                 }
             }
-        } catch(ex) {
+        } catch (ex) {
             global.worker.log.error(`channel error - function execute - ${ex.message}`);
         }
 

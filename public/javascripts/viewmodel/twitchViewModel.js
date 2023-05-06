@@ -12,9 +12,9 @@ $(async () => {
 
     translation();
     initialize();
-    
+
     infoPanel();
-    
+
     //#region Initialize
     function initialize() {
         $('#responsive-box').dxResponsiveBox({
@@ -36,7 +36,7 @@ $(async () => {
 
         $("#streamer").dxButton({
             text: translate(language, userDataChannel ? 'streamerButtonRefresh' : 'streamerButton'),
-            onClick: async function() {
+            onClick: async function () {
                 $("#streamer").dxButton('instance').option('disabled', true);
                 await fetch('./api/twitch/', {
                     method: 'post',
@@ -49,30 +49,30 @@ $(async () => {
                         window.location = "/streamer"
                     }
                 });
-            } 
+            }
         });
 
         $("#viewer").dxButton({
             text: translate(language, 'viewerButton'),
-            onClick: function() {
+            onClick: function () {
                 window.location = "/streamer"
-            } 
+            }
         });
 
-        if(userDataChannel) {
+        if (userDataChannel) {
             $("#deactivate").dxButton({
                 text: translate(language, 'streamerButtonDeactivate'),
                 icon: "trash",
                 type: "danger",
-                onClick: function() {
+                onClick: function () {
                     setDeactivatePopup();
-                } 
+                }
             });
         }
     }
 
     function setDeactivatePopup() {
-        if(userDataChannel) {
+        if (userDataChannel) {
             let popup = $('#deactivatePopup').dxPopup({
                 visible: true,
                 hideOnOutsideClick: true,
@@ -85,11 +85,11 @@ $(async () => {
                 position: 'center',
                 showCloseButton: true
             }).dxPopup('instance');
-    
+
             $('#deactivateInformation').dxTextArea({
                 value: translate(language, "streamerDeactivate"),
                 height: 250,
-                stylingMode:"outlined",
+                stylingMode: "outlined",
                 readOnly: true
             });
 
@@ -97,7 +97,7 @@ $(async () => {
                 text: translate(language, 'yes'),
                 icon: "check",
                 type: "danger",
-                onClick: async function() {
+                onClick: async function () {
                     await fetch('./api/twitch/deactivate', {
                         method: 'post',
                         headers: {
@@ -109,17 +109,17 @@ $(async () => {
                             window.location = "/"
                         }
                     });
-                    
-                } 
+
+                }
             });
-    
+
             $("#deactivateNo").dxButton({
                 text: translate(language, 'no'),
                 icon: "close",
                 type: "success",
-                onClick: function() {
+                onClick: function () {
                     popup.hide();
-                } 
+                }
             });
         }
     }
@@ -138,7 +138,7 @@ $(async () => {
         document.getElementById("streamerTitle").textContent = translate(language, 'streamer');
         document.getElementById("viewerTitle").textContent = translate(language, 'viewer');
 
-        if(userDataChannel) {
+        if (userDataChannel) {
             document.getElementById("streamerInformation").textContent = translate(language, 'streamerInformationRefresh').replace('$1', translate(language, 'streamerButtonRefresh'));
         } else {
             document.getElementById("streamerInformation").textContent = translate(language, 'streamerInformation').replace('$1', translate(language, 'streamerButton'));

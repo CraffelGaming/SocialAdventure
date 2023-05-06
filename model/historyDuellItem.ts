@@ -1,7 +1,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "historyDuell", modelName: "historyDuell"})
+@Table({ tableName: "historyDuell", modelName: "historyDuell" })
 export class HistoryDuellItem {
     @PrimaryKey
     @Column
@@ -21,13 +21,13 @@ export class HistoryDuellItem {
     @Column
     date: Date = new Date(2020, 1, 1);
 
-    constructor(sourceHeroName: string, targetHeroName: string){
+    constructor(sourceHeroName: string, targetHeroName: string) {
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
         this.date = new Date();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('historyDuell', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -68,21 +68,21 @@ export class HistoryDuellItem {
                 allowNull: false,
                 defaultValue: Date.UTC(2099, 12, 31)
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: HistoryDuellItem }): Promise<number>{
-        try{
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HistoryDuellItem }): Promise<number> {
+        try {
             const item = await sequelize.models.historyDuell.findByPk(element.handle);
 
-            if(item){
-                await sequelize.models.historyDuell.update(element, {where: {handle: element.handle}});
+            if (item) {
+                await sequelize.models.historyDuell.update(element, { where: { handle: element.handle } });
                 return 201;
             } else {
                 await sequelize.models.historyDuell.create(element as any);
                 return 201;
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

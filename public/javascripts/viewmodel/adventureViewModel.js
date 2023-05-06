@@ -15,7 +15,7 @@ $(async () => {
     let languageHero = languageStorage.filter(x => x.page == 'hero');
 
     let settings = await get('/loot/default/');
-    
+
     translation();
     initialize();
     await loadAdventure();
@@ -29,41 +29,41 @@ $(async () => {
     //#endregion
 
     //#region Adventure
-    async function loadAdventure() {    
-        if(settings?.find(x =>x.command === "loot")?.isActive) {
+    async function loadAdventure() {
+        if (settings?.find(x => x.command === "loot")?.isActive) {
             document.getElementById("informationDungeon").textContent = translate(language, 'informationDungeon');
 
             let validation = await get(`/validation/hero`);
             let category = await get('/itemcategory/default/', language);
             let dungeons = await get('/location/default/active', language);
-            
+
             $('#multiview-container').dxMultiView({
                 height: 250,
                 dataSource: dungeons,
                 selectedIndex: 0,
                 loop: true,
                 animationEnabled: true,
-                itemTemplate: function(itemData, itemIndex, itemElement) {
+                itemTemplate: function (itemData, itemIndex, itemElement) {
                     var container = $("<div style='margin:25px;'>");
                     container.append("<h4>" + itemData.name + "</h4>");
                     var info = $("<div style='text-align:left;'>");
-    
+
                     info.append(itemData.description + "</b></p>");
                     info.append("<p>" + translate(languageLocation, 'difficulty') + ": <b>" + itemData.difficulty + "</b></p>");
-                    info.append("<p>" + translate(languageItemCategory, 'value') + ": <b>"+ category.find(x => x.handle == itemData.categoryHandle).value + "</b></p>");
-    
+                    info.append("<p>" + translate(languageItemCategory, 'value') + ": <b>" + category.find(x => x.handle == itemData.categoryHandle).value + "</b></p>");
+
                     container.append(info);
                     itemElement.append(container);
                 },
                 onSelectionChanged(e) {
-                    $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  e.component.option('selectedIndex') + 1).replace('$2',  dungeons.length));
+                    $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1', e.component.option('selectedIndex') + 1).replace('$2', dungeons.length));
                 },
             });
-    
-            if(dungeons){
-                $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1',  1).replace('$2',  dungeons.length));
+
+            if (dungeons) {
+                $('#informationDungeon').text(translate(language, 'informationDungeon').replace('$1', 1).replace('$2', dungeons.length));
             }
-    
+
             $("#dataGridAdventure").dxDataGrid({
                 dataSource: new DevExpress.data.CustomStore({
                     key: ["itemHandle", "heroName"],
@@ -77,29 +77,29 @@ $(async () => {
                     template: masterDetailTemplate
                 },
                 columns: [
-                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), validationRules: [{ type: "required" }], width: 100},
-                    { dataField: "item.value", caption: translate(language, 'item'), validationRules: [{ type: "required" }]},
+                    { dataField: "item.handle", caption: translate(languageItem, 'handle'), validationRules: [{ type: "required" }], width: 100 },
+                    { dataField: "item.value", caption: translate(language, 'item'), validationRules: [{ type: "required" }] },
                     {
                         dataField: 'item.categoryHandle',
-                        caption: translate(languageItemCategory , 'value'), width: 200,
+                        caption: translate(languageItemCategory, 'value'), width: 200,
                         lookup: {
-                          dataSource(options) {
-                            return {
-                              store: {  
-                                  type: 'array',  
-                                  data: category,  
-                                  key: "handle"  
-                                }
-                            };
-                          },
-                          valueExpr: 'handle',
-                          displayExpr: function(item) {
-                              return item && item.value;
-                          }
+                            dataSource(options) {
+                                return {
+                                    store: {
+                                        type: 'array',
+                                        data: category,
+                                        key: "handle"
+                                    }
+                                };
+                            },
+                            valueExpr: 'handle',
+                            displayExpr: function (item) {
+                                return item && item.value;
+                            }
                         },
                     },
                     { dataField: "item.gold", caption: translate(languageItem, 'gold'), validationRules: [{ type: "required" }], width: 100 },
-                    { dataField: "hero.name", caption: translate(language, 'owner'), validationRules: [{ type: "required" }]}
+                    { dataField: "hero.name", caption: translate(language, 'owner'), validationRules: [{ type: "required" }] }
                 ],
                 export: {
                     enabled: true,
@@ -122,16 +122,18 @@ $(async () => {
                     }
                 },
                 toolbar: {
-                    items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridAdventure').dxDataGrid('instance').refresh(); }}
-                    }, { 
-                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridAdventure').dxDataGrid('instance').state(null); }}
-                        }, "searchPanel", "exportButton"]
+                    items: [
+                        "groupPanel", "addRowButton", "columnChooserButton", {
+                            widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridAdventure').dxDataGrid('instance').refresh(); } }
+                        }, {
+                            widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridAdventure').dxDataGrid('instance').state(null); } }
+                        }, "searchPanel", "exportButton"
+                    ]
                 }
             });
         } else {
             document.getElementById("adventureInactive").textContent = translate(language, 'inactive');
-        } 
+        }
     }
 
     function masterDetailTemplate(_, masterDetailOptions) {
@@ -154,51 +156,63 @@ $(async () => {
                     }
                 }),
                 columns: [
-                        { dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.goldMultipler} / ${validation.find(x => x.handle == 'goldMultipler').max}`
-                        }},
-                        { dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.stealMultipler} / ${validation.find(x => x.handle == 'stealMultipler').max}`
-                        }},
-                        { dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.defenceMultipler} / ${validation.find(x => x.handle == 'defenceMultipler').max}`
-                        }},
-                        { dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.workMultipler} / ${validation.find(x => x.handle == 'workMultipler').max}`
-                        }},
-                        { dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.hitpointMultipler} / ${validation.find(x => x.handle == 'hitpointMultipler').max}`
-                        }},
-                        { dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'), 
-                            calculateCellValue(data) {
-                                return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
-                        }}
+                    {
+                        dataField: "goldMultipler", caption: translate(languageTrait, 'goldMultipler'),
+                        calculateCellValue(data) {
+                            return `${data.goldMultipler} / ${validation.find(x => x.handle == 'goldMultipler').max}`
+                        }
+                    },
+                    {
+                        dataField: "stealMultipler", caption: translate(languageTrait, 'stealMultipler'),
+                        calculateCellValue(data) {
+                            return `${data.stealMultipler} / ${validation.find(x => x.handle == 'stealMultipler').max}`
+                        }
+                    },
+                    {
+                        dataField: "defenceMultipler", caption: translate(languageTrait, 'defenceMultipler'),
+                        calculateCellValue(data) {
+                            return `${data.defenceMultipler} / ${validation.find(x => x.handle == 'defenceMultipler').max}`
+                        }
+                    },
+                    {
+                        dataField: "workMultipler", caption: translate(languageTrait, 'workMultipler'),
+                        calculateCellValue(data) {
+                            return `${data.workMultipler} / ${validation.find(x => x.handle == 'workMultipler').max}`
+                        }
+                    },
+                    {
+                        dataField: "hitpointMultipler", caption: translate(languageTrait, 'hitpointMultipler'),
+                        calculateCellValue(data) {
+                            return `${data.hitpointMultipler} / ${validation.find(x => x.handle == 'hitpointMultipler').max}`
+                        }
+                    },
+                    {
+                        dataField: "strengthMultipler", caption: translate(languageTrait, 'strengthMultipler'),
+                        calculateCellValue(data) {
+                            return `${data.strengthMultipler} / ${validation.find(x => x.handle == 'strengthMultipler').max}`
+                        }
+                    }
                 ]
             });
         };
     }
     //#endregion
-  
+
     //#region Raid
-    async function loadRaid() {    
+    async function loadRaid() {
         let raid = await get('/raid/default/current/active');
         console.log(raid);
-        if(settings?.find(x =>x.command === "raid")?.isActive && raid?.raidBoss) {
+        if (settings?.find(x => x.command === "raid")?.isActive && raid?.raidBoss) {
             document.getElementById("raidBossName").textContent = raid.raidBoss.name;
             document.getElementById("raidBossDescription").textContent = raid.raidBoss.description;
 
-            $(function() {
+            $(function () {
                 $("#raidBossHitpoints").dxProgressBar({
                     min: 0,
                     max: raid.raidBoss.hitpoints,
                     value: raid.hitpoints,
                     statusFormat(ratio) {
-                      return `${raid.hitpoints}/${raid.raidBoss.hitpoints}`;
+                        return `${raid.hitpoints}/${raid.raidBoss.hitpoints}`;
                     }
                 });
             });
@@ -212,9 +226,9 @@ $(async () => {
                     },
                 }),
                 columns: [
-                    { dataField: "heroName", caption: translate(languageHero, 'name'), validationRules: [{ type: "required" }]},
+                    { dataField: "heroName", caption: translate(languageHero, 'name'), validationRules: [{ type: "required" }] },
                     { dataField: "damage", caption: translate(languageRaidHero, 'damage'), validationRules: [{ type: "required" }], width: 200 },
-                    { dataField: "isRewarded", caption: translate(languageRaidHero, 'isRewarded'), validationRules: [{ type: "required" }], width: 200}
+                    { dataField: "isRewarded", caption: translate(languageRaidHero, 'isRewarded'), validationRules: [{ type: "required" }], width: 200 }
                 ],
                 export: {
                     enabled: true,
@@ -238,9 +252,9 @@ $(async () => {
                 },
                 toolbar: {
                     items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridRaid').dxDataGrid('instance').refresh(); }}
-                    }, { 
-                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridRaid').dxDataGrid('instance').state(null); }}
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGridRaid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                            widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGridRaid').dxDataGrid('instance').state(null); } }
                         }, "searchPanel", "exportButton"]
                 }
             });
@@ -249,7 +263,7 @@ $(async () => {
         }
     }
     //#endregion
-    
+
     //#region Translation
     function translation() {
         document.getElementById("labelTitle").textContent = translate(language, 'title');

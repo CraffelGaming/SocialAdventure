@@ -1,7 +1,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "raid", modelName: "raid"})
+@Table({ tableName: "raid", modelName: "raid" })
 export class RaidItem {
     @PrimaryKey
     @Column
@@ -15,7 +15,7 @@ export class RaidItem {
     @Column
     isActive: boolean = false;
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('raid', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -43,29 +43,29 @@ export class RaidItem {
                 allowNull: false,
                 defaultValue: true
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize }){
-        sequelize.models.raid.belongsTo(sequelize.models.raidBoss, { as: 'raidBoss', foreignKey: 'raidBossHandle'});
-        sequelize.models.raid.hasMany(sequelize.models.raidHero, { as: 'raidHeroes', foreignKey: 'raidHandle'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize }) {
+        sequelize.models.raid.belongsTo(sequelize.models.raidBoss, { as: 'raidBoss', foreignKey: 'raidBossHandle' });
+        sequelize.models.raid.hasMany(sequelize.models.raidHero, { as: 'raidHeroes', foreignKey: 'raidHandle' });
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: RaidItem }): Promise<number>{
-        try{
-            if(element.handle != null && element.handle > 0){
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: RaidItem }): Promise<number> {
+        try {
+            if (element.handle != null && element.handle > 0) {
                 const item = await sequelize.models.raid.findByPk(element.handle);
-                if(item){
-                    await sequelize.models.raid.update(element, {where: {handle: element.handle}});
+                if (item) {
+                    await sequelize.models.raid.update(element, { where: { handle: element.handle } });
                     return 201;
                 }
             } else {
-                if(element.raidBossHandle != null && element.raidBossHandle > 0){
+                if (element.raidBossHandle != null && element.raidBossHandle > 0) {
                     await sequelize.models.raid.create(element as any);
                     return 201;
                 } else return 406;
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

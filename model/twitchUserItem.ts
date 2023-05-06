@@ -1,7 +1,7 @@
 import { Column, Table, Model, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "twitchUser", modelName: "twitchUser"})
+@Table({ tableName: "twitchUser", modelName: "twitchUser" })
 export class TwitchUserItem extends Model<TwitchUserItem>{
     @PrimaryKey
     @Column
@@ -9,25 +9,25 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
     @Column
     displayName: string;
     @Column
-    id : string;
+    id: string;
     @Column
     type: string;
     @Column
     broadcasterType: string;
     @Column
-    description : string;
+    description: string;
     @Column
     profileImageUrl: string;
     @Column
-    viewCount : number = 0;
+    viewCount: number = 0;
     @Column
     eMail: string;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('twitchUser', {
             channelName: {
                 type: DataTypes.STRING,
@@ -39,8 +39,8 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
                 allowNull: true
             },
             id: {
-             type: DataTypes.STRING,
-             allowNull: true
+                type: DataTypes.STRING,
+                allowNull: true
             },
             type: {
                 type: DataTypes.STRING,
@@ -51,26 +51,26 @@ export class TwitchUserItem extends Model<TwitchUserItem>{
                 allowNull: true
             },
             description: {
-               type: DataTypes.STRING,
-               allowNull: true
+                type: DataTypes.STRING,
+                allowNull: true
             },
             profileImageUrl: {
-              type: DataTypes.STRING,
-              allowNull: true
+                type: DataTypes.STRING,
+                allowNull: true
             },
             viewCount: {
-             type: DataTypes.INTEGER,
-             allowNull: false,
-             defaultValue: 0
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
             },
             eMail: {
-             type: DataTypes.STRING,
-             allowNull: true
+                type: DataTypes.STRING,
+                allowNull: true
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-        sequelize.models.twitchUser.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }) {
+        sequelize.models.twitchUser.hasOne(sequelize.models.node, { as: 'node', foreignKey: 'name' });
     }
 }

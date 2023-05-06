@@ -97,9 +97,9 @@ router.get('/historyAdventure', historyAdventure);
 
 // index
 router.get('/', async (request: express.Request, response: express.Response) => {
-    if(request.query.node){
+    if (request.query.node) {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === request.query.node);
-        if(channel) {
+        if (channel) {
             request.session.node = channel.node.get();
         }
     }

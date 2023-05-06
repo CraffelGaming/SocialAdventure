@@ -8,7 +8,7 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'validationItem.json')).toString());
 
-@Table({ tableName: "validation", modelName: "validation"})
+@Table({ tableName: "validation", modelName: "validation" })
 export class ValidationItem extends Model<ValidationItem>{
     @PrimaryKey
     @Column
@@ -21,11 +21,11 @@ export class ValidationItem extends Model<ValidationItem>{
     @Column
     max: number = 100;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('validation', {
             page: {
                 type: DataTypes.STRING,
@@ -47,19 +47,19 @@ export class ValidationItem extends Model<ValidationItem>{
                 allowNull: false,
                 defaultValue: 0
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as ValidationItem[];
 
-            for(const item of items){
-                if(await sequelize.models.validation.count({where: {handle: item.handle, page: item.page}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.validation.count({ where: { handle: item.handle, page: item.page } }) === 0) {
                     await sequelize.models.validation.create(item as any);
-                } else await sequelize.models.validation.update(item, {where: {handle: item.handle, page: item.page}});
+                } else await sequelize.models.validation.update(item, { where: { handle: item.handle, page: item.page } });
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

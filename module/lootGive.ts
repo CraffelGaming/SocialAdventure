@@ -24,7 +24,7 @@ export class LootGive {
     isActive: boolean = true;
 
     //#region Construct
-    constructor(loot: Loot, sourceHeroName: string, targetHeroName: string, itemParameter: string){
+    constructor(loot: Loot, sourceHeroName: string, targetHeroName: string, itemParameter: string) {
         this.sourceHeroName = sourceHeroName;
         this.targetHeroName = targetHeroName;
         this.itemParameter = itemParameter;
@@ -33,27 +33,27 @@ export class LootGive {
     //#endregion
 
     //#region Execute
-    async execute(settings: Model<LootItem>) : Promise<boolean>{
-        this.item =  await this.getItem();
+    async execute(settings: Model<LootItem>): Promise<boolean> {
+        this.item = await this.getItem();
         this.sourceHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.sourceHeroName) as Model<HeroItem>;
         this.targetHero = await this.loot.channel.database.sequelize.models.hero.findByPk(this.targetHeroName) as Model<HeroItem>;
 
-        if(settings.getDataValue("isActive")){
-            if(this.item){
+        if (settings.getDataValue("isActive")) {
+            if (this.item) {
                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, item ${this.item.getDataValue("value")}`);
-                if(this.sourceHero && this.sourceHero.getDataValue("isActive")){
+                if (this.sourceHero && this.sourceHero.getDataValue("isActive")) {
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, sourceHero ${this.sourceHero.getDataValue("name")}`);
-                    if(this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastGive")), settings.getDataValue("minutes"))){
+                    if (this.loot.isDateTimeoutExpiredMinutes(new Date(this.sourceHero.getDataValue("lastGive")), settings.getDataValue("minutes"))) {
                         global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, timeout expired`);
-                        if(this.targetHero){
+                        if (this.targetHero) {
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, targetHero ${this.targetHero.getDataValue("name")}`);
-                            if(this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")){
-                                this.adventure = await this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") }}) as Model<AdventureItem>;
-                                if(this.adventure){
+                            if (this.sourceHero.getDataValue("name") !== this.targetHero.getDataValue("name")) {
+                                this.adventure = await this.loot.channel.database.sequelize.models.adventure.findOne({ where: { itemHandle: this.item.getDataValue("handle"), heroName: this.sourceHero.getDataValue("name") } }) as Model<AdventureItem>;
+                                if (this.adventure) {
                                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module give, adventure `);
                                     await this.adventure.destroy();
                                     const adventure = new AdventureItem(this.item.getDataValue("handle"), this.targetHero.getDataValue("name"));
-                                    await AdventureItem.put({sequelize: this.loot.channel.database.sequelize, element: adventure});
+                                    await AdventureItem.put({ sequelize: this.loot.channel.database.sequelize, element: adventure });
                                     this.sourceHero.setDataValue("lastGive", new Date());
                                     await this.sourceHero.save();
                                     await settings.increment('countUses', { by: 1 });
@@ -71,11 +71,11 @@ export class LootGive {
     //#endregion
 
     //#region Item
-    async getItem(){
-        if(this.itemParameter && this.itemParameter.length > 0){
+    async getItem() {
+        if (this.itemParameter && this.itemParameter.length > 0) {
             const itemHandle = Number(this.itemParameter);
-            if(isNaN(itemHandle)){
-                return await this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter }}) as Model<ItemItem>;
+            if (isNaN(itemHandle)) {
+                return await this.loot.channel.database.sequelize.models.item.findOne({ where: { value: this.itemParameter } }) as Model<ItemItem>;
             } else {
                 return await this.loot.channel.database.sequelize.models.item.findByPk(itemHandle) as Model<ItemItem>;
             }

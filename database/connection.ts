@@ -50,15 +50,15 @@ export class Connection {
     isNewDatabase: boolean;
     sequelize: Sequelize;
 
-    constructor({ databaseName}: { databaseName: string;}){
+    constructor({ databaseName }: { databaseName: string; }) {
         this.databaseName = databaseName;
-        this.databasePath = path.join(dirname, this.databaseName + '.sqlite') ;
+        this.databasePath = path.join(dirname, this.databaseName + '.sqlite');
         this.isNewDatabase = !fs.existsSync(this.databasePath);
         this.sequelize = new Sequelize({ dialect: 'sqlite', storage: this.databasePath, logging: settings.logDatabase });
     }
 
-    async initializeGlobal(){
-        try{
+    async initializeGlobal() {
+        try {
             await this.sequelize.authenticate();
 
             MigrationItem.createTable({ sequelize: this.sequelize });
@@ -97,13 +97,13 @@ export class Connection {
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: true });
 
             return true;
-        }  catch (ex){
+        } catch (ex) {
             return false;
         }
     }
 
-    async initialize(){
-        try{
+    async initialize() {
+        try {
             await this.sequelize.authenticate();
 
             MigrationItem.createTable({ sequelize: this.sequelize });
@@ -159,28 +159,28 @@ export class Connection {
             HeroInventoryItem.setAssociation({ sequelize: this.sequelize });
             ItemCategoryItem.setAssociation({ sequelize: this.sequelize });
             ItemItem.setAssociation({ sequelize: this.sequelize, isGlobal: false });
-            LocationItem.setAssociation({ sequelize: this.sequelize});
-            AdventureItem.setAssociation({ sequelize: this.sequelize});
-            PromotionItem.setAssociation({ sequelize: this.sequelize});
-            HeroPromotionItem.setAssociation({ sequelize: this.sequelize});
-            RaidBossItem.setAssociation({ sequelize: this.sequelize});
-            RaidHeroItem.setAssociation({ sequelize: this.sequelize});
-            RaidItem.setAssociation({ sequelize: this.sequelize});
+            LocationItem.setAssociation({ sequelize: this.sequelize });
+            AdventureItem.setAssociation({ sequelize: this.sequelize });
+            PromotionItem.setAssociation({ sequelize: this.sequelize });
+            HeroPromotionItem.setAssociation({ sequelize: this.sequelize });
+            RaidBossItem.setAssociation({ sequelize: this.sequelize });
+            RaidHeroItem.setAssociation({ sequelize: this.sequelize });
+            RaidItem.setAssociation({ sequelize: this.sequelize });
 
             return true;
-        }  catch (ex){
+        } catch (ex) {
             return false;
         }
     }
 
-    async updater(folder: string){
-        try{
+    async updater(folder: string) {
+        try {
             const migrations = await this.sequelize.models.migration.findAll() as Model<MigrationItem>[];
-            for(const item of migrations ){
+            for (const item of migrations) {
                 global.worker.log.trace('add Migration ' + item.getDataValue('name'));
 
-                if(!this.isNewDatabase && !item.getDataValue('isInstalled')){
-                    const sql = path.join(dirname, folder, item.getDataValue('name') + '.js') ;
+                if (!this.isNewDatabase && !item.getDataValue('isInstalled')) {
+                    const sql = path.join(dirname, folder, item.getDataValue('name') + '.js');
                     const file = await import(`file:///${sql}`);
                     await file.up(this.sequelize.getQueryInterface(), this.sequelize);
                 }

@@ -7,7 +7,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'translationItem.json')).toString());
-@Table({ tableName: "translation", modelName: "translation"})
+@Table({ tableName: "translation", modelName: "translation" })
 export class TranslationItem extends Model<TranslationItem>{
     @PrimaryKey
     @Column
@@ -21,7 +21,7 @@ export class TranslationItem extends Model<TranslationItem>{
     @Column
     translation: string;
 
-    constructor(page? : string, handle? : string, language? : string, translation? : string){
+    constructor(page?: string, handle?: string, language?: string, translation?: string) {
         super();
         this.page = page;
         this.handle = handle;
@@ -29,7 +29,7 @@ export class TranslationItem extends Model<TranslationItem>{
         this.translation = translation;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('translation', {
             page: {
                 type: DataTypes.STRING,
@@ -51,19 +51,19 @@ export class TranslationItem extends Model<TranslationItem>{
                 type: DataTypes.STRING,
                 allowNull: false
             },
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as TranslationItem[];
 
-            for(const item of items){
-                if(await sequelize.models.translation.count({where: {page: item.page, handle: item.handle, language: item.language}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.translation.count({ where: { page: item.page, handle: item.handle, language: item.language } }) === 0) {
                     await sequelize.models.translation.create(item as any);
-                } else await sequelize.models.translation.update(item, {where: {page: item.page, handle: item.handle, language: item.language}});
+                } else await sequelize.models.translation.update(item, { where: { page: item.page, handle: item.handle, language: item.language } });
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

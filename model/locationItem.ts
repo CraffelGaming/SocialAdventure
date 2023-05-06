@@ -7,7 +7,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'locationItem.json')).toString());
-@Table({ tableName: "location", modelName: "location"})
+@Table({ tableName: "location", modelName: "location" })
 export class LocationItem extends Model<LocationItem>{
     @PrimaryKey
     @Column
@@ -23,11 +23,11 @@ export class LocationItem extends Model<LocationItem>{
     @Column
     isActive: boolean = false;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('location', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -58,42 +58,42 @@ export class LocationItem extends Model<LocationItem>{
                 allowNull: false,
                 defaultValue: false
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize }){
-        sequelize.models.location.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize }) {
+        sequelize.models.location.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle' });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as LocationItem[];
 
-            for(const item of items){
-                if(await sequelize.models.location.count({where: {handle: item.handle}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.location.count({ where: { handle: item.handle } }) === 0) {
                     await sequelize.models.location.create(item as any);
                 } // else await sequelize.models.location.update(item, {where: {handle: item.handle}});
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: LocationItem }): Promise<number>{
-        try{
-            if(element.handle != null && element.handle > 0){
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: LocationItem }): Promise<number> {
+        try {
+            if (element.handle != null && element.handle > 0) {
                 const item = await sequelize.models.location.findByPk(element.handle);
-                if(item){
-                    await sequelize.models.location.update(element, {where: {handle: element.handle}});
+                if (item) {
+                    await sequelize.models.location.update(element, { where: { handle: element.handle } });
                     return 201;
                 }
             } else {
-                if(element.name != null && element.name.length > 0){
+                if (element.name != null && element.name.length > 0) {
                     await sequelize.models.location.create(element as any);
                     return 201;
                 } else return 406;
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

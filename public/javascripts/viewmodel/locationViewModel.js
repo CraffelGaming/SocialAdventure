@@ -30,8 +30,8 @@ $(async () => {
                     return await getList('/location/default', language);
                 },
                 insert: async function (values) {
-                    if(values.category != null)
-                    values.categoryHandle = values.category.handle;
+                    if (values.category != null)
+                        values.categoryHandle = values.category.handle;
                     await fetch('./api/location/default', {
                         method: 'put',
                         headers: {
@@ -39,13 +39,13 @@ $(async () => {
                         },
                         body: JSON.stringify(values)
                     }).then(async function (res) {
-                        switch(res.status){
+                        switch (res.status) {
                             case 201:
                                 notify(translate(language, res.status), "success");
-                            break;
+                                break;
                             default:
                                 notify(translate(language, res.status), "error");
-                            break;
+                                break;
                         }
                     });
                 },
@@ -53,7 +53,7 @@ $(async () => {
                     var item = values;
                     item.handle = key;
 
-                    if(item.category != null)
+                    if (item.category != null)
                         item.categoryHandle = item.category.handle;
 
                     await fetch('./api/location/default', {
@@ -63,13 +63,13 @@ $(async () => {
                         },
                         body: JSON.stringify(item)
                     }).then(async function (res) {
-                        switch(res.status){
+                        switch (res.status) {
                             case 201:
                                 notify(translate(language, res.status), "success");
                                 break;
                             default:
                                 notify(translate(language, res.status), "error");
-                            break;
+                                break;
                         }
                     });
                 },
@@ -80,13 +80,13 @@ $(async () => {
                             'Content-type': 'application/json'
                         }
                     }).then(async function (res) {
-                        switch(res.status){
+                        switch (res.status) {
                             case 204:
                                 notify(translate(language, res.status), "success");
                                 break;
                             default:
                                 notify(translate(language, res.status), "error");
-                            break;
+                                break;
                         }
                     });
                 }
@@ -116,39 +116,47 @@ $(async () => {
             showBorders: true,
             columns: [
                 { dataField: "name", caption: translate(language, 'name'), validationRules: [{ type: "required" }], width: 250 },
-                { dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }],
-                    cellTemplate: function(element, info) {
+                {
+                    dataField: "description", caption: translate(language, 'description'), validationRules: [{ type: "required" }],
+                    cellTemplate: function (element, info) {
                         $("<div>")
                             .appendTo(element)
                             .text(info.value)
                             .css("width", info.column.width - 20)
                             .css("height", 40)
                             .css("white-space", "normal")
-                            .css("overflow-wrap", 'break-word'); 
-                }},
-                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 120},
+                            .css("overflow-wrap", 'break-word');
+                    }
+                },
+                { dataField: "difficulty", caption: translate(language, 'difficulty'), validationRules: [{ type: "required" }], width: 120 },
                 { dataField: "isActive", caption: translate(language, 'isActive'), width: 120, editorType: "dxCheckBox" },
                 {
                     dataField: 'category.handle',
-                    caption: translate(languageItemCategory , 'value'), width: 150,
+                    caption: translate(languageItemCategory, 'value'), width: 150,
                     lookup: {
                         dataSource(options) {
                             return {
-                                store: {  
-                                    type: 'array',  
-                                    data: category,  
-                                    key: "handle"  
+                                store: {
+                                    type: 'array',
+                                    data: category,
+                                    key: "handle"
                                 }
                             };
                         },
                         valueExpr: 'handle',
-                        displayExpr: function(item) {
+                        displayExpr: function (item) {
                             return item && item.value;
                         }
                     },
                 }
             ],
-            editing: await getEditing(),
+            editing: await getEditing(true, true, true, 'row'),
+            onInitNewRow(e) {
+                if (category?.length > 0)
+                    e.data.category = category[0];
+                e.data.difficulty = 1;
+                e.data.isActive = true;
+            },
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']
@@ -170,11 +178,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

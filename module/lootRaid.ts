@@ -17,22 +17,22 @@ export class LootRaid {
     boss: Model<RaidBossItem>;
 
     //#region Construct
-    constructor(loot: Loot){
+    constructor(loot: Loot) {
         this.loot = loot;
         this.automation();
     }
     //#endregion
 
     //#region Automation
-    automation(){
+    automation() {
         this.timer = setInterval(
             async () => {
                 try {
-                    const raid = this.loot.settings.find(x =>x.getDataValue('command') === 'raid');
+                    const raid = this.loot.settings.find(x => x.getDataValue('command') === 'raid');
 
-                    if(raid.getDataValue('isActive')){
-                        if(!this.raid) {
-                            if(this.loot.getRandomNumber(1, 3) === 1) {
+                    if (raid.getDataValue('isActive')) {
+                        if (!this.raid) {
+                            if (this.loot.getRandomNumber(1, 3) === 1) {
                                 this.loot.channel.puffer.addMessage(await this.start());
                                 raid.setDataValue('lastRun', new Date());
                                 await raid.save();
@@ -40,8 +40,8 @@ export class LootRaid {
                             } else {
                                 global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid idle`);
                             }
-                        } else if(!this.raid.getDataValue('isDefeated')) {
-                            if(this.loot.isDateTimeoutExpiredMinutes(new Date(raid.getDataValue('lastRun')), raid.getDataValue('minutes'))){
+                        } else if (!this.raid.getDataValue('isDefeated')) {
+                            if (this.loot.isDateTimeoutExpiredMinutes(new Date(raid.getDataValue('lastRun')), raid.getDataValue('minutes'))) {
                                 raid.setDataValue('lastRun', new Date());
                                 raid.setDataValue('countRuns', raid.getDataValue('countRuns') + 1);
 
@@ -56,14 +56,14 @@ export class LootRaid {
                             }
                         }
                     } else {
-                        if(this.raid) {
+                        if (this.raid) {
                             this.loot.channel.puffer.addMessage(await this.stop());
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid stopped`);
                         } else {
                             global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid not executed not active`);
                         }
                     }
-                } catch(ex) {
+                } catch (ex) {
                     global.worker.log.error(`node ${this.loot.channel.node.getDataValue('name')}, module raid automation error.`);
                     global.worker.log.error(`exception ${ex.message}`);
                 }
@@ -74,7 +74,7 @@ export class LootRaid {
     //#endregion
 
     //#region Fight
-    async fight() : Promise<string> {
+    async fight(): Promise<string> {
         let result = '';
         let damage = 0;
         const defeatedHeroes = [];
@@ -82,15 +82,15 @@ export class LootRaid {
         const raidHeroes = await this.getRaidHeroes();
         const count = raidHeroes.length;
 
-        if(count > 0) {
-            for(const raidHero of raidHeroes){
+        if (count > 0) {
+            for (const raidHero of raidHeroes) {
                 const hero = await this.getHero(raidHero.getDataValue('heroName'));
                 const trait = await this.getTrait(hero);
 
-                if(hero.getDataValue('hitpoints') > 0) {
+                if (hero.getDataValue('hitpoints') > 0) {
                     const heroDamage = this.loot.getRandomNumber(Math.round(hero.getDataValue('strength') / 2), hero.getDataValue('strength'))
-                                       * this.loot.getRandomNumber(1, Math.round(count / 2) + 1)
-                                       + this.loot.getRandomNumber(Math.round(count / 2), count)
+                        * this.loot.getRandomNumber(1, Math.round(count / 2) + 1)
+                        + this.loot.getRandomNumber(Math.round(count / 2), count)
 
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, hero ${hero.getDataValue('name')} damage ${heroDamage}`);
 
@@ -105,17 +105,17 @@ export class LootRaid {
 
                     global.worker.log.info(`node ${this.loot.channel.node.getDataValue('name')}, module raid, boss damage after defence ${bossDamage}`);
 
-                    if(hero.getDataValue('hitpoints') <= bossDamage) {
+                    if (hero.getDataValue('hitpoints') <= bossDamage) {
                         bossDamage = hero.getDataValue('hitpoints');
                         defeatedHeroes.push(hero.getDataValue('name'));
                     }
 
-                    await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: bossDamage, where: { name: hero.getDataValue('name') }});
+                    await this.loot.channel.database.sequelize.models.hero.decrement('hitpoints', { by: bossDamage, where: { name: hero.getDataValue('name') } });
                 }
             }
             let hitpoints = this.raid.getDataValue('hitpoints') - damage;
 
-            if(hitpoints < 0) {
+            if (hitpoints < 0) {
                 hitpoints = 0;
             }
 
@@ -125,7 +125,7 @@ export class LootRaid {
             this.raid.setDataValue('hitpoints', hitpoints);
             this.raid.save();
 
-            if(hitpoints === 0) {
+            if (hitpoints === 0) {
                 result = await this.complete(damage);
             } else if (damage > 0) {
                 result = TranslationItem.translate(this.loot.translation, 'raidFight')
@@ -145,28 +145,28 @@ export class LootRaid {
     //#endregion
 
     //#region Start
-    async start() : Promise<string> {
+    async start(): Promise<string> {
         this.raid = await this.getRaid();
         let result = '';
 
-        if(!this.raid) {
+        if (!this.raid) {
             this.boss = await this.getRandomBoss();
 
-            if(this.boss) {
+            if (this.boss) {
                 const item = new RaidItem();
                 item.raidBossHandle = this.boss.getDataValue('handle');
                 item.hitpoints = this.boss.getDataValue('hitpoints');
                 item.isActive = true;
                 item.isDefeated = false;
-                await RaidItem.put({sequelize: this.loot.channel.database.sequelize, element:  item});
+                await RaidItem.put({ sequelize: this.loot.channel.database.sequelize, element: item });
                 this.raid = await this.getRaid();
             }
         } else {
             this.boss = await this.getBoss();
         }
 
-        if(this.raid) {
-            result = TranslationItem.translate(this.loot.translation, 'raidStart').replace('$1',  this.boss.getDataValue('name'));
+        if (this.raid) {
+            result = TranslationItem.translate(this.loot.translation, 'raidStart').replace('$1', this.boss.getDataValue('name'));
         }
 
         return result;
@@ -174,11 +174,11 @@ export class LootRaid {
     //#endregion
 
     //#region Stop
-    async stop() : Promise<string> {
+    async stop(): Promise<string> {
         let result = '';
-        if(this.raid?.getDataValue('isActive')) {
+        if (this.raid?.getDataValue('isActive')) {
             const raidHeroes = await this.getRaidHeroes();
-            for(const raidHero of raidHeroes){
+            for (const raidHero of raidHeroes) {
                 raidHero.setDataValue('isActive', false);
                 await raidHero.save();
             }
@@ -186,8 +186,8 @@ export class LootRaid {
             this.raid.setDataValue('isActive', false);
             await this.raid.save();
 
-            if(!this.raid.getDataValue('isDefeated')) {
-                result = TranslationItem.translate(this.loot.translation, 'raidStop').replace('$1',  this.boss.getDataValue('name'));
+            if (!this.raid.getDataValue('isDefeated')) {
+                result = TranslationItem.translate(this.loot.translation, 'raidStop').replace('$1', this.boss.getDataValue('name'));
             }
         }
 
@@ -199,29 +199,29 @@ export class LootRaid {
     //#endregion
 
     //#region Complete
-    async complete(damage: number) : Promise<string> {
+    async complete(damage: number): Promise<string> {
         let isRewarded = false;
         let item: Model<ItemItem> = null;
 
-        if(this.raid?.getDataValue('isActive')) {
-            if(this.raid?.getDataValue('hitpoints') <= 0) {
+        if (this.raid?.getDataValue('isActive')) {
+            if (this.raid?.getDataValue('hitpoints') <= 0) {
                 const raidHeroes = await this.getRaidHeroes();
                 item = await this.getItem(this.boss.getDataValue('categoryHandle'));
 
-                for(const raidHero of raidHeroes){
-                    if(!raidHero.getDataValue('isRewarded') && raidHero.getDataValue('isActive')){
+                for (const raidHero of raidHeroes) {
+                    if (!raidHero.getDataValue('isRewarded') && raidHero.getDataValue('isActive')) {
 
-                        await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.boss.getDataValue('gold'), where: { heroName: raidHero.getDataValue('heroName') }});
-                        await this.loot.channel.database.sequelize.models.heroWallet.increment('diamond', { by: this.boss.getDataValue('diamond'), where: { heroName: raidHero.getDataValue('heroName') }});
+                        await this.loot.channel.database.sequelize.models.heroWallet.increment('gold', { by: this.boss.getDataValue('gold'), where: { heroName: raidHero.getDataValue('heroName') } });
+                        await this.loot.channel.database.sequelize.models.heroWallet.increment('diamond', { by: this.boss.getDataValue('diamond'), where: { heroName: raidHero.getDataValue('heroName') } });
 
-                        const hero = await this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: raidHero.getDataValue('heroName')}}) as Model<HeroItem>;
+                        const hero = await this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: raidHero.getDataValue('heroName') } }) as Model<HeroItem>;
 
-                        if(hero){
-                            await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.boss.getDataValue('experience'), where: { name: raidHero.getDataValue('heroName') }});
-                            await HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: hero.get()});
+                        if (hero) {
+                            await this.loot.channel.database.sequelize.models.hero.increment('experience', { by: this.boss.getDataValue('experience'), where: { name: raidHero.getDataValue('heroName') } });
+                            await HeroItem.calculateHero({ sequelize: this.loot.channel.database.sequelize, element: hero.get() });
                         }
 
-                        if(item) {
+                        if (item) {
                             HeroInventoryItem.transferItemToInventory({ sequelize: this.loot.channel.database.sequelize, item, heroName: raidHero.getDataValue('heroName') })
                         }
 
@@ -236,71 +236,71 @@ export class LootRaid {
             this.raid.save();
         }
 
-        if(isRewarded) {
+        if (isRewarded) {
             return TranslationItem.translate(this.loot.translation, 'raidCompleted')
-                                  .replace('$1', this.boss.getDataValue('name'))
-                                  .replace('$2', this.boss.getDataValue('diamond').toString())
-                                  .replace('$3', this.boss.getDataValue('gold').toString())
-                                  .replace('$4', this.boss.getDataValue('experience').toString())
-                                  .replace('$5', item.getDataValue('value'))
-                                  .replace('$6', damage.toString())
+                .replace('$1', this.boss.getDataValue('name'))
+                .replace('$2', this.boss.getDataValue('diamond').toString())
+                .replace('$3', this.boss.getDataValue('gold').toString())
+                .replace('$4', this.boss.getDataValue('experience').toString())
+                .replace('$5', item.getDataValue('value'))
+                .replace('$6', damage.toString())
         } else return TranslationItem.translate(this.loot.translation, 'raidCompletedError').replace('$1', this.boss.getDataValue('name'));
     }
     //#endregion
 
     //#region Boss
-    async getBosses() : Promise<Model<RaidBossItem>[]> {
-        return await this.loot.channel.database.sequelize.models.raidBoss.findAll({ where: { isActive: true }}) as Model<RaidBossItem>[];
+    async getBosses(): Promise<Model<RaidBossItem>[]> {
+        return await this.loot.channel.database.sequelize.models.raidBoss.findAll({ where: { isActive: true } }) as Model<RaidBossItem>[];
     }
 
-    async getRandomBoss() : Promise<Model<RaidBossItem>> {
+    async getRandomBoss(): Promise<Model<RaidBossItem>> {
         const bosses = await this.getBosses();
-        if(bosses) {
-            return bosses[this.loot.getRandomNumber(0, bosses.length -1)];
+        if (bosses) {
+            return bosses[this.loot.getRandomNumber(0, bosses.length - 1)];
         }
         return null;
     }
 
-    async getBoss() : Promise<Model<RaidBossItem>> {
-        return await this.loot.channel.database.sequelize.models.raidBoss.findOne({ where: { handle: this.raid.getDataValue('raidBossHandle') }}) as Model<RaidBossItem>;
+    async getBoss(): Promise<Model<RaidBossItem>> {
+        return await this.loot.channel.database.sequelize.models.raidBoss.findOne({ where: { handle: this.raid.getDataValue('raidBossHandle') } }) as Model<RaidBossItem>;
     }
     //#endregion
 
     //#region Heroes
-    async getRaidHeroes() : Promise<Model<RaidHeroItem>[]> {
-        return await this.loot.channel.database.sequelize.models.raidHero.findAll({ where: { raidHandle: this.raid.getDataValue('handle') }}) as Model<RaidHeroItem>[];
+    async getRaidHeroes(): Promise<Model<RaidHeroItem>[]> {
+        return await this.loot.channel.database.sequelize.models.raidHero.findAll({ where: { raidHandle: this.raid.getDataValue('handle') } }) as Model<RaidHeroItem>[];
     }
 
-    async getRaidHero(heroName: string) : Promise<Model<RaidHeroItem>> {
-        return await this.loot.channel.database.sequelize.models.raidHero.findOne({ where: { heroName, isActive: true }}) as Model<RaidHeroItem>;
+    async getRaidHero(heroName: string): Promise<Model<RaidHeroItem>> {
+        return await this.loot.channel.database.sequelize.models.raidHero.findOne({ where: { heroName, isActive: true } }) as Model<RaidHeroItem>;
     }
 
-    async getHero(heroName: string) : Promise<Model<HeroItem>> {
-        return await this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: heroName }}) as Model<HeroItem>;
+    async getHero(heroName: string): Promise<Model<HeroItem>> {
+        return await this.loot.channel.database.sequelize.models.hero.findOne({ where: { name: heroName } }) as Model<HeroItem>;
     }
     //#endregion
 
     //#region Raid
-    async getRaid() : Promise<Model<RaidItem>> {
-        return await this.loot.channel.database.sequelize.models.raid.findOne({ where: { isActive: true }, order: [ [ 'handle', 'ASC' ]]}) as Model<RaidItem>;
+    async getRaid(): Promise<Model<RaidItem>> {
+        return await this.loot.channel.database.sequelize.models.raid.findOne({ where: { isActive: true }, order: [['handle', 'ASC']] }) as Model<RaidItem>;
     }
     //#endregion
 
     //#region Item
-    async getItems(categoryHandle: number): Promise<Model<ItemItem>[]>{
-        return await this.loot.channel.database.sequelize.models.item.findAll({where: {  categoryHandle} }) as Model<ItemItem>[];
+    async getItems(categoryHandle: number): Promise<Model<ItemItem>[]> {
+        return await this.loot.channel.database.sequelize.models.item.findAll({ where: { categoryHandle } }) as Model<ItemItem>[];
     }
 
-    async getItem(categoryHandle: number): Promise<Model<ItemItem>>{
+    async getItem(categoryHandle: number): Promise<Model<ItemItem>> {
         const items = await this.getItems(categoryHandle);
-        return items[this.loot.getRandomNumber(0, items.length -1)];
+        return items[this.loot.getRandomNumber(0, items.length - 1)];
     }
     //#endregion
 
     //#region Trait
-    async getTrait(hero: Model<HeroItem>): Promise<Model<HeroTraitItem>>{
+    async getTrait(hero: Model<HeroItem>): Promise<Model<HeroTraitItem>> {
         const trait = await this.loot.channel.database.sequelize.models.heroTrait.findByPk(hero.getDataValue("name")) as Model<HeroTraitItem>;
-        if(trait){
+        if (trait) {
             return trait;
         }
         return null;

@@ -68,7 +68,7 @@ $(async () => {
                 template: masterDetailTemplate
             },
             columns: [
-                { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200 },
+                { dataField: "command", caption: translate(language, 'command'), validationRules: [{ type: "required" }], width: 200, sortIndex: 0, sortOrder: "asc" },
                 {
                     dataField: "text", caption: translate(language, 'text'), editorType: "dxTextArea", editorOptions: { autoResizeEnabled: true }, validationRules: [{ type: "required" }],
                     cellTemplate: function (element, info) {
@@ -150,39 +150,21 @@ $(async () => {
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
             },
+            onInitNewRow(e) {
+                e.data.minutes = 60;
+                e.data.delay = 5;
+                e.data.timeout = 10;
+
+                e.data.isShoutout = false;
+                e.data.isCounter = false;
+                e.data.isLiveAutoControl = true;
+                e.data.isActive = false;
+            },
             onEditorPreparing(e) {
                 var names = ["command"];
 
                 if (names.includes(e.dataField) && e.parentType === "dataRow") {
                     e.editorOptions.disabled = e.row.isNewRow ? false : true;
-                }
-
-                if (e.dataField === "isActive" && e.parentType === "dataRow") {
-                    if (e.row.isNewRow) {
-                        e.row.data.isActive = true;
-                        e.editorOptions.value = true;
-                    }
-                }
-
-                if (e.dataField === "isLiveAutoControl" && e.parentType === "dataRow") {
-                    if (e.row.isNewRow) {
-                        e.row.data.isLiveAutoControl = true;
-                        e.editorOptions.value = true;
-                    }
-                }
-
-                if (e.dataField === "minutes" && e.parentType === "dataRow") {
-                    if (e.row.isNewRow) {
-                        e.editorOptions.value = 60;
-                        e.row.data.minutes = 60;
-                    }
-                }
-
-                if (e.dataField === "delay" && e.parentType === "dataRow") {
-                    if (e.row.isNewRow) {
-                        e.editorOptions.value = 5;
-                        e.row.data.delay = 5;
-                    }
                 }
             },
             stateStoring: {
@@ -199,11 +181,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
-                }, {
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
                         widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
-                    }, "searchPanel", "exportButton"]
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

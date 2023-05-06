@@ -8,7 +8,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'enemyItem.json')).toString());
-@Table({ tableName: "enemy", modelName: "enemy"})
+@Table({ tableName: "enemy", modelName: "enemy" })
 export class EnemyItem extends Model<EnemyItem>{
     @PrimaryKey
     @Column
@@ -34,11 +34,11 @@ export class EnemyItem extends Model<EnemyItem>{
     @Column
     goldMax: number = 200;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('enemy', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -94,29 +94,29 @@ export class EnemyItem extends Model<EnemyItem>{
                 allowNull: false,
                 defaultValue: true
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as EnemyItem[];
 
-            for(const item of items){
-                if(await sequelize.models.enemy.count({where: {handle: item.handle}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.enemy.count({ where: { handle: item.handle } }) === 0) {
                     await sequelize.models.enemy.create(item as any);
                 } // else await sequelize.models.enemy.update(item, {where: {handle: item.handle}});
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }
 
-    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize:Sequelize,  element: EnemyItem }): Promise<number>{
-        try{
+    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: EnemyItem }): Promise<number> {
+        try {
             const item = await sequelize.models.enemy.findByPk(element.handle);
-            if(await EnemyItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){
-                if(item){
-                    await sequelize.models.enemy.update(element, {where: {handle: element.handle}});
+            if (await EnemyItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })) {
+                if (item) {
+                    await sequelize.models.enemy.update(element, { where: { handle: element.handle } });
                     return 201;
                 }
                 else {
@@ -124,26 +124,26 @@ export class EnemyItem extends Model<EnemyItem>{
                     return 201;
                 }
             } else return 406;
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }
     }
 
-    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: EnemyItem, isUpdate: boolean }) : Promise<boolean>{
+    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: EnemyItem, isUpdate: boolean }): Promise<boolean> {
         let isValid = true;
 
-        const validations = await globalSequelize.models.validation.findAll({where: { page: 'enemy'}}) as Model<ValidationItem>[];
+        const validations = await globalSequelize.models.validation.findAll({ where: { page: 'enemy' } }) as Model<ValidationItem>[];
 
-        if(!(!element.experienceMin       || element.experienceMin        && element.experienceMin >= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('min')   && element.experienceMin <= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('max')))   isValid = false;
-        if(!(!element.experienceMax       || element.experienceMax        && element.experienceMax >= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('min')   && element.experienceMax <= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('max')))   isValid = false;
-        if(!(!element.goldMin             || element.goldMin              && element.goldMin >= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('min')               && element.goldMin <= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('max')))               isValid = false;
-        if(!(!element.goldMax             || element.goldMax              && element.goldMax >= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('min')               && element.goldMax <= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('max')))               isValid = false;
-        if(!(!element.strength            || element.strength             && element.strength >= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('min')             && element.strength <= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('max')))             isValid = false;
-        if(!(!element.hitpoints           || element.hitpoints            && element.hitpoints >= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('min')           && element.hitpoints <= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('max')))           isValid = false;
+        if (!(!element.experienceMin || element.experienceMin && element.experienceMin >= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('min') && element.experienceMin <= validations.find(x => x.getDataValue('handle') === 'experienceMin').getDataValue('max'))) isValid = false;
+        if (!(!element.experienceMax || element.experienceMax && element.experienceMax >= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('min') && element.experienceMax <= validations.find(x => x.getDataValue('handle') === 'experienceMax').getDataValue('max'))) isValid = false;
+        if (!(!element.goldMin || element.goldMin && element.goldMin >= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('min') && element.goldMin <= validations.find(x => x.getDataValue('handle') === 'goldMin').getDataValue('max'))) isValid = false;
+        if (!(!element.goldMax || element.goldMax && element.goldMax >= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('min') && element.goldMax <= validations.find(x => x.getDataValue('handle') === 'goldMax').getDataValue('max'))) isValid = false;
+        if (!(!element.strength || element.strength && element.strength >= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('min') && element.strength <= validations.find(x => x.getDataValue('handle') === 'strength').getDataValue('max'))) isValid = false;
+        if (!(!element.hitpoints || element.hitpoints && element.hitpoints >= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('min') && element.hitpoints <= validations.find(x => x.getDataValue('handle') === 'hitpoints').getDataValue('max'))) isValid = false;
 
-        if(!isUpdate){
-            if(!(element.name != null && element.name.length > 0)){
+        if (!isUpdate) {
+            if (!(element.name != null && element.name.length > 0)) {
                 isValid = false;
             }
         }

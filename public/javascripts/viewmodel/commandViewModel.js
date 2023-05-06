@@ -5,12 +5,12 @@ $(async () => {
 
     let module = 'command';
     let language = await getTranslation(module);
-    
+
     translation();
     initialize();
     load();
     infoPanel();
-    
+
     //#region Initialize
     function initialize() {
 
@@ -64,23 +64,23 @@ $(async () => {
                 {
                     caption: translate(language, 'command'), width: 200,
                     calculateCellValue(data) {
-                      return "!" + data.command;
-                    }
+                        return "!" + data.command;
+                    }, sortIndex: 0, sortOrder: "asc"
                 },
                 { dataField: "isMaster", caption: translate(language, 'isMaster'), width: 200 },
                 {
                     caption: translate(language, 'description'),
                     calculateCellValue(data) {
-                      return translate(language, data.translation)
+                        return translate(language, data.translation)
                     },
-                    cellTemplate: function(element, info) {
+                    cellTemplate: function (element, info) {
                         $("<div>")
                             .appendTo(element)
                             .text(info.value)
                             .css("width", info.column.width - 20)
                             .css("height", 40)
                             .css("white-space", "normal")
-                            .css("overflow-wrap", 'break-word'); 
+                            .css("overflow-wrap", 'break-word');
                     }
                 }
             ],
@@ -118,11 +118,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

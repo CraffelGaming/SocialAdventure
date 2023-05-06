@@ -1,4 +1,4 @@
-import { getTranslations, translate, infoPanel, tableExport, getEditing, notify, get, put, getList } from './globalData.js';
+import { getTranslations, translate, infoPanel, tableExport, getEditing, get, put, remove, getList } from './globalData.js';
 
 $(async () => {
     window.jsPDF = window.jspdf.jsPDF;
@@ -32,65 +32,18 @@ $(async () => {
                     return await getList('/item/default', language);
                 },
                 insert: async function (values) {
-                    if(values.category != null)
-                    values.categoryHandle = values.category.handle;
-                    await fetch('./api/item/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(values)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                            break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    if (values.category != null)
+                        values.categoryHandle = values.category.handle;
+                    await put('/item/default', values, 'put', language);
                 },
                 update: async function (key, values) {
-                    var item = values;
-                    item.handle = key;
-
-                    if(item.category != null)
-                        item.categoryHandle = item.category.handle;
-
-                    await fetch('./api/item/default', {
-                        method: 'put',
-                        headers: {
-                            'Content-type': 'application/json'
-                        },
-                        body: JSON.stringify(item)
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 201:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    if (values.category != null)
+                        values.categoryHandle = values.category.handle;
+                    values.handle = key;
+                    await put('/item/default', values, 'put', language);
                 },
                 remove: async function (key) {
-                    await fetch('./api/item/default/' + key, {
-                        method: 'delete',
-                        headers: {
-                            'Content-type': 'application/json'
-                        }
-                    }).then(async function (res) {
-                        switch(res.status){
-                            case 204:
-                                notify(translate(language, res.status), "success");
-                                break;
-                            default:
-                                notify(translate(language, res.status), "error");
-                            break;
-                        }
-                    });
+                    await remove(`/item/default/${key}`, language);
                 }
             }),
             filterRow: { visible: true },
@@ -117,37 +70,41 @@ $(async () => {
             showRowLines: true,
             showBorders: true,
             columns: [
-                { dataField: "handle", caption: translate(language, 'handle'), allowEditing: false, width: 100  },
-                { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }]  },
-                { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200, editorOptions: { min: validation.find(x => x.handle == 'gold').min, max: validation.find(x => x.handle == 'gold').max }},
+                { dataField: "handle", caption: translate(language, 'handle'), allowEditing: false, width: 100, sortIndex: 0, sortOrder: "desc" },
+                { dataField: "value", caption: translate(language, 'value'), validationRules: [{ type: "required" }] },
+                { dataField: "gold", caption: translate(language, 'gold'), validationRules: [{ type: "required" }], width: 200, editorOptions: { min: validation.find(x => x.handle == 'gold').min, max: validation.find(x => x.handle == 'gold').max } },
                 {
-                  dataField: 'category.handle',
-                  caption: translate(languageItemCategory , 'value'), width: 300,
-                  groupIndex: 0,
-                  lookup: {
-                    dataSource(options) {
-                      return {
-                        store: {  
-                            type: 'array',  
-                            data: category,  
-                            key: "handle"  
-                          }
-                      };
+                    dataField: 'category.handle',
+                    caption: translate(languageItemCategory, 'value'), width: 300,
+                    lookup: {
+                        dataSource(options) {
+                            return {
+                                store: {
+                                    type: 'array',
+                                    data: category,
+                                    key: "handle"
+                                }
+                            };
+                        },
+                        valueExpr: 'handle',
+                        displayExpr: function (item) {
+                            return item && item.value;
+                        }
                     },
-                    valueExpr: 'handle',
-                    displayExpr: function(item) {
-                        return item && item.value;
-                    }
-                  },
                 }
             ],
-            editing: await getEditing(),
+            editing: await getEditing(true, true, true, 'row'),
             export: {
                 enabled: true,
                 formats: ['xlsx', 'pdf']
             },
             onExporting(e) {
                 tableExport(e, translate(language, 'title'))
+            },
+            onInitNewRow(e) {
+                e.data.gold = 100;
+                if (category?.length > 0)
+                    e.data.category = category[0];
             },
             stateStoring: {
                 enabled: true,
@@ -163,11 +120,13 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    }, {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }

@@ -1,7 +1,7 @@
 import { Column, Table, Sequelize, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
-@Table({ tableName: "heroTrait", modelName: "heroTrait"})
+@Table({ tableName: "heroTrait", modelName: "heroTrait" })
 export class HeroTraitItem {
     @PrimaryKey
     @Column
@@ -21,11 +21,11 @@ export class HeroTraitItem {
     @Column
     perceptionMultipler: number = 1;
 
-    constructor(heroName: string){
+    constructor(heroName: string) {
         this.heroName = heroName;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('heroTrait', {
             heroName: {
                 type: DataTypes.STRING,
@@ -67,23 +67,23 @@ export class HeroTraitItem {
                 allowNull: false,
                 defaultValue: 1
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-        sequelize.models.heroTrait.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }) {
+        sequelize.models.heroTrait.belongsTo(sequelize.models.hero, { as: 'hero', foreignKey: 'heroName' });
     }
 
-    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroTraitItem }): Promise<number>{
-        try{
-            if(element.heroName !== null && element.heroName !== ""){
-                if(await sequelize.models.heroTrait.count({where: {heroName: element.heroName}}) === 0){
+    static async put({ sequelize, element }: { sequelize: Sequelize, element: HeroTraitItem }): Promise<number> {
+        try {
+            if (element.heroName !== null && element.heroName !== "") {
+                if (await sequelize.models.heroTrait.count({ where: { heroName: element.heroName } }) === 0) {
                     await sequelize.models.heroTrait.create(element as any);
-                } else await sequelize.models.heroTrait.update(element, {where: {heroName: element.heroName}});
+                } else await sequelize.models.heroTrait.update(element, { where: { heroName: element.heroName } });
                 return 200;
             } else return 406;
 
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }

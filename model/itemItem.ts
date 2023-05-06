@@ -9,7 +9,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'itemItem.json')).toString());
-@Table({ tableName: "item", modelName: "item"})
+@Table({ tableName: "item", modelName: "item" })
 export class ItemItem extends Model<ItemItem>{
     @PrimaryKey
     @Column
@@ -23,11 +23,11 @@ export class ItemItem extends Model<ItemItem>{
     @Column
     categoryHandle: number = 1;
 
-    constructor(){
+    constructor() {
         super();
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('item', {
             handle: {
                 type: DataTypes.INTEGER,
@@ -54,35 +54,35 @@ export class ItemItem extends Model<ItemItem>{
                 allowNull: false,
                 defaultValue: 0
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize, isGlobal }: { sequelize: Sequelize, isGlobal: boolean; }){
-        if(!isGlobal){
-            sequelize.models.item.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'itemHandle'});
-            sequelize.models.item.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'itemHandle'});
+    static setAssociation({ sequelize, isGlobal }: { sequelize: Sequelize, isGlobal: boolean; }) {
+        if (!isGlobal) {
+            sequelize.models.item.hasMany(sequelize.models.heroInventory, { as: 'inventory', foreignKey: 'itemHandle' });
+            sequelize.models.item.hasOne(sequelize.models.adventure, { as: 'adventure', foreignKey: 'itemHandle' });
         }
-        sequelize.models.item.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle'});
+        sequelize.models.item.belongsTo(sequelize.models.itemCategory, { as: 'category', foreignKey: 'categoryHandle' });
     }
 
-    static async updateTable({ sequelize, isGlobal }: { sequelize: Sequelize, isGlobal: boolean; }): Promise<void>{
+    static async updateTable({ sequelize, isGlobal }: { sequelize: Sequelize, isGlobal: boolean; }): Promise<void> {
         let handle = 1;
-        try{
+        try {
             const items = JSON.parse(JSON.stringify(json)) as ItemItem[];
 
-            for(const item of items){
-                if(await sequelize.models.item.count({where: {handle}}) === 0){
-                    if(isGlobal === true && item.categoryHandle > 1){
+            for (const item of items) {
+                if (await sequelize.models.item.count({ where: { handle } }) === 0) {
+                    if (isGlobal === true && item.categoryHandle > 1) {
                         await sequelize.models.item.create(item as any);
                     }
-                    else if(isGlobal === false && item.categoryHandle <= 1){
-                       await sequelize.models.item.create(item as any);
+                    else if (isGlobal === false && item.categoryHandle <= 1) {
+                        await sequelize.models.item.create(item as any);
                     }
                 }
 
                 else {
-                    if(isGlobal === true && item.categoryHandle > 1){
-                        await sequelize.models.item.update(item, {where: {handle}});
+                    if (isGlobal === true && item.categoryHandle > 1) {
+                        await sequelize.models.item.update(item, { where: { handle } });
                     }
                     // else if(isGlobal === false && item.categoryHandle <= 1){
                     // await sequelize.models.item.update(item, {where: {handle}});
@@ -91,39 +91,39 @@ export class ItemItem extends Model<ItemItem>{
 
                 handle++;
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }
 
-    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem }): Promise<number>{
-        try{
-                const item = await sequelize.models.item.findByPk(element.handle);
-                if(await ItemItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })){
-                    if(item){
-                        await sequelize.models.item.update(element, {where: {handle: element.handle}});
-                        return 201;
-                    }
-                    else {
-                        await sequelize.models.item.create(element as any);
-                        return 201;
-                    }
-                } else return 406;
-        } catch(ex){
+    static async put({ sequelize, globalSequelize, element }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem }): Promise<number> {
+        try {
+            const item = await sequelize.models.item.findByPk(element.handle);
+            if (await ItemItem.validate({ sequelize, globalSequelize, element, isUpdate: item ? true : false })) {
+                if (item) {
+                    await sequelize.models.item.update(element, { where: { handle: element.handle } });
+                    return 201;
+                }
+                else {
+                    await sequelize.models.item.create(element as any);
+                    return 201;
+                }
+            } else return 406;
+        } catch (ex) {
             global.worker.log.error(ex);
             return 500;
         }
     }
 
-    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem, isUpdate: boolean }) : Promise<boolean>{
+    static async validate({ sequelize, globalSequelize, element, isUpdate }: { sequelize: Sequelize, globalSequelize: Sequelize, element: ItemItem, isUpdate: boolean }): Promise<boolean> {
         let isValid = true;
 
-        const validations = await globalSequelize.models.validation.findAll({where: { page: 'item'}}) as Model<ValidationItem>[];
+        const validations = await globalSequelize.models.validation.findAll({ where: { page: 'item' } }) as Model<ValidationItem>[];
 
-        if(!(!element.gold       || element.gold        && element.gold >= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('min')                && element.gold <= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('max')))              isValid = false;
+        if (!(!element.gold || element.gold && element.gold >= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('min') && element.gold <= validations.find(x => x.getDataValue('handle') === 'gold').getDataValue('max'))) isValid = false;
 
-        if(!isUpdate){
-            if(!(element.value != null && element.value.length > 0)){
+        if (!isUpdate) {
+            if (!(element.value != null && element.value.length > 0)) {
                 isValid = false;
             }
         }

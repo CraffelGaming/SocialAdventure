@@ -7,7 +7,7 @@ import path from 'path';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 const json = JSON.parse(fs.readFileSync(path.join(dirname, 'menuItem.json')).toString());
-@Table({ tableName: "menu", modelName: "menu"})
+@Table({ tableName: "menu", modelName: "menu" })
 export class MenuItem extends Model<MenuItem>{
     @PrimaryKey
     @Column
@@ -23,7 +23,7 @@ export class MenuItem extends Model<MenuItem>{
     @Column
     isActive: boolean = true;
 
-    constructor(endpoint? : string, name? : string, order? : number){
+    constructor(endpoint?: string, name?: string, order?: number) {
         super();
         this.endpoint = endpoint;
         this.name = name;
@@ -33,7 +33,7 @@ export class MenuItem extends Model<MenuItem>{
         this.isActive = true;
     }
 
-    static createTable({ sequelize }: { sequelize: Sequelize; }){
+    static createTable({ sequelize }: { sequelize: Sequelize; }) {
         sequelize.define('menu', {
             endpoint: {
                 type: DataTypes.STRING,
@@ -63,24 +63,24 @@ export class MenuItem extends Model<MenuItem>{
                 allowNull: false,
                 defaultValue: true
             }
-          }, {freezeTableName: true});
+        }, { freezeTableName: true });
     }
 
-    static setAssociation({ sequelize }: { sequelize: Sequelize; }){
-        sequelize.models.menu.hasMany(sequelize.models.menu, {as: 'childs', foreignKey: 'parentEndpoint'} );
-        sequelize.models.menu.belongsTo(sequelize.models.menu, { as: 'parent', foreignKey: 'parentEndpoint'});
+    static setAssociation({ sequelize }: { sequelize: Sequelize; }) {
+        sequelize.models.menu.hasMany(sequelize.models.menu, { as: 'childs', foreignKey: 'parentEndpoint' });
+        sequelize.models.menu.belongsTo(sequelize.models.menu, { as: 'parent', foreignKey: 'parentEndpoint' });
     }
 
-    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void>{
-        try{
+    static async updateTable({ sequelize }: { sequelize: Sequelize; }): Promise<void> {
+        try {
             const items = JSON.parse(JSON.stringify(json)) as MenuItem[];
 
-            for(const item of items){
-                if(await sequelize.models.menu.count({where: {endpoint: item.endpoint}}) === 0){
+            for (const item of items) {
+                if (await sequelize.models.menu.count({ where: { endpoint: item.endpoint } }) === 0) {
                     await sequelize.models.menu.create(item as any);
-                } else await sequelize.models.menu.update(item, {where: {endpoint: item.endpoint}});
+                } else await sequelize.models.menu.update(item, { where: { endpoint: item.endpoint } });
             }
-        } catch(ex){
+        } catch (ex) {
             global.worker.log.error(ex);
         }
     }

@@ -73,7 +73,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/adventure/:node", adventure);
+router.get("/adventure/:node", adventure);
 
 /**
  * @swagger
@@ -114,7 +114,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/adventure/:node/hero/:name", adventure);
+router.get("/adventure/:node/hero/:name", adventure);
 
 /**
  * @swagger
@@ -156,7 +156,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.put("/adventure/:node", adventure);
+router.put("/adventure/:node", adventure);
 
 /**
  * @swagger
@@ -195,7 +195,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.delete("/adventure/:node/:heroName/:itemHandle", adventure);
+router.delete("/adventure/:node/:heroName/:itemHandle", adventure);
 //#endregion
 
 //#region Command
@@ -238,7 +238,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/command/:node", command);
+router.get("/command/:node", command);
 
 /**
  * @swagger
@@ -285,7 +285,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.get("/command/:node/:module", command);
+router.get("/command/:node/:module", command);
 //#endregion
 
 //#region Daily
@@ -359,7 +359,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/daily/:node", daily);
+router.get("/daily/:node", daily);
 
 /**
  * @swagger
@@ -429,7 +429,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/daily/:node/current/:count", daily);
+router.get("/daily/:node/current/:count", daily);
 
 /**
  * @swagger
@@ -505,7 +505,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/daily/:node/current/:count/hero/:name", daily);
+router.get("/daily/:node/current/:count/hero/:name", daily);
 
 /**
  * @swagger
@@ -581,7 +581,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.post("/daily/:node/redeem/:number/hero/:name", daily);
+router.post("/daily/:node/redeem/:number/hero/:name", daily);
 
 /**
  * @swagger
@@ -672,7 +672,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.put("/daily/:node", daily);
+router.put("/daily/:node", daily);
 
 /**
  * @swagger
@@ -705,7 +705,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.delete("/daily/:node/:handle", daily);
+router.delete("/daily/:node/:handle", daily);
 //#endregion
 
 //#region Enemy
@@ -779,7 +779,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/enemy/:node", enemy);
+router.get("/enemy/:node", enemy);
 
 /**
  * @swagger
@@ -870,7 +870,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.put("/enemy/:node", enemy);
+router.put("/enemy/:node", enemy);
 
 /**
  * @swagger
@@ -903,7 +903,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.delete("/enemy/:node/:handle", enemy);
+router.delete("/enemy/:node/:handle", enemy);
 //#endregion
 
 //#region Healing Potion
@@ -969,7 +969,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/healingPotion/:node", healingPotion);
+router.get("/healingPotion/:node", healingPotion);
 
 /**
  * @swagger
@@ -1044,7 +1044,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.put("/healingPotion/:node", healingPotion);
+router.put("/healingPotion/:node", healingPotion);
 
 /**
  * @swagger
@@ -1077,7 +1077,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.delete("/healingPotion/:node/:handle", healingPotion);
+router.delete("/healingPotion/:node/:handle", healingPotion);
 
 /**
  * @swagger
@@ -1116,7 +1116,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.post("/healingPotion/:node/heal/:handle/hero/:name", healingPotion);
+router.post("/healingPotion/:node/heal/:handle/hero/:name", healingPotion);
 //#endregion
 
 //#region Help
@@ -1185,7 +1185,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.put("/help/:node", help);
+router.put("/help/:node", help);
 //#endregion
 
 //#region Hero
@@ -1259,166 +1259,166 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/hero/:node", hero);
+router.get("/hero/:node", hero);
 
- /**
-  * @swagger
-  * /hero/{node}/{name}:
-  *   get:
-  *     tags:
-  *     - Hero
-  *     summary: Held
-  *     description: Rückgabe eines Helden anhand des Namen
-  *     consumes:
-  *     - application/json
-  *     parameters:
-  *     - name: "node"
-  *       in: "path"
-  *       description: "Node / Channel"
-  *       required: true
-  *       type: "string"
-  *       default: "default"
-  *     - name: "name"
-  *       in: "path"
-  *       description: "Name des Helden"
-  *       required: true
-  *       type: "string"
-  *       default: "craffel"
-  *     - name: "childs"
-  *       in: "query"
-  *       description: "Untergeordnete Daten laden, wenn vorhanden"
-  *       required: false
-  *       type: "boolean"
-  *       default: true
-  *     responses:
-  *       200:
-  *         description: successful operation
-  *         schema:
-  *           type: array
-  *           items:
-  *             type: object
-  *             properties:
-  *               name:
-  *                 type: string
-  *                 example: "craffel"
-  *                 descrition: Name des Helden
-  *               lastSteal:
-  *                 type: string
-  *                 example: "2020-02-01 00:00:00.000 +00:00"
-  *                 descrition: Letzter Diebszahl.
-  *               lastJoin:
-  *                 type: string
-  *                 example: "2020-02-01 00:00:00.000 +00:00"
-  *                 descrition: Letzte Teilnahme an einem Abenteuer.
-  *               startIndex:
-  *                 type: number
-  *                 example: 2
-  *                 descrition: Interner Berechnungswert für ein faires Spiel.
-  *               experience:
-  *                 type: number
-  *                 example: 12500
-  *                 descrition: Menge der gesammelten Erfahrung.
-  *               isActive:
-  *                 type: boolean
-  *                 example: true
-  *                 descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
-  *               createdAt:
-  *                 type: string
-  *                 example: "2022-05-12 10:11:35.027 +00:00"
-  *                 descrition: Datum der Anlage
-  *               updatedAt:
-  *                 type: string
-  *                 example: "2022-05-12 10:11:35.027 +00:00"
-  *                 descrition: Datum der letzten Änderung
-  *       404:
-  *         description: no data
-  */
- router.get("/hero/:node/:name", hero);
+/**
+ * @swagger
+ * /hero/{node}/{name}:
+ *   get:
+ *     tags:
+ *     - Hero
+ *     summary: Held
+ *     description: Rückgabe eines Helden anhand des Namen
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "name"
+ *       in: "path"
+ *       description: "Name des Helden"
+ *       required: true
+ *       type: "string"
+ *       default: "craffel"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: "craffel"
+ *                 descrition: Name des Helden
+ *               lastSteal:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Letzter Diebszahl.
+ *               lastJoin:
+ *                 type: string
+ *                 example: "2020-02-01 00:00:00.000 +00:00"
+ *                 descrition: Letzte Teilnahme an einem Abenteuer.
+ *               startIndex:
+ *                 type: number
+ *                 example: 2
+ *                 descrition: Interner Berechnungswert für ein faires Spiel.
+ *               experience:
+ *                 type: number
+ *                 example: 12500
+ *                 descrition: Menge der gesammelten Erfahrung.
+ *               isActive:
+ *                 type: boolean
+ *                 example: true
+ *                 descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *               createdAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der Anlage
+ *               updatedAt:
+ *                 type: string
+ *                 example: "2022-05-12 10:11:35.027 +00:00"
+ *                 descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/hero/:node/:name", hero);
 
- /**
-  * @swagger
-  * /hero/{node}:
-  *   put:
-  *     tags:
-  *     - Hero
-  *     summary: Gegenstand
-  *     description: Anlage eines neuen Gegenstands.
-  *     consumes:
-  *     - application/json
-  *     parameters:
-  *     - name: "node"
-  *       in: "path"
-  *       description: "Node / Channel"
-  *       required: true
-  *       type: "string"
-  *       default: "default"
-  *     - name: "hero"
-  *       in: "body"
-  *       schema:
-  *         type: object
-  *         properties:
-  *           name:
-  *             type: string
-  *             example: "craffel"
-  *             descrition: Name des Helden
-  *           lastSteal:
-  *             type: string
-  *             example: "2020-02-01 00:00:00.000 +00:00"
-  *             descrition: Letzter Diebszahl.
-  *           lastJoin:
-  *             type: string
-  *             example: "2020-02-01 00:00:00.000 +00:00"
-  *             descrition: Letzte Teilnahme an einem Abenteuer.
-  *           startIndex:
-  *             type: number
-  *             example: 2
-  *             descrition: Interner Berechnungswert für ein faires Spiel.
-  *           experience:
-  *             type: number
-  *             example: 12500
-  *             descrition: Menge der gesammelten Erfahrung.
-  *           isActive:
-  *             type: boolean
-  *             example: true
-  *             descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
-  *     responses:
-  *       201:
-  *         description: successful operation
-  *         schema:
-  *           type: object
-  *           properties:
-  *             name:
-  *               type: string
-  *               example: "craffel"
-  *               descrition: Name des Helden
-  *             lastSteal:
-  *               type: string
-  *               example: "2020-02-01 00:00:00.000 +00:00"
-  *               descrition: Letzter Diebszahl.
-  *             lastJoin:
-  *               type: string
-  *               example: "2020-02-01 00:00:00.000 +00:00"
-  *               descrition: Letzte Teilnahme an einem Abenteuer.
-  *             startIndex:
-  *               type: number
-  *               example: 2
-  *               descrition: Interner Berechnungswert für ein faires Spiel.
-  *             experience:
-  *               type: number
-  *               example: 12500
-  *               descrition: Menge der gesammelten Erfahrung.
-  *             isActive:
-  *               type: boolean
-  *               example: true
-  *               descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
-  *       403:
-  *         description: no permission
-  *       404:
-  *         description: no data
-  */
- router.put("/hero/:node", hero);
+/**
+ * @swagger
+ * /hero/{node}:
+ *   put:
+ *     tags:
+ *     - Hero
+ *     summary: Gegenstand
+ *     description: Anlage eines neuen Gegenstands.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "hero"
+ *       in: "body"
+ *       schema:
+ *         type: object
+ *         properties:
+ *           name:
+ *             type: string
+ *             example: "craffel"
+ *             descrition: Name des Helden
+ *           lastSteal:
+ *             type: string
+ *             example: "2020-02-01 00:00:00.000 +00:00"
+ *             descrition: Letzter Diebszahl.
+ *           lastJoin:
+ *             type: string
+ *             example: "2020-02-01 00:00:00.000 +00:00"
+ *             descrition: Letzte Teilnahme an einem Abenteuer.
+ *           startIndex:
+ *             type: number
+ *             example: 2
+ *             descrition: Interner Berechnungswert für ein faires Spiel.
+ *           experience:
+ *             type: number
+ *             example: 12500
+ *             descrition: Menge der gesammelten Erfahrung.
+ *           isActive:
+ *             type: boolean
+ *             example: true
+ *             descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *     responses:
+ *       201:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Helden
+ *             lastSteal:
+ *               type: string
+ *               example: "2020-02-01 00:00:00.000 +00:00"
+ *               descrition: Letzter Diebszahl.
+ *             lastJoin:
+ *               type: string
+ *               example: "2020-02-01 00:00:00.000 +00:00"
+ *               descrition: Letzte Teilnahme an einem Abenteuer.
+ *             startIndex:
+ *               type: number
+ *               example: 2
+ *               descrition: Interner Berechnungswert für ein faires Spiel.
+ *             experience:
+ *               type: number
+ *               example: 12500
+ *               descrition: Menge der gesammelten Erfahrung.
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Gibt an ob der Held gearde aktiv auf Abenteuer ist.
+ *       403:
+ *         description: no permission
+ *       404:
+ *         description: no data
+ */
+router.put("/hero/:node", hero);
 
- //#endregion
+//#endregion
 
 //#region Hero Inventory
 /**
@@ -1479,7 +1479,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/heroinventory/:node", heroinventory);
+router.get("/heroinventory/:node", heroinventory);
 
 /**
  * @swagger
@@ -1545,7 +1545,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/heroinventory/:node/hero/:name", heroinventory);
+router.get("/heroinventory/:node/hero/:name", heroinventory);
 
 /**
  * @swagger
@@ -1590,7 +1590,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.post("/heroinventory/:node/sell/item/:handle/hero/:name/quantity/:quantity", heroinventory);
+router.post("/heroinventory/:node/sell/item/:handle/hero/:name/quantity/:quantity", heroinventory);
 //#endregion
 
 //#region Hero Promotion
@@ -1644,7 +1644,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/heropromotion/:node", heropromotion);
+router.get("/heropromotion/:node", heropromotion);
 
 /**
  * @swagger
@@ -1702,7 +1702,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/heropromotion/:node/hero/:name", heropromotion);
+router.get("/heropromotion/:node/hero/:name", heropromotion);
 //#endregion
 
 //#region Hero Trait
@@ -1768,7 +1768,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/herotrait/:node", herotrait);
+router.get("/herotrait/:node", herotrait);
 
 /**
  * @swagger
@@ -1836,8 +1836,8 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.get("/herotrait/:node/hero/:name", herotrait);
- //#endregion
+router.get("/herotrait/:node/hero/:name", herotrait);
+//#endregion
 
 //#region Hero Wallet
 /**
@@ -1902,7 +1902,7 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
- router.get("/herowallet/:node", herowallet);
+router.get("/herowallet/:node", herowallet);
 
 /**
  * @swagger
@@ -1970,8 +1970,8 @@ const router = express.Router();
  *       404:
  *         description: no data
  */
-  router.get("/herowallet/:node/hero/:name", herowallet);
- //#endregion
+router.get("/herowallet/:node/hero/:name", herowallet);
+//#endregion
 
 //#region History Duell
 /**
@@ -2046,7 +2046,7 @@ router.get("/historyduell/:node", historyDuell);
  *       404:
  *         description: no data
  */
-  router.get("/historyduell/:node/sourcehero/:name", historyDuell);
+router.get("/historyduell/:node/sourcehero/:name", historyDuell);
 
 /**
  * @swagger
@@ -2086,7 +2086,7 @@ router.get("/historyduell/:node", historyDuell);
  *         description: no data
  */
 router.get("/historyduell/:node/targethero/:name", historyDuell);
- //#endregion
+//#endregion
 
 //#region History Steal
 /**
@@ -2161,7 +2161,7 @@ router.get("/historysteal/:node", historySteal);
  *       404:
  *         description: no data
  */
-  router.get("/historysteal/:node/sourcehero/:name", historySteal);
+router.get("/historysteal/:node/sourcehero/:name", historySteal);
 
 /**
  * @swagger
@@ -2276,7 +2276,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
-  router.get("/historyadventure/:node/hero/:name", historyAdventure);
+router.get("/historyadventure/:node/hero/:name", historyAdventure);
 //#endregion
 
 //#region Item
@@ -2343,7 +2343,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/item", item);
+router.get("/item", item);
 
 /**
  * @swagger
@@ -2414,7 +2414,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/item/:node", item);
+router.get("/item/:node", item);
 
 /**
  * @swagger
@@ -2489,7 +2489,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/item/:node/:handle", item);
+router.get("/item/:node/:handle", item);
 
 /**
  * @swagger
@@ -2556,7 +2556,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.put("/item/:node", item);
+router.put("/item/:node", item);
 
 /**
  * @swagger
@@ -2589,7 +2589,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.delete("/item/:node/:handle", item);
+router.delete("/item/:node/:handle", item);
 //#endregion
 
 //#region Item Category
@@ -2666,7 +2666,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/itemcategory", itemCategory);
+router.get("/itemcategory", itemCategory);
 
 /**
  * @swagger
@@ -2747,7 +2747,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
-  router.get("/itemcategory/:node", itemCategory);
+router.get("/itemcategory/:node", itemCategory);
 
 /**
  * @swagger
@@ -2778,7 +2778,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.post("/itemcategory/:node/transfer/:handle", itemCategory);
+router.post("/itemcategory/:node/transfer/:handle", itemCategory);
 
 /**
  * @swagger
@@ -2829,7 +2829,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.put("/itemCategory/:node", itemCategory);
+router.put("/itemCategory/:node", itemCategory);
 
 /**
  * @swagger
@@ -2862,9 +2862,9 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.delete("/itemCategory/:node/:handle", itemCategory);
+router.delete("/itemCategory/:node/:handle", itemCategory);
 
- //#endregion
+//#endregion
 
 //#region Level
 /**
@@ -2921,7 +2921,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/level/:node", level);
+router.get("/level/:node", level);
 
 /**
  * @swagger
@@ -2983,7 +2983,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/level/:node/:experience", level);
+router.get("/level/:node/:experience", level);
 //#endregion
 
 //#region Location
@@ -3060,7 +3060,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/location/:node", location);
+router.get("/location/:node", location);
 
 /**
  * @swagger
@@ -3135,7 +3135,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
-  router.get("/location/:node/active", location);
+router.get("/location/:node/active", location);
 
 /**
  * @swagger
@@ -3210,7 +3210,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.put("/location/:node", location);
+router.put("/location/:node", location);
 
 /**
  * @swagger
@@ -3243,7 +3243,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.delete("/location/:node/:handle", location);
+router.delete("/location/:node/:handle", location);
 //#endregion
 
 //#region Loot
@@ -3313,7 +3313,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/loot/:node", loot);
+router.get("/loot/:node", loot);
 
 /**
  * @swagger
@@ -3378,7 +3378,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.put("/loot/:node", loot);
+router.put("/loot/:node", loot);
 
 /**
  * @swagger
@@ -3411,7 +3411,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.delete("/loot/:node/:command", loot);
+router.delete("/loot/:node/:command", loot);
 //#endregion
 
 //#region Menu
@@ -3467,7 +3467,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/menu", menu);
+router.get("/menu", menu);
 //#endregion
 
 //#region Migration
@@ -3515,7 +3515,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/migration", migration);
+router.get("/migration", migration);
 //#endregion
 
 //#region Node
@@ -3618,7 +3618,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/node", node);
+router.get("/node", node);
 
 /**
  * @swagger
@@ -3719,161 +3719,161 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/node/live", node);
+router.get("/node/live", node);
 
- /**
-  * @swagger
-  * /node/default:
-  *   get:
-  *     tags:
-  *     - Node
-  *     summary: Server Node
-  *     description: Rückgabe des ausgewählten Standard Server Nodes.
-  *     consumes:
-  *     - application/json
-  *     responses:
-  *       200:
-  *         description: successful operation
-  *         schema:
-  *           type: object
-  *           properties:
-  *             node:
-  *               type: string
-  *               example: "craffel"
-  *               descrition: Name des Nodes
-  *       404:
-  *         description: no data
-  */
- router.get("/node/default", node);
+/**
+ * @swagger
+ * /node/default:
+ *   get:
+ *     tags:
+ *     - Node
+ *     summary: Server Node
+ *     description: Rückgabe des ausgewählten Standard Server Nodes.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             node:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Nodes
+ *       404:
+ *         description: no data
+ */
+router.get("/node/default", node);
 
- /**
-  * @swagger
-  * /node/default:
-  *   post:
-  *     tags:
-  *     - Node
-  *     summary: Server Node
-  *     description: Auswahl des Server Standard Nodes.
-  *     consumes:
-  *     - application/json
-  *     responses:
-  *       200:
-  *         description: successful operation
-  *         schema:
-  *           type: object
-  *           properties:
-  *             node:
-  *               type: string
-  *               example: "craffel"
-  *               descrition: Name des Nodes
-  */
- router.post("/node/default", node);
+/**
+ * @swagger
+ * /node/default:
+ *   post:
+ *     tags:
+ *     - Node
+ *     summary: Server Node
+ *     description: Auswahl des Server Standard Nodes.
+ *     consumes:
+ *     - application/json
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             node:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Nodes
+ */
+router.post("/node/default", node);
 
- /**
-  * @swagger
-  * /node/information/{node}:
-  *   get:
-  *     tags:
-  *     - Node
-  *     summary: Server Node
-  *     description: Rückgabe eines Nodes anhand des Namen.
-  *     consumes:
-  *     - application/json
-  *     parameters:
-  *     - name: "node"
-  *       in: "path"
-  *       description: "Node / Channel"
-  *       required: true
-  *       type: "string"
-  *       default: "default"
-  *     - name: "childs"
-  *       in: "query"
-  *       description: "Untergeordnete Daten laden, wenn vorhanden"
-  *       required: false
-  *       type: "boolean"
-  *       default: true
-  *     responses:
-  *       200:
-  *         description: successful operation
-  *         schema:
-  *           type: object
-  *           properties:
-  *             name:
-  *               type: string
-  *               example: "craffel"
-  *               descrition: Name des Nodes
-  *             displayName:
-  *               type: string
-  *               example: "Craffel"
-  *               descrition: Anzeigename des Nodes
-  *             language:
-  *               type: string
-  *               example: "de-DE"
-  *               descrition: Standard Sprache des Nodes
-  *             isActive:
-  *               type: boolean
-  *               example: true
-  *               descrition: Aktivitätsstatus
-  *             endpoint:
-  *               type: string
-  *               example: "/"
-  *               descrition: Endpunkt
-  *             twitchUser:
-  *               type: object
-  *               properties:
-  *                 id:
-  *                   type: string
-  *                   example: "440371621"
-  *                   descrition: Twitch Benutzer-ID
-  *                 login:
-  *                   type: string
-  *                   example: "craffel"
-  *                   descrition: Twitch Loginname
-  *                 display_name:
-  *                   type: string
-  *                   example: "craffel"
-  *                   descrition: Twitch Anzeigename
-  *                 type:
-  *                   type: string
-  *                   example: ""
-  *                   descrition: Twitch Accounttyp
-  *                 broadcaster_type:
-  *                   type: string
-  *                   example: "affiliate"
-  *                   descrition: Twitch Streamer-Typ
-  *                 description:
-  *                   type: string
-  *                   example: "Ich bin ein Streamer"
-  *                   descrition: Twitch Beschreibung
-  *                 profile_image_url:
-  *                   type: string
-  *                   example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
-  *                   descrition: Twitch Profilbild
-  *                 offline_image_url:
-  *                   type: string
-  *                   example: ""
-  *                   descrition: Twitch Offline-Profilbild
-  *                 view_count:
-  *                   type: string
-  *                   example: "21997"
-  *                   descrition: Anzahl einzigartiger Twitch Aufrufe
-  *                 email:
-  *                   type: string
-  *                   example: "max.mustermann@mail.de"
-  *                   descrition: Twitch E-Mail Adresse
-  *             createdAt:
-  *               type: string
-  *               example: "2022-05-12 10:11:35.027 +00:00"
-  *               descrition: Datum der Anlage
-  *             updatedAt:
-  *               type: string
-  *               example: "2022-05-12 10:11:35.027 +00:00"
-  *               descrition: Datum der letzten Änderung
-  *       404:
-  *         description: no data
-  */
-  router.get("/node/information/:node", node);
- //#endregion
+/**
+ * @swagger
+ * /node/information/{node}:
+ *   get:
+ *     tags:
+ *     - Node
+ *     summary: Server Node
+ *     description: Rückgabe eines Nodes anhand des Namen.
+ *     consumes:
+ *     - application/json
+ *     parameters:
+ *     - name: "node"
+ *       in: "path"
+ *       description: "Node / Channel"
+ *       required: true
+ *       type: "string"
+ *       default: "default"
+ *     - name: "childs"
+ *       in: "query"
+ *       description: "Untergeordnete Daten laden, wenn vorhanden"
+ *       required: false
+ *       type: "boolean"
+ *       default: true
+ *     responses:
+ *       200:
+ *         description: successful operation
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *               example: "craffel"
+ *               descrition: Name des Nodes
+ *             displayName:
+ *               type: string
+ *               example: "Craffel"
+ *               descrition: Anzeigename des Nodes
+ *             language:
+ *               type: string
+ *               example: "de-DE"
+ *               descrition: Standard Sprache des Nodes
+ *             isActive:
+ *               type: boolean
+ *               example: true
+ *               descrition: Aktivitätsstatus
+ *             endpoint:
+ *               type: string
+ *               example: "/"
+ *               descrition: Endpunkt
+ *             twitchUser:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   example: "440371621"
+ *                   descrition: Twitch Benutzer-ID
+ *                 login:
+ *                   type: string
+ *                   example: "craffel"
+ *                   descrition: Twitch Loginname
+ *                 display_name:
+ *                   type: string
+ *                   example: "craffel"
+ *                   descrition: Twitch Anzeigename
+ *                 type:
+ *                   type: string
+ *                   example: ""
+ *                   descrition: Twitch Accounttyp
+ *                 broadcaster_type:
+ *                   type: string
+ *                   example: "affiliate"
+ *                   descrition: Twitch Streamer-Typ
+ *                 description:
+ *                   type: string
+ *                   example: "Ich bin ein Streamer"
+ *                   descrition: Twitch Beschreibung
+ *                 profile_image_url:
+ *                   type: string
+ *                   example: "https://static-cdn.jtvnw.net/jtv_user_pictures/77498aca-4c52-4d13-9ede-9a99a1d88d64-profile_image-300x300.png"
+ *                   descrition: Twitch Profilbild
+ *                 offline_image_url:
+ *                   type: string
+ *                   example: ""
+ *                   descrition: Twitch Offline-Profilbild
+ *                 view_count:
+ *                   type: string
+ *                   example: "21997"
+ *                   descrition: Anzahl einzigartiger Twitch Aufrufe
+ *                 email:
+ *                   type: string
+ *                   example: "max.mustermann@mail.de"
+ *                   descrition: Twitch E-Mail Adresse
+ *             createdAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der Anlage
+ *             updatedAt:
+ *               type: string
+ *               example: "2022-05-12 10:11:35.027 +00:00"
+ *               descrition: Datum der letzten Änderung
+ *       404:
+ *         description: no data
+ */
+router.get("/node/information/:node", node);
+//#endregion
 
 //#region Placeholder
 /**
@@ -3928,7 +3928,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/placeholder", placeholder);
+router.get("/placeholder", placeholder);
 //#endregion
 
 //#region Promotion
@@ -4006,7 +4006,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.get("/promotion/:node", promotion);
+router.get("/promotion/:node", promotion);
 
 /**
  * @swagger
@@ -4105,7 +4105,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.put("/promotion/:node", promotion);
+router.put("/promotion/:node", promotion);
 
 /**
  * @swagger
@@ -4179,7 +4179,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.post("/promotion/:node/redeem/:promotionHandle/:heroName", promotion);
+router.post("/promotion/:node/redeem/:promotionHandle/:heroName", promotion);
 
 /**
  * @swagger
@@ -4212,7 +4212,7 @@ router.get("/historyadventure/:node", historyAdventure);
  *       404:
  *         description: no data
  */
- router.delete("/promotion/:node/:handle", promotion);
+router.delete("/promotion/:node/:handle", promotion);
 //#endregion
 
 //#region Raid
@@ -4346,7 +4346,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.get("/raid/:node/:handle", raid);
+router.get("/raid/:node/:handle", raid);
 
 /**
  * @swagger
@@ -4408,7 +4408,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.get("/raid/:node/current/active", raid);
+router.get("/raid/:node/current/active", raid);
 
 /**
  * @swagger
@@ -4499,7 +4499,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.put("/raid/:node", raid);
+router.put("/raid/:node", raid);
 
 /**
  * @swagger
@@ -4532,7 +4532,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.delete("/raid/:node/:handle", raid);
+router.delete("/raid/:node/:handle", raid);
 //#endregion
 
 //#region Raid Boss
@@ -4618,7 +4618,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.get("/raidboss/:node", raidBoss);
+router.get("/raidboss/:node", raidBoss);
 
 /**
  * @swagger
@@ -4706,7 +4706,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.get("/raidboss/:node/:handle", raidBoss);
+router.get("/raidboss/:node/:handle", raidBoss);
 
 /**
  * @swagger
@@ -4837,7 +4837,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.put("/raidboss/:node", raidBoss);
+router.put("/raidboss/:node", raidBoss);
 
 /**
  * @swagger
@@ -4870,7 +4870,7 @@ router.get("/raid/:node", raid);
  *       404:
  *         description: no data
  */
- router.delete("/raidboss/:node/:handle", raidBoss);
+router.delete("/raidboss/:node/:handle", raidBoss);
 //#endregion
 
 //#region Raid Hero
@@ -5080,7 +5080,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/raidhero/:node/:raidHandle/:heroName", raidHero);
+router.get("/raidhero/:node/:raidHandle/:heroName", raidHero);
 
 /**
  * @swagger
@@ -5171,7 +5171,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.put("/raidhero/:node", raidHero);
+router.put("/raidhero/:node", raidHero);
 
 /**
  * @swagger
@@ -5210,7 +5210,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.delete("/raidhero/:node/:raidHandle/:heroName", raidHero);
+router.delete("/raidhero/:node/:raidHandle/:heroName", raidHero);
 //#endregion
 
 //#region Say
@@ -5300,7 +5300,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/say/:node", say);
+router.get("/say/:node", say);
 
 /**
  * @swagger
@@ -5397,7 +5397,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.put("/say/:node", say);
+router.put("/say/:node", say);
 
 /**
  * @swagger
@@ -5430,7 +5430,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.delete("/say/:node/:command", say);
+router.delete("/say/:node/:command", say);
 //#endregion
 
 //#region State Storage
@@ -5482,7 +5482,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/stateStorage", stateStorage);
+router.get("/stateStorage", stateStorage);
 
 /**
  * @swagger
@@ -5531,7 +5531,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/stateStorage/:name", stateStorage);
+router.get("/stateStorage/:name", stateStorage);
 
 /**
  * @swagger
@@ -5579,7 +5579,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.put("/stateStorage", stateStorage);
+router.put("/stateStorage", stateStorage);
 
 /**
  * @swagger
@@ -5605,7 +5605,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.delete("/stateStorage/:name", stateStorage);
+router.delete("/stateStorage/:name", stateStorage);
 //#endregion
 
 //#region Trainer
@@ -5667,7 +5667,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/trainer/:node", trainer);
+router.get("/trainer/:node", trainer);
 
 /**
  * @swagger
@@ -5734,7 +5734,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.put("/trainer/:node", trainer);
+router.put("/trainer/:node", trainer);
 
 /**
  * @swagger
@@ -5767,7 +5767,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.delete("/trainer/:node/:handle", trainer);
+router.delete("/trainer/:node/:handle", trainer);
 
 /**
  * @swagger
@@ -5806,7 +5806,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
-  router.post("/trainer/:node/training/:handle/hero/:name", trainer);
+router.post("/trainer/:node/training/:handle/hero/:name", trainer);
 //#endregion
 
 //#region Translation
@@ -5867,7 +5867,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/translation", translation);
+router.get("/translation", translation);
 
 /**
  * @swagger
@@ -5925,7 +5925,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/translation/:page", translation);
+router.get("/translation/:page", translation);
 
 /**
  * @swagger
@@ -5995,8 +5995,8 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.post("/translation", translation);
- //#endregion
+router.post("/translation", translation);
+//#endregion
 
 //#region Twitch
 /**
@@ -6022,7 +6022,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/twitch", twitch);
+router.get("/twitch", twitch);
 
 /**
  * @swagger
@@ -6087,7 +6087,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
- router.get("/twitch/userdata", twitch);
+router.get("/twitch/userdata", twitch);
 
 /**
  * @swagger
@@ -6105,7 +6105,7 @@ router.get("/raidhero/:node/:raidHandle", raidHero);
  *       404:
  *         description: no data
  */
-  router.post("/twitch", twitch);
+router.post("/twitch", twitch);
 
 /**
  * @swagger
@@ -6179,7 +6179,7 @@ router.post("/twitch/deactivate", twitch);
  *       404:
  *         description: no data
  */
- router.get("/validation", validation);
+router.get("/validation", validation);
 
 /**
  * @swagger
@@ -6237,7 +6237,7 @@ router.post("/twitch/deactivate", twitch);
  *       404:
  *         description: no data
  */
- router.get("/validation/:page", validation);
+router.get("/validation/:page", validation);
 //#endregion
 
 //#region Version
@@ -6272,7 +6272,7 @@ router.post("/twitch/deactivate", twitch);
  *       404:
  *         description: no data
  */
- router.get("/version", version);
+router.get("/version", version);
 //#endregion
 
 // documentation endpoint for Swagger

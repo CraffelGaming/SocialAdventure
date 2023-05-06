@@ -10,7 +10,7 @@ $(async () => {
     let menus = await get(`/menu`, language);
     let twitch = await get(`/twitch`, language);
     let node = await get(`/node/default`, language);
-    
+
     initialize();
 
     cookie();
@@ -26,22 +26,22 @@ $(async () => {
                 height: 400,
                 visible: true
             });
-    
+
             $('#cookieText').dxTextArea({
                 value: translate(languageCookie, "Text"),
                 height: 250,
-                stylingMode:"outlined",
+                stylingMode: "outlined",
                 readOnly: true
             });
-    
+
             $('#cookieAllow').dxButton({
                 text: translate(languageCookie, "Allow"),
-                onClick: function() {
+                onClick: function () {
                     setCookie('allowCookies', '1', 365);
                     $('#cookie').dxPopup('instance').hide();
-                } 
+                }
             });
-        } 
+        }
 
     }
 
@@ -52,13 +52,13 @@ $(async () => {
         var items = [];
 
         items.push({
-            href:'\\',
+            href: '\\',
             template: "<img alt='Martin Rosbund' src='/images/favicon24x24.png' height='24' class='dx-icon' text='Social Adventure Bot'></div>"
         });
 
         items.push({
             text: translate(language, "title"),
-            href:'\\'
+            href: '\\'
         });
 
         var menu = menus.filter(x => !x.parent).sort(function (a, b) {
@@ -81,7 +81,7 @@ $(async () => {
     }
 
     function SetMenu(item, parent) {
-        
+
         var subs = menus.filter(x => x.parent && x.parent.endpoint == item.endpoint).sort(function (a, b) {
             return a.order - b.order;
         });
@@ -100,7 +100,7 @@ $(async () => {
 
             parent.push({
                 text: translate(language, item.name),
-                items: elements 
+                items: elements
             });
         }
     }

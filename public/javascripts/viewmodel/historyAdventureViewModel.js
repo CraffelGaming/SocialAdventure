@@ -5,7 +5,7 @@ $(async () => {
 
     let module = 'historyAdventure';
     let language = await getTranslation(module);
-    
+
     translation();
     initialize();
     load();
@@ -55,7 +55,7 @@ $(async () => {
                 { dataField: "date", caption: translate(language, 'date'), dataType: 'datetime', sortIndex: 0, sortOrder: "desc" },
                 { dataField: "heroName", caption: translate(language, 'heroName') },
                 { dataField: "enemyName", caption: translate(language, 'enemyName') },
-                { dataField: "isSuccess", caption: translate(language, 'isSuccess'), dataType:'boolean' },
+                { dataField: "isSuccess", caption: translate(language, 'isSuccess'), dataType: 'boolean' },
                 { dataField: "heroHitpointsStart", caption: translate(language, 'heroHitpointsStart') },
                 { dataField: "enemyDamage", caption: translate(language, 'enemyDamage') },
                 { dataField: "heroHitpointsEnd", caption: translate(language, 'heroHitpointsEnd') },
@@ -87,11 +87,14 @@ $(async () => {
                 }
             },
             toolbar: {
-                items: ["groupPanel", "addRowButton", "columnChooserButton", {
-                    widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); }}
-                }, { 
-                    widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); }}
-                    }, "searchPanel", "exportButton"]
+                items: [
+                    "groupPanel", "addRowButton", "columnChooserButton", {
+                        widget: 'dxButton', options: { icon: 'refresh', onClick() { $('#dataGrid').dxDataGrid('instance').refresh(); } }
+                    },
+                    {
+                        widget: 'dxButton', options: { icon: 'revert', onClick: async function () { $('#dataGrid').dxDataGrid('instance').state(null); } }
+                    }, "searchPanel", "exportButton"
+                ]
             }
         });
     }
