@@ -37,7 +37,8 @@ router.get('/' + endpoint + '/:node/:experience', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             const item = await channel.database.sequelize.models.level.findOne({
-                where: { experienceMin: { [Op.lte]: request.params.experience },
+                where: {
+                    experienceMin: { [Op.lte]: request.params.experience },
                     experienceMax: { [Op.gte]: request.params.experience }
                 }
             });

@@ -262,15 +262,21 @@ export class Say extends Module {
     }
     async text(command) {
         try {
-            if (command.parameters.length > 0) {
-                this.item.setDataValue("text", command.parameters[0]);
-                await this.item.save();
-                global.worker.log.trace(`module ${this.item.getDataValue("command")} text changed active: ${this.item.getDataValue("text")}`);
-                return TranslationItem.translate(this.basicTranslation, "textChanged").replace("<text>", command.parameters[0]);
+            if (this.isDateTimeoutExpiredSeconds(this.lastCount, this.item.getDataValue("timeout"))) {
+                if (command.parameters.length > 0) {
+                    this.item.setDataValue("text", command.parameters[0]);
+                    await this.item.save();
+                    global.worker.log.trace(`module ${this.item.getDataValue("command")} text changed active: ${this.item.getDataValue("text")}`);
+                    return TranslationItem.translate(this.basicTranslation, "textChanged").replace("<text>", command.parameters[0]);
+                }
+                else {
+                    global.worker.log.trace(`module ${this.item.getDataValue("command")} missing text parameter.`);
+                    return TranslationItem.translate(this.basicTranslation, "noParameter");
+                }
             }
             else {
-                global.worker.log.trace(`module ${this.item.getDataValue("command")} missing text parameter.`);
-                return TranslationItem.translate(this.basicTranslation, "noParameter");
+                global.worker.log.trace(`module ${this.item.getDataValue("command")} timeout not expired.`);
+                return '';
             }
         }
         catch (ex) {

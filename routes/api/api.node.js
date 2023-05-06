@@ -7,10 +7,12 @@ router.get('/' + endpoint + '/', async (request, response) => {
         global.worker.log.trace(`get ${endpoint}`);
         let item;
         if (request.query.childs !== "false") {
-            item = await global.worker.globalDatabase.sequelize.models.node.findAll({ where: { isActive: true }, order: [['name', 'ASC']], include: [{
+            item = await global.worker.globalDatabase.sequelize.models.node.findAll({
+                where: { isActive: true }, order: [['name', 'ASC']], include: [{
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
                         as: 'twitchUser',
-                    }] });
+                    }]
+            });
         }
         else
             item = await global.worker.globalDatabase.sequelize.models.node.findAll({ where: { isActive: true }, order: [['name', 'ASC']] });
@@ -34,10 +36,12 @@ router.get('/' + endpoint + '/information/:node/', async (request, response) => 
         else
             nodeName = request.params.node;
         if (request.query.childs !== "false") {
-            item = await global.worker.globalDatabase.sequelize.models.node.findOne({ where: { name: nodeName, isActive: true }, include: [{
+            item = await global.worker.globalDatabase.sequelize.models.node.findOne({
+                where: { name: nodeName, isActive: true }, include: [{
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
                         as: 'twitchUser',
-                    }] });
+                    }]
+            });
         }
         else
             item = await global.worker.globalDatabase.sequelize.models.node.findOne({ where: { name: nodeName, isActive: true } });
@@ -56,10 +60,12 @@ router.get('/' + endpoint + '/live', async (request, response) => {
         global.worker.log.trace(`get ${endpoint}`);
         let item;
         if (request.query.childs !== "false") {
-            item = await global.worker.globalDatabase.sequelize.models.node.findAll({ where: { isLive: true, isActive: true }, order: [['name', 'ASC']], include: [{
+            item = await global.worker.globalDatabase.sequelize.models.node.findAll({
+                where: { isLive: true, isActive: true }, order: [['name', 'ASC']], include: [{
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
                         as: 'twitchUser',
-                    }] });
+                    }]
+            });
         }
         else
             item = await global.worker.globalDatabase.sequelize.models.node.findAll({ order: [['name', 'ASC']] });

@@ -14,10 +14,12 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.location.findAll({ order: [['name', 'ASC']], include: [{
+                item = await channel.database.sequelize.models.location.findAll({
+                    order: [['name', 'ASC']], include: [{
                             model: channel.database.sequelize.models.itemCategory,
                             as: 'category',
-                        }] });
+                        }]
+                });
             }
             else {
                 item = await channel.database.sequelize.models.location.findAll({ order: [['name', 'ASC']] });
@@ -47,10 +49,12 @@ router.get('/' + endpoint + '/:node/active', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.location.findAll({ where: { isActive: true }, order: [['name', 'ASC']], include: [{
+                item = await channel.database.sequelize.models.location.findAll({
+                    where: { isActive: true }, order: [['name', 'ASC']], include: [{
                             model: global.worker.globalDatabase.sequelize.models.itemCategory,
                             as: 'category',
-                        }] });
+                        }]
+                });
             }
             else {
                 item = await channel.database.sequelize.models.location.findAll({ where: { isActive: true }, order: [['name', 'ASC']] });

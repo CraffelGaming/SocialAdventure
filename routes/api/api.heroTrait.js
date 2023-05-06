@@ -13,10 +13,12 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']], include: [{
+                item = await channel.database.sequelize.models.heroTrait.findAll({
+                    order: [['heroName', 'ASC']], include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
-                        }] });
+                        }]
+                });
             }
             else
                 item = await channel.database.sequelize.models.heroTrait.findAll({ order: [['heroName', 'ASC']] });
@@ -45,10 +47,12 @@ router.get('/' + endpoint + '/:node/hero/:name', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, include: [{
+                item = await channel.database.sequelize.models.heroTrait.findOne({
+                    where: { heroName: request.params.name }, include: [{
                             model: channel.database.sequelize.models.hero,
                             as: 'hero',
-                        }] });
+                        }]
+                });
             }
             else
                 item = await channel.database.sequelize.models.heroTrait.findOne({ where: { heroName: request.params.name }, raw: false });

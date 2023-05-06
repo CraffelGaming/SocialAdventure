@@ -44,8 +44,10 @@ let HeroInventoryItem = class HeroInventoryItem extends Model {
             await sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: adventure.getDataValue("itemHandle"), heroName: adventure.getDataValue("heroName") } });
         }
         else {
-            await sequelize.models.heroInventory.create({ heroName: adventure.getDataValue("heroName"),
-                itemHandle: adventure.getDataValue("itemHandle") });
+            await sequelize.models.heroInventory.create({
+                heroName: adventure.getDataValue("heroName"),
+                itemHandle: adventure.getDataValue("itemHandle")
+            });
         }
         adventure.destroy();
     }
@@ -55,8 +57,10 @@ let HeroInventoryItem = class HeroInventoryItem extends Model {
             await sequelize.models.heroInventory.increment('quantity', { by: 1, where: { itemHandle: item.getDataValue("handle"), heroName } });
         }
         else {
-            await sequelize.models.heroInventory.create({ heroName,
-                itemHandle: item.getDataValue("handle") });
+            await sequelize.models.heroInventory.create({
+                heroName,
+                itemHandle: item.getDataValue("handle")
+            });
         }
     }
     static async sell({ sequelize, itemHandle, heroName, quantity }) {

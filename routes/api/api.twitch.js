@@ -22,11 +22,13 @@ router.get('/' + endpoint + '/', (request, response) => {
         }
         else
             global.worker.log.trace(`twitch - locale state is ${request.session.state}`);
-        response.status(200).json({ url: twitchData.url_authorize + '?client_id=' + twitchData.client_id +
+        response.status(200).json({
+            url: twitchData.url_authorize + '?client_id=' + twitchData.client_id +
                 '&redirect_uri=' + twitchData.redirect_uri +
                 '&response_type=' + twitchData.response_type +
                 '&scope=' + twitchData.scope +
-                '&state=' + request.session.state });
+                '&state=' + request.session.state
+        });
     }
     catch (ex) {
         global.worker.log.error(`api endpoint ${endpoint} error - ${ex.message}`);

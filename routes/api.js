@@ -136,16 +136,9 @@ router.get("/adventure/:node/hero/:name", adventure);
  *       201:
  *         description: successful operation
  *         schema:
- *           type: object
- *           properties:
- *             heroName:
- *               type: string
- *               example: 1
- *               descrition: Name des Helden
- *             itemHandle:
- *               type: integer
- *               example: 1
- *               descrition: ID des Gegenstandes
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/Adventure'
  *       403:
  *         description: no permission
  *       404:
@@ -309,44 +302,7 @@ router.get("/command/:node/:module", command);
  *         schema:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               handle:
- *                 type: string
- *                 example: "gold"
- *                 descrition: ID der Täglichen Aufgabe
- *               value:
- *                 type: string
- *                 example: "Minenarbeit"
- *                 descrition: Name der Täglichen Aufgabe
- *               description:
- *                 type: string
- *                 example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
- *                 descrition: Beschreibung der Täglichen Aufgabe
- *               goldMin:
- *                 type: integer
- *                 example: 100
- *                 descrition: Minimaler Verdienst an Gold
- *               goldMax:
- *                 type: integer
- *                 example: 500
- *                 descrition: Maximaler Verdienst an Gold
- *               experienceMin:
- *                 type: integer
- *                 example: 100
- *                 descrition: Minimaler Verdienst an Erfahrung
- *               experienceMax:
- *                 type: integer
- *                 example: 500
- *                 descrition: Maximaler Verdienst an Erfahrung
- *               createdAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der Anlage
- *               updatedAt:
- *                 type: string
- *                 example: "2022-05-12 10:11:35.027 +00:00"
- *                 descrition: Datum der letzten Änderung
+ *             $ref: '#/definitions/Daily'
  *       404:
  *         description: no data
  */
@@ -590,70 +546,12 @@ router.post("/daily/:node/redeem/:number/hero/:name", daily);
  *     - name: "item"
  *       in: "body"
  *       schema:
- *         type: object
- *         properties:
- *           handle:
- *             type: string
- *             example: "gold"
- *             descrition: ID der Täglichen Aufgabe
- *           value:
- *             type: string
- *             example: "Minenarbeit"
- *             descrition: Name der Täglichen Aufgabe
- *           description:
- *             type: string
- *             example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
- *             descrition: Beschreibung der Täglichen Aufgabe
- *           goldMin:
- *             type: integer
- *             example: 100
- *             descrition: Minimaler Verdienst an Gold
- *           goldMax:
- *             type: integer
- *             example: 500
- *             descrition: Maximaler Verdienst an Gold
- *           experienceMin:
- *             type: integer
- *             example: 100
- *             descrition: Minimaler Verdienst an Erfahrung
- *           experienceMax:
- *             type: integer
- *             example: 500
- *             descrition: Maximaler Verdienst an Erfahrung
+ *         $ref: '#/definitions/Daily'
  *     responses:
  *       201:
  *         description: successful operation
  *         schema:
- *           type: object
- *           properties:
- *             handle:
- *               type: string
- *               example: "gold"
- *               descrition: ID der Täglichen Aufgabe
- *             value:
- *               type: string
- *               example: "Minenarbeit"
- *               descrition: Name der Täglichen Aufgabe
- *             description:
- *               type: string
- *               example: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
- *               descrition: Beschreibung der Täglichen Aufgabe
- *             goldMin:
- *               type: integer
- *               example: 100
- *               descrition: Minimaler Verdienst an Gold
- *             goldMax:
- *               type: integer
- *               example: 500
- *               descrition: Maximaler Verdienst an Gold
- *             experienceMin:
- *               type: integer
- *               example: 100
- *               descrition: Minimaler Verdienst an Erfahrung
- *             experienceMax:
- *               type: integer
- *               example: 500
- *               descrition: Maximaler Verdienst an Erfahrung
+ *           $ref: '#/definitions/Daily'
  *       403:
  *         description: no permission
  *       404:

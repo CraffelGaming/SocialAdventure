@@ -44,10 +44,12 @@ export class Worker {
             await this.connect();
             // Load default Translation
             this.translation = await this.globalDatabase.sequelize.models.translation.findAll({ where: { page: 'default' }, order: [['handle', 'ASC']] });
-            for (const node of await this.globalDatabase.sequelize.models.node.findAll({ where: { isActive: true }, include: [{
+            for (const node of await this.globalDatabase.sequelize.models.node.findAll({
+                where: { isActive: true }, include: [{
                         model: global.worker.globalDatabase.sequelize.models.twitchUser,
                         as: 'twitchUser',
-                    }] })) {
+                    }]
+            })) {
                 await this.startNode(node); // no await needed
             }
             global.worker.log.info(`--------------------------------------`);

@@ -6,13 +6,15 @@ router.get('/' + endpoint + '/', async (request, response) => {
         global.worker.log.trace(`get ${endpoint}`);
         let item;
         if (request.query.childs !== "false") {
-            item = await global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']], include: [{
+            item = await global.worker.globalDatabase.sequelize.models.menu.findAll({
+                where: { isActive: true }, order: [['order', 'ASC']], include: [{
                         model: global.worker.globalDatabase.sequelize.models.menu,
                         as: 'childs',
                     }, {
                         model: global.worker.globalDatabase.sequelize.models.menu,
                         as: 'parent',
-                    }] });
+                    }]
+            });
         }
         else
             item = await global.worker.globalDatabase.sequelize.models.menu.findAll({ where: { isActive: true }, order: [['order', 'ASC']] });

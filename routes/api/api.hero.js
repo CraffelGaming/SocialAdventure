@@ -14,13 +14,15 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.hero.findAll({ order: [['name', 'ASC']], include: [{
+                item = await channel.database.sequelize.models.hero.findAll({
+                    order: [['name', 'ASC']], include: [{
                             model: channel.database.sequelize.models.heroTrait,
                             as: 'trait',
                         }, {
                             model: channel.database.sequelize.models.heroWallet,
                             as: 'wallet',
-                        }] });
+                        }]
+                });
             }
             else
                 item = await channel.database.sequelize.models.hero.findAll({ order: [['name', 'ASC']] });
@@ -49,13 +51,15 @@ router.get('/' + endpoint + '/:node/:name', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.hero.findByPk(request.params.name, { include: [{
+                item = await channel.database.sequelize.models.hero.findByPk(request.params.name, {
+                    include: [{
                             model: channel.database.sequelize.models.heroTrait,
                             as: 'trait',
                         }, {
                             model: channel.database.sequelize.models.heroWallet,
                             as: 'wallet',
-                        }] });
+                        }]
+                });
             }
             else
                 item = await channel.database.sequelize.models.hero.findByPk(request.params.name);

@@ -690,13 +690,15 @@ export class Loot extends Module {
     async inventory(command) {
         try {
             const hero = this.getTargetHero(command);
-            const items = await this.channel.database.sequelize.models.adventure.findAll({ where: { heroName: hero }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], include: [{
+            const items = await this.channel.database.sequelize.models.adventure.findAll({
+                where: { heroName: hero }, order: [['heroName', 'ASC'], ['itemHandle', 'ASC']], include: [{
                         model: this.channel.database.sequelize.models.hero,
                         as: 'hero',
                     }, {
                         model: this.channel.database.sequelize.models.item,
                         as: 'item',
-                    }] });
+                    }]
+            });
             if (items && items.length > 0) {
                 return TranslationItem.translate(this.translation, 'heroItem').replace('$1', hero).replace('$2', items.map(a => a.getDataValue("item").getDataValue("value") + ' [' + a.getDataValue("item").getDataValue("handle") + ']').toString());
             }
@@ -716,7 +718,8 @@ export class Loot extends Module {
             const item = await this.channel.database.sequelize.models.hero.findByPk(hero);
             if (item) {
                 const level = await this.channel.database.sequelize.models.level.findOne({
-                    where: { experienceMin: { [Op.lte]: item.getDataValue("experience") },
+                    where: {
+                        experienceMin: { [Op.lte]: item.getDataValue("experience") },
                         experienceMax: { [Op.gte]: item.getDataValue("experience") }
                     }
                 });

@@ -195,7 +195,7 @@ app.use('/moment', express.static(path.join(dirname, '/node_modules/moment/src')
 if (app.get('env') === 'development') {
     app.use((err: any, request: express.Request, response: express.Response) => {
         if (response) {
-            //response.status(err.status || 500);
+            // response.status(err.status || 500);
             response.render('error', {
                 message: err.message,
                 error: err
@@ -207,7 +207,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use((err: any, request: express.Request, response: express.Response) => {
-    //response.status(err.status || 500);
+    // response.status(err.status || 500);
     response.render('error', {
         message: err.message,
         error: {}

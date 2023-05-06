@@ -2,6 +2,55 @@ import express from 'express';
 import { DailyItem } from '../../model/dailyItem.js';
 const router = express.Router();
 const endpoint = 'daily';
+//#region swagger
+/**
+ * @swagger
+ *
+ * definitions:
+ *   Daily:
+ *     type: object
+ *     required:
+ *       - module
+ *     properties:
+ *       handle:
+ *         type: string
+ *         descrition: ID der Täglichen Aufgabe
+ *       value:
+ *         type: string
+ *         descrition: Name der Täglichen Aufgabe
+ *       description:
+ *         type: string
+ *         descrition: Beschreibung der Täglichen Aufgabe
+ *       goldMin:
+ *         type: integer
+ *         descrition: Minimaler Verdienst an Gold
+ *       goldMax:
+ *         type: integer
+ *         descrition: Maximaler Verdienst an Gold
+ *       experienceMin:
+ *         type: integer
+ *         descrition: Minimaler Verdienst an Erfahrung
+ *       experienceMax:
+ *         type: integer
+ *         descrition: Maximaler Verdienst an Erfahrung
+ *       createdAt:
+ *         type: string
+ *         descrition: Datum der Anlage
+ *       updatedAt:
+ *         type: string
+ *         descrition: Datum der letzten Änderung
+ *     example:
+ *       handle: "gold"
+ *       value: "Minenarbeit"
+ *       description: "Harte schwere Mienenarbeit in den tiefsten Minen, die bisher bekannt sind."
+ *       goldMin: 100
+ *       goldMax: 500
+ *       experienceMin: 100
+ *       experienceMax: 500
+ *       createdAt: "2022-05-12 10:11:35.027 +00:00"
+ *       updatedAt: "2022-05-12 10:11:35.027 +00:00"
+ */
+//#endregion
 router.get('/' + endpoint + '/:node/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}, node ${request.params.node}`);

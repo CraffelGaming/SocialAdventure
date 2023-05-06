@@ -5,10 +5,12 @@ const endpoint = 'item';
 router.get('/' + endpoint + '/', async (request, response) => {
     try {
         global.worker.log.trace(`get ${endpoint}`);
-        const item = await global.worker.globalDatabase.sequelize.models.item.findAll({ order: [['value', 'ASC']], include: [{
+        const item = await global.worker.globalDatabase.sequelize.models.item.findAll({
+            order: [['value', 'ASC']], include: [{
                     model: global.worker.globalDatabase.sequelize.models.itemCategory,
                     as: 'category',
-                }] });
+                }]
+        });
         if (item)
             response.status(200).json(item);
         else
@@ -29,10 +31,12 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
             node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
-            const item = await channel.database.sequelize.models.item.findAll({ order: [['value', 'ASC']], include: [{
+            const item = await channel.database.sequelize.models.item.findAll({
+                order: [['value', 'ASC']], include: [{
                         model: channel.database.sequelize.models.itemCategory,
                         as: 'category',
-                    }] });
+                    }]
+            });
             if (item)
                 response.status(200).json(item);
             else
@@ -56,10 +60,12 @@ router.get('/' + endpoint + '/:node/:handle', async (request, response) => {
             node = await global.worker.globalDatabase.sequelize.models.node.findByPk(request.params.node);
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
-            const item = await channel.database.sequelize.models.item.findByPk(request.params.handle, { include: [{
+            const item = await channel.database.sequelize.models.item.findByPk(request.params.handle, {
+                include: [{
                         model: channel.database.sequelize.models.itemCategory,
                         as: 'category',
-                    }] });
+                    }]
+            });
             if (item)
                 response.status(200).json(item);
             else

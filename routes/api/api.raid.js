@@ -14,13 +14,15 @@ router.get('/' + endpoint + '/:node/', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.raid.findAll({ order: [['handle', 'ASC']], include: [{
+                item = await channel.database.sequelize.models.raid.findAll({
+                    order: [['handle', 'ASC']], include: [{
                             model: channel.database.sequelize.models.raidBoss,
                             as: 'raidBoss',
                         }, {
                             model: channel.database.sequelize.models.raidHero,
                             as: 'raidHeroes',
-                        }] });
+                        }]
+                });
             }
             else {
                 item = await channel.database.sequelize.models.raid.findAll({ order: [['handle', 'ASC']] });
@@ -50,13 +52,15 @@ router.get('/' + endpoint + '/:node/:handle', async (request, response) => {
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.raid.findOne({ where: { handle: request.params.handle }, order: [['handle', 'ASC']], include: [{
+                item = await channel.database.sequelize.models.raid.findOne({
+                    where: { handle: request.params.handle }, order: [['handle', 'ASC']], include: [{
                             model: channel.database.sequelize.models.raidBoss,
                             as: 'raidBoss',
                         }, {
                             model: channel.database.sequelize.models.raidHero,
                             as: 'raidHeroes',
-                        }] });
+                        }]
+                });
             }
             else {
                 item = await channel.database.sequelize.models.raid.findOne({ where: { handle: request.params.handle }, order: [['handle', 'ASC']] });
@@ -86,18 +90,22 @@ router.get('/' + endpoint + '/:node/current/active', async (request, response) =
         const channel = global.worker.channels.find(x => x.node.getDataValue('name') === node.name);
         if (channel) {
             if (request.query.childs !== "false") {
-                item = await channel.database.sequelize.models.raid.findOne({ where: { isActive: true },
+                item = await channel.database.sequelize.models.raid.findOne({
+                    where: { isActive: true },
                     order: [['handle', 'DESC']], include: [{
                             model: channel.database.sequelize.models.raidBoss,
                             as: 'raidBoss',
                         }, {
                             model: channel.database.sequelize.models.raidHero,
                             as: 'raidHeroes',
-                        }] });
+                        }]
+                });
             }
             else {
-                item = await channel.database.sequelize.models.raid.findOne({ where: { isActive: true },
-                    order: [['handle', 'DESC']] });
+                item = await channel.database.sequelize.models.raid.findOne({
+                    where: { isActive: true },
+                    order: [['handle', 'DESC']]
+                });
             }
             if (item)
                 response.status(200).json(item);
