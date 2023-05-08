@@ -5,6 +5,7 @@ Social Adventure ist eine kostenlose Twitch-Bot Alternative zu Streamlabs, Night
 ## Rechtliches und Lizenz
 Der Social Adventure Bot darf für nicht kommerzielle Zwecke verwendet werden. 
 Die Angabe des Autors "Craffel (Martin Rosbund)" ist gut ersichtlich im Code und auf jeder Verlinkung / Webseite einzufügen.
+
 ## Installation für Entwickler
 ### Benötigte Anwendungen
 - Visual Studio Code:https://code.visualstudio.com/download 
@@ -82,7 +83,7 @@ Die Dateien “craffel.de_private_key.key” und “craffel.de_ssl_certificate.c
 ## Erster Programmstart
 Wenn der SocialAdventure das erste Mal startet, wird eine globale Datenbank im Ordner “database” erstellt. Nun kannst du über den Browser auf den SocialAdventure zugreifen. Der Standard-Port ist 80 bei http:// und 443 bei https://. Zum testen kannst du den Port aber auch jederzeit in der Datei “settings.json” ändern, falls die Ports bereits belegt sind. Die Datei befindet sich im Projekt-Root.
 
-Wenn du nun auf die Seite http://localhost zugreifst, kannst du dich mit Twitch verbinden (Am besten auch mit deinen Bot-Account.
+Wenn du nun auf die Seite http://localhost zugreifst, kannst du dich mit Twitch verbinden (Am besten auch mit deinen Bot-Account).
 
 Nach einer erfolgreichen Verbindung, kannst du den Bot für den angemeldeten Account aktivieren, damit du den Chatbot in deinen Chat verwenden kannst: 
 
