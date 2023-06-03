@@ -1,4 +1,4 @@
-import { getTranslation, translate, infoPanel, get, put, notify } from './globalData.js';
+import { getTranslation, translate, infoPanel, get, put, notify, tableExport } from './globalData.js';
 import { getCookie, setCookie } from './cookieViewModel.js';
 
 $(async () => {
