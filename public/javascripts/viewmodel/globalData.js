@@ -238,7 +238,7 @@ export async function put(endpoint, body, type = 'put', language = undefined) {
                         notify(translate(language, res.status), "success");
                     items = await res.json();
                     break;
-                case 201:
+                case 204:
                     if (language != undefined)
                         notify(translate(language, res.status), "success");
                     break;

@@ -80,7 +80,7 @@ let HeroInventoryItem = class HeroInventoryItem extends Model {
                 else {
                     await inventory.decrement('quantity', { by: quantity });
                 }
-                return 200;
+                return 204;
             }
             else
                 return 404;

@@ -219,7 +219,7 @@ $(async () => {
                     },
                     update: async function (key, values) {
                         values.handle = key;
-                        await put(`./heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}/quantity/${values.quantitySell}`, values, 'post', language);
+                        await put(`/heroinventory/default/sell/item/${key.itemHandle}/hero/${key.heroName}/quantity/${values.quantitySell}`, values, 'post', language);
                     }
                 }),
                 allowColumnReordering: true,

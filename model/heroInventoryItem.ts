@@ -98,7 +98,7 @@ export class HeroInventoryItem extends Model<HeroInventoryItem>{
                     await inventory.decrement('quantity', { by: quantity });
                 }
 
-                return 200;
+                return 204;
             } else return 404;
         } catch (ex) {
             global.worker.log.error(ex);
